@@ -221,6 +221,39 @@
 
   /* ── ROUTE ── */
   .route-section{margin-bottom:26px}
+  /* ── VISUAL ROUTE MAP ── */
+  .vr-container{position:relative;padding:8px 0 8px 44px;margin-top:4px}
+  .vr-line{position:absolute;left:19px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--border));border-radius:3px;z-index:0}
+  .vr-step{position:relative;margin-bottom:0;display:flex;align-items:flex-start;gap:0}
+  .vr-step:last-child .vr-connector{display:none}
+  .vr-connector{position:absolute;left:-25px;top:23px;width:3px;background:var(--border);bottom:-24px;z-index:0}
+  .vr-node{position:absolute;left:-36px;top:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;z-index:1;flex-shrink:0;border:2px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .vr-node.type-trash{background:var(--deep);border-color:var(--border);color:var(--muted)}
+  .vr-node.type-boss{background:linear-gradient(135deg,#b8860b,var(--gold));border-color:var(--gold);color:#fff;width:32px;height:32px;font-size:15px;top:6px;left:-39px;box-shadow:0 2px 12px rgba(184,134,11,.4)}
+  .vr-node.type-event{background:#1a4a2e;border-color:#2d8a52;color:#4ec87a}
+  .vr-card{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:12px;transition:border-color .2s}
+  .vr-card:hover{border-color:var(--accent)}
+  .vr-card.type-boss{border-color:rgba(184,134,11,.4);background:linear-gradient(135deg,var(--panel),rgba(184,134,11,.04))}
+  .vr-card.type-event{border-color:rgba(45,138,82,.4);background:linear-gradient(135deg,var(--panel),rgba(45,138,82,.04))}
+  .vr-label-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+  .vr-label{font-weight:700;font-size:14px;color:var(--text)}
+  .vr-card.type-boss .vr-label{color:var(--gold)}
+  .vr-card.type-event .vr-label{color:#4ec87a}
+  .vr-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+  .vr-badge.lust{background:rgba(255,80,0,.15);color:#ff5000;border:1px solid rgba(255,80,0,.3)}
+  .vr-badge.boss{background:rgba(184,134,11,.15);color:var(--gold);border:1px solid rgba(184,134,11,.3)}
+  .vr-badge.event{background:rgba(45,138,82,.15);color:#4ec87a;border:1px solid rgba(45,138,82,.3)}
+  .vr-badge.skip{background:rgba(120,120,120,.12);color:var(--muted);border:1px solid rgba(120,120,120,.25)}
+  .vr-desc{font-size:13px;color:var(--muted);line-height:1.5}
+  .vr-area{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+  .vr-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--muted)}
+  .vr-leg-item{display:flex;align-items:center;gap:5px}
+  .vr-leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+  .vr-leg-dot.l-trash{background:var(--deep);border:2px solid var(--border)}
+  .vr-leg-dot.l-boss{background:var(--gold)}
+  .vr-leg-dot.l-event{background:#2d8a52}
+  .vr-leg-dot.l-lust{background:#ff5000}
+
   .route-title{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:11px;text-transform:uppercase}
   .route-diagram{background:var(--route-bg);border:1px solid var(--border);border-radius:10px;padding:14px;overflow-x:auto;margin-bottom:12px}
   .lust-table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px}
@@ -249,6 +282,57 @@
   /* ── ABOUT BUTTON ── */
   #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
   #about-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+
+  /* ── KEYSTONE.GURU FULLSCREEN POPUP ── */
+  #kg-popup{display:none;position:fixed;inset:0;z-index:1400;background:rgba(0,0,0,.92);flex-direction:column}
+  #kg-popup.open{display:flex}
+  #kg-popup-bar{background:#0d0f14;border-bottom:1px solid #2a2f3d;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+  #kg-popup-title{font-family:'Cinzel',Georgia,serif;font-size:14px;color:#c8a84b;font-weight:700;flex:1}
+  #kg-popup-hint{font-size:11px;color:#7a8099}
+  #kg-popup-close{background:#1e2435;border:1px solid #2a2f3d;color:#e8e0d0;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:13px;font-weight:700}
+  #kg-popup-close:hover{border-color:#c8a84b;color:#c8a84b}
+  #kg-popup-frame{flex:1;border:none;width:100%;background:#1a1e2a}
+
+  /* ── DUNGEON ROUTE MAP ── */
+  .route-map-section{margin-bottom:20px}
+  .route-map-title{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .route-map-wrap{background:var(--deep);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .route-map-svg{width:100%;display:block;overflow:visible}
+
+  /* Route line */
+  .rt-line{fill:none;stroke:#e8c840;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;opacity:.9;filter:drop-shadow(0 0 3px rgba(232,200,64,.4))}
+  .rt-arrow{fill:#e8c840;opacity:.9}
+
+  /* Rooms */
+  .rt-wall{fill:#0e1018}
+  .rt-floor{fill:#161c2a}
+  .rt-boss-room{fill:#1a1400}
+  .rt-start-room{fill:#0d1a0d}
+  .rt-corridor{fill:#131928}
+  .rt-room-border{fill:none;stroke:#2a3050;stroke-width:1}
+  .rt-boss-border{fill:none;stroke:rgba(200,168,75,.5);stroke-width:1.5}
+  .rt-start-border{fill:none;stroke:rgba(64,200,112,.45);stroke-width:1.5}
+
+  /* Pull nodes */
+  .rt-node{cursor:pointer}
+  .rt-node:hover circle{opacity:1!important;filter:drop-shadow(0 0 5px currentColor)}
+  .rt-label{font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;fill:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;pointer-events:none}
+  .rt-label-boss{fill:rgba(200,168,75,.6)}
+  .rt-label-start{fill:rgba(64,200,112,.6)}
+
+  /* KG button + pull footer */
+  .kg-open-btn{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a1e2c,#1e2440);border:1px solid rgba(74,127,212,.4);border-radius:10px;padding:10px 14px;color:#7aaaf0;font-size:13px;font-weight:700;cursor:pointer;width:100%;transition:all .2s;text-align:left;margin-top:10px;font-family:'Rajdhani',sans-serif}
+  .kg-open-btn:hover{border-color:rgba(74,127,212,.8);color:#aad0ff;background:linear-gradient(135deg,#1e2240,#222850)}
+  .kg-open-btn .kg-icon{font-size:18px;flex-shrink:0}
+  .kg-open-btn .kg-text{flex:1}
+  .kg-open-btn .kg-sub{display:block;font-size:11px;color:#4a7fd4;font-weight:600;margin-top:1px}
+  .kg-open-btn .kg-arrow{font-size:16px;opacity:.6}
+
+  /* Pull legend strip */
+  .map-legend{display:flex;gap:10px;flex-wrap:wrap;padding:8px 12px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
+  .ml-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+  .ml-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#fff}
 
   /* ── ABOUT MODAL ── */
   #about-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
@@ -285,7 +369,7 @@
   /* ── SPEC SELECTOR ── */
   #spec-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
   #spec-btn:hover{border-color:var(--gold);color:var(--gold)}
-  #spec-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);align-items:flex-start;justify-content:center;padding:60px 12px 24px;overflow-y:auto}
+  #spec-modal{display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,0.7);align-items:flex-start;justify-content:center;padding:60px 12px 24px;overflow-y:auto}
   #spec-modal.visible{display:flex}
   #spec-modal-inner{background:var(--deep);border:1px solid var(--border);border-radius:14px;width:100%;max-width:700px;padding:20px}
   #spec-modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
@@ -394,7 +478,7 @@
 <script>
 
 // ── VERSIE ──
-const VERSION = "v3.0";
+const VERSION = "v3.2";
 const VERSION_DATE = "2026-03-10";
 
 
@@ -559,12 +643,16 @@ function updateSpecBtn() {
 }
 
 function openSpecModal() {
+  // Sluit about-modal als die open is
+  document.getElementById('about-modal').classList.remove('open');
+  document.body.style.overflow = 'hidden';
   document.getElementById('spec-modal').classList.add('visible');
   renderSpecModal();
 }
 
 function closeSpecModal() {
   document.getElementById('spec-modal').classList.remove('visible');
+  document.body.style.overflow = '';
 }
 
 function renderSpecModal() {
@@ -658,6 +746,14 @@ const UI = {
     kg_section:   "Interactieve Routes — Keystone.guru",
     kg_text:      "Bekijk en importeer uitgebreide M+-routes op Keystone.guru. Gebruik de <strong>MDT (Mythic Dungeon Tools)</strong> addon in-game om routes te importeren.",
     kg_btn:       "🗺 Open routes op Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Baas",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BAAS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
     norm_note:    "Geen Keystone.guru route nodig — deze dungeon zit niet in de M+ rotatie. Bovenstaande pull-volgorde is voldoende.",
     back:         "← Terug",
     theme_light:  "☀️",
@@ -695,6 +791,14 @@ const UI = {
     kg_section:   "Interactive Routes — Keystone.guru",
     kg_text:      "View and import detailed M+ routes on Keystone.guru. Use the <strong>MDT (Mythic Dungeon Tools)</strong> addon in-game to import routes.",
     kg_btn:       "🗺 Open routes on Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Boss",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BOSS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
     norm_note:    "No Keystone.guru route needed — this dungeon is not in the M+ rotation. The pull order above is sufficient.",
     back:         "← Back",
     theme_light:  "☀️",
@@ -732,6 +836,14 @@ const UI = {
     kg_section:   "Interaktive ruter — Keystone.guru",
     kg_text:      "Se og importer detaljerede M+-ruter på Keystone.guru. Brug <strong>MDT (Mythic Dungeon Tools)</strong> addon i spillet til at importere ruter.",
     kg_btn:       "🗺 Åbn ruter på Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Boss",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BOSS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
     norm_note:    "Ingen Keystone.guru-rute nødvendig — denne dungeon er ikke i M+-rotationen. Pull-rækkefølgen ovenfor er tilstrækkelig.",
     back:         "← Tilbage",
     theme_light:  "☀️",
@@ -5737,6 +5849,305 @@ function goHome() {
 // ═══════════════════════════════════════════════════════════════
 // RENDER DETAIL
 // ═══════════════════════════════════════════════════════════════
+const ROUTE_MAPS = {
+  'windrunner': `<svg class="route-map-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="220" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="155" width="70" height="50" rx="4" class="rt-start-room rt-start-border"/>
+<text x="45" y="178" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<text x="45" y="190" class="rt-label rt-label-start" text-anchor="middle">INGANG</text>
+<!-- Corridor up -->
+<rect x="30" y="105" width="30" height="50" rx="2" class="rt-corridor"/>
+<!-- Trash 1 room -->
+<rect x="10" y="60" width="70" height="45" rx="4" class="rt-floor rt-room-border"/>
+<text x="45" y="86" class="rt-label" text-anchor="middle">TRASH 1-2</text>
+<!-- Corridor up to boss 1 -->
+<rect x="30" y="20" width="30" height="40" rx="2" class="rt-corridor"/>
+<!-- Boss 1 top-left -->
+<rect x="10" y="10" width="80" height="30" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="50" y="28" class="rt-label rt-label-boss" text-anchor="middle">Emberdawn</text>
+<!-- Top corridor right -->
+<rect x="85" y="10" width="145" height="22" rx="2" class="rt-corridor"/>
+<!-- Boss 2 top-right -->
+<rect x="225" y="10" width="85" height="30" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="267" y="28" class="rt-label rt-label-boss" text-anchor="middle">Derelict Duo</text>
+<!-- Corridor right down -->
+<rect x="280" y="38" width="22" height="60" rx="2" class="rt-corridor"/>
+<!-- Trash 5-6 right -->
+<rect x="235" y="90" width="75" height="40" rx="4" class="rt-floor rt-room-border"/>
+<text x="272" y="113" class="rt-label" text-anchor="middle">TRASH 5-6</text>
+<!-- Corridor right down to boss 3 -->
+<rect x="280" y="128" width="22" height="50" rx="2" class="rt-corridor"/>
+<!-- Boss 3 right -->
+<rect x="235" y="170" width="75" height="38" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="272" y="192" class="rt-label rt-label-boss" text-anchor="middle">Kroluk</text>
+<!-- Corridor left across bottom -->
+<rect x="85" y="175" width="155" height="22" rx="2" class="rt-corridor"/>
+<!-- Boss 4 bottom-left -->
+<rect x="10" y="163" width="80" height="38" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="50" y="183" class="rt-label rt-label-boss" text-anchor="middle">Restless</text>
+<text x="50" y="193" class="rt-label rt-label-boss" text-anchor="middle">Heart</text>
+<!-- ROUTE LINE -->
+<polyline class="rt-line" points="45,185 45,130 45,105 45,80 45,40 50,21 85,21 150,21 225,21 268,21 291,38 291,98 291,128 291,170 272,186 235,186 170,186 85,186 50,186"
+  marker-mid="url(#a1)" marker-end="url(#a1)"/>
+<!-- PULL NODES -->
+<circle cx="45" cy="175" r="9" fill="#40c870" opacity=".85"/>
+<text x="45" y="178" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="45" cy="100" r="8" fill="#ff6622" opacity=".9"/>
+<text x="45" y="104" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="50" cy="21" r="8" fill="#ffd040" opacity=".9"/>
+<text x="50" y="25" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="268" cy="21" r="8" fill="#ff6622" opacity=".9"/>
+<text x="268" y="25" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B2🔥</text>
+<circle cx="291" cy="110" r="8" fill="#60b8ff" opacity=".85"/>
+<text x="291" y="114" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">2</text>
+<circle cx="291" cy="170" r="8" fill="#ffd040" opacity=".9"/>
+<text x="291" y="174" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B3</text>
+<circle cx="50" cy="186" r="10" fill="#ff6622" opacity=".9"/>
+<text x="50" y="190" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B4🔥</text>
+<!-- Legend -->
+<circle cx="12" cy="213" r="5" fill="#ffd040"/><text x="20" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Baas</text>
+<circle cx="55" cy="213" r="5" fill="#60b8ff"/><text x="63" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Trash</text>
+<circle cx="98" cy="213" r="5" fill="#ff6622"/><text x="106" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">🔥 Lust</text>
+<line x1="135" y1="213" x2="150" y2="213" stroke="#e8c840" stroke-width="2"/><polygon points="150,210 156,213 150,216" fill="#e8c840"/><text x="160" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Route</text>
+</svg>`,
+  'magisters': `<svg class="route-map-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="220" fill="#0e1018"/>
+<!-- Entrance bottom-left -->
+<rect x="10" y="155" width="65" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="42" y="175" class="rt-label rt-label-start" text-anchor="middle">🚪 INGANG</text>
+<!-- West wing trash -->
+<rect x="10" y="90" width="65" height="50" rx="4" class="rt-floor rt-room-border"/>
+<text x="42" y="118" class="rt-label" text-anchor="middle">TRASH 1-2</text>
+<!-- Library / buff room -->
+<rect x="80" y="90" width="75" height="50" rx="4" class="rt-floor" style="fill:#0e1a0e;stroke:rgba(64,200,112,.35);stroke-dasharray:4,3;stroke-width:1.5"/>
+<text x="117" y="112" class="rt-label" style="fill:rgba(64,200,112,.6)" text-anchor="middle">📖 Bibliotheek</text>
+<text x="117" y="123" class="rt-label" style="fill:rgba(64,200,112,.5)" text-anchor="middle">Arcane Tome!</text>
+<!-- Central courtyard -->
+<rect x="155" y="70" width="90" height="90" rx="6" class="rt-floor rt-room-border"/>
+<text x="200" y="118" class="rt-label" text-anchor="middle">BINNENPLAATS</text>
+<!-- North to boss 1 -->
+<rect x="185" y="20" width="30" height="50" rx="2" class="rt-corridor"/>
+<!-- Boss 1 top -->
+<rect x="150" y="10" width="100" height="32" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="29" class="rt-label rt-label-boss" text-anchor="middle">Arcanotron Custos</text>
+<!-- East corridor to boss 2 -->
+<rect x="242" y="95" width="60" height="22" rx="2" class="rt-corridor"/>
+<!-- Boss 2 right -->
+<rect x="258" y="55" width="55" height="65" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="285" y="83" class="rt-label rt-label-boss" text-anchor="middle">Seranel</text>
+<text x="285" y="93" class="rt-label rt-label-boss" text-anchor="middle">Sunlash</text>
+<!-- South-east -->
+<rect x="220" y="170" width="90" height="38" rx="4" class="rt-floor rt-room-border"/>
+<text x="265" y="192" class="rt-label" text-anchor="middle">TRASH 4</text>
+<!-- Boss 3 -->
+<rect x="220" y="130" width="90" height="40" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="265" y="153" class="rt-label rt-label-boss" text-anchor="middle">Gemellus</text>
+<!-- South corridor -->
+<rect x="185" y="160" width="30" height="18" rx="2" class="rt-corridor"/>
+<!-- Boss 4 bottom -->
+<rect x="80" y="160" width="100" height="38" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="130" y="182" class="rt-label rt-label-boss" text-anchor="middle">Degentrius</text>
+<!-- ROUTE -->
+<polyline class="rt-line" points="42,175 42,120 42,90 100,115 155,115 200,115 200,70 200,40 200,10 265,10 285,55 285,95 265,95 242,95 200,160 200,170 200,178 185,178 130,178"
+  marker-mid="url(#a2)" marker-end="url(#a2)"/>
+<!-- NODES -->
+<circle cx="42" cy="172" r="9" fill="#40c870" opacity=".85"/><text x="42" y="176" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="42" cy="105" r="8" fill="#ff6622" opacity=".9"/><text x="42" y="109" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="110" cy="115" r="8" fill="#40c870" opacity=".85"/><text x="110" y="119" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">✦</text>
+<circle cx="200" cy="21" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="25" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="265" cy="21" r="8" fill="#60b8ff" opacity=".85"/><text x="265" y="25" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">2</text>
+<circle cx="285" cy="65" r="8" fill="#ff6622" opacity=".9"/><text x="285" y="69" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B2🔥</text>
+<circle cx="265" cy="145" r="8" fill="#ffd040" opacity=".9"/><text x="265" y="149" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B3</text>
+<circle cx="200" cy="175" r="8" fill="#60b8ff" opacity=".85"/><text x="200" y="179" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">3</text>
+<circle cx="130" cy="178" r="10" fill="#ff6622" opacity=".9"/><text x="130" y="182" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B4🔥</text>
+<!-- Legend -->
+<circle cx="12" cy="213" r="5" fill="#ffd040"/><text x="20" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Baas</text>
+<circle cx="55" cy="213" r="5" fill="#60b8ff"/><text x="63" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Trash</text>
+<circle cx="98" cy="213" r="5" fill="#ff6622"/><text x="106" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">🔥 Lust</text>
+<circle cx="142" cy="213" r="5" fill="#40c870"/><text x="150" y="217" font-family="Rajdhani" font-size="8" fill="#7a8099">Buff/Event</text>
+</svg>`,
+  'maisara': `<svg class="route-map-svg" viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_maisara" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="140" fill="#0e1018"/>
+
+<!-- Linear route: entrance left → right along corridor → boss rooms -->
+<rect x="10" y="50" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="71" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<rect x="58" y="60" width="40" height="20" rx="2" class="rt-corridor"/>
+<rect x="96" y="45" width="55" height="40" rx="4" class="rt-floor rt-room-border"/>
+<text x="123" y="68" class="rt-label" text-anchor="middle">TRASH 1</text>
+<rect x="149" y="60" width="25" height="20" rx="2" class="rt-corridor"/>
+<rect x="172" y="45" width="60" height="40" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="202" y="64" class="rt-label rt-label-boss" text-anchor="middle">Venomblight</text>
+<text x="202" y="74" class="rt-label rt-label-boss" text-anchor="middle">Matriarch</text>
+<!-- Turn south -->
+<rect x="222" y="83" width="20" height="45" rx="2" class="rt-corridor"/>
+<rect x="170" y="108" width="75" height="25" rx="4" class="rt-floor rt-room-border"/>
+<text x="207" y="123" class="rt-label" text-anchor="middle">TRASH 2</text>
+<rect x="97" y="108" width="75" height="25" rx="2" class="rt-corridor"/>
+<rect x="20" y="100" width="80" height="35" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="60" y="118" class="rt-label rt-label-boss" text-anchor="middle">Skarthrix</text>
+<text x="60" y="128" class="rt-label rt-label-boss" text-anchor="middle">Soulrender</text>
+<!-- Route -->
+<polyline class="rt-line" points="35,75 58,70 96,70 149,70 172,65 202,65 232,65 232,108 230,120 207,120 170,120 97,120 60,120 60,108"
+  marker-mid="url(#al_maisara)" marker-end="url(#al_maisara)"/>
+<!-- Nodes -->
+<circle cx="35" cy="72" r="9" fill="#40c870" opacity=".85"/><text x="35" y="76" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="65" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="69" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="202" cy="65" r="8" fill="#ffd040" opacity=".9"/><text x="202" y="69" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="207" cy="120" r="8" fill="#60b8ff" opacity=".85"/><text x="207" y="124" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">2</text>
+<circle cx="60" cy="108" r="10" fill="#ff6622" opacity=".9"/><text x="60" y="112" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B2🔥</text>
+<!-- Legend -->
+<circle cx="12" cy="135" r="4" fill="#ffd040"/><text x="19" y="138" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="135" r="4" fill="#60b8ff"/><text x="54" y="138" font-family="Rajdhani" font-size="7" fill="#7a8099">Trash</text>
+<circle cx="82" cy="135" r="4" fill="#ff6622"/><text x="89" y="138" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+
+</svg>`,
+  'nexus': `<svg class="route-map-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_nexus" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="120" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="35" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="58" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<!-- Linear corridor -->
+<rect x="58" y="50" width="200" height="14" rx="2" class="rt-corridor"/>
+<!-- 3 rooms along route -->
+<rect x="96" y="32" width="50" height="36" rx="4" class="rt-floor rt-room-border"/>
+<text x="121" y="53" class="rt-label" text-anchor="middle">TRASH</text>
+<rect x="175" y="32" width="50" height="36" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="53" class="rt-label rt-label-boss" text-anchor="middle">BOSS 1</text>
+<rect x="255" y="32" width="55" height="36" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="282" y="53" class="rt-label rt-label-boss" text-anchor="middle">EINDBAAS</text>
+<!-- Route line -->
+<polyline class="rt-line" points="35,65 58,57 96,57 146,57 175,57 200,57 255,57 282,57"
+  marker-mid="url(#al_nexus)" marker-end="url(#al_nexus)"/>
+<!-- Nodes -->
+<circle cx="35" cy="62" r="9" fill="#40c870" opacity=".85"/><text x="35" y="66" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="52" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="200" cy="52" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="282" cy="52" r="10" fill="#ff6622" opacity=".9"/><text x="282" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B🔥</text>
+<!-- Note -->
+<text x="160" y="90" font-family="Rajdhani" font-size="9" fill="#4a5570" text-anchor="middle">Gebruik KG-knop hieronder voor volledige route</text>
+<circle cx="12" cy="112" r="4" fill="#ffd040"/><text x="19" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="112" r="4" fill="#ff6622"/><text x="54" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+</svg>`,
+  'murder-row': `<svg class="route-map-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_murder_row" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="120" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="35" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="58" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<!-- Linear corridor -->
+<rect x="58" y="50" width="200" height="14" rx="2" class="rt-corridor"/>
+<!-- 3 rooms along route -->
+<rect x="96" y="32" width="50" height="36" rx="4" class="rt-floor rt-room-border"/>
+<text x="121" y="53" class="rt-label" text-anchor="middle">TRASH</text>
+<rect x="175" y="32" width="50" height="36" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="53" class="rt-label rt-label-boss" text-anchor="middle">BOSS 1</text>
+<rect x="255" y="32" width="55" height="36" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="282" y="53" class="rt-label rt-label-boss" text-anchor="middle">EINDBAAS</text>
+<!-- Route line -->
+<polyline class="rt-line" points="35,65 58,57 96,57 146,57 175,57 200,57 255,57 282,57"
+  marker-mid="url(#al_murder_row)" marker-end="url(#al_murder_row)"/>
+<!-- Nodes -->
+<circle cx="35" cy="62" r="9" fill="#40c870" opacity=".85"/><text x="35" y="66" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="52" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="200" cy="52" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="282" cy="52" r="10" fill="#ff6622" opacity=".9"/><text x="282" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B🔥</text>
+<!-- Note -->
+<text x="160" y="90" font-family="Rajdhani" font-size="9" fill="#4a5570" text-anchor="middle">Gebruik KG-knop hieronder voor volledige route</text>
+<circle cx="12" cy="112" r="4" fill="#ffd040"/><text x="19" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="112" r="4" fill="#ff6622"/><text x="54" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+</svg>`,
+  'blinding': `<svg class="route-map-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_blinding" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="120" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="35" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="58" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<!-- Linear corridor -->
+<rect x="58" y="50" width="200" height="14" rx="2" class="rt-corridor"/>
+<!-- 3 rooms along route -->
+<rect x="96" y="32" width="50" height="36" rx="4" class="rt-floor rt-room-border"/>
+<text x="121" y="53" class="rt-label" text-anchor="middle">TRASH</text>
+<rect x="175" y="32" width="50" height="36" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="53" class="rt-label rt-label-boss" text-anchor="middle">BOSS 1</text>
+<rect x="255" y="32" width="55" height="36" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="282" y="53" class="rt-label rt-label-boss" text-anchor="middle">EINDBAAS</text>
+<!-- Route line -->
+<polyline class="rt-line" points="35,65 58,57 96,57 146,57 175,57 200,57 255,57 282,57"
+  marker-mid="url(#al_blinding)" marker-end="url(#al_blinding)"/>
+<!-- Nodes -->
+<circle cx="35" cy="62" r="9" fill="#40c870" opacity=".85"/><text x="35" y="66" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="52" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="200" cy="52" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="282" cy="52" r="10" fill="#ff6622" opacity=".9"/><text x="282" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B🔥</text>
+<!-- Note -->
+<text x="160" y="90" font-family="Rajdhani" font-size="9" fill="#4a5570" text-anchor="middle">Gebruik KG-knop hieronder voor volledige route</text>
+<circle cx="12" cy="112" r="4" fill="#ffd040"/><text x="19" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="112" r="4" fill="#ff6622"/><text x="54" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+</svg>`,
+  'nalorakk': `<svg class="route-map-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_nalorakk" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="120" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="35" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="58" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<!-- Linear corridor -->
+<rect x="58" y="50" width="200" height="14" rx="2" class="rt-corridor"/>
+<!-- 3 rooms along route -->
+<rect x="96" y="32" width="50" height="36" rx="4" class="rt-floor rt-room-border"/>
+<text x="121" y="53" class="rt-label" text-anchor="middle">TRASH</text>
+<rect x="175" y="32" width="50" height="36" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="53" class="rt-label rt-label-boss" text-anchor="middle">BOSS 1</text>
+<rect x="255" y="32" width="55" height="36" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="282" y="53" class="rt-label rt-label-boss" text-anchor="middle">EINDBAAS</text>
+<!-- Route line -->
+<polyline class="rt-line" points="35,65 58,57 96,57 146,57 175,57 200,57 255,57 282,57"
+  marker-mid="url(#al_nalorakk)" marker-end="url(#al_nalorakk)"/>
+<!-- Nodes -->
+<circle cx="35" cy="62" r="9" fill="#40c870" opacity=".85"/><text x="35" y="66" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="52" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="200" cy="52" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="282" cy="52" r="10" fill="#ff6622" opacity=".9"/><text x="282" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B🔥</text>
+<!-- Note -->
+<text x="160" y="90" font-family="Rajdhani" font-size="9" fill="#4a5570" text-anchor="middle">Gebruik KG-knop hieronder voor volledige route</text>
+<circle cx="12" cy="112" r="4" fill="#ffd040"/><text x="19" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="112" r="4" fill="#ff6622"/><text x="54" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+</svg>`,
+  'voidscar': `<svg class="route-map-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="al_voidscar" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><polygon points="0,1 7,3.5 0,6" fill="#e8c840"/></marker></defs>
+<rect x="0" y="0" width="320" height="120" fill="#0e1018"/>
+<!-- Entrance -->
+<rect x="10" y="35" width="50" height="40" rx="4" class="rt-start-room rt-start-border"/>
+<text x="35" y="58" class="rt-label rt-label-start" text-anchor="middle">🚪</text>
+<!-- Linear corridor -->
+<rect x="58" y="50" width="200" height="14" rx="2" class="rt-corridor"/>
+<!-- 3 rooms along route -->
+<rect x="96" y="32" width="50" height="36" rx="4" class="rt-floor rt-room-border"/>
+<text x="121" y="53" class="rt-label" text-anchor="middle">TRASH</text>
+<rect x="175" y="32" width="50" height="36" rx="4" class="rt-boss-room rt-boss-border"/>
+<text x="200" y="53" class="rt-label rt-label-boss" text-anchor="middle">BOSS 1</text>
+<rect x="255" y="32" width="55" height="36" rx="4" class="rt-boss-room rt-boss-border" style="stroke:rgba(200,168,75,.9);stroke-width:2"/>
+<text x="282" y="53" class="rt-label rt-label-boss" text-anchor="middle">EINDBAAS</text>
+<!-- Route line -->
+<polyline class="rt-line" points="35,65 58,57 96,57 146,57 175,57 200,57 255,57 282,57"
+  marker-mid="url(#al_voidscar)" marker-end="url(#al_voidscar)"/>
+<!-- Nodes -->
+<circle cx="35" cy="62" r="9" fill="#40c870" opacity=".85"/><text x="35" y="66" text-anchor="middle" font-family="Rajdhani" font-size="9" font-weight="800" fill="#000">🚪</text>
+<circle cx="110" cy="52" r="8" fill="#ff6622" opacity=".9"/><text x="110" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">1🔥</text>
+<circle cx="200" cy="52" r="8" fill="#ffd040" opacity=".9"/><text x="200" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#000">B1</text>
+<circle cx="282" cy="52" r="10" fill="#ff6622" opacity=".9"/><text x="282" y="56" text-anchor="middle" font-family="Rajdhani" font-size="8" font-weight="800" fill="#fff">B🔥</text>
+<!-- Note -->
+<text x="160" y="90" font-family="Rajdhani" font-size="9" fill="#4a5570" text-anchor="middle">Gebruik KG-knop hieronder voor volledige route</text>
+<circle cx="12" cy="112" r="4" fill="#ffd040"/><text x="19" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">Baas</text>
+<circle cx="47" cy="112" r="4" fill="#ff6622"/><text x="54" y="115" font-family="Rajdhani" font-size="7" fill="#7a8099">🔥 Lust</text>
+</svg>`,
+};
+
 function renderDetail(d) {
   const u = UI[lang];
   document.getElementById('d-eyebrow').textContent = d.zone.toUpperCase() + ' — ' + (d.type === 'mplus' ? u.type_mplus : u.type_normal);
@@ -5788,9 +6199,76 @@ function renderDetail(d) {
     </div>`;
   }).join('');
 
-  // Route
+  // Route — Visual Route Map + KG button
   const r = d.route;
+  const kgS = KG_STRINGS[lang];
+
+  // Helper: determine step type from label/content
+  function getStepType(p) {
+    const lbl = (t(p.label)||'').toLowerCase();
+    const typ = (p.type||'').toLowerCase();
+    if (typ==='event') return 'event';
+    if (typ==='boss')  return 'boss';
+    if (typ==='trash') return 'trash';
+    if (lbl.includes('baas') || lbl.includes('boss') || lbl.includes('chef') || lbl.includes('boss')) return 'boss';
+    if (lbl.includes('tome') || lbl.includes('event') || lbl.includes('buff') || lbl.includes('click') || lbl.includes('klik') || lbl.includes('arcane tome') || lbl.includes('secret')) return 'event';
+    return 'trash';
+  }
+  function hasLust(p) {
+    const lbl = t(p.label)||'';
+    return lbl.includes('🔥') || lbl.toLowerCase().includes('bloodlust') || lbl.toLowerCase().includes('lust');
+  }
+
+  // Build visual route steps
+  const steps = r.pulls.map((p, i) => {
+    const type = getStepType(p);
+    const lust = hasLust(p);
+    const nodeIcon = type==='boss' ? '★' : type==='event' ? '✦' : (i+1);
+    const badges = [];
+    if (type==='boss')  badges.push(`<span class="vr-badge boss">${u.vr_label_boss||'BOSS'}</span>`);
+    if (type==='event') badges.push(`<span class="vr-badge event">${u.vr_label_event||'EVENT'}</span>`);
+    if (lust)           badges.push(`<span class="vr-badge lust">🔥 ${u.vr_label_lust||'LUST'}</span>`);
+    const area = p.area ? `<div class="vr-area">${t(p.area)}</div>` : '';
+    return `
+      <div class="vr-step">
+        <div class="vr-connector"></div>
+        <div class="vr-node type-${type}">${nodeIcon}</div>
+        <div class="vr-card type-${type}">
+          ${area}
+          <div class="vr-label-row">
+            <span class="vr-label">${t(p.label)}</span>
+            ${badges.join('')}
+          </div>
+          <div class="vr-desc">${t(p.desc)}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const legend = `
+    <div class="vr-legend">
+      <div class="vr-leg-item"><div class="vr-leg-dot l-trash"></div>${u.vr_legend_trash||'Trash'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-boss"></div>${u.vr_legend_boss||'Boss'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-event"></div>${u.vr_legend_event||'Event/Buff'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-lust"></div>${u.vr_legend_lust||'Bloodlust'}</div>
+    </div>`;
+
+  // Get dungeon map SVG (by dungeon id, strip trailing path)
+  const mapKey = d.id.replace(/-spire|-terrace|-caverns|-point-xenas|-row|-vale|-of-nalorakk|-arena/,'')
+    .replace('windrunner-spire','windrunner')
+    .replace('magisters-terrace','magisters')
+    .replace('maisara-caverns','maisara')
+    .replace('nexus-point-xenas','nexus')
+    .replace('the-blinding-vale','blinding')
+    .replace('den-of-nalorakk','nalorakk')
+    .replace('voidscar-arena','voidscar');
+  const mapSVG = ROUTE_MAPS[d.id] || ROUTE_MAPS[mapKey] || '';
+  const mapTitle = { nl:'🗺 Looproute', en:'🗺 Route Map', da:'🗺 Rutekort' };
+
   document.getElementById('route-content').innerHTML = `
+    ${mapSVG ? `<div class="route-map-section">
+      <div class="route-map-title">${mapTitle[lang]}</div>
+      <div class="route-map-wrap">${mapSVG}</div>
+    </div>` : ''}
     <div class="route-section">
       <div class="route-title">📋 ${u.route_sum}</div>
       <div class="tip-box">${t(r.summary)}</div>
@@ -5804,22 +6282,23 @@ function renderDetail(d) {
     </div>
     <div class="route-section">
       <div class="route-title">🗺 ${u.route_diag}</div>
-      <div class="route-diagram">
-        ${r.pulls.map((p,i)=>`
-          <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;${i<r.pulls.length-1?'border-bottom:1px solid var(--border)':''}">
-            <div style="min-width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
-            <div>
-              <div style="font-weight:700;font-size:14px;color:var(--gold);margin-bottom:2px">${t(p.label)}</div>
-              <div style="font-size:13px;color:var(--muted)">${t(p.desc)}</div>
-            </div>
-          </div>`).join('')}
+      ${legend}
+      <div class="vr-container">
+        <div class="vr-line"></div>
+        ${steps}
       </div>
     </div>
     ${r.mdt ? `
     <div class="route-section">
-      <div class="route-title">🔗 ${u.kg_section}</div>
-      <div class="tip-box">${u.kg_text}</div>
-      <a href="${r.kg_url}" target="_blank" class="kg-link">${u.kg_btn}</a>
+      <div class="route-title">🔗 Keystone.guru</div>
+      <button class="kg-open-btn" onclick="openKGPopup('${r.kg_url}','${d.name}')">
+        <span class="kg-icon">🗺</span>
+        <span class="kg-text">
+          ${kgS.btn_label}
+          <span class="kg-sub">${kgS.btn_sub}</span>
+        </span>
+        <span class="kg-arrow">↗</span>
+      </button>
     </div>` : `<div class="tip-box">${u.norm_note}</div>`}`;
 }
 
@@ -5929,6 +6408,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <!-- rendered by renderAboutContent() -->
     </div>
   </div>
+</div>
 
 <div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
   <div id="spec-modal-inner">
@@ -6146,6 +6626,8 @@ function renderAboutContent() {
 }
 
 function openAbout() {
+  // Sluit spec-modal als die open is
+  document.getElementById('spec-modal').classList.remove('visible');
   renderAboutContent();
   document.getElementById('about-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -6183,5 +6665,15 @@ function toggleQR() {
   }
 }
 </script>
+
+<!-- ── KEYSTONE.GURU FULLSCREEN POPUP ── -->
+<div id="kg-popup">
+  <div id="kg-popup-bar">
+    <span id="kg-popup-title">🗺 Keystone.guru</span>
+    <span id="kg-popup-hint"></span>
+    <button id="kg-popup-close" onclick="closeKGPopup()">✕ Sluiten</button>
+  </div>
+  <iframe id="kg-popup-frame" src="about:blank" allowfullscreen></iframe>
+</div>
 </body>
 </html>
