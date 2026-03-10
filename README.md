@@ -13,7 +13,8 @@ An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for 
 - **All 40 specs covered** — Every spec has specific dungeon tips per boss per role.
 - **Per-boss role tabs** — Tank 🛡, Healer 💚, DPS ⚔ per boss
 - **Route Planner** — Pull order, Bloodlust timing, Keystone.guru links
-- **Route kaarten** — Echte Keystone.guru screenshots per M+ dungeon (Route tabblad)
+- **Route kaarten** — Echte Keystone.guru screenshots per M+ dungeon; in-game dungeon maps (per verdieping) voor normale dungeons
+- **Route notice** — Bij dungeons zonder ideale route staat een melding met link naar GitHub Issues
 - **Light/Dark theme** — Saved via localStorage
 - **PWA installable** — Add to home screen on Android & iOS
 - **QR code + "Over deze app"** — Share URL and read full roadmap in-app (fully trilingual)
@@ -92,12 +93,26 @@ An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for 
 
 ## Normal Dungeons (Midnight, not in M+)
 
-| Dungeon | Zone | Bosses |
-|---|---|---|
-| Murder Row | Silvermoon City | 3 |
-| The Blinding Vale | Eversong Woods | 3 |
-| Den of Nalorakk | Zul'Aman | 3 |
-| Voidscar Arena | Voidstorm | 3 |
+| Dungeon | Zone | Bosses | Verdiepingen |
+|---|---|---|---|
+| Murder Row | Silvermoon City | 3 | Murder Row → The Illicit Rain → Augurs' Terrace |
+| The Blinding Vale | Eversong Woods | 3 | The Blinding Vale |
+| Den of Nalorakk | Zul'Aman | 3 | Dreamer's Passage → The Foraging → The Heart of Rage |
+| Voidscar Arena | Voidstorm | 3 | Halls of Spite → Voidscar Arena → Domanaar's Ascent |
+
+---
+
+## 💬 Routes bijdragen
+
+Ken jij een goede route voor een van de dungeons? Op het **Route tabblad** staat een melding bij dungeons zonder ideale route, met een directe link naar GitHub Issues. Je kunt ook rechtstreeks een issue aanmaken:
+
+👉 [github.com/Huijting/midnight_guide/issues/new](https://github.com/Huijting/midnight_guide/issues/new)
+
+Vermeld bij je issue:
+- Dungeon naam
+- Pull-volgorde (welke packs, in welke volgorde)
+- Bloodlust moment
+- Eventueel MDT string of Keystone.guru link
 
 ---
 
@@ -120,24 +135,29 @@ Crafting guides for key professions to help gear up in Season 1.
 
 ## Changelog
 
+### v4.2 — 2026-03-10
+- **Route notice** — Bij dungeons zonder ideale route: amber melding met link naar GitHub Issues zodat spelers routes kunnen bijdragen
+- **Floor switcher normale dungeons** — In-game dungeon maps per verdieping voor Murder Row, Den of Nalorakk, Voidscar Arena en The Blinding Vale
+
+### v4.1 — 2026-03-10
+- **TypeError fix** — Returning dungeons gebruikten `steps` in plaats van `pulls` — route tab crashte
+
 ### v4.0 — 2026-03-10
 - **Route kaarten** — Keystone.guru screenshots voor alle 8 M+ dungeons toegevoegd aan het Route tabblad
 - **4 returning dungeons volledig** — Algeth'ar Academy, Pit of Saron, Seat of the Triumvirate en Skyreach: bosses, abilities, tank/heal/dps tips en pull-volgorde in 3 talen
 
 ### v3.0 — 2026-03-10
-- **All 40 specs fully covered** — 17 remaining specs added: Frost DK, Devourer DH, Feral Druid, all 3 Evokers, Survival Hunter, Arcane/Fire Mage, Holy/Shadow Priest, Assassination/Subtlety Rogue, Restoration Shaman, all 3 Warlocks
-- **About modal fully trilingual** — entire content rendered via JS based on active language, updates live when switching language
+- **All 40 specs fully covered** — 17 remaining specs added
+- **About modal fully trilingual**
 
 ### v2.2 — 2026-03-10
-- 13 new specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK
+- 13 new specs
 
 ### v2.1 — 2026-03-10
-- 6 new specs: Vengeance DH, Guardian Druid, Holy Paladin, Havoc DH, Balance Druid, Retribution Paladin
-- Auto role-tab refresh fixed
-- QR + About buttons side by side
+- 6 new specs, auto role-tab refresh fixed
 
 ### v2.0 — 2026-03-10
-- Spec-specific tips system (4 specs), auto role-tab, ★ highlights, About page in-app
+- Spec-specific tips system, auto role-tab, About page in-app
 
 ### v1.3 — 2026-03-09
 - Spec selector, all 13 classes, role-aware Bloodlust names
