@@ -234,6 +234,39 @@
   ::-webkit-scrollbar-track{background:var(--deep)}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
+
+
+  /* ── SPEC-SPECIFIC TIPS ── */
+  .spec-tips-header{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;padding:8px 15px 4px;opacity:.8}
+  .spec-tip{background:rgba(200,168,75,0.07)!important;border-left:2px solid var(--gold)!important;padding-left:14px!important}
+  .spec-tip::before{color:var(--gold)!important;content:'★'!important}
+  .generic-tips-divider{height:1px;background:var(--border);margin:8px 12px;opacity:.5}
+  .generic-tips li{opacity:.75}
+
+  /* ── SPEC SELECTOR ── */
+  #spec-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+  #spec-btn:hover{border-color:var(--gold);color:var(--gold)}
+  #spec-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);align-items:flex-start;justify-content:center;padding:60px 12px 24px;overflow-y:auto}
+  #spec-modal.visible{display:flex}
+  #spec-modal-inner{background:var(--deep);border:1px solid var(--border);border-radius:14px;width:100%;max-width:700px;padding:20px}
+  #spec-modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
+  #spec-modal-title{font-family:'Cinzel',Georgia,serif;font-size:18px;font-weight:700;color:var(--gold)}
+  #spec-modal-subtitle{font-size:13px;color:var(--muted);margin-bottom:16px}
+  #spec-close-x{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:0 4px;line-height:1}
+  #spec-close-x:hover{color:var(--text)}
+  .spec-class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .spec-class-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px}
+  .spec-class-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:7px}
+  .spec-specs-row{display:flex;flex-direction:column;gap:4px}
+  .spec-spec-btn{background:var(--deep);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;color:var(--text);cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:7px}
+  .spec-spec-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .spec-spec-btn.spec-active{border-color:var(--gold);background:rgba(200,168,75,0.08)}
+  .spec-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;min-width:40px}
+  #spec-reset-btn{margin-top:14px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s}
+  #spec-reset-btn:hover{border-color:red;color:red}
+  .lust-name{color:var(--gold);font-weight:700}
+  @media(max-width:480px){.spec-class-grid{grid-template-columns:1fr 1fr}}
+
   /* ── FOOTER ── */
   #site-footer{background:var(--deep);border-top:1px solid var(--border);padding:24px 16px 32px;margin-top:40px}
   .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
@@ -268,6 +301,7 @@
       <span class="header-sub" id="hdr-sub">DUNGEONS — SEIZOEN 1</span>
     </div>
     <div class="header-controls">
+    <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
       <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
       <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
       <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
@@ -321,8 +355,206 @@
 <script>
 
 // ── VERSIE ──
-const VERSION = "v1.2";
+const VERSION = "v2.0";
 const VERSION_DATE = "2026-03-10";
+
+
+// ═══════════════════════════════════════════════════════════════
+// SPEC SELECTOR
+// ═══════════════════════════════════════════════════════════════
+const CLASSES = [
+  { id:'deathknight', icon:'💀', name:{nl:'Death Knight', en:'Death Knight', da:'Death Knight'},
+    specs:[
+      {id:'blood',  name:{nl:'Blood',  en:'Blood',  da:'Blood'},  role:'tank'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'},
+      {id:'unholy', name:{nl:'Unholy', en:'Unholy', da:'Unholy'}, role:'dps'}
+    ]},
+  { id:'demonhunter', icon:'😈', name:{nl:'Demon Hunter', en:'Demon Hunter', da:'Demon Hunter'},
+    specs:[
+      {id:'havoc',    name:{nl:'Havoc',    en:'Havoc',    da:'Havoc'},    role:'dps'},
+      {id:'vengeance',name:{nl:'Vengeance',en:'Vengeance',da:'Vengeance'},role:'tank'},
+      {id:'devourer', name:{nl:'Devourer', en:'Devourer', da:'Devourer'}, role:'dps'}
+    ]},
+  { id:'druid', icon:'🐾', name:{nl:'Druid', en:'Druid', da:'Druid'},
+    specs:[
+      {id:'balance',     name:{nl:'Balance',     en:'Balance',     da:'Balance'},     role:'dps'},
+      {id:'feral',       name:{nl:'Feral',        en:'Feral',       da:'Feral'},       role:'dps'},
+      {id:'guardian',    name:{nl:'Guardian',     en:'Guardian',    da:'Guardian'},    role:'tank'},
+      {id:'restoration', name:{nl:'Restauratie',  en:'Restoration', da:'Restauration'},role:'heal'}
+    ]},
+  { id:'evoker', icon:'🐉', name:{nl:'Evoker', en:'Evoker', da:'Evoker'},
+    specs:[
+      {id:'augmentation', name:{nl:'Augmentation', en:'Augmentation', da:'Augmentation'}, role:'dps'},
+      {id:'devastation',  name:{nl:'Devastation',  en:'Devastation',  da:'Devastation'},  role:'dps'},
+      {id:'preservation', name:{nl:'Preservation', en:'Preservation', da:'Preservation'}, role:'heal'}
+    ]},
+  { id:'hunter', icon:'🏹', name:{nl:'Hunter', en:'Hunter', da:'Jæger'},
+    specs:[
+      {id:'beastmastery',  name:{nl:'Beast Mastery',  en:'Beast Mastery',  da:'Beast Mastery'},  role:'dps'},
+      {id:'marksmanship',  name:{nl:'Marksmanship',   en:'Marksmanship',   da:'Marksmanship'},   role:'dps'},
+      {id:'survival',      name:{nl:'Survival',        en:'Survival',       da:'Survival'},       role:'dps'}
+    ]},
+  { id:'mage', icon:'🔮', name:{nl:'Mage', en:'Mage', da:'Magiker'},
+    specs:[
+      {id:'arcane', name:{nl:'Arcane', en:'Arcane', da:'Arcane'}, role:'dps'},
+      {id:'fire',   name:{nl:'Fire',   en:'Fire',   da:'Fire'},   role:'dps'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'}
+    ]},
+  { id:'monk', icon:'☯️', name:{nl:'Monk', en:'Monk', da:'Munk'},
+    specs:[
+      {id:'brewmaster',  name:{nl:'Brewmaster',  en:'Brewmaster',  da:'Brewmaster'},  role:'tank'},
+      {id:'mistweaver',  name:{nl:'Mistweaver',  en:'Mistweaver',  da:'Mistweaver'},  role:'heal'},
+      {id:'windwalker',  name:{nl:'Windwalker',  en:'Windwalker',  da:'Windwalker'},  role:'dps'}
+    ]},
+  { id:'paladin', icon:'⚔️', name:{nl:'Paladin', en:'Paladin', da:'Paladin'},
+    specs:[
+      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
+      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'},
+      {id:'retribution',name:{nl:'Retribution',en:'Retribution',da:'Retribution'},role:'dps'}
+    ]},
+  { id:'priest', icon:'✨', name:{nl:'Priest', en:'Priest', da:'Præst'},
+    specs:[
+      {id:'discipline', name:{nl:'Discipline', en:'Discipline', da:'Discipline'}, role:'heal'},
+      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
+      {id:'shadow',     name:{nl:'Shadow',     en:'Shadow',     da:'Shadow'},     role:'dps'}
+    ]},
+  { id:'rogue', icon:'🗡️', name:{nl:'Rogue', en:'Rogue', da:'Skurk'},
+    specs:[
+      {id:'assassination',name:{nl:'Assassination',en:'Assassination',da:'Assassination'},role:'dps'},
+      {id:'outlaw',       name:{nl:'Outlaw',       en:'Outlaw',       da:'Outlaw'},       role:'dps'},
+      {id:'subtlety',     name:{nl:'Subtlety',     en:'Subtlety',     da:'Subtlety'},     role:'dps'}
+    ]},
+  { id:'shaman', icon:'⚡', name:{nl:'Shaman', en:'Shaman', da:'Shaman'},
+    specs:[
+      {id:'elemental',   name:{nl:'Elemental',   en:'Elemental',   da:'Elemental'},   role:'dps'},
+      {id:'enhancement', name:{nl:'Enhancement', en:'Enhancement', da:'Enhancement'}, role:'dps'},
+      {id:'restoration', name:{nl:'Restoration', en:'Restoration', da:'Restoration'}, role:'heal'}
+    ]},
+  { id:'warlock', icon:'🔥', name:{nl:'Warlock', en:'Warlock', da:'Troldmand'},
+    specs:[
+      {id:'affliction',  name:{nl:'Affliction',  en:'Affliction',  da:'Affliction'},  role:'dps'},
+      {id:'demonology',  name:{nl:'Demonology',  en:'Demonology',  da:'Demonology'},  role:'dps'},
+      {id:'destruction', name:{nl:'Destruction', en:'Destruction', da:'Destruction'}, role:'dps'}
+    ]},
+  { id:'warrior', icon:'🛡️', name:{nl:'Warrior', en:'Warrior', da:'Kriger'},
+    specs:[
+      {id:'arms',       name:{nl:'Arms',       en:'Arms',       da:'Arms'},       role:'dps'},
+      {id:'fury',       name:{nl:'Fury',       en:'Fury',       da:'Fury'},       role:'dps'},
+      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'}
+    ]}
+];
+
+// Lust ability per class+spec combo
+const LUST_ABILITY = {
+  'shaman-elemental':    {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'shaman-enhancement':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'shaman-restoration':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'mage-arcane':         {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'mage-fire':           {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'mage-frost':          {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'hunter-beastmastery': {nl:'Primal Rage',        en:'Primal Rage',        da:'Primal Rage'},
+  'evoker-augmentation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
+  'evoker-devastation':  {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
+  'evoker-preservation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'}
+};
+
+// Get lust name for current spec
+function getLustName() {
+  const key = currentSpec ? currentSpec.classId + '-' + currentSpec.specId : null;
+  if (key && LUST_ABILITY[key]) return LUST_ABILITY[key][lang] || 'Bloodlust';
+  return 'Bloodlust';
+}
+
+// Replace 'Bloodlust' in a string with the correct ability name
+function replaceLust(text) {
+  const lust = getLustName();
+  if (lust === 'Bloodlust') return text;
+  return text.replace(/Bloodlust/g, lust);
+}
+
+// Spec UI strings per language
+const SPEC_UI = {
+  nl: { btn_no_spec:'Kies spec', btn_spec:'Spec: ', title:'Kies jouw spec', subtitle:'We passen spellnamen aan op jouw klasse', reset:'Spec wissen', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
+  en: { btn_no_spec:'Choose spec', btn_spec:'Spec: ', title:'Choose your spec', subtitle:"We'll adjust spell names to match your class", reset:'Clear spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
+  da: { btn_no_spec:'Vælg spec', btn_spec:'Spec: ', title:'Vælg din spec', subtitle:'Vi tilpasser stavningsnavne til din klasse', reset:'Ryd spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' }
+};
+
+let currentSpec = null;
+try {
+  const saved = localStorage.getItem('spec');
+  if (saved) currentSpec = JSON.parse(saved);
+} catch(e) {}
+
+function saveSpec(classId, specId) {
+  currentSpec = { classId, specId };
+  localStorage.setItem('spec', JSON.stringify(currentSpec));
+  updateSpecBtn();
+  closeSpecModal();
+  // Re-render current view to update lust names
+  if (currentDungeon) renderDungeon(currentDungeon);
+}
+
+function clearSpec() {
+  currentSpec = null;
+  localStorage.removeItem('spec');
+  updateSpecBtn();
+  closeSpecModal();
+  if (currentDungeon) renderDungeon(currentDungeon);
+}
+
+function updateSpecBtn() {
+  const btn = document.getElementById('spec-btn');
+  if (!btn) return;
+  const ui = SPEC_UI[lang];
+  if (currentSpec) {
+    const cls = CLASSES.find(c => c.id === currentSpec.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
+    if (cls && sp) {
+      btn.textContent = cls.icon + ' ' + sp.name[lang];
+      btn.style.color = 'var(--gold)';
+      return;
+    }
+  }
+  btn.textContent = '⚙ ' + ui.btn_no_spec;
+  btn.style.color = 'var(--muted)';
+}
+
+function openSpecModal() {
+  document.getElementById('spec-modal').classList.add('visible');
+  renderSpecModal();
+}
+
+function closeSpecModal() {
+  document.getElementById('spec-modal').classList.remove('visible');
+}
+
+function renderSpecModal() {
+  const ui = SPEC_UI[lang];
+  document.getElementById('spec-modal-title').textContent    = ui.title;
+  document.getElementById('spec-modal-subtitle').textContent = ui.subtitle;
+  document.getElementById('spec-reset-btn').textContent      = '× ' + ui.reset;
+
+  const roleLabel = { tank: ui.role_tank, heal: ui.role_heal, dps: ui.role_dps };
+  const roleColor = { tank: 'var(--tank)', heal: 'var(--heal)', dps: 'var(--dps)' };
+
+  const grid = document.getElementById('spec-class-grid');
+  grid.innerHTML = CLASSES.map(cls => {
+    const specs = cls.specs.map(sp => {
+      const active = currentSpec && currentSpec.classId === cls.id && currentSpec.specId === sp.id;
+      return `<button class="spec-spec-btn${active?' spec-active':''}"
+        style="${active?'border-color:var(--gold);color:var(--gold);':''}"
+        onclick="saveSpec('${cls.id}','${sp.id}')">
+        <span class="spec-role" style="color:${roleColor[sp.role]}">${roleLabel[sp.role]}</span>
+        ${sp.name[lang]}
+      </button>`;
+    }).join('');
+    return `<div class="spec-class-block">
+      <div class="spec-class-name">${cls.icon} ${cls.name[lang]}</div>
+      <div class="spec-specs-row">${specs}</div>
+    </div>`;
+  }).join('');
+}
+
 
 // Footer i18n
 const FOOTER = {
@@ -493,6 +725,537 @@ function t(obj) { return (typeof obj === 'string') ? obj : (obj[lang] || obj.en 
 //   - UI.nl/en/da: season_sub aanpassen ("SEIZOEN 2" etc.)
 //   - renderHome() uitbreiden met nieuwe sectie indien gewenst
 // ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+// SPEC-SPECIFIC TIPS
+// Key format: 'dungeon-id:boss-index:role'
+// Only 4 specs covered fully: druid-restoration, paladin-protection,
+// hunter-beastmastery, shaman-elemental. Others fall back to generic.
+// ═══════════════════════════════════════════════════════════════
+const SPEC_TIPS = {
+  // ── WINDRUNNER SPIRE ── boss 0 ──
+  'windrunner-spire:0:tank': {
+    'paladin-protection': {
+      nl:["Avenger's Shield onderbreekt de vuurtoren-cast direct — gebruik hem zodra hij begint.",
+          "Shield of the Righteous uptime is cruciaal: haar melee-aanvallen zijn zwaar tijdens Flame Surge.",
+          "Ardent Defender bewaren voor Flame Surge als je healer bezet is."],
+      en:["Avenger's Shield interrupts the firetower cast directly — use it as soon as it starts.",
+          "Shield of the Righteous uptime is critical: her melee hits hard during Flame Surge.",
+          "Save Ardent Defender for Flame Surge when your healer is occupied."],
+      da:["Avenger's Shield afbryder tårncastet direkte — brug det, så snart det starter.",
+          "Shield of the Righteous uptime er kritisk: hendes melee rammer hårdt under Flame Surge.",
+          "Gem Ardent Defender til Flame Surge, når din healer er optaget."]
+    }
+  },
+  'windrunner-spire:0:heal': {
+    'druid-restoration': {
+      nl:["Pre-HoT de tank met Rejuvenation + Lifebloom vóór elke Flame Surge.",
+          "Ironbark op de tank bij Flame Surge — dit is het gevaarlijkste moment.",
+          "Typhoon of Incapacitating Roar om de adds te stoppen als ze spawnen."],
+      en:["Pre-HoT the tank with Rejuvenation + Lifebloom before every Flame Surge.",
+          "Ironbark on the tank during Flame Surge — this is the most dangerous moment.",
+          "Typhoon or Incapacitating Roar to stop adds when they spawn."],
+      da:["Pre-HoT tanken med Rejuvenation + Lifebloom før hver Flame Surge.",
+          "Ironbark på tanken under Flame Surge — dette er det farligste øjeblik.",
+          "Typhoon eller Incapacitating Roar for at stoppe adds, når de spawner."]
+    }
+  },
+  'windrunner-spire:0:dps': {
+    'hunter-beastmastery': {
+      nl:["Counter Shot op de vuurtoren-cast — jij bent volledig mobiel, neem de interrupt-verantwoordelijkheid.",
+          "Bestial Wrath bij de pull en direct Primal Rage als de tank dat aangeeft.",
+          "Tar Trap bij de adds die spawnen om de tank te helpen kiten."],
+      en:["Counter Shot on the firetower cast — you are fully mobile, take interrupt responsibility.",
+          "Bestial Wrath on pull and immediately Primal Rage when the tank signals.",
+          "Tar Trap on spawning adds to help the tank kite."],
+      da:["Counter Shot på tårncastet — du er fuldt mobil, tag interrupt-ansvar.",
+          "Bestial Wrath på pull og straks Primal Rage, når tanken signalerer.",
+          "Tar Trap på adds der spawner for at hjælpe tanken med at kite."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op de vuurtoren-cast — korte cooldown, gebruik hem consequent.",
+          "Ascendance bewaren voor Bloodlust-moment of grote pull.",
+          "Static Field Totem om adds op hun plek te houden bij spawn."],
+      en:["Wind Shear on the firetower cast — short cooldown, use it consistently.",
+          "Save Ascendance for Bloodlust moment or big pull.",
+          "Static Field Totem to keep adds in place when they spawn."],
+      da:["Wind Shear på tårncastet — kort cooldown, brug den konsekvent.",
+          "Gem Ascendance til Bloodlust-øjeblikket eller stort pull.",
+          "Static Field Totem for at holde adds på plads, når de spawner."]
+    }
+  },
+  // ── WINDRUNNER SPIRE ── boss 1 ──
+  'windrunner-spire:1:tank': {
+    'paladin-protection': {
+      nl:["Kalis en Latch gescheiden houden — Avenger's Shield om Kalis's Shadowbolt te onderbreken én silencen.",
+          "Blessing of Spellwarding op jezelf tijdens Shadow Overload.",
+          "Divine Shield als noodrem als Broken Bond debuff op jou staat en de schade piekt."],
+      en:["Keep Kalis and Latch apart — Avenger's Shield interrupts and silences Kalis's Shadowbolt.",
+          "Blessing of Spellwarding on yourself during Shadow Overload.",
+          "Divine Shield as emergency if Broken Bond debuff lands on you and damage spikes."],
+      da:["Hold Kalis og Latch adskilt — Avenger's Shield afbryder og silencer Kalis's Shadowbolt.",
+          "Blessing of Spellwarding på dig selv under Shadow Overload.",
+          "Divine Shield som nødknap, hvis Broken Bond debuff lander på dig og skaden topper."]
+    }
+  },
+  'windrunner-spire:1:heal': {
+    'druid-restoration': {
+      nl:["Curse of Darkness direct dispellen — een 12 seconden fixate van Dark Entity is dodelijk.",
+          "Wild Growth + Flourish tijdens de Shadow Overload fase.",
+          "Stampeding Roar zodat iedereen snel weg kan uit de schaduwen."],
+      en:["Dispel Curse of Darkness immediately — a 12-second Dark Entity fixate is lethal.",
+          "Wild Growth + Flourish during the Shadow Overload phase.",
+          "Stampeding Roar so everyone can quickly escape the shadows."],
+      da:["Dispel Curse of Darkness med det samme — en 12-sekunders Dark Entity fixate er dødelig.",
+          "Wild Growth + Flourish under Shadow Overload-fasen.",
+          "Stampeding Roar så alle hurtigt kan slippe væk fra skyggerne."]
+    }
+  },
+  'windrunner-spire:1:dps': {
+    'hunter-beastmastery': {
+      nl:["Counter Shot elke Kalis Shadowbolt cast — jouw interrupt is hier de betrouwbaarste.",
+          "Misdirection naar de tank als Latch te ver wegloopt.",
+          "Bestial Wrath als beide bazen onder 30% zijn — burst ze gelijktijdig neer."],
+      en:["Counter Shot every Kalis Shadowbolt cast — your interrupt is the most reliable here.",
+          "Misdirection to tank if Latch wanders too far.",
+          "Bestial Wrath when both bosses drop below 30% — burst them down together."],
+      da:["Counter Shot ved hvert Kalis Shadowbolt-cast — din interrupt er den mest pålidelige her.",
+          "Misdirection til tanken, hvis Latch vandrer for langt væk.",
+          "Bestial Wrath, når begge bosser falder under 30% — burst dem ned sammen."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op Kalis's Shadowbolt — hoge prioriteit, missen is dodelijk.",
+          "Purge Shadow Overload buff van Latch zo snel mogelijk.",
+          "Earthquake tussen de bazen in voor constante AoE-schade."],
+      en:["Wind Shear on Kalis's Shadowbolt — high priority, missing is lethal.",
+          "Purge Shadow Overload buff from Latch as quickly as possible.",
+          "Earthquake between the bosses for constant AoE damage."],
+      da:["Wind Shear på Kalis's Shadowbolt — høj prioritet, at misse er dødelig.",
+          "Purge Shadow Overload-buff fra Latch så hurtigt som muligt.",
+          "Earthquake mellem bosserne for konstant AoE-skade."]
+    }
+  },
+  // ── MAGISTERS' TERRACE ── boss 0 ──
+  'magisters-terrace:0:tank': {
+    'paladin-protection': {
+      nl:["Divine Toll voor AoE-taunt op de arcane constructs bij de pull.",
+          "Shield of the Righteous spam tijdens Arcane Surge — dit is de schade-piek.",
+          "Avenger's Shield om Arcane Channeling te onderbreken."],
+      en:["Divine Toll for AoE taunt on the arcane constructs at the pull.",
+          "Shield of the Righteous spam during Arcane Surge — this is the damage spike.",
+          "Avenger's Shield to interrupt Arcane Channeling."],
+      da:["Divine Toll til AoE-taunt på arcane constructs ved pull.",
+          "Shield of the Righteous spam under Arcane Surge — dette er skadespidsen.",
+          "Avenger's Shield til at afbryde Arcane Channeling."]
+    }
+  },
+  'magisters-terrace:0:heal': {
+    'druid-restoration': {
+      nl:["Efflorescence permanent onder de melee-cluster — constante AoE healing tijdens arcane ticks.",
+          "Ironbark op de tank tijdens Arcane Surge.",
+          "Switch naar Cat Form tijdens lage-schade fasen voor extra damage."],
+      en:["Keep Efflorescence permanently under the melee cluster — constant AoE healing during arcane ticks.",
+          "Ironbark on tank during Arcane Surge.",
+          "Switch to Cat Form during low-damage phases for extra damage."],
+      da:["Hold Efflorescence permanent under melee-klyngen — konstant AoE-healing under arcane ticks.",
+          "Ironbark på tanken under Arcane Surge.",
+          "Skift til Cat Form under lav-skadsfaser for ekstra skade."]
+    }
+  },
+  'magisters-terrace:0:dps': {
+    'hunter-beastmastery': {
+      nl:["Volledig mobiel bij arcane explosions — jij hebt nul DPS-verlies bij bewegen.",
+          "Counter Shot op Arcane Channeling.",
+          "Bestial Wrath + Primal Rage op de pull voor maximale openingsschade."],
+      en:["Fully mobile during arcane explosions — you have zero DPS loss while moving.",
+          "Counter Shot on Arcane Channeling.",
+          "Bestial Wrath + Primal Rage on the pull for maximum opening damage."],
+      da:["Fuldt mobil under arcane explosions — du har nul DPS-tab ved bevægelse.",
+          "Counter Shot på Arcane Channeling.",
+          "Bestial Wrath + Primal Rage på pull for maksimal åbningsskade."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op Arcane Channeling — interrupt met hoge prioriteit.",
+          "Spiritwalker's Grace gebruiken tijdens bewegingsintensieve fasen.",
+          "Stormkeeper bewaren voor het Bloodlust-venster voor de beste AoE."],
+      en:["Wind Shear on Arcane Channeling — high priority interrupt.",
+          "Use Spiritwalker's Grace during movement-heavy phases.",
+          "Save Stormkeeper for the Bloodlust window for best AoE."],
+      da:["Wind Shear på Arcane Channeling — interrupt med høj prioritet.",
+          "Brug Spiritwalker's Grace under bevægelses-intensive faser.",
+          "Gem Stormkeeper til Bloodlust-vindue for bedste AoE."]
+    }
+  },
+  // ── MAISARA CAVERNS ── boss 0 ──
+  'maisara-caverns:0:tank': {
+    'paladin-protection': {
+      nl:["Mun'jin en Neloax scheiden — Avenger's Shield silencet de caster (Neloax) direct.",
+          "Blessing of Protection op een DPS-speler die een gevaarlijk debuff heeft.",
+          "Guardian of Ancient Kings tijdens de gecombineerde aanvalsfase."],
+      en:["Separate Mun'jin and Neloax — Avenger's Shield silences the caster (Neloax) directly.",
+          "Blessing of Protection on a DPS player with a dangerous debuff.",
+          "Guardian of Ancient Kings during the combined attack phase."],
+      da:["Adskil Mun'jin og Neloax — Avenger's Shield silencer casteren (Neloax) direkte.",
+          "Blessing of Protection på en DPS-spiller med en farlig debuff.",
+          "Guardian of Ancient Kings under den kombinerede angrebsfase."]
+    }
+  },
+  'maisara-caverns:0:heal': {
+    'druid-restoration': {
+      nl:["Pre-HoT alle spelers vóór de gecombineerde aanvalsfase.",
+          "Tranquility als beide bazen tegelijk hun abilities gebruiken.",
+          "Cyclone op Neloax als ze onbeheersbare schade maakt."],
+      en:["Pre-HoT all players before the combined attack phase.",
+          "Tranquility when both bosses use abilities simultaneously.",
+          "Cyclone on Neloax if she is dealing uncontrollable damage."],
+      da:["Pre-HoT alle spillere før den kombinerede angrebsfase.",
+          "Tranquility, når begge bosser bruger abilities simultant.",
+          "Cyclone på Neloax, hvis hun laver ukontrollabel skade."]
+    }
+  },
+  'maisara-caverns:0:dps': {
+    'hunter-beastmastery': {
+      nl:["Beide bazen gelijkmatig aanvallen — Hunter's Mark op de baas met meer HP.",
+          "Counter Shot op Neloax haar casts.",
+          "Binding Shot om beide bazen even stil te houden voor AoE-burst."],
+      en:["Attack both bosses evenly — Hunter's Mark on the boss with more HP.",
+          "Counter Shot on Neloax's casts.",
+          "Binding Shot to briefly root both bosses for AoE burst."],
+      da:["Angrib begge bosser jævnt — Hunter's Mark på bossen med mest HP.",
+          "Counter Shot på Neloax's casts.",
+          "Binding Shot til kort at roote begge bosser til AoE-burst."]
+    },
+    'shaman-elemental': {
+      nl:["Earthquake tussen de twee bazen voor maximale AoE-waarde.",
+          "Wind Shear op Neloax — wissel af met de tank voor maximale uptime.",
+          "Purge eventuele buffs van Mun'jin direct."],
+      en:["Earthquake between the two bosses for maximum AoE value.",
+          "Wind Shear on Neloax — alternate with the tank to maximise uptime.",
+          "Purge any buffs from Mun'jin immediately."],
+      da:["Earthquake mellem de to bosser for maksimal AoE-værdi.",
+          "Wind Shear på Neloax — skiftes med tanken for at maksimere uptime.",
+          "Purge eventuelle buffs fra Mun'jin med det samme."]
+    }
+  },
+  // ── MAISARA CAVERNS ── eindbaas (index 2) ──
+  'maisara-caverns:2:tank': {
+    'paladin-protection': {
+      nl:["Vessel of Souls heeft zware interrupt-behoefte — Divine Toll voor meerdere interrupts tegelijk.",
+          "Blessing of Spellwarding op jezelf voor de magische burst-fase.",
+          "Ardent Defender bewaren voor Fase 2 wanneer add-druk het hoogst is."],
+      en:["Vessel of Souls has heavy interrupt needs — Divine Toll for multiple interrupts simultaneously.",
+          "Blessing of Spellwarding on yourself for the magic burst phase.",
+          "Save Ardent Defender for Phase 2 when add pressure is highest."],
+      da:["Vessel of Souls har store interrupt-behov — Divine Toll til multiple interrupts simultant.",
+          "Blessing of Spellwarding på dig selv til den magiske burstfase.",
+          "Gem Ardent Defender til Fase 2, når add-presset er højest."]
+    }
+  },
+  'maisara-caverns:2:heal': {
+    'druid-restoration': {
+      nl:["Tranquility bewaren voor Fase 2 — het grootste healing-moment van de dungeon.",
+          "Ironbark op de tank bij Soul Corruption stacks.",
+          "Stampeding Roar om snel weg te komen van zielplassen."],
+      en:["Save Tranquility for Phase 2 — the biggest healing moment of the dungeon.",
+          "Ironbark on tank during Soul Corruption stacks.",
+          "Stampeding Roar to quickly move away from soul puddles."],
+      da:["Gem Tranquility til Fase 2 — det største healingøjeblik i dungeons.",
+          "Ironbark på tanken ved Soul Corruption-stacks.",
+          "Stampeding Roar for hurtigt at komme væk fra sjælepytter."]
+    }
+  },
+  'maisara-caverns:2:dps': {
+    'hunter-beastmastery': {
+      nl:["Counter Shot op elke soul cast — hoge prioriteit.",
+          "Adds direct killen met Bestial Wrath AoE.",
+          "Aspect of the Turtle als noodrem bij hoge Soul Corruption stacks."],
+      en:["Counter Shot on every soul cast — high priority.",
+          "Kill adds immediately using Bestial Wrath AoE.",
+          "Aspect of the Turtle as emergency when Soul Corruption stacks are high."],
+      da:["Counter Shot på hvert sjæle-cast — høj prioritet.",
+          "Dræb adds med det samme ved hjælp af Bestial Wrath AoE.",
+          "Aspect of the Turtle som nødknap ved høje Soul Corruption-stacks."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear afwisselen met de tank voor maximale interrupt-uptime.",
+          "Astral Shift tijdens hoge Soul Corruption stacks.",
+          "Capacitor Totem op de adds voor een groepsstun — maakt het killen veel sneller."],
+      en:["Rotate Wind Shear with the tank for maximum interrupt uptime.",
+          "Astral Shift during high Soul Corruption stacks.",
+          "Capacitor Totem on the adds for a group stun — makes killing them much faster."],
+      da:["Roter Wind Shear med tanken for maksimal interrupt-uptime.",
+          "Astral Shift under høje Soul Corruption-stacks.",
+          "Capacitor Totem på adds til en gruppestun — gør det meget hurtigere at dræbe dem."]
+    }
+  },
+  // ── NEXUS-POINT XENAS ── eindbaas (index 2) ──
+  'nexus-point-xenas:2:tank': {
+    'paladin-protection': {
+      nl:["Lothravion heeft zware magische aanvallen — Blessing of Spellwarding voor immuniteit.",
+          "Avenger's Shield op void-adds zodra ze spawnen voor AoE-silence.",
+          "Divine Shield als noodrem bij Void Implosion."],
+      en:["Lothravion deals heavy magic damage — Blessing of Spellwarding for immunity.",
+          "Avenger's Shield on void adds as soon as they spawn for AoE silence.",
+          "Divine Shield as emergency during Void Implosion."],
+      da:["Lothravion laver kraftig magiskade — Blessing of Spellwarding til immunitet.",
+          "Avenger's Shield på void-adds så snart de spawner til AoE-silence.",
+          "Divine Shield som nødknap under Void Implosion."]
+    }
+  },
+  'nexus-point-xenas:2:heal': {
+    'druid-restoration': {
+      nl:["Pre-HoTs vóór elke Void Implosion — massale groepsschade.",
+          "Ironbark op de tank tijdens de Void Surge.",
+          "Ursol's Vortex om de void-adds te groeperen voor AoE-kill."],
+      en:["Pre-HoTs before every Void Implosion — massive group damage.",
+          "Ironbark on tank during Void Surge.",
+          "Ursol's Vortex to group the void adds for AoE kill."],
+      da:["Pre-HoTs før hver Void Implosion — massiv gruppeskade.",
+          "Ironbark på tanken under Void Surge.",
+          "Ursol's Vortex til at samle void-adds til AoE-drab."]
+    }
+  },
+  'nexus-point-xenas:2:dps': {
+    'hunter-beastmastery': {
+      nl:["Void-adds direct killen bij spawn — Bestial Wrath voor AoE burst.",
+          "Volledig mobiel bij Void Implosion — beweeg zonder enig DPS-verlies.",
+          "Counter Shot op Void Channeling."],
+      en:["Kill void adds immediately on spawn — Bestial Wrath for AoE burst.",
+          "Fully mobile during Void Implosion — move without any DPS loss.",
+          "Counter Shot on Void Channeling."],
+      da:["Dræb void-adds med det samme ved spawn — Bestial Wrath til AoE burst.",
+          "Fuldt mobil under Void Implosion — flyt uden DPS-tab.",
+          "Counter Shot på Void Channeling."]
+    },
+    'shaman-elemental': {
+      nl:["Earthquake + Chain Lightning op de void-adds cluster.",
+          "Astral Shift bij hoge void-corruptie stacks.",
+          "Wind Shear op Void Channeling — hoge prioriteit."],
+      en:["Earthquake + Chain Lightning on the void add cluster.",
+          "Astral Shift during high void corruption stacks.",
+          "Wind Shear on Void Channeling — high priority."],
+      da:["Earthquake + Chain Lightning på void-add-klyngen.",
+          "Astral Shift under høje void-korruptionsstacks.",
+          "Wind Shear på Void Channeling — høj prioritet."]
+    }
+  },
+  // ── MURDER ROW ── boss 1 ──
+  'murder-row:1:tank': {
+    'paladin-protection': {
+      nl:["Zaen Bladesorrow heeft zware bleed-aanvallen — Guardian of Ancient Kings voor de tankbusters.",
+          "Avenger's Shield op zijn blade-casts voor interrupt + silence.",
+          "Blessing of Sacrifice op de healer als de schade te hoog wordt."],
+      en:["Zaen Bladesorrow has heavy bleed attacks — Guardian of Ancient Kings for tankbusters.",
+          "Avenger's Shield on his blade casts for interrupt + silence.",
+          "Blessing of Sacrifice on the healer if damage becomes too high."],
+      da:["Zaen Bladesorrow har kraftige blødningsangreb — Guardian of Ancient Kings til tankbusters.",
+          "Avenger's Shield på hans blade-casts til interrupt + silence.",
+          "Blessing of Sacrifice på healeren, hvis skaden bliver for høj."]
+    }
+  },
+  'murder-row:1:heal': {
+    'druid-restoration': {
+      nl:["Bleed-schade is constant — Efflorescence permanent neerleggen op de groep.",
+          "Ironbark op de tank bij de zware blade-combo.",
+          "Swiftmend + Wild Growth bij plotselinge schadepieken."],
+      en:["Bleed damage is constant — keep Efflorescence permanently on the group.",
+          "Ironbark on tank during the heavy blade combo.",
+          "Swiftmend + Wild Growth for sudden damage spikes."],
+      da:["Blødningsskade er konstant — hold Efflorescence permanent på gruppen.",
+          "Ironbark på tanken under den kraftige blade-kombo.",
+          "Swiftmend + Wild Growth ved pludselige skadespidser."]
+    }
+  },
+  'murder-row:1:dps': {
+    'hunter-beastmastery': {
+      nl:["Counter Shot op blade-casts.",
+          "Bestial Wrath bij de pull + Primal Rage in de execute-fase.",
+          "Freezing Trap als extra CC als de tank het lastig heeft."],
+      en:["Counter Shot on blade casts.",
+          "Bestial Wrath on pull + Primal Rage in the execute phase.",
+          "Freezing Trap as extra CC if the tank is struggling."],
+      da:["Counter Shot på blade-casts.",
+          "Bestial Wrath på pull + Primal Rage i execute-fasen.",
+          "Freezing Trap som ekstra CC, hvis tanken har det svært."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op blade-casts — coördineer met de tank.",
+          "Astral Shift bij hoge bleed-stacks.",
+          "Thunderstorm als positioneringstool als adds te dicht bij de healer komen."],
+      en:["Wind Shear on blade casts — coordinate with the tank.",
+          "Astral Shift with high bleed stacks.",
+          "Thunderstorm as a positional tool if adds get too close to the healer."],
+      da:["Wind Shear på blade-casts — koordinér med tanken.",
+          "Astral Shift ved høje blødningsstacks.",
+          "Thunderstorm som positioneringsværktøj, hvis adds kommer for tæt på healeren."]
+    }
+  },
+  // ── THE BLINDING VALE ── boss 1 ──
+  'the-blinding-vale:1:tank': {
+    'paladin-protection': {
+      nl:["Feuzz schiet dodelijke pijlen — gebruik Line of Sight waar mogelijk.",
+          "Avenger's Shield op zijn Light Beam cast voor interrupt + silence.",
+          "Ardent Defender bewaren voor de volley-fase."],
+      en:["Feuzz fires deadly arrows — use Line of Sight where possible.",
+          "Avenger's Shield on his Light Beam cast for interrupt + silence.",
+          "Save Ardent Defender for the volley phase."],
+      da:["Feuzz affyrer dødelige pile — brug Line of Sight, hvor det er muligt.",
+          "Avenger's Shield på hans Light Beam-cast til interrupt + silence.",
+          "Gem Ardent Defender til volley-fasen."]
+    }
+  },
+  'the-blinding-vale:1:heal': {
+    'druid-restoration': {
+      nl:["Tank heeft constante Rejuvenation + Lifebloom nodig vanwege pijlschade.",
+          "Ironbark op de speler die getarget is door Light Strike.",
+          "Gebruik Barkskin tijdens de volley — ook jij wordt geraakt."],
+      en:["Tank needs constant Rejuvenation + Lifebloom because of arrow damage.",
+          "Ironbark on the player targeted by Light Strike.",
+          "Use Barkskin during the volley — you get hit too."],
+      da:["Tanken har brug for konstant Rejuvenation + Lifebloom på grund af pilskade.",
+          "Ironbark på den spiller, der er målrettet af Light Strike.",
+          "Brug Barkskin under volleys — du bliver også ramt."]
+    }
+  },
+  'the-blinding-vale:1:dps': {
+    'hunter-beastmastery': {
+      nl:["Counter Shot op Light Beam — hoge prioriteit.",
+          "Aspect of the Turtle bij Light Strike als je getarget wordt.",
+          "Volledig mobiel — ideale spec voor deze baas met veel beweging."],
+      en:["Counter Shot on Light Beam — high priority.",
+          "Aspect of the Turtle on Light Strike if you are targeted.",
+          "Fully mobile — ideal spec for this high-movement boss."],
+      da:["Counter Shot på Light Beam — høj prioritet.",
+          "Aspect of the Turtle på Light Strike, hvis du er målrettet.",
+          "Fuldt mobil — ideel spec til denne boss med masser af bevægelse."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op Light Beam.",
+          "Spiritwalker's Grace voor onafgebroken schade tijdens de volley.",
+          "Astral Shift bij Light Strike als je getarget wordt."],
+      en:["Wind Shear on Light Beam.",
+          "Spiritwalker's Grace for uninterrupted damage during the volley.",
+          "Astral Shift on Light Strike if you are targeted."],
+      da:["Wind Shear på Light Beam.",
+          "Spiritwalker's Grace til uafbrudt skade under volleys.",
+          "Astral Shift på Light Strike, hvis du er målrettet."]
+    }
+  },
+  // ── DEN OF NALORAKK ── eindbaas (index 2) ──
+  'den-of-nalorakk:2:tank': {
+    'paladin-protection': {
+      nl:["Nalorakk heeft Rampage — wissel Ardent Defender en Guardian of Ancient Kings af voor coverage.",
+          "Avenger's Shield op de adds die spawnen tijdens tussenfasen.",
+          "Blessing of Freedom op jezelf bij Nalorakk's Chains."],
+      en:["Nalorakk has Rampage — alternate Ardent Defender and Guardian of Ancient Kings for coverage.",
+          "Avenger's Shield on adds spawning during intermissions.",
+          "Blessing of Freedom on yourself during Nalorakk's Chains."],
+      da:["Nalorakk har Rampage — skiftes med Ardent Defender og Guardian of Ancient Kings til dækning.",
+          "Avenger's Shield på adds, der spawner under mellemfaser.",
+          "Blessing of Freedom på dig selv under Nalorakk's Chains."]
+    }
+  },
+  'den-of-nalorakk:2:heal': {
+    'druid-restoration': {
+      nl:["Pre-HoT de hele groep vóór elke Rampage — de schade is massaal.",
+          "Tranquility bewaren voor de tweede Rampage als je geen andere cooldown meer hebt.",
+          "Stampeding Roar zodat iedereen snel de mechanic-zones kan verlaten."],
+      en:["Pre-HoT the entire group before every Rampage — the damage is massive.",
+          "Save Tranquility for the second Rampage if you have no other cooldowns left.",
+          "Stampeding Roar so everyone can quickly leave mechanic zones."],
+      da:["Pre-HoT hele gruppen før hver Rampage — skaden er massiv.",
+          "Gem Tranquility til den anden Rampage, hvis du ikke har andre cooldowns tilbage.",
+          "Stampeding Roar så alle hurtigt kan forlade mekanikzoner."]
+    }
+  },
+  'den-of-nalorakk:2:dps': {
+    'hunter-beastmastery': {
+      nl:["Adds direct killen bij spawn — Bestial Wrath voor snelle AoE.",
+          "Tar Trap om adds te vertragen als de tank kitet.",
+          "Primal Rage + Bestial Wrath voor de eindfase van Nalorakk."],
+      en:["Kill adds immediately on spawn — Bestial Wrath for fast AoE.",
+          "Tar Trap to slow adds if the tank is kiting.",
+          "Primal Rage + Bestial Wrath for Nalorakk's final phase."],
+      da:["Dræb adds med det samme ved spawn — Bestial Wrath til hurtig AoE.",
+          "Tar Trap til at sænke adds, hvis tanken kiter.",
+          "Primal Rage + Bestial Wrath til Nalorakks slutfase."]
+    },
+    'shaman-elemental': {
+      nl:["Earthquake + Chain Lightning op de add-clusters bij elke tussenfase.",
+          "Capacitor Totem om adds te stunnen zodat de tank ze kan groeperen.",
+          "Astral Shift tijdens Rampage als je toch schade oploopt."],
+      en:["Earthquake + Chain Lightning on add clusters during every intermission.",
+          "Capacitor Totem to stun adds so the tank can group them.",
+          "Astral Shift during Rampage if you take damage anyway."],
+      da:["Earthquake + Chain Lightning på add-klynger under hver mellemfase.",
+          "Capacitor Totem til at stunne adds så tanken kan samle dem.",
+          "Astral Shift under Rampage, hvis du alligevel tager skade."]
+    }
+  },
+  // ── VOIDSCAR ARENA ── eindbaas (index 2) ──
+  'voidscar-arena:2:tank': {
+    'paladin-protection': {
+      nl:["Chaomus heeft Void Eruption — Divine Shield voor volledige immuniteit op het ergste moment.",
+          "Avenger's Shield op Void Constructs voor silence + interrupt.",
+          "Guardian of Ancient Kings in de finale burn-fase."],
+      en:["Chaomus has Void Eruption — Divine Shield for full immunity at the worst moment.",
+          "Avenger's Shield on Void Constructs for silence + interrupt.",
+          "Guardian of Ancient Kings in the final burn phase."],
+      da:["Chaomus har Void Eruption — Divine Shield til fuld immunitet på det værste tidspunkt.",
+          "Avenger's Shield på Void Constructs til silence + interrupt.",
+          "Guardian of Ancient Kings i den endelige burn-fase."]
+    }
+  },
+  'voidscar-arena:2:heal': {
+    'druid-restoration': {
+      nl:["Tranquility bij Void Eruption — het grootste healing-moment van de dungeon.",
+          "Ironbark op de tank bij Void Slam.",
+          "Cyclone op een Void Construct als de tank er eentje kwijtraakt."],
+      en:["Tranquility on Void Eruption — the biggest healing moment in the dungeon.",
+          "Ironbark on tank during Void Slam.",
+          "Cyclone on a Void Construct if the tank loses one."],
+      da:["Tranquility ved Void Eruption — det største healingøjeblik i dungeons.",
+          "Ironbark på tanken under Void Slam.",
+          "Cyclone på en Void Construct, hvis tanken mister en."]
+    }
+  },
+  'voidscar-arena:2:dps': {
+    'hunter-beastmastery': {
+      nl:["Void Constructs direct killen — Bestial Wrath AoE.",
+          "Counter Shot op Void Channeling.",
+          "Aspect of the Turtle bij Void Eruption als je er niet op tijd uit bent."],
+      en:["Kill Void Constructs immediately — Bestial Wrath AoE.",
+          "Counter Shot on Void Channeling.",
+          "Aspect of the Turtle during Void Eruption if you are not out in time."],
+      da:["Dræb Void Constructs med det samme — Bestial Wrath AoE.",
+          "Counter Shot på Void Channeling.",
+          "Aspect of the Turtle under Void Eruption, hvis du ikke er ude i tide."]
+    },
+    'shaman-elemental': {
+      nl:["Wind Shear op Void Channeling — hoge prioriteit.",
+          "Capacitor Totem op de Void Constructs voor een groepsstun.",
+          "Astral Shift bij Void Eruption als defensief."],
+      en:["Wind Shear on Void Channeling — high priority.",
+          "Capacitor Totem on Void Constructs for a group stun.",
+          "Astral Shift during Void Eruption as a defensive."],
+      da:["Wind Shear på Void Channeling — høj prioritet.",
+          "Capacitor Totem på Void Constructs til en gruppestun.",
+          "Astral Shift under Void Eruption som defensiv."]
+    }
+  }
+};
+
+// Returns spec-specific tips array or null
+function getSpecTips(dungeonId, bossIndex, role) {
+  if (!currentSpec) return null;
+  const key = `${dungeonId}:${bossIndex}:${role}`;
+  const bucket = SPEC_TIPS[key];
+  if (!bucket) return null;
+  const specKey = `${currentSpec.classId}-${currentSpec.specId}`;
+  const tips = bucket[specKey];
+  if (!tips) return null;
+  return tips[lang] || tips['en'] || null;
+}
+
 const DUNGEONS = [
 // ──────────────────────────────────────────────
 // 1. WINDRUNNER SPIRE
@@ -934,6 +1697,9 @@ function setLang(l) {
   document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
   applyUIStrings();
   updateFooter();
+  updateSpecBtn();
+  const sm = document.getElementById('spec-modal');
+  if (sm && sm.classList.contains('visible')) renderSpecModal();
   if (currentDungeon) renderDetail(currentDungeon);
   else renderHome();
 }
@@ -967,6 +1733,23 @@ function toggleTheme() {
 // ═══════════════════════════════════════════════════════════════
 // ROLE TABS
 // ═══════════════════════════════════════════════════════════════
+
+function renderRolePanel(dungeonId, bossIndex, role, genericTips) {
+  const specTips = getSpecTips(dungeonId, bossIndex, role);
+  const generic = replaceLust(t(genericTips).map(x => `<li>${x}</li>`).join(''));
+
+  if (specTips && specTips.length > 0) {
+    const specHtml = specTips.map(tip => `<li class="spec-tip">${replaceLust(tip)}</li>`).join('');
+    const cls = CLASSES.find(c => c.id === currentSpec?.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec?.specId);
+    const label = cls && sp ? `${cls.icon} ${sp.name[lang]}` : '';
+    return `<div class="spec-tips-header">${label}</div><ul>${specHtml}</ul>
+            <div class="generic-tips-divider"></div>
+            <ul class="generic-tips">${generic}</ul>`;
+  }
+  return `<ul>${generic}</ul>`;
+}
+
 function switchRole(uid, role) {
   const roles = ['tank','heal','dps'];
   const card = document.getElementById(`${uid}-tank`).closest('.boss-card');
@@ -1056,6 +1839,14 @@ function renderDetail(d) {
     </div>
     ${d.tips.map(tip => `<div class="tip-box"><strong>${t(tip.title)}:</strong> ${t(tip.text)}</div>`).join('')}`;
 
+  // Determine auto-selected role tab based on chosen spec
+  const autoRole = (() => {
+    if (!currentSpec) return 'tank';
+    const cls = CLASSES.find(c => c.id === currentSpec.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
+    return sp?.role || 'tank';
+  })();
+
   // Bosses
   document.getElementById('bosses-content').innerHTML = d.bosses.map((b, bi) => {
     const uid = `${d.id}-b${bi}`;
@@ -1066,13 +1857,19 @@ function renderDetail(d) {
       </div>
       ${b.desc ? `<div class="boss-desc">${t(b.desc)}</div>` : ''}
       <div class="role-tabs">
-        <button class="role-tab-btn active-tank" onclick="switchRole('${uid}','tank')">🛡 Tank</button>
-        <button class="role-tab-btn" onclick="switchRole('${uid}','heal')">💚 Healer</button>
-        <button class="role-tab-btn" onclick="switchRole('${uid}','dps')">⚔ DPS</button>
+        <button class="role-tab-btn${autoRole==='tank'?' active-tank':''}" onclick="switchRole('${uid}','tank')">🛡 Tank</button>
+        <button class="role-tab-btn${autoRole==='heal'?' active-heal':''}" onclick="switchRole('${uid}','heal')">💚 Healer</button>
+        <button class="role-tab-btn${autoRole==='dps'?' active-dps':''}" onclick="switchRole('${uid}','dps')">⚔ DPS</button>
       </div>
-      <div id="${uid}-tank" class="role-panel tank-panel active"><ul>${t(b.tank).map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      <div id="${uid}-heal" class="role-panel heal-panel"><ul>${t(b.heal).map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      <div id="${uid}-dps"  class="role-panel dps-panel"><ul>${t(b.dps).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div id="${uid}-tank" class="role-panel tank-panel${autoRole==='tank'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'tank', b.tank)}
+      </div>
+      <div id="${uid}-heal" class="role-panel heal-panel${autoRole==='heal'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'heal', b.heal)}
+      </div>
+      <div id="${uid}-dps" class="role-panel dps-panel${autoRole==='dps'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'dps', b.dps)}
+      </div>
     </div>`;
   }).join('');
 
@@ -1165,6 +1962,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', function() {
   applyUIStrings();
   updateFooter();
+  updateSpecBtn();
   renderHome();
 });
 </script>
@@ -1202,6 +2000,21 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </footer>
+
+<div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
+  <div id="spec-modal-inner">
+    <div id="spec-modal-header">
+      <div>
+        <div id="spec-modal-title">Choose your spec</div>
+        <div id="spec-modal-subtitle">We'll adjust spell names to match your class</div>
+      </div>
+      <button id="spec-close-x" onclick="closeSpecModal()">×</button>
+    </div>
+    <div id="spec-class-grid" class="spec-class-grid"></div>
+    <button id="spec-reset-btn" onclick="clearSpec()">× Clear spec</button>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 let qrGenerated = false;
