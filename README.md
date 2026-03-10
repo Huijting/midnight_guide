@@ -9,12 +9,13 @@ An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for 
 ## Features
 
 - **Trilingual** — Dutch, English, Danish. Everything switches instantly.
-- **Spec Selector** — Choose your class and spec. Role tab auto-selects (Tank/Healer/DPS). Spec-specific tips shown highlighted (★) above generic tips.
+- **Spec Selector** — Choose your class and spec. Role tab auto-selects (Tank/Healer/DPS). Spec-specific tips shown highlighted (★) above generic tips. Role tab refreshes automatically without manual reload.
 - **Per-boss role tabs** — Tank 🛡, Healer 💚, DPS ⚔ per boss
 - **Route Planner** — Pull order, Bloodlust timing, Keystone.guru links
 - **Light/Dark theme** — Saved via localStorage
 - **PWA installable** — Add to home screen on Android & iOS
 - **QR code** — Share the live URL instantly
+- **"Over deze app" page** — In-app readable page with features, roadmap and changelog
 - **Responsive** — Phone, tablet, PC
 
 ---
@@ -24,9 +25,15 @@ An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for 
 | Spec | Role | Status |
 |---|---|---|
 | 🛡 Protection Paladin | Tank | ✅ Done |
+| 🛡 Vengeance Demon Hunter | Tank | ✅ Done |
+| 🐻 Guardian Druid | Tank | ✅ Done |
 | 💚 Restoration Druid | Healer | ✅ Done |
+| ✨ Holy Paladin | Healer | ✅ Done |
 | 🏹 Beast Mastery Hunter | DPS | ✅ Done |
 | ⚡ Elemental Shaman | DPS | ✅ Done |
+| 😈 Havoc Demon Hunter | DPS | ✅ Done |
+| 🌙 Balance Druid | DPS | ✅ Done |
+| ⚔ Retribution Paladin | DPS | ✅ Done |
 | All other specs | All | Generic tips (fallback) |
 
 ---
@@ -57,10 +64,10 @@ All three raids opening in March 2026:
 | **Dreamrift** | Harandar | 1 | 17 maart 2026 |
 | **March on Quel'Danas** | Quel'Thalas | 2 | 31 maart 2026 |
 
-Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec-specific tips for all 4 covered specs, LFR/Normal/Heroic/Mythic difficulty filter, and route notes.
+Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec-specific tips for all covered specs, LFR/Normal/Heroic/Mythic difficulty filter, and route notes.
 
 ### More specs
-Full spec-specific tips coming for: Holy Paladin, Retribution Paladin, Guardian Druid, Feral Druid, Balance Druid, Marksmanship Hunter, Survival Hunter, Restoration Shaman, Enhancement Shaman, Fire/Frost/Arcane Mage, Arms/Fury/Protection Warrior, and all remaining specs.
+Full spec-specific tips still coming for: Holy Priest, Discipline Priest, Shadow Priest, Mistweaver Monk, Brewmaster Monk, Windwalker Monk, Frost Mage, Fire Mage, Arcane Mage, Arms Warrior, Fury Warrior, Protection Warrior, Marksmanship Hunter, Survival Hunter, Enhancement Shaman, Restoration Shaman, Affliction/Demonology/Destruction Warlock, Assassination/Outlaw/Subtlety Rogue, Frost/Unholy DK, Devastation/Preservation/Augmentation Evoker.
 
 ### Profession Guides
 Crafting guides for key professions to help gear up in Season 1.
@@ -69,11 +76,16 @@ Crafting guides for key professions to help gear up in Season 1.
 
 ## Changelog
 
+### v2.1 — 2026-03-10
+- **6 new specs fully covered**: Vengeance DH (tank), Guardian Druid (tank), Holy Paladin (healer), Havoc DH (dps), Balance Druid (dps), Retribution Paladin (dps)
+- Auto role-tab refresh fixed — selecting a spec now instantly switches to the correct role tab even when already inside a dungeon view
+- QR code and "Over deze app" buttons placed side by side
+
 ### v2.0 — 2026-03-10
-- **Spec-specific tips system** — 4 specs fully covered (Prot Paladin, Resto Druid, BM Hunter, Elemental Shaman)
+- Spec-specific tips system for 4 specs (Prot Paladin, Resto Druid, BM Hunter, Elemental Shaman)
 - Auto role tab selection based on chosen spec
 - Spec tips shown highlighted (★) above generic tips
-- Generic tips remain as fallback for all other specs
+- In-app "Over deze app" page with features, roadmap and changelog
 
 ### v1.3 — 2026-03-09
 - Spec selector added (all 13 classes, role-aware Bloodlust names)
