@@ -245,6 +245,13 @@
   .footer-sources a{color:var(--accent);text-decoration:none;transition:color .2s}
   .footer-sources a:hover{color:var(--gold)}
   #footer-sources-label{color:var(--muted);font-weight:700}
+  #qr-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--gold);cursor:pointer;transition:all .2s;margin-top:4px}
+  #qr-btn:hover{border-color:var(--gold);background:var(--gold);color:#000}
+  #qr-popup{display:none;flex-direction:column;align-items:center;gap:10px;margin-top:12px;padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:12px;max-width:240px}
+  #qr-popup.visible{display:flex}
+  #qr-popup canvas{border-radius:8px}
+  #qr-url{font-size:11px;color:var(--muted);word-break:break-all;text-align:center}
+  #qr-close{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline}
 
 </style>
 </head>
@@ -1174,6 +1181,12 @@ document.addEventListener('DOMContentLoaded', function() {
       Dungeon-informatie is gebaseerd op Icy Veins, Wowhead, Method en eigen ervaringen —
       altijd vatbaar voor verandering na patches.
     </div>
+    <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
+    <div id="qr-popup">
+      <canvas id="qr-canvas"></canvas>
+      <div id="qr-url"></div>
+      <span id="qr-close" onclick="toggleQR()">× sluiten</span>
+    </div>
     <div class="footer-sources">
       <span id="footer-sources-label">Bronnen:</span>
       <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a>
@@ -1186,5 +1199,35 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+let qrGenerated = false;
+
+function toggleQR() {
+  const popup = document.getElementById('qr-popup');
+  popup.classList.toggle('visible');
+
+  if (!qrGenerated && popup.classList.contains('visible')) {
+    const url = window.location.href.split('?')[0];
+    // Ensure trailing slash
+    const cleanUrl = url.endsWith('/') ? url : url + '/';
+
+    document.getElementById('qr-url').textContent = cleanUrl;
+
+    QRCode.toCanvas(document.getElementById('qr-canvas'), cleanUrl, {
+      width: 180,
+      margin: 2,
+      color: {
+        dark: document.body.classList.contains('light') ? '#1a1428' : '#e8e0ff',
+        light: document.body.classList.contains('light') ? '#ffffff' : '#1c1c3e'
+      }
+    }, function(error) {
+      if (error) console.error(error);
+    });
+
+    qrGenerated = true;
+  }
+}
+</script>
 </body>
 </html>
