@@ -18,13 +18,34 @@ Or add it to your phone's home screen as an app — the guide will show you how!
 
 ## ✨ Features
 
-- 🗺️ **8 dungeons** — 4 Mythic+ and 4 Normal Only, fully covered
+- 🗺️ **8 Dungeons** — 4 Mythic+ and 4 Normal Only, fully covered
 - 👊 **Per boss** — separate tips for Tank, Healer and DPS
 - 🧭 **Route planner** — pull order, Bloodlust timing and Keystone.guru links
 - 🇳🇱 🇬🇧 🇩🇰 **Trilingual** — Dutch, English and Danish, switch instantly
 - 🌙 **Light & dark theme** — your preference is remembered
 - 📱 **PWA ready** — installable as an app on Android and iPhone
 - 📷 **QR code** — share the guide with your party in one scan
+
+---
+
+## 📋 Changelog
+
+### v1.2 — 2026-03-10
+- ✅ Full responsive design — phone, tablet and PC each get their own layout
+- ✅ Device detection — hover effects on PC only, touch-optimised on mobile
+- ✅ QR code in footer — scan to share the guide instantly
+- ✅ Version number visible in footer
+- ✅ Install banner improved — correct native wording per platform and language
+- ✅ Disclaimer and source credits added to footer
+- ✅ "Created by Claudy & Inchy" credits added
+
+### v1.0 — 2026-03-09
+- 🎉 First release — 8 dungeons fully covered
+- 🎉 Trilingual support — Dutch, English and Danish
+- 🎉 Tank / Healer / DPS tabs per boss
+- 🎉 Route planner with pull order and Bloodlust timing
+- 🎉 Light & dark theme with local preference memory
+- 🎉 PWA installable as app on Android and iPhone
 
 ---
 
