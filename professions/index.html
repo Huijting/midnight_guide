@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0057)file:///C:/Users/RobHu/Downloads/professions_guide_2.html -->
-<html lang="nl" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0057)file:///C:/Users/RobHu/Downloads/professions_guide_3.html -->
+<html lang="nl" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0d0d1a">
@@ -1203,9 +1203,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
       <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
     </div>
-    <div id="qr-popup">
-      <div id="qr-canvas"></div>
-      <div id="qr-url"></div>
+    <div id="qr-popup" class="visible">
+      <div id="qr-canvas"><img src="./WoW Midnight — Profession Guide_files/saved_resource" width="180" height="180" style="border-radius:8px" alt="QR-code"></div>
+      <div id="qr-url">https://huijting.github.io/midnight_guide/professions/</div>
       <span id="qr-close" onclick="toggleQR()">× sluiten</span>
     </div>
     <div class="footer-sources">
@@ -1286,7 +1286,9 @@ function toggleQR(){
     const isLocal=rawUrl.startsWith('about:')||rawUrl.startsWith('blob:')||rawUrl.startsWith('file:');
     const cleanUrl=isLocal?'https://huijting.github.io/midnight_guide/professions/':(rawUrl.endsWith('/')?rawUrl:rawUrl+'/');
     document.getElementById('qr-url').textContent=cleanUrl;
-    new QRCode(document.getElementById('qr-canvas'),{text:cleanUrl,width:180,height:180,colorDark:'#c8a84b',colorLight:'#1c1c3e',correctLevel:QRCode.CorrectLevel.M});
+    const canvas=document.getElementById('qr-canvas');
+    const encoded=encodeURIComponent(cleanUrl);
+    canvas.innerHTML=`<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=c8a84b&bgcolor=1c1c3e&data=${encoded}" width="180" height="180" style="border-radius:8px" alt="QR-code">`;
     qrGenerated=true;
   }
 }
