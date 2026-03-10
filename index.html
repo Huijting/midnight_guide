@@ -394,7 +394,7 @@
 <script>
 
 // ── VERSIE ──
-const VERSION = "v2.2";
+const VERSION = "v3.0";
 const VERSION_DATE = "2026-03-10";
 
 
@@ -891,6 +891,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Flame Surge.",
           "Power Word: Barrier under Flame Surge til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Flame Surge-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Flame Surge mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Flame Surge-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Flame Surge voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Flame Surge for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Flame Surge til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Flame Surge voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Flame Surge for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Flame Surge til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'windrunner-spire:0:dps': {
     'hunter-beastmastery': {
@@ -1036,6 +1072,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på tårncastet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på adds der spawner-klyngen.",
           "Anti-Magic Shell under Flame Surge til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de vuurtoren-cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Flame Surge voor magische schade-immuniteit."],
+      en:["Mind Freeze on the firetower cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the adds cluster for AoE burst.",
+          "Anti-Magic Shell during Flame Surge for magic damage immunity."],
+      da:["Mind Freeze på tårncastet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Flame Surge til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de vuurtoren-cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de adds cluster voor ranged AoE burst.",
+          "Blur bij Flame Surge als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the firetower cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the adds cluster for ranged AoE burst.",
+          "Blur during Flame Surge as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på tårncastet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på adds-klyngen til ranged AoE burst.",
+          "Blur under Flame Surge som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de vuurtoren-cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de adds cluster.",
+          "Survival Instincts bij Flame Surge als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the firetower cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the adds cluster.",
+          "Survival Instincts during Flame Surge as personal defensive — two charges."],
+      da:["Skull Bash på tårncastet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på adds-klyngen.",
+          "Survival Instincts under Flame Surge som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de vuurtoren-cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Flame Surge als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the firetower cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Flame Surge as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på tårncastet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Flame Surge som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de vuurtoren-cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Flame Surge als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the firetower cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Flame Surge as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på tårncastet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Flame Surge som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de vuurtoren-cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de adds cluster.",
+          "Aspect of the Turtle bij Flame Surge als noodimuniteit."],
+      en:["Counter Shot on the firetower cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the adds cluster.",
+          "Aspect of the Turtle during Flame Surge as emergency immunity."],
+      da:["Counter Shot på tårncastet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på adds-klyngen.",
+          "Aspect of the Turtle under Flame Surge som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de vuurtoren-cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Flame Surge als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the firetower cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Flame Surge as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på tårncastet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Flame Surge som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de vuurtoren-cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Flame Surge als noodimuniteit."],
+      en:["Counterspell on the firetower cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Flame Surge as emergency immunity."],
+      da:["Counterspell på tårncastet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Flame Surge som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de vuurtoren-cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Flame Surge voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the firetower cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Flame Surge for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på tårncastet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Flame Surge til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de vuurtoren-cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Flame Surge voor 100% melee-ontwijking."],
+      en:["Kick on the firetower cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Flame Surge for 100% melee dodge."],
+      da:["Kick på tårncastet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Flame Surge til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de vuurtoren-cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Flame Surge voor 100% melee-ontwijking."],
+      en:["Kick on the firetower cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Flame Surge for 100% melee dodge."],
+      da:["Kick på tårncastet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Flame Surge til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de vuurtoren-cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Flame Surge voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the firetower cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Flame Surge for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på tårncastet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Flame Surge til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de vuurtoren-cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de adds cluster.",
+          "Unending Resolve bij Flame Surge voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the firetower cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the adds cluster.",
+          "Unending Resolve during Flame Surge for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på tårncastet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på adds-klyngen.",
+          "Unending Resolve under Flame Surge til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de vuurtoren-cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Flame Surge voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the firetower cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Flame Surge for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på tårncastet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Flame Surge til 40% skadereduktion."]
     }},
   // ── WINDRUNNER SPIRE ── boss 1 ──
   'windrunner-spire:1:tank': {
@@ -1118,6 +1322,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Shadow Crash.",
           "Power Word: Barrier under Shadow Crash til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Shadow Crash-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Shadow Crash mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Shadow Crash-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Shadow Crash voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Shadow Crash for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Shadow Crash til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Shadow Crash voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Shadow Crash for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Shadow Crash til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'windrunner-spire:1:dps': {
     'hunter-beastmastery': {
@@ -1230,6 +1470,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på banish-castet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på skygge-adds-klyngen.",
           "Anti-Magic Shell under Shadow Crash til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de banish-cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de shadow adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Shadow Crash voor magische schade-immuniteit."],
+      en:["Mind Freeze on the banish cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the shadow adds cluster for AoE burst.",
+          "Anti-Magic Shell during Shadow Crash for magic damage immunity."],
+      da:["Mind Freeze på banish-castet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på skygge-adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Shadow Crash til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de banish-cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de shadow adds cluster voor ranged AoE burst.",
+          "Blur bij Shadow Crash als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the banish cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the shadow adds cluster for ranged AoE burst.",
+          "Blur during Shadow Crash as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på banish-castet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på skygge-adds-klyngen til ranged AoE burst.",
+          "Blur under Shadow Crash som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de banish-cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de shadow adds cluster.",
+          "Survival Instincts bij Shadow Crash als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the banish cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the shadow adds cluster.",
+          "Survival Instincts during Shadow Crash as personal defensive — two charges."],
+      da:["Skull Bash på banish-castet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på skygge-adds-klyngen.",
+          "Survival Instincts under Shadow Crash som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de banish-cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Shadow Crash als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the banish cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Shadow Crash as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på banish-castet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Shadow Crash som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de banish-cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Shadow Crash als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the banish cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Shadow Crash as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på banish-castet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Shadow Crash som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de banish-cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de shadow adds cluster.",
+          "Aspect of the Turtle bij Shadow Crash als noodimuniteit."],
+      en:["Counter Shot on the banish cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the shadow adds cluster.",
+          "Aspect of the Turtle during Shadow Crash as emergency immunity."],
+      da:["Counter Shot på banish-castet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på skygge-adds-klyngen.",
+          "Aspect of the Turtle under Shadow Crash som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de banish-cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Shadow Crash als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the banish cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Shadow Crash as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på banish-castet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Shadow Crash som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de banish-cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Shadow Crash als noodimuniteit."],
+      en:["Counterspell on the banish cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Shadow Crash as emergency immunity."],
+      da:["Counterspell på banish-castet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Shadow Crash som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de banish-cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Shadow Crash voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the banish cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Shadow Crash for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på banish-castet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Shadow Crash til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de banish-cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Shadow Crash voor 100% melee-ontwijking."],
+      en:["Kick on the banish cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Shadow Crash for 100% melee dodge."],
+      da:["Kick på banish-castet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Shadow Crash til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de banish-cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Shadow Crash voor 100% melee-ontwijking."],
+      en:["Kick on the banish cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Shadow Crash for 100% melee dodge."],
+      da:["Kick på banish-castet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Shadow Crash til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de banish-cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Shadow Crash voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the banish cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Shadow Crash for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på banish-castet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Shadow Crash til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de banish-cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de shadow adds cluster.",
+          "Unending Resolve bij Shadow Crash voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the banish cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the shadow adds cluster.",
+          "Unending Resolve during Shadow Crash for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på banish-castet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på skygge-adds-klyngen.",
+          "Unending Resolve under Shadow Crash til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de banish-cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Shadow Crash voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the banish cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Shadow Crash for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på banish-castet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Shadow Crash til 40% skadereduktion."]
     }},
   // ── MAGISTERS' TERRACE ── boss 0 ──
   'magisters-terrace:0:tank': {
@@ -1312,6 +1720,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Arcane Barrage.",
           "Power Word: Barrier under Arcane Barrage til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Arcane Barrage-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Arcane Barrage mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Arcane Barrage-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Arcane Barrage voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Arcane Barrage for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Arcane Barrage til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Arcane Barrage voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Arcane Barrage for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Arcane Barrage til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'magisters-terrace:0:dps': {
     'hunter-beastmastery': {
@@ -1424,6 +1868,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på arkane-castet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på mana-adds-klyngen.",
           "Anti-Magic Shell under Arcane Barrage til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de arcane cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de mana adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Arcane Barrage voor magische schade-immuniteit."],
+      en:["Mind Freeze on the arcane cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the mana adds cluster for AoE burst.",
+          "Anti-Magic Shell during Arcane Barrage for magic damage immunity."],
+      da:["Mind Freeze på arkane-castet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på mana-adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Arcane Barrage til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de arcane cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de mana adds cluster voor ranged AoE burst.",
+          "Blur bij Arcane Barrage als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the arcane cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the mana adds cluster for ranged AoE burst.",
+          "Blur during Arcane Barrage as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på arkane-castet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på mana-adds-klyngen til ranged AoE burst.",
+          "Blur under Arcane Barrage som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de arcane cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de mana adds cluster.",
+          "Survival Instincts bij Arcane Barrage als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the arcane cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the mana adds cluster.",
+          "Survival Instincts during Arcane Barrage as personal defensive — two charges."],
+      da:["Skull Bash på arkane-castet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på mana-adds-klyngen.",
+          "Survival Instincts under Arcane Barrage som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de arcane cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Arcane Barrage als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the arcane cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Arcane Barrage as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på arkane-castet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Arcane Barrage som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de arcane cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Arcane Barrage als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the arcane cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Arcane Barrage as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på arkane-castet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Arcane Barrage som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de arcane cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de mana adds cluster.",
+          "Aspect of the Turtle bij Arcane Barrage als noodimuniteit."],
+      en:["Counter Shot on the arcane cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the mana adds cluster.",
+          "Aspect of the Turtle during Arcane Barrage as emergency immunity."],
+      da:["Counter Shot på arkane-castet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på mana-adds-klyngen.",
+          "Aspect of the Turtle under Arcane Barrage som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de arcane cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Arcane Barrage als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the arcane cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Arcane Barrage as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på arkane-castet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Arcane Barrage som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de arcane cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Arcane Barrage als noodimuniteit."],
+      en:["Counterspell on the arcane cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Arcane Barrage as emergency immunity."],
+      da:["Counterspell på arkane-castet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Arcane Barrage som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de arcane cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Arcane Barrage voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the arcane cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Arcane Barrage for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på arkane-castet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Arcane Barrage til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de arcane cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Arcane Barrage voor 100% melee-ontwijking."],
+      en:["Kick on the arcane cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Arcane Barrage for 100% melee dodge."],
+      da:["Kick på arkane-castet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Arcane Barrage til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de arcane cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Arcane Barrage voor 100% melee-ontwijking."],
+      en:["Kick on the arcane cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Arcane Barrage for 100% melee dodge."],
+      da:["Kick på arkane-castet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Arcane Barrage til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de arcane cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Arcane Barrage voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the arcane cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Arcane Barrage for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på arkane-castet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Arcane Barrage til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de arcane cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de mana adds cluster.",
+          "Unending Resolve bij Arcane Barrage voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the arcane cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the mana adds cluster.",
+          "Unending Resolve during Arcane Barrage for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på arkane-castet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på mana-adds-klyngen.",
+          "Unending Resolve under Arcane Barrage til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de arcane cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Arcane Barrage voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the arcane cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Arcane Barrage for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på arkane-castet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Arcane Barrage til 40% skadereduktion."]
     }},
   // ── MAISARA CAVERNS ── boss 0 ──
   'maisara-caverns:0:tank': {
@@ -1506,6 +2118,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Toxic Spew.",
           "Power Word: Barrier under Toxic Spew til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Toxic Spew-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Toxic Spew mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Toxic Spew-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Toxic Spew voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Toxic Spew for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Toxic Spew til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Toxic Spew voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Toxic Spew for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Toxic Spew til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'maisara-caverns:0:dps': {
     'hunter-beastmastery': {
@@ -1618,6 +2266,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på gift-castet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på giftige adds-klyngen.",
           "Anti-Magic Shell under Toxic Spew til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de gift-cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de venomous adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Toxic Spew voor magische schade-immuniteit."],
+      en:["Mind Freeze on the poison cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the venomous adds cluster for AoE burst.",
+          "Anti-Magic Shell during Toxic Spew for magic damage immunity."],
+      da:["Mind Freeze på gift-castet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på giftige adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Toxic Spew til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de gift-cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de venomous adds cluster voor ranged AoE burst.",
+          "Blur bij Toxic Spew als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the poison cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the venomous adds cluster for ranged AoE burst.",
+          "Blur during Toxic Spew as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på gift-castet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på giftige adds-klyngen til ranged AoE burst.",
+          "Blur under Toxic Spew som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de gift-cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de venomous adds cluster.",
+          "Survival Instincts bij Toxic Spew als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the poison cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the venomous adds cluster.",
+          "Survival Instincts during Toxic Spew as personal defensive — two charges."],
+      da:["Skull Bash på gift-castet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på giftige adds-klyngen.",
+          "Survival Instincts under Toxic Spew som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de gift-cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Toxic Spew als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the poison cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Toxic Spew as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på gift-castet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Toxic Spew som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de gift-cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Toxic Spew als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the poison cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Toxic Spew as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på gift-castet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Toxic Spew som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de gift-cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de venomous adds cluster.",
+          "Aspect of the Turtle bij Toxic Spew als noodimuniteit."],
+      en:["Counter Shot on the poison cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the venomous adds cluster.",
+          "Aspect of the Turtle during Toxic Spew as emergency immunity."],
+      da:["Counter Shot på gift-castet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på giftige adds-klyngen.",
+          "Aspect of the Turtle under Toxic Spew som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de gift-cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Toxic Spew als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the poison cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Toxic Spew as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på gift-castet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Toxic Spew som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de gift-cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Toxic Spew als noodimuniteit."],
+      en:["Counterspell on the poison cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Toxic Spew as emergency immunity."],
+      da:["Counterspell på gift-castet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Toxic Spew som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de gift-cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Toxic Spew voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the poison cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Toxic Spew for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på gift-castet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Toxic Spew til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de gift-cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Toxic Spew voor 100% melee-ontwijking."],
+      en:["Kick on the poison cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Toxic Spew for 100% melee dodge."],
+      da:["Kick på gift-castet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Toxic Spew til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de gift-cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Toxic Spew voor 100% melee-ontwijking."],
+      en:["Kick on the poison cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Toxic Spew for 100% melee dodge."],
+      da:["Kick på gift-castet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Toxic Spew til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de gift-cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Toxic Spew voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the poison cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Toxic Spew for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på gift-castet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Toxic Spew til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de gift-cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de venomous adds cluster.",
+          "Unending Resolve bij Toxic Spew voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the poison cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the venomous adds cluster.",
+          "Unending Resolve during Toxic Spew for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på gift-castet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på giftige adds-klyngen.",
+          "Unending Resolve under Toxic Spew til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de gift-cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Toxic Spew voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the poison cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Toxic Spew for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på gift-castet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Toxic Spew til 40% skadereduktion."]
     }},
   // ── MAISARA CAVERNS ── eindbaas (index 2) ──
   'maisara-caverns:2:tank': {
@@ -1733,6 +2549,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Fase 2.",
           "Power Word: Barrier under Fase 2 til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Fase 2-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Phase 2 mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Fase 2-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Fase 2 voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Phase 2 for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Fase 2 til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Fase 2 voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Phase 2 for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Fase 2 til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'maisara-caverns:2:dps': {
     'hunter-beastmastery': {
@@ -1878,6 +2730,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på sjæle-casts — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på sjæle-adds-klyngen.",
           "Anti-Magic Shell under Fase 2 til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op soul casts — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de soul adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Fase 2 voor magische schade-immuniteit."],
+      en:["Mind Freeze on soul casts — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the soul adds cluster for AoE burst.",
+          "Anti-Magic Shell during Phase 2 for magic damage immunity."],
+      da:["Mind Freeze på sjæle-casts — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på sjæle-adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Fase 2 til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op soul casts — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de soul adds cluster voor ranged AoE burst.",
+          "Blur bij Fase 2 als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on soul casts — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the soul adds cluster for ranged AoE burst.",
+          "Blur during Phase 2 as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på sjæle-casts — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på sjæle-adds-klyngen til ranged AoE burst.",
+          "Blur under Fase 2 som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op soul casts — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de soul adds cluster.",
+          "Survival Instincts bij Fase 2 als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on soul casts — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the soul adds cluster.",
+          "Survival Instincts during Phase 2 as personal defensive — two charges."],
+      da:["Skull Bash på sjæle-casts — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på sjæle-adds-klyngen.",
+          "Survival Instincts under Fase 2 som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op soul casts — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Fase 2 als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on soul casts — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Phase 2 as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på sjæle-casts — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Fase 2 som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op soul casts — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Fase 2 als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on soul casts — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Phase 2 as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på sjæle-casts — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Fase 2 som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op soul casts — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de soul adds cluster.",
+          "Aspect of the Turtle bij Fase 2 als noodimuniteit."],
+      en:["Counter Shot on soul casts — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the soul adds cluster.",
+          "Aspect of the Turtle during Phase 2 as emergency immunity."],
+      da:["Counter Shot på sjæle-casts — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på sjæle-adds-klyngen.",
+          "Aspect of the Turtle under Fase 2 som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op soul casts — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Fase 2 als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on soul casts — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Phase 2 as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på sjæle-casts — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Fase 2 som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op soul casts — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Fase 2 als noodimuniteit."],
+      en:["Counterspell on soul casts — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Phase 2 as emergency immunity."],
+      da:["Counterspell på sjæle-casts — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Fase 2 som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op soul casts — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Fase 2 voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on soul casts — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Phase 2 for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på sjæle-casts — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Fase 2 til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op soul casts — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Fase 2 voor 100% melee-ontwijking."],
+      en:["Kick on soul casts — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Phase 2 for 100% melee dodge."],
+      da:["Kick på sjæle-casts — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Fase 2 til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op soul casts — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Fase 2 voor 100% melee-ontwijking."],
+      en:["Kick on soul casts — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Phase 2 for 100% melee dodge."],
+      da:["Kick på sjæle-casts — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Fase 2 til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op soul casts — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Fase 2 voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on soul casts — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Phase 2 for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på sjæle-casts — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Fase 2 til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op soul casts — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de soul adds cluster.",
+          "Unending Resolve bij Fase 2 voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on soul casts — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the soul adds cluster.",
+          "Unending Resolve during Phase 2 for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på sjæle-casts — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på sjæle-adds-klyngen.",
+          "Unending Resolve under Fase 2 til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op soul casts — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Fase 2 voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on soul casts — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Phase 2 for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på sjæle-casts — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Fase 2 til 40% skadereduktion."]
     }},
   // ── NEXUS-POINT XENAS ── eindbaas (index 2) ──
   'nexus-point-xenas:2:tank': {
@@ -1993,6 +3013,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Void Implosion.",
           "Power Word: Barrier under Void Implosion til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Void Implosion-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Void Implosion mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Void Implosion-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Void Implosion voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Void Implosion for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Void Implosion til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Void Implosion voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Void Implosion for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Void Implosion til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'nexus-point-xenas:2:dps': {
     'hunter-beastmastery': {
@@ -2138,6 +3194,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på Void Channeling — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på void-adds-klyngen.",
           "Anti-Magic Shell under Void Implosion til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op Void Channeling — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de void adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Void Implosion voor magische schade-immuniteit."],
+      en:["Mind Freeze on Void Channeling — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the void adds cluster for AoE burst.",
+          "Anti-Magic Shell during Void Implosion for magic damage immunity."],
+      da:["Mind Freeze på Void Channeling — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på void-adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Void Implosion til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op Void Channeling — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de void adds cluster voor ranged AoE burst.",
+          "Blur bij Void Implosion als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on Void Channeling — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the void adds cluster for ranged AoE burst.",
+          "Blur during Void Implosion as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på Void Channeling — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på void-adds-klyngen til ranged AoE burst.",
+          "Blur under Void Implosion som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op Void Channeling — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de void adds cluster.",
+          "Survival Instincts bij Void Implosion als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on Void Channeling — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the void adds cluster.",
+          "Survival Instincts during Void Implosion as personal defensive — two charges."],
+      da:["Skull Bash på Void Channeling — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på void-adds-klyngen.",
+          "Survival Instincts under Void Implosion som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op Void Channeling — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Void Implosion als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on Void Channeling — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Void Implosion as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på Void Channeling — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Void Implosion som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op Void Channeling — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Void Implosion als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on Void Channeling — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Void Implosion as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på Void Channeling — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Void Implosion som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op Void Channeling — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de void adds cluster.",
+          "Aspect of the Turtle bij Void Implosion als noodimuniteit."],
+      en:["Counter Shot on Void Channeling — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the void adds cluster.",
+          "Aspect of the Turtle during Void Implosion as emergency immunity."],
+      da:["Counter Shot på Void Channeling — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på void-adds-klyngen.",
+          "Aspect of the Turtle under Void Implosion som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op Void Channeling — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Void Implosion als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on Void Channeling — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Void Implosion as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på Void Channeling — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Void Implosion som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op Void Channeling — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Void Implosion als noodimuniteit."],
+      en:["Counterspell on Void Channeling — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Void Implosion as emergency immunity."],
+      da:["Counterspell på Void Channeling — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Void Implosion som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op Void Channeling — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Void Implosion voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on Void Channeling — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Void Implosion for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på Void Channeling — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Void Implosion til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op Void Channeling — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Void Implosion voor 100% melee-ontwijking."],
+      en:["Kick on Void Channeling — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Void Implosion for 100% melee dodge."],
+      da:["Kick på Void Channeling — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Void Implosion til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op Void Channeling — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Void Implosion voor 100% melee-ontwijking."],
+      en:["Kick on Void Channeling — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Void Implosion for 100% melee dodge."],
+      da:["Kick på Void Channeling — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Void Implosion til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Void Implosion voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Void Implosion for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Void Implosion til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de void adds cluster.",
+          "Unending Resolve bij Void Implosion voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the void adds cluster.",
+          "Unending Resolve during Void Implosion for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på void-adds-klyngen.",
+          "Unending Resolve under Void Implosion til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Void Implosion voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Void Implosion for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Void Implosion til 40% skadereduktion."]
     }},
   // ── MURDER ROW ── boss 1 ──
   'murder-row:1:tank': {
@@ -2253,6 +3477,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden kraftig blade-kombo.",
           "Power Word: Barrier under kraftig blade-kombo til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van zware blade-combo-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape heavy blade combo mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe kraftig blade-kombo-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij zware blade-combo voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during heavy blade combo for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under kraftig blade-kombo til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij zware blade-combo voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during heavy blade combo for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under kraftig blade-kombo til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'murder-row:1:dps': {
     'hunter-beastmastery': {
@@ -2398,6 +3658,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på blade-casts — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på adds-klyngen.",
           "Anti-Magic Shell under kraftig blade-kombo til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op blade-casts — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij zware blade-combo voor magische schade-immuniteit."],
+      en:["Mind Freeze on blade casts — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the adds cluster for AoE burst.",
+          "Anti-Magic Shell during heavy blade combo for magic damage immunity."],
+      da:["Mind Freeze på blade-casts — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under kraftig blade-kombo til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op blade-casts — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de adds cluster voor ranged AoE burst.",
+          "Blur bij zware blade-combo als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on blade casts — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the adds cluster for ranged AoE burst.",
+          "Blur during heavy blade combo as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på blade-casts — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på adds-klyngen til ranged AoE burst.",
+          "Blur under kraftig blade-kombo som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op blade-casts — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de adds cluster.",
+          "Survival Instincts bij zware blade-combo als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on blade casts — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the adds cluster.",
+          "Survival Instincts during heavy blade combo as personal defensive — two charges."],
+      da:["Skull Bash på blade-casts — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på adds-klyngen.",
+          "Survival Instincts under kraftig blade-kombo som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op blade-casts — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij zware blade-combo als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on blade casts — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during heavy blade combo as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på blade-casts — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under kraftig blade-kombo som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op blade-casts — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij zware blade-combo als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on blade casts — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during heavy blade combo as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på blade-casts — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under kraftig blade-kombo som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op blade-casts — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de adds cluster.",
+          "Aspect of the Turtle bij zware blade-combo als noodimuniteit."],
+      en:["Counter Shot on blade casts — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the adds cluster.",
+          "Aspect of the Turtle during heavy blade combo as emergency immunity."],
+      da:["Counter Shot på blade-casts — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på adds-klyngen.",
+          "Aspect of the Turtle under kraftig blade-kombo som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op blade-casts — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij zware blade-combo als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on blade casts — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during heavy blade combo as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på blade-casts — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under kraftig blade-kombo som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op blade-casts — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij zware blade-combo als noodimuniteit."],
+      en:["Counterspell on blade casts — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during heavy blade combo as emergency immunity."],
+      da:["Counterspell på blade-casts — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under kraftig blade-kombo som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op blade-casts — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij zware blade-combo voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on blade casts — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during heavy blade combo for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på blade-casts — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under kraftig blade-kombo til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op blade-casts — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij zware blade-combo voor 100% melee-ontwijking."],
+      en:["Kick on blade casts — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during heavy blade combo for 100% melee dodge."],
+      da:["Kick på blade-casts — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under kraftig blade-kombo til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op blade-casts — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij zware blade-combo voor 100% melee-ontwijking."],
+      en:["Kick on blade casts — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during heavy blade combo for 100% melee dodge."],
+      da:["Kick på blade-casts — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under kraftig blade-kombo til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op blade-casts — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij zware blade-combo voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on blade casts — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during heavy blade combo for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på blade-casts — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under kraftig blade-kombo til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op blade-casts — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de adds cluster.",
+          "Unending Resolve bij zware blade-combo voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on blade casts — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the adds cluster.",
+          "Unending Resolve during heavy blade combo for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på blade-casts — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på adds-klyngen.",
+          "Unending Resolve under kraftig blade-kombo til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op blade-casts — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij zware blade-combo voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on blade casts — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during heavy blade combo for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på blade-casts — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under kraftig blade-kombo til 40% skadereduktion."]
     }},
   // ── THE BLINDING VALE ── boss 1 ──
   'the-blinding-vale:1:tank': {
@@ -2480,6 +3908,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Blinding Flash.",
           "Power Word: Barrier under Blinding Flash til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Blinding Flash-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Blinding Flash mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Blinding Flash-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Blinding Flash voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Blinding Flash for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Blinding Flash til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Blinding Flash voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Blinding Flash for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Blinding Flash til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'the-blinding-vale:1:dps': {
     'hunter-beastmastery': {
@@ -2592,6 +4056,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på blindheds-castet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på vale-adds-klyngen.",
           "Anti-Magic Shell under Blinding Flash til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de blindness-cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de vale adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Blinding Flash voor magische schade-immuniteit."],
+      en:["Mind Freeze on the blindness cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the vale adds cluster for AoE burst.",
+          "Anti-Magic Shell during Blinding Flash for magic damage immunity."],
+      da:["Mind Freeze på blindheds-castet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på vale-adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Blinding Flash til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de blindness-cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de vale adds cluster voor ranged AoE burst.",
+          "Blur bij Blinding Flash als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the blindness cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the vale adds cluster for ranged AoE burst.",
+          "Blur during Blinding Flash as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på blindheds-castet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på vale-adds-klyngen til ranged AoE burst.",
+          "Blur under Blinding Flash som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de blindness-cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de vale adds cluster.",
+          "Survival Instincts bij Blinding Flash als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the blindness cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the vale adds cluster.",
+          "Survival Instincts during Blinding Flash as personal defensive — two charges."],
+      da:["Skull Bash på blindheds-castet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på vale-adds-klyngen.",
+          "Survival Instincts under Blinding Flash som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de blindness-cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Blinding Flash als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the blindness cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Blinding Flash as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på blindheds-castet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Blinding Flash som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de blindness-cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Blinding Flash als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the blindness cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Blinding Flash as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på blindheds-castet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Blinding Flash som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de blindness-cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de vale adds cluster.",
+          "Aspect of the Turtle bij Blinding Flash als noodimuniteit."],
+      en:["Counter Shot on the blindness cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the vale adds cluster.",
+          "Aspect of the Turtle during Blinding Flash as emergency immunity."],
+      da:["Counter Shot på blindheds-castet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på vale-adds-klyngen.",
+          "Aspect of the Turtle under Blinding Flash som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de blindness-cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Blinding Flash als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the blindness cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Blinding Flash as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på blindheds-castet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Blinding Flash som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de blindness-cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Blinding Flash als noodimuniteit."],
+      en:["Counterspell on the blindness cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Blinding Flash as emergency immunity."],
+      da:["Counterspell på blindheds-castet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Blinding Flash som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de blindness-cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Blinding Flash voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the blindness cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Blinding Flash for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på blindheds-castet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Blinding Flash til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de blindness-cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Blinding Flash voor 100% melee-ontwijking."],
+      en:["Kick on the blindness cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Blinding Flash for 100% melee dodge."],
+      da:["Kick på blindheds-castet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Blinding Flash til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de blindness-cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Blinding Flash voor 100% melee-ontwijking."],
+      en:["Kick on the blindness cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Blinding Flash for 100% melee dodge."],
+      da:["Kick på blindheds-castet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Blinding Flash til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de blindness-cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Blinding Flash voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the blindness cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Blinding Flash for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på blindheds-castet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Blinding Flash til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de blindness-cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de vale adds cluster.",
+          "Unending Resolve bij Blinding Flash voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the blindness cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the vale adds cluster.",
+          "Unending Resolve during Blinding Flash for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på blindheds-castet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på vale-adds-klyngen.",
+          "Unending Resolve under Blinding Flash til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de blindness-cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Blinding Flash voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the blindness cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Blinding Flash for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på blindheds-castet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Blinding Flash til 40% skadereduktion."]
     }},
   // ── DEN OF NALORAKK ── eindbaas (index 2) ──
   'den-of-nalorakk:2:tank': {
@@ -2707,6 +4339,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Rampage.",
           "Power Word: Barrier under Rampage til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Rampage-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Rampage mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Rampage-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Rampage voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Rampage for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Rampage til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Rampage voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Rampage for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Rampage til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'den-of-nalorakk:2:dps': {
     'hunter-beastmastery': {
@@ -2852,6 +4520,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på brøl-castet — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på mellemfase-adds-klyngen.",
           "Anti-Magic Shell under Rampage til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op de roar-cast — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de adds cluster voor AoE burst.",
+          "Anti-Magic Shell bij Rampage voor magische schade-immuniteit."],
+      en:["Mind Freeze on the roar cast — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the adds cluster for AoE burst.",
+          "Anti-Magic Shell during Rampage for magic damage immunity."],
+      da:["Mind Freeze på brøl-castet — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på adds-klyngen til AoE burst.",
+          "Anti-Magic Shell under Rampage til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op de roar-cast — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de adds cluster voor ranged AoE burst.",
+          "Blur bij Rampage als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on the roar cast — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the adds cluster for ranged AoE burst.",
+          "Blur during Rampage as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på brøl-castet — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på adds-klyngen til ranged AoE burst.",
+          "Blur under Rampage som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op de roar-cast — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de adds cluster.",
+          "Survival Instincts bij Rampage als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on the roar cast — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the adds cluster.",
+          "Survival Instincts during Rampage as personal defensive — two charges."],
+      da:["Skull Bash på brøl-castet — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på adds-klyngen.",
+          "Survival Instincts under Rampage som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op de roar-cast — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Rampage als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the roar cast — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Rampage as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på brøl-castet — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Rampage som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op de roar-cast — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Rampage als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on the roar cast — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Rampage as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på brøl-castet — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Rampage som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op de roar-cast — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de adds cluster.",
+          "Aspect of the Turtle bij Rampage als noodimuniteit."],
+      en:["Counter Shot on the roar cast — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the adds cluster.",
+          "Aspect of the Turtle during Rampage as emergency immunity."],
+      da:["Counter Shot på brøl-castet — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på adds-klyngen.",
+          "Aspect of the Turtle under Rampage som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op de roar-cast — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Rampage als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on the roar cast — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Rampage as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på brøl-castet — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Rampage som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op de roar-cast — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Rampage als noodimuniteit."],
+      en:["Counterspell on the roar cast — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Rampage as emergency immunity."],
+      da:["Counterspell på brøl-castet — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Rampage som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op de roar-cast — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Rampage voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on the roar cast — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Rampage for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på brøl-castet — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Rampage til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op de roar-cast — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Rampage voor 100% melee-ontwijking."],
+      en:["Kick on the roar cast — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Rampage for 100% melee dodge."],
+      da:["Kick på brøl-castet — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Rampage til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op de roar-cast — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Rampage voor 100% melee-ontwijking."],
+      en:["Kick on the roar cast — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Rampage for 100% melee dodge."],
+      da:["Kick på brøl-castet — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Rampage til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op de roar-cast — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Rampage voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on the roar cast — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Rampage for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på brøl-castet — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Rampage til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op de roar-cast — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de adds cluster.",
+          "Unending Resolve bij Rampage voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the roar cast — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the adds cluster.",
+          "Unending Resolve during Rampage for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på brøl-castet — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på adds-klyngen.",
+          "Unending Resolve under Rampage til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op de roar-cast — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Rampage voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on the roar cast — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Rampage for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på brøl-castet — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Rampage til 40% skadereduktion."]
     }},
   // ── VOIDSCAR ARENA ── eindbaas (index 2) ──
   'voidscar-arena:2:tank': {
@@ -2967,6 +4803,42 @@ const SPEC_TIPS = {
       da:["Disc spiller proaktivt — placer Atonement på hele gruppen inden Void Eruption.",
           "Power Word: Barrier under Void Eruption til gruppe-skadereduktion.",
           "Schism + Penance til burst-healing via Atonement på flere mål simultant."]
+    },
+
+    'evoker-preservation': {
+      nl:["Rescue of Hover om snel weg te komen van Void Eruption-mechanics.",
+          "Rewind bewaren voor de zwaarste groepsschade — unieke time-reversal healing.",
+          "Dream Breath voor AoE healing op meerdere spelers tegelijk."],
+      en:["Rescue or Hover to quickly escape Void Eruption mechanics.",
+          "Save Rewind for the heaviest group damage — unique time-reversal healing.",
+          "Dream Breath for AoE healing on multiple players simultaneously."],
+      da:["Rescue eller Hover til hurtigt at undslippe Void Eruption-mekanikker.",
+          "Gem Rewind til den kraftigste gruppeskade — unik tidsomvendt healing.",
+          "Dream Breath til AoE-healing på flere spillere simultant."]
+    },
+
+    'priest-holy': {
+      nl:["Symbol of Hope bij Void Eruption voor groeps-mana-recovery — uniek voor Holy Priest.",
+          "Holy Word: Sanctify voor instant AoE healing bij hoge schadepieken.",
+          "Guardian Spirit op de tank bij kritieke momenten — voorkomt dodelijke klap."],
+      en:["Symbol of Hope during Void Eruption for group mana recovery — unique to Holy Priest.",
+          "Holy Word: Sanctify for instant AoE healing during high damage spikes.",
+          "Guardian Spirit on the tank at critical moments — prevents a killing blow."],
+      da:["Symbol of Hope under Void Eruption til gruppe-mana-gendannelse — unikt for Holy Priest.",
+          "Holy Word: Sanctify til øjeblikkelig AoE-healing under høje skadespidser.",
+          "Guardian Spirit på tanken ved kritiske øjeblikke — forhindrer et dræbende slag."]
+    },
+
+    'shaman-restoration': {
+      nl:["Healing Rain permanent neerleggen op de groep — jouw basis AoE-healing.",
+          "Spirit Link Totem bij Void Eruption voor groeps-schade-egalisering — uniek in het spel.",
+          "Ancestral Protection Totem bewaren voor de zwaarste pull — tweede kans op leven."],
+      en:["Keep Healing Rain permanently on the group — your baseline AoE healing.",
+          "Spirit Link Totem during Void Eruption for group damage equalization — unique in the game.",
+          "Save Ancestral Protection Totem for the hardest pull — second chance at life."],
+      da:["Hold Healing Rain permanent på gruppen — din base AoE-healing.",
+          "Spirit Link Totem under Void Eruption til gruppe-skadeudligning — unikt i spillet.",
+          "Gem Ancestral Protection Totem til det sværeste pull — anden chance for livet."]
     }},
   'voidscar-arena:2:dps': {
     'hunter-beastmastery': {
@@ -3112,6 +4984,174 @@ const SPEC_TIPS = {
       da:["Mind Freeze på Void Channeling — dit interrupt.",
           "Army of the Dead + Apocalypse til maksimal AoE burst på Void Constructs-klyngen.",
           "Anti-Magic Shell under Void Eruption til magisk skadeimmunitet."]
+    },
+
+    'deathknight-frost': {
+      nl:["Mind Freeze op Void Channeling — jouw interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury op de Void Constructs cluster voor AoE burst.",
+          "Anti-Magic Shell bij Void Eruption voor magische schade-immuniteit."],
+      en:["Mind Freeze on Void Channeling — your interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury on the Void Constructs cluster for AoE burst.",
+          "Anti-Magic Shell during Void Eruption for magic damage immunity."],
+      da:["Mind Freeze på Void Channeling — dit interrupt.",
+          "Pillar of Frost + Frostwyrm's Fury på Void Constructs-klyngen til AoE burst.",
+          "Anti-Magic Shell under Void Eruption til magisk skadeimmunitet."]
+    },
+
+    'demonhunter-devourer': {
+      nl:["Disrupt op Void Channeling — je bent semi-ranged, altijd in bereik.",
+          "Hurl Glaive + Fel Barrage op de Void Constructs cluster voor ranged AoE burst.",
+          "Blur bij Void Eruption als primair defensief — twee charges met Demonic Resilience."],
+      en:["Disrupt on Void Channeling — you are semi-ranged, always in range.",
+          "Hurl Glaive + Fel Barrage on the Void Constructs cluster for ranged AoE burst.",
+          "Blur during Void Eruption as primary defensive — two charges with Demonic Resilience."],
+      da:["Disrupt på Void Channeling — du er semi-ranged, altid i rækkevidde.",
+          "Hurl Glaive + Fel Barrage på Void Constructs-klyngen til ranged AoE burst.",
+          "Blur under Void Eruption som primær defensiv — to charges med Demonic Resilience."]
+    },
+
+    'druid-feral': {
+      nl:["Skull Bash op Void Channeling — korte cooldown, altijd in melee.",
+          "Primal Wrath of Swipe voor AoE cleave op de Void Constructs cluster.",
+          "Survival Instincts bij Void Eruption als persoonlijk defensief — twee charges."],
+      en:["Skull Bash on Void Channeling — short cooldown, always in melee.",
+          "Primal Wrath or Swipe for AoE cleave on the Void Constructs cluster.",
+          "Survival Instincts during Void Eruption as personal defensive — two charges."],
+      da:["Skull Bash på Void Channeling — kort cooldown, altid i melee.",
+          "Primal Wrath eller Swipe til AoE cleave på Void Constructs-klyngen.",
+          "Survival Instincts under Void Eruption som personligt defensiv — to charges."]
+    },
+
+    'evoker-augmentation': {
+      nl:["Tail Swipe of Wing Buffet op Void Channeling — Evoker CC-toolkit.",
+          "Ebon Might + Breath of Eons activeren op de grote pull voor maximale groepsbuff.",
+          "Obsidian Scales bij Void Eruption als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on Void Channeling — Evoker CC toolkit.",
+          "Activate Ebon Might + Breath of Eons on the big pull for maximum group buff.",
+          "Obsidian Scales during Void Eruption as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på Void Channeling — Evoker CC-toolkit.",
+          "Aktivér Ebon Might + Breath of Eons på det store pull til maksimal gruppebuff.",
+          "Obsidian Scales under Void Eruption som personligt defensiv."]
+    },
+
+    'evoker-devastation': {
+      nl:["Tail Swipe of Wing Buffet op Void Channeling — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge op de grote pull voor maximale burst.",
+          "Obsidian Scales bij Void Eruption als persoonlijk defensief."],
+      en:["Tail Swipe or Wing Buffet on Void Channeling — Evoker CC toolkit.",
+          "Dragonrage + Eternity Surge on the big pull for maximum burst.",
+          "Obsidian Scales during Void Eruption as personal defensive."],
+      da:["Tail Swipe eller Wing Buffet på Void Channeling — Evoker CC-toolkit.",
+          "Dragonrage + Eternity Surge på det store pull til maksimal burst.",
+          "Obsidian Scales under Void Eruption som personligt defensiv."]
+    },
+
+    'hunter-survival': {
+      nl:["Counter Shot op Void Channeling — jij bent mobiel en hebt altijd een ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb voor burst AoE op de Void Constructs cluster.",
+          "Aspect of the Turtle bij Void Eruption als noodimuniteit."],
+      en:["Counter Shot on Void Channeling — you are mobile and always have a ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb for burst AoE on the Void Constructs cluster.",
+          "Aspect of the Turtle during Void Eruption as emergency immunity."],
+      da:["Counter Shot på Void Channeling — du er mobil og har altid et ranged interrupt.",
+          "Coordinated Assault + Wildfire Bomb til burst AoE på Void Constructs-klyngen.",
+          "Aspect of the Turtle under Void Eruption som nødimmunitet."]
+    },
+
+    'mage-arcane': {
+      nl:["Counterspell op Void Channeling — jij hebt de beste interrupt van alle mages.",
+          "Arcane Surge bewaren voor de grote pulls of Bloodlust-window voor maximale burst.",
+          "Ice Block bij Void Eruption als noodimuniteit — Arcane Mages zijn glaskanon, gebruik het goed."],
+      en:["Counterspell on Void Channeling — you have the best interrupt of all mages.",
+          "Save Arcane Surge for big pulls or Bloodlust window for maximum burst.",
+          "Ice Block during Void Eruption as emergency immunity — Arcane Mages are glass cannons, use it wisely."],
+      da:["Counterspell på Void Channeling — du har den bedste interrupt af alle mages.",
+          "Gem Arcane Surge til store pulls eller Bloodlust-vinduet til maksimal burst.",
+          "Ice Block under Void Eruption som nødimmunitet — Arcane Mages er glaskanoner, brug det fornuftigt."]
+    },
+
+    'mage-fire': {
+      nl:["Counterspell op Void Channeling — essentieel voor elke Mage.",
+          "Combustion + Pyroclasm voor maximale burst op de grote pulls.",
+          "Ice Block bij Void Eruption als noodimuniteit."],
+      en:["Counterspell on Void Channeling — essential for every Mage.",
+          "Combustion + Pyroclasm for maximum burst on big pulls.",
+          "Ice Block during Void Eruption as emergency immunity."],
+      da:["Counterspell på Void Channeling — essentielt for enhver Mage.",
+          "Combustion + Pyroclasm til maksimal burst på store pulls.",
+          "Ice Block under Void Eruption som nødimmunitet."]
+    },
+
+    'priest-shadow': {
+      nl:["Silence op Void Channeling — gecombineerd met Mind Blast als melee-interrupt.",
+          "Void Eruption + Devouring Plague voor burst op de grote pulls.",
+          "Dispersion bij Void Eruption voor 75% schade-reductie — beste persoonlijke defensief van alle clothies."],
+      en:["Silence on Void Channeling — combined with Mind Blast as a ranged interrupt.",
+          "Void Eruption + Devouring Plague for burst on big pulls.",
+          "Dispersion during Void Eruption for 75% damage reduction — best personal defensive of all clothies."],
+      da:["Silence på Void Channeling — kombineret med Mind Blast som ranged interrupt.",
+          "Void Eruption + Devouring Plague til burst på store pulls.",
+          "Dispersion under Void Eruption til 75% skadereduktion — bedste personlige defensiv af alle clothies."]
+    },
+
+    'rogue-assassination': {
+      nl:["Kick op Void Channeling — wissel af met andere melee-interrupts.",
+          "Deathmark + Shiv voor maximale single-target burst; Fan of Knives voor AoE.",
+          "Evasion bij Void Eruption voor 100% melee-ontwijking."],
+      en:["Kick on Void Channeling — rotate with other melee interrupts.",
+          "Deathmark + Shiv for maximum single-target burst; Fan of Knives for AoE.",
+          "Evasion during Void Eruption for 100% melee dodge."],
+      da:["Kick på Void Channeling — roter med andre melee-interrupts.",
+          "Deathmark + Shiv til maksimal single-target burst; Fan of Knives til AoE.",
+          "Evasion under Void Eruption til 100% melee-undvigelse."]
+    },
+
+    'rogue-subtlety': {
+      nl:["Kick op Void Channeling — wissel af met andere melee-interrupts.",
+          "Shadow Blades + Symbols of Death voor maximale burst in het Stealth-window.",
+          "Evasion bij Void Eruption voor 100% melee-ontwijking."],
+      en:["Kick on Void Channeling — rotate with other melee interrupts.",
+          "Shadow Blades + Symbols of Death for maximum burst in the Stealth window.",
+          "Evasion during Void Eruption for 100% melee dodge."],
+      da:["Kick på Void Channeling — roter med andre melee-interrupts.",
+          "Shadow Blades + Symbols of Death til maksimal burst i Stealth-vinduet.",
+          "Evasion under Void Eruption til 100% melee-undvigelse."]
+    },
+
+    'warlock-affliction': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — jouw enige betrouwbare interrupt.",
+          "Malefic Rapture voor AoE burst als meerdere targets vol DoTs zitten.",
+          "Unending Resolve bij Void Eruption voor 40% schade-reductie en interrupt-immuniteit."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — your only reliable interrupt.",
+          "Malefic Rapture for AoE burst when multiple targets are full of DoTs.",
+          "Unending Resolve during Void Eruption for 40% damage reduction and interrupt immunity."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — dit eneste pålidelige interrupt.",
+          "Malefic Rapture til AoE burst, når flere mål er fulde af DoTs.",
+          "Unending Resolve under Void Eruption til 40% skadereduktion og interrupt-immunitet."]
+    },
+
+    'warlock-demonology': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — essentieel in hoge keys.",
+          "Summon Demonic Tyrant + Implosion voor maximale AoE burst op de Void Constructs cluster.",
+          "Unending Resolve bij Void Eruption voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — essential in high keys.",
+          "Summon Demonic Tyrant + Implosion for maximum AoE burst on the Void Constructs cluster.",
+          "Unending Resolve during Void Eruption for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — essentielt i høje keys.",
+          "Summon Demonic Tyrant + Implosion til maksimal AoE burst på Void Constructs-klyngen.",
+          "Unending Resolve under Void Eruption til 40% skadereduktion."]
+    },
+
+    'warlock-destruction': {
+      nl:["Spell Lock (via Felhunter) op Void Channeling — jouw enige interrupt.",
+          "Summon Infernal + Channel Demonfire voor burst op de grote pulls.",
+          "Unending Resolve bij Void Eruption voor 40% schade-reductie."],
+      en:["Spell Lock (via Felhunter) on Void Channeling — your only interrupt.",
+          "Summon Infernal + Channel Demonfire for burst on big pulls.",
+          "Unending Resolve during Void Eruption for 40% damage reduction."],
+      da:["Spell Lock (via Felhunter) på Void Channeling — dit eneste interrupt.",
+          "Summon Infernal + Channel Demonfire til burst på store pulls.",
+          "Unending Resolve under Void Eruption til 40% skadereduktion."]
     }}
 
 };
@@ -3574,6 +5614,7 @@ function setLang(l) {
   if (sm && sm.classList.contains('visible')) renderSpecModal();
   if (currentDungeon) renderDetail(currentDungeon);
   else renderHome();
+  if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
 }
 
 function applyUIStrings() {
@@ -3885,88 +5926,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <button id="about-close-x" onclick="closeAbout()">×</button>
     </div>
     <div id="about-content">
-
-      <div class="about-section">
-        <div class="about-h2">🌐 Live</div>
-        <a href="https://huijting.github.io/midnight_guide/" target="_blank" class="about-link">huijting.github.io/midnight_guide</a>
-      </div>
-
-      <div class="about-section">
-        <div class="about-h2">✨ Features</div>
-        <ul class="about-ul">
-          <li>🇳🇱 🇬🇧 🇩🇰 Drietalig — alles wisselt direct</li>
-          <li>⭐ Spec Selector — role-tab klikt automatisch, spec-tips gemarkeerd</li>
-          <li>🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)</li>
-          <li>🗺 Routeplanner met pull-volgorde en Bloodlust-timing</li>
-          <li>🌙 Licht/donker thema</li>
-          <li>📱 Installeerbaar als app (Android & iOS)</li>
-          <li>📷 QR-code om te delen</li>
-        </ul>
-      </div>
-
-      <div class="about-section">
-        <div class="about-h2">✅ Volledig uitgewerkte specs</div>
-        <table class="about-table">
-          <tr><th>Spec</th><th>Rol</th><th></th></tr>
-          <tr><td>🛡 Protection Paladin</td><td>Tank</td><td class="done">✅</td></tr>
-          <tr><td>💚 Restoration Druid</td><td>Healer</td><td class="done">✅</td></tr>
-          <tr><td>🏹 Beast Mastery Hunter</td><td>DPS</td><td class="done">✅</td></tr>
-          <tr><td>⚡ Elemental Shaman</td><td>DPS</td><td class="done">✅</td></tr>
-          <tr><td colspan="2" style="opacity:.6;font-style:italic">Alle andere specs</td><td style="opacity:.6">generiek</td></tr>
-        </table>
-      </div>
-
-      <div class="about-section about-coming">
-        <div class="about-h2">🚧 Binnenkort</div>
-
-        <div class="about-h3">Raids Seizoen 1</div>
-        <table class="about-table">
-          <tr><th>Raid</th><th>Bazen</th><th>Open</th></tr>
-          <tr><td>⚔ The Voidspire</td><td>6</td><td class="date-badge">17 mrt</td></tr>
-          <tr><td>🌿 Dreamrift</td><td>1</td><td class="date-badge">17 mrt</td></tr>
-          <tr><td>☀ March on Quel'Danas</td><td>2</td><td class="date-badge">31 mrt</td></tr>
-        </table>
-        <div class="about-note">Elke raid krijgt baas-voor-baas gidsen met Tank/Healer/DPS-tabs, spec-tips, LFR/Normal/Heroic/Mythic filter en route-notities.</div>
-
-        <div class="about-h3">Meer specs</div>
-        <div class="about-note">Holy Paladin, Ret Paladin, Guardian/Feral/Balance Druid, MM/Survival Hunter, Resto/Enh Shaman, Fire/Frost/Arcane Mage, Arms/Fury/Prot Warrior, en alle overige specs.</div>
-
-        <div class="about-h3">Profession Guides</div>
-        <div class="about-note">Crafting-gidsen voor key-professies om snel te gearren in Seizoen 1.</div>
-      </div>
-
-      <div class="about-section">
-        <div class="about-h2">📋 Changelog</div>
-        <div class="changelog-entry"><span class="cl-version">v2.1</span><span class="cl-date">2026-03-10</span>
-          <div class="cl-items">6 nieuwe specs volledig uitgewerkt (Holy Pal, Ret Pal, Havoc DH, Vengeance DH, Balance Druid, Guardian Druid) · Auto role-refresh zonder handmatige refresh · QR + About knoppen naast elkaar</div>
-        </div>
-        <div class="changelog-entry"><span class="cl-version">v2.0</span><span class="cl-date">2026-03-10</span>
-          <div class="cl-items">Spec-specifieke tips voor 4 specs · Auto role-tab selectie · ★ highlights · README-pagina in app</div>
-        </div>
-        <div class="changelog-entry"><span class="cl-version">v1.3</span><span class="cl-date">2026-03-09</span>
-          <div class="cl-items">Spec selector met alle 13 klassen · Bloodlust-namen per spec</div>
-        </div>
-        <div class="changelog-entry"><span class="cl-version">v1.2</span><span class="cl-date">2026-03-08</span>
-          <div class="cl-items">QR-code knop · thema-aware kleuren</div>
-        </div>
-        <div class="changelog-entry"><span class="cl-version">v1.1</span><span class="cl-date">2026-03-07</span>
-          <div class="cl-items">PWA installatiebanner (Android + iOS, drietalig)</div>
-        </div>
-        <div class="changelog-entry"><span class="cl-version">v1.0</span><span class="cl-date">2026-03-06</span>
-          <div class="cl-items">Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner</div>
-        </div>
-      </div>
-
-      <div class="about-footer-note">
-        Fan-project · Geen officiële band met Blizzard Entertainment.<br>
-        World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.<br>
-        Gids-info gebaseerd op Icy Veins, Wowhead, Method &amp; eigen ervaringen.<br><br>
-        <em>⚔ Gebouwd door Claudy &amp; Inchy</em>
-      </div>
-
+      <!-- rendered by renderAboutContent() -->
     </div>
   </div>
-</div>
 
 <div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
   <div id="spec-modal-inner">
@@ -3984,7 +5946,207 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+function renderAboutContent() {
+  const l = lang;
+  const ABOUT_STRINGS = {
+    nl: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Drietalig — alles wisselt direct',
+        '⭐ Spec Selector — role-tab automatisch, spec-tips gemarkeerd',
+        '🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)',
+        '🗺 Routeplanner met pull-volgorde en Bloodlust-timing',
+        '🌙 Licht/donker thema',
+        '📱 Installeerbaar als app (Android & iOS)',
+        '📷 QR-code om te delen',
+      ],
+      specs_h:     '✅ Volledig uitgewerkte specs',
+      spec_col1:   'Spec', spec_col2: 'Rol', generic: 'Alle andere specs', generic_r: 'generiek',
+      coming_h:    '🚧 Binnenkort',
+      raids_h:     'Raids Seizoen 1',
+      raid_col1:   'Raid', raid_col2: 'Bazen', raid_col3: 'Open',
+      raid_note:   'Elke raid krijgt baas-voor-baas gidsen met Tank/Healer/DPS-tabs, spec-tips, moeilijkheidsfilter en route-notities.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting-gidsen voor key-professies om snel te gearren in Seizoen 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan-project · Geen officiële band met Blizzard Entertainment.<br>World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.<br>Gids-info gebaseerd op Icy Veins, Wowhead, Method & eigen ervaringen.',
+      built:       '⚔ Gebouwd door Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig'},
+        {v:'v2.2', d:'2026-03-10', t:'13 nieuwe specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 nieuwe specs · Auto role-refresh fix · QR + About naast elkaar'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec-tips systeem · Auto role-tab · ★ highlights · About-pagina'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klassen · Bloodlust-namen per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR-code knop'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA installatiebanner (Android + iOS, drietalig)'},
+        {v:'v1.0', d:'2026-03-06', t:'Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner'},
+      ]
+    },
+    en: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Trilingual — everything switches instantly',
+        '⭐ Spec Selector — role tab auto-selects, spec tips highlighted',
+        '🛡 💚 ⚔ Role tabs per boss (Tank / Healer / DPS)',
+        '🗺 Route Planner with pull order and Bloodlust timing',
+        '🌙 Light/dark theme',
+        '📱 Installable as app (Android & iOS)',
+        '📷 QR code to share',
+      ],
+      specs_h:     '✅ Fully covered specs',
+      spec_col1:   'Spec', spec_col2: 'Role', generic: 'All other specs', generic_r: 'generic',
+      coming_h:    '🚧 Coming Soon',
+      raids_h:     'Season 1 Raids',
+      raid_col1:   'Raid', raid_col2: 'Bosses', raid_col3: 'Opens',
+      raid_note:   'Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec tips, difficulty filter and route notes.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting guides for key professions to gear up quickly in Season 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan project · No official affiliation with Blizzard Entertainment.<br>World of Warcraft is a trademark of Blizzard Entertainment, Inc.<br>Guide info based on Icy Veins, Wowhead, Method & personal experience.',
+      built:       '⚔ Built by Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'All 40 specs fully covered · About modal fully trilingual'},
+        {v:'v2.2', d:'2026-03-10', t:'13 new specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 new specs · Auto role-refresh fix · QR + About side by side'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec tips system · Auto role tab · ★ highlights · About page'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 classes · Bloodlust names per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR code button'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA install banner (Android + iOS, trilingual)'},
+        {v:'v1.0', d:'2026-03-06', t:'Initial release: 8 dungeons, 3 languages, role tabs, route planner'},
+      ]
+    },
+    da: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Tresproget — alt skifter øjeblikkeligt',
+        '⭐ Spec Selector — role-tab auto-vælges, spec-tips fremhævet',
+        '🛡 💚 ⚔ Role-tabs per boss (Tank / Healer / DPS)',
+        '🗺 Ruteplanlægger med pull-rækkefølge og Bloodlust-timing',
+        '🌙 Lyst/mørkt tema',
+        '📱 Kan installeres som app (Android & iOS)',
+        '📷 QR-kode til deling',
+      ],
+      specs_h:     '✅ Fuldt dækkede specs',
+      spec_col1:   'Spec', spec_col2: 'Rolle', generic: 'Alle andre specs', generic_r: 'generisk',
+      coming_h:    '🚧 Kommer snart',
+      raids_h:     'Sæson 1 Raids',
+      raid_col1:   'Raid', raid_col2: 'Bosser', raid_col3: 'Åbner',
+      raid_note:   'Hver raid får boss-for-boss guider med Tank/Healer/DPS-tabs, spec-tips, sværhedsfilter og rutenoter.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting-guider til nøgleprofessioner for hurtigt at gear op i Sæson 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan-projekt · Ingen officiel tilknytning til Blizzard Entertainment.<br>World of Warcraft er et varemærke tilhørende Blizzard Entertainment, Inc.<br>Guideinfo baseret på Icy Veins, Wowhead, Method & egne erfaringer.',
+      built:       '⚔ Bygget af Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs fuldt dækket · About-modal fuldt tresproget'},
+        {v:'v2.2', d:'2026-03-10', t:'13 nye specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 nye specs · Auto role-refresh rettet · QR + About ved siden af hinanden'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec-tips system · Auto role-tab · ★ highlights · About-side'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klasser · Bloodlust-navne per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR-kodeknap'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA installationsbanner (Android + iOS, tresproget)'},
+        {v:'v1.0', d:'2026-03-06', t:'Første udgave: 8 dungeons, 3 sprog, role-tabs, ruteplanlægger'},
+      ]
+    }
+  };
+
+  const COVERED_SPECS = [
+    {icon:'🛡', name:'Protection Paladin',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'😈', name:'Vengeance Demon Hunter', role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'🐻', name:'Guardian Druid',         role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'⚔',  name:'Protection Warrior',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'🍺', name:'Brewmaster Monk',        role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'💀', name:'Blood Death Knight',     role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'💚', name:'Restoration Druid',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✨', name:'Holy Paladin',           role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'🌸', name:'Mistweaver Monk',        role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✝',  name:'Discipline Priest',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'🏹', name:'Beast Mastery Hunter',   role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🎯', name:'Marksmanship Hunter',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Survival Hunter',        role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚡', name:'Elemental Shaman',       role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌊', name:'Enhancement Shaman',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💧', name:'Restoration Shaman',     role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'😈', name:'Havoc Demon Hunter',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌀', name:'Devourer Demon Hunter',  role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌙', name:'Balance Druid',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐱', name:'Feral Druid',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Retribution Paladin',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🥊', name:'Windwalker Monk',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'❄', name:'Frost Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔥', name:'Fire Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💠', name:'Arcane Mage',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Fury Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Arms Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Outlaw Rogue',           role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Assassination Rogue',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Subtlety Rogue',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💀', name:'Unholy Death Knight',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'❄', name:'Frost Death Knight',      role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌿', name:'Holy Priest',            role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✝',  name:'Shadow Priest',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔮', name:'Affliction Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'👿', name:'Demonology Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔥', name:'Destruction Warlock',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Devastation Evoker',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Augmentation Evoker',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Preservation Evoker',    role:{nl:'Healer', en:'Healer', da:'Healer'}},
+  ];
+
+  const s = ABOUT_STRINGS[l];
+  const specRows = COVERED_SPECS.map(sp =>
+    `<tr><td>${sp.icon} ${sp.name}</td><td>${sp.role[l]}</td><td class="done">✅</td></tr>`
+  ).join('');
+
+  const clRows = s.cl.map(e =>
+    `<div class="changelog-entry"><span class="cl-version">${e.v}</span><span class="cl-date">${e.d}</span><div class="cl-items">${e.t}</div></div>`
+  ).join('');
+
+  document.getElementById('about-content').innerHTML = `
+    <div class="about-section">
+      <div class="about-h2">${s.live_h}</div>
+      <a href="https://huijting.github.io/midnight_guide/" target="_blank" class="about-link">huijting.github.io/midnight_guide</a>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.feat_h}</div>
+      <ul class="about-ul">${s.feat.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.specs_h}</div>
+      <table class="about-table">
+        <tr><th>${s.spec_col1}</th><th>${s.spec_col2}</th><th></th></tr>
+        ${specRows}
+      </table>
+    </div>
+    <div class="about-section about-coming">
+      <div class="about-h2">${s.coming_h}</div>
+      <div class="about-h3">${s.raids_h}</div>
+      <table class="about-table">
+        <tr><th>${s.raid_col1}</th><th>${s.raid_col2}</th><th>${s.raid_col3}</th></tr>
+        <tr><td>⚔ The Voidspire</td><td>6</td><td class="date-badge">17 mrt</td></tr>
+        <tr><td>🌿 Dreamrift</td><td>1</td><td class="date-badge">17 mrt</td></tr>
+        <tr><td>☀ March on Quel'Danas</td><td>2</td><td class="date-badge">31 mrt</td></tr>
+      </table>
+      <div class="about-note">${s.raid_note}</div>
+      <div class="about-h3">${s.prof_h}</div>
+      <div class="about-note">${s.prof_note}</div>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.changelog_h}</div>
+      ${clRows}
+    </div>
+    <div class="about-footer-note">
+      ${s.disclaimer}<br><br>
+      <em>${s.built}</em>
+    </div>
+  `;
+}
+
 function openAbout() {
+  renderAboutContent();
   document.getElementById('about-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
