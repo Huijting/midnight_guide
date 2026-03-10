@@ -2,53 +2,53 @@
 
 > *"Know your dungeon. Know your role. Don't stand in the void."*
 
-Een **interactieve, drietalige gids** voor alle Mythic+ en Normal dungeons van **World of Warcraft: Midnight — Seizoen 1**.  
-Gebouwd voor spelers die willen weten wat ze doen *voordat* ze de dungeon in lopen. 😄
+An **interactive, trilingual dungeon guide** for all Mythic+ and Normal dungeons in **World of Warcraft: Midnight — Season 1**.  
+Built for players who want to know what they're doing *before* they step inside. 😄
 
 ---
 
-## 🌐 Live spelen
+## 🌐 Play it live
 
 ### 👉 [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
 
-Geen installatie. Geen account. Gewoon openen en spelen.  
-Of installeer het als app op je telefoon — de gids legt het zelf uit! 📱
+No install. No account. Just open and go.  
+Or add it to your phone's home screen as an app — the guide will show you how! 📱
 
 ---
 
-## ✨ Wat zit er in?
+## ✨ Features
 
-- 🗺️ **8 dungeons** — 4 Mythic+ en 4 Normal Only, volledig uitgewerkt
-- 👊 **Per baas** — aparte tips voor Tank, Healer en DPS
-- 🧭 **Routeplanner** — pull-volgorde, Bloodlust-timing en Keystone.guru links
-- 🇳🇱 🇬🇧 🇩🇰 **Drietalig** — Nederlands, Engels en Deens, direct te wisselen
-- 🌙 **Licht & donker thema** — jouw voorkeur wordt onthouden
-- 📱 **PWA** — installeerbaar als app op Android en iPhone
-- 📷 **QR-code** — deel de gids met je vrienden in één scan
-
----
-
-## 🛠️ Techniek
-
-Één enkel HTML-bestand. Geen frameworks, geen database, geen server.  
-Puur HTML, CSS en JavaScript — werkt overal, altijd, offline.
+- 🗺️ **8 dungeons** — 4 Mythic+ and 4 Normal Only, fully covered
+- 👊 **Per boss** — separate tips for Tank, Healer and DPS
+- 🧭 **Route planner** — pull order, Bloodlust timing and Keystone.guru links
+- 🇳🇱 🇬🇧 🇩🇰 **Trilingual** — Dutch, English and Danish, switch instantly
+- 🌙 **Light & dark theme** — your preference is remembered
+- 📱 **PWA ready** — installable as an app on Android and iPhone
+- 📷 **QR code** — share the guide with your party in one scan
 
 ---
 
-## 🙏 Bronnen
+## 🛠️ Tech
 
-Dungeon-informatie gebaseerd op:
+A single HTML file. No frameworks, no database, no server.  
+Pure HTML, CSS and JavaScript — works everywhere, always, even offline.
+
+---
+
+## 🙏 Sources
+
+Dungeon information based on:  
 [Icy Veins](https://www.icy-veins.com) · [Wowhead](https://www.wowhead.com) · [Method](https://www.method.gg) · [Keystone.guru](https://keystone.guru)
 
 ---
 
-## ⚔️ Gemaakt door
+## ⚔️ Created by
 
-**Claudy** *(de AI die de code schreef)*  
+**Claudy** *(the AI who wrote the code)*  
 &  
-**Inchy** *(de machinist die de ideeën had — en de treinen op tijd laat rijden 🚂)*
+**Inchy** *(the one with all the ideas — and who keeps the trains running on time 🚂)*
 
 ---
 
-> *World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc.  
-> Dit is een fan-project zonder commerciële doeleinden.*
+> *World of Warcraft and all related names are trademarks of Blizzard Entertainment, Inc.  
+> This is a fan project with no commercial intent.*
