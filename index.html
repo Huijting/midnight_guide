@@ -1151,9 +1151,12 @@ window.addEventListener('resize', () => {
   else document.body.classList.add('is-pc');
 });
 
-applyUIStrings();
-updateFooter();
-renderHome();
+// Wacht tot HTML klaar is voordat we de pagina opbouwen
+document.addEventListener('DOMContentLoaded', function() {
+  applyUIStrings();
+  updateFooter();
+  renderHome();
+});
 </script>
 
 <footer id="site-footer">
@@ -1185,4 +1188,3 @@ renderHome();
 </footer>
 </body>
 </html>
-PLACEHOLDER
