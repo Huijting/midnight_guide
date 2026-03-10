@@ -1183,7 +1183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
     <div id="qr-popup">
-      <canvas id="qr-canvas"></canvas>
+      <div id="qr-canvas"></div>
       <div id="qr-url"></div>
       <span id="qr-close" onclick="toggleQR()">× sluiten</span>
     </div>
@@ -1208,21 +1208,21 @@ function toggleQR() {
   popup.classList.toggle('visible');
 
   if (!qrGenerated && popup.classList.contains('visible')) {
-    const url = window.location.href.split('?')[0];
-    // Ensure trailing slash
-    const cleanUrl = url.endsWith('/') ? url : url + '/';
+    const rawUrl = window.location.href.split('?')[0];
+    // Fallback naar echte URL als we lokaal bekijken (about:srcdoc etc.)
+    const isLocal = rawUrl.startsWith('about:') || rawUrl.startsWith('blob:') || rawUrl.startsWith('file:');
+    const cleanUrl = isLocal ? 'https://huijting.github.io/midnight_guide/' : (rawUrl.endsWith('/') ? rawUrl : rawUrl + '/');
 
     document.getElementById('qr-url').textContent = cleanUrl;
 
-    QRCode.toCanvas(document.getElementById('qr-canvas'), cleanUrl, {
+    const isLight = document.body.classList.contains('light');
+    new QRCode(document.getElementById('qr-canvas'), {
+      text: cleanUrl,
       width: 180,
-      margin: 2,
-      color: {
-        dark: document.body.classList.contains('light') ? '#1a1428' : '#e8e0ff',
-        light: document.body.classList.contains('light') ? '#ffffff' : '#1c1c3e'
-      }
-    }, function(error) {
-      if (error) console.error(error);
+      height: 180,
+      colorDark: isLight ? '#1a1428' : '#e8e0ff',
+      colorLight: isLight ? '#ffffff' : '#1c1c3e',
+      correctLevel: QRCode.CorrectLevel.M
     });
 
     qrGenerated = true;
