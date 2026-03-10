@@ -243,6 +243,9 @@
   .generic-tips-divider{height:1px;background:var(--border);margin:8px 12px;opacity:.5}
   .generic-tips li{opacity:.75}
 
+  /* ── FOOTER BUTTON ROW ── */
+  #footer-btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+
   /* ── ABOUT BUTTON ── */
   #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
   #about-btn:hover{border-color:var(--accent);color:var(--accent)}
@@ -391,7 +394,7 @@
 <script>
 
 // ── VERSIE ──
-const VERSION = "v2.0";
+const VERSION = "v2.1";
 const VERSION_DATE = "2026-03-10";
 
 
@@ -527,7 +530,7 @@ function saveSpec(classId, specId) {
   updateSpecBtn();
   closeSpecModal();
   // Re-render current view to update lust names
-  if (currentDungeon) renderDungeon(currentDungeon);
+  if (currentDungeon) renderDetail(currentDungeon);
 }
 
 function clearSpec() {
@@ -535,7 +538,7 @@ function clearSpec() {
   localStorage.removeItem('spec');
   updateSpecBtn();
   closeSpecModal();
-  if (currentDungeon) renderDungeon(currentDungeon);
+  if (currentDungeon) renderDetail(currentDungeon);
 }
 
 function updateSpecBtn() {
@@ -781,7 +784,29 @@ const SPEC_TIPS = {
           "Shield of the Righteous uptime er kritisk: hendes melee rammer hårdt under Flame Surge.",
           "Gem Ardent Defender til Flame Surge, når din healer er optaget."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Sigil of Silence op de adds bij spawn voor een snelle lockdown.",
+          "Fiery Brand op de boss tijdens Flame Surge voor 40% schade-reductie.",
+          "Metamorphosis bewaren voor de zwaarste adds-golf — niet verspillen op opener."],
+      en:["Sigil of Silence on the adds at spawn for a quick lockdown.",
+          "Fiery Brand on the boss during Flame Surge for 40% damage reduction.",
+          "Save Metamorphosis for the heaviest add wave — don't waste it on the opener."],
+      da:["Sigil of Silence på adds ved spawn for en hurtig lockdown.",
+          "Fiery Brand på bossen under Flame Surge for 40% skadereduktion.",
+          "Gem Metamorphosis til den kraftigste add-bølge — spild det ikke på åbningen."]
+    },
+    'druid-guardian': {
+      nl:["Incapacitating Roar om adds even te stoppen bij spawn — Guardian heeft goede AoE-CC.",
+          "Survival Instincts tijdens Flame Surge als de schade te hoog oploopt.",
+          "Maul spam tijdens hoge Rage om schade-reductie van Ironfur te maximaliseren."],
+      en:["Incapacitating Roar to briefly stop adds at spawn — Guardian has good AoE CC.",
+          "Survival Instincts during Flame Surge if damage spikes too high.",
+          "Spam Maul during high Rage to maximize Ironfur damage reduction."],
+      da:["Incapacitating Roar til kortvarigt at stoppe adds ved spawn — Guardian har god AoE-CC.",
+          "Survival Instincts under Flame Surge, hvis skaden topper for højt.",
+          "Spam Maul under høj Rage for at maksimere Ironfur skadereduktion."]
+    }},
   'windrunner-spire:0:heal': {
     'druid-restoration': {
       nl:["Pre-HoT de tank met Rejuvenation + Lifebloom vóór elke Flame Surge.",
@@ -794,7 +819,18 @@ const SPEC_TIPS = {
           "Ironbark på tanken under Flame Surge — dette er det farligste øjeblik.",
           "Typhoon eller Incapacitating Roar for at stoppe adds, når de spawner."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Avenging Wrath vroeg poppen voor Dawnlight-healing burst op de groep.",
+          "Blinding Light om adds even te stoppen als ze spawnen — jouw enige AoE stop.",
+          "Beacon of Light permanent op de tank, Divine Toll bij Flame Surge voor nood-HP."],
+      en:["Pop Avenging Wrath early for Dawnlight healing burst on the group.",
+          "Blinding Light to briefly stop adds when they spawn — your only AoE stop.",
+          "Keep Beacon of Light on the tank, Divine Toll on Flame Surge for emergency HP."],
+      da:["Pop Avenging Wrath tidligt for Dawnlight healing burst på gruppen.",
+          "Blinding Light til kortvarigt at stoppe adds, når de spawner — din eneste AoE stop.",
+          "Hold Beacon of Light på tanken, Divine Toll ved Flame Surge til nød-HP."]
+    }},
   'windrunner-spire:0:dps': {
     'hunter-beastmastery': {
       nl:["Counter Shot op de vuurtoren-cast — jij bent volledig mobiel, neem de interrupt-verantwoordelijkheid.",
@@ -818,7 +854,40 @@ const SPEC_TIPS = {
           "Gem Ascendance til Bloodlust-øjeblikket eller stort pull.",
           "Static Field Totem for at holde adds på plads, når de spawner."]
     }
-  },
+  ,
+    'demonhunter-havoc': {
+      nl:["Disrupt op de vuurtoren-cast — jij hebt een van de kortste interrupt-cooldowns.",
+          "Fel Rush en Vengeful Retreat nooit in frontal abilities — positional awareness is cruciaal.",
+          "Eye Beam + Essence Break op de pull; The Hunt op de boss zodra beschikbaar."],
+      en:["Disrupt on the firetower cast — you have one of the shortest interrupt cooldowns.",
+          "Never Fel Rush or Vengeful Retreat into frontal abilities — positional awareness is critical.",
+          "Eye Beam + Essence Break on pull; The Hunt on the boss as soon as available."],
+      da:["Disrupt på tårncastet — du har et af de korteste interrupt-cooldowns.",
+          "Brug aldrig Fel Rush eller Vengeful Retreat ind i frontale abilities — positionering er kritisk.",
+          "Eye Beam + Essence Break på pull; The Hunt på bossen, så snart det er tilgængeligt."]
+    },
+    'druid-balance': {
+      nl:["Typhoon of Incapacitating Roar om de vuurtoren-cast te onderbreken.",
+          "Starsurge op de boss, Starfall op de adds die spawnen.",
+          "Convoke bewaren voor het Bloodlust-window."],
+      en:["Typhoon or Incapacitating Roar to interrupt the firetower cast.",
+          "Starsurge on the boss, Starfall on spawning adds.",
+          "Save Convoke for the Bloodlust window."],
+      da:["Typhoon eller Incapacitating Roar til at afbryde tårncastet.",
+          "Starsurge på bossen, Starfall på adds der spawner.",
+          "Gem Convoke til Bloodlust-vinduet."]
+    },
+    'paladin-retribution': {
+      nl:["Rebuke op de vuurtoren-cast zodra je in meleebereik bent.",
+          "Avenging Wrath + Wake of Ashes op de pull voor maximale burst.",
+          "Execution Sentence op de baas voor single-target funnel schade."],
+      en:["Rebuke on the firetower cast as soon as you are in melee range.",
+          "Avenging Wrath + Wake of Ashes on pull for maximum burst.",
+          "Execution Sentence on the boss for single-target funnel damage."],
+      da:["Rebuke på tårncastet, så snart du er i melee-rækkevidde.",
+          "Avenging Wrath + Wake of Ashes på pull for maksimal burst.",
+          "Execution Sentence på bossen for single-target funnel-skade."]
+    }},
   // ── WINDRUNNER SPIRE ── boss 1 ──
   'windrunner-spire:1:tank': {
     'paladin-protection': {
@@ -985,7 +1054,29 @@ const SPEC_TIPS = {
           "Blessing of Spellwarding på dig selv til den magiske burstfase.",
           "Gem Ardent Defender til Fase 2, når add-presset er højest."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Sigil of Silence op de soul-adds voor een directe groeps-lockdown.",
+          "Fiery Brand op de Vessel zelf voor tank-survival tijdens hoge stacks.",
+          "Metamorphosis bewaren voor Fase 2 — dan is de schade het zwaarst."],
+      en:["Sigil of Silence on the soul adds for an immediate group lockdown.",
+          "Fiery Brand on the Vessel itself for tank survival during high stacks.",
+          "Save Metamorphosis for Phase 2 — that is when damage is heaviest."],
+      da:["Sigil of Silence på sjæle-adds til en øjeblikkelig gruppe-lockdown.",
+          "Fiery Brand på selve Vessel til tank-overlevelse under høje stacks.",
+          "Gem Metamorphosis til Fase 2 — det er der, skaden er kraftigst."]
+    },
+    'druid-guardian': {
+      nl:["Incapacitating Roar op de soul-adds bij spawn voor een snelle stop.",
+          "Survival Instincts in Fase 2 wanneer de schade piekt.",
+          "Maim op een single add die dreigt te ontsnappen naar de healer."],
+      en:["Incapacitating Roar on soul adds at spawn for a quick stop.",
+          "Survival Instincts in Phase 2 when damage spikes.",
+          "Maim on a single add that threatens to escape to the healer."],
+      da:["Incapacitating Roar på sjæle-adds ved spawn for et hurtigt stop.",
+          "Survival Instincts i Fase 2, når skaden topper.",
+          "Maim på en enkelt add, der truer med at slippe væk til healeren."]
+    }},
   'maisara-caverns:2:heal': {
     'druid-restoration': {
       nl:["Tranquility bewaren voor Fase 2 — het grootste healing-moment van de dungeon.",
@@ -998,7 +1089,18 @@ const SPEC_TIPS = {
           "Ironbark på tanken ved Soul Corruption-stacks.",
           "Stampeding Roar for hurtigt at komme væk fra sjælepytter."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Aura Mastery bewaren voor Fase 2 — de zwaarste groepsschade van de dungeon.",
+          "Divine Toll op de tank bij hoge Soul Corruption stacks voor directe HP-recovery.",
+          "Blessing of Protection op een speler die per ongeluk een zielsplas instapt."],
+      en:["Save Aura Mastery for Phase 2 — the heaviest group damage of the dungeon.",
+          "Divine Toll on the tank with high Soul Corruption stacks for immediate HP recovery.",
+          "Blessing of Protection on a player who accidentally steps in a soul puddle."],
+      da:["Gem Aura Mastery til Fase 2 — den kraftigste gruppeskade i dungeons.",
+          "Divine Toll på tanken med høje Soul Corruption-stacks til umiddelbar HP-gendannelse.",
+          "Blessing of Protection på en spiller, der ved et uheld træder i en sjælepyt."]
+    }},
   'maisara-caverns:2:dps': {
     'hunter-beastmastery': {
       nl:["Counter Shot op elke soul cast — hoge prioriteit.",
@@ -1022,7 +1124,40 @@ const SPEC_TIPS = {
           "Astral Shift under høje Soul Corruption-stacks.",
           "Capacitor Totem på adds til en gruppestun — gør det meget hurtigere at dræbe dem."]
     }
-  },
+  ,
+    'demonhunter-havoc': {
+      nl:["Disrupt op soul casts — je hebt de snelste melee-interrupt in het spel.",
+          "Adds met Eye Beam AoE burst neerleggen zodra ze verschijnen.",
+          "Netherwalk als noodrem bij hoge Soul Corruption stacks — volledige immuniteit."],
+      en:["Disrupt on soul casts — you have the fastest melee interrupt in the game.",
+          "Kill adds with Eye Beam AoE burst as soon as they appear.",
+          "Netherwalk as emergency with high Soul Corruption stacks — full immunity."],
+      da:["Disrupt på sjæle-casts — du har den hurtigste melee-interrupt i spillet.",
+          "Dræb adds med Eye Beam AoE burst, så snart de dukker op.",
+          "Netherwalk som nødknap ved høje Soul Corruption-stacks — fuld immunitet."]
+    },
+    'druid-balance': {
+      nl:["Typhoon of Mass Entanglement om adds neer te zetten bij spawn.",
+          "Starfall op de adds cluster voor constante AoE-schade.",
+          "Barkskin bij hoge Soul Corruption stacks als persoonlijk defensief."],
+      en:["Typhoon or Mass Entanglement to pin adds at spawn.",
+          "Starfall on the add cluster for constant AoE damage.",
+          "Barkskin with high Soul Corruption stacks as personal defensive."],
+      da:["Typhoon eller Mass Entanglement til at fastholde adds ved spawn.",
+          "Starfall på add-klyngen for konstant AoE-skade.",
+          "Barkskin ved høje Soul Corruption-stacks som personligt defensiv."]
+    },
+    'paladin-retribution': {
+      nl:["Rebuke op soul casts zodra je in bereik bent.",
+          "Divine Storm op de adds cluster voor snelle AoE-kills.",
+          "Divine Shield als noodrem bij hoge Soul Corruption stacks."],
+      en:["Rebuke on soul casts as soon as you are in range.",
+          "Divine Storm on the add cluster for fast AoE kills.",
+          "Divine Shield as emergency with high Soul Corruption stacks."],
+      da:["Rebuke på sjæle-casts, så snart du er i rækkevidde.",
+          "Divine Storm på add-klyngen til hurtige AoE-drab.",
+          "Divine Shield som nødknap ved høje Soul Corruption-stacks."]
+    }},
   // ── NEXUS-POINT XENAS ── eindbaas (index 2) ──
   'nexus-point-xenas:2:tank': {
     'paladin-protection': {
@@ -1036,7 +1171,29 @@ const SPEC_TIPS = {
           "Avenger's Shield på void-adds så snart de spawner til AoE-silence.",
           "Divine Shield som nødknap under Void Implosion."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Sigil of Silence op void-adds bij spawn voor directe lockdown.",
+          "Fiery Brand op Lothravion tijdens zware magische burst.",
+          "Metamorphosis bewaren voor de finale burn-fase."],
+      en:["Sigil of Silence on void adds at spawn for immediate lockdown.",
+          "Fiery Brand on Lothravion during heavy magic burst.",
+          "Save Metamorphosis for the final burn phase."],
+      da:["Sigil of Silence på void-adds ved spawn til øjeblikkelig lockdown.",
+          "Fiery Brand på Lothravion under kraftig magisk burst.",
+          "Gem Metamorphosis til den endelige burn-fase."]
+    },
+    'druid-guardian': {
+      nl:["Void Implosion is magische schade — Barkskin + Survival Instincts afwisselen.",
+          "Stampeding Roar om de groep snel te laten bewegen uit void-zones.",
+          "Thrash + Moonfire voor threat op meerdere void-adds tegelijk."],
+      en:["Void Implosion is magic damage — alternate Barkskin and Survival Instincts.",
+          "Stampeding Roar to quickly move the group out of void zones.",
+          "Thrash + Moonfire for threat on multiple void adds simultaneously."],
+      da:["Void Implosion er magiskade — skiftes med Barkskin og Survival Instincts.",
+          "Stampeding Roar til hurtigt at flytte gruppen ud af void-zoner.",
+          "Thrash + Moonfire til trussel på flere void-adds simultant."]
+    }},
   'nexus-point-xenas:2:heal': {
     'druid-restoration': {
       nl:["Pre-HoTs vóór elke Void Implosion — massale groepsschade.",
@@ -1049,7 +1206,18 @@ const SPEC_TIPS = {
           "Ironbark på tanken under Void Surge.",
           "Ursol's Vortex til at samle void-adds til AoE-drab."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Aura Mastery bewaren voor Void Implosion — de zwaarste AoE van de baas.",
+          "Divine Toll op de tank bij Void Surge voor directe HP.",
+          "Blinding Light om void-adds te stoppen als ze naar de groep rennen."],
+      en:["Save Aura Mastery for Void Implosion — the boss heaviest AoE.",
+          "Divine Toll on the tank during Void Surge for immediate HP.",
+          "Blinding Light to stop void adds if they run toward the group."],
+      da:["Gem Aura Mastery til Void Implosion — bossens kraftigste AoE.",
+          "Divine Toll på tanken under Void Surge til umiddelbar HP.",
+          "Blinding Light til at stoppe void-adds, hvis de løber mod gruppen."]
+    }},
   'nexus-point-xenas:2:dps': {
     'hunter-beastmastery': {
       nl:["Void-adds direct killen bij spawn — Bestial Wrath voor AoE burst.",
@@ -1073,7 +1241,40 @@ const SPEC_TIPS = {
           "Astral Shift under høje void-korruptionsstacks.",
           "Wind Shear på Void Channeling — høj prioritet."]
     }
-  },
+  ,
+    'demonhunter-havoc': {
+      nl:["Disrupt op Void Channeling — snelste melee-interrupt.",
+          "Eye Beam op de void-adds cluster voor snelle AoE burst.",
+          "Netherwalk bij Void Implosion als je er niet op tijd uitkwam."],
+      en:["Disrupt on Void Channeling — fastest melee interrupt.",
+          "Eye Beam on the void add cluster for quick AoE burst.",
+          "Netherwalk during Void Implosion if you did not get out in time."],
+      da:["Disrupt på Void Channeling — hurtigste melee-interrupt.",
+          "Eye Beam på void-add-klyngen til hurtig AoE burst.",
+          "Netherwalk under Void Implosion, hvis du ikke kom ud i tide."]
+    },
+    'druid-balance': {
+      nl:["Starfall op de void-adds cluster voor constante AoE-schade.",
+          "Typhoon om void-adds te groeperen of weg te stoten.",
+          "Barkskin bij hoge void-corruptie als persoonlijk defensief."],
+      en:["Starfall on the void add cluster for constant AoE damage.",
+          "Typhoon to group void adds together or push them away.",
+          "Barkskin with high void corruption as personal defensive."],
+      da:["Starfall på void-add-klyngen for konstant AoE-skade.",
+          "Typhoon til at samle void-adds eller skubbe dem væk.",
+          "Barkskin ved høj void-korruption som personligt defensiv."]
+    },
+    'paladin-retribution': {
+      nl:["Rebuke op Void Channeling zodra je in bereik bent.",
+          "Divine Storm op void-adds voor snelle AoE-kills.",
+          "Divine Shield als noodrem bij Void Implosion."],
+      en:["Rebuke on Void Channeling as soon as you are in range.",
+          "Divine Storm on void adds for fast AoE kills.",
+          "Divine Shield as emergency during Void Implosion."],
+      da:["Rebuke på Void Channeling, så snart du er i rækkevidde.",
+          "Divine Storm på void-adds til hurtige AoE-drab.",
+          "Divine Shield som nødknap under Void Implosion."]
+    }},
   // ── MURDER ROW ── boss 1 ──
   'murder-row:1:tank': {
     'paladin-protection': {
@@ -1087,7 +1288,29 @@ const SPEC_TIPS = {
           "Avenger's Shield på hans blade-casts til interrupt + silence.",
           "Blessing of Sacrifice på healeren, hvis skaden bliver for høj."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Demon Spikes rotatie is essentieel — bleed-aanvallen stapelen snel op.",
+          "Fiery Brand op de baas bij zware blade-combo's voor 40% reductie.",
+          "Soul Cleave spam om Soul Fragments te consumeren en jezelf te healen."],
+      en:["Demon Spikes rotation is essential — bleed attacks stack up quickly.",
+          "Fiery Brand on the boss during heavy blade combos for 40% reduction.",
+          "Soul Cleave spam to consume Soul Fragments and self-heal."],
+      da:["Demon Spikes-rotation er essentiel — blødningsangreb stabler sig hurtigt op.",
+          "Fiery Brand på bossen under kraftige blade-kombos for 40% reduktion.",
+          "Soul Cleave spam for at forbruge Soul Fragments og self-heale."]
+    },
+    'druid-guardian': {
+      nl:["Ironfur permanent uptime — bleed-aanvallen zijn fysiek, armor telt mee.",
+          "Survival Instincts bij de zwaarste blade-combo.",
+          "Thrash + Swipe voor dreigings-opbouw op de extra adds."],
+      en:["Keep Ironfur permanently active — bleed attacks are physical, armor counts.",
+          "Survival Instincts during the heaviest blade combo.",
+          "Thrash + Swipe for threat generation on the extra adds."],
+      da:["Hold Ironfur permanent aktiv — blødningsangreb er fysiske, rustning tæller.",
+          "Survival Instincts under den kraftigste blade-kombo.",
+          "Thrash + Swipe til trusselsopbygning på de ekstra adds."]
+    }},
   'murder-row:1:heal': {
     'druid-restoration': {
       nl:["Bleed-schade is constant — Efflorescence permanent neerleggen op de groep.",
@@ -1100,7 +1323,18 @@ const SPEC_TIPS = {
           "Ironbark på tanken under den kraftige blade-kombo.",
           "Swiftmend + Wild Growth ved pludselige skadespidser."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Bleed-schade is continu — Word of Glory spam om bleeding targets stabiel te houden.",
+          "Avenging Wrath bij de zwaarste blade-combo voor burst-healing.",
+          "Blessing of Protection verwijdert bloedingen — gebruik het op een DPS met hoge stacks."],
+      en:["Bleed damage is continuous — spam Word of Glory to keep bleeding targets stable.",
+          "Avenging Wrath during the heaviest blade combo for burst healing.",
+          "Blessing of Protection removes bleeds — use it on a DPS with high stacks."],
+      da:["Blødningsskade er kontinuerlig — spam Word of Glory for at holde blødende mål stabile.",
+          "Avenging Wrath under den kraftigste blade-kombo til burst-healing.",
+          "Blessing of Protection fjerner blødninger — brug det på en DPS med høje stacks."]
+    }},
   'murder-row:1:dps': {
     'hunter-beastmastery': {
       nl:["Counter Shot op blade-casts.",
@@ -1124,7 +1358,40 @@ const SPEC_TIPS = {
           "Astral Shift ved høje blødningsstacks.",
           "Thunderstorm som positioneringsværktøj, hvis adds kommer for tæt på healeren."]
     }
-  },
+  ,
+    'demonhunter-havoc': {
+      nl:["Disrupt op blade-casts — met jouw mobiliteit ben je altijd in bereik.",
+          "Fel Rush nooit door een frontal ability — positie altijd achter de baas.",
+          "Darkness plaatsen voor de groep bij zware blade-combo's."],
+      en:["Disrupt on blade casts — with your mobility you are always in range.",
+          "Never Fel Rush through a frontal ability — always position yourself behind the boss.",
+          "Place Darkness for the group during heavy blade combos."],
+      da:["Disrupt på blade-casts — med din mobilitet er du altid i rækkevidde.",
+          "Brug aldrig Fel Rush gennem en frontal ability — positiver dig altid bag bossen.",
+          "Placer Darkness til gruppen under kraftige blade-kombos."]
+    },
+    'druid-balance': {
+      nl:["Typhoon om Zaen even weg te stoten als de melee-groep moet uitwijken.",
+          "Starfall voor constante cleave-schade op de baas + adds.",
+          "Barkskin bij hoge bleed-stacks als persoonlijk defensief."],
+      en:["Typhoon to briefly knock Zaen away if the melee group needs to move.",
+          "Starfall for constant cleave damage on the boss and adds.",
+          "Barkskin with high bleed stacks as personal defensive."],
+      da:["Typhoon til kortvarigt at slå Zaen tilbage, hvis melee-gruppen skal flytte sig.",
+          "Starfall for konstant cleave-skade på bossen og adds.",
+          "Barkskin ved høje blødningsstacks som personligt defensiv."]
+    },
+    'paladin-retribution': {
+      nl:["Rebuke op blade-casts zodra je in bereik bent.",
+          "Execution Sentence op de baas voor maximale single-target schade.",
+          "Divine Shield als noodrem bij hoge bleed-stacks."],
+      en:["Rebuke on blade casts as soon as you are in range.",
+          "Execution Sentence on the boss for maximum single-target damage.",
+          "Divine Shield as emergency with high bleed stacks."],
+      da:["Rebuke på blade-casts, så snart du er i rækkevidde.",
+          "Execution Sentence på bossen for maksimal single-target skade.",
+          "Divine Shield som nødknap ved høje blødningsstacks."]
+    }},
   // ── THE BLINDING VALE ── boss 1 ──
   'the-blinding-vale:1:tank': {
     'paladin-protection': {
@@ -1189,7 +1456,29 @@ const SPEC_TIPS = {
           "Avenger's Shield på adds, der spawner under mellemfaser.",
           "Blessing of Freedom på dig selv under Nalorakk's Chains."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Metamorphosis voor de eerste Rampage — dit is de meest gevaarlijke fase.",
+          "Sigil of Silence op de add-wave bij elke tussenfase voor groeps-lockdown.",
+          "Darkness voor de groep bij de tweede Rampage als Metamorphosis op cooldown is."],
+      en:["Metamorphosis for the first Rampage — this is the most dangerous phase.",
+          "Sigil of Silence on the add wave during every intermission for group lockdown.",
+          "Darkness for the group during the second Rampage if Metamorphosis is on cooldown."],
+      da:["Metamorphosis til den første Rampage — dette er den farligste fase.",
+          "Sigil of Silence på add-bølgen under hver mellemfase til gruppe-lockdown.",
+          "Darkness til gruppen under den anden Rampage, hvis Metamorphosis er på cooldown."]
+    },
+    'druid-guardian': {
+      nl:["Survival Instincts bij de eerste Rampage; Barkskin voor de tweede.",
+          "Stampeding Roar voor elke tussenfase zodat iedereen de zones verlaat.",
+          "Thrash + Swipe voor dreigings-opbouw op alle adds tegelijk."],
+      en:["Survival Instincts on the first Rampage; Barkskin for the second.",
+          "Stampeding Roar before every intermission so everyone leaves zones.",
+          "Thrash + Swipe for threat generation on all adds simultaneously."],
+      da:["Survival Instincts ved den første Rampage; Barkskin til den anden.",
+          "Stampeding Roar før hver mellemfase så alle forlader zoner.",
+          "Thrash + Swipe til trusselsopbygning på alle adds simultant."]
+    }},
   'den-of-nalorakk:2:heal': {
     'druid-restoration': {
       nl:["Pre-HoT de hele groep vóór elke Rampage — de schade is massaal.",
@@ -1202,7 +1491,18 @@ const SPEC_TIPS = {
           "Gem Tranquility til den anden Rampage, hvis du ikke har andre cooldowns tilbage.",
           "Stampeding Roar så alle hurtigt kan forlade mekanikzoner."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Aura Mastery bij de eerste Rampage — de zwaarste groepsschade.",
+          "Avenging Wrath bewaren voor de tweede Rampage als back-up cooldown.",
+          "Blessing of Freedom op spelers die vastkomen in Nalorakk's Chains."],
+      en:["Aura Mastery on the first Rampage — the heaviest group damage.",
+          "Save Avenging Wrath for the second Rampage as a backup cooldown.",
+          "Blessing of Freedom on players caught in Nalorakk's Chains."],
+      da:["Aura Mastery ved den første Rampage — den kraftigste gruppeskade.",
+          "Gem Avenging Wrath til den anden Rampage som backup-cooldown.",
+          "Blessing of Freedom på spillere fanget i Nalorakk's Chains."]
+    }},
   'den-of-nalorakk:2:dps': {
     'hunter-beastmastery': {
       nl:["Adds direct killen bij spawn — Bestial Wrath voor snelle AoE.",
@@ -1226,7 +1526,40 @@ const SPEC_TIPS = {
           "Capacitor Totem til at stunne adds så tanken kan samle dem.",
           "Astral Shift under Rampage, hvis du alligevel tager skade."]
     }
-  },
+  ,
+    'demonhunter-havoc': {
+      nl:["Eye Beam AoE op de add-clusters bij elke tussenfase.",
+          "Fel Rush nooit weg van de groep bij Rampage — stay dicht bij de tank.",
+          "Darkness plaatsen voor de groep bij Rampage als groeps-defensief."],
+      en:["Eye Beam AoE on add clusters during every intermission.",
+          "Never Fel Rush away from the group during Rampage — stay close to the tank.",
+          "Place Darkness for the group during Rampage as group defensive."],
+      da:["Eye Beam AoE på add-klynger under hver mellemfase.",
+          "Brug aldrig Fel Rush væk fra gruppen under Rampage — bliv tæt på tanken.",
+          "Placer Darkness til gruppen under Rampage som gruppe-defensiv."]
+    },
+    'druid-balance': {
+      nl:["Starfall op de add-clusters — perfect voor tussenfase schade.",
+          "Typhoon om adds samen te stoten voor efficiënte AoE.",
+          "Barkskin tijdens Rampage als persoonlijk defensief."],
+      en:["Starfall on add clusters — perfect for intermission damage.",
+          "Typhoon to cluster adds together for efficient AoE.",
+          "Barkskin during Rampage as personal defensive."],
+      da:["Starfall på add-klynger — perfekt til mellemfase-skade.",
+          "Typhoon til at samle adds sammen til effektiv AoE.",
+          "Barkskin under Rampage som personligt defensiv."]
+    },
+    'paladin-retribution': {
+      nl:["Wake of Ashes + Divine Storm op de add-clusters bij tussenfase.",
+          "Execution Sentence op Nalorakk zelf voor single-target funnel.",
+          "Divine Shield bij Rampage als noodrem."],
+      en:["Wake of Ashes + Divine Storm on add clusters during intermission.",
+          "Execution Sentence on Nalorakk himself for single-target funnel.",
+          "Divine Shield during Rampage as emergency."],
+      da:["Wake of Ashes + Divine Storm på add-klynger under mellemfase.",
+          "Execution Sentence på Nalorakk selv til single-target funnel.",
+          "Divine Shield under Rampage som nødknap."]
+    }},
   // ── VOIDSCAR ARENA ── eindbaas (index 2) ──
   'voidscar-arena:2:tank': {
     'paladin-protection': {
@@ -1240,7 +1573,29 @@ const SPEC_TIPS = {
           "Avenger's Shield på Void Constructs til silence + interrupt.",
           "Guardian of Ancient Kings i den endelige burn-fase."]
     }
-  },
+  ,
+    'demonhunter-vengeance': {
+      nl:["Metamorphosis bewaren voor Void Eruption — op dat moment is AoE-tanken het moeilijkst.",
+          "Sigil of Silence op Void Constructs bij spawn voor directe lockdown.",
+          "Fiery Brand op Chaomus tijdens de finale burn-fase."],
+      en:["Save Metamorphosis for Void Eruption — that is when AoE tanking is hardest.",
+          "Sigil of Silence on Void Constructs at spawn for immediate lockdown.",
+          "Fiery Brand on Chaomus during the final burn phase."],
+      da:["Gem Metamorphosis til Void Eruption — det er der, AoE-tanking er sværest.",
+          "Sigil of Silence på Void Constructs ved spawn til øjeblikkelig lockdown.",
+          "Fiery Brand på Chaomus under den endelige burn-fase."]
+    },
+    'druid-guardian': {
+      nl:["Survival Instincts bij Void Eruption als primair defensief.",
+          "Stampeding Roar zodat DPS snel de void-zones kan verlaten.",
+          "Thrash + Moonfire voor threat op de Void Constructs."],
+      en:["Survival Instincts during Void Eruption as primary defensive.",
+          "Stampeding Roar so DPS can quickly leave void zones.",
+          "Thrash + Moonfire for threat on the Void Constructs."],
+      da:["Survival Instincts under Void Eruption som primær defensiv.",
+          "Stampeding Roar så DPS hurtigt kan forlade void-zoner.",
+          "Thrash + Moonfire til trussel på Void Constructs."]
+    }},
   'voidscar-arena:2:heal': {
     'druid-restoration': {
       nl:["Tranquility bij Void Eruption — het grootste healing-moment van de dungeon.",
@@ -1253,7 +1608,18 @@ const SPEC_TIPS = {
           "Ironbark på tanken under Void Slam.",
           "Cyclone på en Void Construct, hvis tanken mister en."]
     }
-  },
+  ,
+    'paladin-holy': {
+      nl:["Aura Mastery bij Void Eruption — de zwaarste AoE van de baas.",
+          "Divine Toll op de tank bij Void Slam voor directe nood-HP.",
+          "Blinding Light om Void Constructs te stoppen als ze niet snel genoeg sterven."],
+      en:["Aura Mastery during Void Eruption — the boss heaviest AoE.",
+          "Divine Toll on the tank during Void Slam for immediate emergency HP.",
+          "Blinding Light to stop Void Constructs if they do not die fast enough."],
+      da:["Aura Mastery under Void Eruption — bossens kraftigste AoE.",
+          "Divine Toll på tanken under Void Slam til umiddelbar nød-HP.",
+          "Blinding Light til at stoppe Void Constructs, hvis de ikke dør hurtigt nok."]
+    }},
   'voidscar-arena:2:dps': {
     'hunter-beastmastery': {
       nl:["Void Constructs direct killen — Bestial Wrath AoE.",
@@ -1277,7 +1643,41 @@ const SPEC_TIPS = {
           "Capacitor Totem på Void Constructs til en gruppestun.",
           "Astral Shift under Void Eruption som defensiv."]
     }
-  }
+  ,
+    'demonhunter-havoc': {
+      nl:["Disrupt op Void Channeling — snelste melee-interrupt.",
+          "Eye Beam op de Void Construct cluster voor snelle AoE burst.",
+          "Netherwalk bij Void Eruption als extra immuniteit."],
+      en:["Disrupt on Void Channeling — fastest melee interrupt.",
+          "Eye Beam on the Void Construct cluster for quick AoE burst.",
+          "Netherwalk during Void Eruption as extra immunity."],
+      da:["Disrupt på Void Channeling — hurtigste melee-interrupt.",
+          "Eye Beam på Void Construct-klyngen til hurtig AoE burst.",
+          "Netherwalk under Void Eruption som ekstra immunitet."]
+    },
+    'druid-balance': {
+      nl:["Starfall op de Void Constructs voor constante AoE-schade.",
+          "Typhoon om Void Constructs te groeperen voor efficiënte kill.",
+          "Barkskin bij Void Eruption als persoonlijk defensief."],
+      en:["Starfall on the Void Constructs for constant AoE damage.",
+          "Typhoon to group Void Constructs for efficient kill.",
+          "Barkskin during Void Eruption as personal defensive."],
+      da:["Starfall på Void Constructs for konstant AoE-skade.",
+          "Typhoon til at samle Void Constructs til effektiv drab.",
+          "Barkskin under Void Eruption som personligt defensiv."]
+    },
+    'paladin-retribution': {
+      nl:["Rebuke op Void Channeling zodra je in bereik bent.",
+          "Wake of Ashes + Divine Storm op de Void Construct cluster.",
+          "Divine Shield bij Void Eruption als noodrem."],
+      en:["Rebuke on Void Channeling as soon as you are in range.",
+          "Wake of Ashes + Divine Storm on the Void Construct cluster.",
+          "Divine Shield during Void Eruption as emergency."],
+      da:["Rebuke på Void Channeling, så snart du er i rækkevidde.",
+          "Wake of Ashes + Divine Storm på Void Construct-klyngen.",
+          "Divine Shield under Void Eruption som nødknap."]
+    }}
+
 };
 
 // Returns spec-specific tips array or null
@@ -2018,8 +2418,10 @@ document.addEventListener('DOMContentLoaded', function() {
       Dungeon-informatie is gebaseerd op Icy Veins, Wowhead, Method en eigen ervaringen —
       altijd vatbaar voor verandering na patches.
     </div>
-    <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
-    <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
+    <div id="footer-btn-row">
+      <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
+      <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
+    </div>
     <div id="qr-popup">
       <div id="qr-canvas"></div>
       <div id="qr-url"></div>
@@ -2097,6 +2499,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="about-section">
         <div class="about-h2">📋 Changelog</div>
+        <div class="changelog-entry"><span class="cl-version">v2.1</span><span class="cl-date">2026-03-10</span>
+          <div class="cl-items">6 nieuwe specs volledig uitgewerkt (Holy Pal, Ret Pal, Havoc DH, Vengeance DH, Balance Druid, Guardian Druid) · Auto role-refresh zonder handmatige refresh · QR + About knoppen naast elkaar</div>
+        </div>
         <div class="changelog-entry"><span class="cl-version">v2.0</span><span class="cl-date">2026-03-10</span>
           <div class="cl-items">Spec-specifieke tips voor 4 specs · Auto role-tab selectie · ★ highlights · README-pagina in app</div>
         </div>
