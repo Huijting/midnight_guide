@@ -67,12 +67,94 @@
   .section-label h2{font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
   .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
   .dungeon-grid{max-width:1100px;margin:0 auto;padding:0 16px 50px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-  @media(max-width:480px){.dungeon-grid{grid-template-columns:1fr}}
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — TELEFOON (max 480px)
+  ═══════════════════════════════════════ */
+  @media(max-width:480px){
+    /* Grid */
+    .dungeon-grid{grid-template-columns:1fr;gap:8px;padding:0 10px 40px}
+    /* Header compacter */
+    .header-inner{height:48px;gap:6px}
+    .header-title{font-size:12px}
+    .header-sub{display:none}
+    .lang-btn,.theme-btn{padding:4px 7px;font-size:11px}
+    /* Hero */
+    .hero{padding:24px 12px 18px}
+    .hero-sub{font-size:13px}
+    /* Sectie labels */
+    .section-label{margin:18px auto 6px;padding:0 10px}
+    /* Detail hero */
+    .detail-hero{padding:16px 12px}
+    .detail-lore{font-size:13px}
+    /* Tabs — grotere tikoppervlakken */
+    .tab-btn{font-size:12px;padding:12px 0}
+    .tabs-wrap{top:48px}
+    /* Content */
+    .content-wrap{padding:14px 10px 50px}
+    /* Overview grid */
+    .overview-grid{grid-template-columns:1fr 1fr}
+    /* Boss kaarten */
+    .boss-header{padding:10px 12px}
+    .role-tabs{gap:5px;padding:10px 10px}
+    .role-tab-btn{font-size:13px;padding:10px 4px}
+    .role-panel{padding:11px 12px}
+    .role-panel ul li{font-size:14px;padding:7px 0 7px 16px}
+    /* Route */
+    .lust-table th,.lust-table td{padding:8px 8px;font-size:13px}
+    /* Install banner */
+    #install-banner{font-size:11px;padding:6px 10px}
+    /* Footer */
+    .footer-disclaimer{font-size:11px}
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — TABLET (481px – 768px)
+  ═══════════════════════════════════════ */
+  @media(min-width:481px) and (max-width:768px){
+    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .overview-grid{grid-template-columns:repeat(2,1fr)}
+    .header-sub{font-size:9px}
+    .lang-btn,.theme-btn{padding:4px 9px;font-size:12px}
+    .role-tab-btn{font-size:14px;padding:11px 6px}
+    .role-panel ul li{font-size:15px}
+    .content-wrap{padding:16px 14px 56px}
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — PC (769px+)
+  ═══════════════════════════════════════ */
+  @media(min-width:769px){
+    .dungeon-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .overview-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    /* Hover effecten alleen op PC */
+    .dungeon-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.25);border-color:var(--gold)}
+    .role-tab-btn:hover:not(.active-tank):not(.active-heal):not(.active-dps){background:var(--deep);border-color:var(--muted);color:var(--text)}
+    .tab-btn:hover:not(.active){color:var(--text)}
+  }
+
+  /* ═══════════════════════════════════════
+     TOUCH DEVICES — geen hover effecten
+  ═══════════════════════════════════════ */
+  @media(hover:none){
+    .dungeon-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
+    .dungeon-card:active{transform:scale(0.97);border-color:var(--gold)}
+    .role-tab-btn:active{opacity:0.8}
+    .tab-btn:active{color:var(--gold)}
+  }
+
+  /* ═══════════════════════════════════════
+     GROOT SCHERM (1200px+)
+  ═══════════════════════════════════════ */
+  @media(min-width:1200px){
+    .dungeon-grid{grid-template-columns:repeat(4,1fr)}
+    .boss-roles-desktop{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  }
 
   /* ── DUNGEON CARD ── */
   .dungeon-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
   .dungeon-card:active{transform:scale(0.98)}
-  @media(hover:hover){.dungeon-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.2);border-color:var(--gold)}}
+
   .card-accent{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold))}
   .dungeon-card.mplus .card-accent{background:linear-gradient(90deg,#b07010,var(--gold2),#b07010)}
   .card-body{padding:13px 15px 15px}
@@ -1036,6 +1118,32 @@ if (localStorage.getItem('lang')) {
 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
 const activeLangBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
 if (activeLangBtn) activeLangBtn.classList.add('active');
+
+// ── APPARAAT DETECTIE ──
+const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const isPhone = window.innerWidth <= 480;
+const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
+const isPC = window.innerWidth > 768;
+
+// Voeg class toe aan body zodat CSS het weet
+if (isTouch) document.body.classList.add('touch-device');
+if (isPhone) document.body.classList.add('is-phone');
+if (isTablet) document.body.classList.add('is-tablet');
+if (isPC) document.body.classList.add('is-pc');
+
+// Verberg install banner op PC — niet relevant
+if (isPC) {
+  const banner = document.getElementById('install-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+// Update apparaat-klassen bij resize (bv. tablet roteren)
+window.addEventListener('resize', () => {
+  document.body.classList.remove('is-phone','is-tablet','is-pc');
+  if (window.innerWidth <= 480) document.body.classList.add('is-phone');
+  else if (window.innerWidth <= 768) document.body.classList.add('is-tablet');
+  else document.body.classList.add('is-pc');
+});
 
 applyUIStrings();
 updateFooter();
