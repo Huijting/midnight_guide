@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0057)file:///C:/Users/RobHu/Downloads/professions_guide_3.html -->
-<html lang="nl" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0d0d1a">
 <title>WoW Midnight — Profession Guide</title>
@@ -188,9 +188,9 @@ a{color:var(--gold)}
     <div class="hdr-title" id="hdr-title">⚗ Midnight Professions</div>
   </div>
   <div class="hdr-right">
-    <button class="lang-btn active" onclick="setLang(&#39;nl&#39;)">NL</button>
-    <button class="lang-btn" onclick="setLang(&#39;en&#39;)">EN</button>
-    <button class="lang-btn" onclick="setLang(&#39;da&#39;)">DA</button>
+    <button class="lang-btn active" onclick="setLang('nl')">NL</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('da')">DA</button>
     <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
   </div>
 </div>
@@ -203,83 +203,18 @@ a{color:var(--gold)}
     <div class="hero-sub" id="hero-sub">Kies een professie voor alle info in één klik</div>
   </div>
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterProfs(&#39;all&#39;)" id="fb-all">Alle</button>
-    <button class="filter-btn" onclick="filterProfs(&#39;crafting&#39;)" id="fb-crafting">⚒ Crafting</button>
-    <button class="filter-btn" onclick="filterProfs(&#39;gathering&#39;)" id="fb-gathering">🌿 Gathering</button>
-    <button class="filter-btn" onclick="filterProfs(&#39;secondary&#39;)" id="fb-secondary">🎣 Secundair</button>
+    <button class="filter-btn active" onclick="filterProfs('all')" id="fb-all">Alle</button>
+    <button class="filter-btn" onclick="filterProfs('crafting')" id="fb-crafting">⚒ Crafting</button>
+    <button class="filter-btn" onclick="filterProfs('gathering')" id="fb-gathering">🌿 Gathering</button>
+    <button class="filter-btn" onclick="filterProfs('secondary')" id="fb-secondary">🎣 Secundair</button>
   </div>
-  <div class="prof-grid" id="prof-grid"><div class="prof-card" style="--accent:#4caf7d" onclick="showDetail(&#39;alchemy&#39;)">
-      <span class="prof-icon">⚗</span>
-      <div class="prof-name">Alchemy</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-s">S</span></div>
-    </div><div class="prof-card" style="--accent:#aaaaaa" onclick="showDetail(&#39;blacksmithing&#39;)">
-      <span class="prof-icon">⚒</span>
-      <div class="prof-name">Blacksmithing</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-a">A</span></div>
-    </div><div class="prof-card" style="--accent:#9b6dd9" onclick="showDetail(&#39;enchanting&#39;)">
-      <span class="prof-icon">✨</span>
-      <div class="prof-name">Enchanting</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-a">A</span></div>
-    </div><div class="prof-card" style="--accent:#e0893a" onclick="showDetail(&#39;engineering&#39;)">
-      <span class="prof-icon">🔩</span>
-      <div class="prof-name">Engineering</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-b">B</span></div>
-    </div><div class="prof-card" style="--accent:#5b8dd9" onclick="showDetail(&#39;inscription&#39;)">
-      <span class="prof-icon">📜</span>
-      <div class="prof-name">Inscription</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-s">S</span></div>
-    </div><div class="prof-card" style="--accent:#d96da8" onclick="showDetail(&#39;jewelcrafting&#39;)">
-      <span class="prof-icon">💎</span>
-      <div class="prof-name">Jewelcrafting</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-a">A</span></div>
-    </div><div class="prof-card" style="--accent:#8B6347" onclick="showDetail(&#39;leatherworking&#39;)">
-      <span class="prof-icon">🧶</span>
-      <div class="prof-name">Leatherworking</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-b">B</span></div>
-    </div><div class="prof-card" style="--accent:#e8c840" onclick="showDetail(&#39;tailoring&#39;)">
-      <span class="prof-icon">🧵</span>
-      <div class="prof-name">Tailoring</div>
-      <span class="prof-type-badge badge-craft">Crafting</span>
-      <div class="prof-tier">Tier: <span class="tier-b">B</span></div>
-    </div><div class="prof-card" style="--accent:#4caf7d" onclick="showDetail(&#39;herbalism&#39;)">
-      <span class="prof-icon">🌿</span>
-      <div class="prof-name">Herbalism</div>
-      <span class="prof-type-badge badge-gather">Gathering</span>
-      <div class="prof-tier">Tier: <span class="tier-s">S</span></div>
-    </div><div class="prof-card" style="--accent:#aaaaaa" onclick="showDetail(&#39;mining&#39;)">
-      <span class="prof-icon">⛏</span>
-      <div class="prof-name">Mining</div>
-      <span class="prof-type-badge badge-gather">Gathering</span>
-      <div class="prof-tier">Tier: <span class="tier-s">S</span></div>
-    </div><div class="prof-card" style="--accent:#8B6347" onclick="showDetail(&#39;skinning&#39;)">
-      <span class="prof-icon">🐾</span>
-      <div class="prof-name">Skinning</div>
-      <span class="prof-type-badge badge-gather">Gathering</span>
-      <div class="prof-tier">Tier: <span class="tier-b">B</span></div>
-    </div><div class="prof-card" style="--accent:#e0893a" onclick="showDetail(&#39;cooking&#39;)">
-      <span class="prof-icon">🍳</span>
-      <div class="prof-name">Cooking</div>
-      <span class="prof-type-badge badge-secondary">Secundair</span>
-      <div class="prof-tier">Tier: <span class="tier-a">A</span></div>
-    </div><div class="prof-card" style="--accent:#3ab8b8" onclick="showDetail(&#39;fishing&#39;)">
-      <span class="prof-icon">🎣</span>
-      <div class="prof-name">Fishing</div>
-      <span class="prof-type-badge badge-secondary">Secundair</span>
-      <div class="prof-tier">Tier: <span class="tier-b">B</span></div>
-    </div></div>
+  <div class="prof-grid" id="prof-grid"></div>
 </div>
 
 <!-- DISCLAIMER -->
 <div style="margin:8px 16px 24px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:.74rem;color:var(--muted);line-height:1.6">
   <strong style="color:var(--text);font-size:.78rem">⚠️ Disclaimer</strong><br>
-  Deze guide is samengesteld op basis van publiek beschikbare informatie van <a href="https://www.method.gg/guides/world-of-warcraft/professions" target="_blank">Method.gg</a> en <a href="https://www.wow-professions.com/" target="_blank">wow-professions.com</a>.
+  Deze guide is samengesteld op basis van publiek beschikbare informatie van <a href="https://www.method.gg/guides/world-of-warcraft/professions" target="_blank">Method.gg</a> en <a href="https://www.wow-professions.com" target="_blank">wow-professions.com</a>.
   Dit is een <em>persoonlijk fan-project</em> — geen officieel Blizzard of Method-product.
   Trainer-locaties, spec-stappen en item-namen zijn gebaseerd op Midnight launch data (febr–maart 2026) en kunnen veranderen door patches.
   Controleer altijd de originele bronnen voor de meest actuele info.
@@ -1193,28 +1128,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <footer id="site-footer">
   <div class="footer-inner">
-    <div class="footer-made">⚗ Created by <strong>Claudy</strong> &amp; <strong>Inchy</strong> &nbsp;·&nbsp; <span class="footer-version" style="font-family:monospace;font-size:11px" id="footer-version-nr">v1.1 · 2026-03-10</span> &nbsp;·&nbsp; <span class="footer-version">WoW: Midnight</span></div>
+    <div class="footer-made">⚗ Created by <strong>Claudy</strong> &amp; <strong>Inchy</strong> &nbsp;·&nbsp; <span class="footer-version" style="font-family:monospace;font-size:11px" id="footer-version-nr"></span> &nbsp;·&nbsp; <span class="footer-version">WoW: Midnight</span></div>
     <div class="footer-disclaimer">
       Dit is een fan-project en heeft geen officiële band met Blizzard Entertainment.<br>
       World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc.<br>
-      Profession-data gebaseerd op <a href="https://www.method.gg/" target="_blank" class="about-link">Method.gg</a> &amp; <a href="https://www.wow-professions.com/" target="_blank" class="about-link">wow-professions.com</a>.
+      Profession-data gebaseerd op <a href="https://www.method.gg" target="_blank" class="about-link">Method.gg</a> &amp; <a href="https://www.wow-professions.com" target="_blank" class="about-link">wow-professions.com</a>.
     </div>
     <div id="footer-btn-row">
       <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
       <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
     </div>
-    <div id="qr-popup" class="visible">
-      <div id="qr-canvas"><img src="./WoW Midnight — Profession Guide_files/saved_resource" width="180" height="180" style="border-radius:8px" alt="QR-code"></div>
-      <div id="qr-url">https://huijting.github.io/midnight_guide/professions/</div>
+    <div id="qr-popup">
+      <div id="qr-canvas"></div>
+      <div id="qr-url"></div>
       <span id="qr-close" onclick="toggleQR()">× sluiten</span>
     </div>
     <div class="footer-sources">
       <span id="footer-sources-label">Bronnen:</span>
-      <a href="https://www.method.gg/" target="_blank">Method.gg</a>
+      <a href="https://www.method.gg" target="_blank">Method.gg</a>
       <span>·</span>
-      <a href="https://www.wow-professions.com/" target="_blank">wow-professions.com</a>
+      <a href="https://www.wow-professions.com" target="_blank">wow-professions.com</a>
       <span>·</span>
-      <a href="https://www.wowhead.com/" target="_blank">Wowhead</a>
+      <a href="https://www.wowhead.com" target="_blank">Wowhead</a>
     </div>
   </div>
 </footer>
@@ -1229,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<script src="./WoW Midnight — Profession Guide_files/qrcode.min.js.download"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 function openAbout() {
   renderAboutContent();
@@ -1293,5 +1228,5 @@ function toggleQR(){
   }
 }
 </script>
-
-</body></html>
+</body>
+</html>
