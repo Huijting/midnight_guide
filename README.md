@@ -1,75 +1,93 @@
-# ⚔️ WoW: Midnight — Dungeon Guide
+# ⚔ WoW Midnight Dungeon & Raid Guide
 
-> *"Know your dungeon. Know your role. Don't stand in the void."*
+**Live:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
 
-An **interactive, trilingual dungeon guide** for all Mythic+ and Normal dungeons in **World of Warcraft: Midnight — Season 1**.  
-Built for players who want to know what they're doing *before* they step inside. 😄
-
----
-
-## 🌐 Play it live
-
-### 👉 [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
-
-No install. No account. Just open and go.  
-Or add it to your phone's home screen as an app — the guide will show you how! 📱
+An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for World of Warcraft: Midnight Season 1. Installable on phone and tablet, works offline, with per-spec role tips.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🗺️ **8 Dungeons** — 4 Mythic+ and 4 Normal Only, fully covered
-- 👊 **Per boss** — separate tips for Tank, Healer and DPS
-- 🧭 **Route planner** — pull order, Bloodlust timing and Keystone.guru links
-- 🇳🇱 🇬🇧 🇩🇰 **Trilingual** — Dutch, English and Danish, switch instantly
-- 🌙 **Light & dark theme** — your preference is remembered
-- 📱 **PWA ready** — installable as an app on Android and iPhone
-- 📷 **QR code** — share the guide with your party in one scan
-
----
-
-## 📋 Changelog
-
-### v1.2 — 2026-03-10
-- ✅ Full responsive design — phone, tablet and PC each get their own layout
-- ✅ Device detection — hover effects on PC only, touch-optimised on mobile
-- ✅ QR code in footer — scan to share the guide instantly
-- ✅ Version number visible in footer
-- ✅ Install banner improved — correct native wording per platform and language
-- ✅ Disclaimer and source credits added to footer
-- ✅ "Created by Claudy & Inchy" credits added
-
-### v1.0 — 2026-03-09
-- 🎉 First release — 8 dungeons fully covered
-- 🎉 Trilingual support — Dutch, English and Danish
-- 🎉 Tank / Healer / DPS tabs per boss
-- 🎉 Route planner with pull order and Bloodlust timing
-- 🎉 Light & dark theme with local preference memory
-- 🎉 PWA installable as app on Android and iPhone
+- **Trilingual** — Dutch, English, Danish. Everything switches instantly.
+- **Spec Selector** — Choose your class and spec. Role tab auto-selects (Tank/Healer/DPS). Spec-specific tips shown highlighted (★) above generic tips.
+- **Per-boss role tabs** — Tank 🛡, Healer 💚, DPS ⚔ per boss
+- **Route Planner** — Pull order, Bloodlust timing, Keystone.guru links
+- **Light/Dark theme** — Saved via localStorage
+- **PWA installable** — Add to home screen on Android & iOS
+- **QR code** — Share the live URL instantly
+- **Responsive** — Phone, tablet, PC
 
 ---
 
-## 🛠️ Tech
+## Fully covered specs (spec-specific tips)
 
-A single HTML file. No frameworks, no database, no server.  
-Pure HTML, CSS and JavaScript — works everywhere, always, even offline.
-
----
-
-## 🙏 Sources
-
-Dungeon information based on:  
-[Icy Veins](https://www.icy-veins.com) · [Wowhead](https://www.wowhead.com) · [Method](https://www.method.gg) · [Keystone.guru](https://keystone.guru)
+| Spec | Role | Status |
+|---|---|---|
+| 🛡 Protection Paladin | Tank | ✅ Done |
+| 💚 Restoration Druid | Healer | ✅ Done |
+| 🏹 Beast Mastery Hunter | DPS | ✅ Done |
+| ⚡ Elemental Shaman | DPS | ✅ Done |
+| All other specs | All | Generic tips (fallback) |
 
 ---
 
-## ⚔️ Created by
+## Season 1 Dungeon Pool (Mythic+)
 
-**Claudy** *(the AI who wrote the code)*  
-&  
-**Inchy** *(the one with all the ideas — and who keeps the trains running on time 🚂)*
+| Dungeon | Zone | Bosses |
+|---|---|---|
+| Windrunner Spire | Eversong Woods | 3 |
+| Magisters' Terrace | Isle of Quel'Danas | 4 |
+| Maisara Caverns | Harandar | 3 |
+| Nexus-Point Xenas | Voidstorm | 3 |
+| Murder Row | Silvermoon City | 3 |
+| The Blinding Vale | Eversong Woods | 3 |
+| Den of Nalorakk | Zul'Aman | 3 |
+| Voidscar Arena | Voidstorm | 3 |
 
 ---
 
-> *World of Warcraft and all related names are trademarks of Blizzard Entertainment, Inc.  
-> This is a fan project with no commercial intent.*
+## 🚧 Coming Soon
+
+### Raids (Season 1)
+All three raids opening in March 2026:
+
+| Raid | Zone | Bosses | Opens |
+|---|---|---|---|
+| **The Voidspire** | Voidstorm | 6 | 17 maart 2026 |
+| **Dreamrift** | Harandar | 1 | 17 maart 2026 |
+| **March on Quel'Danas** | Quel'Thalas | 2 | 31 maart 2026 |
+
+Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec-specific tips for all 4 covered specs, LFR/Normal/Heroic/Mythic difficulty filter, and route notes.
+
+### More specs
+Full spec-specific tips coming for: Holy Paladin, Retribution Paladin, Guardian Druid, Feral Druid, Balance Druid, Marksmanship Hunter, Survival Hunter, Restoration Shaman, Enhancement Shaman, Fire/Frost/Arcane Mage, Arms/Fury/Protection Warrior, and all remaining specs.
+
+### Profession Guides
+Crafting guides for key professions to help gear up in Season 1.
+
+---
+
+## Changelog
+
+### v2.0 — 2026-03-10
+- **Spec-specific tips system** — 4 specs fully covered (Prot Paladin, Resto Druid, BM Hunter, Elemental Shaman)
+- Auto role tab selection based on chosen spec
+- Spec tips shown highlighted (★) above generic tips
+- Generic tips remain as fallback for all other specs
+
+### v1.3 — 2026-03-09
+- Spec selector added (all 13 classes, role-aware Bloodlust names)
+- Spec preference saved via localStorage
+
+### v1.2 — 2026-03-08
+- QR code button in footer, theme-aware
+
+### v1.1 — 2026-03-07
+- PWA install banner (Android + iOS, trilingual)
+
+### v1.0 — 2026-03-06
+- Initial release: 8 dungeons, 3 languages, role tabs, route planner
+
+---
+
+*Built by Claudy & Inchy ⚔*
