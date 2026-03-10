@@ -243,6 +243,42 @@
   .generic-tips-divider{height:1px;background:var(--border);margin:8px 12px;opacity:.5}
   .generic-tips li{opacity:.75}
 
+  /* ── ABOUT BUTTON ── */
+  #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
+  #about-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ── ABOUT MODAL ── */
+  #about-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
+  #about-modal.open{display:flex}
+  #about-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  #about-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
+  #about-title{font-size:17px;font-weight:800;color:var(--text)}
+  #about-close-x{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
+  #about-close-x:hover{color:var(--text)}
+  #about-content{overflow-y:auto;padding:16px 20px 32px;-webkit-overflow-scrolling:touch}
+  .about-section{margin-bottom:22px}
+  .about-h2{font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+  .about-h3{font-size:12px;font-weight:700;color:var(--accent);margin:12px 0 4px}
+  .about-ul{list-style:none;padding:0;margin:0}
+  .about-ul li{padding:4px 0 4px 20px;position:relative;font-size:14px;color:var(--text);line-height:1.4}
+  .about-ul li::before{content:'▸';position:absolute;left:4px;color:var(--muted);font-size:11px;top:7px}
+  .about-link{color:var(--accent);font-size:14px;text-decoration:none;font-weight:600}
+  .about-link:hover{text-decoration:underline}
+  .about-table{width:100%;border-collapse:collapse;font-size:13px}
+  .about-table th{text-align:left;padding:4px 6px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+  .about-table td{padding:5px 6px;color:var(--text);border-bottom:1px solid var(--border)}
+  .about-table tr:last-child td{border-bottom:none}
+  .done{color:#4caf50;font-size:14px}
+  .date-badge{background:var(--gold);color:#000;font-size:11px;font-weight:800;border-radius:6px;padding:2px 7px}
+  .about-note{font-size:13px;color:var(--muted);line-height:1.5;padding:4px 0}
+  .about-coming{background:rgba(200,168,75,.05);border:1px solid rgba(200,168,75,.2);border-radius:10px;padding:14px}
+  .changelog-entry{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border)}
+  .changelog-entry:last-child{border-bottom:none}
+  .cl-version{font-size:13px;font-weight:800;color:var(--gold);min-width:40px}
+  .cl-date{font-size:11px;color:var(--muted)}
+  .cl-items{font-size:13px;color:var(--text);line-height:1.4;flex:1 1 100%}
+  .about-footer-note{font-size:12px;color:var(--muted);line-height:1.6;padding-top:8px;border-top:1px solid var(--border)}
+
   /* ── SPEC SELECTOR ── */
   #spec-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
   #spec-btn:hover{border-color:var(--gold);color:var(--gold)}
@@ -1983,6 +2019,7 @@ document.addEventListener('DOMContentLoaded', function() {
       altijd vatbaar voor verandering na patches.
     </div>
     <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
+    <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
     <div id="qr-popup">
       <div id="qr-canvas"></div>
       <div id="qr-url"></div>
@@ -2001,6 +2038,93 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </footer>
 
+<div id="about-modal" onclick="if(event.target===this)closeAbout()">
+  <div id="about-inner">
+    <div id="about-header">
+      <span id="about-title">⚔ Over deze app</span>
+      <button id="about-close-x" onclick="closeAbout()">×</button>
+    </div>
+    <div id="about-content">
+
+      <div class="about-section">
+        <div class="about-h2">🌐 Live</div>
+        <a href="https://huijting.github.io/midnight_guide/" target="_blank" class="about-link">huijting.github.io/midnight_guide</a>
+      </div>
+
+      <div class="about-section">
+        <div class="about-h2">✨ Features</div>
+        <ul class="about-ul">
+          <li>🇳🇱 🇬🇧 🇩🇰 Drietalig — alles wisselt direct</li>
+          <li>⭐ Spec Selector — role-tab klikt automatisch, spec-tips gemarkeerd</li>
+          <li>🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)</li>
+          <li>🗺 Routeplanner met pull-volgorde en Bloodlust-timing</li>
+          <li>🌙 Licht/donker thema</li>
+          <li>📱 Installeerbaar als app (Android & iOS)</li>
+          <li>📷 QR-code om te delen</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <div class="about-h2">✅ Volledig uitgewerkte specs</div>
+        <table class="about-table">
+          <tr><th>Spec</th><th>Rol</th><th></th></tr>
+          <tr><td>🛡 Protection Paladin</td><td>Tank</td><td class="done">✅</td></tr>
+          <tr><td>💚 Restoration Druid</td><td>Healer</td><td class="done">✅</td></tr>
+          <tr><td>🏹 Beast Mastery Hunter</td><td>DPS</td><td class="done">✅</td></tr>
+          <tr><td>⚡ Elemental Shaman</td><td>DPS</td><td class="done">✅</td></tr>
+          <tr><td colspan="2" style="opacity:.6;font-style:italic">Alle andere specs</td><td style="opacity:.6">generiek</td></tr>
+        </table>
+      </div>
+
+      <div class="about-section about-coming">
+        <div class="about-h2">🚧 Binnenkort</div>
+
+        <div class="about-h3">Raids Seizoen 1</div>
+        <table class="about-table">
+          <tr><th>Raid</th><th>Bazen</th><th>Open</th></tr>
+          <tr><td>⚔ The Voidspire</td><td>6</td><td class="date-badge">17 mrt</td></tr>
+          <tr><td>🌿 Dreamrift</td><td>1</td><td class="date-badge">17 mrt</td></tr>
+          <tr><td>☀ March on Quel'Danas</td><td>2</td><td class="date-badge">31 mrt</td></tr>
+        </table>
+        <div class="about-note">Elke raid krijgt baas-voor-baas gidsen met Tank/Healer/DPS-tabs, spec-tips, LFR/Normal/Heroic/Mythic filter en route-notities.</div>
+
+        <div class="about-h3">Meer specs</div>
+        <div class="about-note">Holy Paladin, Ret Paladin, Guardian/Feral/Balance Druid, MM/Survival Hunter, Resto/Enh Shaman, Fire/Frost/Arcane Mage, Arms/Fury/Prot Warrior, en alle overige specs.</div>
+
+        <div class="about-h3">Profession Guides</div>
+        <div class="about-note">Crafting-gidsen voor key-professies om snel te gearren in Seizoen 1.</div>
+      </div>
+
+      <div class="about-section">
+        <div class="about-h2">📋 Changelog</div>
+        <div class="changelog-entry"><span class="cl-version">v2.0</span><span class="cl-date">2026-03-10</span>
+          <div class="cl-items">Spec-specifieke tips voor 4 specs · Auto role-tab selectie · ★ highlights · README-pagina in app</div>
+        </div>
+        <div class="changelog-entry"><span class="cl-version">v1.3</span><span class="cl-date">2026-03-09</span>
+          <div class="cl-items">Spec selector met alle 13 klassen · Bloodlust-namen per spec</div>
+        </div>
+        <div class="changelog-entry"><span class="cl-version">v1.2</span><span class="cl-date">2026-03-08</span>
+          <div class="cl-items">QR-code knop · thema-aware kleuren</div>
+        </div>
+        <div class="changelog-entry"><span class="cl-version">v1.1</span><span class="cl-date">2026-03-07</span>
+          <div class="cl-items">PWA installatiebanner (Android + iOS, drietalig)</div>
+        </div>
+        <div class="changelog-entry"><span class="cl-version">v1.0</span><span class="cl-date">2026-03-06</span>
+          <div class="cl-items">Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner</div>
+        </div>
+      </div>
+
+      <div class="about-footer-note">
+        Fan-project · Geen officiële band met Blizzard Entertainment.<br>
+        World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.<br>
+        Gids-info gebaseerd op Icy Veins, Wowhead, Method &amp; eigen ervaringen.<br><br>
+        <em>⚔ Gebouwd door Claudy &amp; Inchy</em>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
   <div id="spec-modal-inner">
     <div id="spec-modal-header">
@@ -2017,6 +2141,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+function openAbout() {
+  document.getElementById('about-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAbout() {
+  document.getElementById('about-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 let qrGenerated = false;
 
 function toggleQR() {
