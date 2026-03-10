@@ -310,6 +310,10 @@
 
 <script>
 
+// ── VERSIE ──
+const VERSION = "v1.2";
+const VERSION_DATE = "2026-03-10";
+
 // Footer i18n
 const FOOTER = {
   nl: {
@@ -330,6 +334,8 @@ const FOOTER = {
 };
 
 function updateFooter() {
+  const vEl = document.getElementById('footer-version-nr');
+  if (vEl) vEl.textContent = VERSION + ' — ' + VERSION_DATE;
   const f = FOOTER[lang];
   if (!f) return;
   const el_season = document.getElementById('footer-season');
@@ -1154,6 +1160,8 @@ renderHome();
   <div class="footer-inner">
     <div class="footer-credits">
       <span class="footer-made">⚔ Created by <strong>Claudy</strong> &amp; <strong>Inchy</strong></span>
+      <span class="footer-dot">·</span>
+      <span class="footer-version" id="footer-version-nr" style="font-size:11px;color:var(--muted);font-family:monospace"></span>
       <span class="footer-dot">·</span>
       <span class="footer-version" id="footer-season">WoW: Midnight — Seizoen 1</span>
     </div>
