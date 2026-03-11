@@ -43,6 +43,22 @@ a{color:var(--gold)}
 .pwa-btn{background:var(--gold);color:#1a1a2e;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
 .pwa-btn:hover{opacity:.9}
 .pwa-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0;line-height:1}
+.install-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 8px;border-radius:5px;cursor:pointer;font-size:.9rem;transition:all .2s}
+.install-btn:hover{border-color:var(--gold);color:var(--gold)}
+/* Install Modal */
+#install-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);align-items:center;justify-content:center;padding:20px}
+#install-modal.show{display:flex}
+.install-box{background:var(--card);border:2px solid var(--gold);border-radius:16px;padding:24px;max-width:380px;width:100%;position:relative}
+.install-box h3{color:var(--gold);font-size:1.1rem;margin-bottom:16px;text-align:center}
+.install-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;font-size:.88rem;line-height:1.5}
+.install-step-num{background:var(--gold);color:#1a1a2e;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.8rem;flex-shrink:0;margin-top:1px}
+.install-platform{background:var(--deep);border-radius:10px;padding:12px;margin-bottom:10px;font-size:.85rem}
+.install-platform-title{color:var(--gold);font-weight:700;margin-bottom:6px;font-size:.82rem}
+.install-or{text-align:center;color:var(--muted);font-size:.8rem;margin:8px 0}
+.install-close-btn{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1}
+.install-action-btn{width:100%;background:var(--gold);color:#1a1a2e;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:8px}
+.install-action-btn:hover{opacity:.9}
+#install-action-wrap{display:none}
 .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 7px;border-radius:5px;cursor:pointer;font-size:.72rem}
 .lang-btn.active,.lang-btn:hover{border-color:var(--gold);color:var(--gold);font-weight:700}
 .theme-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 7px;border-radius:5px;cursor:pointer;font-size:.82rem}
@@ -196,6 +212,35 @@ a{color:var(--gold)}
 </head>
 <body>
 
+<!-- Install Modal -->
+<div id="install-modal">
+  <div class="install-box">
+    <button class="install-close-btn" onclick="hideInstallModal()">✕</button>
+    <h3 id="install-modal-title">📲 App Installeren</h3>
+
+    <div class="install-platform" id="install-android" style="display:none">
+      <div class="install-platform-title">🤖 Android (Chrome)</div>
+      <div class="install-step"><div class="install-step-num">1</div><div id="im-android-1">Tik op de drie puntjes rechtsboven in Chrome</div></div>
+      <div class="install-step"><div class="install-step-num">2</div><div id="im-android-2">Kies "App installeren" of "Toevoegen aan beginscherm"</div></div>
+      <div id="install-action-wrap"><button class="install-action-btn" onclick="pwaTrigger()" id="im-install-btn">Installeer nu</button></div>
+    </div>
+
+    <div class="install-platform" id="install-ios" style="display:none">
+      <div class="install-platform-title">🍎 iPhone / iPad (Safari)</div>
+      <div class="install-step"><div class="install-step-num">1</div><div id="im-ios-1">Tik op het Deel-icoon <strong>⎙</strong> onderin Safari</div></div>
+      <div class="install-step"><div class="install-step-num">2</div><div id="im-ios-2">Scroll naar beneden en kies <strong>"Zet op beginscherm"</strong></div></div>
+      <div class="install-step"><div class="install-step-num">3</div><div id="im-ios-3">Tik op <strong>"Voeg toe"</strong> rechtsboven</div></div>
+    </div>
+
+    <div class="install-platform" id="install-pc">
+      <div class="install-platform-title">💻 PC / Laptop (Chrome of Edge)</div>
+      <div class="install-step"><div class="install-step-num">1</div><div id="im-pc-1">Klik op het installeer-icoon rechts in de adresbalk (⊕)</div></div>
+      <div class="install-step"><div class="install-step-num">2</div><div id="im-pc-2">Klik op <strong>"Installeren"</strong> — de app verschijnt op je bureaublad</div></div>
+      <div id="install-action-wrap-pc"><button class="install-action-btn" onclick="pwaTrigger()" id="im-install-btn-pc" style="display:none">Installeer nu</button></div>
+    </div>
+  </div>
+</div>
+
 <!-- PWA Install Banner -->
 <div id="pwa-banner">
   <span class="pwa-icon">📲</span>
@@ -211,9 +256,10 @@ a{color:var(--gold)}
     <div class="hdr-title" id="hdr-title">⚗ Midnight Professions</div>
   </div>
   <div class="hdr-right">
-    <button class="lang-btn active" onclick="setLang('nl')">NL</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('da')">DA</button>
+    <button class="lang-btn active" data-lang="nl" onclick="setLang('nl')">🇳🇱</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧</button>
+    <button class="lang-btn" data-lang="da" onclick="setLang('da')">🇩🇰</button>
+    <button class="install-btn" id="install-hdr-btn" onclick="showInstallModal()" title="Installeer app">📲</button>
     <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
   </div>
 </div>
@@ -572,7 +618,7 @@ function showHome() {
 // ═══════════════════════════════
 function setLang(l) {
   lang = l;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()));
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
   if (currentProf) {
     showDetail(currentProf.id);
   } else {
@@ -700,6 +746,86 @@ function toggleQR(){
     qrGenerated=true;
   }
 }
+
+// ── INSTALL MODAL ────────────────────────────────────────────
+const INSTALL_UI = {
+  nl: {
+    title: '📲 App Installeren',
+    android_title: '🤖 Android (Chrome)',
+    android1: 'Tik op de drie puntjes rechtsboven in Chrome',
+    android2: 'Kies "App installeren" of "Toevoegen aan beginscherm"',
+    ios_title: '🍎 iPhone / iPad (Safari)',
+    ios1: 'Tik op het Deel-icoon ⎙ onderin Safari',
+    ios2: 'Scroll naar beneden en kies "Zet op beginscherm"',
+    ios3: 'Tik op "Voeg toe" rechtsboven',
+    pc_title: '💻 PC / Laptop (Chrome of Edge)',
+    pc1: 'Klik op het installeer-icoon rechts in de adresbalk (⊕)',
+    pc2: 'Klik op "Installeren" — de app verschijnt op je bureaublad',
+    install_btn: 'Installeer nu',
+  },
+  en: {
+    title: '📲 Install App',
+    android_title: '🤖 Android (Chrome)',
+    android1: 'Tap the three dots in the top right of Chrome',
+    android2: 'Choose "Install app" or "Add to home screen"',
+    ios_title: '🍎 iPhone / iPad (Safari)',
+    ios1: 'Tap the Share icon ⎙ at the bottom of Safari',
+    ios2: 'Scroll down and choose "Add to Home Screen"',
+    ios3: 'Tap "Add" in the top right',
+    pc_title: '💻 PC / Laptop (Chrome or Edge)',
+    pc1: 'Click the install icon on the right side of the address bar (⊕)',
+    pc2: 'Click "Install" — the app will appear on your desktop',
+    install_btn: 'Install now',
+  },
+  da: {
+    title: '📲 Installer App',
+    android_title: '🤖 Android (Chrome)',
+    android1: 'Tryk på de tre prikker øverst til højre i Chrome',
+    android2: 'Vælg "Installer app" eller "Føj til startskærm"',
+    ios_title: '🍎 iPhone / iPad (Safari)',
+    ios1: 'Tryk på Del-ikonet ⎙ nederst i Safari',
+    ios2: 'Rul ned og vælg "Føj til hjemmeskærm"',
+    ios3: 'Tryk på "Tilføj" øverst til højre',
+    pc_title: '💻 PC / Laptop (Chrome eller Edge)',
+    pc1: 'Klik på installationsikonet i højre side af adresselinjen (⊕)',
+    pc2: 'Klik på "Installer" — appen vises på dit skrivebord',
+    install_btn: 'Installer nu',
+  }
+};
+
+function showInstallModal() {
+  const l = lang || 'nl';
+  const ui = INSTALL_UI[l] || INSTALL_UI.nl;
+  document.getElementById('install-modal-title').textContent = ui.title;
+  // Android
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIosDev2 = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isStandalone2 = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  document.getElementById('install-android').style.display = (isAndroid || deferredPrompt) ? '' : 'none';
+  document.getElementById('install-ios').style.display = isIosDev2 ? '' : 'none';
+  // Show install button if prompt available
+  const actionWrap = document.getElementById('install-action-wrap');
+  const actionWrapPc = document.getElementById('install-action-wrap-pc');
+  if (deferredPrompt) {
+    actionWrap.style.display = '';
+    document.getElementById('im-install-btn').textContent = ui.install_btn;
+    document.getElementById('im-install-btn-pc').style.display = '';
+    document.getElementById('im-install-btn-pc').textContent = ui.install_btn;
+    actionWrapPc.style.display = '';
+  }
+  document.getElementById('install-modal').classList.add('show');
+}
+
+function hideInstallModal() {
+  document.getElementById('install-modal').classList.remove('show');
+}
+window.showInstallModal = showInstallModal;
+window.hideInstallModal = hideInstallModal;
+
+// Close modal on backdrop click
+document.getElementById('install-modal').addEventListener('click', function(e) {
+  if (e.target === this) hideInstallModal();
+});
 
 // ── PWA INSTALL ──────────────────────────────────────────────
 const PWA_TEXTS = {
