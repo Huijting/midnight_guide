@@ -46,18 +46,49 @@
 
 ---
 
+## 📅 Seizoensschema — Midnight
+
+### ✅ Seizoen 1 (live)
+
+| Datum | Content |
+|---|---|
+| 2 maart 2026 | Expansion launch — alle 8 dungeons (Normal/Heroic/Mythic 0) |
+| 17 maart 2026 | **Seizoen 1 start** — M+ seizoen, Raids (Voidspire + Dreamrift Normal/Heroic/LFR), PvP S1, Bountiful Delves |
+| 24 maart 2026 | Mythic+ gerankt open, Mythic Voidspire & Dreamrift, LFR Wing 2 Voidspire |
+| 31 maart 2026 | **March on Quel'Danas** (Normal/Heroic/Mythic), LFR Wing 3 Voidspire |
+| 7 april 2026 | Story Mode + LFR March on Quel'Danas |
+
+### ⏳ Seizoen 2 (nog niet aangekondigd)
+
+Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht: nieuwe M+ pool met een mix van Midnight- en legacy dungeons, nieuw raid tier, nieuw PvP seizoen.
+
+*Bron: [Blizzard officieel](https://news.blizzard.com/en-us/article/24266321/midnight-season-1-begins-march-17), [Blizzard Watch](https://blizzardwatch.com/2026/03/02/midnight-season-1-release-schedule/)*
+
+---
+
 ## 🔨 Professions — Tier Overzicht
 
-| Tier | Professions |
-|---|---|
-| S | Alchemy |
-| A | Enchanting, Inscription, Jewelcrafting, Tailoring, Mining, Herbalism, Skinning, Leatherworking, Blacksmithing |
-| B | Engineering, Cooking |
-| C | Fishing |
+| Tier | Professions | Reden |
+|---|---|---|
+| S | Inscription, Mining, Herbalism | Inscription: meest veelzijdig (consumables + housing + crafting orders). Mining & Herbalism: beste early gold, geen setup nodig |
+| A | Alchemy, Jewelcrafting | Alchemy: stable demand (raids/M+/PvP). Jewelcrafting: nuttig het hele seizoen door quality-systeem |
+| B | Enchanting, Tailoring, Leatherworking, Skinning, Engineering | Solid maar geen uitschieters in Midnight |
+| C | Blacksmithing, Cooking, Fishing | Blacksmithing vereenvoudigd, zwakke stat scaling |
+
+*Tier-rating gebaseerd op gold-making potentie in Seizoen 1. Bron: [Overgear](https://overgear.com/guides/wow/midnight-best-profession/), [mmogah](https://www.mmogah.com/news/wow/wow-midnight-profession-tier-list-best-gold-making-professions-for-launch)*
 
 ---
 
 ## 📋 Changelog
+
+### v5.1 — 2026-03-11
+- About-modal laadt nu live README.md van GitHub (nooit meer hardcoded tekst)
+- PWA auto-banners vervangen door 📲 knopje in header
+- Profession tier-ratings bijgewerkt naar actuele Midnight-data
+- Bronvermelding zichtbaar per profession (Method.gg, WoW-Professions, Overgear)
+- Seizoensschema toegevoegd aan README
+- 💬 Feedback-knop toegevoegd
+
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
