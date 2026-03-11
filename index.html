@@ -303,8 +303,19 @@
   #footer-btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
 
   /* ── ABOUT BUTTON ── */
-  #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
-  #about-btn:hover{border-color:var(--accent);color:var(--accent)}
+  #feedback-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
+  #feedback-btn:hover{border-color:var(--accent);color:var(--accent)}
+  #feedback-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1400;align-items:center;justify-content:center;padding:20px}
+  #feedback-modal.open{display:flex}
+  #feedback-inner{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px 20px;max-width:400px;width:100%;position:relative}
+  #feedback-title{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);margin-bottom:4px}
+  #feedback-sub{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+  #feedback-text{width:100%;background:#06060f;border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:13px;resize:vertical;font-family:inherit;min-height:90px}
+  #feedback-text:focus{outline:none;border-color:var(--gold)}
+  #feedback-send{background:var(--gold);color:#000;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;flex:1}
+  #feedback-send:hover{opacity:.85}
+  #feedback-gh{display:block;border:1px solid var(--border);color:var(--muted);padding:9px 12px;border-radius:8px;font-size:12px;text-decoration:none;text-align:center;white-space:nowrap}
+  #feedback-gh:hover{border-color:var(--gold);color:var(--gold)}
 
 
 
@@ -473,7 +484,8 @@
   .item-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
   .item-tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;background:var(--tip-bg);color:var(--gold);margin-top:4px;display:inline-block}
   .orders-text{font-size:13px;color:var(--muted);line-height:1.7}
-  .prof-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .prof-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .prof-source-label{font-size:11px;color:var(--muted);margin-right:2px}
   .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
   .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
   @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
@@ -896,6 +908,12 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Toevoegen aan startscherm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
+    feedback_btn: "💬 Feedback",
+    feedback_title: "💬 Opbouwende kritiek",
+    feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
+    feedback_ph: "Bijv: de tier van Inscription klopt niet, of baas X mist een mechanic...",
+    feedback_send: "📨 Verstuur via mail",
+    feedback_gh: "🐙 Open GitHub issue",
     about_title:  "⚔ Over deze app",
     route_notice: "⚠️ Nog geen ideale route beschikbaar. Ken jij een goede route? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Stuur een GitHub Issue →</a>",
   },
@@ -942,6 +960,12 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Add to Home Screen\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
+    feedback_btn: "💬 Feedback",
+    feedback_title: "💬 Constructive feedback",
+    feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
+    feedback_ph: "E.g. the Inscription tier is wrong, or boss X is missing a mechanic...",
+    feedback_send: "📨 Send via mail",
+    feedback_gh: "🐙 Open GitHub issue",
     about_title:  "⚔ About this app",
     route_notice: "⚠️ No ideal route available yet. Know a good one? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Submit a GitHub Issue →</a>",
   },
@@ -988,6 +1012,12 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Føj til startskærm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
+    feedback_btn: "💬 Feedback",
+    feedback_title: "💬 Konstruktiv kritik",
+    feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
+    feedback_ph: "F.eks. Inscription-tier er forkert, eller boss X mangler en mechanic...",
+    feedback_send: "📨 Send via mail",
+    feedback_gh: "🐙 Åbn GitHub issue",
     about_title:  "⚔ Om denne app",
     route_notice: "⚠️ Ingen ideel rute tilgængelig endnu. Kender du en god rute? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Indsend et GitHub Issue →</a>",
   }
@@ -1078,6 +1108,7 @@ function applyUIStrings() {
   document.getElementById('tab-btn-route').textContent = u.tab_route;
   document.getElementById('back-btn').innerHTML = u.back;
   document.getElementById('about-btn').textContent = u.about_btn;
+  document.getElementById('feedback-btn').textContent = u.feedback_btn;
   document.getElementById('about-title').textContent = u.about_title;
 }
 
@@ -1452,9 +1483,9 @@ document.addEventListener('DOMContentLoaded', function() {
 let currentProf = null;
 
 const PROF_UI = {
-  nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'⚙ Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Methode-gids',wowp_btn:'🔗 Wowhead'},
-  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'⚙ Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method Guide',wowp_btn:'🔗 Wowhead'},
-  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'⚙ Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method-guide',wowp_btn:'🔗 Wowhead'}
+  nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'⚙ Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Bronnen:'},
+  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'⚙ Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Sources:'},
+  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'⚙ Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Kilder:'}
 };
 
 function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
@@ -1523,9 +1554,10 @@ function showProf(id){
        <div class="trainer-way">${p.trainer.way}</div>
        ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
      </div>
-     ${p.method_url||p.wowp_url?`<div class="prof-links">
+     ${p.method_url||p.wowp_url?`<div class="prof-links"><span class="prof-source-label">${ui.source_label}</span>
        ${p.method_url?`<a class="prof-link-btn" href="${p.method_url}" target="_blank">${ui.method_btn}</a>`:''}
        ${p.wowp_url?`<a class="prof-link-btn" href="${p.wowp_url}" target="_blank">${ui.wowp_btn}</a>`:''}
+       <a class="prof-link-btn" href="https://overgear.com/guides/wow/midnight-best-profession/" target="_blank">📊 Overgear Tier</a>
      </div>`:''}`;
   document.getElementById('ptab-specs').innerHTML=
     `<div class="pdet-section"><h3>${ui.spec_head}</h3>
@@ -1592,6 +1624,7 @@ function updateProfLang(){
     <div id="footer-btn-row">
       <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
       <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
+      <button id="feedback-btn" onclick="openFeedback()">💬 Feedback</button>
     </div>
     <div id="qr-popup">
       <div id="qr-canvas"></div>
@@ -1751,6 +1784,32 @@ function toggleQR() {
   }
 }
 
+// ── FEEDBACK ─────────────────────────────────────────────────
+function openFeedback() {
+  const u = UI_STRINGS[lang] || UI_STRINGS.nl;
+  document.getElementById('feedback-title').textContent = u.feedback_title;
+  document.getElementById('feedback-sub').textContent   = u.feedback_sub;
+  document.getElementById('feedback-text').placeholder  = u.feedback_ph;
+  document.getElementById('feedback-send').textContent  = u.feedback_send;
+  document.getElementById('feedback-gh').textContent    = u.feedback_gh;
+  document.getElementById('feedback-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('feedback-text').focus(), 100);
+}
+function closeFeedback() {
+  document.getElementById('feedback-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function sendFeedback() {
+  const txt = document.getElementById('feedback-text').value.trim();
+  if (!txt) return;
+  const subject = encodeURIComponent('WoW Midnight Guide — Feedback');
+  const body    = encodeURIComponent(txt + '\n\n— verstuurd via de app');
+  window.open(`mailto:rob.huijting@gmail.com?subject=${subject}&body=${body}`);
+  closeFeedback();
+  document.getElementById('feedback-text').value = '';
+}
+
 // ── PWA INSTALL MODAL ────────────────────────────────────────
 const PWA_CONTENT = {
   nl: {
@@ -1824,5 +1883,19 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-</body>
+<!-- Feedback Modal -->
+<div id="feedback-modal" onclick="if(event.target===this)closeFeedback()">
+  <div id="feedback-inner">
+    <button class="modal-close-x" onclick="closeFeedback()">×</button>
+    <div id="feedback-title">💬 Feedback</div>
+    <div id="feedback-sub"></div>
+    <textarea id="feedback-text" rows="5" placeholder="..."></textarea>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="feedback-send" onclick="sendFeedback()"></button>
+      <a id="feedback-gh" href="https://github.com/Huijting/midnight_guide/issues/new" target="_blank"></a>
+    </div>
+  </div>
+</div>
+
+
 </html>
