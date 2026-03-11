@@ -2,7 +2,7 @@
 const ALCHEMY = {
   id:'alchemy', icon:'⚗', cat:'crafting', accent:'#7a4caf',
   name:{nl:'Alchemy',en:'Alchemy',da:'Alkymi'},
-  tier:'S',
+  tier:'A',
   lore:{
     nl:'Alchemy is een <em>crafting profession</em> die kruiden omzet in <strong>potions, flasks, elixirs en transmutaties</strong>. Het is de meest universeel gevraagde crafting profession in het spel, simpelweg omdat iedereen potions en flasks gebruikt — elke raider, elke Mythic+ speler, elke arena-speler. Dit zijn verbruiksartikelen die na elk gebruik op zijn. Dat betekent: <strong>de vraag stopt nooit</strong>.<br><br>Alchemy heeft drie specialisatierichtingen die elk een heel ander inkomen genereren: <em>Potions</em> (verkoopbaar door iedereen), <em>Flasks</em> (wekelijkse reset = wekelijkse verkoop), en <em>Transmutation</em> (zeldzame materialen omzetten naar nog zeldzaardere — de meest exclusieve markt). Als je Herbalism combineert met Alchemy heb je de meest winstgevende profession-setup van het spel.',
     en:'Alchemy is a <em>crafting profession</em> that converts herbs into <strong>potions, flasks, elixirs and transmutations</strong>. It is the most universally demanded crafting profession in the game, simply because everyone uses potions and flasks — every raider, every Mythic+ player, every arena player. These are consumables that run out after each use. That means: <strong>demand never stops</strong>.<br><br>Alchemy has three specialization paths each generating very different income: <em>Potions</em> (sellable by everyone), <em>Flasks</em> (weekly reset = weekly sales), and <em>Transmutation</em> (converting rare materials to even rarer ones — the most exclusive market). Combining Herbalism with Alchemy gives you the most profitable profession setup in the game.',
