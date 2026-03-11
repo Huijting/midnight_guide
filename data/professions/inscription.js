@@ -2,7 +2,7 @@
 const INSCRIPTION = {
   id:'inscription', icon:'📜', cat:'crafting', accent:'#2980b9',
   name:{nl:'Inscription',en:'Inscription',da:'Inskription'},
-  tier:'A',
+  tier:'S',
   lore:{
     nl:'Inscription is een <em>crafting profession</em> waarbij je kruiden vermaalt tot inkt en die inkt gebruikt om <strong>glyphs, tomes, vantabladen en Darkmoon-kaarten</strong> te maken. Inscription heeft drie volledig verschillende marktsegmenten: de wekelijkse consumable-markt (Contracts), de eenmalige unlockables (Glyphs), en de zeldzame high-value markt (Darkmoon-kaarten). Elke markt werkt anders en geeft een andere inkomststroom.<br><br>Combineer met Herbalism voor gratis inkt-grondstoffen.',
     en:'Inscription is a <em>crafting profession</em> where you grind herbs into ink and use that ink to craft <strong>glyphs, tomes, contracts and Darkmoon cards</strong>. Inscription has three completely different market segments: the weekly consumable market (Contracts), the one-time unlockables (Glyphs), and the rare high-value market (Darkmoon cards). Each market works differently and provides a different income stream.<br><br>Combine with Herbalism for free ink raw materials.',
