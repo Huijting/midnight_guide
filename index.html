@@ -330,6 +330,21 @@
   #about-close-x{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
   #about-close-x:hover{color:var(--text)}
   #about-content{overflow-y:auto;padding:16px 20px 32px;-webkit-overflow-scrolling:touch}
+  .about-readme{font-size:13px;line-height:1.7;color:var(--text)}
+  .about-h1{font-family:'Cinzel',serif;font-size:17px;color:var(--gold);margin:16px 0 6px}
+  .about-h2{font-size:14px;font-weight:700;color:var(--gold);margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+  .about-h3{font-size:13px;font-weight:700;color:var(--text);margin:10px 0 4px}
+  .about-p{color:var(--muted);margin-bottom:4px}
+  .about-hr{border:none;border-top:1px solid var(--border);margin:10px 0}
+  .about-spacer{height:6px}
+  .about-readme .about-ul{padding-left:18px;margin-bottom:8px;color:var(--muted)}
+  .about-readme .about-ul li{margin-bottom:2px}
+  .about-readme .about-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px}
+  .about-readme .about-table th{background:var(--panel);color:var(--gold);padding:5px 8px;text-align:left;border:1px solid var(--border)}
+  .about-readme .about-table td{padding:4px 8px;border:1px solid var(--border);color:var(--muted)}
+  .about-readme code{background:var(--panel);color:var(--gold);padding:1px 5px;border-radius:3px;font-size:11px;font-family:monospace}
+  .about-readme .about-link{color:var(--gold);text-decoration:none}
+  .about-readme .about-link:hover{text-decoration:underline}
   .about-section{margin-bottom:22px}
   .about-h2{font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
   .about-h3{font-size:12px;font-weight:700;color:var(--accent);margin:12px 0 4px}
@@ -1625,204 +1640,84 @@ function updateProfLang(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 function renderAboutContent() {
-  const l = lang;
-  const ABOUT_STRINGS = {
-    nl: {
-      live_h:      '🌐 Live',
-      feat_h:      '✨ Features',
-      feat: [
-        '🇳🇱 🇬🇧 🇩🇰 Drietalig — alles wisselt direct',
-        '⭐ Spec Selector — role-tab automatisch, spec-tips gemarkeerd',
-        '🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)',
-        '🗺 Routeplanner met pull-volgorde en Bloodlust-timing',
-        '🌙 Licht/donker thema',
-        '📱 Installeerbaar als app (Android & iOS)',
-        '📷 QR-code om te delen',
-      ],
-      specs_h:     '✅ Volledig uitgewerkte specs',
-      spec_col1:   'Spec', spec_col2: 'Rol', generic: 'Alle andere specs', generic_r: 'generiek',
-      coming_h:    '🚧 Binnenkort',
-      raids_h:     'Raids Seizoen 1',
-      raid_col1:   'Raid', raid_col2: 'Bazen', raid_col3: 'Open',
-      raid_note:   'Elke raid krijgt baas-voor-baas gidsen met Tank/Healer/DPS-tabs, spec-tips, moeilijkheidsfilter en route-notities.',
-      prof_h:      'Profession Guides',
-      prof_note:   'Crafting-gidsen voor key-professies om snel te gearren in Seizoen 1.',
-      changelog_h: '📋 Changelog',
-      disclaimer:  'Fan-project · Geen officiële band met Blizzard Entertainment.<br>World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.<br>Gids-info gebaseerd op Icy Veins, Wowhead, Method & eigen ervaringen.',
-      built:       '⚔ Gebouwd door Claudy & Inchy',
-      cl: [
-        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig'},
-        {v:'v2.2', d:'2026-03-10', t:'13 nieuwe specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
-        {v:'v2.1', d:'2026-03-10', t:'6 nieuwe specs · Auto role-refresh fix · QR + About naast elkaar'},
-        {v:'v2.0', d:'2026-03-10', t:'Spec-tips systeem · Auto role-tab · ★ highlights · About-pagina'},
-        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klassen · Bloodlust-namen per spec'},
-        {v:'v1.2', d:'2026-03-08', t:'QR-code knop'},
-        {v:'v1.1', d:'2026-03-07', t:'PWA installatiebanner (Android + iOS, drietalig)'},
-        {v:'v1.0', d:'2026-03-06', t:'Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner'},
-      ]
-    },
-    en: {
-      live_h:      '🌐 Live',
-      feat_h:      '✨ Features',
-      feat: [
-        '🇳🇱 🇬🇧 🇩🇰 Trilingual — everything switches instantly',
-        '⭐ Spec Selector — role tab auto-selects, spec tips highlighted',
-        '🛡 💚 ⚔ Role tabs per boss (Tank / Healer / DPS)',
-        '🗺 Route Planner with pull order and Bloodlust timing',
-        '🌙 Light/dark theme',
-        '📱 Installable as app (Android & iOS)',
-        '📷 QR code to share',
-      ],
-      specs_h:     '✅ Fully covered specs',
-      spec_col1:   'Spec', spec_col2: 'Role', generic: 'All other specs', generic_r: 'generic',
-      coming_h:    '🚧 Coming Soon',
-      raids_h:     'Season 1 Raids',
-      raid_col1:   'Raid', raid_col2: 'Bosses', raid_col3: 'Opens',
-      raid_note:   'Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec tips, difficulty filter and route notes.',
-      prof_h:      'Profession Guides',
-      prof_note:   'Crafting guides for key professions to gear up quickly in Season 1.',
-      changelog_h: '📋 Changelog',
-      disclaimer:  'Fan project · No official affiliation with Blizzard Entertainment.<br>World of Warcraft is a trademark of Blizzard Entertainment, Inc.<br>Guide info based on Icy Veins, Wowhead, Method & personal experience.',
-      built:       '⚔ Built by Claudy & Inchy',
-      cl: [
-        {v:'v3.0', d:'2026-03-10', t:'All 40 specs fully covered · About modal fully trilingual'},
-        {v:'v2.2', d:'2026-03-10', t:'13 new specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
-        {v:'v2.1', d:'2026-03-10', t:'6 new specs · Auto role-refresh fix · QR + About side by side'},
-        {v:'v2.0', d:'2026-03-10', t:'Spec tips system · Auto role tab · ★ highlights · About page'},
-        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 classes · Bloodlust names per spec'},
-        {v:'v1.2', d:'2026-03-08', t:'QR code button'},
-        {v:'v1.1', d:'2026-03-07', t:'PWA install banner (Android + iOS, trilingual)'},
-        {v:'v1.0', d:'2026-03-06', t:'Initial release: 8 dungeons, 3 languages, role tabs, route planner'},
-      ]
-    },
-    da: {
-      live_h:      '🌐 Live',
-      feat_h:      '✨ Features',
-      feat: [
-        '🇳🇱 🇬🇧 🇩🇰 Tresproget — alt skifter øjeblikkeligt',
-        '⭐ Spec Selector — role-tab auto-vælges, spec-tips fremhævet',
-        '🛡 💚 ⚔ Role-tabs per boss (Tank / Healer / DPS)',
-        '🗺 Ruteplanlægger med pull-rækkefølge og Bloodlust-timing',
-        '🌙 Lyst/mørkt tema',
-        '📱 Kan installeres som app (Android & iOS)',
-        '📷 QR-kode til deling',
-      ],
-      specs_h:     '✅ Fuldt dækkede specs',
-      spec_col1:   'Spec', spec_col2: 'Rolle', generic: 'Alle andre specs', generic_r: 'generisk',
-      coming_h:    '🚧 Kommer snart',
-      raids_h:     'Sæson 1 Raids',
-      raid_col1:   'Raid', raid_col2: 'Bosser', raid_col3: 'Åbner',
-      raid_note:   'Hver raid får boss-for-boss guider med Tank/Healer/DPS-tabs, spec-tips, sværhedsfilter og rutenoter.',
-      prof_h:      'Profession Guides',
-      prof_note:   'Crafting-guider til nøgleprofessioner for hurtigt at gear op i Sæson 1.',
-      changelog_h: '📋 Changelog',
-      disclaimer:  'Fan-projekt · Ingen officiel tilknytning til Blizzard Entertainment.<br>World of Warcraft er et varemærke tilhørende Blizzard Entertainment, Inc.<br>Guideinfo baseret på Icy Veins, Wowhead, Method & egne erfaringer.',
-      built:       '⚔ Bygget af Claudy & Inchy',
-      cl: [
-        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs fuldt dækket · About-modal fuldt tresproget'},
-        {v:'v2.2', d:'2026-03-10', t:'13 nye specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
-        {v:'v2.1', d:'2026-03-10', t:'6 nye specs · Auto role-refresh rettet · QR + About ved siden af hinanden'},
-        {v:'v2.0', d:'2026-03-10', t:'Spec-tips system · Auto role-tab · ★ highlights · About-side'},
-        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klasser · Bloodlust-navne per spec'},
-        {v:'v1.2', d:'2026-03-08', t:'QR-kodeknap'},
-        {v:'v1.1', d:'2026-03-07', t:'PWA installationsbanner (Android + iOS, tresproget)'},
-        {v:'v1.0', d:'2026-03-06', t:'Første udgave: 8 dungeons, 3 sprog, role-tabs, ruteplanlægger'},
-      ]
-    }
-  };
+  const el = document.getElementById('about-content');
+  el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Laden...</div>';
 
-  const COVERED_SPECS = [
-    {icon:'🛡', name:'Protection Paladin',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'😈', name:'Vengeance Demon Hunter', role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'🐻', name:'Guardian Druid',         role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'⚔',  name:'Protection Warrior',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'🍺', name:'Brewmaster Monk',        role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'💀', name:'Blood Death Knight',     role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
-    {icon:'💚', name:'Restoration Druid',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'✨', name:'Holy Paladin',           role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'🌸', name:'Mistweaver Monk',        role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'✝',  name:'Discipline Priest',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'🏹', name:'Beast Mastery Hunter',   role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🎯', name:'Marksmanship Hunter',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🗡', name:'Survival Hunter',        role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'⚡', name:'Elemental Shaman',       role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🌊', name:'Enhancement Shaman',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'💧', name:'Restoration Shaman',     role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'😈', name:'Havoc Demon Hunter',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🌀', name:'Devourer Demon Hunter',  role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🌙', name:'Balance Druid',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🐱', name:'Feral Druid',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'⚔', name:'Retribution Paladin',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🥊', name:'Windwalker Monk',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'❄', name:'Frost Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🔥', name:'Fire Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'💠', name:'Arcane Mage',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'⚔', name:'Fury Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'⚔', name:'Arms Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🗡', name:'Outlaw Rogue',           role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🗡', name:'Assassination Rogue',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🗡', name:'Subtlety Rogue',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'💀', name:'Unholy Death Knight',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'❄', name:'Frost Death Knight',      role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🌿', name:'Holy Priest',            role:{nl:'Healer', en:'Healer', da:'Healer'}},
-    {icon:'✝',  name:'Shadow Priest',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🔮', name:'Affliction Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'👿', name:'Demonology Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🔥', name:'Destruction Warlock',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🐉', name:'Devastation Evoker',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🐉', name:'Augmentation Evoker',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
-    {icon:'🐉', name:'Preservation Evoker',    role:{nl:'Healer', en:'Healer', da:'Healer'}},
-  ];
-
-  const s = ABOUT_STRINGS[l];
-  const specRows = COVERED_SPECS.map(sp =>
-    `<tr><td>${sp.icon} ${sp.name}</td><td>${sp.role[l]}</td><td class="done">✅</td></tr>`
-  ).join('');
-
-  const clRows = s.cl.map(e =>
-    `<div class="changelog-entry"><span class="cl-version">${e.v}</span><span class="cl-date">${e.d}</span><div class="cl-items">${e.t}</div></div>`
-  ).join('');
-
-  document.getElementById('about-content').innerHTML = `
-    <div class="about-section">
-      <div class="about-h2">${s.live_h}</div>
-      <a href="https://huijting.github.io/midnight_guide/" target="_blank" class="about-link">huijting.github.io/midnight_guide</a>
-    </div>
-    <div class="about-section">
-      <div class="about-h2">${s.feat_h}</div>
-      <ul class="about-ul">${s.feat.map(f => `<li>${f}</li>`).join('')}</ul>
-    </div>
-    <div class="about-section">
-      <div class="about-h2">${s.specs_h}</div>
-      <table class="about-table">
-        <tr><th>${s.spec_col1}</th><th>${s.spec_col2}</th><th></th></tr>
-        ${specRows}
-      </table>
-    </div>
-    <div class="about-section about-coming">
-      <div class="about-h2">${s.coming_h}</div>
-      <div class="about-h3">${s.raids_h}</div>
-      <table class="about-table">
-        <tr><th>${s.raid_col1}</th><th>${s.raid_col2}</th><th>${s.raid_col3}</th></tr>
-        <tr><td>⚔ The Voidspire</td><td>6</td><td class="date-badge">17 mrt</td></tr>
-        <tr><td>🌿 Dreamrift</td><td>1</td><td class="date-badge">17 mrt</td></tr>
-        <tr><td>☀ March on Quel'Danas</td><td>2</td><td class="date-badge">31 mrt</td></tr>
-      </table>
-      <div class="about-note">${s.raid_note}</div>
-      <div class="about-h3">${s.prof_h}</div>
-      <div class="about-note">${s.prof_note}</div>
-    </div>
-    <div class="about-section">
-      <div class="about-h2">${s.changelog_h}</div>
-      ${clRows}
-    </div>
-    <div class="about-footer-note">
-      ${s.disclaimer}<br><br>
-      <em>${s.built}</em>
-    </div>
-  `;
+  fetch('https://raw.githubusercontent.com/Huijting/midnight_guide/main/README.md')
+    .then(r => r.ok ? r.text() : Promise.reject(r.status))
+    .then(md => { el.innerHTML = mdToHtml(md); })
+    .catch(() => {
+      el.innerHTML = '<div style="padding:24px;color:var(--muted);font-size:13px">⚠️ README kon niet worden geladen.<br><a href=\"https://github.com/Huijting/midnight_guide\" target=\"_blank\" style=\"color:var(--gold)\">Open op GitHub →</a></div>';
+    });
 }
 
+function mdToHtml(md) {
+  // Strip HTML comments
+  md = md.replace(/<!--[\s\S]*?-->/g, '');
+  const lines = md.split('\n');
+  let html = '';
+  let inTable = false, inList = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    let l = lines[i];
+
+    // Table row
+    if (l.trim().startsWith('|')) {
+      if (!inTable) { html += '<table class="about-table">'; inTable = true; }
+      if (l.replace(/[|\-\s]/g, '') === '') continue; // separator row
+      const cells = l.split('|').slice(1,-1).map(c => c.trim());
+      const tag = (i === 0 || !lines[i-1]?.trim().startsWith('|')) ? 'th' : 'td';
+      html += '<tr>' + cells.map(c => `<${tag}>${inline(c)}</${tag}>`).join('') + '</tr>';
+      continue;
+    }
+    if (inTable) { html += '</table>'; inTable = false; }
+
+    // List item
+    if (/^[-*] /.test(l.trim())) {
+      if (!inList) { html += '<ul class="about-ul">'; inList = true; }
+      html += '<li>' + inline(l.trim().slice(2)) + '</li>';
+      continue;
+    }
+    if (inList) { html += '</ul>'; inList = false; }
+
+    // Headings
+    if (l.startsWith('### ')) { html += '<div class="about-h3">' + inline(l.slice(4)) + '</div>'; continue; }
+    if (l.startsWith('## '))  { html += '<div class="about-h2">' + inline(l.slice(3)) + '</div>'; continue; }
+    if (l.startsWith('# '))   { html += '<div class="about-h1">' + inline(l.slice(2)) + '</div>'; continue; }
+
+    // HR
+    if (/^---+$/.test(l.trim())) { html += '<hr class="about-hr">'; continue; }
+
+    // Code block (skip)
+    if (l.startsWith('```')) { 
+      while (i + 1 < lines.length && !lines[i+1].startsWith('```')) i++;
+      i++;
+      continue;
+    }
+
+    // Blank line
+    if (l.trim() === '') { html += '<div class="about-spacer"></div>'; continue; }
+
+    // Paragraph
+    html += '<div class="about-p">' + inline(l) + '</div>';
+  }
+
+  if (inTable) html += '</table>';
+  if (inList)  html += '</ul>';
+  return '<div class="about-readme">' + html + '</div>';
+}
+
+function inline(s) {
+  // Bold
+  s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Italic
+  s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  // Inline code
+  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // Link
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="about-link">$1</a>');
+  return s;
+}
 function openAbout() {
   // Sluit spec-modal als die open is
   document.getElementById('spec-modal').classList.remove('visible');
