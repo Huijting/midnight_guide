@@ -2,7 +2,7 @@
 const ENCHANTING = {
   id:'enchanting', icon:'✨', cat:'crafting', accent:'#9b59b6',
   name:{nl:'Enchanting',en:'Enchanting',da:'Fortryllelse'},
-  tier:'A',
+  tier:'B',
   lore:{
     nl:'Enchanting is een <em>crafting profession</em> waarbij je magische krachten toevoegt aan uitrusting van andere spelers. Je "enchant" wapens, sieraden en armor met permanente stat-bonussen. Enchanting is uniek omdat het <strong>geen externe grondstoffen</strong> nodig heeft — je haalt je eigen materialen uit de wereld door ongewenst gear te <em>disenchanten</em> (vernietigen voor magische stofjes).<br><br>Elke speler in het spel wil zijn nieuwe gear enchanten zodra hij het aantrekt. Dat maakt Enchanting een van de meest constante inkomstenstromen. Nieuw in Midnight: <strong>Void-Infused Enchants</strong> met speciale visuele effecten, en <strong>Prismatic Crystals</strong> die combinaties van meerdere stats tegelijk geven.',
     en:'Enchanting is a <em>crafting profession</em> where you add magical powers to other players\' equipment. You enchant weapons, jewelry and armor with permanent stat bonuses. Enchanting is unique because it needs <strong>no external raw materials</strong> — you obtain your own materials by <em>disenchanting</em> (destroying) unwanted gear for magical dust.<br><br>Every player wants to enchant their new gear the moment they put it on. That makes Enchanting one of the most constant income streams. New in Midnight: <strong>Void-Infused Enchants</strong> with special visual effects, and <strong>Prismatic Crystals</strong> giving combinations of multiple stats at once.',
