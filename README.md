@@ -1,26 +1,55 @@
-# ⚔ WoW: Midnight Guide — Season 1
+# ⚔ WoW Midnight Guide — v5.0
 
-> **Gebouwd door Claudy & Inchy** — drietalige dungeon & professiegids voor World of Warcraft: Midnight
+**Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
-🌐 **[Bekijk de gids](https://huijting.github.io/midnight_guide/)**
+🌐 **Live:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
 
 ---
 
-## 📦 Inhoud
+## ✨ Features
 
-### ⚔ Dungeons (Season 1)
-8 Mythic+ dungeons + 4 normale dungeons — volledig uitgewerkt met bossgids, spec-tips en routekaarten.
+- 🇳🇱 🇬🇧 🇩🇰 Drietalig — NL / EN / DA, alles wisselt direct
+- ⚔ **Dungeon gids** — 8 Mythic+ + 4 Normal dungeons, seizoen 1
+- 🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)
+- ⭐ Spec Selector — 40 specs, Bloodlust-namen per klasse
+- 🗺 Routeplanner met pull-volgorde, Bloodlust-timing en kaarten
+- 🔨 **Profession gids** — alle 13 professions, NL/EN/DA, tier-ratings
+- 🌙 Licht/donker thema
+- 📱 Installeerbaar als PWA (Android & iOS)
+- 📷 QR-code om te delen
 
-| Type | Aantal | Dungeons |
-|------|--------|---------|
-| M+ Season 1 | 8 | Windrunner Spire, Magisters' Terrace, Maisara Caverns, Nexus-Point Xenas, Algeth'ar Academy, Pit of Saron, Seat of the Triumvirate, Skyreach |
-| Normaal | 4 | Murder Row, The Blinding Vale, Den of Nalorakk, Voidscar Arena |
+---
 
-### 🔨 Professies (Season 1)
-Gids voor alle 13 professies met trainer-locatie, specialisaties, items en crafting orders.
+## 🏰 Dungeons — Seizoen 1
 
-| Tier | Professies |
-|------|-----------|
+### ⚔ Mythic+ (8 dungeons)
+
+| Dungeon | Zone |
+|---|---|
+| Windrunner Spire | Eversong Woods |
+| Magisters' Terrace | Isle of Quel'Danas |
+| Maisara Caverns | Azj-Kahet |
+| Nexus-Point Xenas | The Nexus |
+| Algeth'ar Academy | Thaldraszus |
+| Pit of Saron | Icecrown |
+| Seat of the Triumvirate | Argus |
+| Skyreach | Spires of Arak |
+
+### 📖 Normal Only (4 dungeons)
+
+| Dungeon | Zone |
+|---|---|
+| Murder Row | Silvermoon City |
+| The Blinding Vale | Quel'Thalas |
+| Den of Nalorakk | Zul'Aman |
+| Voidscar Arena | The Void |
+
+---
+
+## 🔨 Professions — Tier Overzicht
+
+| Tier | Professions |
+|---|---|
 | S | Alchemy |
 | A | Enchanting, Inscription, Jewelcrafting, Tailoring, Mining, Herbalism, Skinning, Leatherworking, Blacksmithing |
 | B | Engineering, Cooking |
@@ -28,58 +57,36 @@ Gids voor alle 13 professies met trainer-locatie, specialisaties, items en craft
 
 ---
 
-## 🗂 Repo-structuur
-
-```
-midnight_guide/
-├── index.html                  ← App shell (102KB) — dungeons + professies
-├── sw.js                       ← Service worker — cachet alles offline
-├── manifest.json               ← PWA manifest
-├── icons/
-│   ├── icon-192.png
-│   └── icon-512.png
-└── data/
-    ├── dungeons/
-    │   └── season1.js          ← Alle dungeon data (150KB)
-    └── professions/
-        ├── alchemy.js
-        ├── blacksmithing.js
-        ├── cooking.js
-        ├── enchanting.js
-        ├── engineering.js
-        ├── fishing.js
-        ├── herbalism.js
-        ├── inscription.js
-        ├── jewelcrafting.js
-        ├── leatherworking.js
-        ├── mining.js
-        ├── skinning.js
-        └── tailoring.js
-```
-
----
-
-## ⚙️ Features
-
-- 🌍 **Drietalig** — Nederlands / English / Dansk
-- 📱 **PWA** — installeerbaar op telefoon/tablet, werkt offline
-- 🔍 **Spec-tips** — rolspecifieke tips per baas (40+ specs)
-- 🗺 **Routekaarten** — vloerplannen + route screenshots
-- 💬 **Keystone.guru** — directe link naar M+ routes
-- 🔨 **Professiegids** — tier-ratings, trainer-locaties, specs, crafting orders
-
----
-
-## 📋 Versiegeschiedenis
+## 📋 Changelog
 
 | Versie | Datum | Wijzigingen |
-|--------|-------|-------------|
-| v5.0 | 2026-03-11 | Professies toegevoegd, modulaire data-structuur |
-| v4.3 | 2026-03-10 | Spec-tips, floor switcher, routekaarten |
-| v4.0 | 2026-02-xx | Season 1 dungeons compleet |
-| v3.x | 2026-01-xx | M+ basics, drietalig |
-| v1.0 | 2025-xx-xx | Eerste versie |
+|---|---|---|
+| v5.0 | 2026-03-11 | Profession gids toegevoegd — alle 13 professions, NL/EN/DA, tier-ratings, modulaire data-structuur |
+| v4.0 | 2026-03-11 | Modulaire refactor — data naar losse JS-bestanden |
+| v3.0 | 2026-03-10 | Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig |
+| v2.2 | 2026-03-10 | 13 nieuwe specs · Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK |
+| v2.1 | 2026-03-10 | 6 nieuwe specs · Auto role-refresh fix · QR + About naast elkaar |
+| v2.0 | 2026-03-10 | Spec-tips systeem · Auto role-tab · ★ highlights · About-pagina |
+| v1.3 | 2026-03-09 | Spec selector · 13 klassen · Bloodlust-namen per spec |
+| v1.2 | 2026-03-08 | QR-code knop |
+| v1.1 | 2026-03-07 | PWA installatiebanner (Android + iOS, drietalig) |
+| v1.0 | 2026-03-06 | Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner |
 
 ---
 
-*Laatste update: v5.0 — 2026-03-11*
+## 🔧 Lokaal testen
+
+Gewoon `index.html` openen in je browser werkt **niet** voor de modulaire versie (browser blokkeert lokale `<script src=>` imports). Gebruik een lokale server:
+
+```bash
+python3 -m http.server 8000
+# Open: http://localhost:8000
+```
+
+Of gebruik de single-file testversie (`test_single.html`) die alles inline heeft.
+
+---
+
+*Fan-project · Geen officiële band met Blizzard Entertainment.*  
+*World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.*  
+*⚔ Gebouwd door Claudy & Inchy*
