@@ -1,4 +1,4 @@
-# ⚔ WoW Midnight Guide — v5.0
+# ⚔ WoW Midnight Guide — v5.2
 
 **Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
@@ -80,6 +80,11 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 ---
 
 ## 📋 Changelog
+
+### v5.2 — 2026-03-11
+- Alle 13 profession spec tree namen gecorrigeerd op basis van officiële Midnight data
+- About-knop styling gefixed (was wit, nu donker zoals andere knoppen)
+- Service Worker: cache-first → network-first (altijd verse content bij openen)
 
 ### v5.1 — 2026-03-11
 - About-modal laadt nu live README.md van GitHub (nooit meer hardcoded tekst)
