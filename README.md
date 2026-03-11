@@ -1,175 +1,152 @@
-# ⚔ WoW Midnight Dungeon & Raid Guide
+# ⚔ WoW Midnight Guide — Dungeon & Profession Apps
 
-**Live:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
+**Live Dungeon Guide:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)  
+**Live Profession Guide:** [huijting.github.io/midnight_guide/professions](https://huijting.github.io/midnight_guide/professions/)
 
-An interactive, trilingual (🇳🇱 🇬🇧 🇩🇰) Progressive Web App for World of Warcraft: Midnight Season 1. Installable on phone and tablet, works offline, with per-spec role tips for all 40 specs.
-
----
-
-## Features
-
-- **Trilingual** — Dutch, English, Danish. Everything switches instantly, including the About page.
-- **Spec Selector** — Choose your class and spec. Role tab auto-selects (Tank/Healer/DPS). Spec-specific tips highlighted (★) above generic tips. Refreshes automatically without manual reload.
-- **All 40 specs covered** — Every spec has specific dungeon tips per boss per role.
-- **Per-boss role tabs** — Tank 🛡, Healer 💚, DPS ⚔ per boss
-- **Route Planner** — Pull order, Bloodlust timing, Keystone.guru links
-- **Route kaarten** — Echte Keystone.guru screenshots per M+ dungeon; in-game dungeon maps (per verdieping) voor normale dungeons
-- **Route notice** — Bij dungeons zonder ideale route staat een melding met link naar GitHub Issues
-- **Light/Dark theme** — Saved via localStorage
-- **PWA installable** — Add to home screen on Android & iOS
-- **QR code + "Over deze app"** — Share URL and read full roadmap in-app (fully trilingual)
-- **Responsive** — Phone, tablet, PC
+Interactieve, drietalige (🇳🇱 🇬🇧 🇩🇰) Progressive Web App voor World of Warcraft: Midnight. Installeerbaar op telefoon en tablet, werkt offline.
 
 ---
 
-## Covered specs — all 40
+## 🗡 Dungeon Guide — Features
 
-### Tank (6)
-| Spec | Status |
-|---|---|
-| 🛡 Protection Paladin | ✅ |
-| 😈 Vengeance Demon Hunter | ✅ |
-| 🐻 Guardian Druid | ✅ |
-| ⚔ Protection Warrior | ✅ |
-| 🍺 Brewmaster Monk | ✅ |
-| 💀 Blood Death Knight | ✅ |
-
-### Healer (7)
-| Spec | Status |
-|---|---|
-| 💚 Restoration Druid | ✅ |
-| ✨ Holy Paladin | ✅ |
-| 🌸 Mistweaver Monk | ✅ |
-| ✝ Discipline Priest | ✅ |
-| 🌿 Holy Priest | ✅ |
-| 💧 Restoration Shaman | ✅ |
-| 🐉 Preservation Evoker | ✅ |
-
-### DPS (27)
-| Spec | Status |
-|---|---|
-| 🏹 Beast Mastery Hunter | ✅ |
-| 🎯 Marksmanship Hunter | ✅ |
-| 🗡 Survival Hunter | ✅ |
-| ⚡ Elemental Shaman | ✅ |
-| 🌊 Enhancement Shaman | ✅ |
-| 😈 Havoc Demon Hunter | ✅ |
-| 🌀 Devourer Demon Hunter | ✅ |
-| 🌙 Balance Druid | ✅ |
-| 🐱 Feral Druid | ✅ |
-| ⚔ Retribution Paladin | ✅ |
-| 🥊 Windwalker Monk | ✅ |
-| ❄ Frost Mage | ✅ |
-| 🔥 Fire Mage | ✅ |
-| 💠 Arcane Mage | ✅ |
-| ⚔ Fury Warrior | ✅ |
-| ⚔ Arms Warrior | ✅ |
-| 🗡 Outlaw Rogue | ✅ |
-| 🗡 Assassination Rogue | ✅ |
-| 🗡 Subtlety Rogue | ✅ |
-| 💀 Unholy Death Knight | ✅ |
-| ❄ Frost Death Knight | ✅ |
-| ✝ Shadow Priest | ✅ |
-| 🔮 Affliction Warlock | ✅ |
-| 👿 Demonology Warlock | ✅ |
-| 🔥 Destruction Warlock | ✅ |
-| 🐉 Devastation Evoker | ✅ |
-| 🐉 Augmentation Evoker | ✅ |
+- **Drietalig** — NL / EN / DA, alles wisselt direct inclusief de Over-pagina
+- **Alle 40 specs volledig gedekt** — elke spec heeft specifieke dungeon tips per baas per rol
+- **Spec Selector** — kies je klasse en spec; rol-tab selecteert automatisch (Tank/Healer/DPS)
+- **Per-baas rol-tabs** — Tank 🛡, Healer 💚, DPS ⚔ per baas
+- **Route Planner** — pull-volgorde, Bloodlust-timing, Keystone.guru links
+- **Route kaarten** — Keystone.guru screenshots voor alle 8 M+ dungeons; in-game dungeon maps per verdieping voor normale dungeons
+- **Route notice** — Bij dungeons zonder ideale route: melding met link naar GitHub Issues
+- **Licht / Donker thema** — Opgeslagen via localStorage
+- **PWA installeerbaar** — Startscherm Android & iOS, installeerbaar op pc
+- **QR-code & Over-pagina** — Deel URL, volledig drietalig
 
 ---
 
-## Season 1 Dungeon Pool (Mythic+)
+## ⚗ Profession Guide — Features
+
+- **Alle 13 professions gedekt** — 8 Crafting, 3 Gathering, 2 Secundair
+- **5 tabs per professie** — Overzicht, Specialisaties, Beste Items, Trainer, Crafting Orders
+- **Beginner-vriendelijke tutorials** — uitleg van game-concepten, niet alleen spec-stappen
+- **Tier-ratings** — S/A/B, goud- en nuttigheidsscores
+- **Trainer-locaties** — naam, locatie, `/way` coördinaten
+- **Drietalig** — NL / EN / DA, inclusief footer en knoppen
+- **PWA installeerbaar** — eigen icoon (cauldron, groen), apart van de Dungeon app
+- **Eigen icoon** — groen ketel-icoon, te onderscheiden van het blauw-gouden zwaard van de Dungeon app
+
+---
+
+## 🏰 Season 1 Dungeon Pool (Mythic+)
 
 | Dungeon | Zone | Bosses | Type |
 |---|---|---|---|
-| Windrunner Spire | Eversong Woods | 3 | ✅ Midnight |
-| Magisters' Terrace | Isle of Quel'Danas | 4 | ✅ Midnight |
-| Maisara Caverns | Zul'Aman | 3 | ✅ Midnight |
-| Nexus-Point Xenas | Voidstorm | 3 | ✅ Midnight |
-| Algeth'ar Academy | Thaldraszus | 3 | ↩ Dragonflight |
-| Pit of Saron | Icecrown | 3 | ↩ Wrath |
-| Seat of the Triumvirate | Argus — Mac'Aree | 4 | ↩ Legion |
-| Skyreach | Spires of Arak | 4 | ↩ WoD |
+| Windrunner Spire | Eversong Woods | 3 | Midnight |
+| Magisters' Terrace | Isle of Quel'Danas | 4 | Midnight |
+| Maisara Caverns | Zul'Aman | 3 | Midnight |
+| Nexus-Point Xenas | Voidstorm | 3 | Midnight |
+| Algeth'ar Academy | Thaldraszus | 3 | Dragonflight ↩ |
+| Pit of Saron | Icecrown | 3 | Wrath ↩ |
+| Seat of the Triumvirate | Argus — Mac'Aree | 4 | Legion ↩ |
+| Skyreach | Spires of Arak | 4 | WoD ↩ |
 
-## Normal Dungeons (Midnight, not in M+)
+## 🏛 Normale Dungeons
 
-| Dungeon | Zone | Bosses | Verdiepingen |
-|---|---|---|---|
-| Murder Row | Silvermoon City | 3 | Murder Row → The Illicit Rain → Augurs' Terrace |
-| The Blinding Vale | Eversong Woods | 3 | The Blinding Vale |
-| Den of Nalorakk | Zul'Aman | 3 | Dreamer's Passage → The Foraging → The Heart of Rage |
-| Voidscar Arena | Voidstorm | 3 | Halls of Spite → Voidscar Arena → Domanaar's Ascent |
+| Dungeon | Zone | Bosses |
+|---|---|---|
+| Murder Row | Silvermoon City | 3 |
+| The Blinding Vale | Eversong Woods | 3 |
+| Den of Nalorakk | Zul'Aman | 3 |
+| Voidscar Arena | Voidstorm | 3 |
 
 ---
 
-## 💬 Routes bijdragen
+## 🎭 Specs — alle 40 gedekt ✅
 
-Ken jij een goede route voor een van de dungeons? Op het **Route tabblad** staat een melding bij dungeons zonder ideale route, met een directe link naar GitHub Issues. Je kunt ook rechtstreeks een issue aanmaken:
-
-👉 [github.com/Huijting/midnight_guide/issues/new](https://github.com/Huijting/midnight_guide/issues/new)
-
-Vermeld bij je issue:
-- Dungeon naam
-- Pull-volgorde (welke packs, in welke volgorde)
-- Bloodlust moment
-- Eventueel MDT string of Keystone.guru link
+Alle 40 specs (6 Tank, 7 Healer, 27 DPS) hebben volledige dungeon tips per baas per rol in alle 3 talen.
 
 ---
 
 ## 🚧 Coming Soon
 
-### Raids (Season 1)
+| Inhoud | Status |
+|---|---|
+| Raids Season 1 (The Voidspire, Dreamrift, March on Quel'Danas) | Gepland |
+| Remaining professions (11 van 13 nog leeg) | In progress |
+| Raid guide met tank/heal/dps tabs per baas | Gepland |
 
-| Raid | Zone | Bosses | Opens |
-|---|---|---|---|
-| **The Voidspire** | Voidstorm | 6 | 17 maart 2026 |
-| **Dreamrift** | Harandar | 1 | 17 maart 2026 |
-| **March on Quel'Danas** | Quel'Thalas | 2 | 31 maart 2026 |
+---
 
-Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec-specific tips for all 40 specs, LFR/Normal/Heroic/Mythic difficulty filter, and route notes.
+## 💬 Routes bijdragen
 
-### Profession Guides
-Crafting guides for key professions to help gear up in Season 1.
+Goede route voor een dungeon? Maak een issue aan:  
+👉 [github.com/Huijting/midnight_guide/issues/new](https://github.com/Huijting/midnight_guide/issues/new)
+
+Vermeld: dungeon, pull-volgorde, Bloodlust-moment, eventuele MDT/Keystone.guru link.
 
 ---
 
 ## Changelog
 
-### v4.2 — 2026-03-10
-- **Route notice** — Bij dungeons zonder ideale route: amber melding met link naar GitHub Issues zodat spelers routes kunnen bijdragen
-- **Floor switcher normale dungeons** — In-game dungeon maps per verdieping voor Murder Row, Den of Nalorakk, Voidscar Arena en The Blinding Vale
+> **Versie-notatie:**
+> - **vX.0** = grote update (nieuwe feature, nieuw systeem, nieuwe dungeon/profession)
+> - **vX.x** = kleine update (bugfix, vertalingen, tekst/data aanpassing)
 
-### v4.1 — 2026-03-10
-- **TypeError fix** — Returning dungeons gebruikten `steps` in plaats van `pulls` — route tab crashte
+---
 
-### v4.0 — 2026-03-10
-- **Route kaarten** — Keystone.guru screenshots voor alle 8 M+ dungeons toegevoegd aan het Route tabblad
-- **4 returning dungeons volledig** — Algeth'ar Academy, Pit of Saron, Seat of the Triumvirate en Skyreach: bosses, abilities, tank/heal/dps tips en pull-volgorde in 3 talen
+### Dungeon Guide
 
-### v3.0 — 2026-03-10
-- **All 40 specs fully covered** — 17 remaining specs added
-- **About modal fully trilingual**
+#### v4.3 — 2026-03-11
+- **Icoon onderscheiding** — Dungeon app behoudt het blauw-gouden zwaard-icoon (`icons/`)
+- Professions app krijgt eigen groen cauldron-icoon in `professions/icons/` — niet meer hetzelfde icoon
 
-### v2.2 — 2026-03-10
-- 13 new specs
+#### v4.2 — 2026-03-10
+- **Route notice** — amber melding bij dungeons zonder ideale route, met link naar GitHub Issues
+- **Floor switcher normale dungeons** — in-game maps per verdieping voor alle 4 normale dungeons
 
-### v2.1 — 2026-03-10
-- 6 new specs, auto role-tab refresh fixed
+#### v4.1 — 2026-03-10
+- **Bugfix** — TypeError in returning dungeons (steps vs pulls)
 
-### v2.0 — 2026-03-10
-- Spec-specific tips system, auto role-tab, About page in-app
+#### v4.0 — 2026-03-10
+- **Route kaarten** — Keystone.guru screenshots voor alle 8 M+ dungeons
+- **4 returning dungeons volledig** — Algeth'ar Academy, Pit of Saron, Seat of the Triumvirate, Skyreach
 
-### v1.3 — 2026-03-09
-- Spec selector, all 13 classes, role-aware Bloodlust names
+#### v3.0 — 2026-03-10
+- **Alle 40 specs volledig gedekt** — resterende 17 specs toegevoegd
+- **About modal volledig drietalig**
 
-### v1.2 — 2026-03-08
-- QR code button, theme-aware
+#### v2.x — 2026-03-10
+- Spec-systeem uitgebouwd in meerdere stappen (v2.0–2.2): spec selector, auto-rol tab, 13 nieuwe specs, 6 nieuwe specs
 
-### v1.1 — 2026-03-07
-- PWA install banner (Android + iOS, trilingual)
+#### v1.x — 2026-03-06 t/m 09
+- **v1.3** Spec selector, alle 13 klassen, rol-bewuste Bloodlust namen
+- **v1.2** QR-code knop, thema-aware
+- **v1.1** PWA install banner (Android + iOS, drietalig)
+- **v1.0** Eerste release: 8 dungeons, 3 talen, rol-tabs, route planner
 
-### v1.0 — 2026-03-06
-- Initial release: 8 dungeons, 3 languages, role tabs, route planner
+---
+
+### Profession Guide
+
+#### v2.3 — 2026-03-11
+- **Beginner-tutorials herschreven** — Skinning en Leatherworking volledig uitgeschreven met game-conceptuitleg, strategie, en waarom/wanneer
+- **Vertalingen compleet** — footer disclaimer, QR/About knoppen, "Gemaakt door", sluiten-knop, bronnen-label volledig drietalig
+- **Eigen icoon** — groen cauldron-icoon in `professions/icons/`, apart van Dungeon app zwaard-icoon
+- **Taal opgeslagen** — gekozen taal wordt onthouden na herladen (localStorage)
+- **Apple-touch-icon** — verwijst nu naar eigen professions-icoon
+
+#### v2.2 — 2026-03-11
+- Vertalingen deels uitgebreid (qr_btn, about_btn etc.)
+- Skinning en LW tutorials verbeterd
+
+#### v2.1 — 2026-03-11
+- Footer-vertalingen toegevoegd, taal-herstel in DOMContentLoaded
+
+#### v2.0 — 2026-03-10
+- Modulaire data-structuur: 13 losse `.js` bestanden in `data/`
+- PWA toegevoegd (manifest, service worker, install modal)
+- Vlag-taalknopjes (🇳🇱🇬🇧🇩🇰)
+
+#### v1.0 — 2026-03-10
+- Eerste release, alle 13 professions (shell + lege data)
 
 ---
 
