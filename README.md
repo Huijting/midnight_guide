@@ -1,4 +1,4 @@
-# ⚔ WoW Midnight Guide — v5.2
+# ⚔ WoW Midnight Guide — v5.3
 
 **Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
@@ -81,6 +81,11 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 ## 📋 Changelog
 
+### v5.3 — 2026-03-11
+- Afbeeldingen (route & floor screenshots) uit season1.js gehaald — aparte bestanden in `data/screenshots/`
+- season1.js verkleind van ~10.5MB naar ~430KB
+- Screenshots worden nu geladen via GitHub raw URL's
+
 ### v5.2 — 2026-03-11
 - Alle 13 profession spec tree namen gecorrigeerd op basis van officiële Midnight data
 - About-knop styling gefixed (was wit, nu donker zoals andere knoppen)
@@ -97,6 +102,9 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
+| v5.3 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
+| v5.2 | 2026-03-11 | Alle 13 profession spec tree namen gecorrigeerd · Service Worker: network-first |
+| v5.1 | 2026-03-11 | About-modal laadt live README.md · PWA-banners vervangen · profession tier-ratings bijgewerkt |
 | v5.0 | 2026-03-11 | Profession gids toegevoegd — alle 13 professions, NL/EN/DA, tier-ratings, modulaire data-structuur |
 | v4.0 | 2026-03-11 | Modulaire refactor — data naar losse JS-bestanden |
 | v3.0 | 2026-03-10 | Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig |
