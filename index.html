@@ -480,6 +480,27 @@
   .spec-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px}
   .spec-desc{font-size:13px;color:var(--muted);line-height:1.7}
   .spec-points{font-size:11px;font-weight:700;color:var(--accent);margin-top:6px;padding:3px 8px;background:rgba(128,96,208,.12);border-radius:6px;display:inline-block}
+  /* ── KP BOOM ── */
+  .kp-tree{padding:8px 0}
+  .kp-intro-box{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:var(--muted);line-height:1.6}
+  .kp-intro-box strong{color:var(--gold)}
+  .kp-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;align-items:flex-start;position:relative}
+  .kp-row::before{content:'';position:absolute;left:20px;top:-6px;width:2px;height:6px;background:var(--border)}
+  .kp-row:first-child::before{display:none}
+  .kp-node{flex:1;min-width:140px;max-width:220px;background:var(--deep);border:2px solid var(--border);border-radius:12px;padding:10px 12px;cursor:default;transition:border-color .2s,transform .15s;position:relative}
+  .kp-node:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .kp-node.kp-base{border-color:var(--accent);background:rgba(128,96,208,.1);max-width:100%}
+  .kp-node.kp-recommended{border-color:#3db86a}
+  .kp-node.kp-recommended::after{content:'★ Aanbevolen';position:absolute;top:-10px;right:8px;font-size:9px;font-weight:700;color:#3db86a;background:var(--bg);padding:0 4px}
+  .kp-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-bottom:5px}
+  .kp-badge.kp-cost{background:rgba(200,168,75,.15);color:var(--gold)}
+  .kp-badge.kp-free{background:rgba(128,96,208,.15);color:var(--accent)}
+  .kp-node-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
+  .kp-node-desc{font-size:11px;color:var(--muted);line-height:1.5}
+  .kp-connector{width:100%;display:flex;justify-content:center;margin:0;color:var(--border);font-size:16px;line-height:1}
+  .kp-total-bar{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-top:12px;font-size:11px;color:var(--muted)}
+  .kp-total-bar span{color:var(--gold);font-weight:700}
+
   .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
   .item-card{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:10px}
   .item-icon{font-size:1.4rem;margin-bottom:4px}
@@ -565,11 +586,13 @@
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-specs')">🌿 Specs</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-items')">⚗ Items</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">🌳 KP Boom</button>
     </div>
     <div class="pdet-panel visible" id="ptab-trainer"></div>
     <div class="pdet-panel" id="ptab-specs"></div>
     <div class="pdet-panel" id="ptab-items"></div>
     <div class="pdet-panel" id="ptab-orders"></div>
+    <div class="pdet-panel" id="ptab-kp"></div>
   </div>
 </div>
 
@@ -1585,6 +1608,7 @@ function showProf(id){
     `<div class="pdet-section"><h3>${ui.orders_head}</h3>
        <div class="orders-text">${pT(p.orders)}</div>
      </div>`;
+  renderKpTree(p);
   switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
   window.scrollTo(0,0);
 }
@@ -1596,6 +1620,97 @@ function switchProfTab(btn,panelId){
   const panel=document.getElementById(panelId);
   if(panel)panel.classList.add('visible');
 }
+function renderKpTree(p) {
+  const lang_ = (typeof lang !== 'undefined') ? lang : 'nl';
+  const pT = s => (s && typeof s === 'object') ? (s[lang_] || s.nl || '') : (s || '');
+  const ui = {
+    nl: { title:'🌳 KP Boom — Specialisatiebomen', total:'Totaal benodigde KP voor volledige boom', unlock:'Ontgrendeld bij skill', choose:'Kies één specialisatie', invest:'Investeer KP in' },
+    en: { title:'🌳 KP Tree — Specialization Trees', total:'Total KP needed for full tree', unlock:'Unlocked at skill', choose:'Choose one specialization', invest:'Invest KP in' },
+    da: { title:'🌳 KP-træ — Specialiseringstræer', total:'Samlet KP til fuldt træ', unlock:'Låst op ved færdighed', choose:'Vælg én specialisering', invest:'Invester KP i' }
+  }[lang_] || {title:'🌳 KP Boom', total:'Totaal KP', unlock:'Skill', choose:'Kies', invest:'KP in'};
+
+  // Parse KP number from points text
+  function extractKP(pointsObj) {
+    const txt = pT(pointsObj) || '';
+    const m = txt.match(/(\d+)\s*(?:punt|point|KP)/i);
+    return m ? parseInt(m[1]) : null;
+  }
+
+  // Check if spec is recommended (first non-intro spec usually)
+  function isRecommended(pointsTxt) {
+    const t = (pointsTxt || '').toLowerCase();
+    return t.includes('aanbevolen') || t.includes('recommended') || t.includes('anbefalet') || t.includes('begin hier') || t.includes('start here') || t.includes('eerste');
+  }
+
+  // Separate intro spec from real specs
+  const introSpec = p.specs && p.specs[0];
+  const realSpecs = p.specs ? p.specs.slice(1) : [];
+  const accentCol = p.accent || 'var(--accent)';
+
+  let html = `<div class="kp-tree">`;
+
+  // Intro box (skill unlock + basic info)
+  if (introSpec) {
+    const introText = pT(introSpec.desc);
+    // Extract skill level unlock
+    const skillM = introText.match(/skill\s*(\d+)/i) || introText.match(/vaardigheid\s*(\d+)/i) || introText.match(/færdighed\s*(\d+)/i);
+    const skillLevel = skillM ? skillM[1] : '25';
+    html += `<div class="kp-intro-box">
+      🔓 <strong>${ui.unlock} ${skillLevel}</strong> &nbsp;·&nbsp;
+      ${pT(introSpec.title).replace(/^📖\s*/,'')}
+    </div>`;
+  }
+
+  // Base profession node
+  html += `<div class="kp-row">
+    <div class="kp-node kp-base" style="border-color:${accentCol}20;background:${accentCol}10">
+      <span class="kp-badge kp-free" style="background:${accentCol}20;color:${accentCol}">Base</span>
+      <div class="kp-node-title">${pT(p.name)}</div>
+      <div class="kp-node-desc">${p.items && p.items[0] ? pT(p.items[0].name) + ' · ' + (p.items.length) + ' items' : ''}</div>
+    </div>
+  </div>`;
+
+  if (realSpecs.length === 0) {
+    html += `<div class="kp-intro-box" style="margin-top:8px">Geen KP-bomen beschikbaar voor deze profession.</div>`;
+    html += `</div>`;
+    document.getElementById('ptab-kp').innerHTML = `<div class="pdet-section"><h3>${ui.title}</h3>${html}`;
+    return;
+  }
+
+  // Connector
+  html += `<div class="kp-connector">│</div>`;
+
+  // Spec nodes
+  html += `<div class="kp-row" style="justify-content:${realSpecs.length === 1 ? 'flex-start' : 'space-between'}">`;
+
+  let totalKP = 0;
+  realSpecs.forEach((s, i) => {
+    const kp = extractKP(s.points);
+    const pointsTxt = pT(s.points) || '';
+    const recommended = isRecommended(pointsTxt);
+    if (kp) totalKP += kp;
+
+    const title = pT(s.title).replace(/^[🧪🍶🔮⚗🌿🪨🐾✨💎🔧🎣🪡⚒📜🏹⚔🛡💚🪄]/,'').replace(/^\s*/,'');
+    const shortDesc = pointsTxt.replace(/^\d+\s*punt\w*\s*—?\s*/i,'').replace(/^\d+\s*point\w*\s*—?\s*/i,'').replace(/^\d+\s*point\w*\s*—?\s*/i,'');
+
+    html += `<div class="kp-node ${recommended ? 'kp-recommended' : ''}" style="${recommended ? 'border-color:#3db86a' : ''}">
+      ${kp ? `<span class="kp-badge kp-cost">${kp} KP</span>` : ''}
+      <div class="kp-node-title">${title}</div>
+      ${shortDesc ? `<div class="kp-node-desc">${shortDesc.substring(0,80)}${shortDesc.length>80?'…':''}</div>` : ''}
+    </div>`;
+  });
+
+  html += `</div>`;
+
+  // Total KP bar
+  if (totalKP > 0) {
+    html += `<div class="kp-total-bar">💡 ${ui.total}: <span>${totalKP} KP</span></div>`;
+  }
+
+  html += `</div>`;
+  document.getElementById('ptab-kp').innerHTML = `<div class="pdet-section"><h3>${ui.title}</h3>${html}</div>`;
+}
+
 
 function updateProfLang(){
   const ht=document.getElementById('prof-hero-title');
