@@ -1,5 +1,5 @@
 // sw.js — WoW Midnight Guide — Service Worker v5.0
-const CACHE = 'midnight-guide-v5';
+const CACHE = 'midnight-guide-v6';
 const ASSETS = [
   './index.html',
   './manifest.json',
