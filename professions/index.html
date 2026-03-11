@@ -337,7 +337,7 @@ const PROFESSIONS = [
 // ═══════════════════════════════
 // VERSIE
 // ═══════════════════════════════
-const VERSION = "v2.0";
+const VERSION = "v2.2";
 const VERSION_DATE = "2026-03-11";
 
 // ═══════════════════════════════
@@ -362,6 +362,11 @@ const UI = {
     method_btn:"📖 Volledige guide op Method.gg →",
     wowp_btn:"🌳 Specialisatie builds op wow-professions.com →",
     source_note:"Bron: Method.gg & wow-professions.com",
+    qr_btn:"📱 QR-code", about_btn:"📖 Over deze app", qr_close:"× sluiten",
+    sources_label:"Bronnen:",
+    about_title:"⚗ Over deze app",
+    disclaimer:"Dit is een fan-project en heeft geen officiële band met Blizzard Entertainment. World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc. Profession-data gebaseerd op Method.gg & wow-professions.com.",
+    footer_by:"Gemaakt door",
   },
   en:{
     eyebrow:"WORLD OF WARCRAFT: MIDNIGHT",
@@ -380,6 +385,11 @@ const UI = {
     method_btn:"📖 Full guide on Method.gg →",
     wowp_btn:"🌳 Specialization builds on wow-professions.com →",
     source_note:"Source: Method.gg & wow-professions.com",
+    qr_btn:"📱 QR code", about_btn:"📖 About this app", qr_close:"× close",
+    sources_label:"Sources:",
+    about_title:"⚗ About this app",
+    disclaimer:"This is a fan project with no official affiliation with Blizzard Entertainment. World of Warcraft and all related names are trademarks of Blizzard Entertainment, Inc. Profession data based on Method.gg & wow-professions.com.",
+    footer_by:"Created by",
   },
   da:{
     eyebrow:"WORLD OF WARCRAFT: MIDNIGHT",
@@ -398,6 +408,11 @@ const UI = {
     method_btn:"📖 Fuld guide på Method.gg →",
     wowp_btn:"🌳 Specialiseringsbygninger på wow-professions.com →",
     source_note:"Kilde: Method.gg & wow-professions.com",
+    qr_btn:"📱 QR-kode", about_btn:"📖 Om denne app", qr_close:"× luk",
+    sources_label:"Kilder:",
+    about_title:"⚗ Om denne app",
+    disclaimer:"Dette er et fan-projekt uden officiel tilknytning til Blizzard Entertainment. World of Warcraft og alle relaterede navne er varemærker tilhørende Blizzard Entertainment, Inc. Professions-data baseret på Method.gg & wow-professions.com.",
+    footer_by:"Lavet af",
   }
 };
 function u(){ return UI[lang]; }
@@ -618,12 +633,26 @@ function showHome() {
 // ═══════════════════════════════
 function setLang(l) {
   lang = l;
+  localStorage.setItem('lang', l);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  updateFooterLang();
   if (currentProf) {
     showDetail(currentProf.id);
   } else {
     renderHome();
   }
+}
+
+function updateFooterLang() {
+  const u = UI[lang];
+  const el = id => document.getElementById(id);
+  if (el('footer-by'))          el('footer-by').textContent         = u.footer_by;
+  if (el('footer-disclaimer'))  el('footer-disclaimer').textContent = u.disclaimer;
+  if (el('qr-btn'))             el('qr-btn').textContent            = u.qr_btn;
+  if (el('about-btn'))          el('about-btn').textContent         = u.about_btn;
+  if (el('qr-close'))           el('qr-close').textContent          = u.qr_close;
+  if (el('footer-sources-label')) el('footer-sources-label').textContent = u.sources_label;
+  if (el('about-title'))        el('about-title').textContent       = u.about_title;
 }
 
 function toggleTheme() {
@@ -637,8 +666,14 @@ function toggleTheme() {
 // INIT
 // ═══════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang && UI[savedLang]) {
+    lang = savedLang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  }
+  updateFooterLang();
   renderHome();
   document.getElementById('footer-version-nr').textContent = VERSION + ' · ' + VERSION_DATE;
   console.log(`Midnight Professions Guide ${VERSION} (${VERSION_DATE}) — Claudy & Inchy ⚔`);
@@ -647,11 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <footer id="site-footer">
   <div class="footer-inner">
-    <div class="footer-made">⚗ Created by <strong>Claudy</strong> &amp; <strong>Inchy</strong> &nbsp;·&nbsp; <span class="footer-version" style="font-family:monospace;font-size:11px" id="footer-version-nr"></span> &nbsp;·&nbsp; <span class="footer-version">WoW: Midnight</span></div>
-    <div class="footer-disclaimer">
-      Dit is een fan-project en heeft geen officiële band met Blizzard Entertainment.<br>
-      World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc.<br>
-      Profession-data gebaseerd op <a href="https://www.method.gg" target="_blank" class="about-link">Method.gg</a> &amp; <a href="https://www.wow-professions.com" target="_blank" class="about-link">wow-professions.com</a>.
+    <div class="footer-made">⚗ <span id="footer-by">Gemaakt door</span> <strong>Claudy</strong> &amp; <strong>Inchy</strong> &nbsp;·&nbsp; <span class="footer-version" style="font-family:monospace;font-size:11px" id="footer-version-nr"></span> &nbsp;·&nbsp; <span class="footer-version">WoW: Midnight</span></div>
+    <div class="footer-disclaimer" id="footer-disclaimer">
+      Dit is een fan-project en heeft geen officiële band met Blizzard Entertainment.
     </div>
     <div id="footer-btn-row">
       <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
@@ -676,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="about-modal" onclick="if(event.target===this)closeAbout()">
   <div id="about-inner">
     <div id="about-header">
-      <span id="about-title">⚗ Over deze app</span>
+    <span id="about-title">⚗ Over deze app</span>
       <button id="about-close-x" onclick="closeAbout()">×</button>
     </div>
     <div id="about-content"></div>
