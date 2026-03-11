@@ -2,7 +2,7 @@
 const BLACKSMITHING = {
   id:'blacksmithing', icon:'⚒', cat:'crafting', accent:'#7a7a7a',
   name:{nl:'Blacksmithing',en:'Blacksmithing',da:'Smedning'},
-  tier:'A',
+  tier:'C',
   lore:{
     nl:'Blacksmithing is een <em>crafting profession</em> waarbij je metaal smeedt tot wapens en wapenrusting. Specifiek: je maakt <strong>plaat-armor</strong> voor Warriors en Death Knights, <strong>wapens</strong> voor alle klassen, en <strong>profession tools</strong> voor andere craftingprofessions. Blacksmithing is de oudste en meest iconische crafting profession in WoW — het is de smid die het zwaard maakt waarmee de paladin de raid survivet.<br><br>Nieuw in Midnight: <strong>Void-Forging</strong> (imbue wapens met void-krachten voor speciale effecten), <strong>Resonance Tempering</strong> (maak je items progressief beter via een upgrade-systeem), en het maken van <strong>profession tools voor alle 13 professions</strong> — een markt die alleen Blacksmiths kunnen bedienen.',
     en:'Blacksmithing is a <em>crafting profession</em> where you forge metal into weapons and armor. Specifically: you make <strong>plate armor</strong> for Warriors and Death Knights, <strong>weapons</strong> for all classes, and <strong>profession tools</strong> for other crafting professions. Blacksmithing is the oldest and most iconic crafting profession in WoW — it is the smith who makes the sword the paladin uses to survive the raid.<br><br>New in Midnight: <strong>Void-Forging</strong> (imbue weapons with void powers for special effects), <strong>Resonance Tempering</strong> (progressively improve your items through an upgrade system), and crafting <strong>profession tools for all 13 professions</strong> — a market only Blacksmiths can serve.',
