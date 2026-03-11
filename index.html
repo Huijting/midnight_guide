@@ -52,27 +52,26 @@
   /* ── LANG + THEME TOGGLES ── */
   .header-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
 /* PWA Install Banner */
-  #pwa-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#1a1040,#0d1a1a);border-top:2px solid var(--gold);padding:12px 16px;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.6)}
-  #pwa-banner.show{display:flex}
-  .pwa-text{font-size:.82rem;color:var(--text);flex:1;line-height:1.4}
-  .pwa-text strong{color:var(--gold)}
-  .pwa-icon{font-size:1.4rem;flex-shrink:0}
-  .pwa-btn{background:var(--gold);color:#1a1a2e;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
-  .pwa-btn:hover{opacity:.9}
-  .pwa-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0;line-height:1}
+  /* PWA install modal */
+  #pwa-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1400;align-items:center;justify-content:center;padding:20px}
+  #pwa-modal.open{display:flex}
+  #pwa-modal-inner{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px 24px;max-width:420px;width:100%;position:relative}
+  #pwa-modal-title{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);margin-bottom:6px}
+  #pwa-modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+  .pwa-step{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.6;margin-bottom:8px}
+  .pwa-step strong{color:var(--gold)}
+  #pwa-install-btn{display:none;background:var(--gold);color:#000;border:none;padding:10px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:8px}
+  #pwa-install-btn:hover{opacity:.85}
+  #pwa-modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1}
+  .pwa-header-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:4px 9px;border-radius:6px;cursor:pointer;transition:all .2s}
+  .pwa-header-btn:hover{border-color:var(--gold);color:var(--gold)}
   .lang-btn,.theme-btn{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:4px 10px;font-size:12px;cursor:pointer;color:var(--text);transition:all .2s;white-space:nowrap}
   .lang-btn.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
   .lang-btn:hover:not(.active){border-color:var(--gold)}
   .theme-btn:hover{border-color:var(--gold)}
 
   /* ── INSTALL BANNER ── */
-  #install-banner{background:linear-gradient(90deg,#1a1208,#1c1c3e,#1a1208);border-bottom:1px solid rgba(200,168,75,0.3);padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;text-align:center}
-  #install-banner strong{color:var(--gold)}
-  #install-banner span{color:#ccc;line-height:1.5}
-  #ib-title{font-size:13px;font-weight:700;color:var(--gold)}
-  #ib-android,#ib-ios{font-size:13px;color:#ddd;background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 12px;width:100%;max-width:360px}
-  #install-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;position:absolute;right:12px;top:8px;padding:4px 8px}
-  #install-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:0 4px}
+
 
   /* ── HOME ── */
   #home-screen{position:relative;z-index:1}
@@ -120,8 +119,6 @@
     .role-panel ul li{font-size:14px;padding:7px 0 7px 16px}
     /* Route */
     .lust-table th,.lust-table td{padding:8px 8px;font-size:13px}
-    /* Install banner */
-    #install-banner{font-size:13px;padding:10px 14px}
     /* Footer */
     .footer-disclaimer{font-size:11px}
   }
@@ -471,12 +468,15 @@
 </head>
 <body>
 
-<!-- PWA Install Banner -->
-<div id="pwa-banner">
-  <span class="pwa-icon">📲</span>
-  <div class="pwa-text" id="pwa-text">Installeer deze app op je telefoon</div>
-  <button class="pwa-btn" id="pwa-btn" onclick="pwaTrigger()">Installeer</button>
-  <button class="pwa-close" onclick="pwaDismiss()" title="Sluiten">✕</button>
+<!-- PWA Install Modal -->
+<div id="pwa-modal" onclick="if(event.target===this)closePwaModal()">
+  <div id="pwa-modal-inner">
+    <button id="pwa-modal-close" onclick="closePwaModal()">×</button>
+    <div id="pwa-modal-title">📲 Installeer als app</div>
+    <div id="pwa-modal-sub" id="pwa-modal-sub"></div>
+    <div id="pwa-steps"></div>
+    <button id="pwa-install-btn" onclick="pwaTrigger()">Installeer</button>
+  </div>
 </div>
 
 <header id="site-header">
@@ -496,18 +496,11 @@
       <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
       <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
       <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">☀️</button>
+      <button class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
   </div>
 </header>
 
-<div id="install-banner" style="position:relative">
-  <span>📲</span>
-  <span id="ib-title"><strong>Installeer als app:</strong></span>
-  <span id="ib-android"><strong>Android</strong> — Chrome → menu (⋮) → "Add to Home Screen"</span>
-  <span>|</span>
-  <span id="ib-ios"><strong>iPhone</strong> — Safari → deel (□↑) → "Add to Home Screen"</span>
-  <button id="install-close" onclick="document.getElementById('install-banner').style.display='none'">×</button>
-</div>
 
 <div id="home-screen">
   <div class="hero">
@@ -1069,9 +1062,6 @@ function applyUIStrings() {
   document.getElementById('tab-btn-bosses').textContent = u.tab_bosses;
   document.getElementById('tab-btn-route').textContent = u.tab_route;
   document.getElementById('back-btn').innerHTML = u.back;
-  document.getElementById('ib-title').innerHTML = u.ib_title;
-  document.getElementById('ib-android').innerHTML = u.ib_android;
-  document.getElementById('ib-ios').innerHTML = u.ib_ios;
   document.getElementById('about-btn').textContent = u.about_btn;
   document.getElementById('about-title').textContent = u.about_title;
 }
@@ -1419,10 +1409,6 @@ if (isTablet) document.body.classList.add('is-tablet');
 if (isPC) document.body.classList.add('is-pc');
 
 // Verberg install banner op PC — niet relevant
-if (isPC) {
-  const banner = document.getElementById('install-banner');
-  if (banner) banner.style.display = 'none';
-}
 
 // Update apparaat-klassen bij resize (bv. tablet roteren)
 window.addEventListener('resize', () => {
@@ -1870,61 +1856,73 @@ function toggleQR() {
   }
 }
 
-// ── PWA INSTALL ──────────────────────────────────────────────
-const PWA_TEXTS = {
-  android: {
-    nl: '<strong>📲 Installeer als app</strong><br>Voeg toe aan je beginscherm voor snel toegang.',
-    en: '<strong>📲 Install as app</strong><br>Add to your home screen for quick access.',
-    da: '<strong>📲 Installer som app</strong><br>Føj til din startskærm for hurtig adgang.'
+// ── PWA INSTALL MODAL ────────────────────────────────────────
+const PWA_CONTENT = {
+  nl: {
+    title: '📲 Installeer als app',
+    sub: 'Voeg de gids toe aan je beginscherm voor snel toegang.',
+    android: '<strong>Android</strong> — Chrome → menu (⋮) → "Toevoegen aan startscherm"',
+    ios: '<strong>iPhone / iPad</strong> — Safari → deel (□↑) → "Zet op beginscherm"',
+    pc: '<strong>PC / Mac</strong> — klik op het installeer-icoon rechts in de adresbalk, of gebruik de knop hieronder.',
+    btn: 'Installeer'
   },
-  ios: {
-    nl: '<strong>📲 Installeer op iPhone/iPad</strong><br>Tik op het Deel-icoon <strong>⎙</strong> en dan <em>"Zet op beginscherm"</em>.',
-    en: '<strong>📲 Install on iPhone/iPad</strong><br>Tap the Share icon <strong>⎙</strong> then <em>"Add to Home Screen"</em>.',
-    da: '<strong>📲 Installer på iPhone/iPad</strong><br>Tryk på Del-ikonet <strong>⎙</strong> og vælg <em>"Føj til hjemmeskærm"</em>.'
+  en: {
+    title: '📲 Install as app',
+    sub: 'Add the guide to your home screen for quick access.',
+    android: '<strong>Android</strong> — Chrome → menu (⋮) → "Add to Home Screen"',
+    ios: '<strong>iPhone / iPad</strong> — Safari → share (□↑) → "Add to Home Screen"',
+    pc: '<strong>PC / Mac</strong> — click the install icon in the address bar, or use the button below.',
+    btn: 'Install'
   },
-  pc: {
-    nl: '<strong>💻 Installeer als desktop-app</strong><br>Klik op "Installeer" voor een icoon op je bureaublad.',
-    en: '<strong>💻 Install as desktop app</strong><br>Click "Install" for a shortcut on your desktop.',
-    da: '<strong>💻 Installer som desktop-app</strong><br>Klik på "Installer" for en genvej på skrivebordet.'
+  da: {
+    title: '📲 Installer som app',
+    sub: 'Føj guiden til din startskærm for hurtig adgang.',
+    android: '<strong>Android</strong> — Chrome → menu (⋮) → "Føj til startskærm"',
+    ios: '<strong>iPhone / iPad</strong> — Safari → del (□↑) → "Føj til hjemmeskærm"',
+    pc: '<strong>PC / Mac</strong> — klik på installationsikonet i adresselinjen, eller brug knappen nedenfor.',
+    btn: 'Installer'
   }
 };
-const PWA_BTN_LABELS = { nl: 'Installeer', en: 'Install', da: 'Installer' };
 
 let deferredPrompt = null;
-const pwaBanner    = document.getElementById('pwa-banner');
-const pwaBannerTxt = document.getElementById('pwa-text');
-const pwaBannerBtn = document.getElementById('pwa-btn');
 
-function showBanner(type) {
-  if (localStorage.getItem('pwa-dismissed-dungeon')) return;
-  const l = lang || 'nl';
-  pwaBannerTxt.innerHTML = PWA_TEXTS[type][l] || PWA_TEXTS[type].nl;
-  pwaBannerBtn.textContent = PWA_BTN_LABELS[l] || PWA_BTN_LABELS.nl;
-  pwaBannerBtn.style.display = type === 'ios' ? 'none' : '';
-  pwaBanner.classList.add('show');
+function openPwaModal() {
+  const c = PWA_CONTENT[lang] || PWA_CONTENT.nl;
+  const isIos     = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  document.getElementById('pwa-modal-title').textContent = c.title;
+  document.getElementById('pwa-modal-sub').textContent   = c.sub;
+  let steps = '';
+  if (isIos)          steps = `<div class="pwa-step">${c.ios}</div>`;
+  else if (isAndroid) steps = `<div class="pwa-step">${c.android}</div>`;
+  else                steps = `<div class="pwa-step">${c.pc}</div><div class="pwa-step">${c.android}</div><div class="pwa-step">${c.ios}</div>`;
+  document.getElementById('pwa-steps').innerHTML = steps;
+  const btn = document.getElementById('pwa-install-btn');
+  if (deferredPrompt) { btn.style.display = 'block'; btn.textContent = c.btn; }
+  else { btn.style.display = 'none'; }
+  document.getElementById('pwa-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closePwaModal() {
+  document.getElementById('pwa-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 function pwaTrigger() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => { deferredPrompt = null; pwaBanner.classList.remove('show'); });
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('pwa-install-btn').style.display = 'none';
+    });
   }
 }
-function pwaDismiss() {
-  pwaBanner.classList.remove('show');
-  localStorage.setItem('pwa-dismissed-dungeon', '1');
-}
-window.pwaTrigger = pwaTrigger;
-window.pwaDismiss = pwaDismiss;
 
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
-  showBanner(/Android|Mobile/i.test(navigator.userAgent) ? 'android' : 'pc');
 });
-
-const isIosDev = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-if (isIosDev && !isStandalone) showBanner('ios');
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
