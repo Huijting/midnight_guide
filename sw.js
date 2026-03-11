@@ -1,8 +1,24 @@
-// Midnight Dungeon Guide — Service Worker
-const CACHE = 'dungeon-guide-v1';
+// sw.js — WoW Midnight Guide — Service Worker v5.0
+const CACHE = 'midnight-guide-v5';
 const ASSETS = [
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './data/dungeons/season1.js',
+  './data/professions/skinning.js',
+  './data/professions/leatherworking.js',
+  './data/professions/mining.js',
+  './data/professions/herbalism.js',
+  './data/professions/alchemy.js',
+  './data/professions/blacksmithing.js',
+  './data/professions/enchanting.js',
+  './data/professions/engineering.js',
+  './data/professions/inscription.js',
+  './data/professions/jewelcrafting.js',
+  './data/professions/tailoring.js',
+  './data/professions/cooking.js',
+  './data/professions/fishing.js'
 ];
 
 self.addEventListener('install', e => {
