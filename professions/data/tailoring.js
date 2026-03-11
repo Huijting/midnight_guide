@@ -41,6 +41,4 @@ const TAILORING = {
   },
   method_url:'https://www.method.gg/guides/midnight-tailoring-profession-guide',
   wowp_url:'https://www.wow-professions.com/midnight/tailoring-specialization-guide-and-builds'
-},
-
-// ── GATHERING ───────────────────────────────────────────────────;
+};

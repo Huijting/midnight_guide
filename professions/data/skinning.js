@@ -41,6 +41,4 @@ const SKINNING = {
   },
   method_url:'https://www.method.gg/guides/midnight-skinning-profession-guide',
   wowp_url:'https://www.wow-professions.com/midnight/skinning-specialization-guide-and-builds'
-},
-
-// ── SECONDARY ──────────────────────────────────────────────────;
+};
