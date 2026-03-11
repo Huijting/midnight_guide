@@ -2,7 +2,7 @@
 const COOKING = {
   id:'cooking', icon:'🍳', cat:'secondary', accent:'#e67e22',
   name:{nl:'Cooking',en:'Cooking',da:'Madlavning'},
-  tier:'B',
+  tier:'C',
   lore:{
     nl:'Cooking is een <em>secondary profession</em> — iedereen kan het leren naast zijn twee hoofdprofessions. Je bereidt voedsel dat tijdelijke stat-bonussen geeft, stamina verhoogt of andere nuttige effecten heeft. Cooking is geen goudmaker van het kaliber Alchemy, maar het is een <strong>gratis persoonlijk voordeel</strong> dat geen andere profession je geeft.<br><br>In Midnight: <strong>Void-Infused Dishes</strong> geven unieke effecten die alleen via Cooking te krijgen zijn, en het <strong>Silverthread Feast</strong>-systeem laat je tafels zetten in raids voor je hele groep.',
     en:'Cooking is a <em>secondary profession</em> — anyone can learn it alongside their two main professions. You prepare food that gives temporary stat bonuses, increases stamina, or has other useful effects. Cooking is not a gold-maker on the level of Alchemy, but it is a <strong>free personal advantage</strong> that no other profession gives you.<br><br>In Midnight: <strong>Void-Infused Dishes</strong> give unique effects only obtainable through Cooking, and the <strong>Silverthread Feast</strong> system lets you set tables in raids for your entire group.',
