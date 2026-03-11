@@ -2,7 +2,7 @@
 const TAILORING = {
   id:'tailoring', icon:'🧵', cat:'crafting', accent:'#e91e63',
   name:{nl:'Tailoring',en:'Tailoring',da:'Skrædderkunst'},
-  tier:'A',
+  tier:'B',
   lore:{
     nl:'Tailoring is een <em>crafting profession</em> waarbij je stof en draden verwerkt tot <strong>cloth-armor, cloaks en magische gewaden</strong>. Tailoring is uniek onder de armor-professions: het heeft <strong>geen gathering-partner</strong> nodig — je koopt stof van de wereld of plukt het van geslagen humanoïde vijanden. Geen Mining, geen Skinning — het materiaal valt gewoon mee.<br><br>Tailoring bedient de caster-klassen: Mages, Warlocks, Priests, en de caster-specs van Druids en Shamans. In Midnight zijn dat de klassen met de meeste nieuwe specs dankzij de Void-thematiek — grote doelgroep.',
     en:'Tailoring is a <em>crafting profession</em> where you process cloth and threads into <strong>cloth armor, cloaks and magical robes</strong>. Tailoring is unique among armor professions: it needs <strong>no gathering partner</strong> — you buy cloth from the world or loot it from defeated humanoid enemies. No Mining, no Skinning — the material just drops.<br><br>Tailoring serves caster classes: Mages, Warlocks, Priests, and caster specs of Druids and Shamans. In Midnight these are the classes with the most new specs thanks to the Void theme — large target audience.',
