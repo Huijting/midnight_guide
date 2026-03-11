@@ -500,6 +500,109 @@
   .kp-connector{width:100%;display:flex;justify-content:center;margin:0;color:var(--border);font-size:16px;line-height:1}
   .kp-total-bar{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-top:12px;font-size:11px;color:var(--muted)}
   .kp-total-bar span{color:var(--gold);font-weight:700}
+  /* ── KP BRONNEN ── */
+  .kp-summary {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #3a3a2a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .kp-summary-item {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 80px; background: rgba(255,255,255,0.04);
+    border-radius: 6px; padding: 8px 12px; gap: 2px;
+  }
+  .kp-sum-label { font-size: 0.72em; color: #a0906a; }
+  .kp-sum-val   { font-size: 1.1em; font-weight: 700; color: #f0d080; }
+  .kp-sum-total .kp-sum-label { color: #c89b3c; }
+  .kp-sum-total .kp-sum-val   { color: #ffd700; font-size: 1.25em; }
+  
+  .kp-section {
+    margin-bottom: 18px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #2a2a1a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .kp-section-header {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+    padding: 10px 14px;
+    background: rgba(200,155,60,0.1);
+    border-bottom: 1px solid #3a3020;
+  }
+  .kp-section-title {
+    font-weight: 700; font-size: 0.95em; color: #e8d080;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .kp-section-sub { font-size: 0.75em; color: #808060; margin-left: auto; }
+  .kp-badge-total {
+    background: rgba(200,155,60,0.25); color: #f0c040;
+    border-radius: 10px; padding: 2px 8px; font-size: 0.8em; font-weight: 600;
+  }
+  
+  .kp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+  .kp-table th {
+    text-align: left; padding: 6px 10px;
+    color: #a09060; font-size: 0.8em; font-weight: 600;
+    border-bottom: 1px solid #2a2a1a;
+  }
+  .kp-table td { padding: 6px 10px; border-bottom: 1px solid #1a1a0f; vertical-align: top; }
+  .kp-table tr:last-child td { border-bottom: none; }
+  .kp-table tr:hover td { background: rgba(255,255,255,0.03); }
+  
+  .kp-num         { color: #606050; width: 28px; text-align: center; }
+  .kp-item-name   { color: #d4c090; font-weight: 500; }
+  .kp-zone        { color: #88a060; font-size: 0.82em; }
+  .kp-way-code    {
+    font-family: monospace; font-size: 0.82em;
+    background: rgba(0,0,0,0.4); color: #88c8a0;
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  }
+  .kp-no-way      { color: #404030; }
+  .kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
+  .kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
+  .kp-note        { cursor: help; color: #a08040; width: 24px; text-align: center; }
+  
+  .kp-note-row td  { background: rgba(160,120,40,0.08) !important; }
+  .kp-note-text   {
+    font-size: 0.78em; color: #a09060; font-style: italic;
+    padding: 0 10px 6px 38px; display: block;
+  }
+  
+  .kp-darkmoon    { background: rgba(120,0,180,0.08); border-color: #3a2050; }
+  .kp-dm-row      { padding: 8px 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .kp-dm-quest    { color: #c090e0; font-size: 0.88em; }
+  .kp-dm-npc      { color: #9080b0; font-size: 0.85em; }
+  
+  .kp-tip {
+    background: rgba(40,60,20,0.5);
+    border: 1px solid #3a5020;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.85em; color: #a0c070;
+    margin-top: 4px;
+  }
+  
+  .kp-tomtom-btn {
+    margin-left: auto;
+    background: rgba(40,100,60,0.4);
+    border: 1px solid #30603a;
+    color: #80d090; font-size: 0.8em;
+    padding: 4px 12px; border-radius: 6px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .kp-tomtom-btn:hover { background: rgba(40,100,60,0.7); }
+  
+  .kp-empty-note { padding: 14px; color: #806040; font-style: italic; font-size: 0.88em; }
+  
+  @media (max-width: 600px) {
+    .kp-summary { gap: 6px; padding: 8px; }
+    .kp-summary-item { min-width: 60px; padding: 6px 8px; }
+    .kp-way-code { font-size: 0.72em; }
+    .kp-table th, .kp-table td { padding: 4px 6px; }
+  }
 
   .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
   .item-card{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:10px}
@@ -587,12 +690,14 @@
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-items')">⚗ Items</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">🌳 KP Boom</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kpbronnen')">🗺️ KP</button>
     </div>
     <div class="pdet-panel visible" id="ptab-trainer"></div>
     <div class="pdet-panel" id="ptab-specs"></div>
     <div class="pdet-panel" id="ptab-items"></div>
     <div class="pdet-panel" id="ptab-orders"></div>
     <div class="pdet-panel" id="ptab-kp"></div>
+    <div class="pdet-panel" id="ptab-kpbronnen"></div>
   </div>
 </div>
 
@@ -631,6 +736,7 @@
 <script src="data/professions/inscription.js"></script>
 <script src="data/professions/jewelcrafting.js"></script>
 <script src="data/professions/tailoring.js"></script>
+<script src="data/professions/kp_sources.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -1609,6 +1715,7 @@ function showProf(id){
        <div class="orders-text">${pT(p.orders)}</div>
      </div>`;
   renderKpTree(p);
+  renderKpSources(p);
   switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
   window.scrollTo(0,0);
 }
@@ -1710,6 +1817,296 @@ function renderKpTree(p) {
   html += `</div>`;
   document.getElementById('ptab-kp').innerHTML = `<div class="pdet-section"><h3>${ui.title}</h3>${html}</div>`;
 }
+
+function renderKpSources(p) {
+  const el = document.getElementById('tab-kpbronnen');
+  if (!el) return;
+
+  const lang = currentLang || 'nl';
+  const data = KP_SOURCES && KP_SOURCES[p.id];
+
+  if (!data) {
+    el.innerHTML = `<div class="kp-empty">Geen KP-bronnen data beschikbaar voor deze professie.</div>`;
+    return;
+  }
+
+  const accentColor = p.accent || '#c89b3c';
+
+  // Helper: bouw een /ttpaste blok van alle schatten
+  const tomtomLines = (data.treasures || [])
+    .filter(t => t.way && t.way.startsWith('/way'))
+    .map(t => t.way + ` ${t.name} (${getProfName(p, lang)})`)
+    .join('\n');
+
+  // Schatten sectie
+  let treasuresHtml = '';
+  if (data.treasures && data.treasures.length > 0) {
+    const rows = data.treasures.map((t, i) => `
+      <tr>
+        <td class="kp-num">${i + 1}</td>
+        <td class="kp-item-name">${t.name}</td>
+        <td class="kp-zone">${t.zone}</td>
+        <td class="kp-way">
+          ${t.way ? `<span class="kp-way-code">${t.way}</span>` : '<span class="kp-no-way">—</span>'}
+        </td>
+        ${t.note ? `<td class="kp-note" title="${t.note}">💬</td>` : '<td></td>'}
+      </tr>
+      ${t.note ? `<tr class="kp-note-row"><td colspan="5"><span class="kp-note-text">${t.note}</span></td></tr>` : ''}
+    `).join('');
+
+    const tomtomBtn = tomtomLines
+      ? `<button class="kp-tomtom-btn" onclick="copyTomTom(this)" data-ways="${encodeURIComponent(tomtomLines)}">📋 Kopieer /ttpaste</button>`
+      : '';
+
+    treasuresHtml = `
+      <div class="kp-section">
+        <div class="kp-section-header">
+          <span class="kp-section-title">📦 Schatten <span class="kp-badge-total">${data.treasures.length} × 3 KP = ${data.treasures.length * 3} KP</span></span>
+          <span class="kp-section-sub">Eenmalig per character — herhaalbaar op alts</span>
+          ${tomtomBtn}
+        </div>
+        <table class="kp-table">
+          <thead>
+            <tr><th>#</th><th>Naam</th><th>Zone</th><th>/way</th><th></th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+  } else {
+    treasuresHtml = `<div class="kp-section"><div class="kp-empty-note">⚠️ Geen schatten gedocumenteerd voor deze professie.</div></div>`;
+  }
+
+  // Wekelijks sectie
+  let weeklyHtml = '';
+  if (data.weekly && data.weekly.length > 0) {
+    const rows = data.weekly.map(w => `
+      <tr>
+        <td class="kp-item-name">${w.source}</td>
+        <td class="kp-kp-val">${w.kp} KP</td>
+        <td class="kp-note-text-inline">${w.note || ''}</td>
+      </tr>
+    `).join('');
+
+    weeklyHtml = `
+      <div class="kp-section">
+        <div class="kp-section-header">
+          <span class="kp-section-title">📅 Wekelijkse KP bronnen</span>
+          <span class="kp-section-sub">Reset elke week</span>
+        </div>
+        <table class="kp-table">
+          <thead><tr><th>Bron</th><th>KP</th><th>Opmerking</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  // Darkmoon Faire
+  let darkmoonHtml = '';
+  if (data.darkmoon) {
+    const dm = data.darkmoon;
+    darkmoonHtml = `
+      <div class="kp-section kp-darkmoon">
+        <div class="kp-section-header">
+          <span class="kp-section-title">🎪 Darkmoon Faire <span class="kp-badge-total">${dm.reward}</span></span>
+          <span class="kp-section-sub">Maandelijks — ${dm.note || ''}</span>
+        </div>
+        <div class="kp-dm-row">
+          <span class="kp-dm-quest">Quest: <strong>${dm.quest}</strong></span>
+          ${dm.npc ? `<span class="kp-dm-npc">NPC: ${dm.npc}</span>` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  // Eenmalige bronnen
+  let onetimeHtml = '';
+  if (data.onetime && data.onetime.length > 0) {
+    const rows = data.onetime.map(o => `
+      <tr>
+        <td class="kp-item-name">${o.source}</td>
+        <td class="kp-kp-val">${o.kp} KP</td>
+        <td class="kp-note-text-inline">${o.note || ''}</td>
+      </tr>
+    `).join('');
+
+    onetimeHtml = `
+      <div class="kp-section">
+        <div class="kp-section-header">
+          <span class="kp-section-title">⭐ Eenmalige KP bronnen</span>
+        </div>
+        <table class="kp-table">
+          <thead><tr><th>Bron</th><th>KP</th><th>Opmerking</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  // Tip
+  let tipHtml = '';
+  if (data.tip) {
+    tipHtml = `<div class="kp-tip">${data.tip}</div>`;
+  }
+
+  // Totaal KP overzicht (schat + onetime max)
+  const treasureTotal = (data.treasures || []).length * 3;
+  const onetimeTotal = (data.onetime || []).reduce((sum, o) => {
+    const n = parseInt(o.kp);
+    return sum + (isNaN(n) ? 0 : n);
+  }, 0);
+  const darkmoonKp = data.darkmoon ? 3 : 0;
+
+  const summaryHtml = `
+    <div class="kp-summary">
+      <div class="kp-summary-item"><span class="kp-sum-label">📦 Schatten</span><span class="kp-sum-val">${treasureTotal} KP</span></div>
+      <div class="kp-summary-item"><span class="kp-sum-label">⭐ Eenmalig</span><span class="kp-sum-val">${onetimeTotal} KP</span></div>
+      <div class="kp-summary-item"><span class="kp-sum-label">🎪 Darkmoon</span><span class="kp-sum-val">${darkmoonKp} KP</span></div>
+      <div class="kp-summary-item kp-sum-total"><span class="kp-sum-label">Totaal opstart</span><span class="kp-sum-val">${treasureTotal + onetimeTotal + darkmoonKp} KP</span></div>
+    </div>
+  `;
+
+  el.innerHTML = summaryHtml + treasuresHtml + weeklyHtml + onetimeHtml + darkmoonHtml + tipHtml;
+}
+
+function copyTomTom(btn) {
+  const ways = decodeURIComponent(btn.dataset.ways);
+  navigator.clipboard.writeText(ways).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅ Gekopieerd!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = ways;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ Gekopieerd!';
+    setTimeout(() => btn.textContent = '📋 Kopieer /ttpaste', 2000);
+  });
+}
+
+function getProfName(p, lang) {
+  if (p.name && p.name[lang]) return p.name[lang];
+  if (p.name && p.name.nl) return p.name.nl;
+  return p.id || 'Profession';
+}
+
+
+// ============================================================
+// CSS — voeg toe aan de <style> sectie van index.html
+// (na de bestaande .kp-tree / .kp-node stijlen)
+// ============================================================
+
+/*
+
+.kp-summary {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid #3a3a2a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.kp-summary-item {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 80px; background: rgba(255,255,255,0.04);
+  border-radius: 6px; padding: 8px 12px; gap: 2px;
+}
+.kp-sum-label { font-size: 0.72em; color: #a0906a; }
+.kp-sum-val   { font-size: 1.1em; font-weight: 700; color: #f0d080; }
+.kp-sum-total .kp-sum-label { color: #c89b3c; }
+.kp-sum-total .kp-sum-val   { color: #ffd700; font-size: 1.25em; }
+
+.kp-section {
+  margin-bottom: 18px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #2a2a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.kp-section-header {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  padding: 10px 14px;
+  background: rgba(200,155,60,0.1);
+  border-bottom: 1px solid #3a3020;
+}
+.kp-section-title {
+  font-weight: 700; font-size: 0.95em; color: #e8d080;
+  display: flex; align-items: center; gap: 8px;
+}
+.kp-section-sub { font-size: 0.75em; color: #808060; margin-left: auto; }
+.kp-badge-total {
+  background: rgba(200,155,60,0.25); color: #f0c040;
+  border-radius: 10px; padding: 2px 8px; font-size: 0.8em; font-weight: 600;
+}
+
+.kp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.kp-table th {
+  text-align: left; padding: 6px 10px;
+  color: #a09060; font-size: 0.8em; font-weight: 600;
+  border-bottom: 1px solid #2a2a1a;
+}
+.kp-table td { padding: 6px 10px; border-bottom: 1px solid #1a1a0f; vertical-align: top; }
+.kp-table tr:last-child td { border-bottom: none; }
+.kp-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+.kp-num         { color: #606050; width: 28px; text-align: center; }
+.kp-item-name   { color: #d4c090; font-weight: 500; }
+.kp-zone        { color: #88a060; font-size: 0.82em; }
+.kp-way-code    {
+  font-family: monospace; font-size: 0.82em;
+  background: rgba(0,0,0,0.4); color: #88c8a0;
+  padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+}
+.kp-no-way      { color: #404030; }
+.kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
+.kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
+.kp-note        { cursor: help; color: #a08040; width: 24px; text-align: center; }
+
+.kp-note-row td  { background: rgba(160,120,40,0.08) !important; }
+.kp-note-text   {
+  font-size: 0.78em; color: #a09060; font-style: italic;
+  padding: 0 10px 6px 38px; display: block;
+}
+
+.kp-darkmoon    { background: rgba(120,0,180,0.08); border-color: #3a2050; }
+.kp-dm-row      { padding: 8px 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+.kp-dm-quest    { color: #c090e0; font-size: 0.88em; }
+.kp-dm-npc      { color: #9080b0; font-size: 0.85em; }
+
+.kp-tip {
+  background: rgba(40,60,20,0.5);
+  border: 1px solid #3a5020;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.85em; color: #a0c070;
+  margin-top: 4px;
+}
+
+.kp-tomtom-btn {
+  margin-left: auto;
+  background: rgba(40,100,60,0.4);
+  border: 1px solid #30603a;
+  color: #80d090; font-size: 0.8em;
+  padding: 4px 12px; border-radius: 6px; cursor: pointer;
+  transition: background 0.2s;
+}
+.kp-tomtom-btn:hover { background: rgba(40,100,60,0.7); }
+
+.kp-empty-note { padding: 14px; color: #806040; font-style: italic; font-size: 0.88em; }
+
+@media (max-width: 600px) {
+  .kp-summary { gap: 6px; padding: 8px; }
+  .kp-summary-item { min-width: 60px; padding: 6px 8px; }
+  .kp-way-code { font-size: 0.72em; }
+  .kp-table th, .kp-table td { padding: 4px 6px; }
+}
+
+*/
 
 
 function updateProfLang(){
