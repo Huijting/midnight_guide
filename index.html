@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a1a">
+<title>WoW: Midnight Guide — Season 1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dungeon Guide">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#06060f; --deep:#0d0d20; --panel:#1c1c3e; --border:#2a2a60;
+    --gold:#c8a84b; --gold2:#f0d070; --accent:#8060d0;
+    --mplus:#e8a020; --normal:#8899bb;
+    --tank:#4a90d9; --heal:#3db86a; --dps:#e04060;
+    --text:#e8e0ff; --muted:#aaa0cc;
+    --head-bg:rgba(6,6,15,0.93); --tab-bg:rgba(6,6,15,0.96);
+    --boss-hdr:linear-gradient(90deg,#1e0a3e,#0d0d30);
+    --boss-desc-bg:rgba(0,0,0,0.22); --boss-desc-col:rgba(210,195,250,0.85);
+    --tank-bg:rgba(74,144,217,0.08); --heal-bg:rgba(61,184,106,0.08); --dps-bg:rgba(224,64,96,0.08);
+    --tip-bg:rgba(200,168,75,0.08); --info-bg:var(--panel); --route-bg:var(--deep);
+  }
+  body.light {
+    --bg:#f4f2f8; --deep:#e8e4f0; --panel:#fff; --border:#d0c8e8;
+    --gold:#8a6010; --gold2:#6a4800; --accent:#5030a0;
+    --mplus:#8a5800; --normal:#445577;
+    --tank:#1860b0; --heal:#1a7a40; --dps:#b02040;
+    --text:#1a1428; --muted:#5a5070;
+    --head-bg:rgba(244,242,248,0.96); --tab-bg:rgba(244,242,248,0.97);
+    --boss-hdr:linear-gradient(90deg,#2a1060,#1a1060);
+    --boss-desc-bg:#f0ecf8; --boss-desc-col:#3a2860;
+    --tank-bg:rgba(24,96,176,0.08); --heal-bg:rgba(26,122,64,0.08); --dps-bg:rgba(176,32,64,0.08);
+    --tip-bg:rgba(138,96,16,0.07); --info-bg:#fff; --route-bg:#eae6f4;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
+
+  /* ── HEADER ── */
+  #site-header{position:sticky;top:0;z-index:100;background:var(--head-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 12px}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:8px;height:52px}
+  #back-btn{display:none;background:none;border:1px solid var(--border);color:var(--gold);font-size:13px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;white-space:nowrap}
+  #back-btn:hover{background:var(--gold);color:var(--bg)}
+  .header-title{font-size:13px;font-weight:700;color:var(--gold);flex:1;min-width:0}
+  .header-sub{font-size:10px;color:var(--muted);font-weight:400;display:block;letter-spacing:.04em}
+
+  /* ── LANG + THEME TOGGLES ── */
+  .header-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
+/* PWA Install Banner */
+  #pwa-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#1a1040,#0d1a1a);border-top:2px solid var(--gold);padding:12px 16px;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.6)}
+  #pwa-banner.show{display:flex}
+  .pwa-text{font-size:.82rem;color:var(--text);flex:1;line-height:1.4}
+  .pwa-text strong{color:var(--gold)}
+  .pwa-icon{font-size:1.4rem;flex-shrink:0}
+  .pwa-btn{background:var(--gold);color:#1a1a2e;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+  .pwa-btn:hover{opacity:.9}
+  .pwa-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0;line-height:1}
+  .lang-btn,.theme-btn{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:4px 10px;font-size:12px;cursor:pointer;color:var(--text);transition:all .2s;white-space:nowrap}
+  .lang-btn.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
+  .lang-btn:hover:not(.active){border-color:var(--gold)}
+  .theme-btn:hover{border-color:var(--gold)}
+
+  /* ── INSTALL BANNER ── */
+  #install-banner{background:linear-gradient(90deg,#1a1208,#1c1c3e,#1a1208);border-bottom:1px solid rgba(200,168,75,0.3);padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;text-align:center}
+  #install-banner strong{color:var(--gold)}
+  #install-banner span{color:#ccc;line-height:1.5}
+  #ib-title{font-size:13px;font-weight:700;color:var(--gold)}
+  #ib-android,#ib-ios{font-size:13px;color:#ddd;background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 12px;width:100%;max-width:360px}
+  #install-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;position:absolute;right:12px;top:8px;padding:4px 8px}
+  #install-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:0 4px}
+
+  /* ── HOME ── */
+  #home-screen{position:relative;z-index:1}
+  .hero{text-align:center;padding:36px 16px 24px;background:linear-gradient(180deg,rgba(80,40,160,.10) 0%,transparent 100%)}
+  .hero-eyebrow{font-size:10px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:6px;font-weight:700}
+  .hero-title{font-family:'Cinzel',Georgia,serif;font-size:clamp(24px,7vw,50px);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:5px}
+  .hero-title span{color:var(--gold)}
+  .hero-sub{color:var(--muted);font-size:15px}
+  .section-label{max-width:1100px;margin:24px auto 8px;padding:0 16px;display:flex;align-items:center;gap:10px}
+  .section-label h2{font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+  .dungeon-grid{max-width:1100px;margin:0 auto;padding:0 16px 50px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — TELEFOON (max 480px)
+  ═══════════════════════════════════════ */
+  @media(max-width:480px){
+    /* Grid */
+    .dungeon-grid{grid-template-columns:1fr;gap:8px;padding:0 10px 40px}
+    /* Header compacter */
+    .header-inner{height:48px;gap:6px}
+    .header-title{font-size:12px}
+    .header-sub{display:none}
+    .lang-btn,.theme-btn{padding:4px 7px;font-size:11px}
+    /* Hero */
+    .hero{padding:24px 12px 18px}
+    .hero-sub{font-size:13px}
+    /* Sectie labels */
+    .section-label{margin:18px auto 6px;padding:0 10px}
+    /* Detail hero */
+    .detail-hero{padding:16px 12px}
+    .detail-lore{font-size:13px}
+    /* Tabs — grotere tikoppervlakken */
+    .tab-btn{font-size:12px;padding:12px 0}
+    .tabs-wrap{top:48px}
+    /* Content */
+    .content-wrap{padding:14px 10px 50px}
+    /* Overview grid */
+    .overview-grid{grid-template-columns:1fr 1fr}
+    /* Boss kaarten */
+    .boss-header{padding:10px 12px}
+    .role-tabs{gap:5px;padding:10px 10px}
+    .role-tab-btn{font-size:13px;padding:10px 4px}
+    .role-panel{padding:11px 12px}
+    .role-panel ul li{font-size:14px;padding:7px 0 7px 16px}
+    /* Route */
+    .lust-table th,.lust-table td{padding:8px 8px;font-size:13px}
+    /* Install banner */
+    #install-banner{font-size:13px;padding:10px 14px}
+    /* Footer */
+    .footer-disclaimer{font-size:11px}
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — TABLET (481px – 768px)
+  ═══════════════════════════════════════ */
+  @media(min-width:481px) and (max-width:768px){
+    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .overview-grid{grid-template-columns:repeat(2,1fr)}
+    .header-sub{font-size:9px}
+    .lang-btn,.theme-btn{padding:4px 9px;font-size:12px}
+    .role-tab-btn{font-size:14px;padding:11px 6px}
+    .role-panel ul li{font-size:15px}
+    .content-wrap{padding:16px 14px 56px}
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE — PC (769px+)
+  ═══════════════════════════════════════ */
+  @media(min-width:769px){
+    .dungeon-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .overview-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    /* Hover effecten alleen op PC */
+    .dungeon-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.25);border-color:var(--gold)}
+    .role-tab-btn:hover:not(.active-tank):not(.active-heal):not(.active-dps){background:var(--deep);border-color:var(--muted);color:var(--text)}
+    .tab-btn:hover:not(.active){color:var(--text)}
+  }
+
+  /* ═══════════════════════════════════════
+     TOUCH DEVICES — geen hover effecten
+  ═══════════════════════════════════════ */
+  @media(hover:none){
+    .dungeon-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
+    .dungeon-card:active{transform:scale(0.97);border-color:var(--gold)}
+    .role-tab-btn:active{opacity:0.8}
+    .tab-btn:active{color:var(--gold)}
+  }
+
+  /* ═══════════════════════════════════════
+     GROOT SCHERM (1200px+)
+  ═══════════════════════════════════════ */
+  @media(min-width:1200px){
+    .dungeon-grid{grid-template-columns:repeat(4,1fr)}
+    .boss-roles-desktop{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  }
+
+  /* ── DUNGEON CARD ── */
+  .dungeon-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
+  .dungeon-card:active{transform:scale(0.98)}
+
+  .card-accent{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold))}
+  .dungeon-card.mplus .card-accent{background:linear-gradient(90deg,#b07010,var(--gold2),#b07010)}
+  .card-body{padding:13px 15px 15px}
+  .card-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+  .badge-mplus{background:rgba(232,160,32,0.12);color:var(--mplus);border:1px solid rgba(232,160,32,0.35)}
+  .badge-normal{background:rgba(100,120,160,0.10);color:var(--normal);border:1px solid rgba(100,120,160,0.3)}
+  .card-name{font-family:'Cinzel',Georgia,serif;font-size:clamp(14px,3.5vw,17px);font-weight:700;color:var(--text);margin-bottom:2px;line-height:1.2}
+  .card-zone{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .card-bosses{display:flex;flex-wrap:wrap;gap:3px}
+  .boss-chip{font-size:11px;color:var(--muted);background:var(--deep);border:1px solid var(--border);border-radius:3px;padding:1px 6px}
+  .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--border)}
+  .card-level{font-size:11px;color:var(--muted)}
+  .card-arrow{color:var(--gold);font-size:20px;font-weight:700}
+
+  /* ── DETAIL ── */
+  #detail-screen{display:none;position:relative;z-index:1}
+  .detail-hero{background:var(--boss-hdr);border-bottom:1px solid var(--border);padding:20px 16px}
+  .detail-hero-inner{max-width:1100px;margin:0 auto}
+  .detail-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--accent);margin-bottom:4px;text-transform:uppercase}
+  .detail-title{font-family:'Cinzel',Georgia,serif;font-size:clamp(20px,5vw,36px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:7px}
+  .detail-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:10px}
+  .detail-lore{font-style:italic;color:rgba(255,255,255,0.72);max-width:680px;font-size:15px;line-height:1.65;border-left:2px solid var(--gold);padding-left:14px}
+
+  /* ── TABS ── */
+  .tabs-wrap{position:sticky;top:52px;z-index:90;background:var(--tab-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs{max-width:1100px;margin:0 auto;display:flex;padding:0 4px}
+  .tab-btn{font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;padding:13px 0;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex:1;text-align:center}
+  .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .content-wrap{max-width:1100px;margin:0 auto;padding:18px 16px 56px}
+
+  /* ── OVERVIEW ── */
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:18px}
+  .info-card{background:var(--info-bg);border:1px solid var(--border);border-radius:8px;padding:13px}
+  .info-card-title{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--accent);margin-bottom:5px;text-transform:uppercase}
+  .info-card-val{font-size:15px;color:var(--text);font-weight:600}
+  .tip-box{background:var(--tip-bg);border:1px solid rgba(200,168,75,0.2);border-left:3px solid var(--gold);border-radius:6px;padding:11px 14px;margin-bottom:9px;font-size:14px;line-height:1.5}
+  .tip-box strong{color:var(--gold2);font-weight:700}
+
+  /* ── BOSSES ── */
+  .boss-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+  .boss-header{background:var(--boss-hdr);padding:11px 15px;display:flex;align-items:center;gap:10px}
+  .boss-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:.1em;white-space:nowrap}
+  .boss-name{font-family:'Cinzel',Georgia,serif;font-size:clamp(14px,3.5vw,17px);font-weight:700;color:#fff}
+  .boss-desc{padding:9px 15px;font-style:italic;color:var(--boss-desc-col);font-size:14px;line-height:1.5;border-bottom:1px solid var(--border);background:var(--boss-desc-bg)}
+  .role-tabs{display:flex;gap:8px;padding:12px 14px;background:var(--deep);border-bottom:1px solid var(--border)}
+  .role-tab-btn{flex:1;padding:11px 6px;font-size:14px;font-weight:700;border-radius:8px;border:2px solid var(--border);cursor:pointer;transition:all .15s;color:var(--muted);background:var(--panel);text-align:center}
+  .role-tab-btn.active-tank{color:#fff;background:var(--tank);border-color:var(--tank)}
+  .role-tab-btn.active-heal{color:#fff;background:var(--heal);border-color:var(--heal)}
+  .role-tab-btn.active-dps{color:#fff;background:var(--dps);border-color:var(--dps)}
+  .role-panel{display:none;padding:13px 15px}
+  .role-panel.active{display:block}
+  .role-panel.tank-panel{background:var(--tank-bg)}
+  .role-panel.heal-panel{background:var(--heal-bg)}
+  .role-panel.dps-panel{background:var(--dps-bg)}
+  .role-panel ul{list-style:none}
+  .role-panel ul li{font-size:15px;color:var(--text);padding:6px 0 6px 18px;position:relative;line-height:1.45;border-bottom:1px solid var(--border)}
+  .role-panel ul li:last-child{border-bottom:none}
+  .role-panel ul li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:12px;top:9px}
+
+  /* ── ROUTE ── */
+  .route-section{margin-bottom:26px}
+  /* ── VISUAL ROUTE MAP ── */
+  .vr-container{position:relative;padding:8px 0 8px 44px;margin-top:4px}
+  .vr-line{position:absolute;left:19px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--border));border-radius:3px;z-index:0}
+  .vr-step{position:relative;margin-bottom:0;display:flex;align-items:flex-start;gap:0}
+  .vr-step:last-child .vr-connector{display:none}
+  .vr-connector{position:absolute;left:-25px;top:23px;width:3px;background:var(--border);bottom:-24px;z-index:0}
+  .vr-node{position:absolute;left:-36px;top:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;z-index:1;flex-shrink:0;border:2px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .vr-node.type-trash{background:var(--deep);border-color:var(--border);color:var(--muted)}
+  .vr-node.type-boss{background:linear-gradient(135deg,#b8860b,var(--gold));border-color:var(--gold);color:#fff;width:32px;height:32px;font-size:15px;top:6px;left:-39px;box-shadow:0 2px 12px rgba(184,134,11,.4)}
+  .vr-node.type-event{background:#1a4a2e;border-color:#2d8a52;color:#4ec87a}
+  .vr-card{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:12px;transition:border-color .2s}
+  .vr-card:hover{border-color:var(--accent)}
+  .vr-card.type-boss{border-color:rgba(184,134,11,.4);background:linear-gradient(135deg,var(--panel),rgba(184,134,11,.04))}
+  .vr-card.type-event{border-color:rgba(45,138,82,.4);background:linear-gradient(135deg,var(--panel),rgba(45,138,82,.04))}
+  .vr-label-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+  .vr-label{font-weight:700;font-size:14px;color:var(--text)}
+  .vr-card.type-boss .vr-label{color:var(--gold)}
+  .vr-card.type-event .vr-label{color:#4ec87a}
+  .vr-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+  .vr-badge.lust{background:rgba(255,80,0,.15);color:#ff5000;border:1px solid rgba(255,80,0,.3)}
+  .vr-badge.boss{background:rgba(184,134,11,.15);color:var(--gold);border:1px solid rgba(184,134,11,.3)}
+  .vr-badge.event{background:rgba(45,138,82,.15);color:#4ec87a;border:1px solid rgba(45,138,82,.3)}
+  .vr-badge.skip{background:rgba(120,120,120,.12);color:var(--muted);border:1px solid rgba(120,120,120,.25)}
+  .vr-desc{font-size:13px;color:var(--muted);line-height:1.5}
+  .vr-area{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+  .vr-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--muted)}
+  .vr-leg-item{display:flex;align-items:center;gap:5px}
+  .vr-leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+  .vr-leg-dot.l-trash{background:var(--deep);border:2px solid var(--border)}
+  .vr-leg-dot.l-boss{background:var(--gold)}
+  .vr-leg-dot.l-event{background:#2d8a52}
+  .vr-leg-dot.l-lust{background:#ff5000}
+
+  .route-title{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:11px;text-transform:uppercase}
+  .route-diagram{background:var(--route-bg);border:1px solid var(--border);border-radius:10px;padding:14px;overflow-x:auto;margin-bottom:12px}
+  .lust-table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px}
+  .lust-table th,.lust-table td{padding:9px 11px;border-bottom:1px solid var(--border);text-align:left}
+  .lust-table th{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--accent);background:var(--panel);text-transform:uppercase}
+  .lust-moment{color:var(--gold);font-weight:700}
+  .kg-link{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:11px 16px;color:var(--mplus);font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;margin-top:4px}
+  .kg-link:hover{border-color:var(--gold);color:var(--gold)}
+
+
+  /* ── ROUTE SCREENSHOT ── */
+  .route-notice{background:#2a1f00;border:1px solid #8a6500;border-radius:8px;padding:10px 14px;font-size:.85rem;color:#e8c840;margin-bottom:4px}
+  .route-notice-link{color:#e8c840;font-weight:700;text-decoration:underline}
+  .route-notice-link:hover{color:#fff}
+  .floor-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+  .floor-tab-btn{padding:5px 12px;border-radius:6px;border:1px solid #444;background:#1e1e2e;color:#aaa;cursor:pointer;font-size:.8rem;transition:all .2s}
+  .floor-tab-btn:hover{background:#2a2a3e;color:#fff}
+  .floor-tab-btn.active{background:#e8c840;color:#1a1a2e;border-color:#e8c840;font-weight:700}
+  .route-screenshot-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#000;line-height:0}
+  .route-screenshot-img{width:100%;height:auto;display:block;max-height:520px;object-fit:contain;object-position:center}
+  ::-webkit-scrollbar{width:5px;height:5px}
+  ::-webkit-scrollbar-track{background:var(--deep)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+
+
+  /* ── SPEC-SPECIFIC TIPS ── */
+  .spec-tips-header{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;padding:8px 15px 4px;opacity:.8}
+  .spec-tip{background:rgba(200,168,75,0.07)!important;border-left:2px solid var(--gold)!important;padding-left:14px!important}
+  .spec-tip::before{color:var(--gold)!important;content:'★'!important}
+  .generic-tips-divider{height:1px;background:var(--border);margin:8px 12px;opacity:.5}
+  .generic-tips li{opacity:.75}
+
+  /* ── FOOTER BUTTON ROW ── */
+  #footer-btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+
+  /* ── ABOUT BUTTON ── */
+  #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
+  #about-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+
+
+    /* KG button + pull footer */
+  .kg-open-btn{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a1e2c,#1e2440);border:1px solid rgba(74,127,212,.4);border-radius:10px;padding:10px 14px;color:#7aaaf0;font-size:13px;font-weight:700;cursor:pointer;width:100%;transition:all .2s;text-align:left;margin-top:10px;font-family:'Rajdhani',sans-serif}
+  .kg-open-btn:hover{border-color:rgba(74,127,212,.8);color:#aad0ff;background:linear-gradient(135deg,#1e2240,#222850)}
+  .kg-open-btn .kg-icon{font-size:18px;flex-shrink:0}
+  .kg-open-btn .kg-text{flex:1}
+  .kg-open-btn .kg-sub{display:block;font-size:11px;color:#4a7fd4;font-weight:600;margin-top:1px}
+  .kg-open-btn .kg-arrow{font-size:16px;opacity:.6}
+
+  /* Pull legend strip */
+  .map-legend{display:flex;gap:10px;flex-wrap:wrap;padding:8px 12px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
+  .ml-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+  .ml-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#fff}
+
+  /* ── ABOUT MODAL ── */
+  #about-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
+  #about-modal.open{display:flex}
+  #about-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  #about-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
+  #about-title{font-size:17px;font-weight:800;color:var(--text)}
+  #about-close-x{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
+  #about-close-x:hover{color:var(--text)}
+  #about-content{overflow-y:auto;padding:16px 20px 32px;-webkit-overflow-scrolling:touch}
+  .about-section{margin-bottom:22px}
+  .about-h2{font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+  .about-h3{font-size:12px;font-weight:700;color:var(--accent);margin:12px 0 4px}
+  .about-ul{list-style:none;padding:0;margin:0}
+  .about-ul li{padding:4px 0 4px 20px;position:relative;font-size:14px;color:var(--text);line-height:1.4}
+  .about-ul li::before{content:'▸';position:absolute;left:4px;color:var(--muted);font-size:11px;top:7px}
+  .about-link{color:var(--accent);font-size:14px;text-decoration:none;font-weight:600}
+  .about-link:hover{text-decoration:underline}
+  .about-table{width:100%;border-collapse:collapse;font-size:13px}
+  .about-table th{text-align:left;padding:4px 6px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+  .about-table td{padding:5px 6px;color:var(--text);border-bottom:1px solid var(--border)}
+  .about-table tr:last-child td{border-bottom:none}
+  .done{color:#4caf50;font-size:14px}
+  .date-badge{background:var(--gold);color:#000;font-size:11px;font-weight:800;border-radius:6px;padding:2px 7px}
+  .about-note{font-size:13px;color:var(--muted);line-height:1.5;padding:4px 0}
+  .about-coming{background:rgba(200,168,75,.05);border:1px solid rgba(200,168,75,.2);border-radius:10px;padding:14px}
+  .changelog-entry{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border)}
+  .changelog-entry:last-child{border-bottom:none}
+  .cl-version{font-size:13px;font-weight:800;color:var(--gold);min-width:40px}
+  .cl-date{font-size:11px;color:var(--muted)}
+  .cl-items{font-size:13px;color:var(--text);line-height:1.4;flex:1 1 100%}
+  .about-footer-note{font-size:12px;color:var(--muted);line-height:1.6;padding-top:8px;border-top:1px solid var(--border)}
+
+  /* ── SPEC SELECTOR ── */
+  #spec-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+  #spec-btn:hover{border-color:var(--gold);color:var(--gold)}
+  #spec-modal{display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,0.7);align-items:flex-start;justify-content:center;padding:60px 12px 24px;overflow-y:auto}
+  #spec-modal.visible{display:flex}
+  #spec-modal-inner{background:var(--deep);border:1px solid var(--border);border-radius:14px;width:100%;max-width:700px;padding:20px}
+  #spec-modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
+  #spec-modal-title{font-family:'Cinzel',Georgia,serif;font-size:18px;font-weight:700;color:var(--gold)}
+  #spec-modal-subtitle{font-size:13px;color:var(--muted);margin-bottom:16px}
+  #spec-close-x{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:0 4px;line-height:1}
+  #spec-close-x:hover{color:var(--text)}
+  .spec-class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .spec-class-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px}
+  .spec-class-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:7px}
+  .spec-specs-row{display:flex;flex-direction:column;gap:4px}
+  .spec-spec-btn{background:var(--deep);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;color:var(--text);cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:7px}
+  .spec-spec-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .spec-spec-btn.spec-active{border-color:var(--gold);background:rgba(200,168,75,0.08)}
+  .spec-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;min-width:40px}
+  #spec-reset-btn{margin-top:14px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s}
+  #spec-reset-btn:hover{border-color:red;color:red}
+  .lust-name{color:var(--gold);font-weight:700}
+  @media(max-width:480px){.spec-class-grid{grid-template-columns:1fr 1fr}}
+
+  /* ── FOOTER ── */
+  #site-footer{background:var(--deep);border-top:1px solid var(--border);padding:24px 16px 32px;margin-top:40px}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+  .footer-credits{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+  .footer-made{font-size:15px;color:var(--text)}
+  .footer-made strong{color:var(--gold)}
+  .footer-dot{color:var(--border);font-size:18px}
+  .footer-version{font-size:13px;color:var(--muted)}
+  .footer-disclaimer{font-size:12px;color:var(--muted);max-width:700px;line-height:1.6;font-style:italic}
+  .footer-sources{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;font-size:13px}
+  .footer-sources span{color:var(--border)}
+  .footer-sources a{color:var(--accent);text-decoration:none;transition:color .2s}
+  .footer-sources a:hover{color:var(--gold)}
+  #footer-sources-label{color:var(--muted);font-weight:700}
+  #qr-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--gold);cursor:pointer;transition:all .2s;margin-top:4px}
+  #qr-btn:hover{border-color:var(--gold);background:var(--gold);color:#000}
+  #qr-popup{display:none;flex-direction:column;align-items:center;gap:10px;margin-top:12px;padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:12px;max-width:240px}
+  #qr-popup.visible{display:flex}
+  #qr-popup canvas{border-radius:8px}
+  #qr-url{font-size:11px;color:var(--muted);word-break:break-all;text-align:center}
+  #qr-close{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline}
+
+  /* ── MODE TABS ── */
+  .mode-tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px;flex-shrink:0}
+  .mode-tab{background:none;border:none;border-radius:16px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+  .mode-tab.active{background:var(--gold);color:#000}
+  .mode-tab:hover:not(.active){color:var(--text)}
+  body.mode-professions #home-screen{display:none !important}
+  body.mode-professions #detail-screen{display:none !important}
+  body.mode-professions #prof-screen{display:block !important}
+  body.mode-dungeons #prof-screen{display:none !important}
+  /* ── PROFESSIONS ── */
+  #prof-screen{display:none;padding:0 0 60px}
+  .prof-hero{text-align:center;padding:28px 16px 16px;background:linear-gradient(180deg,rgba(80,40,160,.10) 0%,transparent 100%)}
+  .prof-hero-title{font-family:'Cinzel',Georgia,serif;font-size:clamp(20px,6vw,40px);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:4px}
+  .prof-hero-title span{color:var(--gold)}
+  .prof-hero-sub{color:var(--muted);font-size:14px}
+  .prof-grid{max-width:1100px;margin:0 auto;padding:0 16px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+  .prof-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+  .prof-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,168,75,.15)}
+  .prof-card-icon{font-size:2rem;margin-bottom:6px}
+  .prof-card-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+  .prof-card-cat{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .prof-card-tier{position:absolute;top:10px;right:10px;font-size:10px;font-weight:900;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid}
+  .tier-S{background:rgba(255,215,0,.15);border-color:#ffd700;color:#ffd700}
+  .tier-A{background:rgba(192,132,252,.15);border-color:#c084fc;color:#c084fc}
+  .tier-B{background:rgba(96,165,250,.15);border-color:#60a5fa;color:#60a5fa}
+  .tier-C{background:rgba(148,163,184,.15);border-color:#94a3b8;color:#94a3b8}
+  #prof-detail{display:none;max-width:860px;margin:0 auto;padding:0 16px 60px}
+  #prof-detail.visible{display:block}
+  .pdet-back{background:none;border:1px solid var(--border);color:var(--gold);font-size:13px;font-weight:700;padding:7px 16px;border-radius:8px;cursor:pointer;margin:16px 0 12px;transition:all .2s}
+  .pdet-back:hover{background:var(--gold);color:#000}
+  .pdet-header{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:12px}
+  .pdet-icon{font-size:2.6rem;margin-bottom:8px}
+  .pdet-name{font-family:'Cinzel',Georgia,serif;font-size:clamp(20px,5vw,32px);font-weight:900;color:var(--text);margin-bottom:4px}
+  .pdet-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+  .pdet-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.05em;text-transform:uppercase}
+  .pdet-lore{margin-top:12px;color:var(--muted);font-size:14px;line-height:1.7}
+  .pdet-ratings{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+  .pdet-rating-label{font-size:11px;color:var(--muted);margin-bottom:2px}
+  .pdet-stars{font-size:14px}
+  .pdet-tabs{display:flex;gap:4px;margin-bottom:12px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:4px}
+  .pdet-tab{background:none;border:none;flex:1;padding:8px;font-size:13px;font-weight:700;cursor:pointer;border-radius:8px;color:var(--muted);transition:all .2s}
+  .pdet-tab.active{background:var(--gold);color:#000}
+  .pdet-panel{display:none}
+  .pdet-panel.visible{display:block}
+  .pdet-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px}
+  .pdet-section h3{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  .trainer-way{font-family:monospace;background:var(--deep);padding:4px 10px;border-radius:6px;font-size:13px;color:var(--accent);display:inline-block;margin:6px 0}
+  .trainer-note{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}
+  .spec-block{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px}
+  .spec-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px}
+  .spec-desc{font-size:13px;color:var(--muted);line-height:1.7}
+  .spec-points{font-size:11px;font-weight:700;color:var(--accent);margin-top:6px;padding:3px 8px;background:rgba(128,96,208,.12);border-radius:6px;display:inline-block}
+  .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+  .item-card{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:10px}
+  .item-icon{font-size:1.4rem;margin-bottom:4px}
+  .item-name{font-size:13px;font-weight:700;color:var(--gold)}
+  .item-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
+  .item-tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;background:var(--tip-bg);color:var(--gold);margin-top:4px;display:inline-block}
+  .orders-text{font-size:13px;color:var(--muted);line-height:1.7}
+  .prof-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
+  .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+  @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
+  @media(max-width:768px){.mode-tabs{gap:2px}.mode-tab{padding:4px 9px;font-size:11px}}
+
+</style>
+</head>
+<body>
+
+<!-- PWA Install Banner -->
+<div id="pwa-banner">
+  <span class="pwa-icon">📲</span>
+  <div class="pwa-text" id="pwa-text">Installeer deze app op je telefoon</div>
+  <button class="pwa-btn" id="pwa-btn" onclick="pwaTrigger()">Installeer</button>
+  <button class="pwa-close" onclick="pwaDismiss()" title="Sluiten">✕</button>
+</div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <button id="back-btn" onclick="goHome()">←</button>
+    <div class="header-title">
+      WoW: Midnight
+      <span class="header-sub" id="hdr-sub">DUNGEONS — SEIZOEN 1</span>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="mode-tab-dungeons" onclick="setMode('dungeons')">⚔ Dungeons</button>
+      <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')">🔨 Professies</button>
+    </div>
+    <div class="header-controls">
+    <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
+      <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
+      <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
+      <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
+      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">☀️</button>
+    </div>
+  </div>
+</header>
+
+<div id="install-banner" style="position:relative">
+  <span>📲</span>
+  <span id="ib-title"><strong>Installeer als app:</strong></span>
+  <span id="ib-android"><strong>Android</strong> — Chrome → menu (⋮) → "Add to Home Screen"</span>
+  <span>|</span>
+  <span id="ib-ios"><strong>iPhone</strong> — Safari → deel (□↑) → "Add to Home Screen"</span>
+  <button id="install-close" onclick="document.getElementById('install-banner').style.display='none'">×</button>
+</div>
+
+<div id="home-screen">
+  <div class="hero">
+    <div class="hero-eyebrow" id="hero-eyebrow">World of Warcraft: Midnight — Seizoen 1</div>
+    <h1 class="hero-title">Dungeon<br><span id="hero-title-span">Gids</span></h1>
+    <p class="hero-sub" id="hero-sub">Kies je dungeon — bazen, rollen &amp; routeplanner</p>
+  </div>
+  <div class="section-label"><h2 id="s1-label">⚔ Seizoen 1 Mythic+</h2></div>
+  <div class="dungeon-grid" id="mplus-grid"></div>
+  <div class="section-label"><h2 id="norm-label">📖 Alleen Normal</h2></div>
+  <div class="dungeon-grid" id="normal-grid"></div>
+</div>
+
+<!-- ════════════ PROFESSIONS SCREEN ════════════ -->
+<div id="prof-screen">
+  <div class="prof-hero">
+    <div class="prof-hero-title" id="prof-hero-title">Professies — <span>Midnight</span></div>
+    <div class="prof-hero-sub" id="prof-hero-sub">Kies een professie om de gids te openen</div>
+  </div>
+  <div class="prof-grid" id="prof-grid"></div>
+  <div id="prof-detail">
+    <button class="pdet-back" id="pdet-back-btn" onclick="showProfGrid()">← Terug</button>
+    <div class="pdet-header">
+      <div class="pdet-icon" id="pdet-icon"></div>
+      <div class="pdet-name" id="pdet-name"></div>
+      <div class="pdet-meta" id="pdet-meta"></div>
+      <div class="pdet-lore" id="pdet-lore"></div>
+      <div class="pdet-ratings" id="pdet-ratings"></div>
+    </div>
+    <div class="pdet-tabs">
+      <button class="pdet-tab active" onclick="switchProfTab(this,'ptab-trainer')">🗺 Trainer</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-specs')">🌿 Specs</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-items')">⚗ Items</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
+    </div>
+    <div class="pdet-panel visible" id="ptab-trainer"></div>
+    <div class="pdet-panel" id="ptab-specs"></div>
+    <div class="pdet-panel" id="ptab-items"></div>
+    <div class="pdet-panel" id="ptab-orders"></div>
+  </div>
+</div>
+
+<div id="detail-screen">
+  <div class="detail-hero">
+    <div class="detail-hero-inner">
+      <div class="detail-eyebrow" id="d-eyebrow"></div>
+      <h2 class="detail-title" id="d-title"></h2>
+      <div class="detail-meta" id="d-meta"></div>
+      <p class="detail-lore" id="d-lore"></p>
+    </div>
+  </div>
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-btn-overview" onclick="switchTab('overview',event)"></button>
+      <button class="tab-btn" id="tab-btn-bosses" onclick="switchTab('bosses',event)"></button>
+      <button class="tab-btn" id="tab-btn-route" onclick="switchTab('route',event)"></button>
+    </div>
+  </div>
+  <div id="tab-overview" class="tab-content active"><div class="content-wrap" id="overview-content"></div></div>
+  <div id="tab-bosses"   class="tab-content"><div class="content-wrap" id="bosses-content"></div></div>
+  <div id="tab-route"    class="tab-content"><div class="content-wrap" id="route-content"></div></div>
+</div>
+
+
+<!-- ══ DATA FILES ══ -->
+<script src="data/dungeons/season1.js"></script>
+<script src="data/professions/skinning.js"></script>
+<script src="data/professions/leatherworking.js"></script>
+<script src="data/professions/mining.js"></script>
+<script src="data/professions/herbalism.js"></script>
+<script src="data/professions/alchemy.js"></script>
+<script src="data/professions/blacksmithing.js"></script>
+<script src="data/professions/enchanting.js"></script>
+<script src="data/professions/engineering.js"></script>
+<script src="data/professions/inscription.js"></script>
+<script src="data/professions/jewelcrafting.js"></script>
+<script src="data/professions/tailoring.js"></script>
+<script src="data/professions/cooking.js"></script>
+<script src="data/professions/fishing.js"></script>
+<script>
+// ── Keystone.guru UI strings ──
+const KG_STRINGS = {
+  nl: { title:'🗺 Route op Keystone.guru', hint:'Tik buiten het venster of druk op Sluiten', close:'✕ Sluiten', btn_label:'Bekijk M+ route op Keystone.guru', btn_sub:'Opent Keystone.guru in een nieuw tabblad' },
+  en: { title:'🗺 Route on Keystone.guru', hint:'Tap outside or press Close', close:'✕ Close', btn_label:'View M+ route on Keystone.guru', btn_sub:'Opens Keystone.guru in a new tab' },
+  da: { title:'🗺 Rute på Keystone.guru', hint:'Tryk uden for vinduet eller tryk Luk', close:'✕ Luk', btn_label:'Se M+ rute på Keystone.guru', btn_sub:'Åbner Keystone.guru i en ny fane' }
+};
+
+// ── Alle professions samenvoegen ──
+const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHING,ENCHANTING,ENGINEERING,INSCRIPTION,JEWELCRAFTING,TAILORING,COOKING,FISHING];
+</script>
+
+<!-- ══ APP ══ -->
+<script>
+
+
+// ── VERSIE ──
+const VERSION = "v5.0";
+const VERSION_DATE = "2026-03-11";
+
+
+// ═══════════════════════════════════════════════════════════════
+// SPEC SELECTOR
+// ═══════════════════════════════════════════════════════════════
+const CLASSES = [
+  { id:'deathknight', icon:'💀', name:{nl:'Death Knight', en:'Death Knight', da:'Death Knight'},
+    specs:[
+      {id:'blood',  name:{nl:'Blood',  en:'Blood',  da:'Blood'},  role:'tank'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'},
+      {id:'unholy', name:{nl:'Unholy', en:'Unholy', da:'Unholy'}, role:'dps'}
+    ]},
+  { id:'demonhunter', icon:'😈', name:{nl:'Demon Hunter', en:'Demon Hunter', da:'Demon Hunter'},
+    specs:[
+      {id:'havoc',    name:{nl:'Havoc',    en:'Havoc',    da:'Havoc'},    role:'dps'},
+      {id:'vengeance',name:{nl:'Vengeance',en:'Vengeance',da:'Vengeance'},role:'tank'},
+      {id:'devourer', name:{nl:'Devourer', en:'Devourer', da:'Devourer'}, role:'dps'}
+    ]},
+  { id:'druid', icon:'🐾', name:{nl:'Druid', en:'Druid', da:'Druid'},
+    specs:[
+      {id:'balance',     name:{nl:'Balance',     en:'Balance',     da:'Balance'},     role:'dps'},
+      {id:'feral',       name:{nl:'Feral',        en:'Feral',       da:'Feral'},       role:'dps'},
+      {id:'guardian',    name:{nl:'Guardian',     en:'Guardian',    da:'Guardian'},    role:'tank'},
+      {id:'restoration', name:{nl:'Restauratie',  en:'Restoration', da:'Restauration'},role:'heal'}
+    ]},
+  { id:'evoker', icon:'🐉', name:{nl:'Evoker', en:'Evoker', da:'Evoker'},
+    specs:[
+      {id:'augmentation', name:{nl:'Augmentation', en:'Augmentation', da:'Augmentation'}, role:'dps'},
+      {id:'devastation',  name:{nl:'Devastation',  en:'Devastation',  da:'Devastation'},  role:'dps'},
+      {id:'preservation', name:{nl:'Preservation', en:'Preservation', da:'Preservation'}, role:'heal'}
+    ]},
+  { id:'hunter', icon:'🏹', name:{nl:'Hunter', en:'Hunter', da:'Jæger'},
+    specs:[
+      {id:'beastmastery',  name:{nl:'Beast Mastery',  en:'Beast Mastery',  da:'Beast Mastery'},  role:'dps'},
+      {id:'marksmanship',  name:{nl:'Marksmanship',   en:'Marksmanship',   da:'Marksmanship'},   role:'dps'},
+      {id:'survival',      name:{nl:'Survival',        en:'Survival',       da:'Survival'},       role:'dps'}
+    ]},
+  { id:'mage', icon:'🔮', name:{nl:'Mage', en:'Mage', da:'Magiker'},
+    specs:[
+      {id:'arcane', name:{nl:'Arcane', en:'Arcane', da:'Arcane'}, role:'dps'},
+      {id:'fire',   name:{nl:'Fire',   en:'Fire',   da:'Fire'},   role:'dps'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'}
+    ]},
+  { id:'monk', icon:'☯️', name:{nl:'Monk', en:'Monk', da:'Munk'},
+    specs:[
+      {id:'brewmaster',  name:{nl:'Brewmaster',  en:'Brewmaster',  da:'Brewmaster'},  role:'tank'},
+      {id:'mistweaver',  name:{nl:'Mistweaver',  en:'Mistweaver',  da:'Mistweaver'},  role:'heal'},
+      {id:'windwalker',  name:{nl:'Windwalker',  en:'Windwalker',  da:'Windwalker'},  role:'dps'}
+    ]},
+  { id:'paladin', icon:'⚔️', name:{nl:'Paladin', en:'Paladin', da:'Paladin'},
+    specs:[
+      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
+      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'},
+      {id:'retribution',name:{nl:'Retribution',en:'Retribution',da:'Retribution'},role:'dps'}
+    ]},
+  { id:'priest', icon:'✨', name:{nl:'Priest', en:'Priest', da:'Præst'},
+    specs:[
+      {id:'discipline', name:{nl:'Discipline', en:'Discipline', da:'Discipline'}, role:'heal'},
+      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
+      {id:'shadow',     name:{nl:'Shadow',     en:'Shadow',     da:'Shadow'},     role:'dps'}
+    ]},
+  { id:'rogue', icon:'🗡️', name:{nl:'Rogue', en:'Rogue', da:'Skurk'},
+    specs:[
+      {id:'assassination',name:{nl:'Assassination',en:'Assassination',da:'Assassination'},role:'dps'},
+      {id:'outlaw',       name:{nl:'Outlaw',       en:'Outlaw',       da:'Outlaw'},       role:'dps'},
+      {id:'subtlety',     name:{nl:'Subtlety',     en:'Subtlety',     da:'Subtlety'},     role:'dps'}
+    ]},
+  { id:'shaman', icon:'⚡', name:{nl:'Shaman', en:'Shaman', da:'Shaman'},
+    specs:[
+      {id:'elemental',   name:{nl:'Elemental',   en:'Elemental',   da:'Elemental'},   role:'dps'},
+      {id:'enhancement', name:{nl:'Enhancement', en:'Enhancement', da:'Enhancement'}, role:'dps'},
+      {id:'restoration', name:{nl:'Restoration', en:'Restoration', da:'Restoration'}, role:'heal'}
+    ]},
+  { id:'warlock', icon:'🔥', name:{nl:'Warlock', en:'Warlock', da:'Troldmand'},
+    specs:[
+      {id:'affliction',  name:{nl:'Affliction',  en:'Affliction',  da:'Affliction'},  role:'dps'},
+      {id:'demonology',  name:{nl:'Demonology',  en:'Demonology',  da:'Demonology'},  role:'dps'},
+      {id:'destruction', name:{nl:'Destruction', en:'Destruction', da:'Destruction'}, role:'dps'}
+    ]},
+  { id:'warrior', icon:'🛡️', name:{nl:'Warrior', en:'Warrior', da:'Kriger'},
+    specs:[
+      {id:'arms',       name:{nl:'Arms',       en:'Arms',       da:'Arms'},       role:'dps'},
+      {id:'fury',       name:{nl:'Fury',       en:'Fury',       da:'Fury'},       role:'dps'},
+      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'}
+    ]}
+];
+
+// Lust ability per class+spec combo
+const LUST_ABILITY = {
+  'shaman-elemental':    {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'shaman-enhancement':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'shaman-restoration':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
+  'mage-arcane':         {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'mage-fire':           {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'mage-frost':          {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
+  'hunter-beastmastery': {nl:'Primal Rage',        en:'Primal Rage',        da:'Primal Rage'},
+  'evoker-augmentation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
+  'evoker-devastation':  {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
+  'evoker-preservation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'}
+};
+
+// Get lust name for current spec
+function getLustName() {
+  const key = currentSpec ? currentSpec.classId + '-' + currentSpec.specId : null;
+  if (key && LUST_ABILITY[key]) return LUST_ABILITY[key][lang] || 'Bloodlust';
+  return 'Bloodlust';
+}
+
+// Replace 'Bloodlust' in a string with the correct ability name
+function replaceLust(text) {
+  const lust = getLustName();
+  if (lust === 'Bloodlust') return text;
+  return text.replace(/Bloodlust/g, lust);
+}
+
+// Spec UI strings per language
+const SPEC_UI = {
+  nl: { btn_no_spec:'Kies spec', btn_spec:'Spec: ', title:'Kies jouw spec', subtitle:'We passen spellnamen aan op jouw klasse', reset:'Spec wissen', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
+  en: { btn_no_spec:'Choose spec', btn_spec:'Spec: ', title:'Choose your spec', subtitle:"We'll adjust spell names to match your class", reset:'Clear spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
+  da: { btn_no_spec:'Vælg spec', btn_spec:'Spec: ', title:'Vælg din spec', subtitle:'Vi tilpasser stavningsnavne til din klasse', reset:'Ryd spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' }
+};
+
+let currentSpec = null;
+try {
+  const saved = localStorage.getItem('spec');
+  if (saved) currentSpec = JSON.parse(saved);
+} catch(e) {}
+
+function saveSpec(classId, specId) {
+  currentSpec = { classId, specId };
+  localStorage.setItem('spec', JSON.stringify(currentSpec));
+  updateSpecBtn();
+  closeSpecModal();
+  // Re-render current view to update lust names
+  if (currentDungeon) renderDetail(currentDungeon);
+}
+
+function clearSpec() {
+  currentSpec = null;
+  localStorage.removeItem('spec');
+  updateSpecBtn();
+  closeSpecModal();
+  if (currentDungeon) renderDetail(currentDungeon);
+}
+
+function updateSpecBtn() {
+  const btn = document.getElementById('spec-btn');
+  if (!btn) return;
+  const ui = SPEC_UI[lang];
+  if (currentSpec) {
+    const cls = CLASSES.find(c => c.id === currentSpec.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
+    if (cls && sp) {
+      btn.textContent = cls.icon + ' ' + sp.name[lang];
+      btn.style.color = 'var(--gold)';
+      return;
+    }
+  }
+  btn.textContent = '⚙ ' + ui.btn_no_spec;
+  btn.style.color = 'var(--muted)';
+}
+
+function openSpecModal() {
+  // Sluit about-modal als die open is
+  document.getElementById('about-modal').classList.remove('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('spec-modal').classList.add('visible');
+  renderSpecModal();
+}
+
+function closeSpecModal() {
+  document.getElementById('spec-modal').classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+function renderSpecModal() {
+  const ui = SPEC_UI[lang];
+  document.getElementById('spec-modal-title').textContent    = ui.title;
+  document.getElementById('spec-modal-subtitle').textContent = ui.subtitle;
+  document.getElementById('spec-reset-btn').textContent      = '× ' + ui.reset;
+
+  const roleLabel = { tank: ui.role_tank, heal: ui.role_heal, dps: ui.role_dps };
+  const roleColor = { tank: 'var(--tank)', heal: 'var(--heal)', dps: 'var(--dps)' };
+
+  const grid = document.getElementById('spec-class-grid');
+  grid.innerHTML = CLASSES.map(cls => {
+    const specs = cls.specs.map(sp => {
+      const active = currentSpec && currentSpec.classId === cls.id && currentSpec.specId === sp.id;
+      return `<button class="spec-spec-btn${active?' spec-active':''}"
+        style="${active?'border-color:var(--gold);color:var(--gold);':''}"
+        onclick="saveSpec('${cls.id}','${sp.id}')">
+        <span class="spec-role" style="color:${roleColor[sp.role]}">${roleLabel[sp.role]}</span>
+        ${sp.name[lang]}
+      </button>`;
+    }).join('');
+    return `<div class="spec-class-block">
+      <div class="spec-class-name">${cls.icon} ${cls.name[lang]}</div>
+      <div class="spec-specs-row">${specs}</div>
+    </div>`;
+  }).join('');
+}
+
+
+// Footer i18n
+const FOOTER = {
+  nl: {
+    season: "WoW: Midnight — Seizoen 1",
+    disclaimer: "Deze gids is een fan-project en heeft geen officiële band met Blizzard Entertainment. World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc. Dungeon-informatie is gebaseerd op Icy Veins, Wowhead, Method en eigen ervaringen — altijd vatbaar voor verandering na patches.",
+    sources: "Bronnen:"
+  },
+  en: {
+    season: "WoW: Midnight — Season 1",
+    disclaimer: "This guide is a fan project and is not affiliated with Blizzard Entertainment. World of Warcraft and all related names are trademarks of Blizzard Entertainment, Inc. Dungeon information is based on Icy Veins, Wowhead, Method and personal experience — always subject to change after patches.",
+    sources: "Sources:"
+  },
+  da: {
+    season: "WoW: Midnight — Sæson 1",
+    disclaimer: "Denne guide er et fan-projekt og er ikke tilknyttet Blizzard Entertainment. World of Warcraft og alle relaterede navne er varemærker tilhørende Blizzard Entertainment, Inc. Dungeon-information er baseret på Icy Veins, Wowhead, Method og egne erfaringer — altid underlagt ændringer efter patches.",
+    sources: "Kilder:"
+  }
+};
+
+function updateFooter() {
+  const vEl = document.getElementById('footer-version-nr');
+  if (vEl) vEl.textContent = VERSION + ' — ' + VERSION_DATE;
+  const f = FOOTER[lang];
+  if (!f) return;
+  const el_season = document.getElementById('footer-season');
+  const el_disc   = document.getElementById('footer-disclaimer');
+  const el_src    = document.getElementById('footer-sources-label');
+  if (el_season) el_season.textContent = f.season;
+  if (el_disc)   el_disc.textContent   = f.disclaimer;
+  if (el_src)    el_src.textContent    = f.sources;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UI STRINGS
+// ═══════════════════════════════════════════════════════════════
+const UI = {
+  nl: {
+    season_sub:   "DUNGEONS — SEIZOEN 1",
+    eyebrow:      "World of Warcraft: Midnight — Seizoen 1",
+    guide:        "Gids",
+    hero_sub:     "Kies je dungeon — bazen, rollen & routeplanner",
+    s1_section:   "⚔ Seizoen 1 Mythic+",
+    norm_section: "📖 Alleen Normal",
+    badge_mplus:  "⚔ SEIZOEN 1 M+",
+    badge_normal: "📖 ALLEEN NORMAL",
+    tab_overview: "Overzicht",
+    tab_bosses:   "Bazen",
+    tab_route:    "Routeplanner",
+    boss_label:   "BAAS",
+    lbl_zone:     "ZONE",
+    lbl_type:     "TYPE",
+    lbl_unlock:   "ONTGRENDEL",
+    lbl_bosses:   "AANTAL BAZEN",
+    type_mplus:   "⚔ Mythic+ Seizoen 1",
+    type_normal:  "📖 Alleen Normal",
+    lust_moment:  "Moment",
+    lust_explain: "Uitleg",
+    lust_title:   "🔥 Bloodlust / Heroism Timing",
+    route_sum:    "Samenvatting",
+    route_diag:   "Schematische Route — Pull-volgorde",
+    kg_section:   "Interactieve Routes — Keystone.guru",
+    kg_text:      "Bekijk en importeer uitgebreide M+-routes op Keystone.guru. Gebruik de <strong>MDT (Mythic Dungeon Tools)</strong> addon in-game om routes te importeren.",
+    kg_btn:       "🗺 Open routes op Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Baas",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BAAS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
+    norm_note:    "Geen Keystone.guru route nodig — deze dungeon zit niet in de M+ rotatie. Bovenstaande pull-volgorde is voldoende.",
+    back:         "← Terug",
+    theme_light:  "☀️",
+    theme_dark:   "🌙",
+    ib_title:     "<strong>Installeer als app:</strong>",
+    ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Toevoegen aan startscherm\"",
+    ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
+    about_btn:    "📖 Over deze app",
+    about_title:  "⚔ Over deze app",
+    route_notice: "⚠️ Nog geen ideale route beschikbaar. Ken jij een goede route? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Stuur een GitHub Issue →</a>",
+  },
+  en: {
+    season_sub:   "DUNGEONS — SEASON 1",
+    eyebrow:      "World of Warcraft: Midnight — Season 1",
+    guide:        "Guide",
+    hero_sub:     "Choose your dungeon — bosses, roles & route planner",
+    s1_section:   "⚔ Season 1 Mythic+",
+    norm_section: "📖 Normal Only",
+    badge_mplus:  "⚔ SEASON 1 M+",
+    badge_normal: "📖 NORMAL ONLY",
+    tab_overview: "Overview",
+    tab_bosses:   "Bosses",
+    tab_route:    "Route Planner",
+    boss_label:   "BOSS",
+    lbl_zone:     "ZONE",
+    lbl_type:     "TYPE",
+    lbl_unlock:   "UNLOCK",
+    lbl_bosses:   "BOSSES",
+    type_mplus:   "⚔ Mythic+ Season 1",
+    type_normal:  "📖 Normal Only",
+    lust_moment:  "Moment",
+    lust_explain: "Notes",
+    lust_title:   "🔥 Bloodlust / Heroism Timing",
+    route_sum:    "Summary",
+    route_diag:   "Route Diagram — Pull Order",
+    kg_section:   "Interactive Routes — Keystone.guru",
+    kg_text:      "View and import detailed M+ routes on Keystone.guru. Use the <strong>MDT (Mythic Dungeon Tools)</strong> addon in-game to import routes.",
+    kg_btn:       "🗺 Open routes on Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Boss",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BOSS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
+    norm_note:    "No Keystone.guru route needed — this dungeon is not in the M+ rotation. The pull order above is sufficient.",
+    back:         "← Back",
+    theme_light:  "☀️",
+    theme_dark:   "🌙",
+    ib_title:     "<strong>Install as app:</strong>",
+    ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Add to Home Screen\"",
+    ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
+    about_btn:    "📖 About this app",
+    about_title:  "⚔ About this app",
+    route_notice: "⚠️ No ideal route available yet. Know a good one? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Submit a GitHub Issue →</a>",
+  },
+  da: {
+    season_sub:   "FANGEHULER — SÆSON 1",
+    eyebrow:      "World of Warcraft: Midnight — Sæson 1",
+    guide:        "Guide",
+    hero_sub:     "Vælg din dungeon — bosser, roller og ruteplanlægger",
+    s1_section:   "⚔ Sæson 1 Mythic+",
+    norm_section: "📖 Kun Normal",
+    badge_mplus:  "⚔ SÆSON 1 M+",
+    badge_normal: "📖 KUN NORMAL",
+    tab_overview: "Oversigt",
+    tab_bosses:   "Bosser",
+    tab_route:    "Ruteplanlægger",
+    boss_label:   "BOSS",
+    lbl_zone:     "ZONE",
+    lbl_type:     "TYPE",
+    lbl_unlock:   "LÅS OP",
+    lbl_bosses:   "ANTAL BOSSER",
+    type_mplus:   "⚔ Mythic+ Sæson 1",
+    type_normal:  "📖 Kun Normal",
+    lust_moment:  "Tidspunkt",
+    lust_explain: "Forklaring",
+    lust_title:   "🔥 Bloodlust / Heroism-timing",
+    route_sum:    "Sammenfatning",
+    route_diag:   "Rutediagram — Pull-rækkefølge",
+    kg_section:   "Interaktive ruter — Keystone.guru",
+    kg_text:      "Se og importer detaljerede M+-ruter på Keystone.guru. Brug <strong>MDT (Mythic Dungeon Tools)</strong> addon i spillet til at importere ruter.",
+    kg_btn:       "🗺 Åbn ruter på Keystone.guru →",
+    vr_legend_trash: "Trash pull",
+    vr_legend_boss:  "Boss",
+    vr_legend_event: "Event/Buff",
+    vr_legend_lust:  "Bloodlust",
+    vr_label_trash:  "TRASH",
+    vr_label_boss:   "BOSS",
+    vr_label_event:  "EVENT",
+    vr_label_lust:   "LUST",
+    norm_note:    "Ingen Keystone.guru-rute nødvendig — denne dungeon er ikke i M+-rotationen. Pull-rækkefølgen ovenfor er tilstrækkelig.",
+    back:         "← Tilbage",
+    theme_light:  "☀️",
+    theme_dark:   "🌙",
+    ib_title:     "<strong>Installer som app:</strong>",
+    ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Føj til startskærm\"",
+    ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
+    about_btn:    "📖 Om denne app",
+    about_title:  "⚔ Om denne app",
+    route_notice: "⚠️ Ingen ideel rute tilgængelig endnu. Kender du en god rute? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Indsend et GitHub Issue →</a>",
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+// HELPER
+// ═══════════════════════════════════════════════════════════════
+let lang = localStorage.getItem('lang') || 'nl';
+function t(obj) { return (typeof obj === 'string') ? obj : (obj[lang] || obj.en || ''); }
+
+// ═══════════════════════════════════════════════════════════════
+// DUNGEON DATA  (all localised text fields: {nl,en,da})
+// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+// HOE EEN NIEUWE DUNGEON TOEVOEGEN (voor Claude of jezelf):
+//
+// 1. Kopieer een bestaand dungeon-blok van { id:... } tot de sluitende },
+// 2. Plak het onder het laatste blok in de array (vóór de sluitende ])
+// 3. Pas alle velden aan — elke tekst heeft {nl:"...",en:"...",da:"..."}
+// 4. type: "mplus"  → verschijnt in Seizoen M+ sectie
+//    type: "normal" → verschijnt in Alleen Normal sectie
+// 5. Voor een nieuw seizoen: voeg type:"mplus_s2" toe en voeg in renderHome()
+//    een extra sectie toe (identiek aan de mplus-sectie, filter op "mplus_s2")
+// 6. UI-teksten (tabbladen, knoppen, etc.) staan in het UI{} object bovenaan
+//
+// NIEUW SEIZOEN CHECKLIST:
+//   - Nieuwe dungeons toevoegen met juist type
+//   - UI.nl/en/da: season_sub aanpassen ("SEIZOEN 2" etc.)
+//   - renderHome() uitbreiden met nieuwe sectie indien gewenst
+// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+// SPEC-SPECIFIC TIPS
+// Key format: 'dungeon-id:boss-index:role'
+// Only 4 specs covered fully: druid-restoration, paladin-protection,
+// hunter-beastmastery, shaman-elemental. Others fall back to generic.
+// ═══════════════════════════════════════════════════════════════
+// [Data moved to external file]
+
+// Returns spec-specific tips array or null
+function getSpecTips(dungeonId, bossIndex, role) {
+  if (!currentSpec) return null;
+  const key = `${dungeonId}:${bossIndex}:${role}`;
+  const bucket = SPEC_TIPS[key];
+  if (!bucket) return null;
+  const specKey = `${currentSpec.classId}-${currentSpec.specId}`;
+  const tips = bucket[specKey];
+  if (!tips) return null;
+  return tips[lang] || tips['en'] || null;
+}
+
+// [Data moved to external file]
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let currentDungeon = null;
+
+// ═══════════════════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════════════════
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+  applyUIStrings();
+  updateFooter();
+  updateSpecBtn();
+  const sm = document.getElementById('spec-modal');
+  if (sm && sm.classList.contains('visible')) renderSpecModal();
+  if (currentDungeon) renderDetail(currentDungeon);
+  else renderHome();
+  if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
+  if (document.body.classList.contains('mode-professions')) updateProfLang();
+}
+
+function applyUIStrings() {
+  const u = UI[lang];
+  document.getElementById('hdr-sub').textContent = u.season_sub;
+  document.getElementById('hero-eyebrow').textContent = u.eyebrow;
+  document.getElementById('hero-title-span').textContent = u.guide;
+  document.getElementById('hero-sub').textContent = u.hero_sub;
+  document.getElementById('s1-label').textContent = u.s1_section;
+  document.getElementById('norm-label').textContent = u.norm_section;
+  document.getElementById('tab-btn-overview').textContent = u.tab_overview;
+  document.getElementById('tab-btn-bosses').textContent = u.tab_bosses;
+  document.getElementById('tab-btn-route').textContent = u.tab_route;
+  document.getElementById('back-btn').innerHTML = u.back;
+  document.getElementById('ib-title').innerHTML = u.ib_title;
+  document.getElementById('ib-android').innerHTML = u.ib_android;
+  document.getElementById('ib-ios').innerHTML = u.ib_ios;
+  document.getElementById('about-btn').textContent = u.about_btn;
+  document.getElementById('about-title').textContent = u.about_title;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════════════════════════════
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('theme-toggle').textContent = isLight ? UI[lang].theme_dark : UI[lang].theme_light;
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ROLE TABS
+// ═══════════════════════════════════════════════════════════════
+
+function renderRolePanel(dungeonId, bossIndex, role, genericTips) {
+  const specTips = getSpecTips(dungeonId, bossIndex, role);
+  const generic = replaceLust(t(genericTips).map(x => `<li>${x}</li>`).join(''));
+
+  if (specTips && specTips.length > 0) {
+    const specHtml = specTips.map(tip => `<li class="spec-tip">${replaceLust(tip)}</li>`).join('');
+    const cls = CLASSES.find(c => c.id === currentSpec?.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec?.specId);
+    const label = cls && sp ? `${cls.icon} ${sp.name[lang]}` : '';
+    return `<div class="spec-tips-header">${label}</div><ul>${specHtml}</ul>
+            <div class="generic-tips-divider"></div>
+            <ul class="generic-tips">${generic}</ul>`;
+  }
+  return `<ul>${generic}</ul>`;
+}
+
+function switchFloor(dungeonId, idx) {
+  const floors = FLOOR_SCREENSHOTS[dungeonId];
+  if (!floors) return;
+  const img = document.getElementById('floor-img-' + dungeonId);
+  if (img) { img.src = floors[idx].img; img.alt = floors[idx].label; }
+  document.querySelectorAll('.floor-tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+}
+
+function switchRole(uid, role) {
+  const roles = ['tank','heal','dps'];
+  const card = document.getElementById(`${uid}-tank`).closest('.boss-card');
+  card.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+  card.querySelectorAll('.role-tab-btn').forEach((b, i) => {
+    b.className = 'role-tab-btn';
+    if (roles[i] === role) b.classList.add('active-' + roles[i]);
+  });
+  document.getElementById(`${uid}-${role}`).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER HOME
+// ═══════════════════════════════════════════════════════════════
+function renderHome() {
+  const u = UI[lang];
+  const mplusGrid  = document.getElementById('mplus-grid');
+  const normalGrid = document.getElementById('normal-grid');
+  mplusGrid.innerHTML = '';
+  normalGrid.innerHTML = '';
+
+  DUNGEONS.forEach(d => {
+    const isMplus = d.type === 'mplus';
+    const card = document.createElement('div');
+    card.className = `dungeon-card ${isMplus ? 'mplus' : ''}`;
+    card.onclick = () => openDungeon(d.id);
+    card.innerHTML = `
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <span class="card-badge ${isMplus ? 'badge-mplus' : 'badge-normal'}">
+          ${isMplus ? u.badge_mplus : u.badge_normal}
+        </span>
+        <div class="card-name">${d.name}</div>
+        <div class="card-zone">${d.zone}</div>
+        <div class="card-bosses">
+          ${d.bosses_short.map(b => `<span class="boss-chip">${b}</span>`).join('')}
+        </div>
+        <div class="card-footer">
+          <span class="card-level">${t(d.level)}</span>
+          <span class="card-arrow">›</span>
+        </div>
+      </div>`;
+    (isMplus ? mplusGrid : normalGrid).appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// OPEN DUNGEON
+// ═══════════════════════════════════════════════════════════════
+function openDungeon(id) {
+  const d = DUNGEONS.find(x => x.id === id);
+  if (!d) return;
+  currentDungeon = d;
+  renderDetail(d);
+  document.getElementById('home-screen').style.display   = 'none';
+  document.getElementById('detail-screen').style.display = 'block';
+  document.getElementById('back-btn').style.display      = 'inline-block';
+  switchTab('overview');
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  currentDungeon = null;
+  document.getElementById('home-screen').style.display   = 'block';
+  document.getElementById('detail-screen').style.display = 'none';
+  document.getElementById('back-btn').style.display      = 'none';
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER DETAIL
+// ═══════════════════════════════════════════════════════════════
+
+// [Data moved to external file]
+const FLOOR_MAP_LEGEND = `<div class="fp-legend">
+  <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Ingang</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#60b8ff"></div>Trash</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#ffd040"></div>Baas</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#ff6622"></div>🔥 Lust</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Event/Buff</div>
+  <div class="fp-leg fp-line-demo"><svg width="26" height="10"><line x1="0" y1="5" x2="18" y2="5" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round"/><polygon points="18,2 26,5 18,8" fill="#e8c840"/></svg>Route</div>
+</div>`;
+
+
+// [Data moved to external file]
+
+// [Data moved to external file]
+
+function renderDetail(d) {
+  const u = UI[lang];
+  document.getElementById('d-eyebrow').textContent = d.zone.toUpperCase() + ' — ' + (d.type === 'mplus' ? u.type_mplus : u.type_normal);
+  document.getElementById('d-title').textContent   = d.name;
+  document.getElementById('d-meta').innerHTML      = `<span>⏱ ${d.time || '—'}</span><span>🔓 ${t(d.level)}</span><span>👹 ${d.bosses_short.length} ${u.lbl_bosses.toLowerCase()}</span>`;
+  document.getElementById('d-lore').textContent    = t(d.lore);
+
+  // Overview
+  document.getElementById('overview-content').innerHTML = `
+    <div class="overview-grid">
+      <div class="info-card"><div class="info-card-title">${u.lbl_zone}</div><div class="info-card-val">${d.zone}</div></div>
+      <div class="info-card"><div class="info-card-title">${u.lbl_type}</div><div class="info-card-val">${d.type === 'mplus' ? u.type_mplus : u.type_normal}</div></div>
+      <div class="info-card"><div class="info-card-title">${u.lbl_unlock}</div><div class="info-card-val">${t(d.level)}</div></div>
+      <div class="info-card"><div class="info-card-title">${u.lbl_bosses}</div><div class="info-card-val">${d.bosses_short.join(' · ')}</div></div>
+    </div>
+    ${d.tips.map(tip => `<div class="tip-box"><strong>${t(tip.title)}:</strong> ${t(tip.text)}</div>`).join('')}`;
+
+  // Determine auto-selected role tab based on chosen spec
+  const autoRole = (() => {
+    if (!currentSpec) return 'tank';
+    const cls = CLASSES.find(c => c.id === currentSpec.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
+    return sp?.role || 'tank';
+  })();
+
+  // Bosses
+  document.getElementById('bosses-content').innerHTML = d.bosses.map((b, bi) => {
+    const uid = `${d.id}-b${bi}`;
+    return `<div class="boss-card">
+      <div class="boss-header">
+        <span class="boss-num">${u.boss_label} ${b.num}</span>
+        <span class="boss-name">${b.name}</span>
+      </div>
+      ${b.desc ? `<div class="boss-desc">${t(b.desc)}</div>` : ''}
+      <div class="role-tabs">
+        <button class="role-tab-btn${autoRole==='tank'?' active-tank':''}" onclick="switchRole('${uid}','tank')">🛡 Tank</button>
+        <button class="role-tab-btn${autoRole==='heal'?' active-heal':''}" onclick="switchRole('${uid}','heal')">💚 Healer</button>
+        <button class="role-tab-btn${autoRole==='dps'?' active-dps':''}" onclick="switchRole('${uid}','dps')">⚔ DPS</button>
+      </div>
+      <div id="${uid}-tank" class="role-panel tank-panel${autoRole==='tank'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'tank', b.tank)}
+      </div>
+      <div id="${uid}-heal" class="role-panel heal-panel${autoRole==='heal'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'heal', b.heal)}
+      </div>
+      <div id="${uid}-dps" class="role-panel dps-panel${autoRole==='dps'?' active':''}">
+        ${renderRolePanel(d.id, bi, 'dps', b.dps)}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Route — Visual Route Map + KG button
+  const r = d.route;
+  const kgS = KG_STRINGS[lang];
+
+  // Helper: determine step type from label/content
+  function getStepType(p) {
+    const lbl = (t(p.label)||'').toLowerCase();
+    const typ = (p.type||'').toLowerCase();
+    if (typ==='event') return 'event';
+    if (typ==='boss')  return 'boss';
+    if (typ==='trash') return 'trash';
+    if (lbl.includes('baas') || lbl.includes('boss') || lbl.includes('chef') || lbl.includes('boss')) return 'boss';
+    if (lbl.includes('tome') || lbl.includes('event') || lbl.includes('buff') || lbl.includes('click') || lbl.includes('klik') || lbl.includes('arcane tome') || lbl.includes('secret')) return 'event';
+    return 'trash';
+  }
+  function hasLust(p) {
+    const lbl = t(p.label)||'';
+    return lbl.includes('🔥') || lbl.toLowerCase().includes('bloodlust') || lbl.toLowerCase().includes('lust');
+  }
+
+  // Build visual route steps
+  const steps = r.pulls.map((p, i) => {
+    const type = getStepType(p);
+    const lust = hasLust(p);
+    const nodeIcon = type==='boss' ? '★' : type==='event' ? '✦' : (i+1);
+    const badges = [];
+    if (type==='boss')  badges.push(`<span class="vr-badge boss">${u.vr_label_boss||'BOSS'}</span>`);
+    if (type==='event') badges.push(`<span class="vr-badge event">${u.vr_label_event||'EVENT'}</span>`);
+    if (lust)           badges.push(`<span class="vr-badge lust">🔥 ${u.vr_label_lust||'LUST'}</span>`);
+    const area = p.area ? `<div class="vr-area">${t(p.area)}</div>` : '';
+    return `
+      <div class="vr-step">
+        <div class="vr-connector"></div>
+        <div class="vr-node type-${type}">${nodeIcon}</div>
+        <div class="vr-card type-${type}">
+          ${area}
+          <div class="vr-label-row">
+            <span class="vr-label">${t(p.label)}</span>
+            ${badges.join('')}
+          </div>
+          <div class="vr-desc">${t(p.desc)}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const legend = `
+    <div class="vr-legend">
+      <div class="vr-leg-item"><div class="vr-leg-dot l-trash"></div>${u.vr_legend_trash||'Trash'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-boss"></div>${u.vr_legend_boss||'Boss'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-event"></div>${u.vr_legend_event||'Event/Buff'}</div>
+      <div class="vr-leg-item"><div class="vr-leg-dot l-lust"></div>${u.vr_legend_lust||'Bloodlust'}</div>
+    </div>`;
+
+  const floorMapSVG  = FLOOR_MAPS[d.id] || '';
+  const routeScreenshot = ROUTE_SCREENSHOTS[d.id] || '';
+  const floorScreenshots = FLOOR_SCREENSHOTS[d.id] || null;
+  const floorMapTitle = {nl:'🗺 Looproute', en:'🗺 Route Map', da:'🗺 Rutekort'}[lang] || '🗺 Looproute';
+
+  // Build map section HTML
+  let mapSectionHtml = '';
+  if (routeScreenshot) {
+    // M+ dungeon: single Keystone.guru screenshot
+    mapSectionHtml = `<div class="route-section">
+      <div class="route-title">${floorMapTitle}</div>
+      <div class="route-screenshot-wrap">
+        <img class="route-screenshot-img" src="${routeScreenshot}" alt="${d.name} route map">
+      </div>
+    </div>`;
+  } else if (floorScreenshots && floorScreenshots.length > 0) {
+    // Normal dungeon: multi-floor in-game map screenshots
+    const tabsHtml = floorScreenshots.length > 1
+      ? `<div class="floor-tabs">${floorScreenshots.map((f,i) =>
+          `<button class="floor-tab-btn${i===0?' active':''}" onclick="switchFloor('${d.id}',${i})">${f.label}</button>`
+        ).join('')}</div>`
+      : '';
+    mapSectionHtml = `<div class="route-section">
+      <div class="route-title">${floorMapTitle}</div>
+      ${tabsHtml}
+      <div class="route-screenshot-wrap">
+        <img class="route-screenshot-img" id="floor-img-${d.id}" src="${floorScreenshots[0].img}" alt="${floorScreenshots[0].label}">
+      </div>
+    </div>`;
+  } else if (floorMapSVG) {
+    // Fallback: SVG map
+    mapSectionHtml = `<div class="route-section">
+      <div class="route-title">${floorMapTitle}</div>
+      <div class="fp-wrap">${floorMapSVG}${FLOOR_MAP_LEGEND}</div>
+    </div>`;
+  }
+
+  document.getElementById('route-content').innerHTML = `
+    ${mapSectionHtml}
+    <div class="route-section">
+      <div class="route-title">📋 ${u.route_sum}</div>
+      <div class="tip-box">${t(r.summary)}</div>
+    </div>
+    <div class="route-section">
+      <div class="route-title">${u.lust_title}</div>
+      <table class="lust-table">
+        <thead><tr><th>${u.lust_moment}</th><th>${u.lust_explain}</th></tr></thead>
+        <tbody>${r.lust.map(l=>`<tr><td class="lust-moment">${l.moment}</td><td>${t(l.uitleg)}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>
+    <div class="route-section">
+      <div class="route-notice">${u.route_notice}</div>
+    </div>
+    <div class="route-section">
+      <div class="route-title">🗺 ${u.route_diag}</div>
+      ${legend}
+      <div class="vr-container">
+        <div class="vr-line"></div>
+        ${steps}
+      </div>
+    </div>
+    ${r.mdt ? `
+    <div class="route-section">
+      <div class="route-title">🔗 Keystone.guru</div>
+      <button class="kg-open-btn" onclick="window.open('${r.kg_url}','_blank')">
+        <span class="kg-icon">🗺</span>
+        <span class="kg-text">
+          ${kgS.btn_label}
+          <span class="kg-sub">${kgS.btn_sub}</span>
+        </span>
+        <span class="kg-arrow">↗</span>
+      </button>
+    </div>` : `<div class="tip-box">${u.norm_note}</div>`}`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════════════════════
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(`tab-${name}`).classList.add('active');
+  if (event) event.target.classList.add('active');
+  else document.getElementById(`tab-btn-${name}`).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light');
+}
+if (localStorage.getItem('lang')) {
+  lang = localStorage.getItem('lang');
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+const activeLangBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+if (activeLangBtn) activeLangBtn.classList.add('active');
+
+// ── APPARAAT DETECTIE ──
+const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const isPhone = window.innerWidth <= 480;
+const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
+const isPC = window.innerWidth > 768;
+
+// Voeg class toe aan body zodat CSS het weet
+if (isTouch) document.body.classList.add('touch-device');
+if (isPhone) document.body.classList.add('is-phone');
+if (isTablet) document.body.classList.add('is-tablet');
+if (isPC) document.body.classList.add('is-pc');
+
+// Verberg install banner op PC — niet relevant
+if (isPC) {
+  const banner = document.getElementById('install-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+// Update apparaat-klassen bij resize (bv. tablet roteren)
+window.addEventListener('resize', () => {
+  document.body.classList.remove('is-phone','is-tablet','is-pc');
+  if (window.innerWidth <= 480) document.body.classList.add('is-phone');
+  else if (window.innerWidth <= 768) document.body.classList.add('is-tablet');
+  else document.body.classList.add('is-pc');
+});
+
+// Wacht tot HTML klaar is voordat we de pagina opbouwen
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('mode-dungeons');
+  applyUIStrings();
+  updateFooter();
+  updateSpecBtn();
+  renderHome();
+});
+
+// ── KEYSTONE.GURU POPUP ──
+// [Data moved to external file]
+
+// ═══════════════════════════════════════════════════════════════
+// PROFESSIONS MODE
+// ═══════════════════════════════════════════════════════════════
+
+let currentProf = null;
+
+const PROF_UI = {
+  nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'⚙ Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Methode-gids',wowp_btn:'🔗 Wowhead'},
+  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'⚙ Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method Guide',wowp_btn:'🔗 Wowhead'},
+  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'⚙ Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method-guide',wowp_btn:'🔗 Wowhead'}
+};
+
+function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
+function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
+
+function setMode(mode){
+  document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
+  document.getElementById('mode-tab-dungeons').classList.toggle('active',mode==='dungeons');
+  document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
+  const sb=document.getElementById('spec-btn');
+  if(sb)sb.style.display=(mode==='dungeons')?'':'none';
+  document.getElementById('back-btn').style.display='none';
+  if(mode==='professions'){
+    buildProfGrid();showProfGrid();
+    const ht=document.getElementById('prof-hero-title');
+    if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
+    const hs=document.getElementById('prof-hero-sub');
+    if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  } else {
+    if(currentDungeon)goHome();
+  }
+  window.scrollTo(0,0);
+}
+
+function buildProfGrid(){
+  const grid=document.getElementById('prof-grid');if(!grid)return;
+  const ui=PROF_UI[lang];
+  const cat={gathering:ui.gathering,crafting:ui.crafting,secondary:ui.secondary};
+  grid.innerHTML=ALL_PROFS.map(p=>`
+    <div class="prof-card" onclick="showProf('${p.id}')">
+      <div class="prof-card-icon">${p.icon}</div>
+      <div class="prof-card-name">${pT(p.name)}</div>
+      <div class="prof-card-cat">${cat[p.cat]||p.cat}</div>
+      <div class="prof-card-tier tier-${p.tier}">${p.tier}</div>
+    </div>`).join('');
+}
+
+function showProfGrid(){
+  document.getElementById('prof-grid').style.display='';
+  document.getElementById('prof-detail').classList.remove('visible');
+  currentProf=null;
+}
+
+function showProf(id){
+  const p=ALL_PROFS.find(x=>x.id===id);if(!p)return;
+  currentProf=p;
+  const ui=PROF_UI[lang];
+  document.getElementById('prof-grid').style.display='none';
+  document.getElementById('prof-detail').classList.add('visible');
+  document.getElementById('pdet-back-btn').textContent=ui.back;
+  document.getElementById('pdet-icon').textContent=p.icon;
+  document.getElementById('pdet-name').textContent=pT(p.name);
+  const cat={gathering:ui.gathering,crafting:ui.crafting,secondary:ui.secondary};
+  const col={gathering:'#4ade80',crafting:'#c084fc',secondary:'#94a3b8'};
+  document.getElementById('pdet-meta').innerHTML=
+    `<span class="pdet-badge" style="background:${col[p.cat]}22;color:${col[p.cat]};border:1px solid ${col[p.cat]}44">${cat[p.cat]||p.cat}</span>
+     <span class="pdet-badge" style="background:var(--panel);border:1px solid var(--border);color:var(--gold)">${ui.tier_label} ${p.tier}</span>`;
+  document.getElementById('pdet-lore').innerHTML=pT(p.lore);
+  document.getElementById('pdet-ratings').innerHTML=
+    `<div><div class="pdet-rating-label">${ui.gold_label}</div><div class="pdet-stars">${pStars(p.goldrating)}</div></div>
+     <div><div class="pdet-rating-label">${ui.use_label}</div><div class="pdet-stars">${pStars(p.userating)}</div></div>`;
+  document.getElementById('ptab-trainer').innerHTML=
+    `<div class="pdet-section"><h3>${ui.trainer_head}</h3>
+       <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${p.trainer.name}</div>
+       <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(p.trainer.loc)}</div>
+       <div class="trainer-way">${p.trainer.way}</div>
+       ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
+     </div>
+     ${p.method_url||p.wowp_url?`<div class="prof-links">
+       ${p.method_url?`<a class="prof-link-btn" href="${p.method_url}" target="_blank">${ui.method_btn}</a>`:''}
+       ${p.wowp_url?`<a class="prof-link-btn" href="${p.wowp_url}" target="_blank">${ui.wowp_btn}</a>`:''}
+     </div>`:''}`;
+  document.getElementById('ptab-specs').innerHTML=
+    `<div class="pdet-section"><h3>${ui.spec_head}</h3>
+       ${p.specs.map(s=>`<div class="spec-block">
+         <div class="spec-title">${pT(s.title)}</div>
+         <div class="spec-desc">${pT(s.desc)}</div>
+         ${s.points?`<div class="spec-points">${pT(s.points)}</div>`:''}
+       </div>`).join('')}
+     </div>`;
+  document.getElementById('ptab-items').innerHTML=
+    `<div class="pdet-section"><h3>${ui.item_head}</h3>
+       <div class="item-grid">
+         ${p.items.map(it=>`<div class="item-card">
+           <div class="item-icon">${it.icon}</div>
+           <div class="item-name">${pT(it.name)}</div>
+           <div class="item-desc">${pT(it.desc)}</div>
+           ${it.tag?`<div class="item-tag">${it.tag}</div>`:''}
+         </div>`).join('')}
+       </div>
+     </div>`;
+  document.getElementById('ptab-orders').innerHTML=
+    `<div class="pdet-section"><h3>${ui.orders_head}</h3>
+       <div class="orders-text">${pT(p.orders)}</div>
+     </div>`;
+  switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
+  window.scrollTo(0,0);
+}
+
+function switchProfTab(btn,panelId){
+  document.querySelectorAll('.pdet-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pdet-panel').forEach(p=>p.classList.remove('visible'));
+  if(btn)btn.classList.add('active');
+  const panel=document.getElementById(panelId);
+  if(panel)panel.classList.add('visible');
+}
+
+function updateProfLang(){
+  const ht=document.getElementById('prof-hero-title');
+  if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
+  const hs=document.getElementById('prof-hero-sub');
+  if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
+    showProf(currentProf.id);
+  } else { buildProfGrid(); }
+}
+
+</script>
+
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-credits">
+      <span class="footer-made">⚔ Created by <strong>Claudy</strong> &amp; <strong>Inchy</strong></span>
+      <span class="footer-dot">·</span>
+      <span class="footer-version" id="footer-version-nr" style="font-size:11px;color:var(--muted);font-family:monospace"></span>
+      <span class="footer-dot">·</span>
+      <span class="footer-version" id="footer-season">WoW: Midnight — Seizoen 1</span>
+    </div>
+    <div class="footer-disclaimer" id="footer-disclaimer">
+      Deze gids is een fan-project en heeft geen officiële band met Blizzard Entertainment.
+      World of Warcraft en alle gerelateerde namen zijn handelsmerken van Blizzard Entertainment, Inc.
+      Dungeon-informatie is gebaseerd op Icy Veins, Wowhead, Method en eigen ervaringen —
+      altijd vatbaar voor verandering na patches.
+    </div>
+    <div id="footer-btn-row">
+      <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
+      <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
+    </div>
+    <div id="qr-popup">
+      <div id="qr-canvas"></div>
+      <div id="qr-url"></div>
+      <span id="qr-close" onclick="toggleQR()">× sluiten</span>
+    </div>
+    <div class="footer-sources">
+      <span id="footer-sources-label">Bronnen:</span>
+      <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a>
+      <span>·</span>
+      <a href="https://www.wowhead.com" target="_blank">Wowhead</a>
+      <span>·</span>
+      <a href="https://www.method.gg" target="_blank">Method</a>
+      <span>·</span>
+      <a href="https://keystone.guru" target="_blank">Keystone.guru</a>
+    </div>
+  </div>
+</footer>
+
+<div id="about-modal" onclick="if(event.target===this)closeAbout()">
+  <div id="about-inner">
+    <div id="about-header">
+      <span id="about-title">⚔ Over deze app</span>
+      <button id="about-close-x" onclick="closeAbout()">×</button>
+    </div>
+    <div id="about-content">
+      <!-- rendered by renderAboutContent() -->
+    </div>
+  </div>
+</div>
+
+<div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
+  <div id="spec-modal-inner">
+    <div id="spec-modal-header">
+      <div>
+        <div id="spec-modal-title">Choose your spec</div>
+        <div id="spec-modal-subtitle">We'll adjust spell names to match your class</div>
+      </div>
+      <button id="spec-close-x" onclick="closeSpecModal()">×</button>
+    </div>
+    <div id="spec-class-grid" class="spec-class-grid"></div>
+    <button id="spec-reset-btn" onclick="clearSpec()">× Clear spec</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+function renderAboutContent() {
+  const l = lang;
+  const ABOUT_STRINGS = {
+    nl: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Drietalig — alles wisselt direct',
+        '⭐ Spec Selector — role-tab automatisch, spec-tips gemarkeerd',
+        '🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)',
+        '🗺 Routeplanner met pull-volgorde en Bloodlust-timing',
+        '🌙 Licht/donker thema',
+        '📱 Installeerbaar als app (Android & iOS)',
+        '📷 QR-code om te delen',
+      ],
+      specs_h:     '✅ Volledig uitgewerkte specs',
+      spec_col1:   'Spec', spec_col2: 'Rol', generic: 'Alle andere specs', generic_r: 'generiek',
+      coming_h:    '🚧 Binnenkort',
+      raids_h:     'Raids Seizoen 1',
+      raid_col1:   'Raid', raid_col2: 'Bazen', raid_col3: 'Open',
+      raid_note:   'Elke raid krijgt baas-voor-baas gidsen met Tank/Healer/DPS-tabs, spec-tips, moeilijkheidsfilter en route-notities.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting-gidsen voor key-professies om snel te gearren in Seizoen 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan-project · Geen officiële band met Blizzard Entertainment.<br>World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.<br>Gids-info gebaseerd op Icy Veins, Wowhead, Method & eigen ervaringen.',
+      built:       '⚔ Gebouwd door Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig'},
+        {v:'v2.2', d:'2026-03-10', t:'13 nieuwe specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 nieuwe specs · Auto role-refresh fix · QR + About naast elkaar'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec-tips systeem · Auto role-tab · ★ highlights · About-pagina'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klassen · Bloodlust-namen per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR-code knop'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA installatiebanner (Android + iOS, drietalig)'},
+        {v:'v1.0', d:'2026-03-06', t:'Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner'},
+      ]
+    },
+    en: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Trilingual — everything switches instantly',
+        '⭐ Spec Selector — role tab auto-selects, spec tips highlighted',
+        '🛡 💚 ⚔ Role tabs per boss (Tank / Healer / DPS)',
+        '🗺 Route Planner with pull order and Bloodlust timing',
+        '🌙 Light/dark theme',
+        '📱 Installable as app (Android & iOS)',
+        '📷 QR code to share',
+      ],
+      specs_h:     '✅ Fully covered specs',
+      spec_col1:   'Spec', spec_col2: 'Role', generic: 'All other specs', generic_r: 'generic',
+      coming_h:    '🚧 Coming Soon',
+      raids_h:     'Season 1 Raids',
+      raid_col1:   'Raid', raid_col2: 'Bosses', raid_col3: 'Opens',
+      raid_note:   'Each raid will include boss-by-boss guides with Tank/Healer/DPS tabs, spec tips, difficulty filter and route notes.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting guides for key professions to gear up quickly in Season 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan project · No official affiliation with Blizzard Entertainment.<br>World of Warcraft is a trademark of Blizzard Entertainment, Inc.<br>Guide info based on Icy Veins, Wowhead, Method & personal experience.',
+      built:       '⚔ Built by Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'All 40 specs fully covered · About modal fully trilingual'},
+        {v:'v2.2', d:'2026-03-10', t:'13 new specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 new specs · Auto role-refresh fix · QR + About side by side'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec tips system · Auto role tab · ★ highlights · About page'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 classes · Bloodlust names per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR code button'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA install banner (Android + iOS, trilingual)'},
+        {v:'v1.0', d:'2026-03-06', t:'Initial release: 8 dungeons, 3 languages, role tabs, route planner'},
+      ]
+    },
+    da: {
+      live_h:      '🌐 Live',
+      feat_h:      '✨ Features',
+      feat: [
+        '🇳🇱 🇬🇧 🇩🇰 Tresproget — alt skifter øjeblikkeligt',
+        '⭐ Spec Selector — role-tab auto-vælges, spec-tips fremhævet',
+        '🛡 💚 ⚔ Role-tabs per boss (Tank / Healer / DPS)',
+        '🗺 Ruteplanlægger med pull-rækkefølge og Bloodlust-timing',
+        '🌙 Lyst/mørkt tema',
+        '📱 Kan installeres som app (Android & iOS)',
+        '📷 QR-kode til deling',
+      ],
+      specs_h:     '✅ Fuldt dækkede specs',
+      spec_col1:   'Spec', spec_col2: 'Rolle', generic: 'Alle andre specs', generic_r: 'generisk',
+      coming_h:    '🚧 Kommer snart',
+      raids_h:     'Sæson 1 Raids',
+      raid_col1:   'Raid', raid_col2: 'Bosser', raid_col3: 'Åbner',
+      raid_note:   'Hver raid får boss-for-boss guider med Tank/Healer/DPS-tabs, spec-tips, sværhedsfilter og rutenoter.',
+      prof_h:      'Profession Guides',
+      prof_note:   'Crafting-guider til nøgleprofessioner for hurtigt at gear op i Sæson 1.',
+      changelog_h: '📋 Changelog',
+      disclaimer:  'Fan-projekt · Ingen officiel tilknytning til Blizzard Entertainment.<br>World of Warcraft er et varemærke tilhørende Blizzard Entertainment, Inc.<br>Guideinfo baseret på Icy Veins, Wowhead, Method & egne erfaringer.',
+      built:       '⚔ Bygget af Claudy & Inchy',
+      cl: [
+        {v:'v3.0', d:'2026-03-10', t:'Alle 40 specs fuldt dækket · About-modal fuldt tresproget'},
+        {v:'v2.2', d:'2026-03-10', t:'13 nye specs: Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK'},
+        {v:'v2.1', d:'2026-03-10', t:'6 nye specs · Auto role-refresh rettet · QR + About ved siden af hinanden'},
+        {v:'v2.0', d:'2026-03-10', t:'Spec-tips system · Auto role-tab · ★ highlights · About-side'},
+        {v:'v1.3', d:'2026-03-09', t:'Spec selector · 13 klasser · Bloodlust-navne per spec'},
+        {v:'v1.2', d:'2026-03-08', t:'QR-kodeknap'},
+        {v:'v1.1', d:'2026-03-07', t:'PWA installationsbanner (Android + iOS, tresproget)'},
+        {v:'v1.0', d:'2026-03-06', t:'Første udgave: 8 dungeons, 3 sprog, role-tabs, ruteplanlægger'},
+      ]
+    }
+  };
+
+  const COVERED_SPECS = [
+    {icon:'🛡', name:'Protection Paladin',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'😈', name:'Vengeance Demon Hunter', role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'🐻', name:'Guardian Druid',         role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'⚔',  name:'Protection Warrior',    role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'🍺', name:'Brewmaster Monk',        role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'💀', name:'Blood Death Knight',     role:{nl:'Tank',   en:'Tank',   da:'Tank'}},
+    {icon:'💚', name:'Restoration Druid',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✨', name:'Holy Paladin',           role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'🌸', name:'Mistweaver Monk',        role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✝',  name:'Discipline Priest',      role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'🏹', name:'Beast Mastery Hunter',   role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🎯', name:'Marksmanship Hunter',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Survival Hunter',        role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚡', name:'Elemental Shaman',       role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌊', name:'Enhancement Shaman',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💧', name:'Restoration Shaman',     role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'😈', name:'Havoc Demon Hunter',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌀', name:'Devourer Demon Hunter',  role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌙', name:'Balance Druid',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐱', name:'Feral Druid',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Retribution Paladin',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🥊', name:'Windwalker Monk',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'❄', name:'Frost Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔥', name:'Fire Mage',              role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💠', name:'Arcane Mage',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Fury Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'⚔', name:'Arms Warrior',            role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Outlaw Rogue',           role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Assassination Rogue',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🗡', name:'Subtlety Rogue',         role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'💀', name:'Unholy Death Knight',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'❄', name:'Frost Death Knight',      role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🌿', name:'Holy Priest',            role:{nl:'Healer', en:'Healer', da:'Healer'}},
+    {icon:'✝',  name:'Shadow Priest',          role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔮', name:'Affliction Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'👿', name:'Demonology Warlock',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🔥', name:'Destruction Warlock',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Devastation Evoker',     role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Augmentation Evoker',    role:{nl:'DPS',    en:'DPS',    da:'DPS'}},
+    {icon:'🐉', name:'Preservation Evoker',    role:{nl:'Healer', en:'Healer', da:'Healer'}},
+  ];
+
+  const s = ABOUT_STRINGS[l];
+  const specRows = COVERED_SPECS.map(sp =>
+    `<tr><td>${sp.icon} ${sp.name}</td><td>${sp.role[l]}</td><td class="done">✅</td></tr>`
+  ).join('');
+
+  const clRows = s.cl.map(e =>
+    `<div class="changelog-entry"><span class="cl-version">${e.v}</span><span class="cl-date">${e.d}</span><div class="cl-items">${e.t}</div></div>`
+  ).join('');
+
+  document.getElementById('about-content').innerHTML = `
+    <div class="about-section">
+      <div class="about-h2">${s.live_h}</div>
+      <a href="https://huijting.github.io/midnight_guide/" target="_blank" class="about-link">huijting.github.io/midnight_guide</a>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.feat_h}</div>
+      <ul class="about-ul">${s.feat.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.specs_h}</div>
+      <table class="about-table">
+        <tr><th>${s.spec_col1}</th><th>${s.spec_col2}</th><th></th></tr>
+        ${specRows}
+      </table>
+    </div>
+    <div class="about-section about-coming">
+      <div class="about-h2">${s.coming_h}</div>
+      <div class="about-h3">${s.raids_h}</div>
+      <table class="about-table">
+        <tr><th>${s.raid_col1}</th><th>${s.raid_col2}</th><th>${s.raid_col3}</th></tr>
+        <tr><td>⚔ The Voidspire</td><td>6</td><td class="date-badge">17 mrt</td></tr>
+        <tr><td>🌿 Dreamrift</td><td>1</td><td class="date-badge">17 mrt</td></tr>
+        <tr><td>☀ March on Quel'Danas</td><td>2</td><td class="date-badge">31 mrt</td></tr>
+      </table>
+      <div class="about-note">${s.raid_note}</div>
+      <div class="about-h3">${s.prof_h}</div>
+      <div class="about-note">${s.prof_note}</div>
+    </div>
+    <div class="about-section">
+      <div class="about-h2">${s.changelog_h}</div>
+      ${clRows}
+    </div>
+    <div class="about-footer-note">
+      ${s.disclaimer}<br><br>
+      <em>${s.built}</em>
+    </div>
+  `;
+}
+
+function openAbout() {
+  // Sluit spec-modal als die open is
+  document.getElementById('spec-modal').classList.remove('visible');
+  renderAboutContent();
+  document.getElementById('about-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAbout() {
+  document.getElementById('about-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+let qrGenerated = false;
+
+function toggleQR() {
+  const popup = document.getElementById('qr-popup');
+  popup.classList.toggle('visible');
+
+  if (!qrGenerated && popup.classList.contains('visible')) {
+    const rawUrl = window.location.href.split('?')[0];
+    const isLocal = rawUrl.startsWith('about:') || rawUrl.startsWith('blob:') || rawUrl.startsWith('file:');
+    const cleanUrl = isLocal ? 'https://huijting.github.io/midnight_guide/' : (rawUrl.endsWith('/') ? rawUrl : rawUrl + '/');
+
+    document.getElementById('qr-url').textContent = cleanUrl;
+
+    const encoded = encodeURIComponent(cleanUrl);
+    document.getElementById('qr-canvas').innerHTML =
+      `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=e8e0ff&bgcolor=1c1c3e&data=${encoded}" width="180" height="180" style="border-radius:8px" alt="QR-code">`;
+
+    qrGenerated = true;
+  }
+}
+
+// ── PWA INSTALL ──────────────────────────────────────────────
+const PWA_TEXTS = {
+  android: {
+    nl: '<strong>📲 Installeer als app</strong><br>Voeg toe aan je beginscherm voor snel toegang.',
+    en: '<strong>📲 Install as app</strong><br>Add to your home screen for quick access.',
+    da: '<strong>📲 Installer som app</strong><br>Føj til din startskærm for hurtig adgang.'
+  },
+  ios: {
+    nl: '<strong>📲 Installeer op iPhone/iPad</strong><br>Tik op het Deel-icoon <strong>⎙</strong> en dan <em>"Zet op beginscherm"</em>.',
+    en: '<strong>📲 Install on iPhone/iPad</strong><br>Tap the Share icon <strong>⎙</strong> then <em>"Add to Home Screen"</em>.',
+    da: '<strong>📲 Installer på iPhone/iPad</strong><br>Tryk på Del-ikonet <strong>⎙</strong> og vælg <em>"Føj til hjemmeskærm"</em>.'
+  },
+  pc: {
+    nl: '<strong>💻 Installeer als desktop-app</strong><br>Klik op "Installeer" voor een icoon op je bureaublad.',
+    en: '<strong>💻 Install as desktop app</strong><br>Click "Install" for a shortcut on your desktop.',
+    da: '<strong>💻 Installer som desktop-app</strong><br>Klik på "Installer" for en genvej på skrivebordet.'
+  }
+};
+const PWA_BTN_LABELS = { nl: 'Installeer', en: 'Install', da: 'Installer' };
+
+let deferredPrompt = null;
+const pwaBanner    = document.getElementById('pwa-banner');
+const pwaBannerTxt = document.getElementById('pwa-text');
+const pwaBannerBtn = document.getElementById('pwa-btn');
+
+function showBanner(type) {
+  if (localStorage.getItem('pwa-dismissed-dungeon')) return;
+  const l = lang || 'nl';
+  pwaBannerTxt.innerHTML = PWA_TEXTS[type][l] || PWA_TEXTS[type].nl;
+  pwaBannerBtn.textContent = PWA_BTN_LABELS[l] || PWA_BTN_LABELS.nl;
+  pwaBannerBtn.style.display = type === 'ios' ? 'none' : '';
+  pwaBanner.classList.add('show');
+}
+function pwaTrigger() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => { deferredPrompt = null; pwaBanner.classList.remove('show'); });
+  }
+}
+function pwaDismiss() {
+  pwaBanner.classList.remove('show');
+  localStorage.setItem('pwa-dismissed-dungeon', '1');
+}
+window.pwaTrigger = pwaTrigger;
+window.pwaDismiss = pwaDismiss;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  showBanner(/Android|Mobile/i.test(navigator.userAgent) ? 'android' : 'pc');
+});
+
+const isIosDev = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if (isIosDev && !isStandalone) showBanner('ios');
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+
+</body>
+</html>
