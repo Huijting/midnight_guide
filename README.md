@@ -1,4 +1,4 @@
-# ⚔ WoW Midnight Guide — v5.3
+# ⚔ WoW Midnight Guide — v5.4
 
 **Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
@@ -81,6 +81,12 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 ## 📋 Changelog
 
+### v5.4 — 2026-03-11
+- 🌳 **KP Boom tab** toegevoegd per profession — visuele spec tree met KP kosten per node
+- 🗺️ **KP Bronnen tab** toegevoegd per profession — schatten (/way coördinaten), wekelijks, eenmalig, Darkmoon Faire
+- 📋 TomTom /ttpaste knop — kopieert alle /way regels in één klik
+- `data/professions/kp_sources.js` — nieuw databestand met KP-bronnen voor alle 13 professions
+
 ### v5.3 — 2026-03-11
 - Afbeeldingen (route & floor screenshots) uit season1.js gehaald — aparte bestanden in `data/screenshots/`
 - season1.js verkleind van ~10.5MB naar ~430KB
@@ -102,6 +108,7 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
+| v5.4 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
 | v5.3 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
 | v5.2 | 2026-03-11 | Alle 13 profession spec tree namen gecorrigeerd · Service Worker: network-first |
 | v5.1 | 2026-03-11 | About-modal laadt live README.md · PWA-banners vervangen · profession tier-ratings bijgewerkt |
