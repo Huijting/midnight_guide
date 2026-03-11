@@ -411,7 +411,6 @@
   body.mode-professions #detail-screen{display:none !important}
   body.mode-professions #prof-screen{display:block !important}
   body.mode-dungeons #prof-screen{display:none !important}
-
   /* ── PROFESSIONS ── */
   #prof-screen{display:none;padding:0 0 60px}
   .prof-hero{text-align:center;padding:28px 16px 16px;background:linear-gradient(180deg,rgba(80,40,160,.10) 0%,transparent 100%)}
@@ -465,17 +464,8 @@
   .prof-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
   .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
   .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
-  @media(max-width:480px){
-    .mode-tabs{display:none} /* too cramped — use bottom nav on mobile? */
-    .prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}
-    .item-grid{grid-template-columns:1fr 1fr}
-    .pdet-tabs{gap:2px}
-    .pdet-tab{font-size:11px;padding:6px}
-  }
-  @media(max-width:768px){
-    .mode-tabs{gap:2px}
-    .mode-tab{padding:4px 9px;font-size:11px}
-  }
+  @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
+  @media(max-width:768px){.mode-tabs{gap:2px}.mode-tab{padding:4px 9px;font-size:11px}}
 
 </style>
 </head>
@@ -531,7 +521,7 @@
   <div class="dungeon-grid" id="normal-grid"></div>
 </div>
 
-<!-- ══════════════════════ PROFESSIONS SCREEN ══════════════════════ -->
+<!-- ════════════ PROFESSIONS SCREEN ════════════ -->
 <div id="prof-screen">
   <div class="prof-hero">
     <div class="prof-hero-title">Professies — <span>Midnight</span></div>
@@ -1013,8 +1003,191 @@ function t(obj) { return (typeof obj === 'string') ? obj : (obj[lang] || obj.en 
 // Only 4 specs covered fully: druid-restoration, paladin-protection,
 // hunter-beastmastery, shaman-elemental. Others fall back to generic.
 // ═══════════════════════════════════════════════════════════════
+// [Data moved to external file]
 
-// Data loaded from external files (data/dungeons/season1.js, data/professions/*.js)
+// Returns spec-specific tips array or null
+function getSpecTips(dungeonId, bossIndex, role) {
+  if (!currentSpec) return null;
+  const key = `${dungeonId}:${bossIndex}:${role}`;
+  const bucket = SPEC_TIPS[key];
+  if (!bucket) return null;
+  const specKey = `${currentSpec.classId}-${currentSpec.specId}`;
+  const tips = bucket[specKey];
+  if (!tips) return null;
+  return tips[lang] || tips['en'] || null;
+}
+
+// [Data moved to external file]
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let currentDungeon = null;
+
+// ═══════════════════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════════════════
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+  applyUIStrings();
+  updateFooter();
+  updateSpecBtn();
+  const sm = document.getElementById('spec-modal');
+  if (sm && sm.classList.contains('visible')) renderSpecModal();
+  if (currentDungeon) renderDetail(currentDungeon);
+  else renderHome();
+  if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
+  if (document.body.classList.contains('mode-professions')) updateProfLang();
+}
+
+function applyUIStrings() {
+  const u = UI[lang];
+  document.getElementById('hdr-sub').textContent = u.season_sub;
+  document.getElementById('hero-eyebrow').textContent = u.eyebrow;
+  document.getElementById('hero-title-span').textContent = u.guide;
+  document.getElementById('hero-sub').textContent = u.hero_sub;
+  document.getElementById('s1-label').textContent = u.s1_section;
+  document.getElementById('norm-label').textContent = u.norm_section;
+  document.getElementById('tab-btn-overview').textContent = u.tab_overview;
+  document.getElementById('tab-btn-bosses').textContent = u.tab_bosses;
+  document.getElementById('tab-btn-route').textContent = u.tab_route;
+  document.getElementById('back-btn').innerHTML = u.back;
+  document.getElementById('ib-title').innerHTML = u.ib_title;
+  document.getElementById('ib-android').innerHTML = u.ib_android;
+  document.getElementById('ib-ios').innerHTML = u.ib_ios;
+  document.getElementById('about-btn').textContent = u.about_btn;
+  document.getElementById('about-title').textContent = u.about_title;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════════════════════════════
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('theme-toggle').textContent = isLight ? UI[lang].theme_dark : UI[lang].theme_light;
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ROLE TABS
+// ═══════════════════════════════════════════════════════════════
+
+function renderRolePanel(dungeonId, bossIndex, role, genericTips) {
+  const specTips = getSpecTips(dungeonId, bossIndex, role);
+  const generic = replaceLust(t(genericTips).map(x => `<li>${x}</li>`).join(''));
+
+  if (specTips && specTips.length > 0) {
+    const specHtml = specTips.map(tip => `<li class="spec-tip">${replaceLust(tip)}</li>`).join('');
+    const cls = CLASSES.find(c => c.id === currentSpec?.classId);
+    const sp  = cls?.specs.find(s => s.id === currentSpec?.specId);
+    const label = cls && sp ? `${cls.icon} ${sp.name[lang]}` : '';
+    return `<div class="spec-tips-header">${label}</div><ul>${specHtml}</ul>
+            <div class="generic-tips-divider"></div>
+            <ul class="generic-tips">${generic}</ul>`;
+  }
+  return `<ul>${generic}</ul>`;
+}
+
+function switchFloor(dungeonId, idx) {
+  const floors = FLOOR_SCREENSHOTS[dungeonId];
+  if (!floors) return;
+  const img = document.getElementById('floor-img-' + dungeonId);
+  if (img) { img.src = floors[idx].img; img.alt = floors[idx].label; }
+  document.querySelectorAll('.floor-tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+}
+
+function switchRole(uid, role) {
+  const roles = ['tank','heal','dps'];
+  const card = document.getElementById(`${uid}-tank`).closest('.boss-card');
+  card.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+  card.querySelectorAll('.role-tab-btn').forEach((b, i) => {
+    b.className = 'role-tab-btn';
+    if (roles[i] === role) b.classList.add('active-' + roles[i]);
+  });
+  document.getElementById(`${uid}-${role}`).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER HOME
+// ═══════════════════════════════════════════════════════════════
+function renderHome() {
+  const u = UI[lang];
+  const mplusGrid  = document.getElementById('mplus-grid');
+  const normalGrid = document.getElementById('normal-grid');
+  mplusGrid.innerHTML = '';
+  normalGrid.innerHTML = '';
+
+  DUNGEONS.forEach(d => {
+    const isMplus = d.type === 'mplus';
+    const card = document.createElement('div');
+    card.className = `dungeon-card ${isMplus ? 'mplus' : ''}`;
+    card.onclick = () => openDungeon(d.id);
+    card.innerHTML = `
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <span class="card-badge ${isMplus ? 'badge-mplus' : 'badge-normal'}">
+          ${isMplus ? u.badge_mplus : u.badge_normal}
+        </span>
+        <div class="card-name">${d.name}</div>
+        <div class="card-zone">${d.zone}</div>
+        <div class="card-bosses">
+          ${d.bosses_short.map(b => `<span class="boss-chip">${b}</span>`).join('')}
+        </div>
+        <div class="card-footer">
+          <span class="card-level">${t(d.level)}</span>
+          <span class="card-arrow">›</span>
+        </div>
+      </div>`;
+    (isMplus ? mplusGrid : normalGrid).appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// OPEN DUNGEON
+// ═══════════════════════════════════════════════════════════════
+function openDungeon(id) {
+  const d = DUNGEONS.find(x => x.id === id);
+  if (!d) return;
+  currentDungeon = d;
+  renderDetail(d);
+  document.getElementById('home-screen').style.display   = 'none';
+  document.getElementById('detail-screen').style.display = 'block';
+  document.getElementById('back-btn').style.display      = 'inline-block';
+  switchTab('overview');
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  currentDungeon = null;
+  document.getElementById('home-screen').style.display   = 'block';
+  document.getElementById('detail-screen').style.display = 'none';
+  document.getElementById('back-btn').style.display      = 'none';
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER DETAIL
+// ═══════════════════════════════════════════════════════════════
+
+// [Data moved to external file]
+const FLOOR_MAP_LEGEND = `<div class="fp-legend">
+  <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Ingang</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#60b8ff"></div>Trash</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#ffd040"></div>Baas</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#ff6622"></div>🔥 Lust</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Event/Buff</div>
+  <div class="fp-leg fp-line-demo"><svg width="26" height="10"><line x1="0" y1="5" x2="18" y2="5" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round"/><polygon points="18,2 26,5 18,8" fill="#e8c840"/></svg>Route</div>
+</div>`;
+
+
+// [Data moved to external file]
+
+// [Data moved to external file]
 
 function renderDetail(d) {
   const u = UI[lang];
@@ -1255,29 +1428,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ── KEYSTONE.GURU POPUP ──
-const KG_STRINGS = {
-  nl: {
-    title:   '🗺 Route op Keystone.guru',
-    hint:    'Tik buiten het venster of druk op Sluiten',
-    close:   '✕ Sluiten',
-    btn_label: 'Bekijk M+ route op Keystone.guru',
-    btn_sub:   'Opent Keystone.guru in een nieuw tabblad'
-  },
-  en: {
-    title:   '🗺 Route on Keystone.guru',
-    hint:    'Tap outside or press Close',
-    close:   '✕ Close',
-    btn_label: 'View M+ route on Keystone.guru',
-    btn_sub:   'Opens Keystone.guru in a new tab'
-  },
-  da: {
-    title:   '🗺 Rute på Keystone.guru',
-    hint:    'Tryk uden for vinduet eller tryk Luk',
-    close:   '✕ Luk',
-    btn_label: 'Se M+ rute på Keystone.guru',
-    btn_sub:   'Åbner Keystone.guru i en ny fane'
-  }
-};
+// [Data moved to external file]
 
 // ═══════════════════════════════════════════════════════════════
 // PROFESSIONS MODE
@@ -1286,155 +1437,120 @@ const KG_STRINGS = {
 let currentProf = null;
 
 const PROF_UI = {
-  nl: {
-    hero_sub: 'Kies een professie om de gids te openen',
-    gathering: 'Verzamelen', crafting: 'Produceren', secondary: 'Secundair',
-    tier_label: 'Tier', gold_label: '💰 Goud', use_label: '⚙ Nut',
-    back: '← Terug',
-    trainer_head: 'Trainer — Waar te vinden',
-    spec_head: 'Specialisaties', item_head: 'Wat maak je?', orders_head: 'Crafting Orders',
-    method_btn: '📖 Methode-gids', wowp_btn: '🔗 Wowhead'
-  },
-  en: {
-    hero_sub: 'Choose a profession to open the guide',
-    gathering: 'Gathering', crafting: 'Crafting', secondary: 'Secondary',
-    tier_label: 'Tier', gold_label: '💰 Gold', use_label: '⚙ Utility',
-    back: '← Back',
-    trainer_head: 'Trainer — Where to find',
-    spec_head: 'Specializations', item_head: 'What do you make?', orders_head: 'Crafting Orders',
-    method_btn: '📖 Method Guide', wowp_btn: '🔗 Wowhead'
-  },
-  da: {
-    hero_sub: 'Vælg en profession for at åbne guiden',
-    gathering: 'Indsamling', crafting: 'Produktion', secondary: 'Sekundær',
-    tier_label: 'Tier', gold_label: '💰 Guld', use_label: '⚙ Nytte',
-    back: '← Tilbage',
-    trainer_head: 'Træner — Hvor finder du',
-    spec_head: 'Specialiseringer', item_head: 'Hvad laver du?', orders_head: 'Craft-ordrer',
-    method_btn: '📖 Method-guide', wowp_btn: '🔗 Wowhead'
-  }
+  nl:{hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'⚙ Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Methode-gids',wowp_btn:'🔗 Wowhead'},
+  en:{hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'⚙ Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method Guide',wowp_btn:'🔗 Wowhead'},
+  da:{hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'⚙ Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method-guide',wowp_btn:'🔗 Wowhead'}
 };
 
-function pT(obj) { if (!obj) return ''; return obj[lang] || obj.nl || obj.en || ''; }
-function pStars(n, max=5) { return '\u2605'.repeat(n) + '\u2606'.repeat(max-n); }
+function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
+function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
 
-function setMode(mode) {
-  document.body.className = document.body.className.replace(/\bmode-\S+/g,'').trim() + ' mode-' + mode;
-  document.getElementById('mode-tab-dungeons').classList.toggle('active', mode==='dungeons');
-  document.getElementById('mode-tab-professions').classList.toggle('active', mode==='professions');
-  const specBtn = document.getElementById('spec-btn');
-  if (specBtn) specBtn.style.display = (mode==='dungeons') ? '' : 'none';
-  document.getElementById('back-btn').style.display = 'none';
-  if (mode === 'professions') {
-    buildProfGrid();
-    showProfGrid();
-    const hs = document.getElementById('prof-hero-sub');
-    if (hs) hs.textContent = PROF_UI[lang].hero_sub;
+function setMode(mode){
+  document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
+  document.getElementById('mode-tab-dungeons').classList.toggle('active',mode==='dungeons');
+  document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
+  const sb=document.getElementById('spec-btn');
+  if(sb)sb.style.display=(mode==='dungeons')?'':'none';
+  document.getElementById('back-btn').style.display='none';
+  if(mode==='professions'){
+    buildProfGrid();showProfGrid();
+    const hs=document.getElementById('prof-hero-sub');
+    if(hs)hs.textContent=PROF_UI[lang].hero_sub;
   } else {
-    if (currentDungeon) goHome();
+    if(currentDungeon)goHome();
   }
   window.scrollTo(0,0);
 }
 
-function buildProfGrid() {
-  const grid = document.getElementById('prof-grid');
-  if (!grid) return;
-  const ui = PROF_UI[lang];
-  const catLabel = { gathering:ui.gathering, crafting:ui.crafting, secondary:ui.secondary };
-  grid.innerHTML = ALL_PROFS.map(p => `
+function buildProfGrid(){
+  const grid=document.getElementById('prof-grid');if(!grid)return;
+  const ui=PROF_UI[lang];
+  const cat={gathering:ui.gathering,crafting:ui.crafting,secondary:ui.secondary};
+  grid.innerHTML=ALL_PROFS.map(p=>`
     <div class="prof-card" onclick="showProf('${p.id}')">
       <div class="prof-card-icon">${p.icon}</div>
       <div class="prof-card-name">${pT(p.name)}</div>
-      <div class="prof-card-cat">${catLabel[p.cat]||p.cat}</div>
+      <div class="prof-card-cat">${cat[p.cat]||p.cat}</div>
       <div class="prof-card-tier tier-${p.tier}">${p.tier}</div>
     </div>`).join('');
 }
 
-function showProfGrid() {
-  document.getElementById('prof-grid').style.display = '';
+function showProfGrid(){
+  document.getElementById('prof-grid').style.display='';
   document.getElementById('prof-detail').classList.remove('visible');
-  currentProf = null;
+  currentProf=null;
 }
 
-function showProf(id) {
-  const p = ALL_PROFS.find(x => x.id===id);
-  if (!p) return;
-  currentProf = p;
-  const ui = PROF_UI[lang];
-  document.getElementById('prof-grid').style.display = 'none';
+function showProf(id){
+  const p=ALL_PROFS.find(x=>x.id===id);if(!p)return;
+  currentProf=p;
+  const ui=PROF_UI[lang];
+  document.getElementById('prof-grid').style.display='none';
   document.getElementById('prof-detail').classList.add('visible');
-  document.getElementById('pdet-back-btn').textContent = ui.back;
-  document.getElementById('pdet-icon').textContent = p.icon;
-  document.getElementById('pdet-name').textContent = pT(p.name);
-  const catLabel = {gathering:ui.gathering, crafting:ui.crafting, secondary:ui.secondary};
-  const catColors = {gathering:'#4ade80', crafting:'#c084fc', secondary:'#94a3b8'};
-  document.getElementById('pdet-meta').innerHTML =
-    `<span class="pdet-badge" style="background:${catColors[p.cat]}22;color:${catColors[p.cat]};border:1px solid ${catColors[p.cat]}44">${catLabel[p.cat]||p.cat}</span>
+  document.getElementById('pdet-back-btn').textContent=ui.back;
+  document.getElementById('pdet-icon').textContent=p.icon;
+  document.getElementById('pdet-name').textContent=pT(p.name);
+  const cat={gathering:ui.gathering,crafting:ui.crafting,secondary:ui.secondary};
+  const col={gathering:'#4ade80',crafting:'#c084fc',secondary:'#94a3b8'};
+  document.getElementById('pdet-meta').innerHTML=
+    `<span class="pdet-badge" style="background:${col[p.cat]}22;color:${col[p.cat]};border:1px solid ${col[p.cat]}44">${cat[p.cat]||p.cat}</span>
      <span class="pdet-badge" style="background:var(--panel);border:1px solid var(--border);color:var(--gold)">${ui.tier_label} ${p.tier}</span>`;
-  document.getElementById('pdet-lore').innerHTML = pT(p.lore);
-  document.getElementById('pdet-ratings').innerHTML =
+  document.getElementById('pdet-lore').innerHTML=pT(p.lore);
+  document.getElementById('pdet-ratings').innerHTML=
     `<div><div class="pdet-rating-label">${ui.gold_label}</div><div class="pdet-stars">${pStars(p.goldrating)}</div></div>
      <div><div class="pdet-rating-label">${ui.use_label}</div><div class="pdet-stars">${pStars(p.userating)}</div></div>`;
-
-  document.getElementById('ptab-trainer').innerHTML =
-    `<div class="pdet-section">
-       <h3>${ui.trainer_head}</h3>
+  document.getElementById('ptab-trainer').innerHTML=
+    `<div class="pdet-section"><h3>${ui.trainer_head}</h3>
        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${p.trainer.name}</div>
        <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(p.trainer.loc)}</div>
        <div class="trainer-way">${p.trainer.way}</div>
-       ${p.trainer.note ? `<div class="trainer-note">${pT(p.trainer.note)}</div>` : ''}
+       ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
      </div>
-     ${p.method_url||p.wowp_url ? `<div class="prof-links">
-       ${p.method_url ? `<a class="prof-link-btn" href="${p.method_url}" target="_blank">${ui.method_btn}</a>` : ''}
-       ${p.wowp_url   ? `<a class="prof-link-btn" href="${p.wowp_url}"   target="_blank">${ui.wowp_btn}</a>` : ''}
-     </div>` : ''}`;
-
-  document.getElementById('ptab-specs').innerHTML =
+     ${p.method_url||p.wowp_url?`<div class="prof-links">
+       ${p.method_url?`<a class="prof-link-btn" href="${p.method_url}" target="_blank">${ui.method_btn}</a>`:''}
+       ${p.wowp_url?`<a class="prof-link-btn" href="${p.wowp_url}" target="_blank">${ui.wowp_btn}</a>`:''}
+     </div>`:''}`;
+  document.getElementById('ptab-specs').innerHTML=
     `<div class="pdet-section"><h3>${ui.spec_head}</h3>
        ${p.specs.map(s=>`<div class="spec-block">
          <div class="spec-title">${pT(s.title)}</div>
          <div class="spec-desc">${pT(s.desc)}</div>
-         ${s.points ? `<div class="spec-points">${pT(s.points)}</div>` : ''}
+         ${s.points?`<div class="spec-points">${pT(s.points)}</div>`:''}
        </div>`).join('')}
      </div>`;
-
-  document.getElementById('ptab-items').innerHTML =
+  document.getElementById('ptab-items').innerHTML=
     `<div class="pdet-section"><h3>${ui.item_head}</h3>
        <div class="item-grid">
          ${p.items.map(it=>`<div class="item-card">
            <div class="item-icon">${it.icon}</div>
            <div class="item-name">${pT(it.name)}</div>
            <div class="item-desc">${pT(it.desc)}</div>
-           ${it.tag ? `<div class="item-tag">${it.tag}</div>` : ''}
+           ${it.tag?`<div class="item-tag">${it.tag}</div>`:''}
          </div>`).join('')}
        </div>
      </div>`;
-
-  document.getElementById('ptab-orders').innerHTML =
+  document.getElementById('ptab-orders').innerHTML=
     `<div class="pdet-section"><h3>${ui.orders_head}</h3>
        <div class="orders-text">${pT(p.orders)}</div>
      </div>`;
-
-  switchProfTab(document.querySelector('.pdet-tab'), 'ptab-trainer');
+  switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
   window.scrollTo(0,0);
 }
 
-function switchProfTab(btn, panelId) {
+function switchProfTab(btn,panelId){
   document.querySelectorAll('.pdet-tab').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.pdet-panel').forEach(p=>p.classList.remove('visible'));
-  if (btn) btn.classList.add('active');
-  const panel = document.getElementById(panelId);
-  if (panel) panel.classList.add('visible');
+  if(btn)btn.classList.add('active');
+  const panel=document.getElementById(panelId);
+  if(panel)panel.classList.add('visible');
 }
 
-function updateProfLang() {
-  const hs = document.getElementById('prof-hero-sub');
-  if (hs) hs.textContent = PROF_UI[lang].hero_sub;
-  if (document.getElementById('prof-detail').classList.contains('visible') && currentProf) {
+function updateProfLang(){
+  const hs=document.getElementById('prof-hero-sub');
+  if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
     showProf(currentProf.id);
-  } else {
-    buildProfGrid();
-  }
+  } else { buildProfGrid(); }
 }
 
 </script>
