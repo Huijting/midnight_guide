@@ -1,5 +1,5 @@
-// sw.js — WoW Midnight Guide — Service Worker v5.0
-const CACHE = 'midnight-guide-v6';
+// sw.js — WoW Midnight Guide — Service Worker v5.2
+const CACHE = 'midnight-guide-v7';
 const ASSETS = [
   './index.html',
   './manifest.json',
@@ -35,8 +35,19 @@ self.addEventListener('activate', e => {
   );
 });
 
+// Network-first: altijd vers van het netwerk, cache als fallback (offline)
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(e.request)
+      .then(response => {
+        // Succesvolle netwerk-response → ook in cache opslaan voor offline gebruik
+        const clone = response.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+        return response;
+      })
+      .catch(() => {
+        // Netwerk niet bereikbaar → uit cache serveren
+        return caches.match(e.request);
+      })
   );
 });
