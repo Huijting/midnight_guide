@@ -1,53 +1,74 @@
-// sw.js — WoW Midnight Guide — Service Worker v5.4
-const CACHE = 'midnight-guide-v9';
-const ASSETS = [
-  './index.html',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './data/dungeons/season1.js',
-  './data/professions/skinning.js',
-  './data/professions/leatherworking.js',
-  './data/professions/mining.js',
-  './data/professions/herbalism.js',
-  './data/professions/alchemy.js',
-  './data/professions/blacksmithing.js',
-  './data/professions/enchanting.js',
-  './data/professions/engineering.js',
-  './data/professions/inscription.js',
-  './data/professions/jewelcrafting.js',
-  './data/professions/tailoring.js',
-  './data/professions/cooking.js',
-  './data/professions/fishing.js'
+// ============================================================
+// Service Worker — WoW Midnight Guide
+// Cache versie verhogen = oude cache automatisch gewist
+// ============================================================
+
+const CACHE_NAME = 'midnight-guide-v7';
+
+const PRECACHE = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/sw.js',
+  '/data/dungeons/season1.js',
+  '/data/professions/alchemy.js',
+  '/data/professions/blacksmithing.js',
+  '/data/professions/cooking.js',
+  '/data/professions/enchanting.js',
+  '/data/professions/engineering.js',
+  '/data/professions/fishing.js',
+  '/data/professions/herbalism.js',
+  '/data/professions/inscription.js',
+  '/data/professions/jewelcrafting.js',
+  '/data/professions/kp_data.js',
+  '/data/professions/kp_sources.js',
+  '/data/professions/leatherworking.js',
+  '/data/professions/mining.js',
+  '/data/professions/skinning.js',
+  '/data/professions/tailoring.js',
+  '/data/help.js',
+  '/data/specs/bm_hunter.js',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+// Install: cache alle bestanden
+self.addEventListener('install', event => {
+  self.skipWaiting(); // activeer meteen, wacht niet op oude tab te sluiten
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE))
   );
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
+// Activate: verwijder ALLE oude caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+      Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => {
+            console.log('[SW] Oude cache verwijderd:', key);
+            return caches.delete(key);
+          })
+      )
+    ).then(() => self.clients.claim()) // neem direct controle over alle tabs
   );
 });
 
-// Network-first: altijd vers van het netwerk, cache als fallback (offline)
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    fetch(e.request)
-      .then(response => {
-        // Succesvolle netwerk-response → ook in cache opslaan voor offline gebruik
-        const clone = response.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+// Fetch: cache-first, netwerk als fallback
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+          return response;
+        }
+        const toCache = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, toCache));
         return response;
-      })
-      .catch(() => {
-        // Netwerk niet bereikbaar → uit cache serveren
-        return caches.match(e.request);
-      })
+      });
+    })
   );
 });
