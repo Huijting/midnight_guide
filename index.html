@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#0a0a1a">
 <title>WoW: Midnight Guide — Season 1</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/favicon.ico" type="image/x-icon">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -464,21 +465,25 @@
   #qr-close{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline}
 
   /* ── MODE TABS ── */
-  .mode-tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px;flex-shrink:0}
+  .mode-tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px;flex-shrink:0;overflow-x:auto;scrollbar-width:none;max-width:100%}
+  .mode-tabs::-webkit-scrollbar{display:none}
   .mode-tab{background:none;border:none;border-radius:16px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
   .mode-tab.active{background:var(--gold);color:#000}
   .mode-tab:hover:not(.active){color:var(--text)}
   @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
+  /* Dungeons mode — default */
+  body.mode-dungeons #prof-screen{display:none !important}
+  body.mode-dungeons #weekly-screen{display:none !important}
+  /* Professions mode */
   body.mode-professions #home-screen{display:none !important}
   body.mode-professions #detail-screen{display:none !important}
   body.mode-professions #prof-screen{display:block !important}
-  body.mode-dungeons #prof-screen{display:none !important}
+  body.mode-professions #weekly-screen{display:none !important}
+  /* Weekly mode */
   body.mode-weekly #home-screen{display:none !important}
   body.mode-weekly #detail-screen{display:none !important}
   body.mode-weekly #prof-screen{display:none !important}
   body.mode-weekly #weekly-screen{display:block !important}
-  body.mode-professions #weekly-screen{display:none !important}
-  body.mode-dungeons #weekly-screen{display:none !important}
   #weekly-screen{display:none;padding:16px 16px 80px;max-width:860px;margin:0 auto}
   .weekly-header{text-align:center;padding:20px 0 8px}
   .weekly-header h2{font-family:'Cinzel',serif;color:var(--gold);font-size:22px;margin:0}
@@ -717,6 +722,96 @@
   @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
   @media(max-width:768px){.mode-tabs{gap:2px}.mode-tab{padding:4px 9px;font-size:11px}}
 
+  /* ── SPECS ─────────────────────────────────────────────── */
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:12px}
+  .spec-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s}
+  .spec-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .spec-card-icon{font-size:32px;margin-bottom:6px}
+  .spec-card-spec{font-size:13px;font-weight:800;color:var(--gold)}
+  .spec-card-class{font-size:11px;color:var(--muted);margin-top:2px}
+  .spec-card-role{font-size:10px;color:var(--muted);margin-top:4px;padding:2px 8px;border:1px solid var(--border);border-radius:8px;display:inline-block}
+  .spec-detail{display:none;padding:0 0 80px}
+  .spec-detail.visible{display:block}
+  .spec-hero{background:linear-gradient(135deg,#1a1400,#0d0d1a);border-bottom:1px solid var(--border);padding:16px}
+  .spec-hero-top{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .spec-hero-icon{font-size:40px}
+  .spec-hero-name{font-family:'Cinzel',serif;font-size:20px;color:var(--gold)}
+  .spec-hero-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .spec-hero-summary{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px}
+  .spec-proscons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .spec-pros,.spec-cons{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+  .spec-pros-title{font-size:11px;font-weight:800;color:#3db86a;margin-bottom:6px}
+  .spec-cons-title{font-size:11px;font-weight:800;color:#e04060;margin-bottom:6px}
+  .spec-pros li,.spec-cons li{font-size:11px;color:var(--muted);line-height:1.6;list-style:none;padding-left:14px;position:relative}
+  .spec-pros li::before{content:'✓';color:#3db86a;position:absolute;left:0}
+  .spec-cons li::before{content:'✗';color:#e04060;position:absolute;left:0}
+  .spec-tabs{display:flex;overflow-x:auto;gap:0;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:52px;z-index:10;scrollbar-width:none}
+  .spec-tabs::-webkit-scrollbar{display:none}
+  .spec-tab-btn{white-space:nowrap;padding:10px 14px;font-size:12px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s}
+  .spec-tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+  .spec-tab-content{display:none;padding:12px}
+  .spec-tab-content.active{display:block}
+  .spec-section-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin:16px 0 8px}
+  .spec-section-title:first-child{margin-top:4px}
+  .rot-table{width:100%;border-collapse:collapse;font-size:12px}
+  .rot-table th{text-align:left;padding:6px 8px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;border-bottom:1px solid var(--border)}
+  .rot-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+  .rot-prio{font-weight:800;color:var(--gold);text-align:center}
+  .rot-spell{font-weight:700;color:var(--text)}
+  .rot-note{color:var(--muted);font-size:11px}
+  .rot-imp-always{color:#3db86a;font-size:10px;font-weight:800}
+  .rot-imp-high{color:#c8a84b;font-size:10px;font-weight:800}
+  .rot-imp-filler{color:var(--muted);font-size:10px}
+  .apex-tip{background:rgba(232,140,42,.1);border:1px solid rgba(232,140,42,.3);border-radius:8px;padding:10px 12px;font-size:12px;color:#e88c2a;margin-bottom:12px;line-height:1.5}
+  .stat-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+  .stat-rank{width:20px;font-size:11px;font-weight:800;color:var(--gold);flex-shrink:0}
+  .stat-name{width:110px;font-size:13px;font-weight:700;color:var(--text);flex-shrink:0}
+  .stat-bars{display:flex;gap:3px;flex-shrink:0}
+  .stat-bar{width:12px;height:12px;border-radius:3px}
+  .stat-bar.filled{background:var(--gold)}
+  .stat-bar.empty{background:var(--border)}
+  .stat-note{font-size:11px;color:var(--muted);line-height:1.4}
+  .stat-tip{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5}
+  .cd-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .cd-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+  .cd-spell{font-size:13px;font-weight:800;color:var(--text)}
+  .cd-timer{font-size:11px;color:var(--gold);background:rgba(200,168,75,.12);padding:2px 7px;border-radius:8px;font-weight:700}
+  .cd-effect{font-size:12px;color:var(--muted);margin-bottom:3px}
+  .cd-when{font-size:11px;color:#3db86a}
+  .tip-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px;display:flex;gap:10px}
+  .tip-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+  .tip-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px}
+  .tip-text{font-size:12px;color:var(--muted);line-height:1.5}
+  .macro-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .macro-name{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:4px}
+  .macro-note{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .macro-code{background:#0a0a16;border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-family:monospace;font-size:11px;color:#a0e0ff;line-height:1.6;white-space:pre;overflow-x:auto;cursor:pointer;position:relative}
+  .macro-code::after{content:'📋 kopiëren';position:absolute;top:5px;right:8px;font-size:10px;color:var(--muted);font-family:sans-serif}
+  .macro-code.copied::after{content:'✅ Gekopieerd!';color:#3db86a}
+  .cheat-rot{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+  .cheat-rot-label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+  .cheat-rot-text{font-size:12px;color:var(--text);line-height:1.8}
+  .cheat-rules{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+  @media(max-width:480px){.cheat-rules{grid-template-columns:1fr}}
+  .cheat-rule{background:rgba(224,64,96,.08);border:1px solid rgba(224,64,96,.2);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--text);line-height:1.4}
+  .cheat-rule::before{content:'⚠ ';color:#e04060}
+  .res-table{width:100%;font-size:12px;border-collapse:collapse}
+  .res-table th{text-align:left;padding:6px 8px;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--border)}
+  .res-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;color:var(--muted)}
+  .res-table td:first-child{color:var(--text);font-weight:700}
+  .pet-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px}
+  .pet-type{font-size:13px;font-weight:800;color:var(--gold)}
+  .pet-bonus{font-size:12px;color:var(--muted);margin-top:2px}
+  .pet-use{font-size:11px;color:#3db86a;margin-top:3px}
+  .frenzy-tip{background:rgba(61,184,106,.08);border:1px solid rgba(61,184,106,.25);border-radius:8px;padding:10px 12px;font-size:12px;color:#3db86a;margin:10px 0;line-height:1.5}
+  /* Specs mode */
+  body.mode-specs #home-screen,
+  body.mode-specs #detail-screen,
+  body.mode-specs #prof-screen,
+  body.mode-specs #weekly-screen{display:none!important}
+  body.mode-specs .specs-screen{display:block!important}
+  .specs-screen{display:none}
+
 </style>
 </head>
 <body>
@@ -743,6 +838,7 @@
       <button class="mode-tab active" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
       <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')"><span id="tab-lbl-professions">🔨 Professies</span></button>
       <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Weekly</span></button>
+      <button class="mode-tab" id="mode-tab-specs" onclick="setMode('specs')"><span id="tab-lbl-specs">🎯 Specs</span></button>
     </div>
     <div class="header-controls">
     <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
@@ -801,6 +897,21 @@
   </div>
 </div>
 
+<div class="specs-screen">
+  <div id="spec-grid-view">
+    <div style="padding:14px 12px 4px">
+      <h2 style="font-family:'Cinzel',serif;color:var(--gold);font-size:17px;margin-bottom:4px">🎯 Spec Gids</h2>
+      <p id="spec-grid-sub" style="font-size:12px;color:var(--muted)">Kies een spec voor rotatie, stats, cooldowns en tips.</p>
+    </div>
+    <div class="spec-grid" id="spec-grid"></div>
+  </div>
+  <div class="spec-detail" id="spec-detail-view">
+    <div class="spec-hero" id="spec-hero"></div>
+    <div class="spec-tabs" id="spec-tab-btns"></div>
+    <div id="spec-tab-panels"></div>
+  </div>
+</div>
+
 <div id="weekly-screen">
   <div class="weekly-header">
     <h2 id="weekly-title">📅 Weekly Checklist</h2>
@@ -853,6 +964,7 @@
 <script src="data/professions/kp_sources.js"></script>
 <script src="data/professions/kp_data.js"></script>
 <script src="data/help.js"></script>
+<script src="data/specs/bm_hunter.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -1157,7 +1269,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -1211,7 +1323,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -1265,7 +1377,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -1370,6 +1482,8 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-dungeons').textContent = u.tab_dungeons;
   document.getElementById('tab-lbl-professions').textContent = u.tab_professions;
   document.getElementById('tab-lbl-weekly').textContent = u.tab_weekly;
+  document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
+  if (document.body.classList.contains('mode-specs')) buildSpecGrid();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1474,7 +1588,7 @@ function openDungeon(id) {
 
 function goHome() {
   currentDungeon = null;
-  document.getElementById('home-screen').style.display   = 'block';
+  document.getElementById('home-screen').style.display   = '';
   document.getElementById('detail-screen').style.display = 'none';
   document.getElementById('back-btn').style.display      = 'none';
   window.scrollTo(0, 0);
@@ -1756,17 +1870,27 @@ function setMode(mode){
   document.getElementById('mode-tab-dungeons').classList.toggle('active',mode==='dungeons');
   document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
   document.getElementById('mode-tab-weekly').classList.toggle('active',mode==='weekly');
+  document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
   const sb=document.getElementById('spec-btn');
   if(sb)sb.style.display=(mode==='dungeons')?'':'none';
   document.getElementById('back-btn').style.display='none';
   if(mode==='weekly'){
+    document.getElementById('home-screen').style.display = '';
+    document.getElementById('detail-screen').style.display = '';
     buildWeeklyList();
   } else if(mode==='professions'){
+    document.getElementById('home-screen').style.display = '';
+    document.getElementById('detail-screen').style.display = '';
     buildProfGrid();showProfGrid();
     const ht=document.getElementById('prof-hero-title');
     if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
     const hs=document.getElementById('prof-hero-sub');
     if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  } else if(mode==='specs'){
+    // Clear any inline display styles so CSS takes over
+    document.getElementById('home-screen').style.display = '';
+    document.getElementById('detail-screen').style.display = '';
+    buildSpecGrid();
   } else {
     if(currentDungeon)goHome();
   }
@@ -3019,6 +3143,183 @@ window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
 });
+
+
+// ── SPECS ────────────────────────────────────────────────────────
+const SPEC_TAB_UI = {
+  nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+        pros:'✅ Sterk', cons:'❌ Zwak',
+        opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
+        prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
+        generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
+        macro_copy:'Klik op de code om te kopiëren',
+      },
+  en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+        pros:'✅ Strong', cons:'❌ Weak',
+        opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
+        prio:'#', spell:'Spell', why:'Why', imp:'Priority',
+        generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
+        macro_copy:'Click the code to copy',
+      },
+  da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+        pros:'✅ Styrker', cons:'❌ Svagheder',
+        opener:'Åbner', single:'Single Target', aoe:'AoE / Mythic+',
+        prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
+        generate:'Generer Focus', spend:'Brug Focus', pets:'Kæledyrstyper',
+        macro_copy:'Klik på koden for at kopiere',
+      },
+};
+
+// currentSpec al gedeclareerd op regel 1110 — niet nogmaals declareren
+
+function buildSpecGrid() {
+  const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
+  document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
+  const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
+  document.getElementById('spec-grid').innerHTML = specs.map(s => {
+    const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl) : s.spec;
+    const roleLbl = ui['role_'+s.role] || s.role;
+    return `<div class="spec-card" onclick="showSpec('${s.id}')">
+      <div class="spec-card-icon">${s.icon}</div>
+      <div class="spec-card-spec">${specName}</div>
+      <div class="spec-card-class">${s.class}</div>
+      <div class="spec-card-role">${roleLbl}</div>
+    </div>`;
+  }).join('') || '<p style="padding:20px;color:var(--muted);font-size:13px">Nog geen specs beschikbaar.</p>';
+  document.getElementById('spec-grid-view').style.display = '';
+  document.getElementById('spec-detail-view').classList.remove('visible');
+}
+
+function showSpec(id) {
+  const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
+  const s = specs.find(x => x.id === id);
+  if (!s) return;
+  currentSpec = s;
+  const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
+  const L = l => (typeof l === 'object') ? (l[lang] || l.nl) : l;
+
+  // Hero
+  document.getElementById('spec-hero').innerHTML = `
+    <div class="spec-hero-top">
+      <div class="spec-hero-icon">${s.icon}</div>
+      <div>
+        <div class="spec-hero-name">${L(s.spec)} ${s.class}</div>
+        <div class="spec-hero-sub">${s.armor} · ${L(s.weapon)} · ${s.resource} · Patch ${s.patch}</div>
+      </div>
+    </div>
+    <div class="spec-hero-summary">${L(s.summary)}</div>
+    <div class="spec-proscons">
+      <div class="spec-pros"><div class="spec-pros-title">${ui.pros}</div><ul>${(s.pros[lang]||s.pros.nl||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>
+      <div class="spec-cons"><div class="spec-cons-title">${ui.cons}</div><ul>${(s.cons[lang]||s.cons.nl||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
+    </div>`;
+
+  // Tabs
+  document.getElementById('spec-tab-btns').innerHTML = ui.tabs.map((t,i) =>
+    `<button class="spec-tab-btn${i===0?' active':''}" onclick="switchSpecTab('${ui.tab_ids[i]}')">${t}</button>`
+  ).join('');
+
+  // Panels
+  document.getElementById('spec-tab-panels').innerHTML = ui.tab_ids.map((tid,i) =>
+    `<div class="spec-tab-content${i===0?' active':''}" id="stab-${tid}">${renderSpecTab(s, tid, ui)}</div>`
+  ).join('');
+
+  document.getElementById('spec-grid-view').style.display = 'none';
+  document.getElementById('spec-detail-view').classList.add('visible');
+  window.scrollTo(0,0);
+}
+
+function switchSpecTab(id) {
+  document.querySelectorAll('.spec-tab-btn').forEach((b,i) => {
+    const tid = (SPEC_TAB_UI[lang]||SPEC_TAB_UI.nl).tab_ids[i];
+    b.classList.toggle('active', tid === id);
+  });
+  document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-'+id));
+}
+
+function renderSpecTab(s, tid, ui) {
+  // Haal data op voor huidige taal, val terug op NL als taal leeg/stub is
+  function hasContent(d) {
+    if (!d) return false;
+    if (Array.isArray(d)) return d.length > 0;
+    if (typeof d === 'object') return Object.values(d).some(v => Array.isArray(v) ? v.length > 0 : (v && String(v).length > 0));
+    return String(d).length > 0;
+  }
+  const rawD = s[tid] ? s[tid][lang] : null;
+  const d = hasContent(rawD) ? rawD : (s[tid] ? s[tid].nl : null);
+  if (!d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
+
+  if (tid === 'cheatsheet') {
+    const rules = (d.rules||[]).map(r=>`<div class="cheat-rule">${r}</div>`).join('');
+    const fmtRot = t => t.replace(/(Kill Command|Bestial Wrath|Barbed Shot|Black Arrow|Wild Thrash|Wailing Arrow|Cobra Shot|Hunter's Mark)/g, '<span>$1</span>');
+    return `
+      <div class="spec-section-title">${ui.opener}</div>
+      <div class="cheat-rot"><div class="cheat-rot-text">${fmtRot(d.opener||'')}</div></div>
+      <div class="spec-section-title">${ui.single}</div>
+      <div class="cheat-rot"><div class="cheat-rot-text">${fmtRot(d.single||'')}</div></div>
+      <div class="spec-section-title">${ui.aoe}</div>
+      <div class="cheat-rot"><div class="cheat-rot-text">${fmtRot(d.aoe||'')}</div></div>
+      <div class="spec-section-title">Golden Rules</div>
+      <div class="cheat-rules">${rules}</div>`;
+  }
+
+  if (tid === 'rotation') {
+    const rotRow = (r, imp) => `<tr><td class="rot-prio">${r.prio||r.step}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.note}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
+    return `${d.apex_tip?`<div class="apex-tip">${d.apex_tip}</div>`:''}
+      <div class="spec-section-title">${ui.opener}</div>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>
+      <div class="spec-section-title">${ui.single}</div>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th><th>${ui.imp}</th></tr></thead><tbody>${(d.single||[]).map(r=>rotRow(r,true)).join('')}</tbody></table>
+      <div class="spec-section-title">${ui.aoe}</div>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.aoe||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>`;
+  }
+
+  if (tid === 'stats') {
+    const bars = (n,max=5) => Array.from({length:max},(_,i)=>`<div class="stat-bar ${i<n?'filled':'empty'}"></div>`).join('');
+    return `${(d.list||[]).map(r=>`<div class="stat-row"><div class="stat-rank">${r.rank}</div><div class="stat-name">${r.stat}</div><div class="stat-bars">${bars(r.bars)}</div><div class="stat-note">${r.note}</div></div>`).join('')}
+      ${d.tip?`<div class="stat-tip">${d.tip}</div>`:''}`;
+  }
+
+  if (tid === 'cooldowns') {
+    return (d||[]).map(c=>`<div class="cd-card"><div class="cd-top"><span class="cd-spell">${c.spell}</span><span class="cd-timer">${c.cd}</span></div><div class="cd-effect">${c.effect}</div><div class="cd-when">→ ${c.when}</div></div>`).join('');
+  }
+
+  if (tid === 'tips') {
+    return (d||[]).map(t=>`<div class="tip-card"><div class="tip-icon">${t.icon}</div><div><div class="tip-title">${t.title}</div><div class="tip-text">${t.text}</div></div></div>`).join('');
+  }
+
+  if (tid === 'macros') {
+    return `<p style="font-size:11px;color:var(--muted);margin-bottom:10px">${ui.macro_copy}</p>`+(d||[]).map(m=>`<div class="macro-card"><div class="macro-name">${m.name}</div><div class="macro-note">${m.note}</div><div class="macro-code" onclick="copyMacro(this)">${m.code}</div></div>`).join('');
+  }
+
+  if (tid === 'resource') {
+    const res = d;
+    const genRows = (res.generate||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
+    const spendRows = (res.spend||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
+    return `<p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px">${res.intro||''}</p>
+      <div class="spec-section-title">${ui.generate}</div>
+      <table class="res-table"><thead><tr><th>Spell</th><th>Effect</th></tr></thead><tbody>${genRows}</tbody></table>
+      <div class="spec-section-title">${ui.spend}</div>
+      <table class="res-table"><thead><tr><th>Spell</th><th>Effect</th></tr></thead><tbody>${spendRows}</tbody></table>
+      ${res.frenzy_tip||res.pet_tip?`<div class="frenzy-tip">🐾 ${res.pet_tip||res.frenzy_tip}</div>`:''}
+      <div class="spec-section-title">${ui.pets}</div>
+      ${(res.pets||[]).map(p=>`<div class="pet-card"><div class="pet-type">${p.type}</div><div class="pet-bonus">${p.bonus}</div><div class="pet-use">${p.use}</div></div>`).join('')}`;
+  }
+
+  return '<p style="color:var(--muted);font-size:13px">Binnenkort beschikbaar.</p>';
+}
+
+function copyMacro(el) {
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
