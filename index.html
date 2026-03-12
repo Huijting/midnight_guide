@@ -2302,7 +2302,6 @@ function toggleQR() {
 function openFeedback() {
   document.getElementById('feedback-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('feedback-text').focus(), 100);
 }
 function closeFeedback() {
   document.getElementById('feedback-modal').classList.remove('open');
@@ -2389,7 +2388,6 @@ if ('serviceWorker' in navigator) {
     <button class="modal-close-x" onclick="closeFeedback()">×</button>
     <div id="feedback-title">💬 Feedback</div>
     <div id="feedback-sub"></div>
-    <textarea id="feedback-text" rows="5" placeholder="..."></textarea>
     <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
       <a id="feedback-gh" href="https://docs.google.com/forms/d/e/1FAIpQLSe-KFixsrFQnFHYp12E9v4z-xWqpRuULSUYf58oOs8X85E6rQ/viewform" target="_blank" style="display:block;text-align:center;background:var(--gold);color:#000;padding:10px 18px;border-radius:8px;font-weight:700;text-decoration:none">📝 Feedback formulier (geen account nodig)</a>
       <a href="https://github.com/Huijting/midnight_guide/issues/new?title=Feedback" target="_blank" style="display:block;text-align:center;background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:9px 18px;border-radius:8px;font-weight:700;text-decoration:none">🐙 GitHub issue (voor techneuten)</a>
