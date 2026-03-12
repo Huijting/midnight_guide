@@ -756,7 +756,7 @@ const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHIN
 
 
 // ── VERSIE ──
-const VERSION = "v5.3";
+const VERSION = "v5.4";
 const VERSION_DATE = "2026-03-11";
 
 
@@ -1819,7 +1819,7 @@ function renderKpTree(p) {
 }
 
 function renderKpSources(p) {
-  const el = document.getElementById('tab-kpbronnen');
+  const el = document.getElementById('ptab-kpbronnen');
   if (!el) return;
 
   const lang = currentLang || 'nl';
@@ -2320,7 +2320,7 @@ function sendFeedback() {
   if (!txt) return;
   const subject = encodeURIComponent('WoW Midnight Guide — Feedback');
   const body    = encodeURIComponent(txt + '\n\n— verstuurd via de app');
-  window.open(`mailto:rob.huijting@gmail.com?subject=${subject}&body=${body}`);
+  window.location.href = `mailto:rob.huijting@gmail.com?subject=${subject}&body=${body}`;
   closeFeedback();
   document.getElementById('feedback-text').value = '';
 }
