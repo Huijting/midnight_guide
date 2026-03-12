@@ -1,4 +1,4 @@
-# ⚔ WoW Midnight Guide — v5.4
+# ⚔ WoW Midnight Guide — v5.8
 
 **Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
@@ -17,6 +17,7 @@
 - 🌙 Licht/donker thema
 - 📱 Installeerbaar als PWA (Android & iOS)
 - 📷 QR-code om te delen
+- 📅 **Weekly Checklist** — alle weekly activiteiten met afvinkjes, progressiebalk en automatische reset op woensdag
 
 ---
 
@@ -81,23 +82,29 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 ## 📋 Changelog
 
-### v5.4 — 2026-03-11
+### v5.8 — 2026-03-12
+- 📅 **Weekly Checklist tab** — alle weekly activiteiten (World Boss, Delves, M+, Raid, Quests, Rep, Crafting, DMF)
+- Progressiebalk met x/25 voltooid
+- Automatische reset elke woensdag 09:00
+- Vinkjes opgeslagen in localStorage
+
+### v5.8 — 2026-03-11
 - 🌳 **KP Boom tab** toegevoegd per profession — visuele spec tree met KP kosten per node
 - 🗺️ **KP Bronnen tab** toegevoegd per profession — schatten (/way coördinaten), wekelijks, eenmalig, Darkmoon Faire
 - 📋 TomTom /ttpaste knop — kopieert alle /way regels in één klik
 - `data/professions/kp_sources.js` — nieuw databestand met KP-bronnen voor alle 13 professions
 
-### v5.3 — 2026-03-11
+### v5.8 — 2026-03-11
 - Afbeeldingen (route & floor screenshots) uit season1.js gehaald — aparte bestanden in `data/screenshots/`
 - season1.js verkleind van ~10.5MB naar ~430KB
 - Screenshots worden nu geladen via GitHub raw URL's
 
-### v5.2 — 2026-03-11
+### v5.8 — 2026-03-11
 - Alle 13 profession spec tree namen gecorrigeerd op basis van officiële Midnight data
 - About-knop styling gefixed (was wit, nu donker zoals andere knoppen)
 - Service Worker: cache-first → network-first (altijd verse content bij openen)
 
-### v5.1 — 2026-03-11
+### v5.8 — 2026-03-11
 - About-modal laadt nu live README.md van GitHub (nooit meer hardcoded tekst)
 - PWA auto-banners vervangen door 📲 knopje in header
 - Profession tier-ratings bijgewerkt naar actuele Midnight-data
@@ -108,11 +115,12 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
-| v5.4 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
-| v5.3 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
-| v5.2 | 2026-03-11 | Alle 13 profession spec tree namen gecorrigeerd · Service Worker: network-first |
-| v5.1 | 2026-03-11 | About-modal laadt live README.md · PWA-banners vervangen · profession tier-ratings bijgewerkt |
-| v5.0 | 2026-03-11 | Profession gids toegevoegd — alle 13 professions, NL/EN/DA, tier-ratings, modulaire data-structuur |
+| v5.8 | 2026-03-12 | 📅 Weekly Checklist tab — World Boss, Delves, M+, Raid, Quests, Rep, Crafting, DMF · auto-reset woensdag |
+| v5.8 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
+| v5.8 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
+| v5.8 | 2026-03-11 | Alle 13 profession spec tree namen gecorrigeerd · Service Worker: network-first |
+| v5.8 | 2026-03-11 | About-modal laadt live README.md · PWA-banners vervangen · profession tier-ratings bijgewerkt |
+| v5.8 | 2026-03-11 | Profession gids toegevoegd — alle 13 professions, NL/EN/DA, tier-ratings, modulaire data-structuur |
 | v4.0 | 2026-03-11 | Modulaire refactor — data naar losse JS-bestanden |
 | v3.0 | 2026-03-10 | Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig |
 | v2.2 | 2026-03-10 | 13 nieuwe specs · Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK |
@@ -141,3 +149,24 @@ Of gebruik de single-file testversie (`test_single.html`) die alles inline heeft
 *Fan-project · Geen officiële band met Blizzard Entertainment.*  
 *World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.*  
 *⚔ Gebouwd door Claudy & Inchy*
+
+## Changelog
+
+### v5.8
+- Weekly Checklist volledig drietalig (nl/en/da)
+- `/way` TomTom-coördinaten toegevoegd per item (klikbaar, kopieert naar clipboard)
+- Darkmoon Faire alleen zichtbaar in actieve weken (automatisch)
+- Halduron Brightwing weekly dungeon quest teruggeplaatst
+- Timewalking reminder toegevoegd
+- DMF-banner zichtbaar wanneer Faire actief is
+
+### v5.8
+- Weekly Checklist tab (📅) toegevoegd
+- NPC-locaties per item
+- Feedback knop gefixed (Google Form + GitHub Issues)
+- KP Bronnen tab ID-fix
+
+### v5.8
+- KP Boom tab (🌳) en KP Bronnen tab (🗺️) toegevoegd
+- Footer versienummer via VERSION/VERSION_DATE
+
