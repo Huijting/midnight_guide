@@ -497,6 +497,19 @@
   .weekly-tag.crafting{background:var(--tag-crafting-bg);color:var(--tag-crafting-fg)}
   .weekly-reset-btn{display:block;margin:24px auto 0;background:none;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s}
   .weekly-reset-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .diff-badge{font-size:11px;padding:2px 7px;border-radius:10px;font-weight:700;flex-shrink:0;white-space:nowrap}
+  .diff-easy{background:rgba(61,184,106,.15);color:#3db86a}
+  .diff-medium{background:rgba(200,168,75,.15);color:#c8a84b}
+  .diff-hard{background:rgba(224,64,96,.15);color:#e04060}
+  .wat-nu-btn{width:100%;background:linear-gradient(135deg,#2a1f00,#1a1400);border:2px solid var(--gold);color:var(--gold);padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:14px;transition:all .2s;letter-spacing:.3px}
+  .wat-nu-btn:hover{background:linear-gradient(135deg,#3a2d00,#2a2000);box-shadow:0 0 16px rgba(200,168,75,.2)}
+  .wat-nu-panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;display:none}
+  .wat-nu-panel.visible{display:block}
+  .wat-nu-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .wat-nu-item:last-child{border-bottom:none}
+  .wat-nu-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .wat-nu-text{font-size:13px;font-weight:700;color:var(--text)}
+  .wat-nu-sub{font-size:11px;color:var(--muted);margin-top:2px}
   /* ── PROFESSIONS ── */
   #prof-screen{display:none;padding:0 0 60px}
   .prof-hero{text-align:center;padding:28px 16px 16px;background:linear-gradient(180deg,rgba(80,40,160,.10) 0%,transparent 100%)}
@@ -767,6 +780,8 @@
     <h2 id="weekly-title">📅 Weekly Checklist</h2>
     <div class="weekly-reset"><span id="weekly-reset-info">Reset elke woensdag · Volgende reset:</span> <span id="weekly-next-reset">—</span></div>
   </div>
+  <button class="wat-nu-btn" id="wat-nu-btn" onclick="toggleWatNu()">⚡ Wat doe ik eerst?</button>
+  <div class="wat-nu-panel" id="wat-nu-panel"></div>
   <div class="weekly-progress">
     <div class="weekly-progress-bar"><div class="weekly-progress-fill" id="weekly-progress-fill" style="width:0%"></div></div>
     <div class="weekly-progress-label" id="weekly-progress-label">0 / 0</div>
@@ -2399,7 +2414,7 @@ function closeFeedback() {
 // ══════════════════════════════════════════════════════════════
 
 const WEEKLY_ITEMS = [
-  { id:'w_worldboss', dmfOnly:false,
+  { id:'w_worldboss', diff:'easy', dmfOnly:false,
     cat:{nl:'🌍 World Boss',en:'🌍 World Boss',da:'🌍 World Boss'},
     name:{nl:'World Boss verslaan',en:'Defeat the World Boss',da:'Besejr World Boss'},
     desc:{nl:'Versla de weekly world boss voor Champion-level gear. Rouleert elke week per zone.',
@@ -2408,7 +2423,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Check de wereldkaart voor de actieve boss | Check the world map for the active boss.',
     way:'', tags:['gear'] },
 
-  { id:'w_dungeon', dmfOnly:false,
+  { id:'w_dungeon', diff:'easy', dmfOnly:false,
     cat:{nl:'🏰 Weekly Dungeon Quest',en:'🏰 Weekly Dungeon Quest',da:'🏰 Ugentlig Dungeon Quest'},
     name:{nl:'Weekly dungeon quest (Halduron Brightwing)',en:'Weekly dungeon quest (Halduron Brightwing)',da:'Ugentlig dungeon-quest (Halduron Brightwing)'},
     desc:{nl:'Voltooi een Midnight dungeon op willekeurige moeilijkheid. Beloning: goud + 1.000 rep naar keuze. Follower dungeons tellen ook mee!',
@@ -2417,7 +2432,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Halduron Brightwing — tent bij Sanctum of Light, Silvermoon City.',
     way:'/way #2393 50.2 48.1 Halduron Brightwing', tags:['rep','currency'] },
 
-  { id:'w_liadrin', dmfOnly:false,
+  { id:'w_liadrin', diff:'easy', dmfOnly:false,
     cat:{nl:'📜 Weekly Event Quest',en:'📜 Weekly Event Quest',da:'📜 Ugentlig Event Quest'},
     name:{nl:'Weekly Event Quest (Lady Liadrin)',en:'Weekly Event Quest (Lady Liadrin)',da:'Ugentlig Event Quest (Lady Liadrin)'},
     desc:{nl:'Kies 1 van 4 world event quests. Beloning: Apex Cache (gear, valuta, 100 Coffer Key Shards) + kans op Spark of Radiance.',
@@ -2426,7 +2441,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Lady Liadrin — tent bij Sanctum of Light, Silvermoon City.',
     way:'/way #2393 49.8 47.6 Lady Liadrin (weekly quests)', tags:['gear','currency'] },
 
-  { id:'w_abundance', dmfOnly:false,
+  { id:'w_abundance', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
     name:{nl:'Abundance (weekly)',en:'Abundance (weekly)',da:'Abundance (ugentlig)'},
     desc:{nl:'Verzamel 20.000 punten in de Abundance caves. 3 minuten per run, doneer regelmatig aan Dundun. Beloning: 1.000 Amani Tribe rep + cache.',
@@ -2435,7 +2450,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Eerst ontgrendelen: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman. Dan wekelijks bij cave-ingang. | First unlock: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman.',
     way:'/way #2437 47.2 62.1 Chel the Chip (unlock Abundance)', tags:['rep','currency'] },
 
-  { id:'w_haranir', dmfOnly:false,
+  { id:'w_haranir', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
     name:{nl:'Legends of the Haranir (weekly)',en:'Legends of the Haranir (weekly)',da:'Legends of the Haranir (ugentlig)'},
     desc:{nl:'Kies een Harati relikwie en voltooi het scenario. Beloning: Avid Learner\&#39;s Supply Pack + housing decor. Keuze is Warband-wide!',
@@ -2444,7 +2459,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Zurashar Kassameh — Reliquary, The Den, Harandar.',
     way:'/way #2413 54.2 53.0 Zurashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
 
-  { id:'w_soiree', dmfOnly:false,
+  { id:'w_soiree', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
     name:{nl:'Saltheril\&#39;s Soiree (weekly)',en:'Saltheril\&#39;s Soiree (weekly)',da:'Saltheril\&#39;s Soiree (ugentlig)'},
     desc:{nl:'Kies een subfactie (Magisters/Blood Knights/Farstriders/Shades). Geeft Brimming Arcana + 2.000 Silvermoon Court rep. Keuze kan andere facties schaden! Eerst ontgrendelen via Jonas Everdawn.',
@@ -2453,7 +2468,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Unlock: Jonas Everdawn — ten noorden van Sanctum of Light, Silvermoon City → dan Lord Saltheril, Fairbreeze Village.',
     way:'/way #2393 50.1 45.2 Jonas Everdawn (unlock Soiree)', tags:['rep','currency'] },
 
-  { id:'w_stormarion', dmfOnly:false,
+  { id:'w_stormarion', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
     name:{nl:'Stormarion Assault (weekly)',en:'Stormarion Assault (weekly)',da:'Stormarion Assault (ugentlig)'},
     desc:{nl:'Verdedig Stormarion Citadel — elke 30 min 3 golven vijanden. Geen voorquest nodig. Geeft cache + Great Vault World-voortgang.',
@@ -2462,7 +2477,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Voidstorm — Stormarion Citadel.',
     way:'/way #2405 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
 
-  { id:'w_prey', dmfOnly:false,
+  { id:'w_prey', diff:'medium', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts',da:'🎯 Prey Hunts'},
     name:{nl:'Nightmare Prey (2x)',en:'Nightmare Prey (2x)',da:'Nightmare Prey (2x)'},
     desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-level gear. Track je prooi in de zone en overleef de hinderlagen.',
@@ -2471,7 +2486,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 57.0 61.0 Astalor Bloodsworn (Prey contracts)', tags:['gear'] },
 
-  { id:'w_delve1', dmfOnly:false,
+  { id:'w_delve1', diff:'medium', dmfOnly:false,
     cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
     name:{nl:'Bountiful Delve (1/4)',en:'Bountiful Delve (1/4)',da:'Bountiful Delve (1/4)'},
     desc:{nl:'Vereist een Restored Coffer Key. Valeera begeleidt je. Bountiful Delves geven upgrade-track loot, normale Delves niet.',
@@ -2479,31 +2494,31 @@ const WEEKLY_ITEMS = [
           da:'Kraever en Restored Coffer Key. Valeera ledsager dig. Bountiful Delves giver loot pa upgrade-sporet.'},
     where:'📍 Delve-ingangen verspreid over alle zones — gouden kistje-icoon op de kaart.',
     way:'', tags:['gear'] },
-  { id:'w_delve2', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
+  { id:'w_delve2', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
     name:{nl:'Bountiful Delve (2/4)',en:'Bountiful Delve (2/4)',da:'Bountiful Delve (2/4)'},
     desc:{nl:'2e run.',en:'2nd run.',da:'2. run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
-  { id:'w_delve3', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
+  { id:'w_delve3', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
     name:{nl:'Bountiful Delve (3/4)',en:'Bountiful Delve (3/4)',da:'Bountiful Delve (3/4)'},
     desc:{nl:'3e run.',en:'3rd run.',da:'3. run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
-  { id:'w_delve4', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
+  { id:'w_delve4', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
     name:{nl:'Bountiful Delve (4/4)',en:'Bountiful Delve (4/4)',da:'Bountiful Delve (4/4)'},
     desc:{nl:'4e run — maximale Great Vault World-voortgang.',en:'4th run — maximum Great Vault World progress.',da:'4. run — maksimal Great Vault World-fremgang.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
 
-  { id:'w_mplus1', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
+  { id:'w_mplus1', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
     name:{nl:'M+ Key voltooien (1/8)',en:'Complete M+ Key (1/8)',da:'Gennemfor M+ Key (1/8)'},
     desc:{nl:'Eerste key voor Great Vault Dungeon-slot.',en:'First key for Great Vault Dungeon slot.',da:'Forste key til Great Vault Dungeon-slot.'},
     where:'📍 Geen quest — gebruik je eigen key of join via group finder.', way:'', tags:['gear'] },
-  { id:'w_mplus2', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (2/8)',en:'Complete M+ Key (2/8)',da:'Gennemfor M+ Key (2/8)'}, desc:{nl:'2e key.',en:'2nd key.',da:'2. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus3', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (3/8)',en:'Complete M+ Key (3/8)',da:'Gennemfor M+ Key (3/8)'}, desc:{nl:'3e key.',en:'3rd key.',da:'3. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus4', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (4/8)',en:'Complete M+ Key (4/8)',da:'Gennemfor M+ Key (4/8)'}, desc:{nl:'4e key.',en:'4th key.',da:'4. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus5', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (5/8)',en:'Complete M+ Key (5/8)',da:'Gennemfor M+ Key (5/8)'}, desc:{nl:'5e key.',en:'5th key.',da:'5. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus6', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (6/8)',en:'Complete M+ Key (6/8)',da:'Gennemfor M+ Key (6/8)'}, desc:{nl:'6e key.',en:'6th key.',da:'6. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus7', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (7/8)',en:'Complete M+ Key (7/8)',da:'Gennemfor M+ Key (7/8)'}, desc:{nl:'7e key.',en:'7th key.',da:'7. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus8', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
+  { id:'w_mplus2', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (2/8)',en:'Complete M+ Key (2/8)',da:'Gennemfor M+ Key (2/8)'}, desc:{nl:'2e key.',en:'2nd key.',da:'2. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus3', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (3/8)',en:'Complete M+ Key (3/8)',da:'Gennemfor M+ Key (3/8)'}, desc:{nl:'3e key.',en:'3rd key.',da:'3. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus4', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (4/8)',en:'Complete M+ Key (4/8)',da:'Gennemfor M+ Key (4/8)'}, desc:{nl:'4e key.',en:'4th key.',da:'4. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus5', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (5/8)',en:'Complete M+ Key (5/8)',da:'Gennemfor M+ Key (5/8)'}, desc:{nl:'5e key.',en:'5th key.',da:'5. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus6', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (6/8)',en:'Complete M+ Key (6/8)',da:'Gennemfor M+ Key (6/8)'}, desc:{nl:'6e key.',en:'6th key.',da:'6. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus7', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (7/8)',en:'Complete M+ Key (7/8)',da:'Gennemfor M+ Key (7/8)'}, desc:{nl:'7e key.',en:'7th key.',da:'7. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus8', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
     name:{nl:'M+ Key voltooien (8/8)',en:'Complete M+ Key (8/8)',da:'Gennemfor M+ Key (8/8)'},
     desc:{nl:'8 keys = maximale vault keuze. +10 of hoger geeft Myth-level reward.',en:'8 keys = maximum vault choice. +10 or higher gives Myth-level reward.',da:'8 keys = maksimal vault-valg. +10 eller hojere giver Myth-niveau belonning.'},
     where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_vault', dmfOnly:false,
+  { id:'w_vault', diff:'medium', dmfOnly:false,
     cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
     name:{nl:'Great Vault ophalen',en:'Collect Great Vault',da:'Hent Great Vault'},
     desc:{nl:'Kies je wekelijkse beloning na reset (woensdag EU). Niet ophalen = Thalassian Token of Merit per slot.',
@@ -2512,7 +2527,7 @@ const WEEKLY_ITEMS = [
     where:'📍 Vaultkeeper Elysa — The Bazaar, Silvermoon City.',
     way:'/way #2393 54.1 51.2 Vaultkeeper Elysa (Great Vault)', tags:['gear'] },
 
-  { id:'w_raid1', dmfOnly:false,
+  { id:'w_raid1', diff:'medium', dmfOnly:false,
     cat:{nl:'🏰 Raid',en:'🏰 Raid',da:'🏰 Raid'},
     name:{nl:'Voidspire (LFR/Normal/Heroic)',en:'Voidspire (LFR/Normal/Heroic)',da:'Voidspire (LFR/Normal/Heroic)'},
     desc:{nl:'6 bazen in Voidstorm. Geeft gear, rep en Great Vault Raid-voortgang. LFR beschikbaar na week 1.',
@@ -2520,7 +2535,7 @@ const WEEKLY_ITEMS = [
           da:'6 bossen i Voidstorm. Giver udrustning, rep og Great Vault Raid-fremgang. LFR tilgaengelig efter uge 1.'},
     where:'📍 Voidspire — Voidstorm. Via Dungeon Finder of directe ingang.',
     way:'/way #2405 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
-  { id:'w_raid2', dmfOnly:false,
+  { id:'w_raid2', diff:'medium', diff:'medium', dmfOnly:false,
     cat:{nl:'🏰 Raid',en:'🏰 Raid',da:'🏰 Raid'},
     name:{nl:'Dreamrift (LFR/Normal/Heroic)',en:'Dreamrift (LFR/Normal/Heroic)',da:'Dreamrift (LFR/Normal/Heroic)'},
     desc:{nl:'Tweede raid voor extra gear en vault slots.',en:'Second raid for extra gear and vault slots.',da:'Andet raid for ekstra udrustning og vault-pladser.'},
@@ -2568,7 +2583,7 @@ const WEEKLY_ITEMS = [
           da:'Gennemfor 5 Timewalking dungeons for bonus-udrustning. Kun aktiv visse uger — tjek den interne kalender (J).'},
     where:'📍 Queue via Dungeon Finder. Actief weken staan in de kalender.', way:'', tags:['gear'] },
 
-  { id:'w_dmf', dmfOnly:true,
+  { id:'w_dmf', diff:'easy', dmfOnly:true,
     cat:{nl:'🎡 Darkmoon Faire',en:'🎡 Darkmoon Faire',da:'🎡 Darkmoon Faire'},
     name:{nl:'Darkmoon Faire',en:'Darkmoon Faire',da:'Darkmoon Faire'},
     desc:{nl:'Mini-games en quests geven +2 skill en +3 KP per profession. Vergeet de WHEE!-buff niet voor +10% XP/rep. Alleen actief eerste week van de maand.',
@@ -2742,6 +2757,10 @@ const WEEKLY_UI = {
     tags: {gear:'⚔ Gear', rep:'💚 Rep', currency:'💰 Valuta', crafting:'🔨 Crafting'},
     progress: (done, total) => `${done} / ${total} voltooid`,
     dmf_note: '🎡 Darkmoon Faire is actief deze week!',
+    wat_nu_btn: '⚡ Wat doe ik eerst?',
+    wat_nu_title: '🎯 Begin hiermee:',
+    wat_nu_empty: '🎉 Je weekly taken zijn allemaal afgevinkt! Ga lekker spelen 😄',
+    diff: {easy:'🟢 Makkelijk', medium:'🟡 Gemiddeld', hard:'🔴 Uitdagend'},
   },
   en: {
     title: '📅 Weekly Checklist',
@@ -2752,6 +2771,10 @@ const WEEKLY_UI = {
     tags: {gear:'⚔ Gear', rep:'💚 Rep', currency:'💰 Currency', crafting:'🔨 Crafting'},
     progress: (done, total) => `${done} / ${total} completed`,
     dmf_note: '🎡 Darkmoon Faire is active this week!',
+    wat_nu_btn: '⚡ What should I do first?',
+    wat_nu_title: '🎯 Start with this:',
+    wat_nu_empty: '🎉 All weekly tasks checked off! Go have fun 😄',
+    diff: {easy:'🟢 Easy', medium:'🟡 Medium', hard:'🔴 Challenging'},
   },
   da: {
     title: '📅 Ugentlig Tjekliste',
@@ -2762,6 +2785,10 @@ const WEEKLY_UI = {
     tags: {gear:'⚔ Udrustning', rep:'💚 Rep', currency:'💰 Valuta', crafting:'🔨 Crafting'},
     progress: (done, total) => `${done} / ${total} fuldfort`,
     dmf_note: '🎡 Darkmoon Faire er aktiv denne uge!',
+    wat_nu_btn: '⚡ Hvad skal jeg gøre først?',
+    wat_nu_title: '🎯 Start her:',
+    wat_nu_empty: '🎉 Alle ugentlige opgaver er afkrydset! Nyd spillet 😄',
+    diff: {easy:'🟢 Let', medium:'🟡 Middel', hard:'🔴 Udfordrende'},
   },
 };
 function buildWeeklyList() {
@@ -2801,10 +2828,11 @@ function buildWeeklyList() {
       const tags = item.tags.map(t => `<span class="weekly-tag ${t}">${wui2.tags[t] || t}</span>`).join('');
       const iname = (typeof item.name === 'object') ? (item.name[lang] || item.name.nl) : item.name;
       const idesc = (typeof item.desc === 'object') ? (item.desc[lang] || item.desc.nl) : item.desc;
+      const diffLabel = item.diff ? `<span class="diff-badge diff-${item.diff}">${wui2.diff[item.diff]||''}</span>` : '';
       html += `<div class="weekly-item ${done ? 'done' : ''}" onclick="weeklyToggle('${item.id}')">
         <div class="weekly-check">${done ? '✓' : ''}</div>
         <div class="weekly-item-body">
-          <div class="weekly-item-name">${iname}</div>
+          <div class="weekly-item-name">${iname} ${diffLabel}</div>
           <div class="weekly-item-desc">${idesc}</div>
           ${item.where ? `<div class="weekly-item-where">${item.where}</div>` : ''}
           ${item.way ? `<div class="weekly-item-way" onclick="event.stopPropagation();copyWay(this)" data-way="${item.way}" title="${(WEEKLY_UI[lang]||WEEKLY_UI.nl).copy_tip}">📋 ${item.way}</div>` : ''}
@@ -2824,6 +2852,40 @@ function buildWeeklyList() {
   if (resetInfoEl) resetInfoEl.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).reset_info;
   const titleEl = document.getElementById('weekly-title');
   if (titleEl) titleEl.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).title;
+  const watNuBtn = document.getElementById('wat-nu-btn');
+  if (watNuBtn) watNuBtn.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).wat_nu_btn;
+}
+
+function toggleWatNu() {
+  const panel = document.getElementById('wat-nu-panel');
+  if (!panel) return;
+  if (panel.classList.contains('visible')) { panel.classList.remove('visible'); return; }
+
+  const wui = WEEKLY_UI[lang] || WEEKLY_UI.nl;
+  const state = weeklyLoadState();
+  const diffOrder = {easy:0, medium:1, hard:2};
+  const pending = WEEKLY_ITEMS
+    .filter(i => !state[i.id] && (!i.dmfOnly || isDmfWeek()))
+    .sort((a,b) => (diffOrder[a.diff]||0) - (diffOrder[b.diff]||0))
+    .slice(0, 3);
+
+  if (pending.length === 0) {
+    panel.innerHTML = `<div style="text-align:center;padding:8px;font-size:14px">${wui.wat_nu_empty}</div>`;
+  } else {
+    const items = pending.map((item, i) => {
+      const iname = (typeof item.name === 'object') ? (item.name[lang] || item.name.nl) : item.name;
+      const diffLabel = item.diff ? wui.diff[item.diff] : '';
+      return `<div class="wat-nu-item">
+        <div class="wat-nu-num">${i+1}</div>
+        <div>
+          <div class="wat-nu-text">${iname}</div>
+          <div class="wat-nu-sub">${diffLabel}${item.where ? ' · ' + item.where.replace(/📍 /,'').split('|')[0].trim() : ''}</div>
+        </div>
+      </div>`;
+    }).join('');
+    panel.innerHTML = `<div style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">${wui.wat_nu_title}</div>${items}`;
+  }
+  panel.classList.add('visible');
 }
 
 // ── PWA INSTALL MODAL ────────────────────────────────────────
