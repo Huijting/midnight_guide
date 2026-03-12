@@ -431,6 +431,32 @@
   #qr-btn:hover{border-color:var(--gold);background:var(--gold);color:#000}
   #about-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
   #about-btn:hover{border-color:var(--accent);color:var(--accent)}
+  #help-btn{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:4px}
+  #help-btn:hover{border-color:var(--gold);color:var(--gold)}
+  #help-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;padding:16px;overflow-y:auto}
+  #help-modal.open{display:flex;align-items:flex-start;justify-content:center}
+  #help-box{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:540px;width:100%;margin-top:40px}
+  #help-box h2{font-family:'Cinzel',serif;color:var(--gold);font-size:18px;margin-bottom:6px}
+  #help-intro{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+  .help-section{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+  .help-section-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px}
+  .help-section-text{font-size:12px;color:var(--muted);line-height:1.7;white-space:pre-line}
+  #help-close{display:block;margin:16px auto 0;background:none;border:1px solid var(--border);color:var(--muted);padding:8px 24px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
+  #help-close:hover{border-color:var(--gold);color:var(--gold)}
+  #help-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1300;align-items:flex-end;justify-content:center;padding:0}
+  #help-modal.open{display:flex}
+  #help-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  #help-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
+  #help-title{font-size:17px;font-weight:800;color:var(--text)}
+  #help-close-x{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
+  #help-close-x:hover{color:var(--text)}
+  #help-content{overflow-y:auto;padding:16px 20px 32px;-webkit-overflow-scrolling:touch}
+  .help-intro{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;padding:12px 14px;background:var(--panel);border-radius:8px;border-left:3px solid var(--gold)}
+  .help-section{margin-bottom:18px}
+  .help-section-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--gold);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+  .help-item{margin-bottom:8px;font-size:12px;line-height:1.6;color:var(--muted);padding-left:4px}
+  .help-item-label{font-weight:700;color:var(--text);display:inline}
+  .help-footer{font-size:11px;color:var(--muted);text-align:center;margin-top:20px;padding-top:14px;border-top:1px solid var(--border)}
   #qr-popup{display:none;flex-direction:column;align-items:center;gap:10px;margin-top:12px;padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:12px;max-width:240px}
   #qr-popup.visible{display:flex}
   #qr-popup canvas{border-radius:8px}
@@ -826,6 +852,7 @@
 <script src="data/professions/tailoring.js"></script>
 <script src="data/professions/kp_sources.js"></script>
 <script src="data/professions/kp_data.js"></script>
+<script src="data/help.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -1129,6 +1156,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Toevoegen aan startscherm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
+    help_btn:     "❓ Handleiding",
     tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
@@ -1182,6 +1210,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Add to Home Screen\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
+    help_btn:     "❓ Guide",
     tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
@@ -1235,6 +1264,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Føj til startskærm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
+    help_btn:     "❓ Vejledning",
     tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
@@ -1333,6 +1363,8 @@ function applyUIStrings() {
   document.getElementById('tab-btn-route').textContent = u.tab_route;
   document.getElementById('back-btn').innerHTML = u.back;
   document.getElementById('about-btn').textContent = u.about_btn;
+  document.getElementById('help-btn').textContent = u.help_btn;
+  if (document.getElementById('help-modal').classList.contains('open')) renderHelp();
   document.getElementById('feedback-btn').textContent = u.feedback_btn;
   document.getElementById('about-title').textContent = u.about_title;
   document.getElementById('tab-lbl-dungeons').textContent = u.tab_dungeons;
@@ -2237,6 +2269,7 @@ function updateProfLang(){
     </div>
     <div id="footer-btn-row">
       <button id="qr-btn" onclick="toggleQR()">📱 QR-code</button>
+      <button id="help-btn" onclick="openHelp()">❓ Handleiding</button>
       <button id="about-btn" onclick="openAbout()">📖 Over deze app</button>
       <button id="feedback-btn" onclick="openFeedback()">💬 Feedback</button>
     </div>
@@ -2257,6 +2290,15 @@ function updateProfLang(){
     </div>
   </div>
 </footer>
+
+<div id="help-modal" onclick="if(event.target===this)closeHelp()">
+  <div id="help-box">
+    <h2 id="help-title">📖 Handleiding</h2>
+    <p id="help-intro"></p>
+    <div id="help-sections"></div>
+    <button id="help-close" onclick="closeHelp()">✕ Sluiten</button>
+  </div>
+</div>
 
 <div id="about-modal" onclick="if(event.target===this)closeAbout()">
   <div id="about-inner">
@@ -2365,6 +2407,28 @@ function inline(s) {
   s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="about-link">$1</a>');
   return s;
 }
+function openHelp() {
+  renderHelp();
+  document.getElementById('help-modal').classList.add('open');
+}
+function closeHelp() {
+  document.getElementById('help-modal').classList.remove('open');
+}
+function renderHelp() {
+  const h = (typeof HELP_CONTENT !== 'undefined') ? (HELP_CONTENT[lang] || HELP_CONTENT.nl) : null;
+  if (!h) return;
+  document.getElementById('help-title').textContent = h.title;
+  document.getElementById('help-intro').textContent = h.intro;
+  document.getElementById('help-close').textContent = h.close;
+  document.getElementById('help-btn').textContent = '❓ ' + h.title.replace('📖 ','');
+  document.getElementById('help-sections').innerHTML = h.sections.map(s =>
+    `<div class="help-section">
+      <div class="help-section-title">${s.icon} ${s.title}</div>
+      <div class="help-section-text">${s.text}</div>
+    </div>`
+  ).join('');
+}
+
 function openAbout() {
   // Sluit spec-modal als die open is
   document.getElementById('spec-modal').classList.remove('visible');
