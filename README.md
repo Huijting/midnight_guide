@@ -1,4 +1,4 @@
-# ⚔ WoW Midnight Guide — v5.9
+# ⚔ WoW Midnight Guide — v6.1
 
 **Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
 
@@ -84,6 +84,8 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
+| v6.1 | 2026-03-12 | 📋 KP Gids tab — echte bomen + builds per profession vervangen de oude KP Boom |
+| v6.0 | 2026-03-12 | 🏗 Modulaire architectuur — bestanden los op bureaublad, nieuwe lichtgewicht GitHub Manager met drag-and-drop |
 | v5.9 | 2026-03-12 | 🔤 Tab knoppen vertaald (Dungeons/Professies/Weekly) · Categorieën standaard gesloten · Weekly herlaadt bij taalwissel |
 | v5.8 | 2026-03-12 | 📅 Weekly Checklist tab — World Boss, Delves, M+, Raid, Quests, Rep, Crafting, DMF · auto-reset woensdag |
 | v5.8 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
