@@ -103,19 +103,6 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 ---
 
-## 🔧 Lokaal testen
-
-Gewoon `index.html` openen in je browser werkt **niet** voor de modulaire versie (browser blokkeert lokale `<script src=>` imports). Gebruik een lokale server:
-
-```bash
-python3 -m http.server 8000
-# Open: http://localhost:8000
-```
-
-Of gebruik de single-file testversie (`test_single.html`) die alles inline heeft.
-
----
-
 *Fan-project · Geen officiële band met Blizzard Entertainment.*  
 *World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.*  
 *⚔ Gebouwd door Claudy & Inchy*
