@@ -750,7 +750,7 @@
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-specs')">🌿 Specs</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-items')">⚗ Items</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
-      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">🌳 KP Boom</button>
+      <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">📋 KP Gids</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kpbronnen')">🗺️ KP</button>
     </div>
     <div class="pdet-panel visible" id="ptab-trainer"></div>
@@ -810,6 +810,7 @@
 <script src="data/professions/jewelcrafting.js"></script>
 <script src="data/professions/tailoring.js"></script>
 <script src="data/professions/kp_sources.js"></script>
+<script src="data/professions/kp_data.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -829,7 +830,7 @@ const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHIN
 
 
 // ── VERSIE ──
-const VERSION = "v5.9";
+const VERSION = "v6.1";
 const VERSION_DATE = "2026-03-12";
 
 
@@ -1797,7 +1798,7 @@ function showProf(id){
     `<div class="pdet-section"><h3>${ui.orders_head}</h3>
        <div class="orders-text">${pT(p.orders)}</div>
      </div>`;
-  renderKpTree(p);
+  renderKpGids(p);
   renderKpSources(p);
   switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
   window.scrollTo(0,0);
@@ -1810,95 +1811,94 @@ function switchProfTab(btn,panelId){
   const panel=document.getElementById(panelId);
   if(panel)panel.classList.add('visible');
 }
-function renderKpTree(p) {
+function renderKpGids(p) {
   const lang_ = (typeof lang !== 'undefined') ? lang : 'nl';
-  const pT = s => (s && typeof s === 'object') ? (s[lang_] || s.nl || '') : (s || '');
-  const ui = {
-    nl: { title:'🌳 KP Boom — Specialisatiebomen', total:'Totaal benodigde KP voor volledige boom', unlock:'Ontgrendeld bij skill', choose:'Kies één specialisatie', invest:'Investeer KP in' },
-    en: { title:'🌳 KP Tree — Specialization Trees', total:'Total KP needed for full tree', unlock:'Unlocked at skill', choose:'Choose one specialization', invest:'Invest KP in' },
-    da: { title:'🌳 KP-træ — Specialiseringstræer', total:'Samlet KP til fuldt træ', unlock:'Låst op ved færdighed', choose:'Vælg én specialisering', invest:'Invester KP i' }
-  }[lang_] || {title:'🌳 KP Boom', total:'Totaal KP', unlock:'Skill', choose:'Kies', invest:'KP in'};
+  const L = s => (s && typeof s === 'object') ? (s[lang_] || s.nl || '') : (s || '');
+  const el = document.getElementById('ptab-kp');
+  if (!el) return;
 
-  // Parse KP number from points text
-  function extractKP(pointsObj) {
-    const txt = pT(pointsObj) || '';
-    const m = txt.match(/(\d+)\s*(?:punt|point|KP)/i);
-    return m ? parseInt(m[1]) : null;
-  }
+  const data = (typeof KP_DATA !== 'undefined') ? KP_DATA[p.id] : null;
+  const u = {
+    nl: { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom — recepten via trainer en de wereld.' },
+    en: { trees:'🌳 Specialization Trees', builds:'Choose your playstyle:', skill:'skill', tip:'💡 Tip', no_kp:'No KP tree — recipes via trainer and the world.' },
+    da: { trees:'🌳 Specialiseringstræer', builds:'Vælg din spillestil:', skill:'færdighed', tip:'💡 Tip', no_kp:'Ingen KP-træ — opskrifter via træner og verden.' }
+  }[lang_] || { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom.' };
 
-  // Check if spec is recommended (first non-intro spec usually)
-  function isRecommended(pointsTxt) {
-    const t = (pointsTxt || '').toLowerCase();
-    return t.includes('aanbevolen') || t.includes('recommended') || t.includes('anbefalet') || t.includes('begin hier') || t.includes('start here') || t.includes('eerste');
-  }
-
-  // Separate intro spec from real specs
-  const introSpec = p.specs && p.specs[0];
-  const realSpecs = p.specs ? p.specs.slice(1) : [];
-  const accentCol = p.accent || 'var(--accent)';
-
-  let html = `<div class="kp-tree">`;
-
-  // Intro box (skill unlock + basic info)
-  if (introSpec) {
-    const introText = pT(introSpec.desc);
-    // Extract skill level unlock
-    const skillM = introText.match(/skill\s*(\d+)/i) || introText.match(/vaardigheid\s*(\d+)/i) || introText.match(/færdighed\s*(\d+)/i);
-    const skillLevel = skillM ? skillM[1] : '25';
-    html += `<div class="kp-intro-box">
-      🔓 <strong>${ui.unlock} ${skillLevel}</strong> &nbsp;·&nbsp;
-      ${pT(introSpec.title).replace(/^📖\s*/,'')}
-    </div>`;
-  }
-
-  // Base profession node
-  html += `<div class="kp-row">
-    <div class="kp-node kp-base" style="border-color:${accentCol}20;background:${accentCol}10">
-      <span class="kp-badge kp-free" style="background:${accentCol}20;color:${accentCol}">Base</span>
-      <div class="kp-node-title">${pT(p.name)}</div>
-      <div class="kp-node-desc">${p.items && p.items[0] ? pT(p.items[0].name) + ' · ' + (p.items.length) + ' items' : ''}</div>
-    </div>
-  </div>`;
-
-  if (realSpecs.length === 0) {
-    html += `<div class="kp-intro-box" style="margin-top:8px">Geen KP-bomen beschikbaar voor deze profession.</div>`;
-    html += `</div>`;
-    document.getElementById('ptab-kp').innerHTML = `<div class="pdet-section"><h3>${ui.title}</h3>${html}`;
+  if (!data) {
+    el.innerHTML = `<div class="pdet-section"><div class="kp-intro-box">${u.no_kp}</div></div>`;
     return;
   }
 
-  // Connector
-  html += `<div class="kp-connector">│</div>`;
+  // Track active build per profession (global state)
+  if (!window._kpActiveBuild) window._kpActiveBuild = {};
+  if (!window._kpActiveBuild[p.id]) window._kpActiveBuild[p.id] = data.builds && data.builds[0] ? data.builds[0].id : null;
 
-  // Spec nodes
-  html += `<div class="kp-row" style="justify-content:${realSpecs.length === 1 ? 'flex-start' : 'space-between'}">`;
+  let html = '<div class="pdet-section">';
 
-  let totalKP = 0;
-  realSpecs.forEach((s, i) => {
-    const kp = extractKP(s.points);
-    const pointsTxt = pT(s.points) || '';
-    const recommended = isRecommended(pointsTxt);
-    if (kp) totalKP += kp;
+  // Intro
+  if (data.intro) html += `<div class="kp-intro-box">${L(data.intro)}</div>`;
 
-    const title = pT(s.title).replace(/^[🧪🍶🔮⚗🌿🪨🐾✨💎🔧🎣🪡⚒📜🏹⚔🛡💚🪄]/,'').replace(/^\s*/,'');
-    const shortDesc = pointsTxt.replace(/^\d+\s*punt\w*\s*—?\s*/i,'').replace(/^\d+\s*point\w*\s*—?\s*/i,'').replace(/^\d+\s*point\w*\s*—?\s*/i,'');
-
-    html += `<div class="kp-node ${recommended ? 'kp-recommended' : ''}" style="${recommended ? 'border-color:#3db86a' : ''}">
-      ${kp ? `<span class="kp-badge kp-cost">${kp} KP</span>` : ''}
-      <div class="kp-node-title">${title}</div>
-      ${shortDesc ? `<div class="kp-node-desc">${shortDesc.substring(0,80)}${shortDesc.length>80?'…':''}</div>` : ''}
-    </div>`;
-  });
-
-  html += `</div>`;
-
-  // Total KP bar
-  if (totalKP > 0) {
-    html += `<div class="kp-total-bar">💡 ${ui.total}: <span>${totalKP} KP</span></div>`;
+  // Trees overview
+  if (data.trees && data.trees.length > 0) {
+    html += `<div class="section-title" style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px">${u.trees}</div>`;
+    html += '<div style="display:grid;gap:6px;margin-bottom:16px">';
+    data.trees.forEach(t => {
+      html += `<div class="kp-intro-box" style="padding:8px 12px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="font-size:15px">${t.icon}</span>
+          <strong style="font-size:12px;color:var(--text)">${t.name}</strong>
+          <span style="margin-left:auto;font-size:10px;color:var(--muted)">🔓 ${u.skill} ${t.unlock}</span>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:5px">${L(t.desc)}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px">${t.subs.map(s => `<span style="font-size:10px;background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:1px 7px">${s}</span>`).join('')}</div>
+      </div>`;
+    });
+    html += '</div>';
   }
 
-  html += `</div>`;
-  document.getElementById('ptab-kp').innerHTML = `<div class="pdet-section"><h3>${ui.title}</h3>${html}</div>`;
+  // Builds
+  if (data.builds && data.builds.length > 0) {
+    const activeId = window._kpActiveBuild[p.id];
+    html += `<div class="section-title" style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px">${u.builds}</div>`;
+
+    // Build selector buttons
+    html += '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">';
+    data.builds.forEach(b => {
+      const active = b.id === activeId;
+      html += `<button onclick="selectKpBuild('${p.id}','${b.id}')" style="border-radius:14px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:${active ? 'var(--gold)' : 'var(--deep)'};color:${active ? '#000' : 'var(--text)'}">${b.icon} ${L(b.name)}</button>`;
+    });
+    html += '</div>';
+
+    const build = data.builds.find(b => b.id === activeId) || data.builds[0];
+    html += `<div style="font-size:12px;color:var(--muted);line-height:1.6;padding:10px 14px;background:var(--deep);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin-bottom:12px">${L(build.desc)}</div>`;
+
+    // Steps
+    html += '<div style="display:grid;gap:8px">';
+    build.steps.forEach(step => {
+      const bg = step.color + '18';
+      html += `<div style="background:var(--deep);border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:${bg};border-bottom:1px solid var(--border);flex-wrap:wrap">
+          <span style="font-size:11px;font-weight:800;color:#fff;background:${step.color};border-radius:10px;padding:2px 9px;white-space:nowrap">${step.kp} KP</span>
+          <span style="font-size:12px;font-weight:700;color:${step.color}">${step.tree}</span>
+          <span style="font-size:12px;color:var(--text)">→ ${L(step.sub)}</span>
+          <span style="margin-left:auto;font-size:10px;color:var(--muted)">🔓 ${u.skill} ${step.unlock}</span>
+        </div>
+        <div style="padding:10px 12px;font-size:12px;line-height:1.65">${L(step.desc)}</div>
+        ${step.tip ? `<div style="padding:6px 12px 10px;font-size:11px;color:var(--muted);border-top:1px solid var(--border)">${u.tip}: ${L(step.tip)}</div>` : ''}
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function selectKpBuild(profId, buildId) {
+  if (!window._kpActiveBuild) window._kpActiveBuild = {};
+  window._kpActiveBuild[profId] = buildId;
+  const p = ALL_PROFS.find(x => x.id === profId);
+  if (p) renderKpGids(p);
 }
 
 function renderKpSources(p) {
