@@ -152,6 +152,11 @@ Of gebruik de single-file testversie (`test_single.html`) die alles inline heeft
 
 ## Changelog
 
+### v5.9
+- Categorieën standaard gesloten (klik om te openen)
+- Tab knoppen (Dungeons/Professies/Weekly) nu volledig vertaald per taal
+- Weekly Checklist herlaadt automatisch bij taalwissel
+
 ### v5.8
 - Weekly Checklist volledig drietalig (nl/en/da)
 - `/way` TomTom-coördinaten toegevoegd per item (klikbaar, kopieert naar clipboard)
