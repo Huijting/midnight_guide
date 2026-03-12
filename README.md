@@ -115,6 +115,7 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
+| v5.9 | 2026-03-12 | 🔤 Tab knoppen vertaald (Dungeons/Professies/Weekly) · Categorieën standaard gesloten · Weekly herlaadt bij taalwissel |
 | v5.8 | 2026-03-12 | 📅 Weekly Checklist tab — World Boss, Delves, M+, Raid, Quests, Rep, Crafting, DMF · auto-reset woensdag |
 | v5.8 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
 | v5.8 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
