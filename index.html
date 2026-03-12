@@ -701,9 +701,9 @@
       <span class="header-sub" id="hdr-sub">DUNGEONS — SEIZOEN 1</span>
     </div>
     <div class="mode-tabs">
-      <button class="mode-tab active" id="mode-tab-dungeons" onclick="setMode('dungeons')">⚔ Dungeons</button>
-      <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')">🔨 Professies</button>
-      <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')">📅 Weekly</button>
+      <button class="mode-tab active" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
+      <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')"><span id="tab-lbl-professions">🔨 Professies</span></button>
+      <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Weekly</span></button>
     </div>
     <div class="header-controls">
     <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
@@ -829,7 +829,7 @@ const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHIN
 
 
 // ── VERSIE ──
-const VERSION = "v5.8";
+const VERSION = "v5.9";
 const VERSION_DATE = "2026-03-12";
 
 
@@ -1113,6 +1113,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Toevoegen aan startscherm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -1165,6 +1166,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Add to Home Screen\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -1217,6 +1219,7 @@ const UI = {
     ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Føj til startskærm\"",
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
+    tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -1298,6 +1301,7 @@ function setLang(l) {
   else renderHome();
   if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
+  if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
 }
 
 function applyUIStrings() {
@@ -1315,6 +1319,9 @@ function applyUIStrings() {
   document.getElementById('about-btn').textContent = u.about_btn;
   document.getElementById('feedback-btn').textContent = u.feedback_btn;
   document.getElementById('about-title').textContent = u.about_title;
+  document.getElementById('tab-lbl-dungeons').textContent = u.tab_dungeons;
+  document.getElementById('tab-lbl-professions').textContent = u.tab_professions;
+  document.getElementById('tab-lbl-weekly').textContent = u.tab_weekly;
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -2776,7 +2783,7 @@ function buildWeeklyList() {
     const catDone = items.filter(i => state[i.id]).length;
     const allDone = catDone === items.length;
     const catKey = cat.replace(/[^a-z0-9]/gi,'_');
-    const isOpen = openCats[catKey] !== false; // standaard open
+    const isOpen = openCats[catKey] === true; // standaard gesloten
     html += `<div class="weekly-category">
       <div class="weekly-cat-header ${isOpen?'open':''} ${allDone?'all-done':''}" onclick="weeklyCatToggle(this,'${catKey}')">
         <div class="weekly-cat-left">
