@@ -2300,12 +2300,6 @@ function toggleQR() {
 
 // ── FEEDBACK ─────────────────────────────────────────────────
 function openFeedback() {
-  const u = UI[lang] || UI.nl;
-  document.getElementById('feedback-title').textContent = u.feedback_title;
-  document.getElementById('feedback-sub').textContent   = u.feedback_sub;
-  document.getElementById('feedback-text').placeholder  = u.feedback_ph;
-  document.getElementById('feedback-send').textContent  = u.feedback_send;
-  document.getElementById('feedback-gh').textContent    = u.feedback_gh;
   document.getElementById('feedback-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('feedback-text').focus(), 100);
