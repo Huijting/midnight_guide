@@ -764,8 +764,8 @@
 
 <div id="weekly-screen">
   <div class="weekly-header">
-    <h2>📅 Weekly Checklist</h2>
-    <div class="weekly-reset">Reset elke woensdag &nbsp;·&nbsp; Volgende reset: <span id="weekly-next-reset">—</span></div>
+    <h2 id="weekly-title">📅 Weekly Checklist</h2>
+    <div class="weekly-reset"><span id="weekly-reset-info">Reset elke woensdag · Volgende reset:</span> <span id="weekly-next-reset">—</span></div>
   </div>
   <div class="weekly-progress">
     <div class="weekly-progress-bar"><div class="weekly-progress-fill" id="weekly-progress-fill" style="width:0%"></div></div>
@@ -2674,7 +2674,8 @@ function getNextReset() {
   d.setDate(d.getDate() + daysUntilWed);
   d.setHours(9, 0, 0, 0);
   const opts = { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' };
-  return d.toLocaleDateString('nl-NL', opts);
+  const locale = { nl:'nl-NL', en:'en-GB', da:'da-DK' }[lang] || 'nl-NL';
+  return d.toLocaleDateString(locale, opts);
 }
 
 function weeklyLoadState() {
@@ -2819,6 +2820,10 @@ function buildWeeklyList() {
 
   const resetEl = document.getElementById('weekly-next-reset');
   if (resetEl) resetEl.textContent = getNextReset();
+  const resetInfoEl = document.getElementById('weekly-reset-info');
+  if (resetInfoEl) resetInfoEl.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).reset_info;
+  const titleEl = document.getElementById('weekly-title');
+  if (titleEl) titleEl.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).title;
 }
 
 // ── PWA INSTALL MODAL ────────────────────────────────────────
