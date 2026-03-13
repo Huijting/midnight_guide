@@ -662,7 +662,8 @@
   .pdet-panel.visible{display:block}
   .pdet-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px}
   .pdet-section h3{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
-  .trainer-way{font-family:monospace;background:var(--deep);padding:4px 10px;border-radius:6px;font-size:13px;color:var(--accent);display:inline-block;margin:6px 0}
+  .trainer-way{font-family:monospace;background:var(--deep);padding:4px 10px;border-radius:6px;font-size:13px;color:var(--accent);display:inline-block;margin:6px 0;cursor:pointer;transition:background .15s,color .15s}
+  .trainer-way:hover{background:var(--accent);color:#fff}
   .trainer-note{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}
   .spec-block{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px}
   .spec-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px}
@@ -747,7 +748,9 @@
     font-family: monospace; font-size: 0.82em;
     background: rgba(0,0,0,0.4); color: #88c8a0;
     padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+    cursor: pointer; transition: background .15s, color .15s;
   }
+  .kp-way-code:hover { background: #88c8a0; color: #000; }
   .kp-no-way      { color: #404030; }
   .kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
   .kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
@@ -2181,7 +2184,7 @@ function showProf(id){
     `<div class="pdet-section"><h3>${ui.trainer_head}</h3>
        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${p.trainer.name}</div>
        <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(p.trainer.loc)}</div>
-       <div class="trainer-way">${p.trainer.way}</div>
+       <div class="trainer-way" onclick="copyWay(this)" data-way="${p.trainer.way}" title="Klik om te kopiëren">📋 ${p.trainer.way}</div>
        ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
      </div>
      ${p.method_url||p.wowp_url?`<div class="prof-links"><span class="prof-source-label">${ui.source_label}</span>
@@ -2343,7 +2346,7 @@ function renderKpSources(p) {
         <td class="kp-item-name">${t.name}</td>
         <td class="kp-zone">${t.zone}</td>
         <td class="kp-way">
-          ${t.way ? `<span class="kp-way-code">${t.way}</span>` : '<span class="kp-no-way">—</span>'}
+          ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="Klik om te kopiëren">📋 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
         </td>
         ${t.note ? `<td class="kp-note" title="${t.note}">💬</td>` : '<td></td>'}
       </tr>
@@ -2559,7 +2562,9 @@ function getProfName(p, lang) {
   font-family: monospace; font-size: 0.82em;
   background: rgba(0,0,0,0.4); color: #88c8a0;
   padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  cursor: pointer; transition: background .15s, color .15s;
 }
+.kp-way-code:hover { background: #88c8a0; color: #000; }
 .kp-no-way      { color: #404030; }
 .kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
 .kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
@@ -3157,13 +3162,13 @@ function weeklyCatToggle(header, catKey) {
 function copyWay(el) {
   const way = el.dataset.way;
   const wui = WEEKLY_UI[lang] || WEEKLY_UI.nl;
+  const origHTML = el.innerHTML;
   navigator.clipboard.writeText(way).then(() => {
-    const orig = el.textContent;
-    el.textContent = wui.copied;
-    setTimeout(() => el.textContent = orig, 2000);
+    el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
+    setTimeout(() => el.innerHTML = origHTML, 2000);
   }).catch(() => {
-    el.textContent = '⚠️';
-    setTimeout(() => el.textContent = '📋 ' + way, 2000);
+    el.innerHTML = '⚠️';
+    setTimeout(() => el.innerHTML = origHTML, 2000);
   });
 }
 
