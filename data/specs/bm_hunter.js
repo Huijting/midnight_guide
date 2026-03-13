@@ -412,3 +412,28 @@ const SPEC_BM_HUNTER = {
 // Registreer spec in de globale lijst
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 ALL_SPECS.push(SPEC_BM_HUNTER);
+
+// Voeg consumables toe aan SPEC_BM_HUNTER
+SPEC_BM_HUNTER.consumables = {
+  nl: [
+    { type:'flask',  name:'Flask of the Focused Dream',    effect:'Verhoogt Agility significant voor 1 uur. Blijft actief na dood.',                                note:'Altijd actief in M+ en raid — geen excuses!' },
+    { type:'pot',    name:'Tempered Potion',               effect:'Grote Agility boost voor 25 sec. Gebruik op pull of bij Bloodlust.',                            note:'Gebruik er 2 per boss: één op pull + één bij 20% HP' },
+    { type:'food',   name:'The Sushi Special (Feast)',     effect:'+Agility en Stamina — groepsfeast. Als geen feast: Meat Lover\'s Delight voor solo Agility.', note:'Vraag je healer of tank een feast te plaatsen' },
+    { type:'food',   name:'Meat Lover\'s Delight',         effect:'Solo food — hoge Agility bonus als er geen feast is.',                                          note:'Altijd in je bags hebben als backup' },
+    { type:'rune',   name:'Crystalline Augment Rune',      effect:'+Primaire stat voor 1 uur. Stapelt met flask en food.',                                         note:'Gebruik in M+ en raid — goedkoop en efficiënt' },
+  ],
+  en: [
+    { type:'flask',  name:'Flask of the Focused Dream',    effect:'Significantly increases Agility for 1 hour. Persists through death.',                           note:'Always active in M+ and raid — no excuses!' },
+    { type:'pot',    name:'Tempered Potion',               effect:'Large Agility boost for 25 sec. Use on pull or during Bloodlust.',                              note:'Use 2 per boss: one on pull + one at 20% HP' },
+    { type:'food',   name:'The Sushi Special (Feast)',     effect:'+Agility and Stamina — group feast. If no feast: Meat Lover\'s Delight for solo Agility.',    note:'Ask your healer or tank to place a feast' },
+    { type:'food',   name:'Meat Lover\'s Delight',         effect:'Solo food — high Agility bonus when no feast is available.',                                    note:'Always have in your bags as backup' },
+    { type:'rune',   name:'Crystalline Augment Rune',      effect:'+Primary stat for 1 hour. Stacks with flask and food.',                                         note:'Use in M+ and raid — cheap and efficient' },
+  ],
+  da: [
+    { type:'flask',  name:'Flask of the Focused Dream',    effect:'Øger Agility markant i 1 time. Forbliver aktiv efter død.',                                    note:'Altid aktiv i M+ og raid — ingen undskyldninger!' },
+    { type:'pot',    name:'Tempered Potion',               effect:'Stor Agility-boost i 25 sek. Brug ved pull eller under Bloodlust.',                            note:'Brug 2 per boss: én ved pull + én ved 20% HP' },
+    { type:'food',   name:'The Sushi Special (Feast)',     effect:'+Agility og Stamina — gruppefeast. Ingen feast: Meat Lover\'s Delight til solo Agility.',     note:'Bed din healer eller tank om at placere en feast' },
+    { type:'food',   name:'Meat Lover\'s Delight',         effect:'Solo-mad — høj Agility-bonus når ingen feast er tilgængelig.',                                 note:'Hav altid i din taske som backup' },
+    { type:'rune',   name:'Crystalline Augment Rune',      effect:'+Primær stat i 1 time. Stakker med flask og mad.',                                              note:'Brug i M+ og raid — billig og effektiv' },
+  ],
+};
