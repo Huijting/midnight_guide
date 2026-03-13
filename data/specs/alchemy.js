@@ -10,7 +10,7 @@ const ALCHEMY = {
   },
   goldrating:5, userating:5,
   trainer:{
-    name:'Elaryn Brightcoil',
+    name:'Camberon',
     loc:{
       nl:'Trainer Elaryn Brightcoil staat in het <strong>Sunwell Alchemy Lab</strong> — een speciaal gebouw in het zuiden van Silvermoon City, te herkennen aan de kleurrijke rookpluimen en de geur van brouwsels. Het lab ligt naast de Mage Quarter.',
       en:'Trainer Elaryn Brightcoil is in the <strong>Sunwell Alchemy Lab</strong> — a special building in the south of Silvermoon City, recognizable by the colorful smoke plumes and the smell of brews. The lab is next to the Mage Quarter.',
