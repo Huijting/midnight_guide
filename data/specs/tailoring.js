@@ -10,7 +10,7 @@ const TAILORING = {
   },
   goldrating:3, userating:4,
   trainer:{
-    name:'Silindra Moonweave',
+    name:'Galana',
     loc:{
       nl:'Trainer Silindra Moonweave is te vinden in het <strong>Weaver\'s District</strong> van Silvermoon City — een rustige buurt vol ateliers en etalages vol zijden stoffen. Ze staat bij een groot weefgetouw naast de fontein.',
       en:'Trainer Silindra Moonweave is found in the <strong>Weaver\'s District</strong> of Silvermoon City — a quiet neighborhood full of workshops and shop windows filled with silk fabrics. She stands by a large loom next to the fountain.',
