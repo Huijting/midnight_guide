@@ -117,23 +117,6 @@ Elke spec heeft 8 tabs: **Cheat Sheet · Rotatie · Stats · Cooldowns · Tips �
 | v3.0 | 2026-03-10 | Alle 40 specs uitgewerkt · About-modal meertalig |
 | v1.0 | 2026-03-06 | Eerste versie: 8 dungeons, 3 talen, role tabs |
 
----
-
-## 🗂 Bestandsstructuur
-
-```
-midnight_guide/
-├── index.html
-├── sw.js
-├── manifest.json
-├── github_manager.html
-├── icons/
-└── data/
-    ├── dungeons/season1.js
-    ├── professions/   (13 bestanden + kp_data/kp_sources)
-    ├── specs/         (bm_hunter · mm_hunter · ret_paladin · frost_mage · frost_dk)
-    └── help.js
-```
 
 ---
 
