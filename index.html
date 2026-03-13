@@ -428,12 +428,8 @@
   @media(max-width:480px){.spec-class-grid{grid-template-columns:1fr 1fr}}
 
   /* ── FOOTER ── */
-  #site-footer{background:var(--deep);border-top:1px solid var(--border);padding:8px 16px;position:sticky;bottom:0;z-index:200}
-  .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
-  #site-footer .footer-credits{display:none !important}
-  #site-footer .footer-disclaimer{display:none !important}
-  #site-footer .footer-sources{display:none !important}
-  body{padding-bottom:60px}
+  #site-footer{background:var(--deep);border-top:1px solid var(--border);padding:24px 16px 32px;margin-top:40px}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
   .footer-credits{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
   .footer-made{font-size:15px;color:var(--text)}
   .footer-made strong{color:var(--gold)}
@@ -489,12 +485,12 @@
   .mode-tab:hover:not(.active){color:var(--text)}
   @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
   /* ═══ LANDING PAGE ═══ */
-  #landing-screen{display:none;height:calc(100vh - 60px);padding:0;position:relative;flex-direction:column;justify-content:center}
+  #landing-screen{display:none;padding:0;position:relative;flex-direction:column;justify-content:center}
   body.mode-home #landing-screen{display:flex !important}
   body.mode-home #home-screen,body.mode-home #detail-screen,body.mode-home #prof-screen,body.mode-home #weekly-screen{display:none !important}
-  body.mode-home #site-footer{display:block !important}
-  body.mode-home #landing-screen{height:calc(100vh - 110px)}
-  body.mode-home{overflow:hidden}
+  body.mode-home #site-footer{display:block !important;margin-top:0}
+  body.mode-home #landing-screen{height:auto;min-height:0}
+  body.mode-home{overflow-x:hidden}
   body.mode-home .specs-screen{display:none!important}
 
   /* Stars background */
@@ -556,7 +552,8 @@
   .landing-tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
   .landing-tip-text{font-size:11px;color:var(--muted);line-height:1.5}
   .landing-tip-text strong{color:var(--text)}
-  .landing-credits{position:absolute;bottom:10px;left:0;right:0;z-index:1;text-align:center;font-size:11px;color:var(--muted);opacity:.5}
+  .landing-credits{display:none}
+  #home-action-bar{display:none !important}
 
   /* Dungeons mode — default */
   body.mode-dungeons #prof-screen{display:none !important}
@@ -992,6 +989,12 @@
     <div class="landing-tip-text" id="landing-tip-text"><strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!</div>
   </div>
   <p class="landing-credits" id="landing-credits">Gemaakt door Inchy & Claudy · WoW: Midnight · Niet officieel</p>
+  <div id="home-action-bar">
+    <button id="home-qr-btn" onclick="toggleQR()">📱 QR-code</button>
+    <button id="home-help-btn" onclick="openHelp()">❓ Handleiding</button>
+    <button id="home-about-btn" onclick="openAbout()">📖 Over deze app</button>
+    <button id="home-feedback-btn" onclick="openFeedback()">💬 Feedback</button>
+  </div>
 </div>
 
 <div id="home-screen">
