@@ -151,18 +151,6 @@ midnight_guide/
 
 ---
 
-## 🔧 Lokaal testen
-
-1. Dubbelklik `START_GUIDE.bat`
-2. Open browser: `http://localhost:8000`
-3. Na update: **Ctrl+Shift+R** (desktop) of **sluit + swipe + heropen** (mobiel)
-
-## 📤 Uploaden naar GitHub
-
-Gebruik `github_manager.html` (altijd opgeslagen als `C:\Users\Rob\Desktop\github_manager.html`).
-
----
-
 ## 👤 Credits
 
 Gemaakt door **Rob (Inchy)** & **Claude (Claudy)**  
