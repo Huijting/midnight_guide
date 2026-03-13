@@ -296,21 +296,21 @@ const SPEC_RET_PALADIN = {
 
   macros: {
     nl: [
-      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Hammer of Justice', note: 'Stun/interrupt op focus > mouseover > target.' },
+      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Hammer of Justice', note: 'Stun/interrupt op focus > mouseover > target.' },
       { name: 'Blessing of Protection (mouseover)', code: '#showtooltip Blessing of Protection\n/cast [@mouseover,help,nodead][@player] Blessing of Protection', note: 'BoP op mouseover > jezelf.' },
       { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorbeer schade van ally — op mouseover.' },
       { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Noodheal op mouseover > jezelf — red de tank!' },
       { name: 'Avenging Wrath burst macro', code: '#showtooltip Avenging Wrath\n/cast Avenging Wrath\n/cast Wake of Ashes', note: 'Start burst window direct met 3 Holy Power.' },
     ],
     en: [
-      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Hammer of Justice', note: 'Stun/interrupt on focus > mouseover > target.' },
+      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Hammer of Justice', note: 'Stun/interrupt on focus > mouseover > target.' },
       { name: 'Blessing of Protection (mouseover)', code: '#showtooltip Blessing of Protection\n/cast [@mouseover,help,nodead][@player] Blessing of Protection', note: 'BoP on mouseover > yourself.' },
       { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorb damage from ally — on mouseover.' },
       { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Emergency heal on mouseover > yourself — save the tank!' },
       { name: 'Avenging Wrath burst macro', code: '#showtooltip Avenging Wrath\n/cast Avenging Wrath\n/cast Wake of Ashes', note: 'Start burst window immediately with 3 Holy Power.' },
     ],
     da: [
-      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Hammer of Justice', note: 'Bedøv/afbryd på focus > mouseover > mål.' },
+      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Hammer of Justice', note: 'Bedøv/afbryd på focus > mouseover > mål.' },
       { name: 'Blessing of Protection (mouseover)', code: '#showtooltip Blessing of Protection\n/cast [@mouseover,help,nodead][@player] Blessing of Protection', note: 'BoP på mouseover > dig selv.' },
       { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorber skade fra ally — på mouseover.' },
       { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Nødheal på mouseover > dig selv — red tanken!' },
