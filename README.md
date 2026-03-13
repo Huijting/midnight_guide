@@ -1,125 +1,104 @@
-# ⚔ WoW Midnight Guide — v6.2
+# 🌙 WoW: Midnight Companion Guide
 
-**Fan-project** voor World of Warcraft: Midnight — drietalige dungeon, profession & spec gids als PWA.
+Een trilinguïstische (NL/EN/DA) Progressive Web App voor World of Warcraft: Midnight.
 
-🌐 **Live:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
-
----
-
-## ✨ Features
-
-- 🇳🇱 🇬🇧 🇩🇰 Drietalig — NL / EN / DA, alles wisselt direct
-- ⚔ **Dungeon gids** — 8 Mythic+ + 4 Normal dungeons, seizoen 1
-- 🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)
-- 🎯 **Spec Guides** — rotaties, stats, cooldowns, tips, macro's, consumables per spec
-- 🔨 **Profession gids** — alle 13 professions, NL/EN/DA, tier-ratings
-- 📅 **Weekly Checklist** — alle weekly activiteiten met afvinkjes en automatische reset op woensdag
-- 🌙 Licht/donker thema
-- 📱 Installeerbaar als PWA (Android, iOS & desktop)
-- 📷 QR-code om te delen
+**Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
 ---
 
-## 🎯 Spec Guides — Voortgang
+## 📋 Inhoud
 
-Elke spec heeft 8 tabs: **Cheat Sheet · Rotatie · Stats · Cooldowns · Tips · Macro's · Resource · Consumables**
+### 🗡️ Dungeons
+Alle Season 1 & 2 M+ dungeons met boss-tactieken, route-tips en M+-specifieke adviezen.
 
-### ✅ Beschikbaar
+### 📅 Wekelijks
+Overzicht van wekelijkse activiteiten: World Bosses, Timewalking, M+ affixen, Delves en meer.
 
-| Klasse | Spec | Rol |
-|---|---|---|
-| Hunter | Beast Mastery | Ranged DPS |
-| Hunter | Marksmanship | Ranged DPS |
-| Paladin | Retribution | Melee DPS |
-| Mage | Frost | Ranged DPS |
-| Death Knight | Frost | Melee DPS |
+### ⚗️ Professies
+Alle 13 professies met trainer-info, KP gids en crafting orders overzicht.
 
-### 🚧 In de planning
+### 🎯 Specs (volledig!)
+**Alle 13 klassen, alle specs** — elk met 8 tabbladen:
+- ⚡ Cheat Sheet
+- 🔄 Rotatie
+- 📊 Stats
+- 💀 Cooldowns
+- 💡 Tips
+- 🖱️ Macro's
+- 🎯 Resource
+- 🧪 Consumables
 
+---
+
+## ✅ Beschikbare specs
+
+### 🧙 Caster DPS
 | Klasse | Specs |
 |---|---|
-| Warrior | Arms · Fury · Protection |
-| Rogue | Assassination · Outlaw · Subtlety |
-| Druid | Balance · Feral · Guardian · Restoration |
-| Shaman | Elemental · Enhancement · Restoration |
-| Priest | Discipline · Holy · Shadow |
-| Warlock | Affliction · Demonology · Destruction |
-| Monk | Brewmaster · Mistweaver · Windwalker |
-| Demon Hunter | Havoc · Vengeance |
-| Evoker | Augmentation · Devastation · Preservation |
-| Paladin | Holy · Protection |
-| Death Knight | Blood · Unholy |
-| Mage | Arcane · Fire |
-| Hunter | Survival |
+| Mage | Arcane, Fire, Frost |
+| Warlock | Affliction, Demonology, Destruction |
+| Priest | Shadow |
+| Shaman | Elemental |
+| Evoker | Devastation, Augmentation |
 
----
-
-## 🏰 Dungeons — Seizoen 1
-
-### ⚔ Mythic+ (8 dungeons)
-
-| Dungeon | Zone |
+### 🏹 Ranged DPS
+| Klasse | Specs |
 |---|---|
-| Windrunner Spire | Eversong Woods |
-| Magisters' Terrace | Isle of Quel'Danas |
-| Maisara Caverns | Azj-Kahet |
-| Nexus-Point Xenas | The Nexus |
-| Algeth'ar Academy | Thaldraszus |
-| Pit of Saron | Icecrown |
-| Seat of the Triumvirate | Argus |
-| Skyreach | Spires of Arak |
+| Hunter | Beast Mastery, Marksmanship, Survival* |
+| Druid | Balance |
 
-### 📖 Normal Only (4 dungeons)
+*Survival = melee
 
-| Dungeon | Zone |
+### ⚔️ Melee DPS
+| Klasse | Specs |
 |---|---|
-| Murder Row | Silvermoon City |
-| The Blinding Vale | Quel'Thalas |
-| Den of Nalorakk | Zul'Aman |
-| Voidscar Arena | The Void |
+| Death Knight | Frost, Unholy |
+| Demon Hunter | Havoc |
+| Druid | Feral |
+| Monk | Windwalker |
+| Paladin | Retribution |
+| Rogue | Assassination, Outlaw, Subtlety |
+| Shaman | Enhancement |
+| Warrior | Arms, Fury |
 
----
-
-## 📅 Seizoensschema — Midnight
-
-| Datum | Content |
+### 🛡️ Tanks
+| Klasse | Spec |
 |---|---|
-| 2 maart 2026 | Expansion launch — alle 8 dungeons (Normal/Heroic/Mythic 0) |
-| 17 maart 2026 | **Seizoen 1 start** — M+, Raids, PvP S1, Bountiful Delves |
-| 24 maart 2026 | Mythic+ gerankt open, Mythic Voidspire & Dreamrift |
-| 31 maart 2026 | **March on Quel'Danas** (Normal/Heroic/Mythic) |
-| 7 april 2026 | Story Mode + LFR March on Quel'Danas |
+| Death Knight | Blood |
+| Demon Hunter | Vengeance |
+| Druid | Guardian |
+| Monk | Brewmaster |
+| Paladin | Protection |
+| Warrior | Protection |
 
----
-
-## 🔨 Professions — Tier Overzicht
-
-| Tier | Professions |
+### 💚 Healers
+| Klasse | Specs |
 |---|---|
-| S | Inscription, Mining, Herbalism |
-| A | Alchemy, Jewelcrafting |
-| B | Enchanting, Tailoring, Leatherworking, Skinning, Engineering |
-| C | Blacksmithing, Cooking, Fishing |
+| Druid | Restoration |
+| Evoker | Preservation |
+| Monk | Mistweaver |
+| Paladin | Holy |
+| Priest | Discipline, Holy |
+| Shaman | Restoration |
+
+**Totaal: 38 specs**
 
 ---
 
-## 📋 Changelog
+## 📱 PWA Features
+- Installeerbaar op mobiel (iOS/Android) en desktop
+- Offline beschikbaar na eerste bezoek
+- QR-code te vinden in de app
 
-| Versie | Datum | Wijzigingen |
-|---|---|---|
-| v6.2 | 2026-03-13 | 🎯 Specs tab — 5 specs uitgewerkt · Method-stijl class grid · 8 tabs per spec incl. Consumables · Dev-banner met taalswitch |
-| v6.1 | 2026-03-12 | 📋 KP Gids tab — bomen + builds per profession |
-| v6.0 | 2026-03-12 | 🏗 Modulaire architectuur — losse bestanden, nieuwe GitHub Manager |
-| v5.9 | 2026-03-12 | 🔤 Tab knoppen vertaald · Weekly herlaadt bij taalwissel |
-| v5.8 | 2026-03-12 | 📅 Weekly Checklist met auto-reset op woensdag |
-| v5.8 | 2026-03-11 | 🌳 KP Boom + 🗺️ KP Bronnen · Profession gids alle 13 professions |
-| v4.0 | 2026-03-11 | Modulaire refactor — data naar losse JS-bestanden |
-| v3.0 | 2026-03-10 | Alle 40 specs uitgewerkt · About-modal meertalig |
-| v1.0 | 2026-03-06 | Eerste versie: 8 dungeons, 3 talen, role tabs |
+## 🌍 Talen
+Nederlands · English · Dansk
 
+## 🔧 Technisch
+- Vanilla JS, geen framework
+- Service Worker voor caching
+- Spec data in losse `.js` bestanden per spec (`data/specs/`)
+- Versie bijgehouden via `VERSION` constante in `index.html`
 
 ---
 
-*Fan-project · Geen officiële band met Blizzard Entertainment.*  
-*World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.*  
-*⚔ Gebouwd door Claudy & Inchy*
+*Gemaakt door Rob (Inchy) & Claude (Claudy) — v6.3*
