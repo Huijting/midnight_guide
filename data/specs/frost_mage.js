@@ -293,21 +293,21 @@ const SPEC_FROST_MAGE = {
 
   macros: {
     nl: [
-      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counterspell', note: 'Interrupt op focus > mouseover > target. ESSENTIEEL!' },
+      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note: 'Interrupt op focus > mouseover > target. ESSENTIEEL!' },
       { name: 'Frozen Orb + Icy Veins', code: '#showtooltip Icy Veins\n/cast Icy Veins\n/cast Frozen Orb', note: 'Burst window starter — activeer altijd samen.' },
       { name: 'Polymorph (mouseover)', code: '#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Polymorph', note: 'CC zonder target te wisselen — snel en efficient.' },
       { name: 'Frost Nova + Ice Block combi', code: '#showtooltip Ice Block\n/cast Frost Nova\n/cast Ice Block', note: 'Root alles en blokkeer daarna — totale veiligheid.' },
       { name: 'Spellsteal (mouseover)', code: '#showtooltip Spellsteal\n/cast [@mouseover,harm][@target,harm] Spellsteal', note: 'Steel buff van vijand op mouseover — handig in M+.' },
     ],
     en: [
-      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counterspell', note: 'Interrupt on focus > mouseover > target. ESSENTIAL!' },
+      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note: 'Interrupt on focus > mouseover > target. ESSENTIAL!' },
       { name: 'Frozen Orb + Icy Veins', code: '#showtooltip Icy Veins\n/cast Icy Veins\n/cast Frozen Orb', note: 'Burst window starter — always activate together.' },
       { name: 'Polymorph (mouseover)', code: '#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Polymorph', note: 'CC without switching target — fast and efficient.' },
       { name: 'Frost Nova + Ice Block combo', code: '#showtooltip Ice Block\n/cast Frost Nova\n/cast Ice Block', note: 'Root everything then block — total safety.' },
       { name: 'Spellsteal (mouseover)', code: '#showtooltip Spellsteal\n/cast [@mouseover,harm][@target,harm] Spellsteal', note: 'Steal buff from enemy on mouseover — handy in M+.' },
     ],
     da: [
-      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counterspell', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
+      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
       { name: 'Frozen Orb + Icy Veins', code: '#showtooltip Icy Veins\n/cast Icy Veins\n/cast Frozen Orb', note: 'Burst window starter — aktiver altid sammen.' },
       { name: 'Polymorph (mouseover)', code: '#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Polymorph', note: 'CC uden at skifte mål — hurtigt og effektivt.' },
       { name: 'Frost Nova + Ice Block kombo', code: '#showtooltip Ice Block\n/cast Frost Nova\n/cast Ice Block', note: 'Rodfæst alt og bloker derefter — total sikkerhed.' },
