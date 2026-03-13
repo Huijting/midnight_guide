@@ -16,7 +16,7 @@ const FISHING = {
       en:'Trainer Marlo Deepcast sits at the quay by <strong>Silvermoon Harbor</strong> — the small harbor on the south side of the city where the boats are moored. He is a relaxed elf with a wide straw hat and a crate full of fishing gear.',
       da:'Træner Marlo Deepcast sidder ved kajen ved <strong>Silvermoon Havn</strong> — den lille havn på byens sydside, en afslappet alv med en bred stråhat og en kasse fuld af fiskegrej.'
     },
-    way:'/way #2393 41.8 79.3',
+    way:'/way #2393 44.69 60.49',
     note:{
       nl:'💡 <strong>Fishing + Cooking = perfecte combinatie:</strong> Vissen zijn de hoofdingrediënten voor de beste Cooking-gerechten. Als je beide secondary professions hebt, vis je je eigen grondstoffen en cook je zelf je maaltijden. Nul materiaalkosten voor Cooking.',
       en:'💡 <strong>Fishing + Cooking = perfect combination:</strong> Fish are the main ingredients for the best Cooking dishes. If you have both secondary professions, you fish your own raw materials and cook your own meals. Zero material costs for Cooking.',
