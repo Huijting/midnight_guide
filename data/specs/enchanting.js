@@ -10,7 +10,7 @@ const ENCHANTING = {
   },
   goldrating:4, userating:5,
   trainer:{
-    name:'Aelindra Spellweave',
+    name:'Dolothos',
     loc:{
       nl:'Trainer Aelindra Spellweave staat in de <strong>Arcane Sanctum</strong> van Silvermoon City — de magische toren in het noordoosten van de stad. Ze is omringd door zwevende runen en gloeiende kristallen. Je kunt haar vinden op de tweede verdieping.',
       en:'Trainer Aelindra Spellweave is in the <strong>Arcane Sanctum</strong> of Silvermoon City — the magical tower in the northeast of the city. She is surrounded by floating runes and glowing crystals. Find her on the second floor.',
