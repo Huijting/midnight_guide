@@ -16,7 +16,7 @@ const LEATHERWORKING = {
       en:'Trainer Talmar is in the <strong>Bazaar of Silvermoon City</strong>, on the west side of the market area — right next to the portal to the Timeways. The Bazaar is the central trading area of the city.',
       da:'Træner Talmar er i <strong>Bazaar i Silvermoon City</strong>, på vestsiden af markedsområdet — lige ved siden af portalen til Timeways. Bazaar er byens centrale handelsområde.'
     },
-    way:'/way #2393 43.8 51.5',
+    way:'/way #2393 43.21 55.79',
     note:{
       nl:'💡 <strong>Over recepten:</strong> Talmar verkoopt de basis-recepten. Maar de beste recepten — voor Epic gear en Spellthreads — vallen uit raid-bosses of koop je bij rep-vendors. Ga zo snel mogelijk raiden om die recepten te verzamelen. <strong>Epic recepten zijn Bind on Pickup</strong> — jij krijgt hem, jij kan ermee craften. Anderen niet.',
       en:'💡 <strong>About recipes:</strong> Talmar sells the base recipes. But the best recipes — for Epic gear and Spellthreads — drop from raid bosses or are bought from rep vendors. Start raiding as soon as possible to collect those recipes. <strong>Epic recipes are Bind on Pickup</strong> — you get it, you can craft with it. Others cannot.',
