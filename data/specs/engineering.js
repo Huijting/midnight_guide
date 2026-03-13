@@ -10,13 +10,13 @@ const ENGINEERING = {
   },
   goldrating:2, userating:5,
   trainer:{
-    name:'Tix Gearspring',
+    name:'Danwe',
     loc:{
       nl:'Trainer Tix Gearspring staat in het <strong>Tinker\'s Workshop</strong> — een rommelig, lawaaiig werkplaatsgebouw in de Craftsmen\'s Quarter van Silvermoon City. De workshop is te herkennen aan de tandwielen op de gevel en de stoomwolk boven het dak.',
       en:'Trainer Tix Gearspring is in the <strong>Tinker\'s Workshop</strong> — a messy, noisy workshop building in the Craftsmen\'s Quarter of Silvermoon City. The workshop is recognizable by the gears on the facade and the steam cloud above the roof.',
       da:'Træner Tix Gearspring er i <strong>Tinker\'s Workshop</strong> — en rodet, støjende værkstedsbygning i Craftsmen\'s Quarter. Genkendelig på tandhjulene på facaden og dampskyen over taget.'
     },
-    way:'/way #2393 47.2 48.6',
+    way:'/way #2393 43.61 54.06',
     note:{
       nl:'💡 <strong>Engineering = persoonlijk voordeel, geen AH-inkomsten:</strong> Kies Engineering als je de leukste speelervaring wilt, niet de meeste goudstukken. De gadgets, vliegers en teleporters geven jou unieke voordelen in het spel die met goud niet te kopen zijn. Als je ALLEEN goud wilt verdienen, kies dan Alchemy of Enchanting.',
       en:'💡 <strong>Engineering = personal advantage, not AH income:</strong> Choose Engineering if you want the most fun gameplay experience, not the most gold. The gadgets, flying machines and teleporters give you unique advantages that cannot be bought with gold. If you ONLY want to earn gold, choose Alchemy or Enchanting instead.',
