@@ -3,14 +3,21 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-guide-v7';
+const CACHE_NAME = 'midnight-guide-v8';
 
 const PRECACHE = [
   '/',
   '/index.html',
   '/manifest.json',
   '/sw.js',
+  // Icons
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  // Handleiding
+  '/data/help.js',
+  // Dungeons
   '/data/dungeons/season1.js',
+  // Professies
   '/data/professions/alchemy.js',
   '/data/professions/blacksmithing.js',
   '/data/professions/cooking.js',
@@ -26,15 +33,51 @@ const PRECACHE = [
   '/data/professions/mining.js',
   '/data/professions/skinning.js',
   '/data/professions/tailoring.js',
-  '/data/help.js',
+  // Specs — alle 38
+  '/data/specs/affliction_warlock.js',
+  '/data/specs/arcane_mage.js',
+  '/data/specs/arms_warrior.js',
+  '/data/specs/assassination_rogue.js',
+  '/data/specs/augmentation_evoker.js',
+  '/data/specs/balance_druid.js',
+  '/data/specs/blood_dk.js',
   '/data/specs/bm_hunter.js',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  '/data/specs/brewmaster_monk.js',
+  '/data/specs/demonology_warlock.js',
+  '/data/specs/destruction_warlock.js',
+  '/data/specs/devastation_evoker.js',
+  '/data/specs/discipline_priest.js',
+  '/data/specs/elemental_shaman.js',
+  '/data/specs/enhancement_shaman.js',
+  '/data/specs/feral_druid.js',
+  '/data/specs/fire_mage.js',
+  '/data/specs/frost_dk.js',
+  '/data/specs/frost_mage.js',
+  '/data/specs/fury_warrior.js',
+  '/data/specs/guardian_druid.js',
+  '/data/specs/havoc_dh.js',
+  '/data/specs/holy_paladin.js',
+  '/data/specs/holy_priest.js',
+  '/data/specs/mistweaver_monk.js',
+  '/data/specs/mm_hunter.js',
+  '/data/specs/outlaw_rogue.js',
+  '/data/specs/preservation_evoker.js',
+  '/data/specs/protection_paladin.js',
+  '/data/specs/protection_warrior.js',
+  '/data/specs/restoration_druid.js',
+  '/data/specs/restoration_shaman.js',
+  '/data/specs/ret_paladin.js',
+  '/data/specs/shadow_priest.js',
+  '/data/specs/subtlety_rogue.js',
+  '/data/specs/survival_hunter.js',
+  '/data/specs/unholy_dk.js',
+  '/data/specs/vengeance_dh.js',
+  '/data/specs/windwalker_monk.js',
 ];
 
-// Install: cache alle bestanden
+// Install: cache alle bestanden meteen bij eerste bezoek
 self.addEventListener('install', event => {
-  self.skipWaiting(); // activeer meteen, wacht niet op oude tab te sluiten
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE))
   );
@@ -52,7 +95,7 @@ self.addEventListener('activate', event => {
             return caches.delete(key);
           })
       )
-    ).then(() => self.clients.claim()) // neem direct controle over alle tabs
+    ).then(() => self.clients.claim())
   );
 });
 
