@@ -10,7 +10,7 @@ const JEWELCRAFTING = {
   },
   goldrating:4, userating:4,
   trainer:{
-    name:'Lariel Gemshaper',
+    name:'Amin',
     loc:{
       nl:'Trainer Lariel Gemshaper staat in de <strong>Gem District</strong> van Silvermoon City — een klein maar glinsterende winkelsstraat vol juweliersatelier in het westelijke deel van de stad. Het is makkelijk te vinden: de etalages glinsteren van alle kleurrijke stenen.',
       en:'Trainer Lariel Gemshaper is in the <strong>Gem District</strong> of Silvermoon City — a small but glittering shopping street full of jewelry workshops in the western part of the city. Easy to find: the shop windows glitter with colorful stones.',
