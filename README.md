@@ -1,6 +1,6 @@
-# ⚔ WoW Midnight Guide — v6.1
+# ⚔ WoW Midnight Guide — v6.2
 
-**Fan-project** voor World of Warcraft: Midnight — drietalige dungeon & profession gids als PWA.
+**Fan-project** voor World of Warcraft: Midnight — drietalige dungeon, profession & spec gids als PWA.
 
 🌐 **Live:** [huijting.github.io/midnight_guide](https://huijting.github.io/midnight_guide/)
 
@@ -11,13 +11,46 @@
 - 🇳🇱 🇬🇧 🇩🇰 Drietalig — NL / EN / DA, alles wisselt direct
 - ⚔ **Dungeon gids** — 8 Mythic+ + 4 Normal dungeons, seizoen 1
 - 🛡 💚 ⚔ Role tabs per baas (Tank / Healer / DPS)
-- ⭐ Spec Selector — 40 specs, Bloodlust-namen per klasse
-- 🗺 Routeplanner met pull-volgorde, Bloodlust-timing en kaarten
+- 🎯 **Spec Guides** — rotaties, stats, cooldowns, tips, macro's, consumables per spec
 - 🔨 **Profession gids** — alle 13 professions, NL/EN/DA, tier-ratings
+- 📅 **Weekly Checklist** — alle weekly activiteiten met afvinkjes en automatische reset op woensdag
 - 🌙 Licht/donker thema
-- 📱 Installeerbaar als PWA (Android & iOS)
+- 📱 Installeerbaar als PWA (Android, iOS & desktop)
 - 📷 QR-code om te delen
-- 📅 **Weekly Checklist** — alle weekly activiteiten met afvinkjes, progressiebalk en automatische reset op woensdag
+
+---
+
+## 🎯 Spec Guides — Voortgang
+
+Elke spec heeft 8 tabs: **Cheat Sheet · Rotatie · Stats · Cooldowns · Tips · Macro's · Resource · Consumables**
+
+### ✅ Beschikbaar
+
+| Klasse | Spec | Rol |
+|---|---|---|
+| Hunter | Beast Mastery | Ranged DPS |
+| Hunter | Marksmanship | Ranged DPS |
+| Paladin | Retribution | Melee DPS |
+| Mage | Frost | Ranged DPS |
+| Death Knight | Frost | Melee DPS |
+
+### 🚧 In de planning
+
+| Klasse | Specs |
+|---|---|
+| Warrior | Arms · Fury · Protection |
+| Rogue | Assassination · Outlaw · Subtlety |
+| Druid | Balance · Feral · Guardian · Restoration |
+| Shaman | Elemental · Enhancement · Restoration |
+| Priest | Discipline · Holy · Shadow |
+| Warlock | Affliction · Demonology · Destruction |
+| Monk | Brewmaster · Mistweaver · Windwalker |
+| Demon Hunter | Havoc · Vengeance |
+| Evoker | Augmentation · Devastation · Preservation |
+| Paladin | Holy · Protection |
+| Death Knight | Blood · Unholy |
+| Mage | Arcane · Fire |
+| Hunter | Survival |
 
 ---
 
@@ -49,34 +82,24 @@
 
 ## 📅 Seizoensschema — Midnight
 
-### ✅ Seizoen 1 (live)
-
 | Datum | Content |
 |---|---|
 | 2 maart 2026 | Expansion launch — alle 8 dungeons (Normal/Heroic/Mythic 0) |
-| 17 maart 2026 | **Seizoen 1 start** — M+ seizoen, Raids (Voidspire + Dreamrift Normal/Heroic/LFR), PvP S1, Bountiful Delves |
-| 24 maart 2026 | Mythic+ gerankt open, Mythic Voidspire & Dreamrift, LFR Wing 2 Voidspire |
-| 31 maart 2026 | **March on Quel'Danas** (Normal/Heroic/Mythic), LFR Wing 3 Voidspire |
+| 17 maart 2026 | **Seizoen 1 start** — M+, Raids, PvP S1, Bountiful Delves |
+| 24 maart 2026 | Mythic+ gerankt open, Mythic Voidspire & Dreamrift |
+| 31 maart 2026 | **March on Quel'Danas** (Normal/Heroic/Mythic) |
 | 7 april 2026 | Story Mode + LFR March on Quel'Danas |
-
-### ⏳ Seizoen 2 (nog niet aangekondigd)
-
-Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht: nieuwe M+ pool met een mix van Midnight- en legacy dungeons, nieuw raid tier, nieuw PvP seizoen.
-
-*Bron: [Blizzard officieel](https://news.blizzard.com/en-us/article/24266321/midnight-season-1-begins-march-17), [Blizzard Watch](https://blizzardwatch.com/2026/03/02/midnight-season-1-release-schedule/)*
 
 ---
 
 ## 🔨 Professions — Tier Overzicht
 
-| Tier | Professions | Reden |
-|---|---|---|
-| S | Inscription, Mining, Herbalism | Inscription: meest veelzijdig (consumables + housing + crafting orders). Mining & Herbalism: beste early gold, geen setup nodig |
-| A | Alchemy, Jewelcrafting | Alchemy: stable demand (raids/M+/PvP). Jewelcrafting: nuttig het hele seizoen door quality-systeem |
-| B | Enchanting, Tailoring, Leatherworking, Skinning, Engineering | Solid maar geen uitschieters in Midnight |
-| C | Blacksmithing, Cooking, Fishing | Blacksmithing vereenvoudigd, zwakke stat scaling |
-
-*Tier-rating gebaseerd op gold-making potentie in Seizoen 1. Bron: [Overgear](https://overgear.com/guides/wow/midnight-best-profession/), [mmogah](https://www.mmogah.com/news/wow/wow-midnight-profession-tier-list-best-gold-making-professions-for-launch)*
+| Tier | Professions |
+|---|---|
+| S | Inscription, Mining, Herbalism |
+| A | Alchemy, Jewelcrafting |
+| B | Enchanting, Tailoring, Leatherworking, Skinning, Engineering |
+| C | Blacksmithing, Cooking, Fishing |
 
 ---
 
@@ -84,28 +107,36 @@ Blizzard heeft nog geen datum of details voor Seizoen 2 bekendgemaakt. Verwacht:
 
 | Versie | Datum | Wijzigingen |
 |---|---|---|
-| v6.1 | 2026-03-12 | 📋 KP Gids tab — echte bomen + builds per profession vervangen de oude KP Boom |
-| v6.0 | 2026-03-12 | 🏗 Modulaire architectuur — bestanden los op bureaublad, nieuwe lichtgewicht GitHub Manager met drag-and-drop |
-| v5.9 | 2026-03-12 | 🔤 Tab knoppen vertaald (Dungeons/Professies/Weekly) · Categorieën standaard gesloten · Weekly herlaadt bij taalwissel |
-| v5.8 | 2026-03-12 | 📅 Weekly Checklist tab — World Boss, Delves, M+, Raid, Quests, Rep, Crafting, DMF · auto-reset woensdag |
-| v5.8 | 2026-03-11 | 🌳 KP Boom tab + 🗺️ KP Bronnen tab per profession · kp_sources.js · TomTom /ttpaste knop |
-| v5.8 | 2026-03-11 | Afbeeldingen uit season1.js — aparte bestanden in data/screenshots/, season1.js van 10.5MB naar 430KB |
-| v5.8 | 2026-03-11 | Alle 13 profession spec tree namen gecorrigeerd · Service Worker: network-first |
-| v5.8 | 2026-03-11 | About-modal laadt live README.md · PWA-banners vervangen · profession tier-ratings bijgewerkt |
-| v5.8 | 2026-03-11 | Profession gids toegevoegd — alle 13 professions, NL/EN/DA, tier-ratings, modulaire data-structuur |
+| v6.2 | 2026-03-13 | 🎯 Specs tab — 5 specs uitgewerkt · Method-stijl class grid · 8 tabs per spec incl. Consumables · Dev-banner met taalswitch |
+| v6.1 | 2026-03-12 | 📋 KP Gids tab — bomen + builds per profession |
+| v6.0 | 2026-03-12 | 🏗 Modulaire architectuur — losse bestanden, nieuwe GitHub Manager |
+| v5.9 | 2026-03-12 | 🔤 Tab knoppen vertaald · Weekly herlaadt bij taalwissel |
+| v5.8 | 2026-03-12 | 📅 Weekly Checklist met auto-reset op woensdag |
+| v5.8 | 2026-03-11 | 🌳 KP Boom + 🗺️ KP Bronnen · Profession gids alle 13 professions |
 | v4.0 | 2026-03-11 | Modulaire refactor — data naar losse JS-bestanden |
-| v3.0 | 2026-03-10 | Alle 40 specs volledig uitgewerkt · About-modal volledig meertalig |
-| v2.2 | 2026-03-10 | 13 nieuwe specs · Fury/Arms/Prot Warrior, Frost Mage, Outlaw Rogue, WW/BM/MW Monk, Disc Priest, Enh Shaman, MM Hunter, Unholy DK, Blood DK |
-| v2.1 | 2026-03-10 | 6 nieuwe specs · Auto role-refresh fix · QR + About naast elkaar |
-| v2.0 | 2026-03-10 | Spec-tips systeem · Auto role-tab · ★ highlights · About-pagina |
-| v1.3 | 2026-03-09 | Spec selector · 13 klassen · Bloodlust-namen per spec |
-| v1.2 | 2026-03-08 | QR-code knop |
-| v1.1 | 2026-03-07 | PWA installatiebanner (Android + iOS, drietalig) |
-| v1.0 | 2026-03-06 | Eerste versie: 8 dungeons, 3 talen, role tabs, routeplanner |
+| v3.0 | 2026-03-10 | Alle 40 specs uitgewerkt · About-modal meertalig |
+| v1.0 | 2026-03-06 | Eerste versie: 8 dungeons, 3 talen, role tabs |
+
+---
+
+## 🗂 Bestandsstructuur
+
+```
+midnight_guide/
+├── index.html
+├── sw.js
+├── manifest.json
+├── github_manager.html
+├── icons/
+└── data/
+    ├── dungeons/season1.js
+    ├── professions/   (13 bestanden + kp_data/kp_sources)
+    ├── specs/         (bm_hunter · mm_hunter · ret_paladin · frost_mage · frost_dk)
+    └── help.js
+```
 
 ---
 
 *Fan-project · Geen officiële band met Blizzard Entertainment.*  
 *World of Warcraft is een handelsmerk van Blizzard Entertainment, Inc.*  
 *⚔ Gebouwd door Claudy & Inchy*
-
