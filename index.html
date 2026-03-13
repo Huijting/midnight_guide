@@ -344,6 +344,19 @@
   .ml-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#fff}
 
   /* ── ABOUT MODAL ── */
+  /* Dev-banner popup */
+  #dev-banner{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;align-items:center;justify-content:center;padding:20px}
+  #dev-banner.open{display:flex}
+  #dev-banner-inner{background:var(--panel);border:1px solid var(--gold);border-radius:16px;max-width:420px;width:100%;padding:24px 22px;position:relative}
+  #dev-banner-title{font-size:17px;font-weight:800;color:var(--gold);margin-bottom:10px}
+  #dev-banner-body{font-size:13px;color:var(--text);line-height:1.65;margin-bottom:16px}
+  #dev-banner-body strong{color:var(--gold)}
+  #dev-banner-tip{background:var(--deep);border-radius:8px;padding:9px 12px;font-size:12px;color:var(--muted);margin-bottom:18px;border:1px solid var(--border)}
+  #dev-banner-langs{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+  .dbn-lang{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:5px 14px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s}
+  .dbn-lang.active{background:var(--gold);color:#000;border-color:var(--gold)}
+  #dev-banner-close{width:100%;padding:11px;background:var(--gold);color:#000;font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer}
+  #dev-banner-close:hover{opacity:.9}
   #about-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
   #about-modal.open{display:flex}
   #about-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
@@ -723,13 +736,21 @@
   @media(max-width:768px){.mode-tabs{gap:2px}.mode-tab{padding:4px 9px;font-size:11px}}
 
   /* ── SPECS ─────────────────────────────────────────────── */
-  .spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:12px}
-  .spec-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s}
-  .spec-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-  .spec-card-icon{font-size:32px;margin-bottom:6px}
-  .spec-card-spec{font-size:13px;font-weight:800;color:var(--gold)}
-  .spec-card-class{font-size:11px;color:var(--muted);margin-top:2px}
-  .spec-card-role{font-size:10px;color:var(--muted);margin-top:4px;padding:2px 8px;border:1px solid var(--border);border-radius:8px;display:inline-block}
+  /* Spec grid — Method-stijl per klasse */
+  .spec-class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;padding:10px}
+  .spec-class-block{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .spec-class-header{padding:10px 14px 8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .spec-class-name{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
+  .spec-class-icon{font-size:20px}
+  .spec-list{padding:4px 0}
+  .spec-row{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.04)}
+  .spec-row:last-child{border-bottom:none}
+  .spec-row:hover{background:rgba(255,255,255,.06)}
+  .spec-row-icon{font-size:20px;width:26px;text-align:center;flex-shrink:0}
+  .spec-row-info{flex:1;min-width:0}
+  .spec-row-name{font-size:13px;font-weight:700;color:var(--gold)}
+  .spec-row-role{font-size:10px;color:var(--muted);margin-top:1px}
+  .spec-row-arrow{color:var(--muted);font-size:14px}
   .spec-detail{display:none;padding:0 0 80px}
   .spec-detail.visible{display:block}
   .spec-hero{background:linear-gradient(135deg,#1a1400,#0d0d1a);border-bottom:1px solid var(--border);padding:16px}
@@ -804,6 +825,11 @@
   .pet-bonus{font-size:12px;color:var(--muted);margin-top:2px}
   .pet-use{font-size:11px;color:#3db86a;margin-top:3px}
   .frenzy-tip{background:rgba(61,184,106,.08);border:1px solid rgba(61,184,106,.25);border-radius:8px;padding:10px 12px;font-size:12px;color:#3db86a;margin:10px 0;line-height:1.5}
+  .cons-card{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .cons-type{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+  .cons-name{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:3px}
+  .cons-effect{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:3px}
+  .cons-note{font-size:11px;color:var(--muted);font-style:italic}
   /* Specs mode */
   body.mode-specs #home-screen,
   body.mode-specs #detail-screen,
@@ -965,6 +991,10 @@
 <script src="data/professions/kp_data.js"></script>
 <script src="data/help.js"></script>
 <script src="data/specs/bm_hunter.js"></script>
+<script src="data/specs/mm_hunter.js"></script>
+<script src="data/specs/ret_paladin.js"></script>
+<script src="data/specs/frost_mage.js"></script>
+<script src="data/specs/frost_dk.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -1458,6 +1488,7 @@ function setLang(l) {
   if (currentDungeon) renderDetail(currentDungeon);
   else renderHome();
   if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
+  if (document.getElementById('dev-banner').classList.contains('open')) renderBanner();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
 }
@@ -1841,6 +1872,12 @@ window.addEventListener('resize', () => {
 // Wacht tot HTML klaar is voordat we de pagina opbouwen
 document.addEventListener('DOMContentLoaded', function() {
   document.body.classList.add('mode-dungeons');
+  // Dev banner — toon eenmalig per versie
+  const BANNER_KEY = 'midnight_banner_v1';
+  renderBanner();
+  if (!localStorage.getItem(BANNER_KEY)) {
+    document.getElementById('dev-banner').classList.add('open');
+  }
   applyUIStrings();
   updateFooter();
   updateSpecBtn();
@@ -3147,32 +3184,32 @@ window.addEventListener('beforeinstallprompt', e => {
 
 // ── SPECS ────────────────────────────────────────────────────────
 const SPEC_TAB_UI = {
-  nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+  nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Sterk', cons:'❌ Zwak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
-        macro_copy:'Klik op de code om te kopiëren',
+        macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
       },
-  en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+  en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Strong', cons:'❌ Weak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
-        macro_copy:'Click the code to copy',
+        macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
       },
-  da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource'],
+  da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Styrker', cons:'❌ Svagheder',
         opener:'Åbner', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
         generate:'Generer Focus', spend:'Brug Focus', pets:'Kæledyrstyper',
-        macro_copy:'Klik på koden for at kopiere',
+        macro_copy:'Klik på koden for at kopiere', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning',
       },
 };
 
@@ -3182,16 +3219,47 @@ function buildSpecGrid() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
   const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
-  document.getElementById('spec-grid').innerHTML = specs.map(s => {
-    const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl) : s.spec;
-    const roleLbl = ui['role_'+s.role] || s.role;
-    return `<div class="spec-card" onclick="showSpec('${s.id}')">
-      <div class="spec-card-icon">${s.icon}</div>
-      <div class="spec-card-spec">${specName}</div>
-      <div class="spec-card-class">${s.class}</div>
-      <div class="spec-card-role">${roleLbl}</div>
+
+  // Groepeer per klasse, bewaar volgorde van eerste verschijning
+  const classOrder = [];
+  const byClass = {};
+  specs.forEach(s => {
+    if (!byClass[s.class]) { byClass[s.class] = []; classOrder.push(s.class); }
+    byClass[s.class].push(s);
+  });
+
+  // Class emoji map
+  const classIcon = {
+    'Hunter':'🏹','Mage':'🔵','Paladin':'⚔️','Death Knight':'💀',
+    'Warrior':'🛡️','Rogue':'🗡️','Druid':'🌿','Priest':'✨',
+    'Shaman':'⚡','Warlock':'🟣','Monk':'🥋','Demon Hunter':'😈',
+    'Evoker':'🐉'
+  };
+
+  const html = classOrder.map(cls => {
+    const clsSpecs = byClass[cls];
+    const rows = clsSpecs.map(s => {
+      const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl) : s.spec;
+      const roleLbl = ui['role_'+s.role] || ui.role_dps || s.role;
+      return `<div class="spec-row" onclick="showSpec('${s.id}')">
+        <div class="spec-row-icon">${s.icon}</div>
+        <div class="spec-row-info">
+          <div class="spec-row-name">${specName}</div>
+          <div class="spec-row-role">${roleLbl}</div>
+        </div>
+        <div class="spec-row-arrow">›</div>
+      </div>`;
+    }).join('');
+    return `<div class="spec-class-block">
+      <div class="spec-class-header">
+        <span class="spec-class-icon">${classIcon[cls]||'⚔️'}</span>
+        <span class="spec-class-name">${cls}</span>
+      </div>
+      <div class="spec-list">${rows}</div>
     </div>`;
   }).join('') || '<p style="padding:20px;color:var(--muted);font-size:13px">Nog geen specs beschikbaar.</p>';
+
+  document.getElementById('spec-grid').innerHTML = `<div class="spec-class-grid">${html}</div>`;
   document.getElementById('spec-grid-view').style.display = '';
   document.getElementById('spec-detail-view').classList.remove('visible');
 }
@@ -3250,8 +3318,10 @@ function renderSpecTab(s, tid, ui) {
     if (typeof d === 'object') return Object.values(d).some(v => Array.isArray(v) ? v.length > 0 : (v && String(v).length > 0));
     return String(d).length > 0;
   }
-  const rawD = s[tid] ? s[tid][lang] : null;
-  const d = hasContent(rawD) ? rawD : (s[tid] ? s[tid].nl : null);
+  // 'resource' tab data zit in spec.resource_info, niet spec.resource
+  const dataKey = tid === 'resource' ? 'resource_info' : tid;
+  const rawD = s[dataKey] ? s[dataKey][lang] : null;
+  const d = hasContent(rawD) ? rawD : (s[dataKey] ? s[dataKey].nl : null);
   if (!d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
 
   if (tid === 'cheatsheet') {
@@ -3297,8 +3367,18 @@ function renderSpecTab(s, tid, ui) {
     return `<p style="font-size:11px;color:var(--muted);margin-bottom:10px">${ui.macro_copy}</p>`+(d||[]).map(m=>`<div class="macro-card"><div class="macro-name">${m.name}</div><div class="macro-note">${m.note}</div><div class="macro-code" onclick="copyMacro(this)">${m.code}</div></div>`).join('');
   }
 
+  if (tid === 'consumables') {
+    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, rune: ui.cons_rune };
+    return (d||[]).map(c=>`<div class="cons-card">
+      <div class="cons-type">${typeLabel[c.type]||c.type}</div>
+      <div class="cons-name">${c.name}</div>
+      <div class="cons-effect">${c.effect}</div>
+      ${c.note?`<div class="cons-note">💡 ${c.note}</div>`:''}
+    </div>`).join('') || '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
+  }
+
   if (tid === 'resource') {
-    const res = d;
+    const res = d || (s.resource_info ? (s.resource_info[lang] || s.resource_info.nl) : null);
     const genRows = (res.generate||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
     const spendRows = (res.spend||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
     return `<p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px">${res.intro||''}</p>
@@ -3314,6 +3394,48 @@ function renderSpecTab(s, tid, ui) {
   return '<p style="color:var(--muted);font-size:13px">Binnenkort beschikbaar.</p>';
 }
 
+const BANNER_UI = {
+  nl: {
+    title: '🚧 Bezig met bouwen!',
+    body: 'We zijn op dit moment druk bezig met de <strong>Specs-sectie</strong> — rotaties, stats, cooldowns en tips voor alle klassen.<br><br>Sommige onderdelen zijn nog niet af of kunnen veranderen. Feedback is altijd welkom via de knop onderin!',
+    tip: '💡 <strong>Tip:</strong> Zie je iets vreemd of wil je de nieuwste versie? Druk <strong>Ctrl+Shift+R</strong> voor een harde herlaad.',
+    btn: '→ Naar de site',
+  },
+  en: {
+    title: '🚧 Under construction!',
+    body: 'We are currently working hard on the <strong>Specs section</strong> — rotations, stats, cooldowns and tips for all classes.<br><br>Some parts are not finished yet or may change. Feedback is always welcome via the button below!',
+    tip: '💡 <strong>Tip:</strong> Something look off, or want the latest version? Press <strong>Ctrl+Shift+R</strong> for a hard reload.',
+    btn: '→ Go to the site',
+  },
+  da: {
+    title: '🚧 Under opbygning!',
+    body: 'Vi arbejder i øjeblikket hårdt på <strong>Specs-sektionen</strong> — rotationer, stats, cooldowns og tips til alle klasser.<br><br>Nogle dele er endnu ikke færdige eller kan ændre sig. Feedback er altid velkommen via knappen nedenfor!',
+    tip: '💡 <strong>Tip:</strong> Ser noget mærkeligt ud, eller vil du have den nyeste version? Tryk <strong>Ctrl+Shift+R</strong> for en hård genindlæsning.',
+    btn: '→ Gå til sitet',
+  },
+};
+
+function renderBanner() {
+  const b = BANNER_UI[lang] || BANNER_UI.nl;
+  document.getElementById('dbn-title').innerHTML = b.title;
+  document.getElementById('dbn-body').innerHTML  = b.body;
+  document.getElementById('dbn-tip').innerHTML   = b.tip;
+  document.getElementById('dev-banner-close').textContent = b.btn;
+  document.querySelectorAll('.dbn-lang').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(lang));
+  });
+}
+
+function setBannerLang(l) {
+  setLang(l); // gebruik bestaande setLang functie
+  renderBanner();
+}
+
+function closeBanner() {
+  document.getElementById('dev-banner').classList.remove('open');
+  localStorage.setItem('midnight_banner_v1', '1');
+}
+
 function copyMacro(el) {
   navigator.clipboard.writeText(el.textContent).then(() => {
     el.classList.add('copied');
@@ -3325,6 +3447,21 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 </script>
+
+<!-- Dev Banner -->
+<div id="dev-banner">
+  <div id="dev-banner-inner">
+    <div id="dev-banner-langs">
+      <button class="dbn-lang" onclick="setBannerLang('nl')">🇳🇱 NL</button>
+      <button class="dbn-lang" onclick="setBannerLang('en')">🇬🇧 EN</button>
+      <button class="dbn-lang" onclick="setBannerLang('da')">🇩🇰 DA</button>
+    </div>
+    <div id="dbn-title"></div>
+    <div id="dbn-body"></div>
+    <div id="dbn-tip"></div>
+    <button id="dev-banner-close" onclick="closeBanner()">→ Naar de site</button>
+  </div>
+</div>
 
 <!-- Feedback Modal -->
 <div id="feedback-modal" onclick="if(event.target===this)closeFeedback()">
