@@ -293,21 +293,21 @@ const SPEC_FROST_DK = {
 
   macros: {
     nl: [
-      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Mind Freeze', note: 'Interrupt op focus > mouseover > target. ESSENTIEEL!' },
+      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Mind Freeze', note: 'Interrupt op focus > mouseover > target. ESSENTIEEL!' },
       { name: 'Death Grip (mouseover)', code: '#showtooltip Death Grip\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Death Grip', note: 'Trek vijand op mouseover — trek casters naar de tank.' },
       { name: 'Pillar + Remorseless (burst)', code: '#showtooltip Pillar of Frost\n/cast Pillar of Frost\n/cast Remorseless Winter', note: 'Start burst window — beide tegelijk activeren.' },
       { name: 'Chains of Ice (mouseover slow)', code: '#showtooltip Chains of Ice\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Chains of Ice', note: 'Slow op mouseover — kiting zonder target te wisselen.' },
       { name: 'Anti-Magic Shell + Icebound combo', code: '#showtooltip Icebound Fortitude\n/cast Anti-Magic Shell\n/cast Icebound Fortitude', note: 'Maximale defensie in één druk — voor grote mechanic.' },
     ],
     en: [
-      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Mind Freeze', note: 'Interrupt on focus > mouseover > target. ESSENTIAL!' },
+      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Mind Freeze', note: 'Interrupt on focus > mouseover > target. ESSENTIAL!' },
       { name: 'Death Grip (mouseover)', code: '#showtooltip Death Grip\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Death Grip', note: 'Pull enemy on mouseover — pull casters to tank.' },
       { name: 'Pillar + Remorseless (burst)', code: '#showtooltip Pillar of Frost\n/cast Pillar of Frost\n/cast Remorseless Winter', note: 'Start burst window — activate both at the same time.' },
       { name: 'Chains of Ice (mouseover slow)', code: '#showtooltip Chains of Ice\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Chains of Ice', note: 'Slow on mouseover — kiting without switching target.' },
       { name: 'Anti-Magic Shell + Icebound combo', code: '#showtooltip Icebound Fortitude\n/cast Anti-Magic Shell\n/cast Icebound Fortitude', note: 'Maximum defense in one press — for major mechanics.' },
     ],
     da: [
-      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Mind Freeze', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
+      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Mind Freeze', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
       { name: 'Death Grip (mouseover)', code: '#showtooltip Death Grip\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Death Grip', note: 'Træk fjende på mouseover — træk castere til tank.' },
       { name: 'Pillar + Remorseless (burst)', code: '#showtooltip Pillar of Frost\n/cast Pillar of Frost\n/cast Remorseless Winter', note: 'Start burst window — aktiver begge på én gang.' },
       { name: 'Chains of Ice (mouseover slow)', code: '#showtooltip Chains of Ice\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Chains of Ice', note: 'Slow på mouseover — kiting uden at skifte mål.' },
