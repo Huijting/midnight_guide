@@ -926,6 +926,26 @@
   .cons-name{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:3px}
   .cons-effect{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:3px}
   .cons-note{font-size:11px;color:var(--muted);font-style:italic}
+  /* ── TALENT TAB ── */
+  .talent-intro{font-size:12px;color:var(--muted);background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px;line-height:1.6}
+  .talent-intro strong{color:var(--gold)}
+  .talent-builds-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  @media(max-width:480px){.talent-builds-grid{grid-template-columns:1fr}}
+  .talent-build-card{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+  .talent-build-header{display:flex;align-items:center;gap:8px}
+  .talent-build-icon{font-size:22px;line-height:1}
+  .talent-build-title{font-size:14px;font-weight:700;color:var(--gold)}
+  .talent-build-desc{font-size:11px;color:var(--muted);line-height:1.5}
+  .talent-build-links{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+  .talent-link-btn{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;color:inherit;border:none;cursor:pointer;transition:opacity .15s}
+  .talent-link-btn:hover{opacity:.85}
+  .talent-link-btn.icy{background:#0d2a45;color:#7ec8e3;border:1px solid #1a4a7a}
+  .talent-link-btn.method{background:#1c1028;color:#c084fc;border:1px solid #4a2a6a}
+  .talent-link-site{font-size:10px;opacity:.65;font-weight:400}
+  .talent-how{background:rgba(201,163,71,.07);border:1px solid rgba(201,163,71,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--text);line-height:1.6}
+  .talent-how strong{color:var(--gold)}
+  .talent-step{display:flex;gap:10px;align-items:flex-start;margin-bottom:6px}
+  .talent-step-num{background:var(--gold);color:#000;border-radius:50%;width:20px;height:20px;min-width:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:1px}
   /* Specs mode */
   body.mode-specs #home-screen,
   body.mode-specs #detail-screen,
@@ -3564,8 +3584,8 @@ window.addEventListener('beforeinstallprompt', e => {
 // ── SPECS ────────────────────────────────────────────────────────
 const SPEC_TAB_UI = {
   nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
+        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables','🌳 Talents'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables','talents'],
         pros:'✅ Sterk', cons:'❌ Zwak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
@@ -3573,8 +3593,8 @@ const SPEC_TAB_UI = {
         macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
       },
   en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
+        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables','🌳 Talents'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables','talents'],
         pros:'✅ Strong', cons:'❌ Weak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
@@ -3582,8 +3602,8 @@ const SPEC_TAB_UI = {
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
       },
   da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
+        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug','🌳 Talents'],
+        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables','talents'],
         pros:'✅ Styrker', cons:'❌ Svagheder',
         opener:'Åbner', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
@@ -3599,13 +3619,14 @@ function buildSpecGrid() {
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
   const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
 
-  // Groepeer per klasse, bewaar volgorde van eerste verschijning
+  // Groepeer per klasse, sorteer alfabetisch
   const classOrder = [];
   const byClass = {};
   specs.forEach(s => {
     if (!byClass[s.class]) { byClass[s.class] = []; classOrder.push(s.class); }
     byClass[s.class].push(s);
   });
+  classOrder.sort((a, b) => a.localeCompare(b));
 
   // Class emoji map
   const classIcon = {
@@ -3697,6 +3718,34 @@ function renderSpecTab(s, tid, ui) {
     if (typeof d === 'object') return Object.values(d).some(v => Array.isArray(v) ? v.length > 0 : (v && String(v).length > 0));
     return String(d).length > 0;
   }
+
+  // ── TALENTS: geen spec data nodig, render direct vóór data guard ──────────
+  if (tid === 'talents') {
+    const tu = TALENT_UI[lang] || TALENT_UI.nl;
+    const urls = TALENT_URLS[s.id] || {};
+    const icyUrl    = urls.icy    ? 'https://www.icy-veins.com/wow/' + urls.icy + '-spec-builds-talents' : null;
+    const methodUrl = urls.method ? 'https://www.method.gg/guides/'  + urls.method + '/talents'          : null;
+    const linkBtns = () => {
+      let b = '';
+      if (icyUrl)    b += '<a class="talent-link-btn icy"    href="' + icyUrl    + '" target="_blank" rel="noopener"><span>' + tu.open_icy    + '</span><span class="talent-link-site">' + tu.tip_icy    + '</span></a>';
+      if (methodUrl) b += '<a class="talent-link-btn method" href="' + methodUrl + '" target="_blank" rel="noopener"><span>' + tu.open_method + '</span><span class="talent-link-site">' + tu.tip_method + '</span></a>';
+      return b;
+    };
+    const cards = tu.builds.map(b =>
+      '<div class="talent-build-card">' +
+        '<div class="talent-build-header"><div class="talent-build-icon">' + b.icon + '</div><div class="talent-build-title">' + b.title + '</div></div>' +
+        '<div class="talent-build-desc">' + b.desc + '</div>' +
+        '<div class="talent-build-links">' + linkBtns() + '</div>' +
+      '</div>'
+    ).join('');
+    const steps = tu.steps.map((step, i) =>
+      '<div class="talent-step"><div class="talent-step-num">' + (i+1) + '</div><div>' + step + '</div></div>'
+    ).join('');
+    return '<div class="talent-intro">' + tu.intro + '</div>' +
+           '<div class="talent-builds-grid">' + cards + '</div>' +
+           '<div class="talent-how"><strong>' + tu.how_title + '</strong><br><br>' + steps + '</div>';
+  }
+
   // 'resource' tab data zit in spec.resource_info, niet spec.resource
   const dataKey = tid === 'resource' ? 'resource_info' : tid;
   const rawD = s[dataKey] ? s[dataKey][lang] : null;
@@ -3718,14 +3767,14 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'rotation') {
-    const rotRow = (r, i, imp) => `<tr><td class="rot-prio">${r.prio||r.step||(i+1)}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.why||r.note||''}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
+    const rotRow = (r, imp) => `<tr><td class="rot-prio">${r.prio||r.step}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.note}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
     return `${d.apex_tip?`<div class="apex-tip">${d.apex_tip}</div>`:''}
       <div class="spec-section-title">${ui.opener}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map((r,i)=>rotRow(r,i,false)).join('')}</tbody></table>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>
       <div class="spec-section-title">${ui.single}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th><th>${ui.imp}</th></tr></thead><tbody>${(d.single||[]).map((r,i)=>rotRow(r,i,true)).join('')}</tbody></table>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th><th>${ui.imp}</th></tr></thead><tbody>${(d.single||[]).map(r=>rotRow(r,true)).join('')}</tbody></table>
       <div class="spec-section-title">${ui.aoe}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.aoe||[]).map((r,i)=>rotRow(r,i,false)).join('')}</tbody></table>`;
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.aoe||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>`;
   }
 
   if (tid === 'stats') {
@@ -3772,6 +3821,98 @@ function renderSpecTab(s, tid, ui) {
 
   return '<p style="color:var(--muted);font-size:13px">Binnenkort beschikbaar.</p>';
 }
+
+
+// ── TALENT BUILD URLS ────────────────────────────────────────────────────────
+const TALENT_URLS = {
+  arcane_mage:         { icy:'arcane-mage-pve-dps',                method:'arcane-mage' },
+  fire_mage:           { icy:'fire-mage-pve-dps',                  method:'fire-mage' },
+  frost_mage:          { icy:'frost-mage-pve-dps',                 method:'frost-mage' },
+  bm_hunter:           { icy:'beast-mastery-hunter-pve-dps',       method:'beast-mastery-hunter' },
+  mm_hunter:           { icy:'marksmanship-hunter-pve-dps',        method:'marksmanship-hunter' },
+  survival_hunter:     { icy:'survival-hunter-pve-dps',            method:'survival-hunter' },
+  blood_dk:            { icy:'blood-death-knight-pve-tank',        method:'blood-death-knight' },
+  frost_dk:            { icy:'frost-death-knight-pve-dps',         method:'frost-death-knight' },
+  unholy_dk:           { icy:'unholy-death-knight-pve-dps',        method:'unholy-death-knight' },
+  havoc_dh:            { icy:'havoc-demon-hunter-pve-dps',         method:'havoc-demon-hunter' },
+  vengeance_dh:        { icy:'vengeance-demon-hunter-pve-tank',    method:'vengeance-demon-hunter' },
+  balance_druid:       { icy:'balance-druid-pve-dps',              method:'balance-druid' },
+  feral_druid:         { icy:'feral-druid-pve-dps',                method:'feral-druid' },
+  guardian_druid:      { icy:'guardian-druid-pve-tank',            method:'guardian-druid' },
+  restoration_druid:   { icy:'restoration-druid-pve-healing',      method:'restoration-druid' },
+  devastation_evoker:  { icy:'devastation-evoker-pve-dps',         method:'devastation-evoker' },
+  augmentation_evoker: { icy:'augmentation-evoker-pve-dps',        method:'augmentation-evoker' },
+  preservation_evoker: { icy:'preservation-evoker-pve-healing',    method:'preservation-evoker' },
+  brewmaster_monk:     { icy:'brewmaster-monk-pve-tank',           method:'brewmaster-monk' },
+  mistweaver_monk:     { icy:'mistweaver-monk-pve-healing',        method:'mistweaver-monk' },
+  windwalker_monk:     { icy:'windwalker-monk-pve-dps',            method:'windwalker-monk' },
+  holy_paladin:        { icy:'holy-paladin-pve-healing',           method:'holy-paladin' },
+  protection_paladin:  { icy:'protection-paladin-pve-tank',        method:'protection-paladin' },
+  ret_paladin:         { icy:'retribution-paladin-pve-dps',        method:'retribution-paladin' },
+  discipline_priest:   { icy:'discipline-priest-pve-healing',      method:'discipline-priest' },
+  holy_priest:         { icy:'holy-priest-pve-healing',            method:'holy-priest' },
+  shadow_priest:       { icy:'shadow-priest-pve-dps',              method:'shadow-priest' },
+  assassination_rogue: { icy:'assassination-rogue-pve-dps',        method:'assassination-rogue' },
+  outlaw_rogue:        { icy:'outlaw-rogue-pve-dps',               method:'outlaw-rogue' },
+  subtlety_rogue:      { icy:'subtlety-rogue-pve-dps',             method:'subtlety-rogue' },
+  elemental_shaman:    { icy:'elemental-shaman-pve-dps',           method:'elemental-shaman' },
+  enhancement_shaman:  { icy:'enhancement-shaman-pve-dps',         method:'enhancement-shaman' },
+  restoration_shaman:  { icy:'restoration-shaman-pve-healing',     method:'restoration-shaman' },
+  affliction_warlock:  { icy:'affliction-warlock-pve-dps',         method:'affliction-warlock' },
+  demonology_warlock:  { icy:'demonology-warlock-pve-dps',         method:'demonology-warlock' },
+  destruction_warlock: { icy:'destruction-warlock-pve-dps',        method:'destruction-warlock' },
+  arms_warrior:        { icy:'arms-warrior-pve-dps',               method:'arms-warrior' },
+  fury_warrior:        { icy:'fury-warrior-pve-dps',               method:'fury-warrior' },
+  protection_warrior:  { icy:'protection-warrior-pve-tank',        method:'protection-warrior' },
+};
+
+const TALENT_UI = {
+  nl:{
+    intro:'Kopieer een import string van Icy Veins of Method.gg en plak hem in WoW via <strong>Talent venster (N) → Laden/Opslaan → Import</strong>. De strings worden bijgewerkt na patches.',
+    how_title:'Hoe importeer je een build?',
+    steps:['Open het Talent scherm in WoW (standaard: <strong>N</strong>)','Klik rechtsonder op <strong>Laden / Opslaan</strong>','Kies <strong>Import</strong> en plak de string','Klik <strong>Toepassen</strong>'],
+    builds:[
+      {id:'mplus', icon:'🏆', title:'Mythic+', desc:'Dungeon build — burst AoE en utility'},
+      {id:'raid',  icon:'⚔️', title:'Raid',    desc:'Single target + cleave voor raid bosses'},
+      {id:'delve', icon:'🗝️', title:'Delves / Solo', desc:'Zelfredzaam build voor solo content'},
+      {id:'level', icon:'🌟', title:'Leveling', desc:'Simpele build voor levelen 80→90'},
+    ],
+    open_icy:'Open op Icy Veins →',
+    open_method:'Open op Method.gg →',
+    tip_icy:'Icy Veins',
+    tip_method:'Method.gg',
+  },
+  en:{
+    intro:'Copy an import string from Icy Veins or Method.gg and paste it in WoW via <strong>Talent window (N) → Load/Save → Import</strong>. Strings are updated after patches.',
+    how_title:'How to import a build?',
+    steps:['Open the Talent screen in WoW (default: <strong>N</strong>)','Click bottom right on <strong>Load / Save</strong>','Choose <strong>Import</strong> and paste the string','Click <strong>Apply</strong>'],
+    builds:[
+      {id:'mplus', icon:'🏆', title:'Mythic+', desc:'Dungeon build — burst AoE and utility'},
+      {id:'raid',  icon:'⚔️', title:'Raid',    desc:'Single target + cleave for raid bosses'},
+      {id:'delve', icon:'🗝️', title:'Delves / Solo', desc:'Self-sufficient build for solo content'},
+      {id:'level', icon:'🌟', title:'Leveling', desc:'Simple build for leveling 80→90'},
+    ],
+    open_icy:'Open on Icy Veins →',
+    open_method:'Open on Method.gg →',
+    tip_icy:'Icy Veins',
+    tip_method:'Method.gg',
+  },
+  da:{
+    intro:'Kopiér en import-streng fra Icy Veins eller Method.gg og indsæt den i WoW via <strong>Talent-vindue (N) → Indlæs/Gem → Importer</strong>. Strengene opdateres efter patches.',
+    how_title:'Hvordan importerer man et build?',
+    steps:['Åbn Talent-skærmen i WoW (standard: <strong>N</strong>)','Klik nederst til højre på <strong>Indlæs / Gem</strong>','Vælg <strong>Importer</strong> og indsæt strengen','Klik <strong>Anvend</strong>'],
+    builds:[
+      {id:'mplus', icon:'🏆', title:'Mythic+', desc:'Dungeon-build — burst AoE og utility'},
+      {id:'raid',  icon:'⚔️', title:'Raid',    desc:'Single target + cleave til raid-bosser'},
+      {id:'delve', icon:'🗝️', title:'Delves / Solo', desc:'Selvforsynende build til soloindhold'},
+      {id:'level', icon:'🌟', title:'Leveling', desc:'Simpelt build til leveling 80→90'},
+    ],
+    open_icy:'Åbn på Icy Veins →',
+    open_method:'Åbn på Method.gg →',
+    tip_icy:'Icy Veins',
+    tip_method:'Method.gg',
+  },
+};
 
 const BANNER_UI = {
   nl: {
