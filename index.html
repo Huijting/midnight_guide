@@ -359,6 +359,28 @@
   #dev-banner-close:hover{opacity:.9}
   #about-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
   #about-modal.open{display:flex}
+  /* ── SEARCH ── */
+  .search-header-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:14px;cursor:pointer;padding:4px 9px;border-radius:6px;transition:all .2s}
+  .search-header-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .search-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1300;align-items:flex-start;justify-content:center;padding:60px 12px 0;backdrop-filter:blur(4px)}
+  .search-overlay.open{display:flex}
+  .search-modal{background:var(--panel);border:1px solid var(--border);border-radius:14px;width:100%;max-width:600px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .search-input-row{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--border)}
+  .search-icon-lbl{font-size:18px;opacity:.6}
+  .search-input{flex:1;background:none;border:none;outline:none;font-size:16px;color:var(--text);font-family:inherit}
+  .search-input::placeholder{color:var(--muted)}
+  .search-close-btn{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:2px 6px;border-radius:4px}
+  .search-close-btn:hover{color:var(--text)}
+  .search-results{max-height:60vh;overflow-y:auto;padding:6px 0}
+  .search-empty{padding:20px;text-align:center;color:var(--muted);font-size:14px}
+  .search-group-label{padding:8px 14px 4px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .search-result-item{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;transition:background .12s}
+  .search-result-item:hover,.search-result-item.focused{background:var(--deep)}
+  .search-result-icon{font-size:20px;width:28px;text-align:center;flex-shrink:0}
+  .search-result-info{flex:1;min-width:0}
+  .search-result-name{font-size:14px;font-weight:600;color:var(--text)}
+  .search-result-sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .search-result-badge{font-size:11px;padding:2px 7px;border-radius:10px;background:var(--deep);color:var(--muted);flex-shrink:0}
   #about-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
   #about-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
   #about-title{font-size:17px;font-weight:800;color:var(--text)}
@@ -483,7 +505,7 @@
   .mode-tab{background:none;border:none;border-radius:16px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
   .mode-tab.active{background:var(--gold);color:#000}
   .mode-tab:hover:not(.active){color:var(--text)}
-  @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
+  @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn,.search-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
   /* ═══ LANDING PAGE ═══ */
   #landing-screen{display:none;padding:0;position:relative;flex-direction:column;justify-content:center}
   body.mode-home #landing-screen{display:flex !important}
@@ -943,6 +965,7 @@
     </div>
     <div class="header-controls">
     <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
+      <button class="search-header-btn" id="search-header-btn" onclick="openSearch()" title="Zoeken">🔍</button>
       <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
       <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
       <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
@@ -1647,6 +1670,13 @@ function setLang(l) {
   if (document.getElementById('dev-banner').classList.contains('open')) renderBanner();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
+  // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
+  if (document.getElementById('search-overlay').classList.contains('open')) {
+    const inp = document.getElementById('search-input');
+    const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' };
+    inp.placeholder = ph[l] || ph.nl;
+    doSearch(inp.value);
+  }
 }
 
 function applyUIStrings() {
@@ -3159,6 +3189,144 @@ function weeklyCatToggle(header, catKey) {
   } catch(e) {}
 }
 
+// ═══════════════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════════════
+let searchFocusIdx = -1;
+
+function openSearch() {
+  document.getElementById('search-overlay').classList.add('open');
+  const inp = document.getElementById('search-input');
+  inp.value = '';
+  // Drietalige placeholder
+  const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' };
+  inp.placeholder = ph[lang] || ph.nl;
+  document.getElementById('search-results').innerHTML = '';
+  searchFocusIdx = -1;
+  setTimeout(() => inp.focus(), 80);
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay').classList.remove('open');
+  searchFocusIdx = -1;
+}
+
+function closeSearchIfBg(e) {
+  if (e.target.id === 'search-overlay') closeSearch();
+}
+
+function doSearch(q) {
+  const el = document.getElementById('search-results');
+  searchFocusIdx = -1;
+  q = q.trim().toLowerCase();
+  if (!q) { el.innerHTML = ''; return; }
+
+  const results = [];
+  const badges = {
+    nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie' },
+    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession' },
+    da: { dungeon:'Dungeon', spec:'Spec', prof:'Profession' },
+  };
+  const badge = badges[lang] || badges.nl;
+  const groupLabels = {
+    nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies' },
+    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions' },
+    da: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professioner' },
+  };
+  const grpLbl = groupLabels[lang] || groupLabels.nl;
+
+  // ── Dungeons ──
+  if (typeof DUNGEONS !== 'undefined') {
+    DUNGEONS.forEach(d => {
+      const name = (typeof d.name === 'object') ? (d.name[lang] || d.name.nl || '') : (d.name || '');
+      const zone = (typeof d.zone === 'object') ? (d.zone[lang] || d.zone.nl || '') : (d.zone || '');
+      const bosses = (d.bosses_short || []).join(' ').toLowerCase();
+      if ((name+zone+bosses).toLowerCase().includes(q)) {
+        results.push({ type:'dungeon', icon: d.type==='mplus' ? '⚔' : '🗺', name, sub: zone, badge:badge.dungeon, action: () => { closeSearch(); setMode('dungeons'); setTimeout(()=>openDungeon(d.id),50); } });
+      }
+    });
+  }
+
+  // ── Specs ──
+  if (typeof ALL_SPECS !== 'undefined') {
+    ALL_SPECS.forEach(s => {
+      const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl || '') : (s.spec || '');
+      const cls = s.class || '';
+      const summary = (typeof s.summary === 'object') ? (s.summary[lang] || s.summary.nl || '') : '';
+      if ((specName+cls+summary).toLowerCase().includes(q)) {
+        results.push({ type:'spec', icon: s.icon, name: specName, sub: cls, badge:badge.spec, action: () => { closeSearch(); setMode('specs'); setTimeout(()=>showSpec(s.id),50); } });
+      }
+    });
+  }
+
+  // ── Professions ──
+  if (typeof ALL_PROFS !== 'undefined') {
+    ALL_PROFS.forEach(p => {
+      const name = (typeof p.name === 'object') ? (p.name[lang] || p.name.nl || '') : (p.name || '');
+      const trainerName = p.trainer ? p.trainer.name || '' : '';
+      if ((name+trainerName).toLowerCase().includes(q)) {
+        results.push({ type:'prof', icon: p.icon, name, sub: trainerName ? 'Trainer: '+trainerName : '', badge:badge.prof, action: () => { closeSearch(); setMode('professions'); setTimeout(()=>showProf(p.id),50); } });
+      }
+    });
+  }
+
+  if (!results.length) {
+    el.innerHTML = `<div class="search-empty">Geen resultaten voor "<strong>${q}</strong>"</div>`;
+    return;
+  }
+
+  // Groepeer per type
+  const groups = { dungeon: [], spec: [], prof: [] };
+  const labels = grpLbl;
+  results.forEach(r => groups[r.type].push(r));
+
+  let html = '';
+  let idx = 0;
+  ['dungeon','spec','prof'].forEach(type => {
+    if (!groups[type].length) return;
+    html += `<div class="search-group-label">${labels[type]}</div>`;
+    groups[type].forEach(r => {
+      html += `<div class="search-result-item" data-idx="${idx}" onclick="searchGo(${idx})">
+        <div class="search-result-icon">${r.icon}</div>
+        <div class="search-result-info">
+          <div class="search-result-name">${r.name}</div>
+          ${r.sub ? `<div class="search-result-sub">${r.sub}</div>` : ''}
+        </div>
+        <div class="search-result-badge">${r.badge}</div>
+      </div>`;
+      idx++;
+    });
+  });
+
+  el.innerHTML = html;
+  el._actions = results.map(r => r.action);
+}
+
+function searchGo(idx) {
+  const el = document.getElementById('search-results');
+  if (el._actions && el._actions[idx]) el._actions[idx]();
+}
+
+function searchKeyNav(e) {
+  const el = document.getElementById('search-results');
+  const items = el.querySelectorAll('.search-result-item');
+  if (!items.length) return;
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    searchFocusIdx = Math.min(searchFocusIdx + 1, items.length - 1);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    searchFocusIdx = Math.max(searchFocusIdx - 1, 0);
+  } else if (e.key === 'Enter') {
+    if (searchFocusIdx >= 0) searchGo(searchFocusIdx);
+    return;
+  } else if (e.key === 'Escape') {
+    closeSearch(); return;
+  } else { return; }
+  items.forEach((it, i) => it.classList.toggle('focused', i === searchFocusIdx));
+  items[searchFocusIdx]?.scrollIntoView({ block:'nearest' });
+}
+
 function copyWay(el) {
   const way = el.dataset.way;
   const wui = WEEKLY_UI[lang] || WEEKLY_UI.nl;
@@ -3688,6 +3856,16 @@ if ('serviceWorker' in navigator) {
       <a id="feedback-gh" href="https://docs.google.com/forms/d/e/1FAIpQLSe-KFixsrFQnFHYp12E9v4z-xWqpRuULSUYf58oOs8X85E6rQ/viewform" target="_blank" style="display:block;text-align:center;background:var(--gold);color:#000;padding:10px 18px;border-radius:8px;font-weight:700;text-decoration:none">📝 Feedback formulier (geen account nodig)</a>
       <a href="https://github.com/Huijting/midnight_guide/issues/new?title=Feedback" target="_blank" style="display:block;text-align:center;background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:9px 18px;border-radius:8px;font-weight:700;text-decoration:none">🐙 GitHub issue (voor techneuten)</a>
     </div>
+  </div>
+</div><!-- ══════════════════════════════════════════ SEARCH OVERLAY ══ -->
+<div id="search-overlay" class="search-overlay" onclick="closeSearchIfBg(event)">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <span class="search-icon-lbl">🔍</span>
+      <input id="search-input" type="text" class="search-input" placeholder="Zoek dungeon, spec, professie..." autocomplete="off" oninput="doSearch(this.value)" onkeydown="searchKeyNav(event)">
+      <button class="search-close-btn" onclick="closeSearch()">✕</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
   </div>
 </div>
 
