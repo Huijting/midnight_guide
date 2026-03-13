@@ -485,9 +485,11 @@
   .mode-tab:hover:not(.active){color:var(--text)}
   @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
   /* ═══ LANDING PAGE ═══ */
-  #landing-screen{display:none;height:calc(100vh - 60px);padding:0;position:relative;overflow:hidden;flex-direction:column;justify-content:space-between}
+  #landing-screen{display:none;height:calc(100vh - 60px);padding:0;position:relative;overflow:hidden;flex-direction:column;justify-content:center}
   body.mode-home #landing-screen{display:flex !important}
   body.mode-home #home-screen,body.mode-home #detail-screen,body.mode-home #prof-screen,body.mode-home #weekly-screen{display:none !important}
+  body.mode-home #site-footer{display:none !important}
+  body.mode-home{overflow:hidden}
   body.mode-home .specs-screen{display:none!important}
 
   /* Stars background */
@@ -549,7 +551,7 @@
   .landing-tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
   .landing-tip-text{font-size:11px;color:var(--muted);line-height:1.5}
   .landing-tip-text strong{color:var(--text)}
-  .landing-credits{position:relative;z-index:1;text-align:center;margin:10px 0 8px;font-size:11px;color:var(--muted);opacity:.5}
+  .landing-credits{position:absolute;bottom:10px;left:0;right:0;z-index:1;text-align:center;font-size:11px;color:var(--muted);opacity:.5}
 
   /* Dungeons mode — default */
   body.mode-dungeons #prof-screen{display:none !important}
