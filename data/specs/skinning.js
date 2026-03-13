@@ -16,7 +16,7 @@ const SKINNING = {
       en:'Trainer Tyn can be found in the <strong>Bazaar</strong> of Silvermoon City. The Bazaar is the large covered market area in the center of the city — full of stalls and merchants. Tyn stands at the leather processing section.',
       da:'Træner Tyn kan findes i <strong>Bazaar</strong> i Silvermoon City. Bazaar er det store overdækkede markedsområde i midten af byen — fuld af boder og handlende. Tyn står ved læderforarbejdningssektionen.'
     },
-    way:'/way #2393 44.2 52.3',
+    way:'/way #2393 43.27 55.59',
     note:{
       nl:'💡 <strong>Belangrijk voor later:</strong> Als je eenmaal verder bent en de beste (duurste) materialen wilt farmen, heb je ook <strong>Cooking</strong> nodig. Lures — de speciale lokaasmiddelen voor Majestic materialen — worden namelijk gemaakt via Cooking-recepten. Je hebt daarvoor vis nodig van Fishing. Het is slim om Cooking en Fishing alvast te leren bij dezelfde trainers in de Bazaar!',
       en:'💡 <strong>Important for later:</strong> Once you progress further and want to farm the best (most expensive) materials, you will also need <strong>Cooking</strong>. Lures — the special bait for Majestic materials — are crafted using Cooking recipes. You need fish from Fishing for this. It is smart to learn Cooking and Fishing right away from the same trainers in the Bazaar!',
