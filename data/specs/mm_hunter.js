@@ -287,21 +287,21 @@ const SPEC_MM_HUNTER = {
 
   macros: {
     nl: [
-      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counter Shot', note: 'Kick op focus > mouseover > target. Essentieel in M+!' },
+      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counter Shot', note: 'Kick op focus > mouseover > target. Essentieel in M+!' },
       { name: 'Aimed Shot + Rapid Fire', code: '#showtooltip Aimed Shot\n/cast Aimed Shot\n/cast Rapid Fire', note: 'Combineert beide in één macro — let op GCD timing!' },
       { name: 'Trueshot + Rapid Fire', code: '#showtooltip Trueshot\n/cast Trueshot\n/cast Rapid Fire', note: 'Burst opener — activeer altijd samen.' },
       { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'CC zonder target te wisselen.' },
       { name: 'Misdirection (op tank)', code: '#showtooltip Misdirection\n/cast [@focus,help,nodead][@mouseover,help,nodead][@pet] Misdirection', note: 'Focus tank instellen = altijd klaar voor grote pulls.' },
     ],
     en: [
-      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counter Shot', note: 'Kick on focus > mouseover > target. Essential in M+!' },
+      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counter Shot', note: 'Kick on focus > mouseover > target. Essential in M+!' },
       { name: 'Aimed Shot + Rapid Fire', code: '#showtooltip Aimed Shot\n/cast Aimed Shot\n/cast Rapid Fire', note: 'Combines both in one macro — note GCD timing!' },
       { name: 'Trueshot + Rapid Fire', code: '#showtooltip Trueshot\n/cast Trueshot\n/cast Rapid Fire', note: 'Burst opener — always activate together.' },
       { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'CC without switching target.' },
       { name: 'Misdirection (to tank)', code: '#showtooltip Misdirection\n/cast [@focus,help,nodead][@mouseover,help,nodead][@pet] Misdirection', note: 'Set focus to tank = always ready for big pulls.' },
     ],
     da: [
-      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counter Shot', note: 'Spark på focus > mouseover > mål. Essentiel i M+!' },
+      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counter Shot', note: 'Spark på focus > mouseover > mål. Essentiel i M+!' },
       { name: 'Aimed Shot + Rapid Fire', code: '#showtooltip Aimed Shot\n/cast Aimed Shot\n/cast Rapid Fire', note: 'Kombinerer begge i én makro — bemærk GCD timing!' },
       { name: 'Trueshot + Rapid Fire', code: '#showtooltip Trueshot\n/cast Trueshot\n/cast Rapid Fire', note: 'Burst opener — aktiver altid sammen.' },
       { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'CC uden at skifte mål.' },
