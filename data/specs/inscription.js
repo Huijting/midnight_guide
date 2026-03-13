@@ -10,7 +10,7 @@ const INSCRIPTION = {
   },
   goldrating:3, userating:4,
   trainer:{
-    name:'Velos Inkhand',
+    name:'Zantasia',
     loc:{
       nl:'Trainer Velos Inkhand staat in de <strong>Library of Silvermoon</strong> — de grote bibliotheek aan de hoofdstraat van Silvermoon City. Hij zit achter een bureau vol perkamentrol en inkpotten.',
       en:'Trainer Velos Inkhand is in the <strong>Library of Silvermoon</strong> — the large library on the main street of Silvermoon City. He sits behind a desk full of scrolls and ink pots.',
