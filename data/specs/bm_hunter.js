@@ -164,7 +164,7 @@ const SPEC_BM_HUNTER = {
   // ── MACRO'S ───────────────────────────────────────────────
   macros: {
     nl: [
-      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead,casting][@mouseover,harm,nodead,casting][@target,harm,nodead,casting] Counter Shot', note: 'Gooit je kick op focus > mouseover > target. Essentieel in M+!' },
+      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counter Shot', note: 'Gooit je kick op focus > mouseover > target. Essentieel in M+!' },
       { name: 'Focus Mouseover', code: '/focus [@mouseover]\n/script UIErrorsFrame:Clear()', note: 'Snel een focus target instellen zonder te targetten.' },
       { name: 'Intimidation (mouseover stun)', code: '#showtooltip Intimidation\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Intimidation', note: 'Stun op mouseover — handig als je target niet wil wisselen.' },
       { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'Trap op mouseover — CC snel zonder target te wisselen.' },
