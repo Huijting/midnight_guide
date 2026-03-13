@@ -10,13 +10,13 @@ const HERBALISM = {
   },
   goldrating:5, userating:4,
   trainer:{
-    name:'Sylvara Dawnpetal',
+    name:'Botanist Nathera',
     loc:{
       nl:'Trainer Sylvara Dawnpetal staat in de <strong>Sunwell Gardens</strong> aan de rand van Silvermoon City — het parkgebied net buiten de stadsmuren richting Eversong Woods. Ze staat bij de grote fontein omringd door magische bloemen.',
       en:'Trainer Sylvara Dawnpetal is in the <strong>Sunwell Gardens</strong> on the edge of Silvermoon City — the park area just outside the city walls toward Eversong Woods. She stands by the large fountain surrounded by magical flowers.',
       da:'Træner Sylvara Dawnpetal er i <strong>Sunwell Gardens</strong> på kanten af Silvermoon City — parkområdet lige uden for bymurene mod Eversong Woods.'
     },
-    way:'/way #2393 42.5 44.8',
+    way:'/way #2393 48.20 51.52',
     note:{
       nl:'💡 <strong>Herbalism is de beste combinatie met Alchemy:</strong> Als je Alchemy ook leert, kun je zelf je potions en flasks maken van de kruiden die je plukt. Dan heb je nooit materiaalkosten en kun je alles wat je maakt direct verkopen. Dit is een van de meest winstgevende profession-combinaties in het hele spel.',
       en:'💡 <strong>Herbalism is the best combination with Alchemy:</strong> If you also learn Alchemy, you can craft your own potions and flasks from the herbs you pick. Then you never have material costs and can sell everything you make directly. This is one of the most profitable profession combinations in the entire game.',
