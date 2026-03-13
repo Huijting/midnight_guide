@@ -1004,6 +1004,31 @@
 <script src="data/specs/feral_druid.js"></script>
 <script src="data/specs/guardian_druid.js"></script>
 <script src="data/specs/restoration_druid.js"></script>
+<script src="data/specs/affliction_warlock.js"></script>
+<script src="data/specs/demonology_warlock.js"></script>
+<script src="data/specs/destruction_warlock.js"></script>
+<script src="data/specs/assassination_rogue.js"></script>
+<script src="data/specs/outlaw_rogue.js"></script>
+<script src="data/specs/subtlety_rogue.js"></script>
+<script src="data/specs/brewmaster_monk.js"></script>
+<script src="data/specs/mistweaver_monk.js"></script>
+<script src="data/specs/windwalker_monk.js"></script>
+<script src="data/specs/survival_hunter.js"></script>
+<script src="data/specs/holy_paladin.js"></script>
+<script src="data/specs/protection_paladin.js"></script>
+<script src="data/specs/arcane_mage.js"></script>
+<script src="data/specs/fire_mage.js"></script>
+<script src="data/specs/blood_dk.js"></script>
+<script src="data/specs/unholy_dk.js"></script>
+<script src="data/specs/protection_warrior.js"></script>
+<script src="data/specs/vengeance_dh.js"></script>
+<script src="data/specs/discipline_priest.js"></script>
+<script src="data/specs/holy_priest.js"></script>
+<script src="data/specs/enhancement_shaman.js"></script>
+<script src="data/specs/restoration_shaman.js"></script>
+<script src="data/specs/devastation_evoker.js"></script>
+<script src="data/specs/preservation_evoker.js"></script>
+<script src="data/specs/augmentation_evoker.js"></script>
 <script src="data/professions/cooking.js"></script>
 <script src="data/professions/fishing.js"></script>
 <script>
@@ -3407,28 +3432,32 @@ const BANNER_UI = {
   nl: {
     title: '🚧 Bezig met bouwen!',
     body: 'We zijn op dit moment druk bezig met de <strong>Specs-sectie</strong> — rotaties, stats, cooldowns en tips voor alle klassen.<br><br>Sommige onderdelen zijn nog niet af of kunnen veranderen. Feedback is altijd welkom via de knop onderin!',
-    tip: '💡 <strong>Tip:</strong> Zie je iets vreemd of wil je de nieuwste versie? Druk <strong>Ctrl+Shift+R</strong> voor een harde herlaad.',
+    tip_desktop: '💡 <strong>Tip:</strong> Zie je iets vreemd of wil je de nieuwste versie? Druk <strong>Ctrl+Shift+R</strong> voor een harde herlaad.',
+    tip_mobile:  '💡 <strong>Tip:</strong> Iets vreemd of wil je de nieuwste versie? Sluit de browser, veeg hem weg uit recente apps en open opnieuw.',
     btn: '→ Naar de site',
   },
   en: {
     title: '🚧 Under construction!',
     body: 'We are currently working hard on the <strong>Specs section</strong> — rotations, stats, cooldowns and tips for all classes.<br><br>Some parts are not finished yet or may change. Feedback is always welcome via the button below!',
-    tip: '💡 <strong>Tip:</strong> Something look off, or want the latest version? Press <strong>Ctrl+Shift+R</strong> for a hard reload.',
+    tip_desktop: '💡 <strong>Tip:</strong> Something look off, or want the latest version? Press <strong>Ctrl+Shift+R</strong> for a hard reload.',
+    tip_mobile:  '💡 <strong>Tip:</strong> Something look off or want the latest version? Close the browser, swipe it away from recent apps and reopen.',
     btn: '→ Go to the site',
   },
   da: {
     title: '🚧 Under opbygning!',
     body: 'Vi arbejder i øjeblikket hårdt på <strong>Specs-sektionen</strong> — rotationer, stats, cooldowns og tips til alle klasser.<br><br>Nogle dele er endnu ikke færdige eller kan ændre sig. Feedback er altid velkommen via knappen nedenfor!',
-    tip: '💡 <strong>Tip:</strong> Ser noget mærkeligt ud, eller vil du have den nyeste version? Tryk <strong>Ctrl+Shift+R</strong> for en hård genindlæsning.',
+    tip_desktop: '💡 <strong>Tip:</strong> Ser noget mærkeligt ud, eller vil du have den nyeste version? Tryk <strong>Ctrl+Shift+R</strong> for en hård genindlæsning.',
+    tip_mobile:  '💡 <strong>Tip:</strong> Noget ser mærkeligt ud eller vil du have nyeste version? Luk browseren, svirp den væk fra seneste apps og åbn igen.',
     btn: '→ Gå til sitet',
   },
 };
 
 function renderBanner() {
   const b = BANNER_UI[lang] || BANNER_UI.nl;
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   document.getElementById('dbn-title').innerHTML = b.title;
   document.getElementById('dbn-body').innerHTML  = b.body;
-  document.getElementById('dbn-tip').innerHTML   = b.tip;
+  document.getElementById('dbn-tip').innerHTML   = isMobile ? b.tip_mobile : b.tip_desktop;
   document.getElementById('dev-banner-close').textContent = b.btn;
   document.querySelectorAll('.dbn-lang').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase().includes(lang));
