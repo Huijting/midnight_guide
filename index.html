@@ -932,6 +932,35 @@
   body.mode-specs #prof-screen,
   body.mode-specs #weekly-screen{display:none!important}
   body.mode-specs .specs-screen{display:block!important}
+  body.mode-affixes #home-screen{display:none !important}
+  body.mode-affixes #detail-screen{display:none !important}
+  body.mode-affixes #prof-screen{display:none !important}
+  body.mode-affixes #weekly-screen{display:none !important}
+  body.mode-affixes .specs-screen{display:none !important}
+  body.mode-affixes #affixes-screen{display:block !important}
+  #affixes-screen{display:none}
+  .affix-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
+  .affix-level-badge{display:inline-block;background:var(--gold);color:#000;font-weight:800;font-size:11px;border-radius:8px;padding:2px 8px;margin-bottom:8px}
+  .affix-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .affix-icon{font-size:24px}
+  .affix-name{font-size:18px;font-weight:800;color:var(--text)}
+  .affix-type-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+  .affix-type-badge.new,.affix-type-badge.ny,.affix-type-badge.nieuw{background:#4ade80;color:#000}
+  .affix-type-badge.rotating,.affix-type-badge.roterend,.affix-type-badge.roterende{background:#a78bfa;color:#000}
+  .affix-type-badge.weekly,.affix-type-badge.wekelijks,.affix-type-badge.ugentlig{background:#f97316;color:#000}
+  .affix-type-badge.hard,.affix-type-badge.zwaar,.affix-type-badge.svaer{background:#ef4444;color:#fff}
+  .affix-type-badge.punish,.affix-type-badge.straf{background:#7f1d1d;color:#fff}
+  .affix-what{color:var(--text);margin-bottom:8px;line-height:1.5}
+  .affix-how{color:var(--muted);font-size:13px;margin-bottom:8px;padding-left:12px;border-left:2px solid var(--gold);line-height:1.5}
+  .affix-tip{background:rgba(255,204,0,.1);border:1px solid var(--gold);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text);margin-top:8px}
+  .affix-variants{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+  .affix-variant{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px}
+  .affix-variant-header{font-weight:800;font-size:15px;color:#a78bfa;margin-bottom:6px}
+  .affix-variant-what{color:var(--text);font-size:13px;margin-bottom:6px;line-height:1.5}
+  .affix-variant-how{color:var(--muted);font-size:12px;padding-left:10px;border-left:2px solid #a78bfa;line-height:1.5}
+  .affixes-hero{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(99,102,241,.1));border:1px solid rgba(167,139,250,.3);border-radius:16px;padding:20px;margin-bottom:20px;text-align:center}
+  .affixes-hero-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px}
+  .affixes-hero-sub{color:var(--muted);font-size:13px}
   .specs-screen{display:none}
 
 </style>
@@ -961,6 +990,7 @@
       <button class="mode-tab" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
       <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')"><span id="tab-lbl-professions">🔨 Professies</span></button>
       <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Weekly</span></button>
+      <button class="mode-tab" id="mode-tab-affixes" onclick="setMode('affixes')"><span id="tab-lbl-affixes">⚡ Affixes</span></button>
       <button class="mode-tab" id="mode-tab-specs" onclick="setMode('specs')"><span id="tab-lbl-specs">🎯 Specs</span></button>
     </div>
     <div class="header-controls">
@@ -1119,6 +1149,16 @@
 </div>
 
 
+<div id="affixes-screen">
+  <div class="content-wrap" style="padding-top:12px">
+    <div class="affixes-hero">
+      <div class="affixes-hero-title" id="affixes-hero-title">⚡ M+ Affixes</div>
+      <div class="affixes-hero-sub" id="affixes-hero-sub">Season 1 — Midnight</div>
+    </div>
+    <div id="affixes-content"></div>
+  </div>
+</div>
+
 <!-- ══ DATA FILES ══ -->
 <script src="data/dungeons/season1.js"></script>
 <script src="data/professions/skinning.js"></script>
@@ -1134,6 +1174,7 @@
 <script src="data/professions/tailoring.js"></script>
 <script src="data/professions/kp_sources.js"></script>
 <script src="data/professions/kp_data.js"></script>
+<script src="data/affixes.js"></script>
 <script src="data/help.js"></script>
 <script src="data/specs/bm_hunter.js"></script>
 <script src="data/specs/mm_hunter.js"></script>
@@ -1193,8 +1234,8 @@ const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHIN
 
 
 // ── VERSIE ──
-const VERSION = "v7.3";
-const VERSION_DATE = "2026-03-13";
+const VERSION = "v7.5";
+const VERSION_DATE = "2026-03-14";
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -1478,7 +1519,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_affixes: "⚡ Affixes", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -1532,7 +1573,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_affixes: "⚡ Affixes", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -1586,7 +1627,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_home: "🌙 Hjem", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Hjem", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_affixes: "⚡ Affixes", tab_specs: "🎯 Specs",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -1701,6 +1742,7 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-professions').textContent = u.tab_professions;
   document.getElementById('tab-lbl-weekly').textContent = u.tab_weekly;
   document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
+  document.getElementById('tab-lbl-affixes').textContent = u.tab_affixes;
   // Landing page strings
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
@@ -2138,6 +2180,39 @@ const PROF_UI = {
 function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
 function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
 
+
+function buildAffixScreen(){
+  const ui = (typeof AFFIX_UI !== 'undefined') ? (AFFIX_UI[lang] || AFFIX_UI.nl) : null;
+  if (!ui) return;
+  document.getElementById('affixes-hero-title').textContent = ui.title;
+  document.getElementById('affixes-hero-sub').textContent = ui.subtitle;
+  const el = document.getElementById('affixes-content');
+  el.innerHTML = ui.sections.map(s => {
+    const variantsHtml = s.variants ? `
+      <div class="affix-variants">
+        ${s.variants.map(v => `
+          <div class="affix-variant">
+            <div class="affix-variant-header">${v.icon} ${v.name}</div>
+            <div class="affix-variant-what">${v.what}</div>
+            <div class="affix-variant-how">${v.how}</div>
+          </div>`).join('')}
+      </div>` : '';
+    return `
+      <div class="affix-section" style="border-left:3px solid ${s.color}">
+        <div class="affix-level-badge">${ui.level_label} ${s.level}</div>
+        <div class="affix-header">
+          <span class="affix-icon">${s.icon}</span>
+          <span class="affix-name">${s.name}</span>
+          <span class="affix-type-badge ${(s.badge||'').toLowerCase()}">${s.badge||''}</span>
+        </div>
+        <div class="affix-what">${s.what}</div>
+        ${s.how ? `<div class="affix-how">${s.how}</div>` : ''}
+        ${variantsHtml}
+        ${s.tip ? `<div class="affix-tip">${ui.tip_label} ${s.tip}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
 function setMode(mode){
   document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
   document.getElementById('mode-tab-home').classList.toggle('active',mode==='home');
@@ -2145,6 +2220,7 @@ function setMode(mode){
   document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
   document.getElementById('mode-tab-weekly').classList.toggle('active',mode==='weekly');
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
+  document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   const sb=document.getElementById('spec-btn');
   if(sb)sb.style.display=(mode==='dungeons')?'':'none';
   document.getElementById('back-btn').style.display='none';
@@ -2162,6 +2238,8 @@ function setMode(mode){
     if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
     const hs=document.getElementById('prof-hero-sub');
     if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  } else if(mode==='affixes'){
+    buildAffixScreen();
   } else if(mode==='specs'){
     // Clear any inline display styles so CSS takes over
     document.getElementById('home-screen').style.display = '';
