@@ -3718,14 +3718,14 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'rotation') {
-    const rotRow = (r, imp) => `<tr><td class="rot-prio">${r.prio||r.step}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.note}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
+    const rotRow = (r, imp, i) => `<tr><td class="rot-prio">${r.prio||r.step||(i+1)}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.why||r.note||''}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
     return `${d.apex_tip?`<div class="apex-tip">${d.apex_tip}</div>`:''}
       <div class="spec-section-title">${ui.opener}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map((r,i)=>rotRow(r,false,i)).join('')}</tbody></table>
       <div class="spec-section-title">${ui.single}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th><th>${ui.imp}</th></tr></thead><tbody>${(d.single||[]).map(r=>rotRow(r,true)).join('')}</tbody></table>
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th><th>${ui.imp}</th></tr></thead><tbody>${(d.single||[]).map((r,i)=>rotRow(r,true,i)).join('')}</tbody></table>
       <div class="spec-section-title">${ui.aoe}</div>
-      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.aoe||[]).map(r=>rotRow(r,false)).join('')}</tbody></table>`;
+      <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.aoe||[]).map((r,i)=>rotRow(r,false,i)).join('')}</tbody></table>`;
   }
 
   if (tid === 'stats') {
