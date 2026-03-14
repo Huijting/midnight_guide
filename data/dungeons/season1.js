@@ -237,7 +237,7 @@ const DUNGEONS = [
      heal:{nl:["Corespark Detonation = AoE + Sparkburn DoT op iedereen — spot heal na de explosie.","Flux Collapse (kapotte pijpen langs de muren): kleine extra schade, maar stapelt als meerdere mensen geraakt worden."],en:["Corespark Detonation = AoE + Sparkburn DoT on everyone — spot heal after the explosion.","Flux Collapse (broken pipes along the walls): minor extra damage, but stacks if multiple people are hit."],da:["Corespark Detonation = AoE + Sparkburn DoT på alle — spot heal efter eksplosionen.","Flux Collapse (ødelagte rør langs væggene): lille ekstra skade, men stabler hvis flere rammes."]},
      dps:{nl:["Leyline Arrays = statische beams door de kamer — NOOIT aanraken (zware schade + stun).","Reflux Charge op jou: IN een Leyline Array gaan om hem te clearen.","Corespark Detonation bij 100 energie: dodge de zone.","Mana Batteries (langs de muren): als adds ze activeren — snel vernietigen."],en:["Leyline Arrays = static beams through the room — NEVER touch them (heavy damage + stun).","Reflux Charge on you: go INTO a Leyline Array to clear it.","Corespark Detonation at 100 energy: dodge the zone.","Mana Batteries (along the walls): if adds activate them — quickly destroy them."],da:["Leyline Arrays = statiske beams gennem rummet — RØR DEM ALDRIG (tung skade + stun).","Reflux Charge på dig: gå IND I en Leyline Array for at cleare den.","Corespark Detonation ved 100 energi: undgå zonen.","Mana Batteries (langs væggene): hvis adds aktiverer dem — ødelæg dem hurtigt."]}},
     {name:"Corewarden Nysarra",num:2,
-     desc:{nl:"Start op 60% HP (lichtscar door Lothraxion). Lightscar Flare = Lothraxion verschijnt, baas krijgt 300% damage amp + 30% healing amp — ALLE cooldowns hier. Umbral Lash = tank cleave + Void Scar debuff.",en:"Starts at 60% HP (lightscarred by Lothraxion). Lightscar Flare = Lothraxion appears, boss gains 300% damage amp + 30% healing amp — ALL cooldowns here. Umbral Lash = tank cleave + Void Scar debuff.",da:"Starter på 60% HP (lightscarret af Lothraxion). Lightscar Flare = Lothraxion dukker op, boss får 300% damage amp + 30% healing amp — ALLE cooldowns her. Umbral Lash = tank cleave + Void Scar debuff."},
+     desc:{nl:"Start op 60% HP (lichtscar door Lothraxion — haar totale HP is toch hoger dan normaal). Lightscar Flare: Lothraxion verschijnt en stunt de baas 18 sec. GA IN de wond op de grond staan — dan doe JIJ 300% meer schade ÁÁN de baas en word jij 30% beter geheald. Dit is het burst-venster, zet hier ALLE cooldowns in. Dodge eerst de Lothraxion-beam voor de fase (5 sec disorient). Umbral Lash = tank cleave + Void Scar debuff.",en:"Starts at 60% HP (lightscarred by Lothraxion — total HP is still higher than a normal boss). Lightscar Flare: Lothraxion appears and stuns the boss for 18 sec. STAND IN the wound on the ground — that makes YOU deal 300% more damage TO the boss and YOU receive 30% more healing. This is the burst window, use ALL cooldowns here. First dodge the Lothraxion beam before the phase (5 sec disorient). Umbral Lash = tank cleave + Void Scar debuff.",da:"Starter på 60% HP (lightscarret af Lothraxion — total HP er stadig højere end en normal boss). Lightscar Flare: Lothraxion dukker op og stunner bossen i 18 sek. STÅ I såret på gulvet — det gør at DU gør 300% mere skade PÅ bossen og DU modtager 30% mere healing. Dette er burst-vinduet, brug ALLE cooldowns her. Undgå først Lothraxion-beamen inden fasen (5 sek disorient). Umbral Lash = tank cleave + Void Scar debuff."},
      tank:{nl:["Umbral Lash = tank cleave + Void Scar debuff. Keer de boss weg van de groep.","Lightscar Flare: Lothraxion-beam verschijnt — DODGE hem (5 sec disorient). Daarna baas gestund + 300% schade — dit is het burst-venster.","Null Vanguard: adds spawnen (Dreadflail + Grand Nullifier) — off-tank pakt ze, snel doden."],en:["Umbral Lash = tank cleave + Void Scar debuff. Face boss away from the group.","Lightscar Flare: Lothraxion beam appears — DODGE it (5 sec disorient). Then boss stunned + 300% damage — this is the burst window.","Null Vanguard: adds spawn (Dreadflail + Grand Nullifier) — off-tank picks them up, kill fast."],da:["Umbral Lash = tank cleave + Void Scar debuff. Vend bossen væk fra gruppen.","Lightscar Flare: Lothraxion-beam opstår — UNDGÅ den (5 sek disorient). Derefter boss stunnet + 300% skade — dette er burst-vinduet.","Null Vanguard: adds spawner (Dreadflail + Grand Nullifier) — off-tank tager dem, dræb hurtigt."]},
      heal:{nl:["Lightscar Flare = 300% damage amp op de baas + 30% healing amp — grote raidcooldown hier, iedereen staat in de lichtzone.","Umbral Lash schade op tank: spot heal.","Null Vanguard adds: snel doden, hun schade stapelt op."],en:["Lightscar Flare = 300% damage amp on boss + 30% healing amp — major raid cooldown here, everyone stands in the light zone.","Umbral Lash damage on tank: spot heal.","Null Vanguard adds: kill fast, their damage stacks up."],da:["Lightscar Flare = 300% damage amp på bossen + 30% healing amp — stor raid-cooldown her, alle står i lyszonen.","Umbral Lash skade på tank: spot heal.","Null Vanguard adds: dræb hurtigt, deres skade stabler sig op."]},
      dps:{nl:["Lightscar Flare = 300% damage amp — ALLE offensive cooldowns hier inzetten. Dodge de Lothraxion-beam voor de fase begint.","Null Vanguard: Dreadflail + Grand Nullifier snel doden voor Nysarra haar volgende cast.","Baas start op 60% HP maar totale HP is hoger dan normaal — niet onderschatten."],en:["Lightscar Flare = 300% damage amp — use ALL offensive cooldowns here. Dodge the Lothraxion beam before the phase starts.","Null Vanguard: kill Dreadflail + Grand Nullifier fast before Nysarra's next cast.","Boss starts at 60% HP but total HP is higher than normal — don't underestimate it."],da:["Lightscar Flare = 300% damage amp — brug ALLE offensive cooldowns her. Undgå Lothraxion-beamen inden fasen starter.","Null Vanguard: dræb Dreadflail + Grand Nullifier hurtigt inden Nysarras næste cast.","Boss starter på 60% HP men total HP er højere end normalt — undervurder det ikke."]}},
@@ -5564,3 +5564,103 @@ const SPEC_TIPS = {
 
 };
 
+
+// ── GLOSSARY ──
+const GLOSSARY = [
+  {
+    term:{nl:"Interrupt",en:"Interrupt",da:"Interrupt"},
+    def:{nl:"Een ability die een cast van een vijand onderbreekt en stopt. Elke spec heeft er één. Cruciaal: als een cast niet geïnterrupt wordt, gaat er iets ergs gebeuren.",
+         en:"An ability that stops an enemy's spell while it's being cast. Every spec has one. Crucial: if a cast isn't interrupted, something bad will happen.",
+         da:"En evne der stopper en fjendes stavning mens den castes. Enhver spec har én. Afgørende: hvis et cast ikke afbrydes, sker der noget slemt."}
+  },
+  {
+    term:{nl:"Soak",en:"Soak",da:"Soak"},
+    def:{nl:"Bewust in een aanval of zone gaan staan zodat jij de schade opvangt voor de groep. Soaken = jij neemt de klap voor het team, zodat de rest er niet in hoeft te staan.",
+         en:"Deliberately standing in an attack or zone to absorb the damage yourself for the group. Soaking = you take the hit for the team, so the rest don't have to stand in it.",
+         da:"Bevidst stå i et angreb eller zone for at absorbere skaden selv for gruppen. Soake = du tager slaget for holdet, så resten ikke behøver at stå i det."}
+  },
+  {
+    term:{nl:"Frontal / Frontal ability",en:"Frontal / Frontal ability",da:"Frontal / Frontal ability"},
+    def:{nl:"Een aanval die alles in een kegel vóór de baas raakt. Als DPS of healer: nooit voor de baas staan. Als tank: keer de baas weg van de groep.",
+         en:"An attack that hits everything in a cone in front of the boss. As DPS or healer: never stand in front of the boss. As tank: face the boss away from the group.",
+         da:"Et angreb der rammer alt i en kegle foran bossen. Som DPS eller healer: stå aldrig foran bossen. Som tank: vend bossen væk fra gruppen."}
+  },
+  {
+    term:{nl:"DoT (Damage over Time)",en:"DoT (Damage over Time)",da:"DoT (Damage over Time)"},
+    def:{nl:"Een debuff die je elke paar seconden schade geeft. Je staat er niet in — hij zit op jou. Sommige DoTs zijn te verwijderen (dispel), andere niet.",
+         en:"A debuff that deals damage to you every few seconds. You're not standing in it — it's on you. Some DoTs can be removed (dispel), others cannot.",
+         da:"En debuff der gør skade på dig hvert par sekunder. Du står ikke i det — det er på dig. Nogle DoTs kan fjernes (dispel), andre ikke."}
+  },
+  {
+    term:{nl:"Kite / Kiten",en:"Kite / Kiting",da:"Kite / Kite"},
+    def:{nl:"Een vijand die jou volgt weghouden door weg te blijven lopen. Je blijft net buiten zijn bereik zodat hij jou of de groep niet raakt.",
+         en:"Keeping an enemy chasing you by continuously running away. You stay just out of its range so it can't hit you or the group.",
+         da:"Holde en fjende på afstand ved løbende at løbe væk. Du forbliver lige uden for dens rækkevidde så den ikke kan ramme dig eller gruppen."}
+  },
+  {
+    term:{nl:"Taunt swap",en:"Taunt swap",da:"Taunt swap"},
+    def:{nl:"Wanneer de tank een stapelende debuff heeft, taunt de tweede tank de baas over zodat de eerste tank kan herstellen. Tanks wisselen zo af. Niet iets wat DPS of healers hoeven te doen.",
+         en:"When the tank has a stacking debuff, the second tank taunts the boss over so the first tank can recover. Tanks alternate this way. Not something DPS or healers need to worry about.",
+         da:"Når tanken har en staplende debuff, taunder den anden tank bossen over så den første tank kan komme sig. Tanks skiftes. Ikke noget DPS eller healere behøver bekymre sig om."}
+  },
+  {
+    term:{nl:"LoS (Line of Sight)",en:"LoS (Line of Sight)",da:"LoS (Line of Sight)"},
+    def:{nl:"Zichtlijn. Als jij achter een pilaar of object staat, kan de vijand jou niet raken met zijn aanval. Trucje: ga achter een obstakel staan als een baas een grote aanval cast.",
+         en:"Line of sight. If you stand behind a pillar or object, the enemy can't hit you with its attack. Trick: get behind an obstacle when a boss casts a big attack.",
+         da:"Sigtelinje. Hvis du står bag en søjle eller objekt, kan fjenden ikke ramme dig med sit angreb. Trick: gå bag en forhindring når en boss caster et stort angreb."}
+  },
+  {
+    term:{nl:"Defensive / Cooldown",en:"Defensive / Cooldown",da:"Defensive / Cooldown"},
+    def:{nl:"Een krachtige ability met een lange herlaadtijd. 'Gebruik je defensive' betekent: druk op je survivability-ability om een zware klap te overleven. Elke spec heeft er minstens één.",
+         en:"A powerful ability with a long recharge time. 'Use your defensive' means: press your survivability ability to survive a big hit. Every spec has at least one.",
+         da:"En kraftfuld evne med lang genopladningstid. 'Brug din defensive' betyder: tryk på din overlevelses-evne for at overleve et hårdt slag. Enhver spec har mindst én."}
+  },
+  {
+    term:{nl:"AoE (Area of Effect)",en:"AoE (Area of Effect)",da:"AoE (Area of Effect)"},
+    def:{nl:"Schade of effect dat een gebied raakt — niet één doelwit, maar alles in de buurt. 'AoE de adds' betekent: gebruik een ability die meerdere vijanden tegelijk raakt.",
+         en:"Damage or effect that hits an area — not one target, but everything nearby. 'AoE the adds' means: use an ability that hits multiple enemies at once.",
+         da:"Skade eller effekt der rammer et område — ikke ét mål, men alt i nærheden. 'AoE adds' betyder: brug en evne der rammer flere fjender på én gang."}
+  },
+  {
+    term:{nl:"Adds",en:"Adds",da:"Adds"},
+    def:{nl:"Extra vijanden die tijdens een baasgevecht spawnen. Bijna altijd: dood ze eerst voordat je verder op de baas focust. Ze heten zo omdat het toevoegingen ('additions') zijn.",
+         en:"Extra enemies that spawn during a boss fight. Almost always: kill them first before refocusing on the boss. They're called adds because they're additions to the fight.",
+         da:"Ekstra fjender der spawner under et bossekamp. Næsten altid: dræb dem først inden du fokuserer på bossen igen. De kaldes adds fordi de er tilføjelser til kampen."}
+  },
+  {
+    term:{nl:"Tankbuster",en:"Tankbuster",da:"Tankbuster"},
+    def:{nl:"Een zware aanval gericht specifiek op de tank. Kan de tank bijna doden zonder defensive. Healers: extra healen op dit moment. Tank: gebruik een defensive.",
+         en:"A heavy attack aimed specifically at the tank. Can nearly kill the tank without a defensive. Healers: extra healing at this moment. Tank: use a defensive.",
+         da:"Et kraftigt angreb rettet specifikt mod tanken. Kan næsten dræbe tanken uden en defensive. Healere: ekstra healing på dette tidspunkt. Tank: brug en defensive."}
+  },
+  {
+    term:{nl:"Dispel",en:"Dispel",da:"Dispel"},
+    def:{nl:"Een ability die een negatief effect (debuff) van een medespeler verwijdert. Niet elke spec kan dit. Wordt in de guide aangegeven met 'dispel direct'.",
+         en:"An ability that removes a negative effect (debuff) from a teammate. Not every spec can do this. Indicated in the guide with 'dispel immediately'.",
+         da:"En evne der fjerner en negativ effekt (debuff) fra en holdkammerat. Ikke enhver spec kan dette. Angives i guiden med 'dispel straks'."}
+  },
+  {
+    term:{nl:"Purge",en:"Purge",da:"Purge"},
+    def:{nl:"Hetzelfde als dispel maar dan voor positieve effecten (buffs) op vijanden. Je verwijdert een buff van een vijand. Slechts een paar specs kunnen dit.",
+         en:"Same as dispel but for positive effects (buffs) on enemies. You remove a buff from an enemy. Only a few specs can do this.",
+         da:"Samme som dispel men for positive effekter (buffs) på fjender. Du fjerner en buff fra en fjende. Kun få specs kan dette."}
+  },
+  {
+    term:{nl:"Bloodlust / Lust / Heroism",en:"Bloodlust / Lust / Heroism",da:"Bloodlust / Lust / Heroism"},
+    def:{nl:"De krachtigste groepsbuff: iedereen aanvalt 30% sneller voor 40 seconden. Wordt één keer per gevecht gebruikt. De guide geeft aan wanneer dit het beste moment is.",
+         en:"The most powerful group buff: everyone attacks 30% faster for 40 seconds. Used once per fight. The guide indicates the best moment to use it.",
+         da:"Den kraftigste gruppebuff: alle angriber 30% hurtigere i 40 sekunder. Bruges én gang per kamp. Guiden angiver det bedste tidspunkt at bruge det."}
+  },
+  {
+    term:{nl:"Burst-venster",en:"Burst window",da:"Burst-vindue"},
+    def:{nl:"Een kort moment waarop de baas extra kwetsbaar is of jij extra schade doet. Bewaar je krachtigste offensive abilities voor dit moment — gebruik ze niet gewoon zodra ze beschikbaar zijn.",
+         en:"A brief window when the boss is extra vulnerable or you deal extra damage. Save your most powerful offensive abilities for this moment — don't just use them as soon as they're available.",
+         da:"Et kort øjeblik hvor bossen er ekstra sårbar eller du gør ekstra skade. Gem dine kraftigste offensive evner til dette øjeblik — brug dem ikke bare så snart de er tilgængelige."}
+  },
+  {
+    term:{nl:"Stack / Spreiden",en:"Stack / Spread",da:"Stack / Spred"},
+    def:{nl:"Stack = alle spelers gaan dicht bij elkaar staan. Spreiden = spelers gaan juist uit elkaar staan. Wanneer dit nodig is staat het in de boss-tips — het hangt af van de mechanic.",
+         en:"Stack = all players stand close together. Spread = players move apart. When this is needed it's stated in the boss tips — it depends on the mechanic.",
+         da:"Stack = alle spillere stiller sig tæt sammen. Spred = spillere går fra hinanden. Hvornår dette er nødvendigt fremgår af boss-tipsene — det afhænger af mekanikken."}
+  }
+];
