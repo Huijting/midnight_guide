@@ -18,7 +18,7 @@ Raid boss guides met mechanics per rol (Tank/Healer/DPS):
 - March on Quel'Danas — 2 bosses *(komt later)*
 
 ### ⚔️ Dungeons
-Alle Season 1 & 2 M+ dungeons met boss-tactieken, route-tips en M+-specifieke adviezen.
+Alle Season 1 M+ dungeons (8 stuks) met boss-tactieken, route-tips en M+-specifieke adviezen. Plus 4 Normal-only dungeons.
 
 ### 📅 Wekelijks
 Overzicht van wekelijkse activiteiten: World Bosses, Timewalking, Crafting Orders, Delves en meer.
