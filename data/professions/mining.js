@@ -10,13 +10,13 @@ const MINING = {
   },
   goldrating:4, userating:3,
   trainer:{
-    name:'Doran Steelbrow',
+    name:'Belil',
     loc:{
       nl:'Trainer Doran Steelbrow vind je in de <strong>Craftsmen\'s Quarter</strong> van Silvermoon City — het ambachtsgebied aan de oostkant van de stad waar alle vakmannen en smeden hun werkplaatsen hebben. Zoek naar de aambeelden en smeedovens.',
       en:'Trainer Doran Steelbrow is in the <strong>Craftsmen\'s Quarter</strong> of Silvermoon City — the crafting district on the east side of the city where all craftsmen and smiths have their workshops. Look for the anvils and forges.',
       da:'Træner Doran Steelbrow er i <strong>Craftsmen\'s Quarter</strong> i Silvermoon City — håndværkskvarteret på østsiden af byen hvor alle håndværkere og smede har deres værksteder.'
     },
-    way:'/way Eversong Woods 46.1 48.3',
+    way:'/way #2393 42.68 52.84',
     note:{
       nl:'💡 <strong>Combineer met een crafting profession:</strong> Mining werkt het best in combinatie met Blacksmithing, Engineering of Jewelcrafting. Dan verwerk je je eigen erts en heb je nooit materiaalkosten. Als je alleen Mining doet: verkoop alles op het AH, dat werkt ook prima. Staven (gesmolten erts) verkopen vaak beter dan ruwe erts omdat crafters tijd besparen.',
       en:'💡 <strong>Combine with a crafting profession:</strong> Mining works best combined with Blacksmithing, Engineering or Jewelcrafting. Then you process your own ore and never have material costs. If you only do Mining: sell everything on the AH, that works fine too. Bars (smelted ore) often sell better than raw ore because crafters save time.',
