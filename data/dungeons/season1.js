@@ -375,10 +375,13 @@ const DUNGEONS = [
     lust:[{moment:"Scourgelord Tyrannus",uitleg:{nl:"Meteen bij de pull.",en:"Immediately on pull.",da:"Umiddelbart ved pull."}}],
     trash:[
       {mob:"Ymirjar Graveblade",tags:["tank","int"],tip:{nl:"Frostbane Slash: tank debuff (+100% frost schade, stapelend). Icy Blast: interrupt — one-shot bij hoge stacks. Dark Rupture: AoE swirly — dodge.",en:"Frostbane Slash: tank debuff (+100% frost damage, stacking). Icy Blast: interrupt — one-shot at high stacks. Dark Rupture: AoE swirly — dodge.",da:"Frostbane Slash: tank debuff (+100% frost skade, stablende). Icy Blast: afbryd — one-shot ved høje stacks. Dark Rupture: AoE swirly — undgå."}},
+      {mob:"Gloombound Shadebringer",tags:["int"],tip:{nl:"Shadow Bolt: interrupt. Rotting Strikes: melee-aanvallen geven tank een disease debuff die max HP verlaagt per stack — dispel prioriteit.",en:"Shadow Bolt: interrupt. Rotting Strikes: melee attacks apply a disease debuff that reduces tank max HP per stack — dispel priority.",da:"Shadow Bolt: afbryd. Rotting Strikes: melee-angreb giver tanken en disease debuff der reducerer maks HP per stack — dispel prioritet."}},
       {mob:"Dreadpulse Lich",tags:["int","stop"],tip:{nl:"Icy Blast: interrupt ELKE cast. Torrent of Misery: channel, steeds zwaarder — CC of interrupt. Onder 50% HP: Dread Pulse = constante AoE tot dood. Vanish/Feign Death om combat te droppen.",en:"Icy Blast: interrupt EVERY cast. Torrent of Misery: channel, ramps up — CC or interrupt. Below 50% HP: Dread Pulse = constant AoE until dead. Vanish/Feign Death to drop combat.",da:"Icy Blast: afbryd HVERT cast. Torrent of Misery: channel, tiltagende — CC eller afbryd. Under 50% HP: Dread Pulse = konstant AoE til død. Vanish/Feign Death for at droppe kamp."}},
+      {mob:"Iceborn Proto-Drake",tags:["avoid","tank"],tip:{nl:"Frost Breath: frontal kegel op random speler — spreid losjes. Icy Strikes: extra frost schade op melee. Dood de Ymirjar-berijder eerst — die geeft Frostbane Slash debuff.",en:"Frost Breath: frontal cone on random player — loosely spread. Icy Strikes: extra frost damage on melee. Kill the Ymirjar rider first — they apply Frostbane Slash debuff.",da:"Frost Breath: frontal kegle på tilfældig spiller — løs spredning. Icy Strikes: ekstra frost skade på melee. Dræb Ymirjar-rytteren først — de giver Frostbane Slash debuff."}},
       {mob:"Plungetalon Gargoyle",tags:["stop","tank"],tip:{nl:"Stoneskin buff: 99% schade-reductie van voren — ALTIJD van achteren aanvallen! Plungegrip: abductie — interrupt of drop combat.",en:"Stoneskin buff: 99% damage reduction from the front — ALWAYS attack from behind! Plungegrip: abduction — interrupt or drop combat.",da:"Stoneskin buff: 99% skadereduktion forfra — ANGRIB ALTID BAGFRA! Plungegrip: abduktion — afbryd eller drop kamp."}},
-      {mob:"Glacieth",tags:["avoid","tank"],tip:{nl:"Tough mob. Cryoburst: AoE plas onder alle spelers — losjes spreiden. Focused Guard: schild van voren, aanvallen van achteren voor gegarandeerde crits.",en:"Tough mob. Cryoburst: AoE puddle under all players — loosely spread. Focused Guard: frontal shield, attack from behind for guaranteed crits.",da:"Tough mob. Cryoburst: AoE pøl under alle spillere — løs spredning. Focused Guard: frontal skjold, angrib bagfra for garanterede crits."}},
-      {mob:"Quarry Tormentor",tags:["purge"],tip:{nl:"Curse of Torment op random speler — curse dispel. Vrij laat gevangenen vrij voor extra % count en pad naar Tyrannus.",en:"Curse of Torment on random player — curse dispel. Free prisoners for extra % count and to unlock the path to Tyrannus.",da:"Curse of Torment på tilfældig spiller — curse dispel. Befri fanger for ekstra % count og for at åbne stien til Tyrannus."}}
+      {mob:"Glacieth",tags:["avoid","tank"],tip:{nl:"Tough mob. Cryoburst: AoE plas onder alle spelers — losjes spreiden. Focused Guard: schild van voren, aanvallen van achteren voor gegarandeerde crits. Cryopatch: ijsplassen op de grond.",en:"Tough mob. Cryoburst: AoE puddle under all players — loosely spread. Focused Guard: frontal shield, attack from behind for guaranteed crits. Cryopatch: ice puddles on the ground.",da:"Tough mob. Cryoburst: AoE pøl under alle spillere — løs spredning. Focused Guard: frontal skjold, angrib bagfra for garanterede crits. Cryopatch: ispøler på gulvet."}},
+      {mob:"Scourge Plaguespreader",tags:["int","stop"],tip:{nl:"Verschijnt tijdens Army of the Dead (Tyrannus lage HP). Interrupt hun cast — als het doorgaat = extra raid-schade. Hoge prioriteit.",en:"Appears during Army of the Dead (Tyrannus low HP). Interrupt their cast — if it goes through = extra raid damage. High priority.",da:"Opstår under Army of the Dead (Tyrannus lav HP). Afbryd deres cast — slipper det igennem = ekstra raid-skade. Høj prioritet."}},
+      {mob:"Quarry Tormentor",tags:["purge"],tip:{nl:"Curse of Torment op random speler — curse dispel. Vrij gevangenen voor extra % count en pad naar Tyrannus.",en:"Curse of Torment on random player — curse dispel. Free prisoners for extra % count and path to Tyrannus.",da:"Curse of Torment på tilfældig spiller — curse dispel. Befri fanger for ekstra % count og sti til Tyrannus."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
@@ -549,7 +552,13 @@ const DUNGEONS = [
       {label:{nl:"Baas 3 — Xathuux",en:"Boss 3 — Xathuux",da:"Boss 3 — Xathuux"},desc:{nl:"Tank defensives inzetten. Kleine demonen snel doden.",en:"Use tank defensives. Kill small demons fast.",da:"Brug tank defensives. Dræb små dæmoner hurtigt."}},
       {label:{nl:"Baas 4 — Lithiel 🔥",en:"Boss 4 — Lithiel 🔥",da:"Boss 4 — Lithiel 🔥"},desc:{nl:"Eindbaas. Fel-empowerment altijd onderbreken. Lust hier.",en:"Final boss. Always interrupt fel empowerment. Lust here.",da:"Slutboss. Afbryd altid fel-empowerment. Lust her."}}
     ],
-    mdt:false, kg_url:null
+    trash:[
+      {mob:"Fel Magister",tags:["int","avoid"],tip:{nl:"Arcane Missiles: interrupt. Felfire Bolt: groot projectiel op random speler — dodge. Caster mob, altijd priority.",en:"Arcane Missiles: interrupt. Felfire Bolt: large projectile on random player — dodge. Caster mob, always priority.",da:"Arcane Missiles: afbryd. Felfire Bolt: stort projektil på tilfældig spiller — undgå. Caster mob, altid prioritet."}},
+      {mob:"Daggerblade Enforcer",tags:["tank","purge"],tip:{nl:"Blade Poison: poison debuff op tank — dispel. Kidney Shot: stunte tank — defensive paraat.",en:"Blade Poison: poison debuff on tank — dispel. Kidney Shot: stuns tank — have a defensive ready.",da:"Blade Poison: poison debuff på tank — dispel. Kidney Shot: stunner tank — hav en defensive klar."}},
+      {mob:"Fel-Touched Imp",tags:["int","avoid"],tip:{nl:"Fel Bolt: interrupt. Spawnen in groepjes bij Lithiel — AoE ze snel weg.",en:"Fel Bolt: interrupt. Spawn in groups near Lithiel — AoE them down quickly.",da:"Fel Bolt: afbryd. Spawner i grupper nær Lithiel — AoE dem hurtigt ned."}},
+      {mob:"Shady Smuggler",tags:["stop","tank"],tip:{nl:"Stealth mob die van achteren aanvalt — tank positie bewust houden. Ambush: grote burst op tank.",en:"Stealth mob that attacks from behind — be aware of tank positioning. Ambush: large burst on tank.",da:"Stealth mob der angriber bagfra — vær bevidst om tankpositionen. Ambush: stort burst på tank."}},
+      {mob:"Furious Vilefiend",tags:["tank","int"],tip:{nl:"Lithiel roept deze op. Taunten + in positie voor DPS-cleave. Devouring Frenzy: zware melee. Vile Screech: interrupt.",en:"Summoned by Lithiel. Taunt + position for DPS cleave. Devouring Frenzy: heavy melee. Vile Screech: interrupt.",da:"Summoned af Lithiel. Taunt + positionér til DPS-cleave. Devouring Frenzy: tung melee. Vile Screech: afbryd."}}
+    ],    mdt:false, kg_url:null
   }
 },
 // ──────────────────────────────────────────────
@@ -601,7 +610,12 @@ const DUNGEONS = [
       {label:{nl:"Baas 3 — Lightwarden Ruia",en:"Boss 3 — Lightwarden Ruia",da:"Boss 3 — Lightwarden Ruia"},desc:{nl:"Wards vernietigen voor reflectieschade.",en:"Destroy wards before reflected damage.",da:"Ødelæg wards inden reflekteret skade."}},
       {label:{nl:"Baas 4 — Ziekket 🔥",en:"Boss 4 — Ziekket 🔥",da:"Boss 4 — Ziekket 🔥"},desc:{nl:"Lust in void-fase. Stack licht, spreid void.",en:"Lust in void phase. Stack light, spread void.",da:"Lust i void-fase. Stå tæt i lys, spred i void."}}
     ],
-    mdt:false, kg_url:null
+    trash:[
+      {mob:"Lightbloom Tender",tags:["int","purge"],tip:{nl:"Radiant Heal: interrupt of purge de buff op andere mobs. Healer mob — altijd eerst doden.",en:"Radiant Heal: interrupt or purge the buff on other mobs. Healer mob — always kill first.",da:"Radiant Heal: afbryd eller purge buff på andre mobs. Healer mob — dræb altid først."}},
+      {mob:"Blossoming Sprout",tags:["avoid"],tip:{nl:"Explodeert bij laag HP voor AoE — kite of snel doden. Staggered kills om simultane explosies te vermijden.",en:"Explodes at low HP for AoE — kite or kill fast. Stagger kills to avoid simultaneous explosions.",da:"Eksploderer ved lav HP for AoE — kite eller dræb hurtigt. Stagger kills for at undgå samtidige eksplosioner."}},
+      {mob:"Lightbloom Sentinel",tags:["tank","stop"],tip:{nl:"Searing Radiance: grote frontal kegel — tank van de groep afgewend. CC-resist bij hoge HP.",en:"Searing Radiance: large frontal cone — face boss away from group. CC-resistant at high HP.",da:"Searing Radiance: stor frontal kegle — vend bossen væk fra gruppen. CC-resistent ved høj HP."}},
+      {mob:"Corrupted Rootwalker",tags:["tank","avoid"],tip:{nl:"Grasping Roots: root op random speler — root break of wachten. Toxic Spores: AoE gifplas op de grond.",en:"Grasping Roots: root on random player — root break or wait it out. Toxic Spores: AoE poison puddle on the ground.",da:"Grasping Roots: root på tilfældig spiller — root break eller vent. Toxic Spores: AoE giftpøl på gulvet."}}
+    ],    mdt:false, kg_url:null
   }
 },
 // ──────────────────────────────────────────────
@@ -647,7 +661,12 @@ const DUNGEONS = [
       {label:{nl:"Beproeving 2 — Sentinel of Winter",en:"Trial 2 — Sentinel of Winter",da:"Prøvelse 2 — Sentinel of Winter"},desc:{nl:"Eternal Winter = grote cooldown. Muur in de rug bij terugstoot.",en:"Eternal Winter = major cooldown. Back to a wall during knockback.",da:"Eternal Winter = stor cooldown. Ryg mod en væg under knockback."}},
       {label:{nl:"Beproeving 3 — Nalorakk 🔥",en:"Trial 3 — Nalorakk 🔥",da:"Prøvelse 3 — Nalorakk 🔥"},desc:{nl:"Beer → Trol. Lust in trolvorm-venster.",en:"Bear → Troll. Lust during troll form window.",da:"Bjørn → Trold. Lust under troldeform-vindue."}}
     ],
-    mdt:false, kg_url:null
+    trash:[
+      {mob:"Vilebranch Hexer",tags:["int","purge"],tip:{nl:"Hex: interrupt — transformeert een speler in een kikker. Mojo Bolt: interrupt. Healer mob — focus direct.",en:"Hex: interrupt — transforms a player into a frog. Mojo Bolt: interrupt. Healer mob — focus immediately.",da:"Hex: afbryd — transformerer en spiller til en frø. Mojo Bolt: afbryd. Healer mob — focus straks."}},
+      {mob:"Amani Axethrower",tags:["avoid","tank"],tip:{nl:"Hatchet Throw: grote ranged aanval op random speler — losjes spreiden. Berserker Charge: charge naar tank.",en:"Hatchet Throw: large ranged attack on random player — loosely spread. Berserker Charge: charges the tank.",da:"Hatchet Throw: stort ranged angreb på tilfældig spiller — løs spredning. Berserker Charge: charger tanken."}},
+      {mob:"Spirit Stalker",tags:["stop","tank"],tip:{nl:"Spectral Form: mob wordt tijdelijk onsterfelijk — stop casts met CC. Spirit Maul: zware tank hit.",en:"Spectral Form: mob becomes temporarily immune — stop casts with CC. Spirit Maul: heavy tank hit.",da:"Spectral Form: mob bliver midlertidigt immun — stop casts med CC. Spirit Maul: tungt tank hit."}},
+      {mob:"Nalorakk Bear-Guard",tags:["tank","purge"],tip:{nl:"Bear Swipe: frontale cleave — tank van groep afgewend. Enrage: purge of sooth.",en:"Bear Swipe: frontal cleave — face tank away from group. Enrage: purge or sooth.",da:"Bear Swipe: frontal cleave — vend tank væk fra gruppen. Enrage: purge eller sooth."}}
+    ],    mdt:false, kg_url:null
   }
 },
 // ──────────────────────────────────────────────
@@ -693,7 +712,12 @@ const DUNGEONS = [
       {label:{nl:"Baas 2 — Atroxus",en:"Boss 2 — Atroxus",da:"Boss 2 — Atroxus"},desc:{nl:"NOOIT frontaal staan. Defensive op elke Searing Roar.",en:"NEVER stand frontal. Defensive on every Searing Roar.",da:"Stå ALDRIG frontalt. Defensive ved hvert Searing Roar."}},
       {label:{nl:"Baas 3 — Charonus 🔥",en:"Boss 3 — Charonus 🔥",da:"Boss 3 — Charonus 🔥"},desc:{nl:"Versterkingen direct doden. Gepuppette spelers niet aanvallen. Lust hier.",en:"Kill reinforcements immediately. Don't attack puppeted players. Lust here.",da:"Dræb forstærkninger straks. Angrib ikke puppet-spillere. Lust her."}}
     ],
-    mdt:false, kg_url:null
+    trash:[
+      {mob:"Arena Enforcer",tags:["tank","stop"],tip:{nl:"Bonecrush: grote melee hit op tank — defensive. Intercept: charge naar getargete speler — niet weglopen als tank.",en:"Bonecrush: large melee hit on tank — defensive. Intercept: charges targeted player — don't run away as tank.",da:"Bonecrush: stort melee hit på tank — defensive. Intercept: charge mod målrettet spiller — løb ikke væk som tank."}},
+      {mob:"Void Sniper",tags:["int","avoid"],tip:{nl:"Void Shot: interrupt. Ranged mob die ver van de groep blijft — tank er naartoe bewegen of interrupt.",en:"Void Shot: interrupt. Ranged mob that stays far from the group — move tank toward it or interrupt.",da:"Void Shot: afbryd. Ranged mob der holder afstand fra gruppen — flyt tank mod den eller afbryd."}},
+      {mob:"D'mani Overseer",tags:["int","purge"],tip:{nl:"Rally Crowd: buff op alle omliggende mobs — purge direct. Command: interrupt om toeschouwers te voorkomen die adds spawnen.",en:"Rally Crowd: buff on all nearby mobs — purge immediately. Command: interrupt to prevent spectators spawning adds.",da:"Rally Crowd: buff på alle nærliggende mobs — purge straks. Command: afbryd for at forhindre tilskuere i at spawne adds."}},
+      {mob:"Gravitic Sentry",tags:["avoid","tank"],tip:{nl:"Gravity Pulse: AoE pull op alle spelers richting de mob — positioneer niet bij de rand. Void Lash: tank cleave.",en:"Gravity Pulse: AoE pull of all players toward the mob — don't position near the edge. Void Lash: tank cleave.",da:"Gravity Pulse: AoE pull af alle spillere mod mob — positionér ikke nær kanten. Void Lash: tank cleave."}}
+    ],    mdt:false, kg_url:null
   }
 }
 ];

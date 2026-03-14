@@ -20,6 +20,8 @@ Raid boss guides met mechanics per rol (Tank/Healer/DPS):
 ### ⚔️ Dungeons
 Alle Season 1 M+ dungeons (8 stuks) met boss-tactieken, route-tips en M+-specifieke adviezen. Plus 4 Normal-only dungeons.
 
+**Nieuw in v7.6:** Alle 12 dungeons hebben nu een **Trash Mob Gids** in de Route-tab met 69 mobs gedocumenteerd, kleurgecodeerde tags (Interrupt/Dodge/Purge/CC/Tank) en gecorrigeerde baas-mechanics voor alle 8 M+ dungeons.
+
 ### 📅 Wekelijks
 Overzicht van wekelijkse activiteiten: World Bosses, Timewalking, Crafting Orders, Delves en meer.
 
@@ -55,6 +57,17 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 ---
 
 ## 📦 Changelog
+
+### v7.6 — 14 maart 2026
+- 🐉 Trash mob gids toegevoegd aan alle 12 dungeons (69 mobs, tags: Interrupt/Dodge/Purge/CC/Tank)
+- ✅ Alle bazen van alle 8 M+ dungeons grondig gecheckt op Method.gg & Icy Veins (feb/mrt 2026)
+- 🔧 Algeth'ar Academy: "Overpowering Perception" was verzonnen — correct: Crawth + Vexamus
+- 🔧 Pit of Saron: alle WotLK-era mechanics vervangen door Midnight M+ versies
+- 🔧 Seat of the Triumvirate: L'ura, Nezhar, Zuraal & Saprish mechanics volledig herschreven
+- 🔧 Skyreach: Ranjit/Rukhran/Viryx mechanics gecorrigeerd
+- 🔧 Murder Row: Xathuux & Lithiel ontbraken uit bazenarray — hersteld
+- 🔧 Blinding Vale: Baas 1 "Lightblossom Trinity" → correcte naam "Meittik"
+- 🔧 Voidscar Arena: Charonus fake mechanics vervangen door Unstable Singularity/Gravitic Orbs
 
 ### v7.5 — 14 maart 2026
 - 🏰 Raids sectie toegevoegd (The Dreamrift — Chimaerus volledig uitgewerkt, NL/EN/DA)
