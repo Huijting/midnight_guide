@@ -16,7 +16,7 @@ const COOKING = {
       en:'Trainer Chef Belindra is in the <strong>Sunwell Kitchens</strong> — the large kitchen next to the Sunwell Terraces in the south of Silvermoon City. Recognizable by the white chef\'s hat and the smell of exotic herbs.',
       da:'Træner Chef Belindra er i <strong>Sunwell-køkkenerne</strong> — det store køkken ved Sunwell-terrasserne i det sydlige Silvermoon City. Genkendelig på den hvide kokshue og duften af eksotiske urter.'
     },
-    way:'/way Silvermoon City 40.3 70.1',
+    way:'/way #2393 45.64 53.99',
     note:{
       nl:'💡 <strong>Secondary profession — geen slotkosten:</strong> Cooking kost je geen van je twee professionslots. Je kunt altijd Cooking leren naast je twee hoofdprofessions. Er is geen reden om het NIET te leren.',
       en:'💡 <strong>Secondary profession — no slot cost:</strong> Cooking does not use either of your two profession slots. You can always learn Cooking alongside your two main professions. There is no reason NOT to learn it.',
