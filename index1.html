@@ -964,31 +964,6 @@
   body.mode-raids.raid-detail-open #raids-screen{display:none !important}
   body.mode-raids.raid-detail-open #detail-screen{display:block !important}
   #raids-screen{display:none}
-
-  /* ── GLOSSARY SCREEN ── */
-  #glossary-screen{display:none}
-  body.mode-glossary #home-screen{display:none !important}
-  body.mode-glossary #detail-screen{display:none !important}
-  body.mode-glossary #prof-screen{display:none !important}
-  body.mode-glossary #weekly-screen{display:none !important}
-  body.mode-glossary .specs-screen{display:none !important}
-  body.mode-glossary #affixes-screen{display:none !important}
-  body.mode-glossary #raids-screen{display:none !important}
-  body.mode-glossary #glossary-screen{display:block !important}
-  .glossary-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
-  .glossary-item-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:10px;transition:background .15s}
-  .glossary-item-header:hover{background:var(--deep)}
-  .glossary-term{font-size:15px;font-weight:800;color:var(--gold)}
-  .glossary-arrow{font-size:13px;color:var(--muted);transition:transform .2s;flex-shrink:0}
-  .glossary-item.open .glossary-arrow{transform:rotate(90deg)}
-  .glossary-def{display:none;padding:0 16px 14px;font-size:14px;color:var(--text);line-height:1.6;border-top:1px solid var(--border)}
-  .glossary-item.open .glossary-def{display:block}
-  .glossary-intro{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:var(--muted);line-height:1.6}
-  /* ── INLINE TOOLTIPS ── */
-  .g-tip{border-bottom:1px dashed var(--gold);color:var(--gold);cursor:help;font-weight:700}
-  .g-tip-box{display:none;position:fixed;z-index:9999;max-width:300px;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:10px 13px;font-size:13px;color:var(--text);line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.55);pointer-events:none}
-  .g-tip-box.show{display:block}
-  @media(max-width:600px){.g-tip-box{max-width:calc(100vw - 24px)}}
   .raid-card{background:var(--panel);border:1px solid rgba(167,139,250,.3);border-left:3px solid #a78bfa;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;transition:all .2s}
   .raid-card:hover{border-color:#a78bfa;transform:translateY(-2px);box-shadow:0 8px 24px rgba(167,139,250,.15)}
   .raid-card-header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -1057,7 +1032,6 @@
       <button class="mode-tab" id="mode-tab-affixes" onclick="setMode('affixes')"><span id="tab-lbl-affixes">⚡ Affixes</span></button>
       <button class="mode-tab" id="mode-tab-raids" onclick="setMode('raids')"><span id="tab-lbl-raids">🏰 Raids</span></button>
       <button class="mode-tab" id="mode-tab-specs" onclick="setMode('specs')"><span id="tab-lbl-specs">🎯 Specs</span></button>
-      <button class="mode-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
     </div>
     <div class="header-controls">
     <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
@@ -1241,17 +1215,6 @@
   </div>
 </div>
 
-<!-- ══ GLOSSARY SCREEN ══ -->
-<div id="glossary-screen">
-  <div class="content-wrap" style="padding-top:12px;padding-bottom:48px">
-    <div class="affixes-hero">
-      <div class="affixes-hero-title">📖 <span id="glossary-title">Woordenlijst</span></div>
-      <div class="affixes-hero-sub" id="glossary-sub">WoW-begrippen uitgelegd voor beginners</div>
-    </div>
-    <div id="glossary-content"></div>
-  </div>
-</div>
-
 <!-- ══ DATA FILES ══ -->
 <script src="data/dungeons/season1.js"></script>
 <script src="data/raids/dreamrift.js"></script>
@@ -1328,7 +1291,7 @@ const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHIN
 
 
 // ── VERSIE ──
-const VERSION = "v7.7";
+const VERSION = "v7.6";
 const VERSION_DATE = "2026-03-14";
 
 
@@ -1580,10 +1543,6 @@ const UI = {
     badge_normal: "📖 ALLEEN NORMAL",
     badge_raid:   "🏰 RAID",
     lbl_raid:     "🏰 Raids",
-    lbl_glossary: "📖 Woordenlijst",
-    glossary_title:"Woordenlijst",
-    glossary_sub:  "WoW-begrippen uitgelegd voor beginners",
-    glossary_intro:"Klik op een term om de uitleg te zien. Gouden woorden in de dungeon-tips zijn ook klikbaar!",
     tab_overview: "Overzicht",
     tab_bosses:   "Bazen",
     tab_route:    "Routeplanner",
@@ -1646,10 +1605,6 @@ const UI = {
     badge_normal: "📖 NORMAL ONLY",
     badge_raid:   "🏰 RAID",
     lbl_raid:     "🏰 Raids",
-    lbl_glossary: "📖 Glossary",
-    glossary_title:"Glossary",
-    glossary_sub:  "WoW terms explained for beginners",
-    glossary_intro:"Click a term to see its explanation. Gold words in dungeon tips are also clickable!",
     tab_overview: "Overview",
     tab_bosses:   "Bosses",
     tab_route:    "Route Planner",
@@ -1712,10 +1667,6 @@ const UI = {
     badge_normal: "📖 KUN NORMAL",
     badge_raid:   "🏰 RAID",
     lbl_raid:     "🏰 Raids",
-    lbl_glossary: "📖 Ordbog",
-    glossary_title:"Ordbog",
-    glossary_sub:  "WoW-begreber forklaret for begyndere",
-    glossary_intro:"Klik på et begreb for at se forklaringen. Gyldne ord i dungeon-tips kan også klikkes!",
     tab_overview: "Oversigt",
     tab_bosses:   "Bosser",
     tab_route:    "Ruteplanlægger",
@@ -1874,12 +1825,9 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
   document.getElementById('tab-lbl-affixes').textContent = u.tab_affixes;
   document.getElementById('tab-lbl-raids').textContent = u.tab_raids;
-  const glbl = document.getElementById('tab-lbl-glossary');
-  if(glbl) glbl.textContent = u.lbl_glossary || '📖 Woordenlijst';
   // Landing page strings
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
-  if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -2121,10 +2069,6 @@ function renderDetail(d) {
     </div>`;
   }).join('');
 
-  // Apply inline tooltips to boss descriptions and role tips
-  const bossesEl = document.getElementById('bosses-content');
-  if(bossesEl) applyTooltips(bossesEl);
-
   // Route — Visual Route Map + KG button
   const r = d.route;
   const kgS = KG_STRINGS[lang];
@@ -2319,7 +2263,6 @@ document.addEventListener('DOMContentLoaded', function() {
   updateFooter();
   updateSpecBtn();
   renderHome();
-  initTooltips();
 });
 
 // ── KEYSTONE.GURU POPUP ──
@@ -2432,133 +2375,6 @@ function buildAffixScreen(){
   }).join('');
 }
 
-
-// ═══════════════════════════════════════════════════════════════
-// GLOSSARY + TOOLTIPS
-// ═══════════════════════════════════════════════════════════════
-
-function buildGlossaryScreen(){
-  const u = UI[lang];
-  const titleEl = document.getElementById('glossary-title');
-  const subEl   = document.getElementById('glossary-sub');
-  if(titleEl) titleEl.textContent = u.glossary_title || 'Woordenlijst';
-  if(subEl)   subEl.textContent   = u.glossary_sub   || '';
-  const el = document.getElementById('glossary-content');
-  if(!el) return;
-  if(typeof GLOSSARY === 'undefined' || !GLOSSARY.length){
-    el.innerHTML = '<p style="color:var(--muted);padding:20px">Woordenlijst niet beschikbaar.</p>';
-    return;
-  }
-  const intro = u.glossary_intro || '';
-  el.innerHTML =
-    `<div class="glossary-intro">${intro}</div>` +
-    GLOSSARY.map((item, i) => {
-      const term = item.term[lang] || item.term.nl;
-      const def  = item.def[lang]  || item.def.nl;
-      return `<div class="glossary-item" id="gitem-${i}">
-        <div class="glossary-item-header" onclick="toggleGlossaryItem(${i})">
-          <span class="glossary-term">${term}</span>
-          <span class="glossary-arrow">▶</span>
-        </div>
-        <div class="glossary-def">${def}</div>
-      </div>`;
-    }).join('');
-}
-
-function toggleGlossaryItem(i){
-  const el = document.getElementById('gitem-'+i);
-  if(el) el.classList.toggle('open');
-}
-
-// Tooltip map: lowercase keyword → GLOSSARY index
-const TOOLTIP_MAP = {
-  'interrupt':0,'interrupts':0,'interrupten':0,'interrupteer':0,'interrupted':0,
-  'soak':1,'soaken':1,'soakt':1,'soaking':1,
-  'frontal':2,'frontals':2,
-  'dot':3,'dots':3,
-  'kite':4,'kiten':4,'kitet':4,'kiting':4,
-  'taunt swap':5,'taunten':5,
-  'los':6,'line of sight':6,
-  'defensive':7,'defensives':7,'cooldown':7,'cooldowns':7,
-  'aoe':8,
-  'add':9,'adds':9,
-  'tankbuster':10,'tankbusters':10,
-  'dispel':11,'dispellen':11,'dispels':11,
-  'purge':12,'purgen':12,'purges':12,
-  'bloodlust':13,'lust':13,'heroism':13,
-  'burst':14,'burst-venster':14,
-  'stack':15,'stacking':15,'spreiden':15,'spread':15
-};
-
-let _gTipBox = null;
-
-function initTooltips(){
-  _gTipBox = document.createElement('div');
-  _gTipBox.className = 'g-tip-box';
-  document.body.appendChild(_gTipBox);
-
-  document.addEventListener('mouseover', e => {
-    const el = e.target.closest('.g-tip');
-    if(!el) return;
-    showTip(el, e);
-  });
-  document.addEventListener('mousemove', e => {
-    if(_gTipBox.classList.contains('show')) posTip(e);
-  });
-  document.addEventListener('mouseout', e => {
-    if(!e.target.closest('.g-tip')) _gTipBox.classList.remove('show');
-  });
-  // Touch: tap to toggle
-  document.addEventListener('click', e => {
-    const el = e.target.closest('.g-tip');
-    if(!el) return;
-    const wasVisible = _gTipBox.classList.contains('show');
-    if(wasVisible){ _gTipBox.classList.remove('show'); return; }
-    showTip(el, e);
-  });
-}
-
-function showTip(el, e){
-  if(!_gTipBox || typeof GLOSSARY === 'undefined') return;
-  const idx = parseInt(el.dataset.gidx);
-  if(isNaN(idx) || !GLOSSARY[idx]) return;
-  _gTipBox.textContent = GLOSSARY[idx].def[lang] || GLOSSARY[idx].def.nl;
-  _gTipBox.classList.add('show');
-  posTip(e);
-}
-
-function posTip(e){
-  if(!_gTipBox) return;
-  const pad = 14, bw = 290, bh = _gTipBox.offsetHeight || 60;
-  let x = e.clientX + pad, y = e.clientY + pad;
-  if(x + bw > window.innerWidth  - pad) x = e.clientX - bw - pad;
-  if(y + bh > window.innerHeight - pad) y = e.clientY - bh - pad;
-  _gTipBox.style.left = Math.max(pad, x) + 'px';
-  _gTipBox.style.top  = Math.max(pad, y) + 'px';
-}
-
-// Apply tooltip spans to rendered boss/role tip text
-function applyTooltips(container){
-  if(typeof GLOSSARY === 'undefined') return;
-  const sel = '.boss-desc, .generic-tips li, .spec-tip, .tip-box';
-  const nodes = container ? container.querySelectorAll(sel) : document.querySelectorAll(sel);
-  // Build sorted keys longest-first to avoid partial matches
-  const keys   = Object.keys(TOOLTIP_MAP).sort((a,b)=>b.length-a.length);
-  const esc    = keys.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
-  const regex  = new RegExp('(?<![\\w-])('+esc.join('|')+')(?![\\w-])','gi');
-  nodes.forEach(node => {
-    if(node.dataset.tipped) return;
-    node.dataset.tipped = '1';
-    node.innerHTML = node.innerHTML.replace(regex, match => {
-      const idx = TOOLTIP_MAP[match.toLowerCase()];
-      return idx !== undefined
-        ? `<span class="g-tip" data-gidx="${idx}">${match}</span>`
-        : match;
-    });
-  });
-}
-
-
 function setMode(mode){
   document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
   document.getElementById('mode-tab-home').classList.toggle('active',mode==='home');
@@ -2568,8 +2384,6 @@ function setMode(mode){
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
   document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
-  const gtab=document.getElementById('mode-tab-glossary');
-  if(gtab) gtab.classList.toggle('active',mode==='glossary');
   const sb=document.getElementById('spec-btn');
   if(sb)sb.style.display=(mode==='dungeons')?'':'none';
   document.getElementById('back-btn').style.display='none';
@@ -2596,8 +2410,6 @@ function setMode(mode){
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
     buildSpecGrid();
-  } else if(mode==='glossary'){
-    buildGlossaryScreen();
   } else {
     if(currentDungeon)goHome();
   }
