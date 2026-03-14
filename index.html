@@ -244,6 +244,21 @@
 
   /* ── ROUTE ── */
   .route-section{margin-bottom:26px}
+  /* ─── TRASH MOBS ─── */
+  .trash-section{margin-bottom:26px}
+  .trash-grid{display:flex;flex-direction:column;gap:8px}
+  .trash-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+  .trash-card-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .trash-mob-name{font-weight:700;font-size:.9rem;color:var(--fg)}
+  .trash-tags{display:flex;gap:4px;flex-wrap:wrap}
+  .trash-tag{font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em}
+  .trash-tag.t-int{background:rgba(232,99,99,.18);color:#f08080;border:1px solid rgba(232,99,99,.3)}
+  .trash-tag.t-avoid{background:rgba(255,180,50,.15);color:#e8c840;border:1px solid rgba(255,180,50,.25)}
+  .trash-tag.t-purge{background:rgba(140,100,200,.2);color:#b580f0;border:1px solid rgba(140,100,200,.3)}
+  .trash-tag.t-stop{background:rgba(80,160,220,.18);color:#70b0e0;border:1px solid rgba(80,160,220,.3)}
+  .trash-tag.t-tank{background:rgba(60,180,120,.15);color:#60d090;border:1px solid rgba(60,180,120,.25)}
+  .trash-card-tip{font-size:.82rem;color:var(--muted);line-height:1.45}
+
   /* ── VISUAL ROUTE MAP ── */
   .vr-container{position:relative;padding:8px 0 8px 44px;margin-top:4px}
   .vr-line{position:absolute;left:19px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--border));border-radius:3px;z-index:0}
@@ -1555,6 +1570,12 @@ const UI = {
     vr_label_event:  "EVENT",
     vr_label_lust:   "LUST",
     norm_note:    "Geen Keystone.guru route nodig — deze dungeon zit niet in de M+ rotatie. Bovenstaande pull-volgorde is voldoende.",
+    trash_title:  "🐉 Belangrijke Trash Mobs",
+    tag_int:      "Interrupt",
+    tag_avoid:    "Dodge",
+    tag_purge:    "Purge/Dispel",
+    tag_stop:     "CC/Stop",
+    tag_tank:     "Tank",
     back:         "← Terug",
     theme_light:  "☀️",
     theme_dark:   "🌙",
@@ -1611,6 +1632,12 @@ const UI = {
     vr_label_event:  "EVENT",
     vr_label_lust:   "LUST",
     norm_note:    "No Keystone.guru route needed — this dungeon is not in the M+ rotation. The pull order above is sufficient.",
+    trash_title:  "🐉 Key Trash Mobs",
+    tag_int:      "Interrupt",
+    tag_avoid:    "Dodge",
+    tag_purge:    "Purge/Dispel",
+    tag_stop:     "CC/Stop",
+    tag_tank:     "Tank",
     back:         "← Back",
     theme_light:  "☀️",
     theme_dark:   "🌙",
@@ -1667,6 +1694,12 @@ const UI = {
     vr_label_event:  "EVENT",
     vr_label_lust:   "LUST",
     norm_note:    "Ingen Keystone.guru-rute nødvendig — denne dungeon er ikke i M+-rotationen. Pull-rækkefølgen ovenfor er tilstrækkelig.",
+    trash_title:  "🐉 Vigtige Trash Mobs",
+    tag_int:      "Interrupt",
+    tag_avoid:    "Undgå",
+    tag_purge:    "Purge/Dispel",
+    tag_stop:     "CC/Stop",
+    tag_tank:     "Tank",
     back:         "← Tilbage",
     theme_light:  "☀️",
     theme_dark:   "🌙",
@@ -2159,7 +2192,16 @@ function renderDetail(d) {
         </span>
         <span class="kg-arrow">↗</span>
       </button>
-    </div>` : ''}`;
+    </div>` : ''}
+    ${d.route && d.route.trash && d.route.trash.length ? (()=>{
+      const tagMap = {int:'t-int',avoid:'t-avoid',purge:'t-purge',stop:'t-stop',tank:'t-tank'};
+      const tagLbl = {int:u.tag_int,avoid:u.tag_avoid,purge:u.tag_purge,stop:u.tag_stop,tank:u.tag_tank};
+      const cards = d.route.trash.map(m=>{
+        const tags = (m.tags||[]).map(tg=>'<span class="trash-tag '+(tagMap[tg]||'')+'">'+(tagLbl[tg]||tg)+'</span>').join('');
+        return '<div class="trash-card"><div class="trash-card-header"><span class="trash-mob-name">'+m.mob+'</span><div class="trash-tags">'+tags+'</div></div><div class="trash-card-tip">'+t(m.tip)+'</div></div>';
+      }).join('');
+      return '<div class="trash-section route-section"><div class="route-title">'+u.trash_title+'</div><div class="trash-grid">'+cards+'</div></div>';
+    })() : ''}`;
 }
 
 // ═══════════════════════════════════════════════════════════════
