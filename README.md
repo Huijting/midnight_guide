@@ -11,6 +11,12 @@ Een trilinguïstische (NL/EN/DA) Progressive Web App voor World of Warcraft: Mid
 ### 🌙 Home
 Landingspagina met navigatiekaarten en directe links naar alle secties.
 
+### 🏰 Raids (nieuw in v7.5)
+Raid boss guides met mechanics per rol (Tank/Healer/DPS):
+- **The Dreamrift** — Chimaerus, the Undreamt God (opent 17 maart 2026)
+- The Voidspire — 6 bosses *(komt later)*
+- March on Quel'Danas — 2 bosses *(komt later)*
+
 ### ⚔️ Dungeons
 Alle Season 1 & 2 M+ dungeons met boss-tactieken, route-tips en M+-specifieke adviezen.
 
@@ -51,9 +57,12 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 ## 📦 Changelog
 
 ### v7.5 — 14 maart 2026
-- ⚡ Affixes tab toegevoegd (volledig overzicht Season 1 affixes)
+- 🏰 Raids sectie toegevoegd (The Dreamrift — Chimaerus volledig uitgewerkt, NL/EN/DA)
+- ⚡ Affixes tab toegevoegd (volledig overzicht Season 1 affixes NL/EN/DA)
+- 📱 Navigatie wrapping: tabs gaan nu naar 2 rijen op mobiel i.p.v. scrollen
+- 🎯 Spec sub-tabs ook naar 2 rijen op mobiel
 - 🔧 Rotation tab fix: "undefined" teksten opgelost
-- 📋 Changelog toegevoegd aan Handleiding
+- 📋 Changelog + Raids sectie toegevoegd aan Handleiding
 - 🗓️ Weekly Crafting Quest verwijzing gecorrigeerd
 
 ### v7.4 — 13 maart 2026
