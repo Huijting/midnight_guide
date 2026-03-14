@@ -10,13 +10,13 @@ const BLACKSMITHING = {
   },
   goldrating:4, userating:4,
   trainer:{
-    name:'Grommash Ironforge',
+    name:'Benmarrin',
     loc:{
       nl:'Trainer Grommash Ironforge staat in de <strong>Craftsmen\'s Quarter</strong> van Silvermoon City, naast de grote smidse. Je hoort hem al van ver — het hameren op het aambeeld stopt nooit. Hij is de grootste en luidste NPC in het hele kwartier.',
       en:'Trainer Grommash Ironforge is in the <strong>Craftsmen\'s Quarter</strong> of Silvermoon City, next to the large forge. You can hear him from far away — the hammering on the anvil never stops. He is the largest and loudest NPC in the entire district.',
       da:'Træner Grommash Ironforge er i <strong>Craftsmen\'s Quarter</strong> i Silvermoon City, ved siden af den store smedje. Du kan høre ham langt væk — hamringen på ambolten stopper aldrig.'
     },
-    way:'/way Eversong Woods 46.8 47.9',
+    way:'/way #2393 43.74 51.86',
     note:{
       nl:'💡 <strong>Combineer met Mining:</strong> Blacksmithing verbruikt enorme hoeveelheden Void-Iron Ore en staven. Als je Mining ook hebt, heb je nooit materiaalkosten. Zonder Mining ben je continu afhankelijk van het AH voor grondstoffen — dat kan tot 60-70% van je winstmarge opeten. De combinatie BS+Mining is even winstgevend als Alchemy+Herbalism.',
       en:'💡 <strong>Combine with Mining:</strong> Blacksmithing consumes enormous amounts of Void-Iron Ore and bars. If you also have Mining, you never have material costs. Without Mining you are constantly dependent on the AH for raw materials — that can eat up 60-70% of your profit margin. The BS+Mining combination is just as profitable as Alchemy+Herbalism.',
