@@ -10,13 +10,13 @@ const JEWELCRAFTING = {
   },
   goldrating:4, userating:4,
   trainer:{
-    name:'Lariel Gemshaper',
+    name:'Amin',
     loc:{
       nl:'Trainer Lariel Gemshaper staat in de <strong>Gem District</strong> van Silvermoon City — een klein maar glinsterende winkelsstraat vol juweliersatelier in het westelijke deel van de stad. Het is makkelijk te vinden: de etalages glinsteren van alle kleurrijke stenen.',
       en:'Trainer Lariel Gemshaper is in the <strong>Gem District</strong> of Silvermoon City — a small but glittering shopping street full of jewelry workshops in the western part of the city. Easy to find: the shop windows glitter with colorful stones.',
       da:'Træner Lariel Gemshaper er i <strong>Gem District</strong> i Silvermoon City — en lille men glitrende shoppinggade fyldt med smykkeværksteder i byens vestlige del.'
     },
-    way:'/way Silvermoon City 33.7 51.2',
+    way:'/way #2393 48.13 55.00',
     note:{
       nl:'💡 <strong>Combineer met Mining:</strong> Jewelcrafting heeft Rough Gems nodig die vallen als bijvangst bij Mining. Met Mining verzamel je automatisch al je gematerialen tijdens het ertsfarmen. Twee professions tegelijk bedienen — ideale synergiecombinatie.',
       en:'💡 <strong>Combine with Mining:</strong> Jewelcrafting needs Rough Gems that drop as bycatch from Mining. With Mining you automatically collect all your gem materials while ore farming. Serving two professions at once — ideal synergy combination.',
