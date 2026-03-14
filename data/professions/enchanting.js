@@ -10,13 +10,13 @@ const ENCHANTING = {
   },
   goldrating:4, userating:5,
   trainer:{
-    name:'Aelindra Spellweave',
+    name:'Dolothos',
     loc:{
       nl:'Trainer Aelindra Spellweave staat in de <strong>Arcane Sanctum</strong> van Silvermoon City — de magische toren in het noordoosten van de stad. Ze is omringd door zwevende runen en gloeiende kristallen. Je kunt haar vinden op de tweede verdieping.',
       en:'Trainer Aelindra Spellweave is in the <strong>Arcane Sanctum</strong> of Silvermoon City — the magical tower in the northeast of the city. She is surrounded by floating runes and glowing crystals. Find her on the second floor.',
       da:'Træner Aelindra Spellweave er i <strong>Arcane Sanctum</strong> i Silvermoon City — det magiske tårn i byens nordøst, omgivet af svævende runer og glødende krystaller.'
     },
-    way:'/way Silvermoon City 52.3 29.4',
+    way:'/way #2393 47.91 53.90',
     note:{
       nl:'💡 <strong>Disenchanting — je eigen grondstoffenbron:</strong> Als Enchanter kun je elk stuk gear in je tassen vernietigen (disenchanten) voor Arcane Dust, Lesser Eternals of Greater Eternals. Dit betekent dat elke dungeon-run die je doet én elk stuk gear dat je niet gebruikt direct omgezet kan worden in enchanting-materialen. Je koopt nooit grondstoffen op het AH.',
       en:'💡 <strong>Disenchanting — your own material source:</strong> As an Enchanter you can destroy any piece of gear in your bags (disenchant) for Arcane Dust, Lesser Eternals or Greater Eternals. This means every dungeon run you do and every piece of gear you do not use can be directly converted into enchanting materials. You never buy raw materials on the AH.',
