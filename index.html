@@ -515,8 +515,8 @@
   #qr-close{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline}
 
   /* ── MODE TABS ── */
-  .mode-tabs{display:flex;flex-wrap:wrap;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:4px;flex-shrink:0;max-width:100%}
-  .mode-tabs::-webkit-scrollbar{display:none}
+  .mode-tabs{display:flex;flex-wrap:nowrap;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:4px;flex-shrink:1;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+  .mode-tabs::-webkit-scrollbar{display:none}.mode-tabs{scrollbar-width:none}
   .mode-tab{background:none;border:none;border-radius:16px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
   .mode-tab.active{background:var(--gold);color:#000}
   .mode-tab:hover:not(.active){color:var(--text)}
@@ -845,7 +845,7 @@
   .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
   .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
   @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
-  @media(max-width:768px){.mode-tabs{gap:2px;justify-content:center}.mode-tab{padding:4px 8px;font-size:11px;flex:0 0 auto}}
+  @media(max-width:768px){.mode-tabs{gap:2px;justify-content:flex-start}.mode-tab{padding:4px 8px;font-size:11px;flex:0 0 auto}}
 
   /* ── SPECS ─────────────────────────────────────────────── */
   /* Spec grid — Method-stijl per klasse */
@@ -964,8 +964,6 @@
   body.mode-raids.raid-detail-open #raids-screen{display:none !important}
   body.mode-raids.raid-detail-open #detail-screen{display:block !important}
   #raids-screen{display:none}
-
-  /* ── GLOSSARY SCREEN ── */
   #glossary-screen{display:none}
   body.mode-glossary #home-screen{display:none !important}
   body.mode-glossary #detail-screen{display:none !important}
@@ -984,7 +982,6 @@
   .glossary-def{display:none;padding:0 16px 14px;font-size:14px;color:var(--text);line-height:1.6;border-top:1px solid var(--border)}
   .glossary-item.open .glossary-def{display:block}
   .glossary-intro{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:var(--muted);line-height:1.6}
-  /* ── INLINE TOOLTIPS ── */
   .g-tip{border-bottom:1px dashed var(--gold);color:var(--gold);cursor:help;font-weight:700}
   .g-tip-box{display:none;position:fixed;z-index:9999;max-width:300px;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:10px 13px;font-size:13px;color:var(--text);line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.55);pointer-events:none}
   .g-tip-box.show{display:block}
@@ -1874,12 +1871,11 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
   document.getElementById('tab-lbl-affixes').textContent = u.tab_affixes;
   document.getElementById('tab-lbl-raids').textContent = u.tab_raids;
-  const glbl = document.getElementById('tab-lbl-glossary');
-  if(glbl) glbl.textContent = u.lbl_glossary || '📖 Woordenlijst';
-  // Landing page strings
+  const _glbl=document.getElementById('tab-lbl-glossary');
+  if(_glbl) _glbl.textContent=u.lbl_glossary||'📖 Woordenlijst';
   updateLandingStrings();
-  if (document.body.classList.contains('mode-specs')) buildSpecGrid();
-  if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
+  if(document.body.classList.contains('mode-specs')) buildSpecGrid();
+  if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -2120,10 +2116,8 @@ function renderDetail(d) {
       </div>
     </div>`;
   }).join('');
-
-  // Apply inline tooltips to boss descriptions and role tips
-  const bossesEl = document.getElementById('bosses-content');
-  if(bossesEl) applyTooltips(bossesEl);
+  const _bel=document.getElementById('bosses-content');
+  if(_bel) setTimeout(()=>applyTooltips(_bel),0);
 
   // Route — Visual Route Map + KG button
   const r = d.route;
@@ -2432,29 +2426,25 @@ function buildAffixScreen(){
   }).join('');
 }
 
-
 // ═══════════════════════════════════════════════════════════════
 // GLOSSARY + TOOLTIPS
 // ═══════════════════════════════════════════════════════════════
-
 function buildGlossaryScreen(){
-  const u = UI[lang];
-  const titleEl = document.getElementById('glossary-title');
-  const subEl   = document.getElementById('glossary-sub');
-  if(titleEl) titleEl.textContent = u.glossary_title || 'Woordenlijst';
-  if(subEl)   subEl.textContent   = u.glossary_sub   || '';
-  const el = document.getElementById('glossary-content');
+  const u=UI[lang];
+  const t1=document.getElementById('glossary-title');
+  const t2=document.getElementById('glossary-sub');
+  if(t1) t1.textContent=u.glossary_title||'Woordenlijst';
+  if(t2) t2.textContent=u.glossary_sub||'';
+  const el=document.getElementById('glossary-content');
   if(!el) return;
-  if(typeof GLOSSARY === 'undefined' || !GLOSSARY.length){
-    el.innerHTML = '<p style="color:var(--muted);padding:20px">Woordenlijst niet beschikbaar.</p>';
+  if(typeof GLOSSARY==='undefined'||!GLOSSARY.length){
+    el.innerHTML='<p style="color:var(--muted);padding:20px">Woordenlijst niet beschikbaar.</p>';
     return;
   }
-  const intro = u.glossary_intro || '';
-  el.innerHTML =
-    `<div class="glossary-intro">${intro}</div>` +
-    GLOSSARY.map((item, i) => {
-      const term = item.term[lang] || item.term.nl;
-      const def  = item.def[lang]  || item.def.nl;
+  el.innerHTML=(u.glossary_intro?`<div class="glossary-intro">${u.glossary_intro}</div>`:'')+
+    GLOSSARY.map((item,i)=>{
+      const term=item.term[lang]||item.term.nl;
+      const def=item.def[lang]||item.def.nl;
       return `<div class="glossary-item" id="gitem-${i}">
         <div class="glossary-item-header" onclick="toggleGlossaryItem(${i})">
           <span class="glossary-term">${term}</span>
@@ -2464,15 +2454,12 @@ function buildGlossaryScreen(){
       </div>`;
     }).join('');
 }
-
 function toggleGlossaryItem(i){
-  const el = document.getElementById('gitem-'+i);
+  const el=document.getElementById('gitem-'+i);
   if(el) el.classList.toggle('open');
 }
-
-// Tooltip map: lowercase keyword → GLOSSARY index
-const TOOLTIP_MAP = {
-  'interrupt':0,'interrupts':0,'interrupten':0,'interrupteer':0,'interrupted':0,
+const TOOLTIP_MAP={
+  'interrupt':0,'interrupts':0,'interrupten':0,'interrupted':0,'interrupteer':0,
   'soak':1,'soaken':1,'soakt':1,'soaking':1,
   'frontal':2,'frontals':2,
   'dot':3,'dots':3,
@@ -2489,71 +2476,58 @@ const TOOLTIP_MAP = {
   'burst':14,'burst-venster':14,
   'stack':15,'stacking':15,'spreiden':15,'spread':15
 };
-
-let _gTipBox = null;
-
+let _gBox=null;
 function initTooltips(){
-  _gTipBox = document.createElement('div');
-  _gTipBox.className = 'g-tip-box';
-  document.body.appendChild(_gTipBox);
-
-  document.addEventListener('mouseover', e => {
-    const el = e.target.closest('.g-tip');
+  _gBox=document.createElement('div');
+  _gBox.className='g-tip-box';
+  document.body.appendChild(_gBox);
+  document.addEventListener('mouseover',e=>{
+    const el=e.target.closest('.g-tip');
+    if(el) showTip(el,e);
+  });
+  document.addEventListener('mousemove',e=>{
+    if(_gBox.classList.contains('show')) posTip(e);
+  });
+  document.addEventListener('mouseout',e=>{
+    if(!e.target.closest('.g-tip')) _gBox.classList.remove('show');
+  });
+  document.addEventListener('click',e=>{
+    const el=e.target.closest('.g-tip');
     if(!el) return;
-    showTip(el, e);
-  });
-  document.addEventListener('mousemove', e => {
-    if(_gTipBox.classList.contains('show')) posTip(e);
-  });
-  document.addEventListener('mouseout', e => {
-    if(!e.target.closest('.g-tip')) _gTipBox.classList.remove('show');
-  });
-  // Touch: tap to toggle
-  document.addEventListener('click', e => {
-    const el = e.target.closest('.g-tip');
-    if(!el) return;
-    const wasVisible = _gTipBox.classList.contains('show');
-    if(wasVisible){ _gTipBox.classList.remove('show'); return; }
-    showTip(el, e);
+    if(_gBox.classList.contains('show')){_gBox.classList.remove('show');return;}
+    showTip(el,e);
   });
 }
-
-function showTip(el, e){
-  if(!_gTipBox || typeof GLOSSARY === 'undefined') return;
-  const idx = parseInt(el.dataset.gidx);
-  if(isNaN(idx) || !GLOSSARY[idx]) return;
-  _gTipBox.textContent = GLOSSARY[idx].def[lang] || GLOSSARY[idx].def.nl;
-  _gTipBox.classList.add('show');
+function showTip(el,e){
+  if(!_gBox||typeof GLOSSARY==='undefined') return;
+  const idx=parseInt(el.dataset.gidx);
+  if(isNaN(idx)||!GLOSSARY[idx]) return;
+  _gBox.textContent=GLOSSARY[idx].def[lang]||GLOSSARY[idx].def.nl;
+  _gBox.classList.add('show');
   posTip(e);
 }
-
 function posTip(e){
-  if(!_gTipBox) return;
-  const pad = 14, bw = 290, bh = _gTipBox.offsetHeight || 60;
-  let x = e.clientX + pad, y = e.clientY + pad;
-  if(x + bw > window.innerWidth  - pad) x = e.clientX - bw - pad;
-  if(y + bh > window.innerHeight - pad) y = e.clientY - bh - pad;
-  _gTipBox.style.left = Math.max(pad, x) + 'px';
-  _gTipBox.style.top  = Math.max(pad, y) + 'px';
+  if(!_gBox) return;
+  const pad=14,bw=290,bh=_gBox.offsetHeight||60;
+  let x=e.clientX+pad,y=e.clientY+pad;
+  if(x+bw>window.innerWidth-pad)  x=e.clientX-bw-pad;
+  if(y+bh>window.innerHeight-pad) y=e.clientY-bh-pad;
+  _gBox.style.left=Math.max(pad,x)+'px';
+  _gBox.style.top =Math.max(pad,y)+'px';
 }
-
-// Apply tooltip spans to rendered boss/role tip text
 function applyTooltips(container){
-  if(typeof GLOSSARY === 'undefined') return;
-  const sel = '.boss-desc, .generic-tips li, .spec-tip, .tip-box';
-  const nodes = container ? container.querySelectorAll(sel) : document.querySelectorAll(sel);
-  // Build sorted keys longest-first to avoid partial matches
-  const keys   = Object.keys(TOOLTIP_MAP).sort((a,b)=>b.length-a.length);
-  const esc    = keys.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
-  const regex  = new RegExp('(?<![\\w-])('+esc.join('|')+')(?![\\w-])','gi');
-  nodes.forEach(node => {
+  if(typeof GLOSSARY==='undefined') return;
+  const sel='.boss-desc,.generic-tips li,.spec-tip,.tip-box';
+  const nodes=container?container.querySelectorAll(sel):document.querySelectorAll(sel);
+  const keys=Object.keys(TOOLTIP_MAP).sort((a,b)=>b.length-a.length);
+  const esc=keys.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+  const rx=new RegExp('(?<![\\w-])('+esc.join('|')+')(?![\\w-])','gi');
+  nodes.forEach(node=>{
     if(node.dataset.tipped) return;
-    node.dataset.tipped = '1';
-    node.innerHTML = node.innerHTML.replace(regex, match => {
-      const idx = TOOLTIP_MAP[match.toLowerCase()];
-      return idx !== undefined
-        ? `<span class="g-tip" data-gidx="${idx}">${match}</span>`
-        : match;
+    node.dataset.tipped='1';
+    node.innerHTML=node.innerHTML.replace(rx,m=>{
+      const idx=TOOLTIP_MAP[m.toLowerCase()];
+      return idx!==undefined?`<span class="g-tip" data-gidx="${idx}">${m}</span>`:m;
     });
   });
 }
@@ -2568,8 +2542,8 @@ function setMode(mode){
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
   document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
-  const gtab=document.getElementById('mode-tab-glossary');
-  if(gtab) gtab.classList.toggle('active',mode==='glossary');
+  const _gtab=document.getElementById('mode-tab-glossary');
+  if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
   const sb=document.getElementById('spec-btn');
   if(sb)sb.style.display=(mode==='dungeons')?'':'none';
   document.getElementById('back-btn').style.display='none';
@@ -2592,7 +2566,6 @@ function setMode(mode){
   } else if(mode==='raids'){
     buildRaidScreen();
   } else if(mode==='specs'){
-    // Clear any inline display styles so CSS takes over
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
     buildSpecGrid();
