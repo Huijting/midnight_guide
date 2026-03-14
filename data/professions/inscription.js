@@ -10,13 +10,13 @@ const INSCRIPTION = {
   },
   goldrating:3, userating:4,
   trainer:{
-    name:'Velos Inkhand',
+    name:'Zantasia',
     loc:{
       nl:'Trainer Velos Inkhand staat in de <strong>Library of Silvermoon</strong> — de grote bibliotheek aan de hoofdstraat van Silvermoon City. Hij zit achter een bureau vol perkamentrol en inkpotten.',
       en:'Trainer Velos Inkhand is in the <strong>Library of Silvermoon</strong> — the large library on the main street of Silvermoon City. He sits behind a desk full of scrolls and ink pots.',
       da:'Træner Velos Inkhand er i <strong>Silvermoons Bibliotek</strong> — det store bibliotek på Silvermoon Citys hovedgade, bag et skrivebord fyldt med skriftruller og blækkrukker.'
     },
-    way:'/way Silvermoon City 44.1 38.9',
+    way:'/way #2393 46.81 51.73',
     note:{
       nl:'💡 <strong>Combineer met Herbalism:</strong> Inscription verbruikt enorme hoeveelheden kruiden voor inkt. Met Herbalism plukt je je eigen grondstoffen — anders ben je afhankelijk van het AH voor constant kruid-inkopen, wat je winstmarge flink aantast.',
       en:'💡 <strong>Combine with Herbalism:</strong> Inscription consumes enormous amounts of herbs for ink. With Herbalism you pick your own raw materials — otherwise you depend on the AH for constant herb purchases, significantly eating into your profit margin.',
