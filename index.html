@@ -43,9 +43,6 @@
     <div class="header-right">
       <button id="spec-btn" onclick="openSpecModal()">⚙ <span class="spec-btn-text">Kies spec</span></button>
       <button class="search-header-btn" id="search-header-btn" onclick="openSearch()" title="Zoeken">🔍</button>
-      <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
-      <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
-      <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
       <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">☀️</button>
       <button class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
@@ -53,6 +50,9 @@
   <!-- Rij 2: hoofd-navigatie tabs (scrollbaar) -->
   <div class="header-row header-row-tabs">
     <div class="mode-tabs">
+      <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
+      <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
+      <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
       <button class="mode-tab active" id="mode-tab-home" onclick="setMode('home')"><span id="tab-lbl-home">🌙 Home</span></button>
       <button class="mode-tab" id="mode-tab-raids" onclick="setMode('raids')"><span id="tab-lbl-raids">🏰 Raids</span></button>
       <button class="mode-tab" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
@@ -145,14 +145,14 @@
       <div class="pdet-lore" id="pdet-lore"></div>
       <div class="pdet-ratings" id="pdet-ratings"></div>
     </div>
-    <div class="pdet-tabs">
+    <div class="pdet-tabs-wrapper"><div class="pdet-tabs">
       <button class="pdet-tab active" onclick="switchProfTab(this,'ptab-trainer')">🗺 Trainer</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-specs')">🌿 Specs</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-items')">⚗ Items</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">📋 KP Gids</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kpbronnen')">🗺️ KP</button>
-    </div>
+    </div></div>
     <div class="pdet-panel visible" id="ptab-trainer"></div>
     <div class="pdet-panel" id="ptab-specs"></div>
     <div class="pdet-panel" id="ptab-items"></div>
