@@ -54,17 +54,31 @@
 
   /* ── HEADER ── */
   #site-header{position:sticky;top:0;z-index:100;background:var(--head-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 12px}
-  .header-row{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:8px}
-  .header-row-top{height:46px}
-  .header-row-tabs{padding:4px 0 5px;border-top:1px solid rgba(255,255,255,.06)}
-  #back-btn{display:none;background:none;border:1px solid var(--border);color:var(--gold);font-size:13px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+  .header-row{max-width:1100px;margin:0 auto;display:grid;align-items:center}
+  .header-row-top{grid-template-columns:1fr auto 1fr;height:44px;gap:6px}
+  .header-row-tabs{grid-template-columns:1fr;padding:4px 0 5px;border-top:1px solid rgba(255,255,255,.06)}
+  .header-left{display:flex;align-items:center;gap:4px;justify-content:flex-start}
+  .header-center{display:flex;align-items:center;justify-content:center}
+  .header-right{display:flex;align-items:center;gap:5px;justify-content:flex-end}
+  .header-title{font-size:14px;font-weight:800;color:var(--gold);white-space:nowrap;letter-spacing:.02em}
+  #back-btn{display:none;background:none;border:1px solid var(--border);color:var(--gold);font-size:13px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;white-space:nowrap}
   #back-btn:hover{background:var(--gold);color:var(--bg)}
-  .header-title{font-size:13px;font-weight:700;color:var(--gold);white-space:nowrap;flex-shrink:0}
-  .header-util-tabs{display:flex;gap:3px;flex-shrink:0}
-  .util-tab{background:none;border:none;border-radius:12px;padding:3px 10px;font-size:11px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+  .util-tab{background:none;border:none;border-radius:12px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
   .util-tab.active{background:var(--gold);color:#000}
   .util-tab:hover:not(.active){color:var(--text)}
-  .header-sub{font-size:10px;color:var(--muted);font-weight:400;display:block;letter-spacing:.04em}
+  /* Mobile: compact controls */
+  @media(max-width:600px){
+    .header-row-top{height:auto;padding:5px 0;gap:4px}
+    .header-title{font-size:12px}
+    .util-tab{font-size:10px;padding:3px 7px}
+    .lang-btn:not(.active){display:none}
+    .lang-btn.active{font-size:15px;padding:2px 4px;background:none;border:none}
+    .theme-btn{font-size:15px;padding:2px 3px;background:none;border:none}
+    .pwa-header-btn{display:none}
+    .search-header-btn{font-size:15px;padding:2px 3px;background:none;border:none}
+    #spec-btn .spec-btn-text{display:none}
+    #spec-btn{padding:4px 8px;font-size:13px}
+  }
 
   /* ── LANG + THEME TOGGLES ── */
   .header-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -109,7 +123,6 @@
     /* Grid */
     .dungeon-grid{grid-template-columns:1fr;gap:8px;padding:0 10px 40px}
     /* Header compacter */
-    .header-row-top{height:44px;gap:6px}
     .header-title{font-size:12px}
     .header-sub{display:none}
     .lang-btn,.theme-btn{padding:4px 7px;font-size:11px}
@@ -521,20 +534,12 @@
   #qr-close{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline}
 
   /* ── MODE TABS ── */
-  .mode-tabs{display:flex;flex-wrap:nowrap;gap:3px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:3px;flex-shrink:0}
-  .mode-tab{background:none;border:none;border-radius:12px;padding:4px 13px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+  .mode-tabs{display:flex;flex-wrap:nowrap;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:4px;flex-shrink:1;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+  .mode-tabs::-webkit-scrollbar{display:none}.mode-tabs{scrollbar-width:none}
+  .mode-tab{background:none;border:none;border-radius:16px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
   .mode-tab.active{background:var(--gold);color:#000}
   .mode-tab:hover:not(.active){color:var(--text)}
-  @media(max-width:600px){
-    .header-row-top{height:auto;padding:5px 0;flex-wrap:wrap;gap:5px}
-    .header-title{font-size:12px}
-    .header-util-tabs{gap:2px}
-    .util-tab{font-size:10px;padding:3px 7px}
-    .header-controls{gap:3px}
-    .lang-btn,.theme-btn,.pwa-header-btn,.search-header-btn{font-size:15px;padding:2px 3px;background:none;border:none}
-    .header-row-tabs{padding:3px 0 4px}
-    .mode-tab{font-size:11px;padding:4px 9px}
-  }
+  @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.lang-btn,.theme-btn,.pwa-header-btn,.search-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
   /* ═══ LANDING PAGE ═══ */
   #landing-screen{display:none;padding:0;position:relative;flex-direction:column;justify-content:center}
   body.mode-home #landing-screen{display:flex !important}
@@ -859,7 +864,7 @@
   .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
   .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
   @media(max-width:480px){.prof-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px 16px}.item-grid{grid-template-columns:1fr 1fr}.pdet-tabs{gap:2px}.pdet-tab{font-size:11px;padding:6px}}
-  @media(max-width:768px){.mode-tabs{gap:2px}.mode-tab{padding:4px 8px;font-size:11px}}
+  @media(max-width:768px){.mode-tabs{gap:2px;justify-content:flex-start}.mode-tab{padding:4px 8px;font-size:11px;flex:0 0 auto}}
 
   /* ── SPECS ─────────────────────────────────────────────── */
   /* Spec grid — Method-stijl per klasse */
@@ -1054,17 +1059,18 @@
 </div>
 
 <header id="site-header">
-  <!-- Rij 1: Logo + utility tabs + controls -->
+  <!-- Rij 1: Util links | Logo midden | Controls rechts -->
   <div class="header-row header-row-top">
-    <button id="back-btn" onclick="goHome()">←</button>
-    <div class="header-title">🌙 Midnight</div>
-    <div class="header-util-tabs">
+    <div class="header-left">
+      <button id="back-btn" onclick="goHome()">←</button>
       <button class="util-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Wekelijks</span></button>
       <button class="util-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
     </div>
-    <div style="flex:1;min-width:8px"></div>
-    <div class="header-controls">
-      <button id="spec-btn" onclick="openSpecModal()">⚙ Kies spec</button>
+    <div class="header-center">
+      <div class="header-title">🌙 Midnight</div>
+    </div>
+    <div class="header-right">
+      <button id="spec-btn" onclick="openSpecModal()">⚙ <span class="spec-btn-text">Kies spec</span></button>
       <button class="search-header-btn" id="search-header-btn" onclick="openSearch()" title="Zoeken">🔍</button>
       <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
       <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
@@ -1073,7 +1079,7 @@
       <button class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
   </div>
-  <!-- Rij 2: Hoofd-navigatie tabs -->
+  <!-- Rij 2: Hoofd-navigatie -->
   <div class="header-row header-row-tabs">
     <div class="mode-tabs">
       <button class="mode-tab active" id="mode-tab-home" onclick="setMode('home')"><span id="tab-lbl-home">🌙 Home</span></button>
@@ -1498,12 +1504,12 @@ function updateSpecBtn() {
     const cls = CLASSES.find(c => c.id === currentSpec.classId);
     const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
     if (cls && sp) {
-      btn.textContent = cls.icon + ' ' + sp.name[lang];
+      btn.innerHTML = cls.icon + ' <span class="spec-btn-text">' + sp.name[lang] + '</span>';
       btn.style.color = 'var(--gold)';
       return;
     }
   }
-  btn.textContent = '⚙ ' + ui.btn_no_spec;
+  btn.innerHTML = '⚙ <span class="spec-btn-text">' + ui.btn_no_spec + '</span>';
   btn.style.color = 'var(--muted)';
 }
 
