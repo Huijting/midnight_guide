@@ -137,10 +137,6 @@
   </div>
   <div class="prof-grid" id="prof-grid"></div>
 
-  <!-- BEGIN LEATHERWORKING BEGINNER GUIDE -->
-  <div id="lw-beginner-guide" class="prof-guide-container" style="display: none; max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 8px; color: var(--text);"></div>
-  <!-- END LEATHERWORKING BEGINNER GUIDE -->
-
   <div id="prof-detail">
     <button class="pdet-back" id="pdet-back-btn" onclick="showProfGrid()">← Terug</button>
     <div class="pdet-header">
@@ -157,6 +153,7 @@
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-orders')">📦 Orders</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kp')">📋 KP Gids</button>
       <button class="pdet-tab" onclick="switchProfTab(this,'ptab-kpbronnen')">🗺️ KP</button>
+        <button class="pdet-tab" id="pdet-tab-guide" onclick="switchProfTab(this,'ptab-guide')" style="display:none;">📖 Gids</button>
     </div></div>
     <div class="pdet-panel visible" id="ptab-trainer"></div>
     <div class="pdet-panel" id="ptab-specs"></div>
@@ -164,6 +161,9 @@
     <div class="pdet-panel" id="ptab-orders"></div>
     <div class="pdet-panel" id="ptab-kp"></div>
     <div class="pdet-panel" id="ptab-kpbronnen"></div>
+      <div class="pdet-panel" id="ptab-guide">
+        <div id="prof-guide-content" class="prof-guide-container" style="padding: 20px; border-radius: 12px; margin-top: 10px; color: var(--text);"></div>
+      </div>
   </div>
 </div>
 
