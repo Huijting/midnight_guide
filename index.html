@@ -584,6 +584,7 @@
   .landing-hero{position:relative;z-index:1;text-align:center;padding:20px 20px 12px;max-width:600px;margin:0 auto}
   .landing-moon{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8 0%,#f5d060 40%,#c89a20 70%,#8a6510 100%);box-shadow:0 0 30px rgba(245,208,96,.6),0 0 60px rgba(245,208,96,.25),0 0 100px rgba(245,208,96,.1);margin:0 auto 12px;animation:moonpulse 3s ease-in-out infinite}
   @keyframes moonpulse{0%,100%{box-shadow:0 0 30px rgba(245,208,96,.6),0 0 60px rgba(245,208,96,.25)}50%{box-shadow:0 0 40px rgba(245,208,96,.9),0 0 80px rgba(245,208,96,.4),0 0 120px rgba(245,208,96,.15)}}
+  @keyframes weekly-title-pulse{0%,100%{opacity:1;text-shadow:0 0 12px rgba(200,168,75,.7),0 0 24px rgba(200,168,75,.4),0 0 36px rgba(184,134,11,.25)}50%{opacity:.96;text-shadow:0 0 16px rgba(200,168,75,.85),0 0 32px rgba(200,168,75,.5),0 0 48px rgba(184,134,11,.35)}}
   .landing-title{font-size:clamp(22px,5vw,36px);font-weight:900;letter-spacing:1px;margin:0 0 4px;color:var(--gold);text-shadow:0 0 20px rgba(245,208,96,.5),0 0 40px rgba(245,208,96,.2)}
   .landing-subtitle{font-size:clamp(12px,2.5vw,15px);color:var(--muted);margin:0 0 4px;font-style:italic}
   .landing-version{font-size:11px;color:var(--muted);opacity:.6;margin:0}
@@ -639,7 +640,7 @@
   body.mode-weekly #weekly-screen{display:block !important}
   #weekly-screen{display:none;padding:16px 16px 80px;max-width:860px;margin:0 auto}
   .weekly-header{text-align:center;padding:20px 0 8px}
-  .weekly-header h2{font-family:'Cinzel',serif;color:var(--gold);font-size:22px;margin:0}
+  .weekly-header h2{font-family:'Cinzel',serif;color:var(--gold);font-size:22px;margin:0;text-shadow:0 0 12px rgba(200,168,75,.7),0 0 24px rgba(200,168,75,.4),0 0 36px rgba(184,134,11,.25);animation:weekly-title-pulse 2.5s ease-in-out infinite}
   .weekly-reset{font-size:12px;color:var(--muted);margin-top:6px}
   .weekly-reset span{color:var(--accent)}
   .weekly-progress{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin:12px 0;display:flex;align-items:center;gap:12px}
@@ -3598,16 +3599,48 @@ function getWeeklyKey() {
   return 'weekly_check_' + monday.toISOString().slice(0, 10);
 }
 
-function getNextReset() {
-  const now = new Date();
-  const d = new Date(now);
-  const day = d.getDay();
-  const daysUntilWed = (3 - day + 7) % 7 || 7;
-  d.setDate(d.getDate() + daysUntilWed);
-  d.setHours(9, 0, 0, 0);
-  const opts = { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' };
-  const locale = { nl:'nl-NL', en:'en-GB', da:'da-DK' }[lang] || 'nl-NL';
-  return d.toLocaleDateString(locale, opts);
+let weeklyCountdownInterval;
+
+function startWeeklyCountdown() {
+  if (weeklyCountdownInterval) clearInterval(weeklyCountdownInterval);
+  
+  const resetEl = document.getElementById('weekly-next-reset');
+  if (!resetEl) return;
+
+  function update() {
+    const now = new Date();
+    const d = new Date(now);
+    let daysUntilWed = (3 - d.getDay() + 7) % 7;
+    
+    d.setDate(d.getDate() + daysUntilWed);
+    d.setHours(5, 0, 0, 0);
+
+    if (now.getTime() >= d.getTime()) {
+      d.setDate(d.getDate() + 7);
+    }
+
+    const diff = d.getTime() - now.getTime();
+    if (diff <= 0) {
+      resetEl.textContent = "0 dagen, 0 uur, 0 min, 0 sec";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / 1000 / 60) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    if (lang === 'en') {
+      resetEl.textContent = `${days} days, ${hours} hrs, ${mins} min, ${secs} sec`;
+    } else if (lang === 'da') {
+      resetEl.textContent = `${days} dage, ${hours} timer, ${mins} min, ${secs} sek`;
+    } else {
+      resetEl.textContent = `${days} dagen, ${hours} uur, ${mins} min, ${secs} sec`;
+    }
+  }
+
+  update();
+  weeklyCountdownInterval = setInterval(update, 1000);
 }
 
 function weeklyLoadState() {
@@ -3902,7 +3935,7 @@ function buildWeeklyList() {
   weeklyUpdateProgress(state);
 
   const resetEl = document.getElementById('weekly-next-reset');
-  if (resetEl) resetEl.textContent = getNextReset();
+  if (resetEl) startWeeklyCountdown();
   const resetInfoEl = document.getElementById('weekly-reset-info');
   if (resetInfoEl) resetInfoEl.textContent = (WEEKLY_UI[lang] || WEEKLY_UI.nl).reset_info;
   const titleEl = document.getElementById('weekly-title');
