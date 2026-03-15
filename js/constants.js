@@ -44,7 +44,7 @@ const LW_GUIDE_DATA = {
           },
           {
             title: "Level 25 - 50: Alles Eén Keer!",
-            text: "Op level 25 mag je een <strong>Specialisatie</strong> kiezen (kies wat jij cool vindt!). Maak vanaf nu van elk nieuw recept precies één ding. Zo scoor je die First Craft bonussen en vlieg je door de levels heen."
+            text: "Op level 25 mag je een <strong>Specialisatie</strong> kiezen. Weet je niet goed wat je moet kiezen? Kijk dan in de <strong>'KP Gids'</strong> tab hierboven! Daar hebben we de beste routes voor je uitgestippeld. Maak vanaf nu van elk nieuw recept precies één ding. Zo scoor je die First Craft bonussen en vlieg je door de levels heen."
           },
           {
             title: "Level 50 - 75: Beroepskleding & PvP",
@@ -93,7 +93,7 @@ const LW_GUIDE_DATA = {
           },
           {
             title: "Level 25 - 50: Everything Once!",
-            text: "At level 25 you can choose a <strong>Specialization</strong> (pick what you think is cool!). From now on, craft exactly one of every new recipe. This way you score those First Craft bonuses and fly through the levels."
+            text: "At level 25 you can choose a <strong>Specialization</strong>. Not sure what to pick? Check out the <strong>'KP Guide'</strong> tab above! We have mapped out the best routes for you there. From now on, craft exactly one of every new recipe. This way you score those First Craft bonuses and fly through the levels."
           },
           {
             title: "Level 50 - 75: Profession Gear & PvP",
@@ -142,7 +142,7 @@ const LW_GUIDE_DATA = {
           },
           {
             title: "Level 25 - 50: Alt Én Gang!",
-            text: "På level 25 kan du vælge en <strong>Specialisering</strong> (vælg det, du synes er sejt!). Fra nu af skal du lave præcis én af hver ny opskrift. På den måde scorer du First Craft-bonusserne og flyver gennem banerne."
+            text: "På level 25 kan du vælge en <strong>Specialisering</strong>. Er du i tvivl om, hvad du skal vælge? Så tjek <strong>'KP Guide'</strong> fanen ovenfor! Der har vi kortlagt de bedste ruter til dig. Fra nu af skal du lave præcis én af hver ny opskrift. På den måde scorer du First Craft-bonusserne og flyver gennem banerne."
           },
           {
             title: "Level 50 - 75: Erhvervsudstyr & PvP",
