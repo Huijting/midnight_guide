@@ -1002,9 +1002,9 @@ document.addEventListener('DOMContentLoaded', function() {
 let currentProf = null;
 
 const PROF_UI = {
-  nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'⚙ Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Bronnen:'},
-  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'⚙ Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Sources:'},
-  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'⚙ Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method.gg',wowp_btn:'🔗 WoW-Professions',source_label:'Kilder:'}
+  nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'🛠 Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Bronnen:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Gids', tab_kpbronnen:'🗺️ KP'},
+  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'🛠 Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Sources:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP'},
+  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'🛠 Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Kilder:', tab_trainer:'📍 Træner', tab_specs:'⚙️ Specs', tab_items:'🎒 Genstande', tab_orders:'📜 Ordrer', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP'}
 };
 
 function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
@@ -1284,6 +1284,15 @@ function showProf(id){
   const p=ALL_PROFS.find(x=>x.id===id);if(!p)return;
   currentProf=p;
   const ui=PROF_UI[lang];
+  
+  // Set tab labels
+  const tTrainer = document.querySelector('.pdet-tab[onclick*="ptab-trainer"]'); if(tTrainer) tTrainer.innerHTML = ui.tab_trainer;
+  const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
+  const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
+  const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
+  const tKp = document.querySelector('.pdet-tab[onclick*="ptab-kp\'"]'); if(tKp) tKp.innerHTML = ui.tab_kp;
+  const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
+
   document.getElementById('prof-grid').style.display='none';
   
     const guideTabBtn = document.getElementById('pdet-tab-guide');
@@ -1752,6 +1761,16 @@ function updateProfLang(){
   if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
   const hs=document.getElementById('prof-hero-sub');
   if(hs)hs.textContent=PROF_UI[lang].hero_sub;
+  
+  // Update tab labels
+  const ui = PROF_UI[lang];
+  const tTrainer = document.querySelector('.pdet-tab[onclick*="ptab-trainer"]'); if(tTrainer) tTrainer.innerHTML = ui.tab_trainer;
+  const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
+  const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
+  const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
+  const tKp = document.querySelector('.pdet-tab[onclick*="ptab-kp\'"]'); if(tKp) tKp.innerHTML = ui.tab_kp;
+  const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
+
   if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
     showProf(currentProf.id);
   } else { buildProfGrid(); }
