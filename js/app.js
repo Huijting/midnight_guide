@@ -1765,23 +1765,41 @@ function renderLwGuide() {
   if (!data) return;
 
   let html = `
-    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 20px; font-size: clamp(20px, 5vw, 28px);">${data.title}</h2>
+    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 12px; font-size: clamp(20px, 5vw, 28px);">${data.title}</h2>
     <p style="font-size: 14px; margin-bottom: 24px; text-align: center; color: var(--text);">${data.intro}</p>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
   `;
 
-  data.steps.forEach(step => {
-    html += `
-      <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-        <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h3>
-        <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
-      </div>
-    `;
-  });
+  if (data.sections) {
+    data.sections.forEach(sec => {
+      html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
+      html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
+      
+      sec.steps.forEach(step => {
+        html += `
+          <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+            <h4 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h4>
+            <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
+          </div>
+        `;
+      });
+      
+      html += `</div>`;
+    });
+  } else if (data.steps) {
+    html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
+    data.steps.forEach(step => {
+      html += `
+        <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h3>
+          <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
 
   html += `
-    </div>
-    <div style="background-color: rgba(200, 168, 75, 0.1); padding: 16px; border-left: 4px solid var(--gold); margin-top: 24px; border-radius: 0 8px 8px 0;">
+    <div style="background-color: rgba(200, 168, 75, 0.1); padding: 16px; border-left: 4px solid var(--gold); margin-top: 32px; border-radius: 0 8px 8px 0;">
       <p style="font-size: 13px; color: var(--text); margin: 0;">${data.tip}</p>
     </div>
   `;
