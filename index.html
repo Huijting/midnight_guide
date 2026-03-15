@@ -139,7 +139,7 @@
     .detail-lore{font-size:13px}
     /* Tabs — grotere tikoppervlakken */
     .tab-btn{font-size:12px;padding:12px 0}
-    .tabs-wrap{top:48px}
+    .tabs-wrap{top:82px}
     /* Content */
     .content-wrap{padding:14px 10px 50px}
     /* Overview grid */
@@ -227,7 +227,7 @@
   .detail-lore{font-style:italic;color:rgba(255,255,255,0.72);max-width:680px;font-size:15px;line-height:1.65;border-left:2px solid var(--gold);padding-left:14px}
 
   /* ── TABS ── */
-  .tabs-wrap{position:sticky;top:52px;z-index:90;background:var(--tab-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-wrap{position:sticky;top:82px;z-index:90;background:var(--tab-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
   .tabs{max-width:1100px;margin:0 auto;display:flex;padding:0 4px}
   .tab-btn{font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;padding:13px 0;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex:1;text-align:center}
   .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
@@ -909,7 +909,7 @@
   .spec-pros li,.spec-cons li{font-size:11px;color:var(--muted);line-height:1.6;list-style:none;padding-left:14px;position:relative}
   .spec-pros li::before{content:'✓';color:#3db86a;position:absolute;left:0}
   .spec-cons li::before{content:'✗';color:#e04060;position:absolute;left:0}
-  .spec-tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:52px;z-index:10}
+  .spec-tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:82px;z-index:10}
   .spec-tabs::-webkit-scrollbar{display:none}
   .spec-tab-btn{white-space:nowrap;padding:8px 11px;font-size:11px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s}
   .spec-tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
@@ -1243,9 +1243,9 @@
   </div>
   <div class="tabs-wrap">
     <div class="tabs">
-      <button class="tab-btn active" id="tab-btn-overview" onclick="switchTab('overview',event)"></button>
-      <button class="tab-btn" id="tab-btn-bosses" onclick="switchTab('bosses',event)"></button>
-      <button class="tab-btn" id="tab-btn-route" onclick="switchTab('route',event)"></button>
+      <button class="tab-btn active" id="tab-btn-overview" onclick="switchTab('overview',event)">Overzicht</button>
+      <button class="tab-btn" id="tab-btn-bosses" onclick="switchTab('bosses',event)">Bazen</button>
+      <button class="tab-btn" id="tab-btn-route" onclick="switchTab('route',event)">Routeplanner</button>
     </div>
   </div>
   <div id="tab-overview" class="tab-content active"><div class="content-wrap" id="overview-content"></div></div>
@@ -1887,7 +1887,7 @@ function setLang(l) {
 
 function applyUIStrings() {
   const u = UI[lang];
-  document.getElementById('hdr-sub').textContent = u.season_sub;
+  const _hsub=document.getElementById('hdr-sub'); if(_hsub) _hsub.textContent = u.season_sub;
   document.getElementById('hero-eyebrow').textContent = u.eyebrow;
   document.getElementById('hero-title-span').textContent = u.guide;
   document.getElementById('hero-sub').textContent = u.hero_sub;
@@ -2614,6 +2614,10 @@ function setMode(mode){
     buildSpecGrid();
   } else if(mode==='glossary'){
     buildGlossaryScreen();
+  } else if(mode==='dungeons') {
+    document.getElementById('home-screen').style.display = '';
+    document.getElementById('detail-screen').style.display = '';
+    renderHome();
   } else {
     if(currentDungeon)goHome();
   }
