@@ -1072,7 +1072,7 @@ body {
 
 /* 2. Glassmorphism + Parchment for Panels */
 .dungeon-card, .prof-card, .weekly-progress, .weekly-cat-header, .vr-card, .role-panel, .boss-card, 
-#spec-modal-inner, #pwa-modal-inner, #help-modal-inner, #about-modal-inner, .search-results, .wat-nu-panel, .mode-tabs {
+#spec-modal-inner, #pwa-modal-inner, #help-modal-inner, #about-modal-inner, .search-results, .wat-nu-panel, .mode-tabs, .prof-guide-container {
   background-color: var(--panel);
   background-image: var(--parchment-texture);
   border: 1px solid var(--border);
@@ -1080,7 +1080,7 @@ body {
 }
 
 /* 3. Gold Ornamental Borders & Rivets */
-.dungeon-card::before, .dungeon-card::after, .prof-card::before, .prof-card::after, .boss-card::before, .boss-card::after, .weekly-progress::before, .weekly-progress::after, .weekly-cat-header::before, .weekly-cat-header::after, .vr-card::before, .vr-card::after, .role-panel::before, .role-panel::after, #spec-modal-inner::before, #spec-modal-inner::after, #pwa-modal-inner::before, #pwa-modal-inner::after, #help-modal-inner::before, #help-modal-inner::after, #about-modal-inner::before, #about-modal-inner::after, .search-results::before, .search-results::after, .wat-nu-panel::before, .wat-nu-panel::after {
+.dungeon-card::before, .dungeon-card::after, .prof-card::before, .prof-card::after, .boss-card::before, .boss-card::after, .weekly-progress::before, .weekly-progress::after, .weekly-cat-header::before, .weekly-cat-header::after, .vr-card::before, .vr-card::after, .role-panel::before, .role-panel::after, #spec-modal-inner::before, #spec-modal-inner::after, #pwa-modal-inner::before, #pwa-modal-inner::after, #help-modal-inner::before, #help-modal-inner::after, #about-modal-inner::before, #about-modal-inner::after, .search-results::before, .search-results::after, .wat-nu-panel::before, .wat-nu-panel::after, .prof-guide-container::before, .prof-guide-container::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -1092,7 +1092,7 @@ body {
 }
 
 /* Rivets in corners */
-.dungeon-card::after, .prof-card::after, .boss-card::after, .weekly-progress::after, .weekly-cat-header::after, .vr-card::after, .role-panel::after, #spec-modal-inner::after, #pwa-modal-inner::after, #help-modal-inner::after, #about-modal-inner::after, .search-results::after, .wat-nu-panel::after {
+.dungeon-card::after, .prof-card::after, .boss-card::after, .weekly-progress::after, .weekly-cat-header::after, .vr-card::after, .role-panel::after, #spec-modal-inner::after, #pwa-modal-inner::after, #help-modal-inner::after, #about-modal-inner::after, .search-results::after, .wat-nu-panel::after, .prof-guide-container::after {
   background: 
     radial-gradient(circle at 6px 6px, var(--gold2) 1px, var(--gold) 2px, rgba(0,0,0,0.8) 3px, transparent 4px),
     radial-gradient(circle at calc(100% - 6px) 6px, var(--gold2) 1px, var(--gold) 2px, rgba(0,0,0,0.8) 3px, transparent 4px),

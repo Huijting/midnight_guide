@@ -1285,7 +1285,7 @@ function showProf(id){
   currentProf=p;
   const ui=PROF_UI[lang];
   document.getElementById('prof-grid').style.display='none';
-  if(id === 'leatherworking') { document.getElementById('lw-beginner-guide').style.display = 'block'; } else { document.getElementById('lw-beginner-guide').style.display = 'none'; }
+  if(id === 'leatherworking') { document.getElementById('lw-beginner-guide').style.display = 'block'; renderLwGuide(); } else { document.getElementById('lw-beginner-guide').style.display = 'none'; }
   document.getElementById('prof-detail').classList.add('visible');
   document.getElementById('pdet-back-btn').textContent=ui.back;
   document.getElementById('pdet-icon').textContent=p.icon;
@@ -1739,4 +1739,36 @@ function updateProfLang(){
   if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
     showProf(currentProf.id);
   } else { buildProfGrid(); }
+}
+
+function renderLwGuide() {
+  const container = document.getElementById('lw-beginner-guide');
+  if (!container) return;
+  
+  const data = typeof LW_GUIDE_DATA !== 'undefined' ? LW_GUIDE_DATA[lang] : null;
+  if (!data) return;
+
+  let html = `
+    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 20px; font-size: clamp(20px, 5vw, 28px);">${data.title}</h2>
+    <p style="font-size: 14px; margin-bottom: 24px; text-align: center; color: var(--text);">${data.intro}</p>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+  `;
+
+  data.steps.forEach(step => {
+    html += `
+      <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+        <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h3>
+        <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
+      </div>
+    `;
+  });
+
+  html += `
+    </div>
+    <div style="background-color: rgba(200, 168, 75, 0.1); padding: 16px; border-left: 4px solid var(--gold); margin-top: 24px; border-radius: 0 8px 8px 0;">
+      <p style="font-size: 13px; color: var(--text); margin: 0;">${data.tip}</p>
+    </div>
+  `;
+
+  container.innerHTML = html;
 }
