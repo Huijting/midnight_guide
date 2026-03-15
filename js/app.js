@@ -1275,6 +1275,7 @@ function buildProfGrid(){
 
 function showProfGrid(){
   document.getElementById('prof-grid').style.display='';
+  document.getElementById('lw-beginner-guide').style.display='none';
   document.getElementById('prof-detail').classList.remove('visible');
   currentProf=null;
 }
@@ -1284,6 +1285,7 @@ function showProf(id){
   currentProf=p;
   const ui=PROF_UI[lang];
   document.getElementById('prof-grid').style.display='none';
+  if(id === 'leatherworking') { document.getElementById('lw-beginner-guide').style.display = 'block'; } else { document.getElementById('lw-beginner-guide').style.display = 'none'; }
   document.getElementById('prof-detail').classList.add('visible');
   document.getElementById('pdet-back-btn').textContent=ui.back;
   document.getElementById('pdet-icon').textContent=p.icon;
