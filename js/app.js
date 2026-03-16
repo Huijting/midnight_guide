@@ -296,7 +296,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -362,7 +362,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -428,7 +428,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_home: "🌙 Hjem", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs",
+    tab_home: "🌙 Hjem", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -512,6 +512,7 @@ function setLang(l) {
   if (document.getElementById('dev-banner').classList.contains('open')) renderBanner();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
+  if (document.body.classList.contains('mode-prey')) renderPreyGuide();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
   if (document.getElementById('search-overlay').classList.contains('open')) {
     const inp = document.getElementById('search-input');
@@ -544,6 +545,7 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-weekly').textContent = u.tab_weekly;
   document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
   document.getElementById('tab-lbl-affixes').textContent = u.tab_affixes;
+  const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.textContent = u.tab_prey;
   document.getElementById('tab-lbl-raids').textContent = u.tab_raids;
   const _glbl=document.getElementById('tab-lbl-glossary');
   if(_glbl) _glbl.textContent=u.lbl_glossary||'📖 Woordenlijst';
@@ -1219,6 +1221,7 @@ function setMode(mode){
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
   document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
+  const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
   const sb=document.getElementById('spec-btn');
@@ -1226,6 +1229,8 @@ function setMode(mode){
   document.getElementById('back-btn').style.display='none';
   if(mode==='home'){
     updateLandingStrings();
+  } else if(mode==='prey'){
+    document.getElementById('home-screen').style.display = 'none'; document.getElementById('detail-screen').style.display = 'none'; renderPreyGuide();
   } else if(mode==='weekly'){
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
@@ -1257,7 +1262,12 @@ function setMode(mode){
   } else {
     if(currentDungeon)goHome();
   }
-  window.scrollTo(0,0);
+  
+    ['home','dungeons','professions','weekly','affixes','raids','glossary','specs','prey'].forEach(id=>{
+      const el=document.getElementById(id+'-screen');
+      if(el)el.style.display=(id===mode)?'':'none';
+    });
+    window.scrollTo(0,0);
 }
 
 function buildProfGrid(){
@@ -1888,3 +1898,132 @@ renderKpSources = function(p) {
   originalRenderKpSources(p);
   setTimeout(loadKpProgress, 50);
 };
+
+
+// ============================================================
+// PREY SYSTEM GUIDE
+// ============================================================
+const PREY_GUIDE_DATA = {
+  nl: {
+    title: "Het Prey Systeem",
+    intro: "Jaag op de gevaarlijkste doelwitten in Midnight. Een compleet stappenplan voor deze nieuwe solo-vriendelijke endgame activiteit.",
+    sections: [
+      {
+        title: "Voorbereiding: De Unlock Questline",
+        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+      },
+      {
+        title: "Stap 1: De Jacht Beginnen",
+        text: "Ga naar <strong>Silvermoon City</strong> (Murder Row) en praat met <em>Magister Astalor Bloodsworn</em>. Hier kies je jouw doelwit (Target) en de zone waar je wilt jagen."
+      },
+      {
+        title: "Stap 2: Voortgang Opbouwen",
+        text: "Je kunt niet direct naar de baas. Reis naar de gekozen zone en vul je voortgangsbalk door activiteiten te doen:<br>• Voltooi World Quests<br>• Versla Elite vijanden<br>• Open schatkisten<br>• Ontmantel vallen"
+      },
+      {
+        title: "Stap 3: De Confrontatie",
+        text: "Zodra je balk vol is, wordt de exacte locatie van je doelwit onthuld op de map. Ga ernaartoe en versla de baas om je beloningen te claimen!"
+      },
+      {
+        title: "Moeilijkheidsgraden",
+        text: "Je kunt de jacht afstellen op jouw niveau:<br>🟢 <strong>Normal:</strong> Basis mechanics. Andere spelers in de open wereld kunnen je helpen.<br>🟡 <strong>Hard:</strong> Extra vaardigheden (Torments) voor de baas. Je staat er alleen voor in het eindgevecht.<br>🔴 <strong>Nightmare:</strong> De ultieme uitdaging met extra affixes, maar ook de beste beloningen."
+      },
+      {
+        title: "Beloningen",
+        text: "Waarom doe je dit?<br>🎁 <strong>Gear:</strong> Schaalbaar van Adventurer tot Champion track (afhankelijk van moeilijkheid).<br>🎁 <strong>Cosmetics:</strong> Unieke Mana Wyrm mounts en transmogs.<br>🎁 <strong>Valuta:</strong> Anguish Runes om spullen mee te kopen.<br>🎁 <strong>Great Vault:</strong> Telt mee voor je wekelijkse 'Outdoor' vault slot!"
+      }
+    ],
+    tip: "Gouden Tip: De eerste 4 jachten per week geven de meeste en beste beloningen. Zorg dat je die op de hoogst mogelijke moeilijkheidsgraad doet die je aankan!"
+  },
+  en: {
+    title: "The Prey System",
+    intro: "Hunt the most dangerous targets in Midnight. A complete step-by-step guide for this new solo-friendly endgame activity.",
+    sections: [
+      {
+        title: "Preparation: The Unlock Questline",
+        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+      },
+      {
+        title: "Step 1: Starting the Hunt",
+        text: "Go to <strong>Silvermoon City</strong> (Murder Row) and speak with <em>Magister Astalor Bloodsworn</em>. Here you select your target and the zone you want to hunt in."
+      },
+      {
+        title: "Step 2: Building Progress",
+        text: "You can't face the boss immediately. Travel to the chosen zone and fill your progress bar by completing activities:<br>• Complete World Quests<br>• Defeat Elite enemies<br>• Open treasures<br>• Disable traps"
+      },
+      {
+        title: "Step 3: The Confrontation",
+        text: "Once your bar is full, the exact location of your target is revealed on the map. Go there and defeat the boss to claim your rewards!"
+      },
+      {
+        title: "Difficulties",
+        text: "You can tune the hunt to your level:<br>🟢 <strong>Normal:</strong> Basic mechanics. Other players in the open world can help you.<br>🟡 <strong>Hard:</strong> Extra abilities (Torments) for the boss. You are on your own for the final fight.<br>🔴 <strong>Nightmare:</strong> The ultimate challenge with extra affixes, but also the best rewards."
+      },
+      {
+        title: "Rewards",
+        text: "Why do this?<br>🎁 <strong>Gear:</strong> Scales from Adventurer to Champion track (depending on difficulty).<br>🎁 <strong>Cosmetics:</strong> Unique Mana Wyrm mounts and transmogs.<br>🎁 <strong>Currency:</strong> Anguish Runes to buy items.<br>🎁 <strong>Great Vault:</strong> Counts towards your weekly 'Outdoor' vault slot!"
+      }
+    ],
+    tip: "Golden Tip: The first 4 hunts per week give the most and best rewards. Make sure to do these on the highest difficulty you can handle!"
+  },
+  da: {
+    title: "Prey Systemet",
+    intro: "Jagt de farligste mål i Midnight. En komplet trin-for-trin guide til denne nye solo-venlige endgame aktivitet.",
+    sections: [
+      {
+        title: "Forberedelse: Unlock Questline",
+        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+      },
+      {
+        title: "Trin 1: Start Jagten",
+        text: "Gå til <strong>Silvermoon City</strong> (Murder Row) og tal med <em>Magister Astalor Bloodsworn</em>. Her vælger du dit mål og den zone, du vil jage i."
+      },
+      {
+        title: "Trin 2: Opbyg Fremskridt",
+        text: "Du kan ikke møde bossen med det samme. Rejs til den valgte zone og fyld din fremskridtsbjælke ved at fuldføre aktiviteter:<br>• Gennemfør World Quests<br>• Besejr Elite fjender<br>• Åbn skatte<br>• Deaktiver fælder"
+      },
+      {
+        title: "Trin 3: Konfrontationen",
+        text: "Når din bjælke er fuld, afsløres målets nøjagtige placering på kortet. Tag dertil og besejr bossen for at få dine belønninger!"
+      },
+      {
+        title: "Sværhedsgrader",
+        text: "Du kan tilpasse jagten til dit niveau:<br>🟢 <strong>Normal:</strong> Grundlæggende mekanikker. Andre spillere i den åbne verden kan hjælpe dig.<br>🟡 <strong>Hard:</strong> Ekstra evner (Torments) til bossen. Du er på egen hånd i den endelige kamp.<br>🔴 <strong>Nightmare:</strong> Den ultimative udfordring med ekstra affixes, men også de bedste belønninger."
+      },
+      {
+        title: "Belønninger",
+        text: "Hvorfor gøre dette?<br>🎁 <strong>Gear:</strong> Skalerer fra Adventurer til Champion track (afhængigt af sværhedsgrad).<br>🎁 <strong>Cosmetics:</strong> Unikke Mana Wyrm mounts og transmogs.<br>🎁 <strong>Valuta:</strong> Anguish Runes til at købe genstande.<br>🎁 <strong>Great Vault:</strong> Tæller med i dit ugentlige 'Outdoor' vault slot!"
+      }
+    ],
+    tip: "Gyldent Tip: De første 4 jagter om ugen giver de fleste og bedste belønninger. Sørg for at gøre disse på den højeste sværhedsgrad, du kan klare!"
+  }
+};
+
+function renderPreyGuide() {
+  const container = document.getElementById('prey-content');
+  if (!container) return;
+  
+  const data = PREY_GUIDE_DATA[lang] || PREY_GUIDE_DATA.nl;
+  
+  document.getElementById('prey-title').textContent = data.title;
+  document.getElementById('prey-intro').textContent = data.intro;
+
+  let html = `<div style="display: flex; flex-direction: column; gap: 16px;">`;
+  
+  data.sections.forEach((sec, i) => {
+    html += `
+      <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+        <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 18px;">${sec.title}</h3>
+        <p style="font-size: 14px; color: var(--text); line-height: 1.6;">${sec.text}</p>
+      </div>
+    `;
+  });
+  
+  html += `</div>
+    <div style="background-color: rgba(200, 168, 75, 0.1); padding: 16px; border-left: 4px solid var(--gold); margin-top: 32px; border-radius: 0 8px 8px 0;">
+      <p style="font-size: 14px; color: var(--text); margin: 0; font-weight: bold;">${data.tip}</p>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
