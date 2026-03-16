@@ -1290,8 +1290,7 @@ function showProf(id){
   const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
   const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
   const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
-  const tKp = document.querySelector('.pdet-tab[onclick*="ptab-kp\'"]'); if(tKp) tKp.innerHTML = ui.tab_kp;
-  const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
+    const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
 
   document.getElementById('prof-grid').style.display='none';
   
@@ -1299,7 +1298,7 @@ function showProf(id){
   if (guideTabBtn) {
     if (typeof PROF_GUIDE_DATA !== 'undefined' && PROF_GUIDE_DATA[id]) {
       guideTabBtn.style.display = '';
-      const guideTabLabels = { nl: '📖 Gids', en: '📖 Guide', da: '📖 Guide' };
+      const guideTabLabels = { nl: '📖 Gids & KP', en: '📖 Guide & KP', da: '📖 Guide & KP' };
       guideTabBtn.innerHTML = guideTabLabels[lang] || guideTabLabels.nl;
       renderProfGuide(id);
     } else {
@@ -1374,7 +1373,7 @@ function switchProfTab(btn,panelId){
 function renderKpGids(p) {
   const lang_ = (typeof lang !== 'undefined') ? lang : 'nl';
   const L = s => (s && typeof s === 'object') ? (s[lang_] || s.nl || '') : (s || '');
-  const el = document.getElementById('ptab-kp');
+  const el = document.getElementById('kp-gids-container');
   if (!el) return;
 
   const data = (typeof KP_DATA !== 'undefined') ? KP_DATA[p.id] : null;
@@ -1385,7 +1384,15 @@ function renderKpGids(p) {
   }[lang_] || { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom.' };
 
   if (!data) {
-    el.innerHTML = `<div class="pdet-section"><div class="kp-intro-box">${u.no_kp}</div></div>`;
+    const kpHeaderEmpty = {
+      nl: 'Deel 3: Kennispunten (KP) & Specialisaties',
+      en: 'Part 3: Knowledge Points (KP) & Specs',
+      da: 'Del 3: Videnpoint (KP) & Specs'
+    }[lang_] || 'Deel 3: Kennispunten (KP)';
+    el.innerHTML = `<div class="pdet-section">
+      <h3 style="font-family: \'Cinzel\', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpHeaderEmpty}</h3>
+      <div class="kp-intro-box">${u.no_kp}</div>
+    </div>`;
     return;
   }
 
@@ -1394,6 +1401,14 @@ function renderKpGids(p) {
   if (!window._kpActiveBuild[p.id]) window._kpActiveBuild[p.id] = data.builds && data.builds[0] ? data.builds[0].id : null;
 
   let html = '<div class="pdet-section">';
+  
+    const kpHeader = {
+      nl: 'Deel 3: Kennispunten (KP) & Specialisaties',
+      en: 'Part 3: Knowledge Points (KP) & Specs',
+      da: 'Del 3: Videnpoint (KP) & Specs'
+    }[lang_] || 'Deel 3: Kennispunten (KP)';
+    
+    html += `<h3 style="font-family: \'Cinzel\', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpHeader}</h3>`;
 
   // Intro
   if (data.intro) html += `<div class="kp-intro-box">${L(data.intro)}</div>`;
@@ -1767,8 +1782,7 @@ function updateProfLang(){
   const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
   const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
   const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
-  const tKp = document.querySelector('.pdet-tab[onclick*="ptab-kp\'"]'); if(tKp) tKp.innerHTML = ui.tab_kp;
-  const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
+    const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
 
   if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
     showProf(currentProf.id);
