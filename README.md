@@ -6,12 +6,12 @@ Een trilinguïstische (NL/EN/DA) Progressive Web App voor World of Warcraft: Mid
 
 ---
 
-## 📋 Inhoud
+## 📍 Inhoud
 
 ### 🌙 Home
 Landingspagina met navigatiekaarten en directe links naar alle secties.
 
-### 🏰 Raids (nieuw in v7.5)
+### 🏰 Raids
 Raid boss guides met mechanics per rol (Tank/Healer/DPS):
 - **The Dreamrift** — Chimaerus, the Undreamt God (opent 17 maart 2026)
 - The Voidspire — 6 bosses *(komt later)*
@@ -19,28 +19,34 @@ Raid boss guides met mechanics per rol (Tank/Healer/DPS):
 
 ### ⚔️ Dungeons
 Alle Season 1 M+ dungeons (8 stuks) met boss-tactieken, route-tips en M+-specifieke adviezen. Plus 4 Normal-only dungeons.
+Inclusief **Trash Mob Gids** in de Route-tab met 69 mobs gedocumenteerd, kleurgecodeerde tags (Interrupt/Dodge/Purge/CC/Tank).
 
-**Nieuw in v7.6:** Alle 12 dungeons hebben nu een **Trash Mob Gids** in de Route-tab met 69 mobs gedocumenteerd, kleurgecodeerde tags (Interrupt/Dodge/Purge/CC/Tank) en gecorrigeerde baas-mechanics voor alle 8 M+ dungeons.
+### 🎯 Prey Systeem (Nieuw in v1.0)
+Een complete, stapsgewijze gids voor de nieuwe solo-friendly endgame activiteit. Inclusief unlock questline, moeilijkheidsgraden en beloningen.
 
 ### 📅 Wekelijks
 Overzicht van wekelijkse activiteiten: World Bosses, Timewalking, Crafting Orders, Delves en meer.
 
-### ⚗️ Professies
-Alle 13 professies met trainer /way coördinaten, KP Gids, KP Bronnen en crafting orders.
+### 🔨 Professies
+Alle 13 professies met trainer /way coördinaten, een uitgebreide level-gids (1-100), KP Gids, en KP Bronnen.
+**Nieuw in v1.0:** Character tracking! Vink KP schatten af per character.
 
-### ⚡ Affixes (nieuw in v7.5)
+### ⚡ Affixes
 Volledig overzicht van alle M+ affixes in Season 1 met uitleg en tips:
-- 🧭 Lindormi's Guidance (+2–+4) — leer-affix, geen death penalty
-- 🔮 Xal'atath's Bargain (+5–+11) — 4 rotatievarianten: Ascendant, Voidbound, Pulsar, Devour
+- 🛡️ Lindormi's Guidance (+2–+4) — leer-affix, geen death penalty
+- 💀 Xal'atath's Bargain (+5–+11) — 4 rotatievarianten: Ascendant, Voidbound, Pulsar, Devour
 - ⚔️ Fortified / Tyrannical (+7) — wekelijks wisselend
-- 💀 Fortified + Tyrannical tegelijk (+10)
-- 💀 Xal'atath's Guile (+12) — deaths kosten 15 sec
+- 💥 Fortified + Tyrannical tegelijk (+10)
+- ⏱️ Xal'atath's Guile (+12) — deaths kosten 15 sec
 
 ### 🎯 Specs
 Alle 13 klassen, alle specs — elk met 9 tabbladen:
-- ⚡ Cheat Sheet · 🔄 Rotatie · 📊 Stats · 💀 Cooldowns
-- 💡 Tips · 🖱️ Macro's · 🎯 Resource · 🧪 Consumables
-- 🌳 Talents (nieuw in v7.4) — builds voor M+, Raid, Delves en Leveling
+- ⚡ Cheat Sheet | 🔄 Rotatie | 📊 Stats | ⏱️ Cooldowns
+- 💡 Tips | ⌨️ Macro's | 🎯 Resource | 🧪 Consumables
+- 🌳 Talents — builds voor M+, Raid, Delves en Leveling
+
+### 📖 Woordenlijst
+WoW-begrippen uitgelegd voor beginners, inclusief inline gouden tooltips in dungeon-tips.
 
 ---
 
@@ -52,46 +58,31 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 
 ## 🌍 Talen
 
-🇳🇱 Nederlands · 🇬🇧 English · 🇩🇰 Dansk
+🇳🇱 Nederlands | 🇬🇧 English | 🇩🇰 Dansk
 
 ---
 
-## 📦 Changelog
+## 🛠️ Changelog
 
-### v7.6 — 14 maart 2026
-- 🐉 Trash mob gids toegevoegd aan alle 12 dungeons (69 mobs, tags: Interrupt/Dodge/Purge/CC/Tank)
-- ✅ Alle bazen van alle 8 M+ dungeons grondig gecheckt op Method.gg & Icy Veins (feb/mrt 2026)
-- 🔧 Algeth'ar Academy: "Overpowering Perception" was verzonnen — correct: Crawth + Vexamus
-- 🔧 Pit of Saron: alle WotLK-era mechanics vervangen door Midnight M+ versies
-- 🔧 Seat of the Triumvirate: L'ura, Nezhar, Zuraal & Saprish mechanics volledig herschreven
-- 🔧 Skyreach: Ranjit/Rukhran/Viryx mechanics gecorrigeerd
-- 🔧 Murder Row: Xathuux & Lithiel ontbraken uit bazenarray — hersteld
-- 🔧 Blinding Vale: Baas 1 "Lightblossom Trinity" → correcte naam "Meittik"
-- 🔧 Voidscar Arena: Charonus fake mechanics vervangen door Unstable Singularity/Gravitic Orbs
+### v1.0 — 16 maart 2026
+- 🎯 Prey Systeem toegevoegd met unlock questline en uitleg
+- 📖 Gids & KP tabs in Professies samengevoegd voor beter overzicht
+- 👤 Character tracking voor KP schatten toegevoegd (met localStorage)
+- 🎨 Compleet nieuw 'Modern Dark Gaming' thema (glassmorphism, parchment textures, void glow)
+- 📱 Mobiele navigatie verbeterd (horizontaal scrollbaar met gradient hints)
+- ⬆️ Back to top knop toegevoegd
+- 📋 Gekopieerd! toast notificaties
+- 🐛 Diverse bugfixes en optimalisaties in de codebase
 
-### v7.5 — 14 maart 2026
-- 🏰 Raids sectie toegevoegd (The Dreamrift — Chimaerus volledig uitgewerkt, NL/EN/DA)
-- ⚡ Affixes tab toegevoegd (volledig overzicht Season 1 affixes NL/EN/DA)
-- 📱 Navigatie wrapping: tabs gaan nu naar 2 rijen op mobiel i.p.v. scrollen
-- 🎯 Spec sub-tabs ook naar 2 rijen op mobiel
-- 🔧 Rotation tab fix: "undefined" teksten opgelost
-- 📋 Changelog + Raids sectie toegevoegd aan Handleiding
-- 🗓️ Weekly Crafting Quest verwijzing gecorrigeerd
-
-### v7.4 — 13 maart 2026
-- 🌳 Talents tab toegevoegd aan alle specs (Icy Veins + Method.gg links)
-- 🔤 Klassen alfabetisch gesorteerd
-- ✅ 8 spec-bestanden afgerond (Arcane Mage, Blood DK, Disc Priest, Enhancement Shaman, Fire Mage, Prot Warrior, Unholy DK, Vengeance DH)
-
-### v7.3 — 13 maart 2026
-- 📍 Alle /way coördinaten in Weeklies in-game geverifieerd en gecorrigeerd
-- 🗺️ KP Bronnen tab toegevoegd aan Professies
-- 🌳 KP Boom tab toegevoegd aan Professies
-- 📍 Dreamrift raid-ingang coördinaat toegevoegd
-
-### v7.2 — eerder
+### Oudere versies (v0.9 en eerder)
+- 📖 Woordenlijst toegevoegd
+- 👾 Trash mob gids toegevoegd aan dungeons
+- 🏰 Raids sectie toegevoegd (The Dreamrift)
+- ⚡ Affixes tab toegevoegd
+- 🌳 Talents tab toegevoegd aan alle specs
+- 📍 Alle /way coördinaten in Weeklies in-game geverifieerd
 - 🎯 Specs sectie gelanceerd: 39 specs, 8 tabbladen per spec
+- 🔨 Alle 13 professies compleet met KP-systeem
 
-### v7.0 — eerder
-- 🌙 Landingspagina met navigatiekaarten
-- ✅ Alle 13 professies compleet met KP-systeem
+---
+*Gemaakt door Inchy & Gemma*

@@ -1,6 +1,6 @@
 // ── VERSIE ──
-const VERSION = "v7.7";
-const VERSION_DATE = "2026-03-15";
+const VERSION = "v1.0";
+const VERSION_DATE = "2026-03-16";
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -563,7 +563,7 @@ function updateLandingStrings() {
       title: 'Midnight Guide',
       subtitle: 'Jouw WoW: Midnight companion',
       tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werk hij ook offline!',
-      credits: 'Gemaakt door Inchy & Claudy · WoW: Midnight · Niet officieel',
+      credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, fases en rol-tactieken', r_count:'3 raids',
       w_title:'Wekelijks', w_desc:'Weekly reset overzicht, World Bosses en affixen', w_count:'Elke week',
@@ -574,7 +574,7 @@ function updateLandingStrings() {
       title: 'Midnight Guide',
       subtitle: 'Your WoW: Midnight companion',
       tip: '<strong>Tip:</strong> Install this app on your PC via the 📲 button top right, or the install icon in your address bar — works offline too!',
-      credits: 'Made by Inchy & Claudy · WoW: Midnight · Unofficial',
+      credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, phases and role tactics', r_count:'3 raids',
       w_title:'Weekly', w_desc:'Weekly reset overview, World Bosses and affixes', w_count:'Every week',
@@ -585,7 +585,7 @@ function updateLandingStrings() {
       title: 'Midnight Guide',
       subtitle: 'Din WoW: Midnight-guide',
       tip: '<strong>Tip:</strong> Installér denne app på din PC via 📲-knappen øverst til højre, eller installér-ikonet i adresselinjen — virker også offline!',
-      credits: 'Lavet af Inchy & Claudy · WoW: Midnight · Uofficiel',
+      credits: 'Lavet af Inchy & Gemma · WoW: Midnight · Uofficiel',
       d_title:'Dungeons', d_desc:'Boss-taktikker, M+-ruter og tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss-mekanikker, faser og rolle-taktikker', r_count:'3 raids',
       w_title:'Ugentlig', w_desc:'Ugentlig reset-oversigt, verdensbosser og affixer', w_count:'Hver uge',
