@@ -1290,8 +1290,7 @@ function showProf(id){
   const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
   const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
   const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
-    const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
-
+    
   document.getElementById('prof-grid').style.display='none';
   
     const guideTabBtn = document.getElementById('pdet-tab-guide');
@@ -1477,7 +1476,7 @@ function selectKpBuild(profId, buildId) {
 }
 
 function renderKpSources(p) {
-  const el = document.getElementById('ptab-kpbronnen');
+  const el = document.getElementById('kp-bronnen-container');
   if (!el) return;
 
   const data = KP_SOURCES && KP_SOURCES[p.id];
@@ -1782,8 +1781,7 @@ function updateProfLang(){
   const tSpecs = document.querySelector('.pdet-tab[onclick*="ptab-specs"]'); if(tSpecs) tSpecs.innerHTML = ui.tab_specs;
   const tItems = document.querySelector('.pdet-tab[onclick*="ptab-items"]'); if(tItems) tItems.innerHTML = ui.tab_items;
   const tOrders = document.querySelector('.pdet-tab[onclick*="ptab-orders"]'); if(tOrders) tOrders.innerHTML = ui.tab_orders;
-    const tKpbronnen = document.querySelector('.pdet-tab[onclick*="ptab-kpbronnen"]'); if(tKpbronnen) tKpbronnen.innerHTML = ui.tab_kpbronnen;
-
+    
   if(document.getElementById('prof-detail').classList.contains('visible')&&currentProf){
     showProf(currentProf.id);
   } else { buildProfGrid(); }
