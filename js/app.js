@@ -1504,40 +1504,65 @@ function renderKpSources(p) {
   // Schatten sectie
   let treasuresHtml = '';
   if (data.treasures && data.treasures.length > 0) {
-    const rows = data.treasures.map((t, i) => `
-      <tr>
-        <td class="kp-num">${i + 1}</td>
-        <td class="kp-item-name">${t.name}</td>
-        <td class="kp-zone">${t.zone}</td>
-        <td class="kp-way">
-          ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="Klik om te kopiëren">📋 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
-        </td>
-        ${t.note ? `<td class="kp-note" title="${t.note}">💬</td>` : '<td></td>'}
-      </tr>
-      ${t.note ? `<tr class="kp-note-row"><td colspan="5"><span class="kp-note-text">${t.note}</span></td></tr>` : ''}
-    `).join('');
+    const rows = data.treasures.map((t, i) => {
+        const treasureId = `kp_${p.id}_${i}`;
+        return `
+        <tr>
+          <td class="kp-num">
+            <input type="checkbox" class="kp-checkbox" data-tid="${treasureId}" onchange="toggleKpTreasure(this)" title="Markeer als gevonden">
+          </td>
+          <td class="kp-item-name">${t.name}</td>
+          <td class="kp-zone">${t.zone}</td>
+          <td class="kp-way">
+            ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="Klik om te kopiëren">📍 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
+          </td>
+          ${t.note ? `<td class="kp-note" title="${t.note}">💡</td>` : '<td></td>'}
+        </tr>
+        ${t.note ? `<tr class="kp-note-row"><td colspan="5"><span class="kp-note-text">${t.note}</span></td></tr>` : ''}
+      `;
+    }).join('');
 
     const tomtomBtn = tomtomLines
       ? `<button class="kp-tomtom-btn" onclick="copyTomTom(this)" data-ways="${encodeURIComponent(tomtomLines)}">📋 Kopieer /ttpaste</button>`
       : '';
 
+
+    const charTip = {
+      nl: '💡 Tip: Voeg je characters toe met de + knop om per character bij te houden welke schatten je al hebt gevonden!',
+      en: '💡 Tip: Add your characters with the + button to track which treasures you have already found per character!',
+      da: '💡 Tip: Tilføj dine karakterer med + knappen for at holde styr på, hvilke skatte du allerede har fundet pr. karakter!'
+    }[lang] || '💡 Tip: Voeg je characters toe met de + knop om per character bij te houden welke schatten je al hebt gevonden!';
+
     treasuresHtml = `
       <div class="kp-section">
-        <div class="kp-section-header">
-          <span class="kp-section-title">📦 Schatten <span class="kp-badge-total">${data.treasures.length} × 3 KP = ${data.treasures.length * 3} KP</span></span>
-          <span class="kp-section-sub">Eenmalig per character — herhaalbaar op alts</span>
-          ${tomtomBtn}
-        </div>
+        <div class="kp-section-header" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;">
+
+            <div>
+              <span class="kp-section-title">💎 Schatten <span class="kp-badge-total">${data.treasures.length} × 3 KP = ${data.treasures.length * 3} KP</span></span>
+              <span class="kp-section-sub">Eenmalig per character</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <div style="display: flex; gap: 4px; align-items: center;">
+                  <select id="kp-char-select" onchange="changeKpChar()" style="background: var(--deep); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 13px; max-width: 120px;">
+                    ${(JSON.parse(localStorage.getItem('midnight_chars') || '["Main"]')).map(c => `<option value="${c}" ${c === currentKpChar ? 'selected' : ''}>${c}</option>`).join('')}
+                  </select>
+                  <button onclick="addKpChar()" title="Character toevoegen" style="background:var(--panel); border:1px solid var(--border); color:var(--gold); border-radius:4px; padding:2px 8px; cursor:pointer; font-weight:bold;">+</button>
+                  <button onclick="deleteKpChar()" title="Character verwijderen" style="background:var(--panel); border:1px solid var(--border); color:#ef4444; border-radius:4px; padding:2px 8px; cursor:pointer; font-weight:bold;">-</button>
+                </div>
+              ${tomtomBtn}
+            </div>
+          </div>
+          <div style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-style: italic; background: rgba(200, 168, 75, 0.05); padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--gold);">${charTip}</div>
         <table class="kp-table">
           <thead>
-            <tr><th>#</th><th>Naam</th><th>Zone</th><th>/way</th><th></th></tr>
+            <tr><th>✔</th><th>Naam</th><th>Zone</th><th>/way</th><th></th></tr>
           </thead>
           <tbody>${rows}</tbody>
         </table>
       </div>
     `;
   } else {
-    treasuresHtml = `<div class="kp-section"><div class="kp-empty-note">⚠️ Geen schatten gedocumenteerd voor deze professie.</div></div>`;
+    treasuresHtml = `<div class="kp-section"><div class="kp-empty-note">📝 Geen schatten gedocumenteerd voor deze professie.</div></div>`;
   }
 
   // Wekelijks sectie
@@ -1597,7 +1622,7 @@ function renderKpSources(p) {
     onetimeHtml = `
       <div class="kp-section">
         <div class="kp-section-header">
-          <span class="kp-section-title">⭐ Eenmalige KP bronnen</span>
+          <span class="kp-section-title">🎁 Eenmalige KP bronnen</span>
         </div>
         <table class="kp-table">
           <thead><tr><th>Bron</th><th>KP</th><th>Opmerking</th></tr></thead>
@@ -1623,17 +1648,26 @@ function renderKpSources(p) {
 
   const summaryHtml = `
     <div class="kp-summary">
-      <div class="kp-summary-item"><span class="kp-sum-label">📦 Schatten</span><span class="kp-sum-val">${treasureTotal} KP</span></div>
-      <div class="kp-summary-item"><span class="kp-sum-label">⭐ Eenmalig</span><span class="kp-sum-val">${onetimeTotal} KP</span></div>
+      <div class="kp-summary-item"><span class="kp-sum-label">💎 Schatten</span><span class="kp-sum-val">${treasureTotal} KP</span></div>
+      <div class="kp-summary-item"><span class="kp-sum-label">🎁 Eenmalig</span><span class="kp-sum-val">${onetimeTotal} KP</span></div>
       <div class="kp-summary-item"><span class="kp-sum-label">🎪 Darkmoon</span><span class="kp-sum-val">${darkmoonKp} KP</span></div>
       <div class="kp-summary-item kp-sum-total"><span class="kp-sum-label">Totaal opstart</span><span class="kp-sum-val">${treasureTotal + onetimeTotal + darkmoonKp} KP</span></div>
     </div>
   `;
 
-  el.innerHTML = summaryHtml + treasuresHtml + weeklyHtml + onetimeHtml + darkmoonHtml + tipHtml;
+  const kpBronnenHeader = {
+    nl: 'Deel 4: KP Schatten & Bronnen',
+    en: 'Part 4: KP Treasures & Sources',
+    da: 'Del 4: KP Skatte & Kilder'
+  }[lang] || 'Deel 4: KP Schatten & Bronnen';
+
+  const headerHtml = `
+    <div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>
+    <h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpBronnenHeader}</h3>
+  `;
+
+  el.innerHTML = headerHtml + summaryHtml + treasuresHtml + weeklyHtml + onetimeHtml + darkmoonHtml + tipHtml;
 }
-
-
 
 function copyTomTom(btn) {
   const ways = decodeURIComponent(btn.dataset.ways);
@@ -1659,122 +1693,6 @@ function getProfName(p, lang) {
   if (p.name && p.name.nl) return p.name.nl;
   return p.id || 'Profession';
 }
-
-
-// ============================================================
-// CSS — voeg toe aan de <style> sectie van index.html
-// (na de bestaande .kp-tree / .kp-node stijlen)
-// ============================================================
-
-/*
-
-.kp-summary {
-  display: flex; gap: 10px; flex-wrap: wrap;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid #3a3a2a;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-}
-.kp-summary-item {
-  display: flex; flex-direction: column; align-items: center;
-  min-width: 80px; background: rgba(255,255,255,0.04);
-  border-radius: 6px; padding: 8px 12px; gap: 2px;
-}
-.kp-sum-label { font-size: 0.72em; color: #a0906a; }
-.kp-sum-val   { font-size: 1.1em; font-weight: 700; color: #f0d080; }
-.kp-sum-total .kp-sum-label { color: #c89b3c; }
-.kp-sum-total .kp-sum-val   { color: #ffd700; font-size: 1.25em; }
-
-.kp-section {
-  margin-bottom: 18px;
-  background: rgba(0,0,0,0.2);
-  border: 1px solid #2a2a1a;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.kp-section-header {
-  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-  padding: 10px 14px;
-  background: rgba(200,155,60,0.1);
-  border-bottom: 1px solid #3a3020;
-}
-.kp-section-title {
-  font-weight: 700; font-size: 0.95em; color: #e8d080;
-  display: flex; align-items: center; gap: 8px;
-}
-.kp-section-sub { font-size: 0.75em; color: #808060; margin-left: auto; }
-.kp-badge-total {
-  background: rgba(200,155,60,0.25); color: #f0c040;
-  border-radius: 10px; padding: 2px 8px; font-size: 0.8em; font-weight: 600;
-}
-
-.kp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-.kp-table th {
-  text-align: left; padding: 6px 10px;
-  color: #a09060; font-size: 0.8em; font-weight: 600;
-  border-bottom: 1px solid #2a2a1a;
-}
-.kp-table td { padding: 6px 10px; border-bottom: 1px solid #1a1a0f; vertical-align: top; }
-.kp-table tr:last-child td { border-bottom: none; }
-.kp-table tr:hover td { background: rgba(255,255,255,0.03); }
-
-.kp-num         { color: #606050; width: 28px; text-align: center; }
-.kp-item-name   { color: #d4c090; font-weight: 500; }
-.kp-zone        { color: #88a060; font-size: 0.82em; }
-.kp-way-code    {
-  font-family: monospace; font-size: 0.82em;
-  background: rgba(0,0,0,0.4); color: #88c8a0;
-  padding: 2px 6px; border-radius: 4px; white-space: nowrap;
-  cursor: pointer; transition: background .15s, color .15s;
-}
-.kp-way-code:hover { background: #88c8a0; color: #000; }
-.kp-no-way      { color: #404030; }
-.kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
-.kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
-.kp-note        { cursor: help; color: #a08040; width: 24px; text-align: center; }
-
-.kp-note-row td  { background: rgba(160,120,40,0.08) !important; }
-.kp-note-text   {
-  font-size: 0.78em; color: #a09060; font-style: italic;
-  padding: 0 10px 6px 38px; display: block;
-}
-
-.kp-darkmoon    { background: rgba(120,0,180,0.08); border-color: #3a2050; }
-.kp-dm-row      { padding: 8px 14px; display: flex; gap: 20px; flex-wrap: wrap; }
-.kp-dm-quest    { color: #c090e0; font-size: 0.88em; }
-.kp-dm-npc      { color: #9080b0; font-size: 0.85em; }
-
-.kp-tip {
-  background: rgba(40,60,20,0.5);
-  border: 1px solid #3a5020;
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 0.85em; color: #a0c070;
-  margin-top: 4px;
-}
-
-.kp-tomtom-btn {
-  margin-left: auto;
-  background: rgba(40,100,60,0.4);
-  border: 1px solid #30603a;
-  color: #80d090; font-size: 0.8em;
-  padding: 4px 12px; border-radius: 6px; cursor: pointer;
-  transition: background 0.2s;
-}
-.kp-tomtom-btn:hover { background: rgba(40,100,60,0.7); }
-
-.kp-empty-note { padding: 14px; color: #806040; font-style: italic; font-size: 0.88em; }
-
-@media (max-width: 600px) {
-  .kp-summary { gap: 6px; padding: 8px; }
-  .kp-summary-item { min-width: 60px; padding: 6px 8px; }
-  .kp-way-code { font-size: 0.72em; }
-  .kp-table th, .kp-table td { padding: 4px 6px; }
-}
-
-*/
-
 
 function updateProfLang(){
   const ht=document.getElementById('prof-hero-title');
@@ -1808,12 +1726,10 @@ function renderProfGuide(profId) {
 
   if (data.sections) {
     data.sections.forEach(sec => {
-      
-        if (html.includes('<div style="display: flex; flex-direction: column; gap: 16px;">')) {
-            html += `<div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>`;
-        }
-        html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
-
+      if (html.includes('<div style="display: flex; flex-direction: column; gap: 16px;">')) {
+        html += `<div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>`;
+      }
+      html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
       html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
       
       sec.steps.forEach(step => {
@@ -1824,7 +1740,6 @@ function renderProfGuide(profId) {
           </div>
         `;
       });
-      
       html += `</div>`;
     });
   } else if (data.steps) {
@@ -1860,3 +1775,116 @@ window.addEventListener('scroll', () => {
     }
   }
 });
+
+// KP Treasure Tracking Logic
+let savedChars = JSON.parse(localStorage.getItem('midnight_chars') || '["Main"]');
+let currentKpChar = localStorage.getItem('midnight_kp_char');
+
+// Ensure current char is valid
+if (!currentKpChar || !savedChars.includes(currentKpChar)) {
+  currentKpChar = savedChars[0];
+  localStorage.setItem('midnight_kp_char', currentKpChar);
+}
+
+function changeKpChar() {
+  const sel = document.getElementById('kp-char-select');
+  if (sel) {
+    currentKpChar = sel.value;
+    localStorage.setItem('midnight_kp_char', currentKpChar);
+    loadKpProgress();
+  }
+}
+
+function addKpChar() {
+  let saved = JSON.parse(localStorage.getItem('midnight_chars') || '["Main"]');
+  
+  const msgs = {
+    nl: { max: "Je kunt maximaal 25 characters toevoegen.", prompt: "Voer de naam van je character in:", exists: "Dit character bestaat al." },
+    en: { max: "You can add up to 25 characters.", prompt: "Enter the name of your character:", exists: "This character already exists." },
+    da: { max: "Du kan tilføje op til 25 karakterer.", prompt: "Indtast navnet på din karakter:", exists: "Denne karakter findes allerede." }
+  };
+  const m = msgs[lang] || msgs.nl;
+
+  if (saved.length >= 25) {
+    alert(m.max);
+    return;
+  }
+  let name = prompt(m.prompt);
+  if (!name) return;
+  name = name.trim();
+  if (name.length === 0) return;
+  if (saved.includes(name)) {
+    alert(m.exists);
+    return;
+  }
+  saved.push(name);
+  localStorage.setItem('midnight_chars', JSON.stringify(saved));
+  currentKpChar = name;
+  localStorage.setItem('midnight_kp_char', currentKpChar);
+  
+  if (currentProf) {
+    renderKpSources(currentProf);
+  }
+}
+
+function deleteKpChar() {
+  let saved = JSON.parse(localStorage.getItem('midnight_chars') || '["Main"]');
+  
+  const msgs = {
+    nl: { min: "Je moet minimaal één character overhouden.", confirm: "Weet je zeker dat je '{char}' wilt verwijderen?" },
+    en: { min: "You must keep at least one character.", confirm: "Are you sure you want to delete '{char}'?" },
+    da: { min: "Du skal beholde mindst én karakter.", confirm: "Er du sikker på, at du vil slette '{char}'?" }
+  };
+  const m = msgs[lang] || msgs.nl;
+
+  if (saved.length <= 1) {
+    alert(m.min);
+    return;
+  }
+  if (confirm(m.confirm.replace('{char}', currentKpChar))) {
+    saved = saved.filter(c => c !== currentKpChar);
+    localStorage.setItem('midnight_chars', JSON.stringify(saved));
+    currentKpChar = saved[0];
+    localStorage.setItem('midnight_kp_char', currentKpChar);
+    
+    if (currentProf) {
+      renderKpSources(currentProf);
+    }
+  }
+}
+
+function toggleKpTreasure(cb) {
+  const tid = cb.getAttribute('data-tid');
+  const key = `midnight_kp_${currentKpChar}_${tid}`;
+  if (cb.checked) {
+    localStorage.setItem(key, '1');
+    cb.closest('tr').style.opacity = '0.5';
+  } else {
+    localStorage.removeItem(key);
+    cb.closest('tr').style.opacity = '1';
+  }
+}
+
+function loadKpProgress() {
+  const sel = document.getElementById('kp-char-select');
+  if (sel) sel.value = currentKpChar;
+  
+  document.querySelectorAll('.kp-checkbox').forEach(cb => {
+    const tid = cb.getAttribute('data-tid');
+    const key = `midnight_kp_${currentKpChar}_${tid}`;
+    if (localStorage.getItem(key)) {
+      cb.checked = true;
+      cb.closest('tr').style.opacity = '0.5';
+    } else {
+      cb.checked = false;
+      cb.closest('tr').style.opacity = '1';
+    }
+  });
+}
+
+// Call loadKpProgress after rendering
+const originalRenderKpSources = renderKpSources;
+renderKpSources = function(p) {
+  originalRenderKpSources(p);
+  setTimeout(loadKpProgress, 50);
+};
