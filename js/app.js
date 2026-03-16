@@ -1358,7 +1358,14 @@ function showProf(id){
      </div>`;
   renderKpGids(p);
   renderKpSources(p);
-  switchProfTab(document.querySelector('.pdet-tab'),'ptab-trainer');
+  
+    const guideBtn = document.getElementById('pdet-tab-guide');
+    if (guideBtn && guideBtn.style.display !== 'none') {
+      switchProfTab(guideBtn, 'ptab-guide');
+    } else {
+      switchProfTab(document.querySelector('.pdet-tab:not([style*="display: none"])'), 'ptab-trainer');
+    }
+
   window.scrollTo(0,0);
 }
 
@@ -1801,7 +1808,12 @@ function renderProfGuide(profId) {
 
   if (data.sections) {
     data.sections.forEach(sec => {
-      html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
+      
+        if (html.includes('<div style="display: flex; flex-direction: column; gap: 16px;">')) {
+            html += `<div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>`;
+        }
+        html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
+
       html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
       
       sec.steps.forEach(step => {
@@ -1836,3 +1848,15 @@ function renderProfGuide(profId) {
 
   container.innerHTML = html;
 }
+
+// Back to top button logic
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('back-to-top');
+  if (btn) {
+    if (window.scrollY > 300) {
+      btn.style.display = 'flex';
+    } else {
+      btn.style.display = 'none';
+    }
+  }
+});
