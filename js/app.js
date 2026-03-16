@@ -1296,20 +1296,19 @@ function showProf(id){
   document.getElementById('prof-grid').style.display='none';
   
     const guideTabBtn = document.getElementById('pdet-tab-guide');
-    if (guideTabBtn) {
-      if (id === 'leatherworking') {
-        guideTabBtn.style.display = '';
-        const guideTabLabels = { nl: '📖 Gids', en: '📖 Guide', da: '📖 Guide' };
-        guideTabBtn.innerHTML = guideTabLabels[lang] || guideTabLabels.nl;
-        renderLwGuide();
-      } else {
-        guideTabBtn.style.display = 'none';
-        // If guide tab was active, switch back to trainer tab
-        if (guideTabBtn.classList.contains('active')) {
-          switchProfTab(document.querySelector('.pdet-tab[onclick*="ptab-trainer"]'), 'ptab-trainer');
-        }
+  if (guideTabBtn) {
+    if (typeof PROF_GUIDE_DATA !== 'undefined' && PROF_GUIDE_DATA[id]) {
+      guideTabBtn.style.display = '';
+      const guideTabLabels = { nl: '📖 Gids', en: '📖 Guide', da: '📖 Guide' };
+      guideTabBtn.innerHTML = guideTabLabels[lang] || guideTabLabels.nl;
+      renderProfGuide(id);
+    } else {
+      guideTabBtn.style.display = 'none';
+      if (guideTabBtn.classList.contains('active')) {
+        switchProfTab(document.querySelector('.pdet-tab[onclick*="ptab-trainer"]'), 'ptab-trainer');
       }
     }
+  }
 
   document.getElementById('prof-detail').classList.add('visible');
   document.getElementById('pdet-back-btn').textContent=ui.back;
@@ -1776,11 +1775,11 @@ function updateProfLang(){
   } else { buildProfGrid(); }
 }
 
-function renderLwGuide() {
+function renderProfGuide(profId) {
   const container = document.getElementById('prof-guide-content');
   if (!container) return;
   
-  const data = typeof LW_GUIDE_DATA !== 'undefined' ? LW_GUIDE_DATA[lang] : null;
+  const data = typeof PROF_GUIDE_DATA !== 'undefined' && PROF_GUIDE_DATA[profId] ? PROF_GUIDE_DATA[profId][lang] : null;
   if (!data) return;
 
   let html = `
