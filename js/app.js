@@ -1910,7 +1910,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Voorbereiding: De Unlock Questline",
-        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 79.4 52.8\">📍 /way Silvermoon City 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 82.2 73.4\">📍 /way Silvermoon City 82.2 73.4</span>"
       },
       {
         title: "Stap 1: De Jacht Beginnen",
@@ -1941,7 +1941,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Preparation: The Unlock Questline",
-        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 79.4 52.8\">📍 /way Silvermoon City 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 82.2 73.4\">📍 /way Silvermoon City 82.2 73.4</span>"
       },
       {
         title: "Step 1: Starting the Hunt",
@@ -1972,7 +1972,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Forberedelse: Unlock Questline",
-        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 79.4 52.8</button><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><button class=\"way-btn\" onclick=\"copyWay(this)\">/way Silvermoon City 82.2 73.4</button>"
+        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 79.4 52.8\">📍 /way Silvermoon City 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way Silvermoon City 82.2 73.4\">📍 /way Silvermoon City 82.2 73.4</span>"
       },
       {
         title: "Trin 1: Start Jagten",
