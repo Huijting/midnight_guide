@@ -2,7 +2,10 @@ function renderAboutContent() {
   const el = document.getElementById('about-content');
   el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Laden...</div>';
 
-  fetch('https://raw.githubusercontent.com/Huijting/midnight_guide/main/README.md')
+  let readmeFile = 'README.md';
+    if (lang === 'en') readmeFile = 'README_en.md';
+    if (lang === 'da') readmeFile = 'README_da.md';
+    fetch(readmeFile)
     .then(r => r.ok ? r.text() : Promise.reject(r.status))
     .then(md => { el.innerHTML = mdToHtml(md); })
     .catch(() => {
