@@ -638,7 +638,7 @@ const WEEKLY_ITEMS = [
           en:'Choose 1 of 4 world event quests. Reward: Apex Cache (gear, currency, 100 Coffer Key Shards) + chance at Spark of Radiance.',
           da:'Vaelg 1 af 4 world event-quests. Belonn: Apex Cache (udrustning, valuta, 100 Coffer Key Shards) + chance for Spark of Radiance.'},
     where:'📍 Lady Liadrin — tent bij Sanctum of Light, Silvermoon City.',
-    way:'/way #2393 50.2 48.1 Lady Liadrin (weekly quests)', tags:['gear','currency'] },
+    way:'/way #2393 49.03 64.61 Lady Liadrin (weekly quests)', tags:['gear','currency'] },
 
   { id:'w_abundance', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
@@ -837,7 +837,7 @@ const WEEKLY_ITEMS = [
           en:'Chance at Spark from weekly Liadrin quest. Save for BiS slot — don&#39;t craft until you know what you want!',
           da:'Chance for Spark fra ugentlig Liadrin-quest. Gem til BiS-plads — craft intet forend du ved hvad du vil!'},
     where:'Lady Liadrin — tent bij Sanctum of Light, Silvermoon City.',
-    way:'/way #2393 50.2 48.1 Lady Liadrin', tags:['currency'] },
+    way:'/way #2393 49.03 64.61 Lady Liadrin', tags:['currency'] },
 
   { id:'w_spark_worldtour', dmfOnly:false,
     cat:{nl:'✨ Sparks of Radiance',en:'✨ Sparks of Radiance',da:'✨ Sparks of Radiance'},
@@ -846,7 +846,7 @@ const WEEKLY_ITEMS = [
           en:'Complete all 8 M0 dungeons (World Tour quest) for a guaranteed Spark. Save it — don&#39;t craft yet!',
           da:'Gennemfor alle 8 M0 dungeons (World Tour) for en garanteret Spark. Gem den — craft ingenting endnu!'},
     where:'World Tour quest NPC — tent bij Lady Liadrin, Silvermoon City.',
-    way:'/way #2393 50.2 48.1 World Tour quest NPC', tags:['currency'] },
+    way:'/way #2393 49.03 64.61 World Tour quest NPC', tags:['currency'] },
 
   // ── Hard Prey voor Veteran gear + Crests ──
   { id:'w_prey_hard', dmfOnly:false,
