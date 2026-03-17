@@ -1234,7 +1234,7 @@ function setMode(mode){
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
   const sb=document.getElementById('spec-btn');
-  if(sb)sb.style.display=(mode==='dungeons')?'':'none';
+  if(sb)sb.style.display=(mode==='dungeons' || mode==='raids')?'':'none';
   document.getElementById('back-btn').style.display='none';
   if(mode==='home'){
     updateLandingStrings();

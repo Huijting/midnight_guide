@@ -1266,3 +1266,13 @@ h1, h2, h3, h4, h5, h6, .card-name, .hero-title, .header-title, #pwa-modal-title
 }
 
 h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-0.5px;color:var(--gold);margin:0}
+  /* Wowhead Tooltip Link Styling */
+  a[href*="wowhead.com"] {
+    text-decoration: none !important;
+    font-weight: 700;
+    transition: filter 0.2s;
+  }
+  a[href*="wowhead.com"]:hover {
+    filter: brightness(1.2);
+    text-decoration: underline !important;
+  }

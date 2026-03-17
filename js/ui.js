@@ -1,3 +1,413 @@
+const SPELL_IDS = {
+  "Bone Shield": 195181,
+  "Adrenaline Rush": 13750,
+  "Agony": 980,
+  "Aimed Shot": 19434,
+  "Ambush": 8676,
+  "Ancestral Guidance": 108281,
+  "Ancestral Swiftness": 443454,
+  "Anti-Magic Shell": 48707,
+  "Anti-Magic Zone": 50461,
+  "Apocalypse": 202618,
+  "Apotheosis": 200183,
+  "Arcane Barrage": 44425,
+  "Arcane Blast": 18091,
+  "Arcane Explosion": 1449,
+  "Arcane Missiles": 5143,
+  "Arcane Shot": 185358,
+  "Arcane Surge": 45430,
+  "Ardent Defender": 31850,
+  "Ascendance": 28200,
+  "Aspect of the Cheetah": 122489,
+  "Aspect of the Eagle": 186289,
+  "Aspect of the Turtle": 186265,
+  "Astral Shift": 108271,
+  "Aura Mastery": 31821,
+  "Avatar": 107574,
+  "Avenging Wrath": 31884,
+  "Backstab": 53,
+  "Banish": 710,
+  "Barbed Shot": 217200,
+  "Barkskin": 22812,
+  "Beacon": 53563,
+  "Beacon of Light": 53563,
+  "Berserk": 50334,
+  "Bestial Wrath": 19574,
+  "Between the Eyes": 315341,
+  "Black Arrow": 466930,
+  "Blackout Kick": 100784,
+  "Blade Dance": 188499,
+  "Blade Flurry": 13877,
+  "Blade of Justice": 184575,
+  "Bladestorm": 9632,
+  "Blessing of Freedom": 1044,
+  "Blessing of Protection": 1022,
+  "Blessing of Sacrifice": 6940,
+  "Blind": 2094,
+  "Blink": 1953,
+  "Blistering Scales": 360827,
+  "Blizzard": 12486,
+  "Blood Boil": 50842,
+  "Bloodthirst": 23881,
+  "Blur": 198589,
+  "Breath of Eons": 403631,
+  "Breath of Fire": 12257,
+  "Bristling Fur": 155835,
+  "Call Dreadstalkers": 104316,
+  "Capacitor Totem": 118905,
+  "Celestial Alignment": 194223,
+  "Celestial Brew": 322507,
+  "Chain Heal": 1064,
+  "Chain Lightning": 16921,
+  "Chains of Ice": 45524,
+  "Channel Demonfire": 196447,
+  "Chaos Bolt": 116858,
+  "Chaos Nova": 179057,
+  "Chaos Strike": 162794,
+  "Charge": 100,
+  "Cleanse": 4987,
+  "Cleanse Toxins": 213644,
+  "Cleave": 845,
+  "Cloak of Shadows": 31224,
+  "Cobra Shot": 193455,
+  "Cold Snap": 235219,
+  "Colossus Smash": 167105,
+  "Combustion": 190319,
+  "Cone of Cold": 120,
+  "Conflagrate": 17962,
+  "Consecration": 26573,
+  "Consume Magic": 278326,
+  "Convoke the Spirits": 323764,
+  "Coordinated Assault": 360952,
+  "Corruption": 172,
+  "Counter Shot": 147362,
+  "Counterspell": 2139,
+  "Crash Lightning": 187874,
+  "Crimson Tempest": 1247227,
+  "Crimson Vial": 185311,
+  "Crusader Strike": 35395,
+  "Curse of Exhaustion": 334275,
+  "Dancing Rune Weapon": 49028,
+  "Dark Transformation": 63560,
+  "Death Coil": 47541,
+  "Death Gate": 50977,
+  "Death Grip": 49575,
+  "Death Strike": 45470,
+  "Death and Decay": 43265,
+  "Deathmark": 360194,
+  "Deep Breath": 353759,
+  "Demon Spikes": 203720,
+  "Demonbolt": 264178,
+  "Demonic Circle": 268358,
+  "Devastate": 20243,
+  "Die by the Sword": 118038,
+  "Diffuse Magic": 1243287,
+  "Disengage": 781,
+  "Disintegrate": 356995,
+  "Dispel Magic": 528,
+  "Dispersion": 47585,
+  "Disrupt": 183752,
+  "Divine Hymn": 64843,
+  "Divine Shield": 642,
+  "Divine Star": 110744,
+  "Divine Storm": 53385,
+  "Doom Winds": 214284,
+  "Dragonrage": 375087,
+  "Drain Soul": 198590,
+  "Dream Breath": 355936,
+  "Earth Shield": 379,
+  "Earth Shock": 8042,
+  "Earthbind Totem": 2484,
+  "Earthgrab Totem": 51485,
+  "Earthquake": 61882,
+  "Ebon Might": 395152,
+  "Ebonbolt": 214634,
+  "Echo": 364343,
+  "Efflorescence": 81262,
+  "Emerald Blossom": 256823,
+  "Enveloping Mist": 124682,
+  "Envenom": 32645,
+  "Epidemic": 184922,
+  "Eruption": 395160,
+  "Essence Font": 353937,
+  "Eternity Surge": 359073,
+  "Evangelism": 472433,
+  "Evasion": 5277,
+  "Eviscerate": 196819,
+  "Evocation": 12051,
+  "Exhilaration": 109304,
+  "Expel Harm": 115129,
+  "Eye Beam": 198013,
+  "Fade": 586,
+  "Fan of Knives": 51723,
+  "Feign Death": 5384,
+  "Fel Devastation": 212084,
+  "Fel Rush": 192611,
+  "Feral Frenzy": 274837,
+  "Feral Spirit": 51533,
+  "Ferocious Bite": 22568,
+  "Festering Strike": 85948,
+  "Fiery Brand": 204021,
+  "Fire Blast": 29633,
+  "Fire Breath": 357208,
+  "Fireball": 133,
+  "Firestorm": 333097,
+  "Fists of Fury": 113656,
+  "Flame Shock": 188389,
+  "Flamestrike": 2120,
+  "Flash Heal": 2061,
+  "Flash of Light": 19750,
+  "Flourish": 184879,
+  "Flurry": 44614,
+  "Flying Serpent Kick": 101545,
+  "Fortifying Brew": 115203,
+  "Fracture": 225919,
+  "Freezing Trap": 3355,
+  "Frenzied Regeneration": 22842,
+  "Frost Nova": 122,
+  "Frost Shock": 196840,
+  "Frost Strike": 49143,
+  "Frostbolt": 116,
+  "Frozen Orb": 84714,
+  "Fury of Elune": 202770,
+  "Garrote": 703,
+  "Glacial Advance": 194913,
+  "Glaive Tempest": 342817,
+  "Grappling Hook": 195457,
+  "Greater Invisibility": 110959,
+  "Guardian Spirit": 47788,
+  "Guardian of Ancient Kings": 86659,
+  "Halo": 120517,
+  "Hammer of Justice": 853,
+  "Hammer of Wrath": 24275,
+  "Hammer of the Righteous": 53595,
+  "Hamstring": 1715,
+  "Hand of Reckoning": 62124,
+  "Harpoon": 186260,
+  "Haunt": 48181,
+  "Havoc": 80240,
+  "Heal": 2060,
+  "Healing Rain": 73920,
+  "Healing Stream Totem": 5394,
+  "Healing Surge": 8004,
+  "Healing Wave": 77472,
+  "Healthstone": 6262,
+  "Heart Strike": 206930,
+  "Heroic Leap": 6544,
+  "Hibernate": 2637,
+  "Holy Light": 82326,
+  "Holy Prism": 114165,
+  "Holy Shock": 20473,
+  "Holy Word: Sanctify": 34861,
+  "Holy Word: Serenity": 2050,
+  "Hover": 357302,
+  "Howling Blast": 49184,
+  "Hunter": 137014,
+  "Hunter's Mark": 257284,
+  "Ice Block": 45438,
+  "Ice Lance": 30455,
+  "Icebound Fortitude": 48792,
+  "Ignore Pain": 190456,
+  "Immolate": 348,
+  "Immolation Aura": 195447,
+  "Implosion": 65024,
+  "Imprison": 217832,
+  "Incinerate": 29722,
+  "Indiscriminate Carnage": 381802,
+  "Innervate": 29166,
+  "Intervene": 3411,
+  "Intimidating Shout": 5246,
+  "Intimidation": 19577,
+  "Invisibility": 66,
+  "Ironfur": 192081,
+  "Judgment": 20271,
+  "Keg Smash": 121253,
+  "Kick": 1766,
+  "Kill Command": 34026,
+  "Killing Machine": 51124,
+  "Killing Spree": 51690,
+  "Last Stand": 12975,
+  "Lava Burst": 51505,
+  "Lava Lash": 60103,
+  "Lay on Hands": 633,
+  "Leap of Faith": 73325,
+  "Leg Sweep": 119381,
+  "Life Cocoon": 116849,
+  "Lifebloom": 33763,
+  "Light of Dawn": 85222,
+  "Lightning Bolt": 13482,
+  "Living Bomb": 44457,
+  "Living Flame": 64712,
+  "Malefic Rapture": 324536,
+  "Mana Tea": 115294,
+  "Mangle": 33917,
+  "Marrowrend": 195182,
+  "Mass Dispel": 32375,
+  "Maul": 6807,
+  "Metamorphosis": 162264,
+  "Mind Blast": 8092,
+  "Mind Flay": 15407,
+  "Mind Freeze": 47528,
+  "Mind Sear": 344752,
+  "Mirror Image": 55342,
+  "Misdirection": 34477,
+  "Moonfire": 8921,
+  "Mortal Coil": 6789,
+  "Mortal Strike": 12294,
+  "Mutilate": 1329,
+  "Nether Portal": 267218,
+  "Obliterate": 49020,
+  "Outbreak": 77575,
+  "Overpower": 7384,
+  "Pain Suppression": 33206,
+  "Paralysis": 115078,
+  "Path of Frost": 3714,
+  "Penance": 47540,
+  "Phoenix Flames": 1251907,
+  "Pillar of Frost": 51271,
+  "Power Infusion": 10060,
+  "Power Siphon": 264130,
+  "Power Word: Barrier": 62618,
+  "Power Word: Fortitude": 21562,
+  "Power Word: Radiance": 194509,
+  "Power Word: Shield": 17,
+  "Prayer of Healing": 596,
+  "Prayer of Mending": 33076,
+  "Prescience": 225139,
+  "Presence of Mind": 205025,
+  "Primal Wrath": 285381,
+  "Primordial Wave": 326059,
+  "Psychic Scream": 8122,
+  "Pummel": 6552,
+  "Purge": 370,
+  "Purify": 527,
+  "Purify Spirit": 77130,
+  "Pyre": 357211,
+  "Pyroblast": 11366,
+  "Raging Blow": 85288,
+  "Rain of Fire": 5740,
+  "Raise Ally": 61999,
+  "Raise Dead": 46584,
+  "Rake": 1822,
+  "Rallying Cry": 97462,
+  "Rampage": 138870,
+  "Rapid Fire": 257044,
+  "Raptor Strike": 186270,
+  "Rebirth": 20484,
+  "Recklessness": 1719,
+  "Regrowth": 8936,
+  "Rejuvenation": 774,
+  "Remorseless Winter": 196770,
+  "Remove Corruption": 2782,
+  "Renew": 139,
+  "Renewing Mist": 115151,
+  "Rescue": 370665,
+  "Revenge": 6572,
+  "Reversion": 366155,
+  "Revival": 115310,
+  "Rewind": 296101,
+  "Rime": 59052,
+  "Ring of Peace": 116844,
+  "Rip": 1079,
+  "Riptide": 61295,
+  "Rising Sun Kick": 107428,
+  "Roll the Bones": 1214909,
+  "Rupture": 1943,
+  "Sap": 6770,
+  "Scorch": 2948,
+  "Scourge Strike": 55090,
+  "Seed of Corruption": 27243,
+  "Shackle Undead": 58251,
+  "Shadow Blades": 121471,
+  "Shadow Bolt": 686,
+  "Shadow Dance": 185313,
+  "Shadow Word: Pain": 589,
+  "Shadowfiend": 34433,
+  "Shadowstrike": 185438,
+  "Shield Slam": 23922,
+  "Shield Wall": 871,
+  "Shield of the Righteous": 53600,
+  "Shockwave": 46968,
+  "Shred": 5221,
+  "Shroud of Concealment": 114018,
+  "Shuriken Storm": 197835,
+  "Sigil of Flame": 204596,
+  "Sigil of Misery": 207684,
+  "Sigil of Silence": 202137,
+  "Silence": 15487,
+  "Sinister Strike": 1752,
+  "Skull Bash": 93985,
+  "Slam": 1464,
+  "Slice and Dice": 315496,
+  "Smite": 585,
+  "Soothe": 2908,
+  "Soul Cleave": 228477,
+  "Soulstone": 6203,
+  "Spear Hand Strike": 116705,
+  "Spectral Sight": 188501,
+  "Spell Reflection": 23920,
+  "Spellsteal": 30449,
+  "Spinning Crane Kick": 101546,
+  "Spirit Bomb": 247454,
+  "Spiritbloom": 367226,
+  "Sprint": 2983,
+  "Stampeding Roar": 77761,
+  "Starfall": 50286,
+  "Starfire": 194153,
+  "Starsurge": 78674,
+  "Stasis": 370537,
+  "Steady Shot": 56641,
+  "Storm Bolt": 107570,
+  "Stormkeeper": 191634,
+  "Stormstrike": 17364,
+  "Strike of the Windlord": 214854,
+  "Summon Darkglare": 205180,
+  "Summon Demonic Tyrant": 265187,
+  "Summon Infernal": 1122,
+  "Sundering": 197214,
+  "Sunfire": 27981,
+  "Survival Instincts": 50322,
+  "Sweeping Strikes": 260708,
+  "Swiftmend": 18562,
+  "Swipe": 106785,
+  "Symbols of Death": 212283,
+  "Tail Swipe": 368970,
+  "Tar Trap": 135299,
+  "Thrash": 77758,
+  "Thunder Clap": 6343,
+  "Thunder Focus Tea": 116680,
+  "Tiger Palm": 100780,
+  "Time Warp": 80353,
+  "Tip the Scales": 370553,
+  "Touch of Death": 322109,
+  "Touch of the Magi": 210725,
+  "Tranquility": 740,
+  "Transcendence": 101643,
+  "Trueshot": 288613,
+  "Typhoon": 61391,
+  "Unstable Affliction": 30108,
+  "Upheaval": 396286,
+  "Vampiric Blood": 55233,
+  "Vampiric Embrace": 15286,
+  "Vampiric Touch": 34914,
+  "Vanish": 1856,
+  "Verdant Embrace": 257444,
+  "Vivify": 116670,
+  "Void Eruption": 228360,
+  "Wailing Arrow": 354831,
+  "Wake of Ashes": 205273,
+  "Whirlwind": 1680,
+  "Wild Growth": 48438,
+  "Wild Thrash": 1264355,
+  "Wildfire Bomb": 259495,
+  "Wind Rush Totem": 192077,
+  "Wind Shear": 57994,
+  "Wing Buffet": 357214,
+  "Word of Glory": 85673,
+  "Wrath": 5176,
+  "Zephyr": 374227,
+};
+
 function renderAboutContent() {
   const el = document.getElementById('about-content');
   el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Laden...</div>';
@@ -997,6 +1407,69 @@ function switchSpecTab(id) {
   document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-'+id));
 }
 
+
+function wrapSpell(spellText) {
+  if (!spellText) return '';
+  
+  let url = '';
+  
+  // 1. Zoek eerst of de exacte spell naam (uit onze database) ergens in de tekst voorkomt
+  if (typeof SPELL_IDS !== 'undefined') {
+    // Sorteer op lengte zodat we "Power Word: Shield" vinden vóór "Shield"
+    if (!window._sortedSpellKeys) {
+      window._sortedSpellKeys = Object.keys(SPELL_IDS).sort((a, b) => b.length - a.length);
+    }
+    
+    for (const spellName of window._sortedSpellKeys) {
+      // Escape speciale karakters voor regex
+      const escapedName = spellName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      // Zoek naar het woord in de tekst (case-insensitive)
+      const regex = new RegExp(`\\b${escapedName}\\b`, 'i');
+      if (regex.test(spellText)) {
+        url = `https://www.wowhead.com/spell=${SPELL_IDS[spellName]}`;
+        break; // Stop zodra we de langste match hebben gevonden
+      }
+    }
+  }
+  
+  // 2. Als we geen match hebben gevonden, val terug op de opschoon-methode en zoekopdracht
+  if (!url) {
+    let cleanName = spellText.replace(/\s*\(.*?\)/g, '')
+      .replace(/\s*spam/gi, '')
+      .replace(/\s+x\d+/gi, '')
+      .replace(/\s+on\s+all\s+targets/gi, '')
+      .replace(/\s+op\s+alle\s+targets/gi, '')
+      .replace(/\s+p[a-zæøåA-ZÆØÅ]+\s+alle\s+m[a-zæøåA-ZÆØÅ]+/gi, '')
+      .replace(/\s+on\s+targets/gi, '')
+      .replace(/\s+op\s+targets/gi, '')
+      .replace(/\s+p[a-zæøåA-ZÆØÅ]+\s+m[a-zæøåA-ZÆØÅ]+/gi, '')
+      .replace(/\s+on\s+tank/gi, '')
+      .replace(/\s+op\s+tank/gi, '')
+      .replace(/\s+p[a-zæøåA-ZÆØÅ]+\s+tank/gi, '')
+      .replace(/\s+refresh/gi, '')
+      .replace(/-fornyelse/gi, '')
+      .replace(/\s+verspreiden/gi, '')
+      .replace(/^Spread\s+/gi, '')
+      .replace(/^Spred\s+/gi, '')
+      .replace(/^Place\s+/gi, '')
+      .replace(/^Placer\s+/gi, '')
+      .replace(/\s+plaatsen/gi, '')
+      .replace(/\s*<.*$/g, '')
+      .replace(/\s*\/.*$/g, '')
+      .replace(/\s+rank\s+\d+/gi, '')
+      .replace(/\s+opbouwen/gi, '')
+      .replace(/\s+op\s+CD/gi, '')
+      .replace(/\s+on\s+CD/gi, '')
+      .replace(/\s+p[a-zæøåA-ZÆØÅ]+\s+CD/gi, '')
+      .trim();
+      
+    cleanName = cleanName.replace(/^[^\w]+|[^\w]+$/g, '');
+    url = `https://www.wowhead.com/search?q=${encodeURIComponent(cleanName)}`;
+  }
+  
+  return `<a href="${url}" class="wh-link" data-wh-rename="false" target="_blank">${spellText.trim()}</a>`;
+}
+
 function renderSpecTab(s, tid, ui) {
   // Haal data op voor huidige taal, val terug op NL als taal leeg/stub is
   function hasContent(d) {
@@ -1013,7 +1486,14 @@ function renderSpecTab(s, tid, ui) {
 
   if (tid === 'cheatsheet') {
     const rules = (d.rules||[]).map(r=>`<div class="cheat-rule">${r}</div>`).join('');
-    const fmtRot = t => t.replace(/(Kill Command|Bestial Wrath|Barbed Shot|Black Arrow|Wild Thrash|Wailing Arrow|Cobra Shot|Hunter's Mark)/g, '<span>$1</span>');
+    const fmtRot = t => {
+      if (!t) return '';
+      // Splits op pijltjes (zowel -> als ➔ als ➜ als )
+      return t.split(/(\s*(?:->|➔|➜|→||➤)\s*)/).map(part => {
+        if (part.match(/->|➔|➜|→||➤/)) return part;
+        return wrapSpell(part);
+      }).join('');
+    };
     return `
       <div class="spec-section-title">${ui.opener}</div>
       <div class="cheat-rot"><div class="cheat-rot-text">${fmtRot(d.opener||'')}</div></div>
@@ -1026,7 +1506,7 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'rotation') {
-    const rotRow = (r, imp, i) => `<tr><td class="rot-prio">${r.prio||r.step||(i+1)}</td><td><div class="rot-spell">${r.spell}</div><div class="rot-note">${r.why||r.note||''}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
+    const rotRow = (r, imp, i) => `<tr><td class="rot-prio">${r.prio||r.step||(i+1)}</td><td><div class="rot-spell">${wrapSpell(r.spell)}</div><div class="rot-note">${r.why||r.note||''}</div></td>${imp?`<td><span class="rot-imp-${(r.importance||'').toLowerCase()}">${r.importance||''}</span></td>`:''}</tr>`;
     return `${d.apex_tip?`<div class="apex-tip">${d.apex_tip}</div>`:''}
       <div class="spec-section-title">${ui.opener}</div>
       <table class="rot-table"><thead><tr><th>${ui.prio}</th><th>${ui.spell}</th></tr></thead><tbody>${(d.opener||[]).map((r,i)=>rotRow(r,false,i)).join('')}</tbody></table>
@@ -1043,15 +1523,15 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'cooldowns') {
-    return (d||[]).map(c=>`<div class="cd-card"><div class="cd-top"><span class="cd-spell">${c.spell}</span><span class="cd-timer">${c.cd}</span></div><div class="cd-effect">${c.effect}</div><div class="cd-when">→ ${c.when}</div></div>`).join('');
+      return (d||[]).map(c=>`<div class=\"cd-card\"><div class=\"cd-top\"><span class=\"cd-spell\">${wrapSpell(c.spell)}</span><span class="cd-timer">${c.cd}</span></div><div class="cd-effect">${c.effect}</div><div class="cd-when">→ ${c.when}</div></div>`).join('');
   }
 
   if (tid === 'tips') {
-    return (d||[]).map(t=>`<div class="tip-card"><div class="tip-icon">${t.icon}</div><div><div class="tip-title">${t.title}</div><div class="tip-text">${t.text}</div></div></div>`).join('');
+    return (d||[]).map(t=>`<div class="tip-card"><div class="tip-icon">${t.icon}</div><div><div class="tip-title">${wrapSpell(t.title)}</div><div class="tip-text">${wrapSpell(t.text)}</div></div></div>`).join('');
   }
 
   if (tid === 'macros') {
-    return `<p style="font-size:11px;color:var(--muted);margin-bottom:10px">${ui.macro_copy}</p>`+(d||[]).map(m=>`<div class="macro-card"><div class="macro-name">${m.name}</div><div class="macro-note">${m.note}</div><div class="macro-code" onclick="copyMacro(this)">${m.code}</div></div>`).join('');
+    return `<p style="font-size:11px;color:var(--muted);margin-bottom:10px">${ui.macro_copy}</p>`+(d||[]).map(m=>`<div class="macro-card"><div class="macro-name">${wrapSpell(m.name)}</div><div class="macro-note">${wrapSpell(m.note)}</div><div class="macro-code" onclick="copyMacro(this)">${m.code}</div></div>`).join('');
   }
 
   if (tid === 'consumables') {
@@ -1066,8 +1546,8 @@ function renderSpecTab(s, tid, ui) {
 
   if (tid === 'resource') {
     const res = d || (s.resource_info ? (s.resource_info[lang] || s.resource_info.nl) : null);
-    const genRows = (res.generate||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
-    const spendRows = (res.spend||[]).map(r=>`<tr><td>${r.spell}</td><td>${r.note}</td></tr>`).join('');
+    const genRows = (res.generate||[]).map(r=>`<tr><td>${wrapSpell(r.spell)}</td><td>${wrapSpell(r.note)}</td></tr>`).join('');
+    const spendRows = (res.spend||[]).map(r=>`<tr><td>${wrapSpell(r.spell)}</td><td>${wrapSpell(r.note)}</td></tr>`).join('');
     return `<p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px">${res.intro||''}</p>
       <div class="spec-section-title">${ui.generate}</div>
       <table class="res-table"><thead><tr><th>Spell</th><th>Effect</th></tr></thead><tbody>${genRows}</tbody></table>
