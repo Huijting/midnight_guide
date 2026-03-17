@@ -296,7 +296,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professies", tab_weekly: "📅 Wekelijks", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -362,7 +362,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "🌙 Home", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Professions", tab_weekly: "📅 Weekly", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -428,7 +428,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_home: "🌙 Hjem", tab_dungeons: "⚔ Dungeons", tab_professions: "🔨 Erhverv", tab_weekly: "📅 Ugentlig", tab_affixes: "⚡ Affixes", tab_raids: "🏰 Raids", tab_specs: "🎯 Specs", tab_prey: "🎯 Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -539,14 +539,14 @@ function applyUIStrings() {
   if (document.getElementById('help-modal').classList.contains('open')) renderHelp();
   document.getElementById('feedback-btn').textContent = u.feedback_btn;
   document.getElementById('about-title').textContent = u.about_title;
-  document.getElementById('tab-lbl-home').textContent = u.tab_home;
-  document.getElementById('tab-lbl-dungeons').textContent = u.tab_dungeons;
-  document.getElementById('tab-lbl-professions').textContent = u.tab_professions;
-  document.getElementById('tab-lbl-weekly').textContent = u.tab_weekly;
-  document.getElementById('tab-lbl-specs').textContent = u.tab_specs;
-  document.getElementById('tab-lbl-affixes').textContent = u.tab_affixes;
-  const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.textContent = u.tab_prey;
-  document.getElementById('tab-lbl-raids').textContent = u.tab_raids;
+  document.getElementById('tab-lbl-home').innerHTML = u.tab_home;
+  document.getElementById('tab-lbl-dungeons').innerHTML = u.tab_dungeons;
+  document.getElementById('tab-lbl-professions').innerHTML = u.tab_professions;
+  document.getElementById('tab-lbl-weekly').innerHTML = u.tab_weekly;
+  document.getElementById('tab-lbl-specs').innerHTML = u.tab_specs;
+  document.getElementById('tab-lbl-affixes').innerHTML = u.tab_affixes;
+  const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.innerHTML = u.tab_prey;
+  document.getElementById('tab-lbl-raids').innerHTML = u.tab_raids;
   const _glbl=document.getElementById('tab-lbl-glossary');
   if(_glbl) _glbl.textContent=u.lbl_glossary||'📖 Woordenlijst';
   updateLandingStrings();
@@ -1673,7 +1673,7 @@ function renderKpSources(p) {
 
   const headerHtml = `
     <div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>
-    <h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpBronnenHeader}</h3>
+    <h3 style="font-family: 'Inter', sans-serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpBronnenHeader}</h3>
   `;
 
   el.innerHTML = headerHtml + summaryHtml + treasuresHtml + weeklyHtml + onetimeHtml + darkmoonHtml + tipHtml;
@@ -1730,7 +1730,7 @@ function renderProfGuide(profId) {
   if (!data) return;
 
   let html = `
-    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 12px; font-size: clamp(20px, 5vw, 28px);">${data.title}</h2>
+    <h2 style="font-family: 'Inter', sans-serif; color: var(--gold); text-align: center; margin-bottom: 12px; font-size: clamp(20px, 5vw, 28px);">${data.title}</h2>
     <p style="font-size: 14px; margin-bottom: 24px; text-align: center; color: var(--text);">${data.intro}</p>
   `;
 
@@ -1739,13 +1739,13 @@ function renderProfGuide(profId) {
       if (html.includes('<div style="display: flex; flex-direction: column; gap: 16px;">')) {
         html += `<div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>`;
       }
-      html += `<h3 style="font-family: 'Cinzel', serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
+      html += `<h3 style="font-family: 'Inter', sans-serif; color: var(--gold2); margin-top: 24px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">${sec.sectionTitle}</h3>`;
       html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
       
       sec.steps.forEach(step => {
         html += `
           <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-            <h4 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h4>
+            <h4 style="font-family: 'Inter', sans-serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h4>
             <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
           </div>
         `;
@@ -1757,7 +1757,7 @@ function renderProfGuide(profId) {
     data.steps.forEach(step => {
       html += `
         <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-          <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h3>
+          <h3 style="font-family: 'Inter', sans-serif; color: var(--accent); margin-bottom: 8px; font-size: 16px;">${step.title}</h3>
           <p style="font-size: 13px; color: var(--text); line-height: 1.5;">${step.text}</p>
         </div>
       `;
@@ -2013,7 +2013,7 @@ function renderPreyGuide() {
   data.sections.forEach((sec, i) => {
     html += `
       <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-        <h3 style="font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 8px; font-size: 18px;">${sec.title}</h3>
+        <h3 style="font-family: 'Inter', sans-serif; color: var(--accent); margin-bottom: 8px; font-size: 18px;">${sec.title}</h3>
         <p style="font-size: 14px; color: var(--text); line-height: 1.6;">${sec.text}</p>
       </div>
     `;
