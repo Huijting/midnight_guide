@@ -918,8 +918,13 @@ function buildSpecGrid() {
     'Evoker':'🐉'
   };
 
+  classOrder.sort();
   const html = classOrder.map(cls => {
-    const clsSpecs = byClass[cls];
+    const clsSpecs = byClass[cls].sort((a,b) => {
+        const nameA = (typeof a.spec === 'object') ? (a.spec[lang] || a.spec.nl) : a.spec;
+        const nameB = (typeof b.spec === 'object') ? (b.spec[lang] || b.spec.nl) : b.spec;
+        return nameA.localeCompare(nameB);
+      });
     const rows = clsSpecs.map(s => {
       const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl) : s.spec;
       const roleLbl = ui['role_'+s.role] || ui.role_dps || s.role;
@@ -929,7 +934,7 @@ function buildSpecGrid() {
           <div class="spec-row-name">${specName}</div>
           <div class="spec-row-role">${roleLbl}</div>
         </div>
-        <div class="spec-row-arrow">›</div>
+        <div class="spec-row-arrow">&#10132;</div>
       </div>`;
     }).join('');
     return `<div class="spec-class-block">

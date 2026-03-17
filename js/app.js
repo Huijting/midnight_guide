@@ -684,7 +684,7 @@ function renderHome() {
         </div>
         <div class="card-footer">
           <span class="card-level">${t(d.level)}</span>
-          <span class="card-arrow">›</span>
+          <span class="card-arrow">&#10132;</span>
         </div>
       </div>`;
     if (!isRaid) (isMplus ? mplusGrid : normalGrid).appendChild(card);
@@ -1058,18 +1058,27 @@ function buildRaidScreen(){
     },
   ];
 
-  el.innerHTML = raids.map(r => `
-    <div class="raid-card${r.available ? '' : ' raid-coming-soon'}" ${r.available ? `onclick="openRaid('${r.id}')"` : ''}>
-      <div class="raid-card-header">
-        <span class="raid-card-icon">${r.icon}</span>
-        <span class="raid-card-name">${r.name}</span>
-        ${r.available ? `<span style="font-size:10px;background:#4ade80;color:#000;border-radius:6px;padding:2px 6px;font-weight:800">${lang==='nl'?'BESCHIKBAAR':lang==='da'?'TILGÆNGELIG':'AVAILABLE'}</span>` : `<span style="font-size:10px;background:var(--muted);color:var(--bg);border-radius:6px;padding:2px 6px;font-weight:800">${lang==='nl'?'BINNENKORT':lang==='da'?'SNART':'SOON'}</span>`}
+  el.innerHTML = `<div class="dungeon-grid">` + raids.map(r => `
+      <div class="dungeon-card raid ${r.available ? '' : 'raid-coming-soon'}" ${r.available ? `onclick="openRaid('${r.id}')"` : ''} style="${r.available ? '' : 'opacity:0.6; cursor:default;'}">
+        <div class="card-accent" style="background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div>
+        <div class="card-body">
+          <span class="card-badge badge-raid" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.3)">
+            ${r.available ? (lang==='nl'?'BESCHIKBAAR':lang==='da'?'TILGÆNGELIG':'AVAILABLE') : (lang==='nl'?'BINNENKORT':lang==='da'?'SNART':'SOON')}
+          </span>
+          <div class="card-name" style="display:flex; align-items:center; gap:8px; margin-top: 4px;">
+            <span>${r.icon}</span> ${r.name}
+          </div>
+          <div class="card-zone" style="margin-top:4px;">📍 ${t(r.zone)} &nbsp;•&nbsp; ${t(r.opens)}</div>
+          <div class="card-bosses">
+            ${r.bosses.map(b => `<span class="boss-chip">${b}</span>`).join('')}
+          </div>
+          <div class="card-footer">
+            <span class="card-level" style="color:#a78bfa">Raid</span>
+            <span class="card-arrow">&#10132;</span>
+          </div>
+        </div>
       </div>
-      <div class="raid-card-meta">📍 ${t(r.zone)} &nbsp;·&nbsp; ${t(r.opens)}</div>
-      <div class="raid-card-bosses">
-        ${r.bosses.map(b => `<span class="raid-boss-chip">${b}</span>`).join('')}
-      </div>
-    </div>`).join('');
+    `).join('') + `</div>`;
 }
 
 function buildAffixScreen(){
@@ -1274,7 +1283,8 @@ function buildProfGrid(){
   const grid=document.getElementById('prof-grid');if(!grid)return;
   const ui=PROF_UI[lang];
   const cat={gathering:ui.gathering,crafting:ui.crafting,secondary:ui.secondary};
-  grid.innerHTML=ALL_PROFS.map(p=>`
+  const sortedProfs = [...ALL_PROFS].sort((a,b) => pT(a.name).localeCompare(pT(b.name)));
+  grid.innerHTML=sortedProfs.map(p=>`
     <div class="prof-card" onclick="showProf('${p.id}')">
       <div class="prof-card-icon">${p.icon}</div>
       <div class="prof-card-name">${pT(p.name)}</div>
