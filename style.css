@@ -1266,13 +1266,17 @@ h1, h2, h3, h4, h5, h6, .card-name, .hero-title, .header-title, #pwa-modal-title
 }
 
 h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-0.5px;color:var(--gold);margin:0}
-  /* Wowhead Tooltip Link Styling */
+  /* Wowhead Tooltip Link Styling - heldere kleur voor leesbaarheid op donkere achtergrond */
   a[href*="wowhead.com"] {
+    color: #00ccff !important;
     text-decoration: none !important;
     font-weight: 700;
-    transition: filter 0.2s;
+    transition: filter 0.2s, color 0.2s;
+    text-shadow: 0 0 8px rgba(0, 204, 255, 0.35);
   }
   a[href*="wowhead.com"]:hover {
+    color: #66ddff !important;
     filter: brightness(1.2);
     text-decoration: underline !important;
+    text-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
   }

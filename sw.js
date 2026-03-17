@@ -56,6 +56,7 @@ const PRECACHE = [
   '/data/specs/fury_warrior.js',
   '/data/specs/guardian_druid.js',
   '/data/specs/havoc_dh.js',
+    '/data/specs/devourer_dh.js',
   '/data/specs/holy_paladin.js',
   '/data/specs/holy_priest.js',
   '/data/specs/mistweaver_monk.js',
