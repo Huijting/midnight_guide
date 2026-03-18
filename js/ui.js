@@ -103,6 +103,7 @@ const SPELL_IDS = {
   "Death Strike": 45470,
   "Death and Decay": 43265,
   "Deathmark": 360194,
+  "Devouring Plague": 164452,
   "Deep Breath": 353759,
   "Demons Bite": 162243,
   "Demon Spikes": 203720,
@@ -123,6 +124,7 @@ const SPELL_IDS = {
   "Doom Winds": 214284,
   "Dragon's Breath": 169843,
   "Dragonrage": 375087,
+  "Drain Life": 234153,
   "Drain Soul": 198590,
   "Dream Breath": 355936,
   "Earth Shield": 379,
@@ -172,7 +174,9 @@ const SPELL_IDS = {
   "Flamestrike": 2120,
   "Flash Heal": 2061,
   "Flash of Light": 19750,
+  "Flanking Strike": 269751,
   "Flourish": 184879,
+  "Butchery": 212436,
   "Flurry": 44614,
   "Flying Serpent Kick": 101545,
   "Fortifying Brew": 115203,
@@ -211,6 +215,7 @@ const SPELL_IDS = {
   "Healing Wave": 77472,
   "Healthstone": 6262,
   "Heart Strike": 206930,
+  "Holy Avenger": 105809,
   "Heroic Leap": 6544,
   "Hibernate": 2637,
   "Holy Light": 82326,
@@ -269,6 +274,7 @@ const SPELL_IDS = {
   "Living Flame": 64712,
   "Malefic Rapture": 324536,
   "Mana Tea": 115294,
+  "Mana Tide Totem": 16191,
   "Mangle": 33917,
   "Marrowrend": 195182,
   "Mass Dispel": 32375,
@@ -324,6 +330,7 @@ const SPELL_IDS = {
   "Rapture": 47536,
   "Rallying Cry": 97462,
   "Reap": 1226019,
+  "Rune Tap": 194679,
   "Rampage": 138870,
   "Rapid Fire": 257044,
   "Raptor Strike": 186270,
@@ -430,6 +437,7 @@ const SPELL_IDS = {
   "Touch of the Magi": 210725,
   "Tranquility": 740,
   "Transcendence": 101643,
+  "Transcendence: Transfer": 119996,
   "Trueshot": 288613,
   "Typhoon": 61391,
   "Ursol's Vortex": 102794,
@@ -454,10 +462,34 @@ const SPELL_IDS = {
   "Wildfire Bomb": 259495,
   "Wind Rush Totem": 192077,
   "Wind Shear": 57994,
+  "Windstrike": 115356,
   "Wing Buffet": 357214,
   "Word of Glory": 85673,
   "Wrath": 5176,
   "Zephyr": 374227,
+};
+
+// Wowhead item IDs voor consumables (flasks, potions, food, runes) — Midnight 12.0
+const ITEM_IDS = {
+  "Flask of the Focused Dream": null,  // Placeholder — geen officiële ID gevonden; fallback naar zoekopdracht
+  "Flask of the Void": null,
+  "Flask of Dawn": null,
+  "Tempered Potion": 212264,
+  "Potion of Witchcraft": null,        // Geen officiële ID gevonden; fallback naar zoekopdracht
+  "Potion of Withering Vitality": 191371,
+  "Potion of Unwavering Focus": 212259,
+  "The Sushi Special": 222720,
+  "The Sushi Special (Feast)": 222720,
+  "Aromatic Seafood Platter": 197783,
+  "Feisty Fish Sticks": 197782,
+  "Crystalline Augment Rune": 224572,
+  "Crystallized Augment Rune": 224572,
+  "Hearty Feast": 228721,
+  "Hearty Feast backup": 222781,       // Hearty Feast of the Midnight Masquerade
+  "Hearty Feast of the Midnight Masquerade": 222781,
+  "Algari Mana Oil": 224106,
+  "Thalassian Phoenix Oil": 243733,
+  "Ironclaw Whetstone": 226423,
 };
 
 function renderAboutContent() {
@@ -1329,31 +1361,34 @@ window.addEventListener('beforeinstallprompt', e => {
 // ── SPECS ────────────────────────────────────────────────────────
 const SPEC_TAB_UI = {
   nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables'],
+        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables & BiS'],
         tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Sterk', cons:'❌ Zwak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
         macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
       },
   en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables'],
+        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables & BiS'],
         tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Strong', cons:'❌ Weak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
       },
   da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug'],
+        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug & BiS'],
         tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
         pros:'✅ Styrker', cons:'❌ Svagheder',
         opener:'Åbner', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
         generate:'Generer Focus', spend:'Brug Focus', pets:'Kæledyrstyper',
-        macro_copy:'Klik på koden for at kopiere', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning',
+        macro_copy:'Klik på koden for at kopiere', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning',
+        cons_bis_sub1:'Forbrug', cons_bis_sub2:'BiS Gear', cons_weapon:'Våbenolie', bis_slot:'Plads', bis_item:'Genstand', bis_fallback:'BiS-liste kommer snart. Tjek <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> eller <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for aktuel BiS.',
       },
 };
 
@@ -1447,6 +1482,7 @@ function showSpec(id) {
   ).join('');
 
   document.getElementById('spec-grid-view').style.display = 'none';
+  setTimeout(refreshWowheadTooltips, 50);
   document.getElementById('spec-detail-view').classList.add('visible');
   window.scrollTo(0,0);
 }
@@ -1457,8 +1493,25 @@ function switchSpecTab(id) {
     b.classList.toggle('active', tid === id);
   });
   document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-'+id));
+  if (id === 'consumables') setTimeout(refreshWowheadTooltips, 50);
 }
 
+function switchConsBisSubTab(sub) {
+  document.querySelectorAll('.cons-bis-subbtn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.cons-bis-panel').forEach(p=>p.classList.remove('active'));
+  const btn = document.querySelector(`.cons-bis-subbtn[onclick*="'${sub}'"]`);
+  const panel = document.getElementById('cons-bis-panel-'+sub);
+  if (btn) btn.classList.add('active');
+  if (panel) panel.classList.add('active');
+  refreshWowheadTooltips();
+}
+
+function refreshWowheadTooltips() {
+  try {
+    if (typeof $WowheadPower !== 'undefined' && $WowheadPower.refreshLinks) $WowheadPower.refreshLinks();
+    else if (typeof WH !== 'undefined' && WH.Tooltip && WH.Tooltip.refresh) WH.Tooltip.refresh();
+  } catch (_) {}
+}
 
 function wrapSpell(spellText) {
   if (!spellText) return '';
@@ -1520,6 +1573,18 @@ function wrapSpell(spellText) {
   }
   
   return `<a href="${url}" class="wh-link" data-wh-rename="false" target="_blank">${spellText.trim()}</a>`;
+}
+
+function wrapItem(itemName) {
+  if (!itemName) return '';
+  const name = String(itemName).trim();
+  let url = '';
+  if (typeof ITEM_IDS !== 'undefined' && ITEM_IDS[name] != null) {
+    url = `https://www.wowhead.com/item=${ITEM_IDS[name]}`;
+  } else {
+    url = `https://www.wowhead.com/search?q=${encodeURIComponent(name.replace(/\s*\(.*?\)/g, '').trim())}`;
+  }
+  return `<a href="${url}" class="wh-link" data-wh-rename="false" target="_blank">${name}</a>`;
 }
 
 function renderSpecTab(s, tid, ui) {
@@ -1587,13 +1652,36 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'consumables') {
-    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, rune: ui.cons_rune };
-    return (d||[]).map(c=>`<div class="cons-card">
+    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, rune: ui.cons_rune, oil: ui.cons_weapon };
+    const consCards = (d||[]).map(c=>`<div class="cons-card">
       <div class="cons-type">${typeLabel[c.type]||c.type}</div>
-      <div class="cons-name">${c.name}</div>
+      <div class="cons-name">${wrapItem(c.name)}</div>
       <div class="cons-effect">${c.effect}</div>
       ${c.note?`<div class="cons-note">💡 ${c.note}</div>`:''}
-    </div>`).join('') || '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
+    </div>`).join('');
+    const weaponBuffKey = (s.role==='heal'||s.class==='Mage'||s.class==='Priest'||s.class==='Warlock'||['balance_druid','elemental_shaman','restoration_shaman','devastation_evoker','preservation_evoker','augmentation_evoker'].includes(s.id))?'int':((s.role==='tank'&&s.class!=='Monk')||s.class==='Warrior'||s.class==='Death Knight'||['ret_paladin','protection_paladin'].includes(s.id))?'str':'agi';
+    const wb = typeof WEAPON_BUFFS!=='undefined'&&WEAPON_BUFFS[weaponBuffKey];
+    const oilCard = wb ? `<div class="cons-card">
+      <div class="cons-type">${ui.cons_weapon}</div>
+      <div class="cons-name">${wrapItem(wb.name)}</div>
+      <div class="cons-effect">${(typeof wb.note==='object'?(wb.note[lang]||wb.note.nl):wb.note)||''}</div>
+    </div>` : '';
+    const consHtml = (consCards||'<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>') + oilCard;
+    const bisData = typeof BIS_GEAR!=='undefined'&&BIS_GEAR[s.id];
+    const bisHtml = bisData&&bisData.length ? `<table class="bis-table"><thead><tr><th>${ui.bis_slot}</th><th>${ui.bis_item}</th></tr></thead><tbody>${
+      bisData.map(r=>{
+        const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : (r.id?`<a href="https://www.wowhead.com/item=${r.id}" class="wh-link" data-wh-rename="false" target="_blank">${r.name}</a>`:wrapItem(r.name));
+        return `<tr><td class="bis-slot">${r.slot}</td><td>${itemCell}</td></tr>`;
+      }).join('')
+    }</tbody></table>` : `<p style="color:var(--muted);font-size:13px;padding:12px;line-height:1.6">${ui.bis_fallback}</p>`;
+    return `<div class="cons-bis-wrapper">
+      <div class="cons-bis-subtabs">
+        <button class="cons-bis-subbtn active" onclick="switchConsBisSubTab('cons')">${ui.cons_bis_sub1}</button>
+        <button class="cons-bis-subbtn" onclick="switchConsBisSubTab('bis')">${ui.cons_bis_sub2}</button>
+      </div>
+      <div class="cons-bis-panel active" id="cons-bis-panel-cons">${consHtml}</div>
+      <div class="cons-bis-panel" id="cons-bis-panel-bis">${bisHtml}</div>
+    </div>`;
   }
 
   if (tid === 'resource') {

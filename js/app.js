@@ -1293,6 +1293,21 @@ function buildProfGrid(){
     </div>`).join('');
 }
 
+/** Vervangt platte item-namen in HTML door Wowhead-links (wrapItem uit ui.js) */
+function processItemLinksInHtml(html) {
+  if (typeof wrapItem !== 'function') return html;
+  const items = ['Flask of the Void', 'Flask of Dawn', 'Void-Infused Potions'];
+  let out = html;
+  for (const name of items) {
+    const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    out = out.replace(new RegExp('\\b' + esc + '\\b', 'g'), '{{ITEM:' + name + '}}');
+  }
+  for (const name of items) {
+    out = out.replace(new RegExp('\\{\\{ITEM:' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\}\\}', 'g'), wrapItem(name));
+  }
+  return out;
+}
+
 function showProfGrid(){
   document.getElementById('prof-grid').style.display='';
   
@@ -1367,14 +1382,17 @@ function showProf(id){
          ${p.items.map(it=>`<div class="item-card">
            <div class="item-icon">${it.icon}</div>
            <div class="item-name">${pT(it.name)}</div>
-           <div class="item-desc">${pT(it.desc)}</div>
+           <div class="item-desc">${typeof wrapItem === 'function' ? processItemLinksInHtml(pT(it.desc)) : pT(it.desc)}</div>
            ${it.tag?`<div class="item-tag">${it.tag}</div>`:''}
          </div>`).join('')}
        </div>
      </div>`;
+  const ordersHtml = typeof wrapItem === 'function'
+    ? processItemLinksInHtml(pT(p.orders))
+    : pT(p.orders);
   document.getElementById('ptab-orders').innerHTML=
     `<div class="pdet-section"><h3>${ui.orders_head}</h3>
-       <div class="orders-text">${pT(p.orders)}</div>
+       <div class="orders-text">${ordersHtml}</div>
      </div>`;
   renderKpGids(p);
   renderKpSources(p);
