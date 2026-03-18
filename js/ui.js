@@ -1368,7 +1368,7 @@ const SPEC_TAB_UI = {
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
         macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
       },
   en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
         tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables & BiS'],
@@ -1378,7 +1378,7 @@ const SPEC_TAB_UI = {
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
       },
   da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
         tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug & BiS'],
@@ -1388,7 +1388,7 @@ const SPEC_TAB_UI = {
         prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
         generate:'Generer Focus', spend:'Brug Focus', pets:'Kæledyrstyper',
         macro_copy:'Klik på koden for at kopiere', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning',
-        cons_bis_sub1:'Forbrug', cons_bis_sub2:'BiS Gear', cons_weapon:'Våbenolie', bis_slot:'Plads', bis_item:'Genstand', bis_fallback:'BiS-liste kommer snart. Tjek <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> eller <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for aktuel BiS.',
+        cons_bis_sub1:'Forbrug', cons_bis_sub2:'BiS Gear', cons_weapon:'Våbenolie', bis_slot:'Plads', bis_item:'Genstand', bis_name:'Navn', bis_ilvl:'ILvl', bis_req:'Krav', bis_versions:'Versioner', bis_side:'Side', bis_source:'Kilde', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-liste kommer snart. Tjek <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> eller <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for aktuel BiS.',
       },
 };
 
@@ -1512,6 +1512,75 @@ function refreshWowheadTooltips() {
     else if (typeof WH !== 'undefined' && WH.Tooltip && WH.Tooltip.refresh) WH.Tooltip.refresh();
   } catch (_) {}
 }
+
+const RARITY_COLORS = { common:'#9d9d9d', uncommon:'#1eff00', rare:'#0070dd', epic:'#a335ee', legendary:'#ff8000' };
+const VERSION_ICONS = { lfr:'LFR', n:'N', h:'H', m:'M' };
+const VERSION_LABELS = { lfr:'Raid Finder', n:'Normal', h:'Heroic', m:'Mythic' };
+const VERSION_ILVL = { lfr:233, n:246, h:259, m:272 }; // Midnight S1 The Dreamrift
+
+function getBisChecked(specId, slot) {
+  try {
+    const raw = localStorage.getItem('bis_checks');
+    if (!raw) return false;
+    const obj = JSON.parse(raw);
+    return !!obj[specId]?.[slot];
+  } catch (_) { return false; }
+}
+
+function setBisChecked(specId, slot, checked) {
+  try {
+    const raw = localStorage.getItem('bis_checks') || '{}';
+    const obj = JSON.parse(raw);
+    if (!obj[specId]) obj[specId] = {};
+    obj[specId][slot] = !!checked;
+    localStorage.setItem('bis_checks', JSON.stringify(obj));
+  } catch (_) {}
+}
+
+function onBisCheckChange(ev) {
+  const cb = ev.target;
+  if (!cb.classList.contains('bis-check')) return;
+  const specId = cb.getAttribute('data-spec');
+  const slot = cb.getAttribute('data-slot');
+  if (specId && slot) setBisChecked(specId, slot, cb.checked);
+}
+
+function renderBisTable(bisData, specId, ui) {
+  const rows = bisData.map((r) => {
+    const ilvl = r.ilvl ?? 272;
+    const req = r.req ?? 80;
+    const versions = r.versions || ['lfr','n','h','m'];
+    const source = r.source || '—';
+    const type = r.type || '—';
+    const side = r.side || 'Both';
+    const rarity = (r.rarity || 'epic').toLowerCase();
+    const color = RARITY_COLORS[rarity] || RARITY_COLORS.epic;
+    const checked = getBisChecked(specId, r.slot);
+    const slotEsc = (r.slot||'').replace(/"/g,'&quot;');
+    const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : (r.id ? `<a href="https://www.wowhead.com/item=${r.id}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>` : `<a href="https://www.wowhead.com/search?q=${encodeURIComponent((r.name||'').replace(/\s*\(.*?\)/g,'').trim())}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>`);
+    const versionIcons = versions.map(v => {
+      const label = VERSION_LABELS[v]||v;
+      const vIlvl = VERSION_ILVL[v] ?? 272;
+      return `<span class="bis-version-icon bis-v-${v}"><span class="bis-v-label">${VERSION_ICONS[v]||v}</span><span class="bis-version-tooltip"><span class="bis-tt-diff">${label}</span><span class="bis-tt-ilvl">ilvl ${vIlvl}</span></span></span>`;
+    }).join('');
+    return `<tr class="bis-row">
+      <td class="bis-check-cell"><input type="checkbox" class="bis-check" data-spec="${specId}" data-slot="${slotEsc}" ${checked?'checked':''}></td>
+      <td class="bis-name-cell">${itemCell}</td>
+      <td class="bis-num">${ilvl}</td>
+      <td class="bis-num">${req}</td>
+      <td class="bis-versions">${versionIcons}</td>
+      <td class="bis-side">${side}</td>
+      <td class="bis-slot">${r.slot}</td>
+      <td class="bis-source">${source}</td>
+      <td class="bis-type">${type}</td>
+      <td class="bis-completion"></td>
+    </tr>`;
+  });
+  const headers = ['', ui.bis_name, ui.bis_ilvl, ui.bis_req, ui.bis_versions, ui.bis_side, ui.bis_slot, ui.bis_source, ui.bis_type, ui.bis_completion];
+  return `<div class="bis-table-container"><table class="bis-table bis-table-wowhead"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+
+document.addEventListener('change', ev => { if (ev.target.classList.contains('bis-check')) onBisCheckChange(ev); });
 
 function wrapSpell(spellText) {
   if (!spellText) return '';
@@ -1668,12 +1737,7 @@ function renderSpecTab(s, tid, ui) {
     </div>` : '';
     const consHtml = (consCards||'<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>') + oilCard;
     const bisData = typeof BIS_GEAR!=='undefined'&&BIS_GEAR[s.id];
-    const bisHtml = bisData&&bisData.length ? `<table class="bis-table"><thead><tr><th>${ui.bis_slot}</th><th>${ui.bis_item}</th></tr></thead><tbody>${
-      bisData.map(r=>{
-        const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : (r.id?`<a href="https://www.wowhead.com/item=${r.id}" class="wh-link" data-wh-rename="false" target="_blank">${r.name}</a>`:wrapItem(r.name));
-        return `<tr><td class="bis-slot">${r.slot}</td><td>${itemCell}</td></tr>`;
-      }).join('')
-    }</tbody></table>` : `<p style="color:var(--muted);font-size:13px;padding:12px;line-height:1.6">${ui.bis_fallback}</p>`;
+    const bisHtml = bisData&&bisData.length ? renderBisTable(bisData, s.id, ui) : `<p style="color:var(--muted);font-size:13px;padding:12px;line-height:1.6">${ui.bis_fallback}</p>`;
     return `<div class="cons-bis-wrapper">
       <div class="cons-bis-subtabs">
         <button class="cons-bis-subbtn active" onclick="switchConsBisSubTab('cons')">${ui.cons_bis_sub1}</button>

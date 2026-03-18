@@ -999,6 +999,31 @@
   .bis-table th{text-align:left;padding:8px 10px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border)}
   .bis-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
   .bis-slot{font-weight:700;color:var(--gold);width:100px}
+  /* WoWhead-style BiS table */
+  .bis-table-container{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px;border-radius:8px;border:1px solid var(--border)}
+  .bis-table-wowhead{min-width:720px;font-family:Inter,sans-serif}
+  .bis-table-wowhead thead{background:#2a2a2e;color:#fff}
+  .bis-table-wowhead thead th{padding:12px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:none;white-space:nowrap}
+  .bis-table-wowhead tbody tr{border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
+  .bis-table-wowhead tbody tr:hover{background:rgba(255,255,255,.04)}
+  .bis-table-wowhead tbody td{padding:12px 10px;vertical-align:middle}
+  .bis-check-cell{width:36px;text-align:center}
+  .bis-check{width:16px;height:16px;cursor:pointer;accent-color:var(--gold)}
+  .bis-name-cell{font-weight:600}
+  .bis-name-cell a{text-decoration:none}
+  .bis-name-cell a:hover{text-decoration:underline}
+  .bis-num{font-family:Inter,sans-serif;font-variant-numeric:tabular-nums;color:var(--text);font-size:13px}
+  .bis-versions{display:flex;gap:4px;flex-wrap:wrap;overflow:visible}
+  .bis-version-icon{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 4px;font-size:10px;font-weight:700;border-radius:4px;cursor:help}
+  .bis-v-lfr{background:rgba(94,185,94,.3);color:#5eb95e}
+  .bis-v-n{background:rgba(94,129,185,.3);color:#5e81b9}
+  .bis-v-h{background:rgba(163,53,238,.25);color:#a335ee}
+  .bis-v-m{background:rgba(255,128,0,.25);color:#ff8000}
+  .bis-version-tooltip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-6px);display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 12px;background:linear-gradient(180deg,#1e1e24 0%,#16161a 100%);border:1px solid rgba(200,168,75,.5);border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.6);white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s,visibility .15s;z-index:9999}
+  .bis-version-tooltip::after{content:'';position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:rgba(200,168,75,.4)}
+  .bis-version-icon:hover .bis-version-tooltip{opacity:1;visibility:visible}
+  .bis-tt-diff{font-size:12px;font-weight:700;color:var(--gold)}
+  .bis-tt-ilvl{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
   /* Specs mode */
   body.mode-specs #home-screen,
   body.mode-specs #detail-screen,

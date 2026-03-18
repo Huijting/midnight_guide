@@ -8,25 +8,27 @@ const WEAPON_BUFFS = {
 };
 
 // BiS gear per spec — Midnight Season 1 (12.0)
-// Slot, item name. id: null = search fallback (Wowhead zoekt automatisch)
+// ilvl: LFR 233, Normal 246, Heroic 259, Mythic 272
+// versions: lfr, n, h, m = Raid Finder, Normal, Heroic, Mythic
+// rarity: epic #a335ee, rare #0070dd, legendary #ff8000
 const BIS_GEAR = {
   arcane_mage: [
-    { slot: 'Head', name: "Augur's Ephemeral Widebrim", id: null },
-    { slot: 'Neck', name: 'Bloodstained Memento', id: null },
-    { slot: 'Shoulders', name: "Augur's Ephemeral Orbs Of Power", id: null },
-    { slot: 'Back', name: 'Reshii Wraps', id: null },
-    { slot: 'Chest', name: "Augur's Ephemeral Habiliments", id: null },
-    { slot: 'Wrists', name: 'Consecrated Cuffs', id: null },
-    { slot: 'Hands', name: "Codebreaker's Cunning Handwraps", id: null },
-    { slot: 'Waist', name: 'Singularity Cincture', id: null },
-    { slot: 'Legs', name: "Augur's Ephemeral Trousers", id: null },
-    { slot: 'Feet', name: "Interloper's Silken Striders", id: null },
-    { slot: 'Ring 1', name: "Radiant Necromancer's Band", id: null },
-    { slot: 'Ring 2', name: 'Signet Of Collapsing Stars', id: null },
-    { slot: 'Trinket 1', name: "Araz's Ritual Forge", id: null },
-    { slot: 'Trinket 2', name: 'Azhiccaran Parapodia', id: null },
-    { slot: 'Main Hand', name: "Voidglass Sovereign's Blade", id: null },
-    { slot: 'Off Hand', name: "Vagabond's Torch", id: null },
+    { slot: 'Head', name: "Augur's Ephemeral Widebrim", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Neck', name: 'Bloodstained Memento', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Misc', side: 'Both', rarity: 'epic' },
+    { slot: 'Shoulders', name: "Augur's Ephemeral Orbs Of Power", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Back', name: 'Reshii Wraps', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Chest', name: "Augur's Ephemeral Habiliments", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Wrists', name: 'Consecrated Cuffs', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Hands', name: "Codebreaker's Cunning Handwraps", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Waist', name: 'Singularity Cincture', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Legs', name: "Augur's Ephemeral Trousers", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Feet', name: "Interloper's Silken Striders", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Cloth', side: 'Both', rarity: 'epic' },
+    { slot: 'Ring 1', name: "Radiant Necromancer's Band", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Misc', side: 'Both', rarity: 'epic' },
+    { slot: 'Ring 2', name: 'Signet Of Collapsing Stars', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Misc', side: 'Both', rarity: 'epic' },
+    { slot: 'Trinket 1', name: "Araz's Ritual Forge", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Trinket', side: 'Both', rarity: 'epic' },
+    { slot: 'Trinket 2', name: 'Azhiccaran Parapodia', id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Trinket', side: 'Both', rarity: 'epic' },
+    { slot: 'Main Hand', name: "Voidglass Sovereign's Blade", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Weapon', side: 'Both', rarity: 'epic' },
+    { slot: 'Off Hand', name: "Vagabond's Torch", id: null, ilvl: 272, req: 80, versions: ['lfr','n','h','m'], source: 'Chimaerus', type: 'Weapon', side: 'Both', rarity: 'epic' },
   ],
   fire_mage: [
     { slot: 'Head', name: "Aspectral Emissary's Crystalline Cowl", id: null },
