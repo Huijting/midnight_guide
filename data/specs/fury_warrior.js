@@ -309,25 +309,25 @@ const SPEC_FURY_WARRIOR = {
 
   consumables: {
     nl: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Verhoogt Strength significant voor 1 uur.',   note:'Altijd actief in M+ en raid' },
-      { type:'pot',    name:'Tempered Potion',             effect:'Grote Strength boost 25 sec bij pull/BL.',    note:'2 per boss: pull + execute fase' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Strength en Stamina via groepsfeast.',       note:'Feast vragen aan tank/healer' },
+      { type:'flask',  name:'Flask of the Shattered Sun',  effect:'Verhoogt Strength significant voor 1 uur.',   note:'Altijd actief in M+ en raid' },
+      { type:'pot',    name:'Potion of Recklessness',             effect:'Grote Strength boost 25 sec bij pull/BL.',    note:'2 per boss: pull + execute fase' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Strength en Stamina via groepsfeast.',       note:'Feast vragen aan tank/healer' },
       { type:'food',   name:'Meat Lover\'s Delight',       effect:'Solo food backup — hoge Strength.',           note:'Altijd in bags' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primaire stat 1 uur, stapelt met rest.',     note:'Altijd gebruiken' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primaire stat 1 uur, stapelt met rest.',     note:'Altijd gebruiken' },
     ],
     en: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Significantly increases Strength for 1 hour.', note:'Always active in M+ and raid' },
-      { type:'pot',    name:'Tempered Potion',             effect:'Large Strength boost 25 sec on pull/BL.',    note:'2 per boss: pull + execute phase' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Strength and Stamina via group feast.',     note:'Ask tank/healer for feast' },
+      { type:'flask',  name:'Flask of the Shattered Sun',  effect:'Significantly increases Strength for 1 hour.', note:'Always active in M+ and raid' },
+      { type:'pot',    name:'Potion of Recklessness',             effect:'Large Strength boost 25 sec on pull/BL.',    note:'2 per boss: pull + execute phase' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Strength and Stamina via group feast.',     note:'Ask tank/healer for feast' },
       { type:'food',   name:'Meat Lover\'s Delight',       effect:'Solo food backup — high Strength.',          note:'Always in bags' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primary stat 1 hour, stacks with rest.',   note:'Always use' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour, stacks with rest.',   note:'Always use' },
     ],
     da: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Øger Strength markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Tempered Potion',             effect:'Stor Strength-boost 25 sek ved pull/BL.',    note:'2 per boss: pull + execute-fase' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Strength og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
+      { type:'flask',  name:'Flask of the Shattered Sun',  effect:'Øger Strength markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
+      { type:'pot',    name:'Potion of Recklessness',             effect:'Stor Strength-boost 25 sek ved pull/BL.',    note:'2 per boss: pull + execute-fase' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Strength og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
       { type:'food',   name:'Meat Lover\'s Delight',       effect:'Solo-mad backup — høj Strength.',            note:'Altid i taske' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primær stat 1 time, stakker med resten.',  note:'Brug altid' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time, stakker med resten.',  note:'Brug altid' },
     ],
   },
 };

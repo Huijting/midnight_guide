@@ -1,4 +1,4 @@
-if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
+﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 
 const SPEC_ELEMENTAL_SHAMAN = {
   id: 'elemental_shaman',
@@ -315,25 +315,25 @@ const SPEC_ELEMENTAL_SHAMAN = {
 
   consumables: {
     nl: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Verhoogt Intellect significant voor 1 uur.',   note:'Altijd actief in M+ en raid' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Grote Intellect boost 25 sec.',                note:'Gebruik bij Stormkeeper burst window' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect en Stamina via groepsfeast.',       note:'Feast vragen aan tank/healer' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo food — hoge Intellect bonus.',            note:'Backup als geen feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primaire stat 1 uur.',                        note:'Altijd gebruiken' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Verhoogt Intellect significant voor 1 uur.',   note:'Altijd actief in M+ en raid' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Grote Intellect boost 25 sec.',                note:'Gebruik bij Stormkeeper burst window' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect en Stamina via groepsfeast.',       note:'Feast vragen aan tank/healer' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo food — hoge Intellect bonus.',            note:'Backup als geen feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primaire stat 1 uur.',                        note:'Altijd gebruiken' },
     ],
     en: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Significantly increases Intellect for 1 hour.', note:'Always active in M+ and raid' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Large Intellect boost 25 sec.',               note:'Use during Stormkeeper burst window' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect and Stamina via group feast.',     note:'Ask tank/healer for feast' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo food — high Intellect bonus.',           note:'Backup if no feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primary stat 1 hour.',                       note:'Always use' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Significantly increases Intellect for 1 hour.', note:'Always active in M+ and raid' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Large Intellect boost 25 sec.',               note:'Use during Stormkeeper burst window' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',     note:'Ask tank/healer for feast' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo food — high Intellect bonus.',           note:'Backup if no feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                       note:'Always use' },
     ],
     da: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Øger Intellect markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Stor Intellect-boost i 25 sek.',              note:'Brug under Stormkeeper burst-vindue' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo-mad — høj Intellect-bonus.',             note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Stor Intellect-boost i 25 sek.',              note:'Brug under Stormkeeper burst-vindue' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo-mad — høj Intellect-bonus.',             note:'Backup hvis ingen feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
     ],
   },
 };

@@ -1,4 +1,4 @@
-// SKINNING DATA — v2.3
+﻿// SKINNING DATA — v2.3
 const SKINNING = {
   id:'skinning', icon:'🐾', cat:'gathering', accent:'#8B6347',
   name:{nl:'Skinning',en:'Skinning',da:'Skindbehandling'},

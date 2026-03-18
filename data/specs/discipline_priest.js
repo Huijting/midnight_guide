@@ -1,4 +1,4 @@
-if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
+﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_DISCIPLINE_PRIEST = {
   id:'discipline_priest', icon:'⚪', class:'Priest',
   spec:{nl:'Discipline',en:'Discipline',da:'Discipline'},
@@ -328,25 +328,25 @@ const SPEC_DISCIPLINE_PRIEST = {
 
   consumables:{
     nl:[
-      {type:'flask', name:'Flask of the Focused Dream',   effect:'Verhoogt Intellect significant voor 1 uur.',       note:'Altijd actief'},
-      {type:'pot',   name:'Potion of Witchcraft',          effect:'Grote Intellect boost 25 sec.',                    note:'Op pull of grote schade phase'},
-      {type:'food',  name:'The Sushi Special (Feast)',     effect:'+Intellect en Stamina via groepsfeast.',           note:'Feast vragen'},
-      {type:'food',  name:'Aromatic Seafood Platter',      effect:'Solo food — Intellect backup.',                   note:'Backup als geen feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',      effect:'+Primaire stat 1 uur.',                            note:'Altijd gebruiken'},
+      {type:'flask', name:'Flask of the Magisters',   effect:'Verhoogt Intellect significant voor 1 uur.',       note:'Altijd actief'},
+      {type:'pot',   name:'Potion of Recklessness',          effect:'Grote Intellect boost 25 sec.',                    note:'Op pull of grote schade phase'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Intellect en Stamina via groepsfeast.',           note:'Feast vragen'},
+      {type:'food',  name:'Royal Roast',      effect:'Solo food — Intellect backup.',                   note:'Backup als geen feast'},
+      {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primaire stat 1 uur.',                            note:'Altijd gebruiken'},
     ],
     en:[
-      {type:'flask', name:'Flask of the Focused Dream',   effect:'Significantly increases Intellect for 1 hour.',    note:'Always active'},
-      {type:'pot',   name:'Potion of Witchcraft',          effect:'Large Intellect boost 25 sec.',                   note:'On pull or big damage phase'},
-      {type:'food',  name:'The Sushi Special (Feast)',     effect:'+Intellect and Stamina via group feast.',          note:'Ask for feast'},
-      {type:'food',  name:'Aromatic Seafood Platter',      effect:'Solo food — Intellect backup.',                   note:'Backup if no feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',      effect:'+Primary stat 1 hour.',                           note:'Always use'},
+      {type:'flask', name:'Flask of the Magisters',   effect:'Significantly increases Intellect for 1 hour.',    note:'Always active'},
+      {type:'pot',   name:'Potion of Recklessness',          effect:'Large Intellect boost 25 sec.',                   note:'On pull or big damage phase'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Intellect and Stamina via group feast.',          note:'Ask for feast'},
+      {type:'food',  name:'Royal Roast',      effect:'Solo food — Intellect backup.',                   note:'Backup if no feast'},
+      {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primary stat 1 hour.',                           note:'Always use'},
     ],
     da:[
-      {type:'flask', name:'Flask of the Focused Dream',   effect:'Øger Intellect markant i 1 time.',                 note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Witchcraft',          effect:'Stor Intellect-boost i 25 sek.',                  note:'På pull eller stor skadefase'},
-      {type:'food',  name:'The Sushi Special (Feast)',     effect:'+Intellect og Stamina via gruppefeast.',           note:'Bed om feast'},
-      {type:'food',  name:'Aromatic Seafood Platter',      effect:'Solo-mad — Intellect backup.',                    note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',      effect:'+Primær stat 1 time.',                            note:'Brug altid'},
+      {type:'flask', name:'Flask of the Magisters',   effect:'Øger Intellect markant i 1 time.',                 note:'Altid aktiv'},
+      {type:'pot',   name:'Potion of Recklessness',          effect:'Stor Intellect-boost i 25 sek.',                  note:'På pull eller stor skadefase'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Intellect og Stamina via gruppefeast.',           note:'Bed om feast'},
+      {type:'food',  name:'Royal Roast',      effect:'Solo-mad — Intellect backup.',                    note:'Backup hvis ingen feast'},
+      {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primær stat 1 time.',                            note:'Brug altid'},
     ],
   },
 };

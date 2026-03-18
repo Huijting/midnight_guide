@@ -1,4 +1,4 @@
-// LEATHERWORKING DATA — v2.3
+﻿// LEATHERWORKING DATA — v2.3
 const LEATHERWORKING = {
   id:'leatherworking', icon:'🧶', cat:'crafting', accent:'#8B6347',
   name:{nl:'Leatherworking',en:'Leatherworking',da:'Læderhåndværk'},

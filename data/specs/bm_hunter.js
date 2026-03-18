@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // SPEC: Beast Mastery Hunter
 // WoW Midnight 12.0.1 | Bron: Icy Veins (bewerkt voor deze app)
 // Talen: NL volledig | EN/DA: stubs (later uitbreiden)

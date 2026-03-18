@@ -1558,7 +1558,8 @@ function renderBisTable(bisData, specId, ui) {
     const color = RARITY_COLORS[rarity] || RARITY_COLORS.epic;
     const checked = getBisChecked(specId, r.slot);
     const slotEsc = (r.slot||'').replace(/"/g,'&quot;');
-    const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : (r.id ? `<a href="https://www.wowhead.com/item=${r.id}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>` : `<a href="https://www.wowhead.com/search?q=${encodeURIComponent((r.name||'').replace(/\s*\(.*?\)/g,'').trim())}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>`);
+    const itemUrl = r.id ? `https://www.wowhead.com/item=${r.id}?ilvl=${ilvl}` : `https://www.wowhead.com/search?q=${encodeURIComponent((r.name||'').replace(/\s*\(.*?\)/g,'').trim())}`;
+    const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : `<a href="${itemUrl}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>`;
     const versionIcons = versions.map(v => {
       const label = VERSION_LABELS[v]||v;
       const vIlvl = VERSION_ILVL[v] ?? 272;

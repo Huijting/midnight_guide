@@ -1,4 +1,4 @@
-// MINING DATA — v2.3
+﻿// MINING DATA — v2.3
 const MINING = {
   id:'mining', icon:'⛏', cat:'gathering', accent:'#8a8a8a',
   name:{nl:'Mining',en:'Mining',da:'Minedrift'},

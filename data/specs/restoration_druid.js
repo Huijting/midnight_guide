@@ -1,4 +1,4 @@
-if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
+﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 
 const SPEC_RESTORATION_DRUID = {
   id: 'restoration_druid',
@@ -268,7 +268,7 @@ const SPEC_RESTORATION_DRUID = {
       generate: [
         'Mana regenereert passief (traag tijdens gevecht)',
         'Innervate — 10 sec gratis mana — gebruik vroeg',
-        'Potion of Witchcraft — mana restore in nood',
+        'Potion of Recklessness — mana restore in nood',
         'Wrath spammen als DPS kost minder mana dan healen',
       ],
       spend: [
@@ -285,7 +285,7 @@ const SPEC_RESTORATION_DRUID = {
       generate: [
         'Mana regenerates passively (slowly during combat)',
         'Innervate — 10 sec free mana — use early',
-        'Potion of Witchcraft — mana restore in emergency',
+        'Potion of Recklessness — mana restore in emergency',
         'Spamming Wrath as DPS costs less mana than healing',
       ],
       spend: [
@@ -302,7 +302,7 @@ const SPEC_RESTORATION_DRUID = {
       generate: [
         'Mana regenererer passivt (langsomt under kamp)',
         'Innervate — 10 sek gratis mana — brug tidligt',
-        'Potion of Witchcraft — managenopretning i nødsituation',
+        'Potion of Recklessness — managenopretning i nødsituation',
         'Spam af Wrath som DPS koster mindre mana end healing',
       ],
       spend: [
@@ -318,25 +318,25 @@ const SPEC_RESTORATION_DRUID = {
 
   consumables: {
     nl: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Verhoogt Intellect (= mana + healingkracht) voor 1 uur.', note:'Altijd actief als healer' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Intellect boost + mana restore in één.',        note:'Gebruik bij laag mana of burst healing moment' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect en Stamina via groepsfeast.',         note:'Feast vragen aan tank' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo food — hoge Intellect bonus.',              note:'Backup als geen feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primaire stat 1 uur.',                          note:'Altijd gebruiken' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Verhoogt Intellect (= mana + healingkracht) voor 1 uur.', note:'Altijd actief als healer' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Intellect boost + mana restore in één.',        note:'Gebruik bij laag mana of burst healing moment' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect en Stamina via groepsfeast.',         note:'Feast vragen aan tank' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo food — hoge Intellect bonus.',              note:'Backup als geen feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primaire stat 1 uur.',                          note:'Altijd gebruiken' },
     ],
     en: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Increases Intellect (= mana + healing power) for 1 hour.', note:'Always active as healer' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Intellect boost + mana restore in one.',        note:'Use at low mana or burst healing moment' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect and Stamina via group feast.',       note:'Ask tank for feast' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo food — high Intellect bonus.',             note:'Backup if no feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primary stat 1 hour.',                         note:'Always use' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Increases Intellect (= mana + healing power) for 1 hour.', note:'Always active as healer' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Intellect boost + mana restore in one.',        note:'Use at low mana or burst healing moment' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',       note:'Ask tank for feast' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo food — high Intellect bonus.',             note:'Backup if no feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                         note:'Always use' },
     ],
     da: [
-      { type:'flask',  name:'Flask of the Focused Dream',  effect:'Øger Intellect (= mana + healingkraft) i 1 time.', note:'Altid aktiv som healer' },
-      { type:'pot',    name:'Potion of Witchcraft',        effect:'Intellect-boost + managenopretning i ét.',      note:'Brug ved lav mana eller burst-healing-øjeblik' },
-      { type:'food',   name:'The Sushi Special (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',        note:'Bed tanken om feast' },
-      { type:'food',   name:'Aromatic Seafood Platter',    effect:'Solo-mad — høj Intellect-bonus.',               note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Crystalline Augment Rune',    effect:'+Primær stat 1 time.',                          note:'Brug altid' },
+      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect (= mana + healingkraft) i 1 time.', note:'Altid aktiv som healer' },
+      { type:'pot',    name:'Potion of Recklessness',        effect:'Intellect-boost + managenopretning i ét.',      note:'Brug ved lav mana eller burst-healing-øjeblik' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',        note:'Bed tanken om feast' },
+      { type:'food',   name:'Royal Roast',    effect:'Solo-mad — høj Intellect-bonus.',               note:'Backup hvis ingen feast' },
+      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                          note:'Brug altid' },
     ],
   },
 };

@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // KP_SOURCES — Midnight KP Bronnen: schatten per professie
 // Coördinaten: wow-professions.com (maart 2026)
 // Zone IDs: #2393 Silvermoon City, #2395 Eversong Woods,

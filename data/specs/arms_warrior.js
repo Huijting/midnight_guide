@@ -321,25 +321,25 @@ const SPEC_ARMS_WARRIOR = {
 
   consumables: {
     nl: [
-      { type:'flask',  name:'Flask of the Focused Dream',   effect:'Verhoogt Strength significant voor 1 uur. Blijft actief na dood.',              note:'Altijd actief in M+ en raid' },
-      { type:'pot',    name:'Tempered Potion',              effect:'Grote Strength boost voor 25 sec. Gebruik op pull of bij Bloodlust.',            note:'Gebruik 2 per boss: pull + 20% HP' },
-      { type:'food',   name:'The Sushi Special (Feast)',    effect:'+Strength en Stamina via groepsfeast.',                                          note:'Vraag tank of healer een feast neer te leggen' },
+      { type:'flask',  name:'Flask of the Shattered Sun',   effect:'Verhoogt Strength significant voor 1 uur. Blijft actief na dood.',              note:'Altijd actief in M+ en raid' },
+      { type:'pot',    name:'Potion of Recklessness',              effect:'Grote Strength boost voor 25 sec. Gebruik op pull of bij Bloodlust.',            note:'Gebruik 2 per boss: pull + 20% HP' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',    effect:'+Strength en Stamina via groepsfeast.',                                          note:'Vraag tank of healer een feast neer te leggen' },
       { type:'food',   name:'Meat Lover\'s Delight',        effect:'Solo food — hoge Strength bonus als backup.',                                    note:'Altijd in je bags' },
-      { type:'rune',   name:'Crystalline Augment Rune',     effect:'+Primaire stat voor 1 uur. Stapelt met flask en food.',                          note:'Gratis schade — altijd gebruiken' },
+      { type:'rune',   name:'Void-Touched Augment Rune',     effect:'+Primaire stat voor 1 uur. Stapelt met flask en food.',                          note:'Gratis schade — altijd gebruiken' },
     ],
     en: [
-      { type:'flask',  name:'Flask of the Focused Dream',   effect:'Significantly increases Strength for 1 hour. Persists through death.',          note:'Always active in M+ and raid' },
-      { type:'pot',    name:'Tempered Potion',              effect:'Large Strength boost for 25 sec. Use on pull or during Bloodlust.',              note:'Use 2 per boss: pull + 20% HP' },
-      { type:'food',   name:'The Sushi Special (Feast)',    effect:'+Strength and Stamina via group feast.',                                         note:'Ask tank or healer to place a feast' },
+      { type:'flask',  name:'Flask of the Shattered Sun',   effect:'Significantly increases Strength for 1 hour. Persists through death.',          note:'Always active in M+ and raid' },
+      { type:'pot',    name:'Potion of Recklessness',              effect:'Large Strength boost for 25 sec. Use on pull or during Bloodlust.',              note:'Use 2 per boss: pull + 20% HP' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',    effect:'+Strength and Stamina via group feast.',                                         note:'Ask tank or healer to place a feast' },
       { type:'food',   name:'Meat Lover\'s Delight',        effect:'Solo food — high Strength bonus as backup.',                                     note:'Always in your bags' },
-      { type:'rune',   name:'Crystalline Augment Rune',     effect:'+Primary stat for 1 hour. Stacks with flask and food.',                         note:'Free damage — always use' },
+      { type:'rune',   name:'Void-Touched Augment Rune',     effect:'+Primary stat for 1 hour. Stacks with flask and food.',                         note:'Free damage — always use' },
     ],
     da: [
-      { type:'flask',  name:'Flask of the Focused Dream',   effect:'Øger Strength markant i 1 time. Forbliver aktiv efter død.',                    note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Tempered Potion',              effect:'Stor Strength-boost i 25 sek. Brug ved pull eller under Bloodlust.',             note:'Brug 2 per boss: pull + 20% HP' },
-      { type:'food',   name:'The Sushi Special (Feast)',    effect:'+Strength og Stamina via gruppefeast.',                                          note:'Bed tank eller healer om at placere en feast' },
+      { type:'flask',  name:'Flask of the Shattered Sun',   effect:'Øger Strength markant i 1 time. Forbliver aktiv efter død.',                    note:'Altid aktiv i M+ og raid' },
+      { type:'pot',    name:'Potion of Recklessness',              effect:'Stor Strength-boost i 25 sek. Brug ved pull eller under Bloodlust.',             note:'Brug 2 per boss: pull + 20% HP' },
+      { type:'food',   name:'Silvermoon Parade (Feast)',    effect:'+Strength og Stamina via gruppefeast.',                                          note:'Bed tank eller healer om at placere en feast' },
       { type:'food',   name:'Meat Lover\'s Delight',        effect:'Solo-mad — høj Strength-bonus som backup.',                                      note:'Altid i din taske' },
-      { type:'rune',   name:'Crystalline Augment Rune',     effect:'+Primær stat i 1 time. Stakker med flask og mad.',                               note:'Gratis skade — brug altid' },
+      { type:'rune',   name:'Void-Touched Augment Rune',     effect:'+Primær stat i 1 time. Stakker med flask og mad.',                               note:'Gratis skade — brug altid' },
     ],
   },
 };

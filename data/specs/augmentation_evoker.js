@@ -1,4 +1,4 @@
-if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
+﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_AUGMENTATION_EVOKER = {
   id:'augmentation_evoker', icon:'🟤', class:'Evoker',
   spec:{nl:'Augmentation',en:'Augmentation',da:'Augmentation'},
@@ -276,25 +276,25 @@ const SPEC_AUGMENTATION_EVOKER = {
   },
   consumables:{
     nl:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Verhoogt Intellect voor 1 uur.',note:'Altijd actief'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect boost bij Breath of Eons window.',note:'Op pull'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect en Stamina.',note:'Feast vragen'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo food.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primaire stat.',note:'Altijd'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Verhoogt Intellect voor 1 uur.',note:'Altijd actief'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect boost bij Breath of Eons window.',note:'Op pull'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect en Stamina.',note:'Feast vragen'},
+      {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primaire stat.',note:'Altijd'},
     ],
     en:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Increases Intellect for 1 hour.',note:'Always active'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect boost during Breath of Eons window.',note:'On pull'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect and Stamina.',note:'Ask for feast'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo food.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primary stat.',note:'Always'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Increases Intellect for 1 hour.',note:'Always active'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect boost during Breath of Eons window.',note:'On pull'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina.',note:'Ask for feast'},
+      {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat.',note:'Always'},
     ],
     da:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect-boost under Breath of Eons-vindue.',note:'På pull'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect og Stamina.',note:'Bed om feast'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primær stat.',note:'Altid'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost under Breath of Eons-vindue.',note:'På pull'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina.',note:'Bed om feast'},
+      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat.',note:'Altid'},
     ],
   },
 };

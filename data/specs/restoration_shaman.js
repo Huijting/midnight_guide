@@ -1,4 +1,4 @@
-if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
+﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_RESTORATION_SHAMAN = {
   id:'restoration_shaman', icon:'💧', class:'Shaman',
   spec:{nl:'Restoration',en:'Restoration',da:'Restoration'},
@@ -276,25 +276,25 @@ const SPEC_RESTORATION_SHAMAN = {
   },
   consumables:{
     nl:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Verhoogt Intellect voor 1 uur.',note:'Altijd actief'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect boost bij grote healing windows.',note:'Gebruik bij Ascendance'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect en Stamina via groepsfeast.',note:'Feast vragen'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo food backup.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primaire stat 1 uur.',note:'Altijd gebruiken'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Verhoogt Intellect voor 1 uur.',note:'Altijd actief'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect boost bij grote healing windows.',note:'Gebruik bij Ascendance'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect en Stamina via groepsfeast.',note:'Feast vragen'},
+      {type:'food',name:'Royal Roast',effect:'Solo food backup.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primaire stat 1 uur.',note:'Altijd gebruiken'},
     ],
     en:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Increases Intellect for 1 hour.',note:'Always active'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect boost during major healing windows.',note:'Use with Ascendance'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect and Stamina via group feast.',note:'Ask for feast'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo food backup.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primary stat 1 hour.',note:'Always use'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Increases Intellect for 1 hour.',note:'Always active'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect boost during major healing windows.',note:'Use with Ascendance'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina via group feast.',note:'Ask for feast'},
+      {type:'food',name:'Royal Roast',effect:'Solo food backup.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat 1 hour.',note:'Always use'},
     ],
     da:[
-      {type:'flask',name:'Flask of the Focused Dream',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Witchcraft',effect:'Intellect-boost ved store healing-vinduer.',note:'Brug med Ascendance'},
-      {type:'food',name:'The Sushi Special (Feast)',effect:'+Intellect og Stamina via gruppefeast.',note:'Bed om feast'},
-      {type:'food',name:'Aromatic Seafood Platter',effect:'Solo-mad backup.',note:'Backup'},
-      {type:'rune',name:'Crystalline Augment Rune',effect:'+Primær stat 1 time.',note:'Brug altid'},
+      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
+      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost ved store healing-vinduer.',note:'Brug med Ascendance'},
+      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina via gruppefeast.',note:'Bed om feast'},
+      {type:'food',name:'Royal Roast',effect:'Solo-mad backup.',note:'Backup'},
+      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat 1 time.',note:'Brug altid'},
     ],
   },
 };

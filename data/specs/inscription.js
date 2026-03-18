@@ -1,4 +1,4 @@
-// INSCRIPTION DATA — v2.3
+﻿// INSCRIPTION DATA — v2.3
 const INSCRIPTION = {
   id:'inscription', icon:'📜', cat:'crafting', accent:'#2980b9',
   name:{nl:'Inscription',en:'Inscription',da:'Inskription'},

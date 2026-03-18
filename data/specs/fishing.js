@@ -1,4 +1,4 @@
-// FISHING DATA — v2.3
+﻿// FISHING DATA — v2.3
 const FISHING = {
   id:'fishing', icon:'🎣', cat:'secondary', accent:'#3498db',
   name:{nl:'Fishing',en:'Fishing',da:'Fiskeri'},

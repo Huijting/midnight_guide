@@ -322,25 +322,25 @@ const SPEC_BLOOD_DK = {
 
   consumables:{
     nl:[
-      {type:'flask', name:'Flask of the Focused Dream',  effect:'Verhoogt Strength significant voor 1 uur.',          note:'Altijd actief'},
+      {type:'flask', name:'Flask of the Shattered Sun',  effect:'Verhoogt Strength significant voor 1 uur.',          note:'Altijd actief'},
       {type:'pot',   name:'Potion of Withering Vitality', effect:'Groot HP herstel en tijdelijke HP boost.',            note:'Op pull of bij grote schade fase'},
-      {type:'food',  name:'The Sushi Special (Feast)',    effect:'+Strength en Stamina via groepsfeast.',              note:'Feast vragen'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Strength en Stamina via groepsfeast.',              note:'Feast vragen'},
       {type:'food',  name:'Hearty Feast backup',          effect:'Solo food — Strength + Stamina backup.',             note:'Backup als geen feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',     effect:'+Primaire stat 1 uur.',                              note:'Altijd gebruiken'},
+      {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primaire stat 1 uur.',                              note:'Altijd gebruiken'},
     ],
     en:[
-      {type:'flask', name:'Flask of the Focused Dream',  effect:'Significantly increases Strength for 1 hour.',       note:'Always active'},
+      {type:'flask', name:'Flask of the Shattered Sun',  effect:'Significantly increases Strength for 1 hour.',       note:'Always active'},
       {type:'pot',   name:'Potion of Withering Vitality', effect:'Large HP restore and temporary HP boost.',           note:'On pull or during major damage phase'},
-      {type:'food',  name:'The Sushi Special (Feast)',    effect:'+Strength and Stamina via group feast.',             note:'Ask for feast'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Strength and Stamina via group feast.',             note:'Ask for feast'},
       {type:'food',  name:'Hearty Feast backup',          effect:'Solo food — Strength + Stamina backup.',            note:'Backup if no feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',     effect:'+Primary stat 1 hour.',                             note:'Always use'},
+      {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primary stat 1 hour.',                             note:'Always use'},
     ],
     da:[
-      {type:'flask', name:'Flask of the Focused Dream',  effect:'Øger Strength markant i 1 time.',                    note:'Altid aktiv'},
+      {type:'flask', name:'Flask of the Shattered Sun',  effect:'Øger Strength markant i 1 time.',                    note:'Altid aktiv'},
       {type:'pot',   name:'Potion of Withering Vitality', effect:'Stor HP-genoprettelse og midlertidig HP-boost.',     note:'På pull eller under stor skadefase'},
-      {type:'food',  name:'The Sushi Special (Feast)',    effect:'+Strength og Stamina via gruppefeast.',              note:'Bed om feast'},
+      {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Strength og Stamina via gruppefeast.',              note:'Bed om feast'},
       {type:'food',  name:'Hearty Feast backup',          effect:'Solo-mad — Strength + Stamina backup.',             note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Crystalline Augment Rune',     effect:'+Primær stat 1 time.',                              note:'Brug altid'},
+      {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primær stat 1 time.',                              note:'Brug altid'},
     ],
   },
 };
