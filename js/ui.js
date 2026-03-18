@@ -469,24 +469,25 @@ const SPELL_IDS = {
   "Zephyr": 374227,
 };
 
-// Wowhead item IDs voor consumables (flasks, potions, food, runes) — Midnight 12.0
+// Wowhead item IDs voor consumables (flasks, potions, food, runes) — Midnight 12.0 S1
 const ITEM_IDS = {
-  "Flask of the Focused Dream": null,  // Placeholder — geen officiële ID gevonden; fallback naar zoekopdracht
-  "Flask of the Void": null,
-  "Flask of Dawn": null,
+  "Flask of Tempered Mastery": 212278,
+  "Flask of Tempered Swiftness": 212272,
+  "Flask of Tempered Versatility": 212277,
+  "Flask of Tempered Aggression": 212276,
+  "Flask of the Focused Dream": null,
   "Tempered Potion": 212264,
-  "Potion of Witchcraft": null,        // Geen officiële ID gevonden; fallback naar zoekopdracht
+  "Potion of Witchcraft": null,
   "Potion of Withering Vitality": 191371,
   "Potion of Unwavering Focus": 212259,
   "The Sushi Special": 222720,
   "The Sushi Special (Feast)": 222720,
   "Aromatic Seafood Platter": 197783,
   "Feisty Fish Sticks": 197782,
+  "Feast of the Midnight Masquerade": 222781,
+  "Hearty Feast of the Midnight Masquerade": 222781,
   "Crystalline Augment Rune": 224572,
   "Crystallized Augment Rune": 224572,
-  "Hearty Feast": 228721,
-  "Hearty Feast backup": 222781,       // Hearty Feast of the Midnight Masquerade
-  "Hearty Feast of the Midnight Masquerade": 222781,
   "Algari Mana Oil": 224106,
   "Thalassian Phoenix Oil": 243733,
   "Ironclaw Whetstone": 226423,
@@ -1516,7 +1517,7 @@ function refreshWowheadTooltips() {
 const RARITY_COLORS = { common:'#9d9d9d', uncommon:'#1eff00', rare:'#0070dd', epic:'#a335ee', legendary:'#ff8000' };
 const VERSION_ICONS = { lfr:'LFR', n:'N', h:'H', m:'M' };
 const VERSION_LABELS = { lfr:'Raid Finder', n:'Normal', h:'Heroic', m:'Mythic' };
-const VERSION_ILVL = { lfr:233, n:246, h:259, m:272 }; // Midnight S1 The Dreamrift
+const VERSION_ILVL = { lfr:233, n:246, h:259, m:272 }; // Midnight S1 The Dreamrift / Voidspire
 
 function getBisChecked(specId, slot) {
   try {
@@ -1547,8 +1548,8 @@ function onBisCheckChange(ev) {
 
 function renderBisTable(bisData, specId, ui) {
   const rows = bisData.map((r) => {
-    const ilvl = r.ilvl ?? 272;
-    const req = r.req ?? 80;
+    const ilvl = r.ilvl ?? 289;
+    const req = r.req ?? 90;
     const versions = r.versions || ['lfr','n','h','m'];
     const source = r.source || '—';
     const type = r.type || '—';
