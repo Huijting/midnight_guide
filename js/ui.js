@@ -1494,7 +1494,7 @@ function switchSpecTab(id) {
     b.classList.toggle('active', tid === id);
   });
   document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-'+id));
-  if (id === 'consumables') setTimeout(refreshWowheadTooltips, 50);
+  setTimeout(refreshWowheadTooltips, 50);
 }
 
 function switchConsBisSubTab(sub) {
@@ -1643,7 +1643,7 @@ function wrapSpell(spellText) {
     url = `https://www.wowhead.com/search?q=${encodeURIComponent(cleanName)}`;
   }
   
-  return `<a href="${url}" class="wh-link" data-wh-rename="false" target="_blank">${spellText.trim()}</a>`;
+  return `<a href="${url}" class="wh-link wh-link-spell" data-wh-rename="false" target="_blank">${spellText.trim()}</a>`;
 }
 
 function wrapItem(itemName) {
@@ -1651,11 +1651,11 @@ function wrapItem(itemName) {
   const name = String(itemName).trim();
   let url = '';
   if (typeof ITEM_IDS !== 'undefined' && ITEM_IDS[name] != null) {
-    url = `https://www.wowhead.com/item=${ITEM_IDS[name]}`;
+    url = `https://www.wowhead.com/item=${ITEM_IDS[name]}?ilvl=289`;
   } else {
     url = `https://www.wowhead.com/search?q=${encodeURIComponent(name.replace(/\s*\(.*?\)/g, '').trim())}`;
   }
-  return `<a href="${url}" class="wh-link" data-wh-rename="false" target="_blank">${name}</a>`;
+  return `<a href="${url}" class="wh-link wh-link-item" data-wh-rename="false" target="_blank">${name}</a>`;
 }
 
 function renderSpecTab(s, tid, ui) {

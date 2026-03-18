@@ -930,6 +930,7 @@ function renderDetail(d) {
       }).join('');
       return '<div class="trash-section route-section"><div class="route-title">'+u.trash_title+'</div><div class="trash-grid">'+cards+'</div></div>';
     })() : ''}`;
+  if (typeof refreshWowheadTooltips === 'function') setTimeout(refreshWowheadTooltips, 50);
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1024,6 +1025,7 @@ function openRaid(id) {
   document.getElementById('back-btn').style.display = 'inline-block';
   switchTab('overview');
   window.scrollTo(0, 0);
+  if (typeof refreshWowheadTooltips === 'function') setTimeout(refreshWowheadTooltips, 50);
 }
 
 function buildRaidScreen(){
@@ -1087,7 +1089,23 @@ function buildAffixScreen(){
   document.getElementById('affixes-hero-title').textContent = ui.title;
   document.getElementById('affixes-hero-sub').textContent = ui.subtitle;
   const el = document.getElementById('affixes-content');
-  el.innerHTML = ui.sections.map(s => {
+  let html = '';
+  if (ui.week1_affixes && ui.week1_affixes.length) {
+    html += `<div class="affix-week1-block">
+      <div class="affix-week1-title">${ui.week1_title}</div>
+      <div class="affix-week1-sub">${ui.week1_sub}</div>
+      <div class="affix-week1-list">${ui.week1_affixes.map(a => {
+        const warn = a.warning ? '<div class="affix-week1-warning">⚠️ -15 sec per death!</div>' : '';
+        return `<div class="affix-week1-item ${a.badge === 'seasonal' ? 'seasonal-glow' : ''}" style="border-left-color:${a.color}">
+          <span class="affix-week1-level">${a.level}+</span>
+          <span class="affix-week1-icon">${a.icon}</span>
+          <span class="affix-week1-name">${a.name}</span>
+          <span class="affix-type-badge ${(a.badge||'').toLowerCase()}">${(ui.badge_labels && ui.badge_labels[a.badge]) || a.badge || ''}</span>
+          <div class="affix-week1-what">${a.what}</div>${warn}</div>`;
+      }).join('')}</div>
+    </div>`;
+  }
+  html += ui.sections.map(s => {
     const variantsHtml = s.variants ? `
       <div class="affix-variants">
         ${s.variants.map(v => `
@@ -1111,6 +1129,7 @@ function buildAffixScreen(){
         ${s.tip ? `<div class="affix-tip">${ui.tip_label} ${s.tip}</div>` : ''}
       </div>`;
   }).join('');
+  el.innerHTML = html;
 }
 
 // ═══════════════════════════════════════════════════════════════

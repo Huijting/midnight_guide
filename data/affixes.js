@@ -8,6 +8,14 @@ const AFFIX_UI = {
     level_label: 'Sleutel niveau',
     tip_label: '💡 Tip',
     reward_label: '🏆 Beloning bij goede uitvoering',
+    week1_title: '📅 Week 1 — Actuele affixes',
+    week1_sub: 'Deze week actief op je keys',
+    badge_labels: { seasonal: 'Seasonal', weekly: 'Wekelijks', punish: 'Straf' },
+    week1_affixes: [
+      { level: '2+', name: "Xal'atath's Bargain: Ascendant", icon: '🌀', badge: 'seasonal', color: '#c9a227', what: 'Orbs spawnen elke ~1 min. Stop ze (interrupt/CC) → jij krijgt +2% haste per orb, max +20%. Laat ze door → vijanden +20% speed/haste.' },
+      { level: '4+', name: 'Fortified', icon: '⚔️', badge: 'weekly', color: '#f97316', what: 'Trash heeft +20% HP en doet +20% meer schade. Trek kleinere pulls, gebruik meer CC.' },
+      { level: '7+', name: "Challenger's Peril", icon: '⚠️', badge: 'punish', color: '#ef4444', what: 'Elke dood kost 15 seconden van de timer! Speel clean — over-pulling is fataal.', warning: true },
+    ],
     sections: [
       {
         level: '+2 – +4',
@@ -108,6 +116,14 @@ const AFFIX_UI = {
     level_label: 'Keystone level',
     tip_label: '💡 Tip',
     reward_label: '🏆 Reward for good execution',
+    week1_title: '📅 Week 1 — Current affixes',
+    week1_sub: 'Active on your keys this week',
+    badge_labels: { seasonal: 'Seasonal', weekly: 'Weekly', punish: 'Punish' },
+    week1_affixes: [
+      { level: '2+', name: "Xal'atath's Bargain: Ascendant", icon: '🌀', badge: 'seasonal', color: '#c9a227', what: 'Orbs spawn every ~1 min. Stop them (interrupt/CC) → you gain +2% haste per orb, max +20%. Let them through → enemies +20% speed/haste.' },
+      { level: '4+', name: 'Fortified', icon: '⚔️', badge: 'weekly', color: '#f97316', what: 'Trash has +20% HP and deals +20% more damage. Pull smaller, use more CC.' },
+      { level: '7+', name: "Challenger's Peril", icon: '⚠️', badge: 'punish', color: '#ef4444', what: 'Each death costs 15 seconds from the timer! Play clean — over-pulling is fatal.', warning: true },
+    ],
     sections: [
       {
         level: '+2 – +4',
@@ -208,6 +224,14 @@ const AFFIX_UI = {
     level_label: 'Keystone niveau',
     tip_label: '💡 Tip',
     reward_label: '🏆 Belønning ved god udførelse',
+    week1_title: '📅 Uge 1 — Aktuelle affixer',
+    week1_sub: 'Aktive på dine nøgler denne uge',
+    badge_labels: { seasonal: 'Seasonal', weekly: 'Ugentlig', punish: 'Straf' },
+    week1_affixes: [
+      { level: '2+', name: "Xal'atath's Bargain: Ascendant", icon: '🌀', badge: 'seasonal', color: '#c9a227', what: 'Orbs spawner hvert ~1 min. Stop dem (interrupt/CC) → du får +2% haste per orb, max +20%. Lad dem gennemføre → fjender +20% speed/haste.' },
+      { level: '4+', name: 'Fortified', icon: '⚔️', badge: 'weekly', color: '#f97316', what: 'Trash har +20% HP og gør +20% mere skade. Træk mindre, brug mere CC.' },
+      { level: '7+', name: "Challenger's Peril", icon: '⚠️', badge: 'punish', color: '#ef4444', what: 'Hvert dødsfald koster 15 sekunder fra timeren! Spil rent — over-pulling er fatalt.', warning: true },
+    ],
     sections: [
       {
         level: '+2 – +4',
