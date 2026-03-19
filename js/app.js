@@ -1145,28 +1145,35 @@ function getBountifulDelvesForToday() {
   return schedule[dayOfWeek] || [];
 }
 
-function loadBountifulToday(useCacheBust) {
+function loadBountifulToday(useCacheBust, onDone) {
   const url = 'data/bountiful-today.json' + (useCacheBust ? '?t=' + Date.now() : '');
   fetch(url).then(r => r.ok ? r.json() : null).then(data => {
     if (data && data.delves && data.delves.length === 4) {
       bountifulTodayCache = { delves: data.delves, reset: data.reset || getCurrentResetDateStr() };
       if (document.body.classList.contains('mode-delves')) buildDelvesScreen();
-    }
-  }).catch(() => {});
+      if (onDone) onDone(true);
+    } else if (onDone) onDone(false);
+  }).catch(() => { if (onDone) onDone(false); });
 }
 
 function refreshBountifulDelves() {
   const btn = document.getElementById('delves-bountiful-refresh-btn');
-  if (btn) { btn.disabled = true; btn.textContent = (lang === 'en' ? '…' : lang === 'da' ? '…' : '…'); }
+  const loadingTxt = lang === 'en' ? 'Loading…' : lang === 'da' ? 'Henter…' : 'Ophalen…';
+  const ui = DELVES_UI[lang] || DELVES_UI.nl;
+  if (btn) { btn.disabled = true; btn.textContent = '🔄 ' + loadingTxt; }
   bountifulTodayCache = null;
-  loadBountifulToday(true);
-  setTimeout(() => {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = (DELVES_UI[lang] || DELVES_UI.nl).bountiful_refresh;
+  loadBountifulToday(true, function(ok) {
+    const b = document.getElementById('delves-bountiful-refresh-btn');
+    if (b) { b.disabled = false; b.textContent = '🔄 ' + ui.bountiful_refresh; }
+    const toast = document.getElementById('toast-notification');
+    if (toast) {
+      toast.textContent = ok ? (lang === 'en' ? 'Updated!' : lang === 'da' ? 'Opdateret!' : 'Vernieuwd!') : (lang === 'en' ? 'No new data' : lang === 'da' ? 'Ingen nye data' : 'Geen nieuwe data');
+      toast.style.opacity = '1';
+      setTimeout(function() { toast.style.opacity = '0'; }, 2000);
     }
-  }, 1500);
+  });
 }
+if (typeof window !== 'undefined') window.refreshBountifulDelves = refreshBountifulDelves;
 
 function buildDelvesScreen() {
   if (typeof DELVES_DATA === 'undefined') return;
