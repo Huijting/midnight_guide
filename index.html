@@ -33,12 +33,10 @@
 </div>
 
 <header id="site-header">
-  <!-- Rij 1: util links | 🌙 Midnight gecentreerd | controls rechts -->
+  <!-- Rij 1: back | 🌙 Midnight gecentreerd | controls rechts -->
   <div class="header-row header-row-top">
     <div class="header-left">
       <button id="back-btn" onclick="goHome()">←</button>
-      <button class="util-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Wekelijks</span></button>
-      <button class="util-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
     </div>
     <div class="header-center">
       <div class="header-title">🌙 Midnight</div>
@@ -55,15 +53,19 @@
   </div>
   <!-- Rij 2: hoofd-navigatie tabs (scrollbaar) -->
   <div class="header-row header-row-tabs">
-    <div class="mode-tabs">
+    <div class="mode-tabs mode-tabs-row1">
       <button class="mode-tab active" id="mode-tab-home" onclick="setMode('home')"><span id="tab-lbl-home">🌙 Home</span></button>
       <button class="mode-tab" id="mode-tab-raids" onclick="setMode('raids')"><span id="tab-lbl-raids">🏰 Raids</span></button>
       <button class="mode-tab" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
       <button class="mode-tab" id="mode-tab-specs" onclick="setMode('specs')"><span id="tab-lbl-specs">🎯 Specs</span></button>
       <button class="mode-tab" id="mode-tab-professions" onclick="setMode('professions')"><span id="tab-lbl-professions">🔨 Professies</span></button>
       <button class="mode-tab" id="mode-tab-affixes" onclick="setMode('affixes')"><span id="tab-lbl-affixes">☠️ Affixes</span></button>
-      <button class="mode-tab" id="mode-tab-delves" onclick="setMode('delves')"><span id="tab-lbl-delves"><a href="https://www.wowhead.com/item=254250" class="wh-link delves-tab-icon" data-wh-rename="false" target="_blank" title="Bountiful Coffer" onclick="event.preventDefault();event.stopPropagation();setMode('delves')">&nbsp;</a> Delves</span></button>
+      <button class="mode-tab" id="mode-tab-delves" onclick="setMode('delves')"><span id="tab-lbl-delves">💎 Delves</span></button>
       <button class="mode-tab" id="mode-tab-prey" onclick="setMode('prey')"><span id="tab-lbl-prey">🎯 Prey</span></button>
+    </div>
+    <div class="mode-tabs mode-tabs-row2">
+      <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Wekelijks</span></button>
+      <button class="mode-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
     </div>
   </div>
 </header>
@@ -91,7 +93,7 @@
       <span class="landing-card-count" id="lc-count-raids">3 raids</span>
     </div>
     <div class="landing-card lc-delves" onclick="setMode('delves')">
-      <span class="landing-card-icon delves-card-icon" onclick="event.stopPropagation()"><a href="https://www.wowhead.com/item=254250" class="wh-link" data-wh-rename="false" target="_blank" title="Bountiful Coffer">&nbsp;</a></span>
+      <span class="landing-card-icon" style="color:var(--gold)">💎</span>
       <div class="landing-card-title" id="lc-title-delves">Delves</div>
       <div class="landing-card-desc" id="lc-desc-delves">Bountiful Delves, loot tabel en sleutel-info</div>
       <span class="landing-card-count" id="lc-count-delves">Season 1</span>
@@ -243,7 +245,7 @@
 <div id="delves-screen" style="display:none">
   <div class="content-wrap" style="padding-top:12px;padding-bottom:48px;max-width:900px;margin:0 auto">
     <div class="delves-hero">
-      <div class="delves-hero-title"><a href="https://www.wowhead.com/item=254250" class="wh-link delves-hero-icon" data-wh-rename="false" target="_blank" title="Bountiful Coffer">&nbsp;</a> Delves: Season 1</div>
+      <div class="delves-hero-title">💎 Delves: Season 1</div>
       <div class="delves-hero-sub" id="delves-hero-sub">Midnight — Bountiful Delves & Loot</div>
     </div>
     <div id="delves-content"></div>

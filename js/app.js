@@ -296,7 +296,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -362,7 +362,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -428,7 +428,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Ordbog",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -549,7 +549,7 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-raids').innerHTML = u.tab_raids;
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl=document.getElementById('tab-lbl-glossary');
-  if(_glbl) _glbl.textContent=u.lbl_glossary||'📖 Woordenlijst';
+  if(_glbl) _glbl.innerHTML=(u.tab_glossary||u.lbl_glossary||'📖 Woordenlijst');
   updateLandingStrings();
   if(document.body.classList.contains('mode-specs')) buildSpecGrid();
   if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
@@ -1136,7 +1136,7 @@ function buildDelvesScreen() {
   html += `<div class="delves-key-info">
     <a href="https://www.wowhead.com/item=254269" class="wh-link delves-key-info-icon" data-wh-rename="false" target="_blank" title="Restored Coffer Key">&nbsp;</a>
     <div class="delves-key-info-content">
-      <strong>${ui.key_info_title}:</strong> ${keyInfo}
+      <strong>${ui.key_info_title}:</strong> ${keyInfo.replace(/Bountiful Coffer/g, '<a href="https://www.wowhead.com/item=254250" class="wh-link" data-wh-rename="false" target="_blank">Bountiful Coffer</a>')}
     </div>
   </div>`;
 
