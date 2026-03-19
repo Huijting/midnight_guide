@@ -601,9 +601,8 @@ function updateLandingStrings() {
   const L = LANDING[lang] || LANDING.nl;
   const s = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
   const h = (id, val) => { const el = document.getElementById(id); if(el) el.innerHTML = val; };
-  s('landing-title', L.title);
-  s('landing-subtitle', L.subtitle);
-  s('landing-version', VERSION + ' — ' + VERSION_DATE);
+  const logoEl = document.getElementById('landing-logo');
+  if (logoEl) logoEl.src = `assets/midnight-logo-${lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl'}.png`;
   h('landing-tip-text', L.tip);
   s('landing-credits', L.credits);
   s('lc-title-dungeons', L.d_title); s('lc-desc-dungeons', L.d_desc); s('lc-count-dungeons', L.d_count);
@@ -1091,19 +1090,17 @@ function buildRaidScreen(){
 
 // ── DELVES UI ──
 const DELVES_UI = {
-  nl: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
+  nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen' },
-  en: { hero_sub:'Midnight — All Delves & Loot', delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
+  en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_alt:'Bountiful Delves — Shift+J to open in-game' },
-  da: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
+  da: { delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
     bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game' },
 };
 
 function buildDelvesScreen() {
   if (typeof DELVES_DATA === 'undefined') return;
   const ui = DELVES_UI[lang] || DELVES_UI.nl;
-  const subEl = document.getElementById('delves-hero-sub');
-  if (subEl) subEl.textContent = ui.hero_sub;
 
   const delves = DELVES_DATA.delves;
   const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;

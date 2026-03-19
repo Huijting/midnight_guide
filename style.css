@@ -6,10 +6,10 @@
   --tag-crafting-bg:#2a1040; --tag-crafting-fg:#c084fc;
   --weekly-check-tick:#000;
   
-  /* User requested GitHub Dark theme colors */
-  --bg: #0d1117;
-  --deep: #010409;
-  --panel: #161b22;
+  /* Midnight logo: deep dark purple (card background) */
+  --bg: #0a0818;
+  --deep: #060512;
+  --panel: #12101e;
   --border: #30363d;
   
   --gold: #f0b429;
@@ -22,8 +22,8 @@
   --text: #c9d1d9;
   --muted: #a0a9b2;
   
-  --head-bg: rgba(13, 17, 23, 0.85); 
-  --tab-bg: rgba(22, 27, 34, 0.95);
+  --head-bg: rgba(10, 8, 24, 0.92); 
+  --tab-bg: rgba(10, 8, 24, 0.96);
   --boss-hdr: linear-gradient(90deg, #161b22, #0d1117);
   --boss-desc-bg: rgba(0,0,0,0.3); 
   --boss-desc-col: #8b949e;
@@ -559,50 +559,41 @@
   .mode-tab:hover:not(.active){color:var(--text)}
   @media (max-width:600px){.header-inner{gap:5px;flex-wrap:wrap;height:auto;padding:6px 0}.header-title{display:none}.mode-tabs{order:1}#spec-btn{order:2;font-size:11px;padding:4px 8px;max-width:110px;overflow:hidden;text-overflow:ellipsis}.header-controls{order:3;gap:4px}.theme-btn,.pwa-header-btn,.search-header-btn{font-size:16px;padding:2px 3px;background:none;border:none}}
   /* ═══ LANDING PAGE ═══ */
-  #landing-screen{display:none;padding:0;position:relative;flex-direction:column;justify-content:center}
+  #landing-screen{display:none;padding:8px 16px 24px;position:relative;flex-direction:column;justify-content:flex-start;min-height:100vh;box-sizing:border-box}
   body.mode-home #landing-screen{display:flex !important}
   body.mode-home #home-screen,body.mode-home #detail-screen,body.mode-home #prof-screen,body.mode-home #weekly-screen{display:none !important}
   body.mode-home #site-footer{display:block !important;margin-top:0}
-  body.mode-home #landing-screen{height:auto;min-height:0}
+  body.mode-home #landing-screen{min-height:calc(100vh - 120px)}
   body.mode-home{overflow-x:hidden}
   body.mode-home .specs-screen{display:none!important}
 
-  /* Stars background */
+  /* Deep purple ambient — matches Midnight logo card background, all sides */
   .landing-stars{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
   .landing-stars::before,.landing-stars::after{content:'';position:absolute;inset:0;background-image:
-    radial-gradient(1px 1px at 10% 15%,rgba(255,255,255,.7) 0%,transparent 100%),
-    radial-gradient(1px 1px at 25% 40%,rgba(255,255,255,.5) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 40% 8%,rgba(255,255,255,.8) 0%,transparent 100%),
-    radial-gradient(1px 1px at 55% 30%,rgba(255,255,255,.6) 0%,transparent 100%),
-    radial-gradient(1px 1px at 70% 12%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 85% 22%,rgba(255,255,255,.7) 0%,transparent 100%),
-    radial-gradient(1px 1px at 15% 60%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 32% 70%,rgba(255,255,255,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 60% 55%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1px 1px at 78% 65%,rgba(255,255,255,.6) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 92% 45%,rgba(255,255,255,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 5% 80%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1px 1px at 48% 85%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 65% 90%,rgba(255,255,255,.5) 0%,transparent 100%);
-  background-size:100% 100%;animation:twinkle 4s ease-in-out infinite alternate}
+    radial-gradient(ellipse 100% 80% at 0% 0%,rgba(60,30,120,.25) 0%,transparent 55%),
+    radial-gradient(ellipse 100% 80% at 100% 0%,rgba(60,30,120,.25) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 100% at 0% 100%,rgba(50,25,100,.2) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 100% at 100% 100%,rgba(50,25,100,.2) 0%,transparent 55%),
+    radial-gradient(ellipse 120% 120% at 50% 50%,rgba(70,35,130,.15) 0%,transparent 60%),
+    radial-gradient(2px 2px at 15% 20%,rgba(157,114,255,.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 25%,rgba(157,114,255,.3) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 25% 75%,rgba(157,114,255,.25) 0%,transparent 100%),
+    radial-gradient(2px 2px at 75% 80%,rgba(157,114,255,.3) 0%,transparent 100%);
+  background-size:100% 100%;animation:twinkle 5s ease-in-out infinite alternate}
   .landing-stars::after{background-image:
-    radial-gradient(1px 1px at 20% 25%,rgba(180,140,255,.6) 0%,transparent 100%),
-    radial-gradient(1px 1px at 45% 18%,rgba(180,140,255,.4) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 72% 35%,rgba(255,220,100,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 88% 10%,rgba(180,140,255,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 35% 55%,rgba(255,220,100,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 58% 75%,rgba(180,140,255,.4) 0%,transparent 100%);
-  animation:twinkle 6s ease-in-out infinite alternate-reverse}
-  @keyframes twinkle{0%{opacity:.6}100%{opacity:1}}
+    radial-gradient(ellipse 90% 60% at 10% 50%,rgba(80,40,140,.12) 0%,transparent 50%),
+    radial-gradient(ellipse 90% 60% at 90% 50%,rgba(80,40,140,.12) 0%,transparent 50%),
+    radial-gradient(1px 1px at 50% 15%,rgba(180,140,255,.25) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 55%,rgba(180,140,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 90%,rgba(180,140,255,.2) 0%,transparent 100%);
+  animation:twinkle 7s ease-in-out infinite alternate-reverse}
+  @keyframes twinkle{0%{opacity:.8}100%{opacity:1}}
 
-  /* Hero section */
-  .landing-hero{position:relative;z-index:1;text-align:center;padding:20px 20px 12px;max-width:600px;margin:0 auto}
-  .landing-moon{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8 0%,#f5d060 40%,#c89a20 70%,#8a6510 100%);box-shadow:0 0 30px rgba(245,208,96,.6),0 0 60px rgba(245,208,96,.25),0 0 100px rgba(245,208,96,.1);margin:0 auto 12px;animation:moonpulse 3s ease-in-out infinite}
-  @keyframes moonpulse{0%,100%{box-shadow:0 0 30px rgba(245,208,96,.6),0 0 60px rgba(245,208,96,.25)}50%{box-shadow:0 0 40px rgba(245,208,96,.9),0 0 80px rgba(245,208,96,.4),0 0 120px rgba(245,208,96,.15)}}
+  /* Hero section — Midnight logo */
+  .landing-hero{position:relative;z-index:1;text-align:center;padding:8px 16px 16px;max-width:800px;margin:0 auto}
+  /* Crop to golden frame edge; remove outer purple border */
+  .landing-logo-img{display:block;width:100%;height:auto;max-width:100%;clip-path:inset(7% 6% 7% 6%);border-radius:8px}
   @keyframes weekly-title-pulse{0%,100%{opacity:1;text-shadow:0 0 12px rgba(200,168,75,.7),0 0 24px rgba(200,168,75,.4),0 0 36px rgba(184,134,11,.25)}50%{opacity:.96;text-shadow:0 0 16px rgba(200,168,75,.85),0 0 32px rgba(200,168,75,.5),0 0 48px rgba(184,134,11,.35)}}
-  .landing-title{font-size:clamp(22px,5vw,36px);font-weight:900;letter-spacing:1px;margin:0 0 4px;color:var(--gold);text-shadow:0 0 20px rgba(245,208,96,.5),0 0 40px rgba(245,208,96,.2)}
-  .landing-subtitle{font-size:clamp(12px,2.5vw,15px);color:var(--muted);margin:0 0 4px;font-style:italic}
-  .landing-version{font-size:11px;color:var(--muted);opacity:.6;margin:0}
 
   /* Nav cards */
   .landing-cards{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0 16px;max-width:640px;margin:0 auto}
@@ -1151,9 +1142,6 @@
 
   /* ── DELVES SCREEN (screenshot design) ── */
   #delves-screen{display:none}
-  .delves-hero{background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,90,43,.08));border:1px solid rgba(240,180,41,.4);border-radius:16px;padding:20px;margin-bottom:24px;text-align:center}
-  .delves-hero-title{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:4px}
-  .delves-hero-sub{color:var(--muted);font-size:13px}
   .delves-section-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;margin-top:24px}
   .delves-section-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
   .delves-bountiful-banner{margin-top:0;margin-bottom:20px;border-radius:12px;overflow:hidden;max-width:100%}
@@ -1202,8 +1190,16 @@
 
 body {
   background-color: var(--bg);
-  background-image: radial-gradient(circle at 50% 0%, rgba(30, 15, 60, 0.4) 0%, transparent 70%), var(--bg-texture);
+  background-image:
+    radial-gradient(ellipse 150% 100% at 0% 0%, rgba(40, 20, 80, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse 150% 100% at 100% 0%, rgba(40, 20, 80, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 80% at 0% 100%, rgba(30, 15, 60, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 80% at 100% 100%, rgba(30, 15, 60, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(50, 25, 90, 0.25) 0%, transparent 70%),
+    var(--bg-texture);
   background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 /* 2. Glassmorphism + Parchment for Panels */
