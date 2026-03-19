@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-guide-v9';
+const CACHE_NAME = 'midnight-guide-v10';
 
 const PRECACHE = [
   '/',

@@ -1092,11 +1092,11 @@ function buildRaidScreen(){
 // ── DELVES UI ──
 const DELVES_UI = {
   nl: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
-    bountiful_tip:'Bountiful Delves zijn te zien in-game door <kbd>Shift+J</kbd> te drukken.' },
+    bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen' },
   en: { hero_sub:'Midnight — All Delves & Loot', delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
-    bountiful_tip:'Bountiful Delves can be viewed in-game by pressing <kbd>Shift+J</kbd>.' },
+    bountiful_alt:'Bountiful Delves — Shift+J to open in-game' },
   da: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
-    bountiful_tip:'Bountiful Delves kan ses in-game ved at trykke <kbd>Shift+J</kbd>.' },
+    bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game' },
 };
 
 function buildDelvesScreen() {
@@ -1113,10 +1113,10 @@ function buildDelvesScreen() {
 
   let html = '';
 
-  // Bountiful — tijdelijk verwijderd; melding om in-game te bekijken
-  html += `<div class="delves-bountiful-tip">
-    <span class="delves-bountiful-tip-icon">💡</span>
-    <p class="delves-bountiful-tip-text">${ui.bountiful_tip}</p>
+  // Bountiful — afbeelding per taal (Shift+J instructie)
+  const bountifulImg = `assets/delves/bountiful-delves-${lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl'}.png`;
+  html += `<div class="delves-bountiful-banner">
+    <img src="${bountifulImg}" alt="${ui.bountiful_alt}" class="delves-bountiful-img" loading="lazy">
   </div>`;
 
   // Alle Delves — tabel met Delve naam en Zone + /way
