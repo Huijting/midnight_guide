@@ -296,7 +296,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -362,7 +362,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -428,7 +428,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
     about_btn:    "📖 Om denne app",
     help_btn:     "❓ Vejledning",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "<a href=\"https://www.wowhead.com/item=254250\" class=\"wh-link delves-tab-icon\" data-wh-rename=\"false\" target=\"_blank\" title=\"Bountiful Coffer\" onclick=\"event.preventDefault();event.stopPropagation();setMode('delves')\">&nbsp;</a> Delves",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Konstruktiv kritik",
     feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
@@ -547,11 +547,13 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-affixes').innerHTML = u.tab_affixes;
   const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.innerHTML = u.tab_prey;
   document.getElementById('tab-lbl-raids').innerHTML = u.tab_raids;
+  const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl=document.getElementById('tab-lbl-glossary');
   if(_glbl) _glbl.textContent=u.lbl_glossary||'📖 Woordenlijst';
   updateLandingStrings();
   if(document.body.classList.contains('mode-specs')) buildSpecGrid();
   if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
+  if(document.body.classList.contains('mode-delves')) buildDelvesScreen();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -566,7 +568,7 @@ function updateLandingStrings() {
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, fases en rol-tactieken', r_count:'3 raids',
-      v_title:'Delves', v_desc:'Bountiful Delves, loot tabel en sleutel-info', v_count:'Season 1',
+      v_title:'Delves', v_desc:'Alle Delves met /way, loot tabel en sleutel-info', v_count:'12 Delves',
       w_title:'Wekelijks', w_desc:'Weekly reset overzicht, World Bosses en affixen', w_count:'Elke week',
       p_title:'Professies', p_desc:'KP gidsen, crafting orders en trainer locaties', p_count:'13 professies',
       s_title:'Specs', s_desc:'Rotaties, stats, macro\'s en consumables', s_count:'38 specs',
@@ -578,7 +580,7 @@ function updateLandingStrings() {
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, phases and role tactics', r_count:'3 raids',
-      v_title:'Delves', v_desc:'Bountiful Delves, loot table and key info', v_count:'Season 1',
+      v_title:'Delves', v_desc:'All Delves with /way, loot table and key info', v_count:'12 Delves',
       w_title:'Weekly', w_desc:'Weekly reset overview, World Bosses and affixes', w_count:'Every week',
       p_title:'Professions', p_desc:'KP guides, crafting orders and trainer locations', p_count:'13 professions',
       s_title:'Specs', s_desc:'Rotations, stats, macros and consumables', s_count:'38 specs',
@@ -590,7 +592,7 @@ function updateLandingStrings() {
       credits: 'Lavet af Inchy & Gemma · WoW: Midnight · Uofficiel',
       d_title:'Dungeons', d_desc:'Boss-taktikker, M+-ruter og tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss-mekanikker, faser og rolle-taktikker', r_count:'3 raids',
-      v_title:'Delves', v_desc:'Bountiful Delves, loot-tabel og nøgle-info', v_count:'Season 1',
+      v_title:'Delves', v_desc:'Alle Delves med /way, loot-tabel og nøgle-info', v_count:'12 Delves',
       w_title:'Ugentlig', w_desc:'Ugentlig reset-oversigt, verdensbosser og affixer', w_count:'Hver uge',
       p_title:'Erhverv', p_desc:'KP-guider, craft-ordrer og trænerlokationer', p_count:'13 erhverv',
       s_title:'Specs', s_desc:'Rotationer, stats, makroer og forbrugsvarer', s_count:'38 specs',
@@ -1089,9 +1091,9 @@ function buildRaidScreen(){
 
 // ── DELVES UI ──
 const DELVES_UI = {
-  nl: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves deze week', bountiful_sub:'Deze Delves geven extra loot. Klik voor Wowhead-tactieken.', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Tactieken', tactics_title:'Belangrijkste tactieken' },
-  en: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves this week', bountiful_sub:'These Delves give extra loot. Click for Wowhead tactics.', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Tactics', tactics_title:'Key tactics' },
-  da: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves denne uge', bountiful_sub:'Disse Delves giver ekstra loot. Klik for Wowhead-taktikker.', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Taktikker', tactics_title:'Vigtigste taktikker' },
+  nl: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way' },
+  en: { hero_sub:'Midnight — All Delves & Loot', delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way' },
+  da: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way' },
 };
 
 function buildDelvesScreen() {
@@ -1100,27 +1102,35 @@ function buildDelvesScreen() {
   const subEl = document.getElementById('delves-hero-sub');
   if (subEl) subEl.textContent = ui.hero_sub;
 
-  const bountiful = getBountifulDelvesThisWeek();
+  const delves = DELVES_DATA.delves;
   const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;
   const lootTable = DELVES_DATA.lootTable;
 
   let html = '';
 
-  // Bountiful Delves — kaarten met Wowhead-links en tactieken-knop
-  html += `<div class="delves-bountiful-section">
-    <h3 class="delves-section-title">${ui.bountiful_title}</h3>
-    <p class="delves-section-sub">${ui.bountiful_sub}</p>
-    <div class="delves-bountiful-grid">`;
-  bountiful.forEach(d => {
-    const tactics = d.tactics[lang] || d.tactics.en;
-    html += `<div class="delves-bountiful-card">
-      <a href="${d.url}" target="_blank" rel="noopener" class="delves-delve-link wh-link">${d.name}</a>
-      <span class="delves-zone">${d.zoneName}</span>
-      <button class="delves-tactics-btn" onclick="showDelvesTacticsTooltip(event, '${d.id}')" title="${ui.tactics_btn}">💡 ${ui.tactics_btn}</button>
-      <div class="delves-tactics-tooltip" id="delves-tip-${d.id}" role="tooltip">${tactics}</div>
-    </div>`;
+  // Alle Delves — tabel met Delve naam en Zone + /way
+  html += `<div class="delves-list-section">
+    <h3 class="delves-section-title">${ui.delves_title}</h3>
+    <p class="delves-section-sub">${ui.delves_sub}</p>
+    <div class="delves-list-table-wrap">
+      <table class="delves-list-table">
+        <thead>
+          <tr>
+            <th>${ui.delve_name}</th>
+            <th>${ui.zone_way}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>`;
+  delves.forEach(d => {
+    const zoneWay = d.way ? `${d.zoneName} ; <code class="delves-way">${d.way}</code>` : d.zoneName;
+    html += `<tr>
+      <td><a href="${d.url}" target="_blank" rel="noopener" class="delves-delve-link wh-link">${d.name}</a></td>
+      <td class="delves-zone-cell">${zoneWay}</td>
+      <td class="delves-copy-cell">${d.way ? `<button class="delves-copy-btn" data-way="${d.way.replace(/"/g, '&quot;')}" onclick="copyDelvesWay(this.dataset.way)" title="${ui.copy_way}">📋</button>` : ''}</td>
+    </tr>`;
   });
-  html += `</div></div>`;
+  html += `</tbody></table></div></div>`;
 
   // Key Info — opvallend kader (Restored Coffer Key = echte WoW-icoon)
   html += `<div class="delves-key-info">
@@ -1166,18 +1176,14 @@ function buildDelvesScreen() {
   }
 }
 
-function showDelvesTacticsTooltip(ev, delveId) {
-  ev.stopPropagation();
-  const tip = document.getElementById('delves-tip-' + delveId);
-  if (!tip) return;
-  const wasVisible = tip.classList.contains('visible');
-  document.querySelectorAll('.delves-tactics-tooltip').forEach(t => t.classList.remove('visible'));
-  if (!wasVisible) tip.classList.add('visible');
+function copyDelvesWay(way) {
+  if (!way) return;
+  navigator.clipboard.writeText(way).then(() => {
+    const toast = document.getElementById('toast-notification');
+    const msg = (lang === 'en' ? 'Copied!' : lang === 'da' ? 'Kopieret!' : 'Gekopieerd!');
+    if (toast) { toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => { toast.style.opacity = '0'; }, 1500); }
+  });
 }
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.delves-tactics-btn') || e.target.closest('.delves-tactics-tooltip')) return;
-  document.querySelectorAll('.delves-tactics-tooltip').forEach(t => t.classList.remove('visible'));
-});
 
 function buildAffixScreen(){
   const ui = (typeof AFFIX_UI !== 'undefined') ? (AFFIX_UI[lang] || AFFIX_UI.nl) : null;

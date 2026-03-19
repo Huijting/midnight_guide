@@ -1,32 +1,22 @@
 // Delves — WoW: Midnight Season 1
-// Bountiful rotation, loot table, Wowhead links
+// Alle Midnight Delves met /way coördinaten, loot table, Wowhead links
 // Source: NextTier, Icy Veins, Wowhead (March 2026)
 
 const DELVES_DATA = {
-  // Alle Midnight Delves met Wowhead zone-links en tactieken
+  // Alle Midnight Delves met zone, /way en Wowhead-links
   delves: [
-    { id: 'shadow_enclave', name: 'The Shadow Enclave', zone: 16594, url: 'https://www.wowhead.com/zone=16594/the-shadow-enclave', zoneName: 'Eversong Woods',
-      tactics: { nl: 'Vermijd Void-pools op de grond. Interrupt Shadow Bolt. Gebruik Valeera voor extra DPS op elites. Checkpoint na 2e objective.', en: 'Avoid Void pools on ground. Interrupt Shadow Bolt. Use Valeera for extra DPS on elites. Checkpoint after 2nd objective.', da: 'Undgå Void-pytter. Afbryd Shadow Bolt. Brug Valeera til ekstra DPS.' }},
-    { id: 'collegiate_calamity', name: 'Collegiate Calamity', zone: 16545, url: 'https://www.wowhead.com/zone=16545/collegiate-calamity', zoneName: 'Silvermoon City',
-      tactics: { nl: 'Dispel magische debuffs. Kite grote packs. Finale boss: uit de frontale cone. Levens bewaren voor Bountiful chest.', en: 'Dispel magic debuffs. Kite large packs. Final boss: avoid frontal cone. Save lives for Bountiful chest.', da: 'Dispel magiske debuffs. Kite store grupper. Undgå frontal cone på boss.' }},
-    { id: 'parhelion_plaza', name: 'Parhelion Plaza', zone: 16542, url: 'https://www.wowhead.com/zone=16542/parhelion-plaza', zoneName: 'Isle of Quel\'Danas',
-      tactics: { nl: 'Zon-mechanic: sta in schaduw of brand. Interrupt Arcane casts. Valeera op Sun Priests. Checkpoint voor finale.', en: 'Sun mechanic: stand in shadow or burn. Interrupt Arcane casts. Valeera on Sun Priests. Checkpoint before final.', da: 'Sol-mekanik: stå i skygge eller brænd. Afbryd Arcane casts.' }},
-    { id: 'the_darkway', name: 'The Darkway', zone: 16642, url: 'https://www.wowhead.com/zone=16642/the-darkway', zoneName: 'Silvermoon City',
-      tactics: { nl: 'Donkere paden: volg het licht. Vermijd Void-zones. Interrupt Mind Control. Groepeer mobs voor AoE.', en: 'Dark paths: follow the light. Avoid Void zones. Interrupt Mind Control. Group mobs for AoE.', da: 'Mørke stier: følg lyset. Undgå Void-zoner. Afbryd Mind Control.' }},
-    { id: 'twilight_crypts', name: 'Twilight Crypts', zone: 16557, url: 'https://www.wowhead.com/zone=16557/twilight-crypts', zoneName: 'Zul\'Aman',
-      tactics: { nl: 'Undead: gebruik Holy/Shadow damage. Vermijd totem AoE. Finale: dispel Curse of Agony. Levens voor Bountiful.', en: 'Undead: use Holy/Shadow damage. Avoid totem AoE. Final: dispel Curse of Agony. Save lives for Bountiful.', da: 'Undead: brug Holy/Shadow skade. Undgå totem AoE.' }},
-    { id: 'atalaman', name: 'Atal\'Aman', zone: 16194, url: 'https://www.wowhead.com/zone=16194/atalaman', zoneName: 'Zul\'Aman',
-      tactics: { nl: 'Troll-mechanics: interrupt Hex. Kite Berserkers. Gebruik stuns op healers. Checkpoint na eerste boss.', en: 'Troll mechanics: interrupt Hex. Kite Berserkers. Use stuns on healers. Checkpoint after first boss.', da: 'Troll-mekanik: afbryd Hex. Kite Berserkers.' }},
-    { id: 'grudge_pit', name: 'The Grudge Pit', zone: 16548, url: 'https://www.wowhead.com/zone=16548/the-grudge-pit', zoneName: 'Harandar',
-      tactics: { nl: 'Arena-style: focus één target. Vermijd grond-effecten. Interrupt Execute-achtige abilities. Valeera voor burst.', en: 'Arena-style: focus one target. Avoid ground effects. Interrupt Execute-like abilities. Valeera for burst.', da: 'Arena-stil: fokuser ét mål. Undgå jordeffekter.' }},
-    { id: 'gulf_of_memory', name: 'The Gulf of Memory', zone: 16595, url: 'https://www.wowhead.com/zone=16595/the-gulf-of-memory', zoneName: 'Harandar',
-      tactics: { nl: 'Memory-mechanic: onthoud volgorde. Dispel Confusion. Kite grote packs. Finale: uit de beam.', en: 'Memory mechanic: remember sequence. Dispel Confusion. Kite large packs. Final: avoid beam.', da: 'Hukommelses-mekanik: husk rækkefølge. Dispel Confusion.' }},
-    { id: 'sunkiller_sanctum', name: 'Sunkiller Sanctum', zone: 16592, url: 'https://www.wowhead.com/zone=16592/sunkiller-sanctum', zoneName: 'Voidstorm',
-      tactics: { nl: 'Void + Sun mix. Interrupt Solar Flare. Vermijd Void fissures. Gebruik defensives op grote pulls.', en: 'Void + Sun mix. Interrupt Solar Flare. Avoid Void fissures. Use defensives on big pulls.', da: 'Void + Sol mix. Afbryd Solar Flare. Undgå Void-spalter.' }},
-    { id: 'shadowguard_point', name: 'Shadowguard Point', zone: 16549, url: 'https://www.wowhead.com/zone=16549/shadowguard-point', zoneName: 'Voidstorm',
-      tactics: { nl: 'Shadow damage zwaar. Gebruik defensives. Interrupt Shadow Crash. Valeera voor extra survivability.', en: 'Shadow damage heavy. Use defensives. Interrupt Shadow Crash. Valeera for extra survivability.', da: 'Shadow-skade tung. Brug defensives. Afbryd Shadow Crash.' }},
-    { id: 'torments_rise', name: 'Torment\'s Rise', zone: 16596, url: 'https://www.wowhead.com/zone=16596/torments-rise', zoneName: 'Voidstorm (Nemesis)',
-      tactics: { nl: 'Nemesis Delve — moeilijkste. Strakke pulls. Bewaar alle levens. Interrupt alles. Valeera op survival-curios.', en: 'Nemesis Delve — hardest. Tight pulls. Save all lives. Interrupt everything. Valeera on survival curios.', da: 'Nemesis Delve — sværeste. Stramme pulls. Gem alle liv.' }},
+    { id: 'shadow_enclave', name: 'The Shadow Enclave', zoneName: 'Eversong Woods', way: '/way #2248 45.5, 86.0', url: 'https://www.wowhead.com/zone=16594/the-shadow-enclave' },
+    { id: 'collegiate_calamity', name: 'Collegiate Calamity', zoneName: 'Silvermoon City', way: '/way #2248 40.6, 53.7', url: 'https://www.wowhead.com/zone=16545/collegiate-calamity' },
+    { id: 'parhelion_plaza', name: 'Parhelion Plaza', zoneName: "Isle of Quel'Danas, Sunwell Ramparts", way: '/way #2248 46.8, 40.9', url: 'https://www.wowhead.com/zone=16542/parhelion-plaza' },
+    { id: 'the_darkway', name: 'The Darkway', zoneName: 'Silvermoon City', way: '/way #2248 39.3, 31.7', url: 'https://www.wowhead.com/zone=16642/the-darkway' },
+    { id: 'twilight_crypts', name: 'Twilight Crypts', zoneName: "Zul'Aman", way: '/way #2248 25.4, 84.4', url: 'https://www.wowhead.com/zone=16557/twilight-crypts' },
+    { id: 'atalaman', name: "Atal'Aman", zoneName: "Zul'Aman Region", way: '/way #2248 63.7, 80.1', url: 'https://www.wowhead.com/zone=16194/atalaman' },
+    { id: 'grudge_pit', name: 'The Grudge Pit', zoneName: 'Harandar', way: '/way #2248 70.4, 64.8', url: 'https://www.wowhead.com/zone=16548/the-grudge-pit' },
+    { id: 'gulf_of_memory', name: 'The Gulf of Memory', zoneName: 'Harandar', way: '/way #2248 36.7, 49.6', url: 'https://www.wowhead.com/zone=16595/the-gulf-of-memory' },
+    { id: 'sunkiller_sanctum', name: 'Sunkiller Sanctum', zoneName: 'Voidstorm', way: '/way #2248 54.8, 47.1', url: 'https://www.wowhead.com/zone=16592/sunkiller-sanctum' },
+    { id: 'shadowguard_point', name: 'Shadowguard Point', zoneName: 'Voidstorm', way: '/way #2248 37.1, 49.1', url: 'https://www.wowhead.com/zone=16549/shadowguard-point' },
+    { id: 'torments_rise', name: "Torment's Rise", zoneName: 'Voidstorm, South to Nexus-Point Xenas', way: null, url: 'https://www.wowhead.com/zone=16596/torments-rise' },
+    { id: 'den_of_echoes', name: "The Den of Echoes", zoneName: '—', way: null, url: 'https://www.wowhead.com/search?q=The+Den+of+Echoes' },
   ],
 
   // Loot table — Midnight Season 1 (van NextTier)
@@ -47,24 +37,10 @@ const DELVES_DATA = {
 
   // Key info — meertalig
   keyInfo: {
-    nl: 'Sleutels zijn nu Currency! 100 Key Shards worden automatisch 1 Restored Coffer Key in je Currency-tab.',
-    en: 'Keys are now Currency! 100 Key Shards automatically become 1 Restored Coffer Key in your Currency tab.',
-    da: 'Nøgler er nu Currency! 100 Key Shards bliver automatisk til 1 Restored Coffer Key i din Currency-fane.',
+    nl: 'Bij een Bountiful Coffer (aan het einde van een Bountiful Delve) checkt WoW automatisch of je 100 Key Shards hebt. Heb je genoeg? Dan kun je de coffer openen — de shards worden dan direct verbruikt.',
+    en: 'At a Bountiful Coffer (at the end of a Bountiful Delve), WoW automatically checks if you have 100 Key Shards. Got enough? You can open the coffer — the shards are consumed on the spot.',
+    da: 'Ved en Bountiful Coffer (i slutningen af et Bountiful Delve) tjekker WoW automatisk om du har 100 Key Shards. Har du nok? Så kan du åbne coffer\'en — shards bliver brugt på stedet.',
   },
 };
 
-// Bountiful Delves — 4 per week, roteert op woensdag reset
-// Gebruik weeknummer sinds 2026-03-19 (Season 1 start) om te bepalen welke 4
-function getBountifulDelvesThisWeek() {
-  const DELVES = DELVES_DATA.delves;
-  const startDate = new Date('2026-03-19');
-  const now = new Date();
-  const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-  const weekNum = Math.floor((now - startDate) / msPerWeek);
-  const count = 4;
-  const indices = [];
-  for (let i = 0; i < count; i++) {
-    indices.push((weekNum * count + i) % DELVES.length);
-  }
-  return indices.map(i => DELVES[i]);
-}
+// Bountiful Delves — dagelijks; implementatie volgt later

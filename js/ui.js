@@ -1071,7 +1071,8 @@ function doSearch(q) {
   // ── Delves ──
   if (q.includes('delve') || q.includes('bountiful') || q.includes('loot')) {
     const delveLbl = { nl:'Delves', en:'Delves', da:'Delves' }[lang];
-    results.push({ type:'delves', icon: '💎', name: delveLbl, sub: 'Bountiful Delves & Loot', badge: 'Delves', action: () => { closeSearch(); setMode('delves'); } });
+    const delveSub = { nl:'Alle Delves met /way & Loot', en:'All Delves with /way & Loot', da:'Alle Delves med /way & Loot' }[lang];
+    results.push({ type:'delves', icon: '💎', name: delveLbl, sub: delveSub, badge: 'Delves', action: () => { closeSearch(); setMode('delves'); } });
   }
   if (typeof DELVES_DATA !== 'undefined' && DELVES_DATA.delves) {
     DELVES_DATA.delves.forEach(d => {

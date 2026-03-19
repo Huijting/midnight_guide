@@ -1145,16 +1145,19 @@
   .delves-hero-sub{color:var(--muted);font-size:13px}
   .delves-section-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;margin-top:24px}
   .delves-section-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
-  .delves-bountiful-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-  .delves-bountiful-card{background:var(--panel);border:1px solid rgba(240,180,41,.35);border-radius:12px;padding:14px;position:relative;transition:border-color .2s,box-shadow .2s}
-  .delves-bountiful-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(240,180,41,.15)}
-  .delves-delve-link{display:block;font-weight:700;font-size:15px;color:var(--gold);text-decoration:none;margin-bottom:4px}
+  .delves-list-table-wrap{overflow-x:auto;border:1px solid rgba(79,142,247,.4);border-radius:12px;background:var(--deep);margin-bottom:8px}
+  .delves-list-table{width:100%;border-collapse:collapse;font-size:14px}
+  .delves-list-table th{background:rgba(79,142,247,.15);color:#69ccf0;font-weight:800;padding:12px 14px;text-align:left;border-bottom:1px solid rgba(79,142,247,.3)}
+  .delves-list-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+  .delves-list-table tbody tr:last-child td{border-bottom:none}
+  .delves-list-table tbody tr:hover{background:rgba(255,255,255,.03)}
+  .delves-delve-link{font-weight:700;font-size:15px;color:var(--gold);text-decoration:none}
   .delves-delve-link:hover{color:var(--gold2);text-decoration:underline}
-  .delves-zone{font-size:12px;color:var(--muted);display:block;margin-bottom:10px}
-  .delves-tactics-btn{background:rgba(240,180,41,.15);border:1px solid rgba(240,180,41,.4);color:var(--gold);font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;transition:all .2s}
-  .delves-tactics-btn:hover{background:rgba(240,180,41,.25);border-color:var(--gold)}
-  .delves-tactics-tooltip{display:none;position:absolute;bottom:100%;left:0;right:0;margin-bottom:6px;background:var(--deep);border:1px solid var(--gold);border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5;color:var(--text);z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.5)}
-  .delves-tactics-tooltip.visible{display:block}
+  .delves-zone-cell{font-size:13px;color:var(--muted)}
+  .delves-zone-cell .delves-way{color:#69ccf0;font-family:monospace;font-size:12px;background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px}
+  .delves-copy-cell{width:44px;text-align:center}
+  .delves-copy-btn{background:rgba(79,142,247,.2);border:1px solid rgba(79,142,247,.4);color:#69ccf0;font-size:14px;padding:6px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+  .delves-copy-btn:hover{background:rgba(79,142,247,.35);border-color:#69ccf0}
   .delves-key-info{background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(31,111,235,.08));border:2px solid rgba(79,142,247,.5);border-radius:12px;padding:16px 20px;margin:24px 0;display:flex;align-items:flex-start;gap:14px}
   .delves-key-info-icon{font-size:28px;flex-shrink:0}
   .delves-key-info-content{font-size:15px;color:var(--text);line-height:1.55}
