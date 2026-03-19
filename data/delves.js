@@ -53,6 +53,19 @@ const DELVES_DATA = {
     en: 'At a Bountiful Coffer (at the end of a Bountiful Delve), WoW automatically checks if you have 100 Key Shards. Got enough? You can open the coffer — the shards are consumed on the spot.',
     da: 'Ved en Bountiful Coffer (i slutningen af et Bountiful Delve) tjekker WoW automatisk om du har 100 Key Shards. Har du nok? Så kan du åbne coffer\'en — shards bliver brugt på stedet.',
   },
-};
 
-// Bountiful Delves — dagelijks; implementatie volgt later
+  // Bountiful Delves — 4 per dag, dagelijkse rotatie (EU reset 07:00 UTC / 08:00 CET)
+  // Bron: "There has always been 4 Bountiful delves a day" (Blizzard forums)
+  // Schema: 7 dagen (week), elke dag 4 delve IDs. Dag = (getWowDayIndex() + bountifulScheduleOffset) % 7
+  // Staat het niet gelijk met in-game? Pas bountifulScheduleOffset aan (bijv. 1 of -1) of corrigeer de rijen hieronder.
+  bountifulScheduleOffset: 0,
+  bountifulSchedule: [
+    ['shadow_enclave', 'collegiate_calamity', 'twilight_crypts', 'grudge_pit'],
+    ['parhelion_plaza', 'the_darkway', 'atalaman', 'gulf_of_memory'],
+    ['sunkiller_sanctum', 'shadowguard_point', 'torments_rise', 'shadow_enclave'],
+    ['collegiate_calamity', 'parhelion_plaza', 'twilight_crypts', 'gulf_of_memory'],
+    ['the_darkway', 'atalaman', 'grudge_pit', 'sunkiller_sanctum'],
+    ['shadowguard_point', 'torments_rise', 'shadow_enclave', 'collegiate_calamity'],
+    ['parhelion_plaza', 'twilight_crypts', 'atalaman', 'grudge_pit'],
+  ],
+};

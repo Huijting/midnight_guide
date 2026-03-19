@@ -1,0 +1,31 @@
+name: Fetch Bountiful Delves
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    # Dagelijks om 07:00 UTC = 08:00 CET
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Handmatig triggeren mogelijk
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch from Wowhead
+        run: node scripts/fetch-bountiful-delves.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/bountiful-today.json
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: update Bountiful Delves from Wowhead"
+            git push
+          fi

@@ -999,6 +999,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updateSpecBtn();
   renderHome();
   initTooltips();
+  loadBountifulToday(); // Wowhead Bountiful Delves (data/bountiful-today.json)
 });
 
 // ── KEYSTONE.GURU POPUP ──
@@ -1091,10 +1092,81 @@ function buildRaidScreen(){
 
 // ── DELVES UI ──
 const DELVES_UI = {
-  nl: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way' },
-  en: { hero_sub:'Midnight — All Delves & Loot', delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way' },
-  da: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way' },
+  nl: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
+    bountiful_title:'Bountiful vandaag', bountiful_sub:'Bron: Wowhead. Vernieuwd dagelijks na reset 08:00 CET.', bountiful_reset:'Reset over', bountiful_refresh:'Vernieuw' },
+  en: { hero_sub:'Midnight — All Delves & Loot', delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
+    bountiful_title:'Bountiful today', bountiful_sub:'Source: Wowhead. Refreshed daily after 08:00 CET reset.', bountiful_reset:'Reset in', bountiful_refresh:'Refresh' },
+  da: { hero_sub:'Midnight — Alle Delves & Loot', delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
+    bountiful_title:'Bountiful i dag', bountiful_sub:'Kilde: Wowhead. Opdateres dagligt efter reset 08:00 CET.', bountiful_reset:'Reset om', bountiful_refresh:'Opdater' },
 };
+
+// WoW EU daily reset: 07:00 UTC (08:00 CET). Returns days since epoch (TWW Delves launch).
+function getWowDayIndex() {
+  const epoch = Date.UTC(2024, 7, 26, 7, 0, 0); // 26 Aug 2024 07:00 UTC (TWW launch)
+  const now = Date.now();
+  return Math.floor((now - epoch) / 86400000);
+}
+
+function getNextDailyReset() {
+  const now = new Date();
+  const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 7, 0, 0));
+  if (now.getTime() >= next.getTime()) next.setUTCDate(next.getUTCDate() + 1);
+  return next.getTime();
+}
+
+function formatCountdown(ms, l) {
+  if (ms <= 0) return '—';
+  const h = Math.floor(ms / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  if (l === 'en') return `${h}h ${m}m`;
+  if (l === 'da') return `${h}t ${m}m`;
+  return `${h}u ${m}m`;
+}
+
+// Cache van Wowhead-fetch (data/bountiful-today.json, dagelijks bijgewerkt door GitHub Action)
+let bountifulTodayCache = null;
+
+function getCurrentResetDateStr() {
+  const now = new Date();
+  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 7, 0, 0));
+  if (now.getTime() < d.getTime()) d.setUTCDate(d.getUTCDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
+
+function getBountifulDelvesForToday() {
+  if (bountifulTodayCache && bountifulTodayCache.reset === getCurrentResetDateStr() && bountifulTodayCache.delves && bountifulTodayCache.delves.length === 4) {
+    return bountifulTodayCache.delves;
+  }
+  if (typeof DELVES_DATA === 'undefined' || !DELVES_DATA.bountifulSchedule) return [];
+  const day = getWowDayIndex();
+  const offset = DELVES_DATA.bountifulScheduleOffset || 0;
+  const schedule = DELVES_DATA.bountifulSchedule;
+  const dayOfWeek = ((day + offset) % 7 + 7) % 7;
+  return schedule[dayOfWeek] || [];
+}
+
+function loadBountifulToday(useCacheBust) {
+  const url = 'data/bountiful-today.json' + (useCacheBust ? '?t=' + Date.now() : '');
+  fetch(url).then(r => r.ok ? r.json() : null).then(data => {
+    if (data && data.delves && data.delves.length === 4) {
+      bountifulTodayCache = { delves: data.delves, reset: data.reset || getCurrentResetDateStr() };
+      if (document.body.classList.contains('mode-delves')) buildDelvesScreen();
+    }
+  }).catch(() => {});
+}
+
+function refreshBountifulDelves() {
+  const btn = document.getElementById('delves-bountiful-refresh-btn');
+  if (btn) { btn.disabled = true; btn.textContent = (lang === 'en' ? '…' : lang === 'da' ? '…' : '…'); }
+  bountifulTodayCache = null;
+  loadBountifulToday(true);
+  setTimeout(() => {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = (DELVES_UI[lang] || DELVES_UI.nl).bountiful_refresh;
+    }
+  }, 1500);
+}
 
 function buildDelvesScreen() {
   if (typeof DELVES_DATA === 'undefined') return;
@@ -1105,8 +1177,37 @@ function buildDelvesScreen() {
   const delves = DELVES_DATA.delves;
   const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;
   const lootTable = DELVES_DATA.lootTable;
+  const delveById = {};
+  delves.forEach(d => { delveById[d.id] = d; });
 
   let html = '';
+
+  // Bountiful vandaag — automatisch berekend op basis van dagelijkse reset
+  const bountifulIds = getBountifulDelvesForToday();
+  if (bountifulIds.length > 0) {
+    const bountifulDelves = bountifulIds.map(id => delveById[id]).filter(Boolean);
+    const bountifulRows = bountifulDelves.map(d => {
+      const tactics = (d.tactics && (d.tactics[lang] || d.tactics.en)) ? (d.tactics[lang] || d.tactics.en).replace(/"/g, '&quot;') : '';
+      const zoneWay = d.way
+        ? `${d.zoneName} ; <span class="way-pill" onclick="copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
+        : d.zoneName;
+      const urlEsc = (d.url || '').replace(/"/g, '&quot;');
+      return `<tr><td><span class="delves-delve-link delves-bountiful-badge" title="${tactics}" data-url="${urlEsc}" onclick="window.open(this.dataset.url)" role="button" tabindex="0">${d.name}</span></td><td class="delves-zone-cell">${zoneWay}</td></tr>`;
+    }).join('');
+    html += `<div class="delves-bountiful-section">
+      <div class="delves-bountiful-header">
+        <h3 class="delves-section-title">${ui.bountiful_title}</h3>
+        <button type="button" class="delves-bountiful-refresh-btn" id="delves-bountiful-refresh-btn" onclick="refreshBountifulDelves()" title="${ui.bountiful_refresh}">🔄 ${ui.bountiful_refresh}</button>
+      </div>
+      <p class="delves-section-sub">${ui.bountiful_sub} <span class="delves-reset-countdown" id="delves-bountiful-reset">${ui.bountiful_reset}: —</span></p>
+      <div class="delves-bountiful-table-wrap">
+        <table class="delves-list-table delves-bountiful-table">
+          <thead><tr><th>${ui.delve_name}</th><th>${ui.zone_way}</th></tr></thead>
+          <tbody>${bountifulRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
 
   // Alle Delves — tabel met Delve naam en Zone + /way
   html += `<div class="delves-list-section">
@@ -1175,7 +1276,29 @@ function buildDelvesScreen() {
   if (contentEl) {
     contentEl.innerHTML = html;
     if (typeof $WowheadPower !== 'undefined') { ($WowheadPower.refreshLinks || $WowheadPower.refresh)(); }
+    startBountifulCountdown();
   }
+}
+
+let bountifulCountdownInterval;
+let lastBountifulWowDay = -1;
+function startBountifulCountdown() {
+  if (bountifulCountdownInterval) clearInterval(bountifulCountdownInterval);
+  lastBountifulWowDay = getWowDayIndex();
+  const el = document.getElementById('delves-bountiful-reset');
+  const ui = DELVES_UI[lang] || DELVES_UI.nl;
+  function update() {
+    const next = getNextDailyReset();
+    if (el) el.textContent = `${ui.bountiful_reset}: ${formatCountdown(next - Date.now(), lang)}`;
+    // Bij 08:00 CET (07:00 UTC) nieuwe WoW-dag: herbouw automatisch
+    const nowDay = getWowDayIndex();
+    if (nowDay !== lastBountifulWowDay && document.body.classList.contains('mode-delves')) {
+      lastBountifulWowDay = nowDay;
+      buildDelvesScreen();
+    }
+  }
+  update();
+  bountifulCountdownInterval = setInterval(update, 60000); // elke minuut
 }
 
 function copyDelvesWay(way) {
