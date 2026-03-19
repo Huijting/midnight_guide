@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-guide-v8';
+const CACHE_NAME = 'midnight-guide-v9';
 
 const PRECACHE = [
   '/',
@@ -101,7 +101,12 @@ self.addEventListener('activate', event => {
 });
 
 // Fetch: cache-first, netwerk als fallback
+// bountiful-today.json altijd van netwerk (dagelijks vernieuwd)
 self.addEventListener('fetch', event => {
+  if (event.request.url.includes('bountiful-today.json')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
