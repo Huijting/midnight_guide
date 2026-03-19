@@ -1021,15 +1021,15 @@ function doSearch(q) {
 
   const results = [];
   const badges = {
-    nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie' },
-    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession' },
-    da: { dungeon:'Dungeon', spec:'Spec', prof:'Profession' },
+    nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie', delves:'Delves' },
+    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' },
+    da: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' },
   };
   const badge = badges[lang] || badges.nl;
   const groupLabels = {
-    nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies' },
-    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions' },
-    da: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professioner' },
+    nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies', delves:'💎 Delves' },
+    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions', delves:'💎 Delves' },
+    da: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professioner', delves:'💎 Delves' },
   };
   const grpLbl = groupLabels[lang] || groupLabels.nl;
 
@@ -1068,19 +1068,40 @@ function doSearch(q) {
     });
   }
 
+  // ── Delves ──
+  if (q.includes('delve') || q.includes('bountiful') || q.includes('loot')) {
+    const delveLbl = { nl:'Delves', en:'Delves', da:'Delves' }[lang];
+    results.push({ type:'delves', icon: '💎', name: delveLbl, sub: 'Bountiful Delves & Loot', badge: 'Delves', action: () => { closeSearch(); setMode('delves'); } });
+  }
+  if (typeof DELVES_DATA !== 'undefined' && DELVES_DATA.delves) {
+    DELVES_DATA.delves.forEach(d => {
+      if (d.name.toLowerCase().includes(q) || (d.zoneName && d.zoneName.toLowerCase().includes(q))) {
+        results.push({ type:'delves', icon: '💎', name: d.name, sub: d.zoneName, badge: 'Delves', action: () => { closeSearch(); setMode('delves'); } });
+      }
+    });
+  }
+
   if (!results.length) {
     el.innerHTML = `<div class="search-empty">Geen resultaten voor "<strong>${q}</strong>"</div>`;
     return;
   }
 
-  // Groepeer per type
-  const groups = { dungeon: [], spec: [], prof: [] };
+  // Groepeer per type (dedupe delves)
+  const groups = { dungeon: [], spec: [], prof: [], delves: [] };
   const labels = grpLbl;
-  results.forEach(r => groups[r.type].push(r));
+  const seenDelves = new Set();
+  results.forEach(r => {
+    if (r.type === 'delves') {
+      const key = r.name + (r.sub || '');
+      if (seenDelves.has(key)) return;
+      seenDelves.add(key);
+    }
+    groups[r.type].push(r);
+  });
 
   let html = '';
   let idx = 0;
-  ['dungeon','spec','prof'].forEach(type => {
+  ['dungeon','spec','prof','delves'].forEach(type => {
     if (!groups[type].length) return;
     html += `<div class="search-group-label">${labels[type]}</div>`;
     groups[type].forEach(r => {

@@ -566,6 +566,7 @@ function updateLandingStrings() {
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, fases en rol-tactieken', r_count:'3 raids',
+      v_title:'Delves', v_desc:'Bountiful Delves, loot tabel en sleutel-info', v_count:'Season 1',
       w_title:'Wekelijks', w_desc:'Weekly reset overzicht, World Bosses en affixen', w_count:'Elke week',
       p_title:'Professies', p_desc:'KP gidsen, crafting orders en trainer locaties', p_count:'13 professies',
       s_title:'Specs', s_desc:'Rotaties, stats, macro\'s en consumables', s_count:'38 specs',
@@ -577,6 +578,7 @@ function updateLandingStrings() {
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, phases and role tactics', r_count:'3 raids',
+      v_title:'Delves', v_desc:'Bountiful Delves, loot table and key info', v_count:'Season 1',
       w_title:'Weekly', w_desc:'Weekly reset overview, World Bosses and affixes', w_count:'Every week',
       p_title:'Professions', p_desc:'KP guides, crafting orders and trainer locations', p_count:'13 professions',
       s_title:'Specs', s_desc:'Rotations, stats, macros and consumables', s_count:'38 specs',
@@ -588,6 +590,7 @@ function updateLandingStrings() {
       credits: 'Lavet af Inchy & Gemma · WoW: Midnight · Uofficiel',
       d_title:'Dungeons', d_desc:'Boss-taktikker, M+-ruter og tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss-mekanikker, faser og rolle-taktikker', r_count:'3 raids',
+      v_title:'Delves', v_desc:'Bountiful Delves, loot-tabel og nøgle-info', v_count:'Season 1',
       w_title:'Ugentlig', w_desc:'Ugentlig reset-oversigt, verdensbosser og affixer', w_count:'Hver uge',
       p_title:'Erhverv', p_desc:'KP-guider, craft-ordrer og trænerlokationer', p_count:'13 erhverv',
       s_title:'Specs', s_desc:'Rotationer, stats, makroer og forbrugsvarer', s_count:'38 specs',
@@ -603,6 +606,7 @@ function updateLandingStrings() {
   s('landing-credits', L.credits);
   s('lc-title-dungeons', L.d_title); s('lc-desc-dungeons', L.d_desc); s('lc-count-dungeons', L.d_count);
   s('lc-title-raids', L.r_title); s('lc-desc-raids', L.r_desc); s('lc-count-raids', L.r_count);
+  s('lc-title-delves', L.v_title); s('lc-desc-delves', L.v_desc); s('lc-count-delves', L.v_count);
   s('lc-title-weekly',   L.w_title); s('lc-desc-weekly',   L.w_desc); s('lc-count-weekly',   L.w_count);
   s('lc-title-professions', L.p_title); s('lc-desc-professions', L.p_desc); s('lc-count-professions', L.p_count);
   s('lc-title-specs',   L.s_title); s('lc-desc-specs',   L.s_desc); s('lc-count-specs',   L.s_count);
@@ -1083,6 +1087,98 @@ function buildRaidScreen(){
     `).join('') + `</div>`;
 }
 
+// ── DELVES UI ──
+const DELVES_UI = {
+  nl: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves deze week', bountiful_sub:'Deze Delves geven extra loot. Klik voor Wowhead-tactieken.', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Tactieken', tactics_title:'Belangrijkste tactieken' },
+  en: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves this week', bountiful_sub:'These Delves give extra loot. Click for Wowhead tactics.', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Tactics', tactics_title:'Key tactics' },
+  da: { hero_sub:'Midnight — Bountiful Delves & Loot', bountiful_title:'Bountiful Delves denne uge', bountiful_sub:'Disse Delves giver ekstra loot. Klik for Wowhead-taktikker.', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', tactics_btn:'Taktikker', tactics_title:'Vigtigste taktikker' },
+};
+
+function buildDelvesScreen() {
+  if (typeof DELVES_DATA === 'undefined') return;
+  const ui = DELVES_UI[lang] || DELVES_UI.nl;
+  const subEl = document.getElementById('delves-hero-sub');
+  if (subEl) subEl.textContent = ui.hero_sub;
+
+  const bountiful = getBountifulDelvesThisWeek();
+  const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;
+  const lootTable = DELVES_DATA.lootTable;
+
+  let html = '';
+
+  // Bountiful Delves — kaarten met Wowhead-links en tactieken-knop
+  html += `<div class="delves-bountiful-section">
+    <h3 class="delves-section-title">${ui.bountiful_title}</h3>
+    <p class="delves-section-sub">${ui.bountiful_sub}</p>
+    <div class="delves-bountiful-grid">`;
+  bountiful.forEach(d => {
+    const tactics = d.tactics[lang] || d.tactics.en;
+    html += `<div class="delves-bountiful-card">
+      <a href="${d.url}" target="_blank" rel="noopener" class="delves-delve-link wh-link">${d.name}</a>
+      <span class="delves-zone">${d.zoneName}</span>
+      <button class="delves-tactics-btn" onclick="showDelvesTacticsTooltip(event, '${d.id}')" title="${ui.tactics_btn}">💡 ${ui.tactics_btn}</button>
+      <div class="delves-tactics-tooltip" id="delves-tip-${d.id}" role="tooltip">${tactics}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  // Key Info — opvallend kader (Restored Coffer Key = echte WoW-icoon)
+  html += `<div class="delves-key-info">
+    <a href="https://www.wowhead.com/item=254269" class="wh-link delves-key-info-icon" data-wh-rename="false" target="_blank" title="Restored Coffer Key">&nbsp;</a>
+    <div class="delves-key-info-content">
+      <strong>${ui.key_info_title}:</strong> ${keyInfo}
+    </div>
+  </div>`;
+
+  // Loot Tabel — zoals screenshot (donker, gold borders, icons)
+  html += `<div class="delves-loot-section">
+    <h3 class="delves-section-title">${ui.loot_title}</h3>
+    <p class="delves-section-sub">${ui.loot_sub}</p>
+    <div class="delves-loot-table-wrap">
+      <table class="delves-loot-table">
+        <thead>
+          <tr>
+            <th>${ui.tier}</th>
+            <th><a href="https://www.wowhead.com/item=254250" class="wh-link delves-icon-link" data-wh-rename="false" target="_blank">Bountiful Coffer</a></th>
+            <th><a href="https://www.wowhead.com/item=265714" class="wh-link delves-icon-link" data-wh-rename="false" target="_blank">Trovehunter's Bounty</a></th>
+            <th><a href="https://www.wowhead.com/object=381035" class="wh-link delves-icon-link" data-wh-rename="false" target="_blank">Great Vault</a></th>
+          </tr>
+        </thead>
+        <tbody>`;
+  lootTable.forEach(row => {
+    const bVal = row.bountiful;
+    const tVal = row.trovehunter === '—' ? '—' : row.trovehunter;
+    const gVal = row.greatVault;
+    const goldClass = (bVal >= 250 || tVal >= 259 || gVal >= 259) ? ' delves-ilvl-gold' : '';
+    html += `<tr>
+      <td>${row.tier}</td>
+      <td class="${goldClass}">${bVal}</td>
+      <td class="${goldClass}">${tVal}</td>
+      <td class="${goldClass}">${gVal}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div></div>`;
+
+  const contentEl = document.getElementById('delves-content');
+  if (contentEl) {
+    contentEl.innerHTML = html;
+    if (typeof $WowheadPower !== 'undefined') { ($WowheadPower.refreshLinks || $WowheadPower.refresh)(); }
+  }
+}
+
+function showDelvesTacticsTooltip(ev, delveId) {
+  ev.stopPropagation();
+  const tip = document.getElementById('delves-tip-' + delveId);
+  if (!tip) return;
+  const wasVisible = tip.classList.contains('visible');
+  document.querySelectorAll('.delves-tactics-tooltip').forEach(t => t.classList.remove('visible'));
+  if (!wasVisible) tip.classList.add('visible');
+}
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.delves-tactics-btn') || e.target.closest('.delves-tactics-tooltip')) return;
+  document.querySelectorAll('.delves-tactics-tooltip').forEach(t => t.classList.remove('visible'));
+});
+
 function buildAffixScreen(){
   const ui = (typeof AFFIX_UI !== 'undefined') ? (AFFIX_UI[lang] || AFFIX_UI.nl) : null;
   if (!ui) return;
@@ -1249,6 +1345,7 @@ function setMode(mode){
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
   document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
+  const delvesTab = document.getElementById('mode-tab-delves'); if(delvesTab) delvesTab.classList.toggle('active',mode==='delves');
   const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
@@ -1277,6 +1374,8 @@ function setMode(mode){
     document.body.classList.remove('raid-detail-open');
     currentDungeon = null;
     buildRaidScreen();
+  } else if(mode==='delves'){
+    buildDelvesScreen();
   } else if(mode==='specs'){
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
@@ -1291,7 +1390,7 @@ function setMode(mode){
     if(currentDungeon)goHome();
   }
   
-    ['home','dungeons','professions','weekly','affixes','raids','glossary','specs','prey'].forEach(id=>{
+    ['home','dungeons','professions','weekly','affixes','raids','delves','glossary','specs','prey'].forEach(id=>{
       const el=document.getElementById(id+'-screen');
       if(el)el.style.display=(id===mode)?'':'none';
     });

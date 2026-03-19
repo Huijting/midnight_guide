@@ -615,6 +615,7 @@
   .lc-dungeons{border-color:var(--border)}.lc-dungeons:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-dungeons::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
   .lc-weekly{border-color:var(--border)}.lc-weekly:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-weekly::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
   .lc-raids{border-color:var(--border)}.lc-raids:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-raids::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
+  .lc-delves{border-color:var(--border)}.lc-delves:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-delves::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
   .lc-professions{border-color:var(--border)}.lc-professions:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-professions::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
   .lc-specs{border-color:var(--border)}.lc-specs:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(240,180,41,0.25)}.lc-specs::before{background:radial-gradient(ellipse at top,rgba(240,180,41,0.07) 0%,transparent 70%)}
   .landing-card-icon{font-size:28px;margin-bottom:6px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
@@ -635,6 +636,7 @@
   body.mode-dungeons #weekly-screen{display:none !important}
   body.mode-dungeons #raids-screen{display:none !important}
   body.mode-dungeons #affixes-screen{display:none !important}
+  body.mode-dungeons #delves-screen{display:none !important}
   body.mode-dungeons .specs-screen{display:none !important}
   body.mode-dungeons #glossary-screen{display:none !important}
   /* detail open = home verbergen, detail tonen */
@@ -1042,12 +1044,14 @@
   body.mode-affixes #prof-screen{display:none !important}
   body.mode-affixes #weekly-screen{display:none !important}
   body.mode-affixes .specs-screen{display:none !important}
+  body.mode-affixes #delves-screen{display:none !important}
   body.mode-affixes #affixes-screen{display:block !important}
   body.mode-raids #home-screen{display:none !important}
   body.mode-raids #prof-screen{display:none !important}
   body.mode-raids #weekly-screen{display:none !important}
   body.mode-raids .specs-screen{display:none !important}
   body.mode-raids #affixes-screen{display:none !important}
+  body.mode-raids #delves-screen{display:none !important}
   body.mode-raids #raids-screen{display:block}
   body.mode-raids #detail-screen{display:none !important}
   body.mode-raids.raid-detail-open #raids-screen{display:none !important}
@@ -1061,7 +1065,17 @@
   body.mode-glossary .specs-screen{display:none !important}
   body.mode-glossary #affixes-screen{display:none !important}
   body.mode-glossary #raids-screen{display:none !important}
+  body.mode-glossary #delves-screen{display:none !important}
   body.mode-glossary #glossary-screen{display:block !important}
+  body.mode-delves #home-screen{display:none !important}
+  body.mode-delves #detail-screen{display:none !important}
+  body.mode-delves #prof-screen{display:none !important}
+  body.mode-delves #weekly-screen{display:none !important}
+  body.mode-delves .specs-screen{display:none !important}
+  body.mode-delves #affixes-screen{display:none !important}
+  body.mode-delves #raids-screen{display:none !important}
+  body.mode-delves #glossary-screen{display:none !important}
+  body.mode-delves #delves-screen{display:block !important}
   .glossary-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
   .glossary-item-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:10px;transition:background .15s}
   .glossary-item-header:hover{background:var(--deep)}
@@ -1123,6 +1137,41 @@
   .affixes-hero{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(99,102,241,.1));border:1px solid rgba(167,139,250,.3);border-radius:16px;padding:20px;margin-bottom:20px;text-align:center}
   .affixes-hero-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px}
   .affixes-hero-sub{color:var(--muted);font-size:13px}
+
+  /* ── DELVES SCREEN (screenshot design) ── */
+  #delves-screen{display:none}
+  .delves-hero{background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(139,90,43,.08));border:1px solid rgba(240,180,41,.4);border-radius:16px;padding:20px;margin-bottom:24px;text-align:center}
+  .delves-hero-title{font-size:22px;font-weight:900;color:var(--gold);margin-bottom:4px}
+  .delves-hero-sub{color:var(--muted);font-size:13px}
+  .delves-section-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;margin-top:24px}
+  .delves-section-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .delves-bountiful-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+  .delves-bountiful-card{background:var(--panel);border:1px solid rgba(240,180,41,.35);border-radius:12px;padding:14px;position:relative;transition:border-color .2s,box-shadow .2s}
+  .delves-bountiful-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(240,180,41,.15)}
+  .delves-delve-link{display:block;font-weight:700;font-size:15px;color:var(--gold);text-decoration:none;margin-bottom:4px}
+  .delves-delve-link:hover{color:var(--gold2);text-decoration:underline}
+  .delves-zone{font-size:12px;color:var(--muted);display:block;margin-bottom:10px}
+  .delves-tactics-btn{background:rgba(240,180,41,.15);border:1px solid rgba(240,180,41,.4);color:var(--gold);font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;transition:all .2s}
+  .delves-tactics-btn:hover{background:rgba(240,180,41,.25);border-color:var(--gold)}
+  .delves-tactics-tooltip{display:none;position:absolute;bottom:100%;left:0;right:0;margin-bottom:6px;background:var(--deep);border:1px solid var(--gold);border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5;color:var(--text);z-index:50;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+  .delves-tactics-tooltip.visible{display:block}
+  .delves-key-info{background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(31,111,235,.08));border:2px solid rgba(79,142,247,.5);border-radius:12px;padding:16px 20px;margin:24px 0;display:flex;align-items:flex-start;gap:14px}
+  .delves-key-info-icon{font-size:28px;flex-shrink:0}
+  .delves-key-info-content{font-size:15px;color:var(--text);line-height:1.55}
+  .delves-key-info-content strong{color:var(--accent)}
+  .delves-loot-table-wrap{overflow-x:auto;border:1px solid rgba(240,180,41,.4);border-radius:12px;background:var(--deep)}
+  .delves-loot-table{width:100%;border-collapse:collapse;font-size:14px}
+  .delves-loot-table th{background:rgba(240,180,41,.15);color:var(--gold);font-weight:800;padding:12px 14px;text-align:left;border-bottom:1px solid rgba(240,180,41,.3)}
+  .delves-loot-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+  .delves-loot-table tbody tr:last-child td{border-bottom:none}
+  .delves-loot-table tbody tr:hover{background:rgba(255,255,255,.03)}
+  .delves-icon-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);text-decoration:none}
+  .delves-icon-link:hover{color:var(--gold);text-decoration:underline}
+  .delves-key-info .delves-key-info-icon{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;flex-shrink:0}
+  .delves-card-icon a,.delves-hero-icon,.delves-tab-icon{display:inline-flex;align-items:center}
+  .delves-card-icon .wh-link,.landing-card-icon .wh-link{font-size:0}
+  .delves-ilvl-gold{color:var(--gold) !important;font-weight:700}
+
   .specs-screen{display:none}
 
 
