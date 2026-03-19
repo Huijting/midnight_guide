@@ -1122,11 +1122,13 @@ function buildDelvesScreen() {
         </thead>
         <tbody>`;
   delves.forEach(d => {
+    const tactics = (d.tactics && (d.tactics[lang] || d.tactics.en)) ? (d.tactics[lang] || d.tactics.en).replace(/"/g, '&quot;') : '';
     const zoneWay = d.way
       ? `${d.zoneName} ; <span class="way-pill" onclick="copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
       : d.zoneName;
+    const urlEsc = (d.url || '').replace(/"/g, '&quot;');
     html += `<tr>
-      <td><a href="${d.url}" target="_blank" rel="noopener" class="delves-delve-link wh-link">${d.name}</a></td>
+      <td><span class="delves-delve-link" title="${tactics}" data-url="${urlEsc}" onclick="window.open(this.dataset.url)" role="button" tabindex="0">${d.name}</span></td>
       <td class="delves-zone-cell">${zoneWay}</td>
     </tr>`;
   });
