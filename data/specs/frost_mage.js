@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // SPEC: Frost Mage
 // WoW Midnight 12.0.1
 // ============================================================
@@ -364,6 +364,30 @@ const SPEC_FROST_MAGE = {
         { type: 'Water Elemental 💧', bonus: 'Ekstra angreb + Fingers of Frost procs', use: 'Auto-fremkald via talent — hold altid aktiv' },
       ],
     },
+  },
+
+  consumables: {
+    nl: [
+      { type:'flask', name:'Flask of the Magisters', effect:'Verhoogt Intellect voor 1 uur.', note:'Altijd actief' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Intellect boost bij burst.', note:'Op pull of Icy Veins' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Intellect en Stamina.', note:'Feast vragen' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primaire stat.', note:'Altijd' },
+    ],
+    en: [
+      { type:'flask', name:'Flask of the Magisters', effect:'Increases Intellect for 1 hour.', note:'Always active' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Intellect boost during burst.', note:'On pull or Icy Veins' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Intellect and Stamina.', note:'Ask for feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
+    ],
+    da: [
+      { type:'flask', name:'Flask of the Magisters', effect:'Øger Intellect i 1 time.', note:'Altid aktiv' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Intellect-boost under burst.', note:'På pull eller Icy Veins' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Intellect og Stamina.', note:'Bed om feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
+    ],
   },
 };
 

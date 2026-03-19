@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // SPEC: Retribution Paladin
 // WoW Midnight 12.0.1
 // ============================================================
@@ -315,6 +315,30 @@ const SPEC_RET_PALADIN = {
       { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorber skade fra ally — på mouseover.' },
       { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Nødheal på mouseover > dig selv — red tanken!' },
       { name: 'Avenging Wrath burst makro', code: '#showtooltip Avenging Wrath\n/cast Avenging Wrath\n/cast Wake of Ashes', note: 'Start burst window direkte med 3 Holy Power.' },
+    ],
+  },
+
+  consumables: {
+    nl: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Verhoogt Strength voor 1 uur.', note:'Altijd actief' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength boost bij burst.', note:'Op pull of Avenging Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength en Stamina.', note:'Feast vragen' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primaire stat.', note:'Altijd' },
+    ],
+    en: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Increases Strength for 1 hour.', note:'Always active' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength boost during burst.', note:'On pull or Avenging Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength and Stamina.', note:'Ask for feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
+    ],
+    da: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Øger Strength i 1 time.', note:'Altid aktiv' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength-boost under burst.', note:'På pull eller Avenging Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength og Stamina.', note:'Bed om feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
     ],
   },
 

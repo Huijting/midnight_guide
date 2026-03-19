@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // SPEC: Beast Mastery Hunter
 // WoW Midnight 12.0.1 | Bron: Icy Veins (bewerkt voor deze app)
 // Talen: NL volledig | EN/DA: stubs (later uitbreiden)
@@ -195,6 +195,30 @@ const SPEC_BM_HUNTER = {
     },
     en: { opener: '', single: '', aoe: '', rules: [] },
     da: { opener: '', single: '', aoe: '', rules: [] },
+  },
+
+  consumables: {
+    nl: [
+      { type:'flask', name:'Flask of the Blood Knights', effect:'Verhoogt Agility voor 1 uur.', note:'Altijd actief' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Agility boost bij burst.', note:'Op pull of Bestial Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility en Stamina.', note:'Feast vragen' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primaire stat.', note:'Altijd' },
+    ],
+    en: [
+      { type:'flask', name:'Flask of the Blood Knights', effect:'Increases Agility for 1 hour.', note:'Always active' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Agility boost during burst.', note:'On pull or Bestial Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility and Stamina.', note:'Ask for feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
+    ],
+    da: [
+      { type:'flask', name:'Flask of the Blood Knights', effect:'Øger Agility i 1 time.', note:'Altid aktiv' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Agility-boost under burst.', note:'På pull eller Bestial Wrath' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility og Stamina.', note:'Bed om feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
+    ],
   },
 };
 

@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // SPEC: Frost Death Knight
 // WoW Midnight 12.0.1
 // ============================================================
@@ -373,6 +373,30 @@ const SPEC_FROST_DK = {
         { type: 'Gargoyle 🦅',      bonus: 'Stor DPS-cooldown — skyder fra luften',            use: 'On cooldown — kombiner med Pillar of Frost' },
       ],
     },
+  },
+
+  consumables: {
+    nl: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Verhoogt Strength voor 1 uur.', note:'Altijd actief' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength boost bij burst.', note:'Op pull of Pillar of Frost' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength en Stamina.', note:'Feast vragen' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primaire stat.', note:'Altijd' },
+    ],
+    en: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Increases Strength for 1 hour.', note:'Always active' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength boost during burst.', note:'On pull or Pillar of Frost' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength and Stamina.', note:'Ask for feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
+    ],
+    da: [
+      { type:'flask', name:'Flask of the Shattered Sun', effect:'Øger Strength i 1 time.', note:'Altid aktiv' },
+      { type:'pot', name:'Potion of Recklessness', effect:'Strength-boost under burst.', note:'På pull eller Pillar of Frost' },
+      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength og Stamina.', note:'Bed om feast' },
+      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
+      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
+    ],
   },
 };
 
