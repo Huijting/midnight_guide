@@ -1118,16 +1118,16 @@ function buildDelvesScreen() {
           <tr>
             <th>${ui.delve_name}</th>
             <th>${ui.zone_way}</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>`;
   delves.forEach(d => {
-    const zoneWay = d.way ? `${d.zoneName} ; <code class="delves-way">${d.way}</code>` : d.zoneName;
+    const zoneWay = d.way
+      ? `${d.zoneName} ; <span class="way-pill" onclick="copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
+      : d.zoneName;
     html += `<tr>
       <td><a href="${d.url}" target="_blank" rel="noopener" class="delves-delve-link wh-link">${d.name}</a></td>
       <td class="delves-zone-cell">${zoneWay}</td>
-      <td class="delves-copy-cell">${d.way ? `<button class="delves-copy-btn" data-way="${d.way.replace(/"/g, '&quot;')}" onclick="copyDelvesWay(this.dataset.way)" title="${ui.copy_way}">📋</button>` : ''}</td>
     </tr>`;
   });
   html += `</tbody></table></div></div>`;
@@ -1484,7 +1484,7 @@ function showProf(id){
     `<div class="pdet-section"><h3>${ui.trainer_head}</h3>
        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${p.trainer.name}</div>
        <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(p.trainer.loc)}</div>
-       <div class="trainer-way" onclick="copyWay(this)" data-way="${p.trainer.way}" title="Klik om te kopiëren">📋 ${p.trainer.way}</div>
+       <div class="trainer-way" onclick="copyWay(this)" data-way="${p.trainer.way}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${p.trainer.way}</div>
        ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
      </div>
      ${p.method_url||p.wowp_url?`<div class="prof-links"><span class="prof-source-label">${ui.source_label}</span>
@@ -1676,7 +1676,7 @@ function renderKpSources(p) {
           <td class="kp-item-name">${t.name}</td>
           <td class="kp-zone">${t.zone}</td>
           <td class="kp-way">
-            ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="Klik om te kopiëren">📍 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
+            ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
           </td>
           ${t.note ? `<td class="kp-note" title="${t.note}">💡</td>` : '<td></td>'}
         </tr>
@@ -2062,7 +2062,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Voorbereiding: De Unlock Questline",
-        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 79.4 52.8\">📍 /way #2393 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 82.2 73.4\">📍 /way #2393 82.2 73.4</span>"
+        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Klik om te kopiëren\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Klik om te kopiëren\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
       },
       {
         title: "Stap 1: De Jacht Beginnen",
@@ -2093,7 +2093,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Preparation: The Unlock Questline",
-        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 79.4 52.8\">📍 /way #2393 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 82.2 73.4\">📍 /way #2393 82.2 73.4</span>"
+        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Click to copy\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Click to copy\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
       },
       {
         title: "Step 1: Starting the Hunt",
@@ -2124,7 +2124,7 @@ const PREY_GUIDE_DATA = {
     sections: [
       {
         title: "Forberedelse: Unlock Questline",
-        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 79.4 52.8\">📍 /way #2393 79.4 52.8</span><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 82.2 73.4\">📍 /way #2393 82.2 73.4</span>"
+        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Klik for at kopiere\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Klik for at kopiere\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
       },
       {
         title: "Trin 1: Start Jagten",

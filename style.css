@@ -690,8 +690,6 @@
   .weekly-item-desc{font-size:12px;color:var(--muted);line-height:1.5}
   .weekly-item-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
   .weekly-item-where{font-size:11px;color:var(--accent);margin-top:4px;font-style:italic}
-  .weekly-item-way{font-size:11px;color:var(--muted);margin-top:3px;font-family:monospace;cursor:pointer;padding:2px 6px;border-radius:4px;background:#ffffff08;display:inline-block}
-  .weekly-item-way:hover{color:var(--gold);background:#ffffff12}
   .weekly-tag{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700}
   .weekly-tag.gear{background:var(--tag-gear-bg);color:var(--tag-gear-fg)}
   .weekly-tag.rep{background:var(--tag-rep-bg);color:var(--tag-rep-fg)}
@@ -749,8 +747,6 @@
   .pdet-panel.visible{display:block}
   .pdet-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px}
   .pdet-section h3{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
-  .trainer-way{font-family:monospace;background:var(--deep);padding:4px 10px;border-radius:6px;font-size:13px;color:var(--accent);display:inline-block;margin:6px 0;cursor:pointer;transition:background .15s,color .15s}
-  .trainer-way:hover{background:var(--accent);color:#fff}
   .trainer-note{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}
   .spec-block{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px}
   .spec-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px}
@@ -831,13 +827,27 @@
   .kp-num         { color: #606050; width: 28px; text-align: center; }
   .kp-item-name   { color: #d4c090; font-weight: 500; }
   .kp-zone        { color: #88a060; font-size: 0.82em; }
-  .kp-way-code    {
-    font-family: monospace; font-size: 0.82em;
-    background: rgba(0,0,0,0.4); color: #88c8a0;
-    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
-    cursor: pointer; transition: background .15s, color .15s;
+  .kp-way-code, .way-pill, .weekly-item-way, .trainer-way {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    background: #1f6feb;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background .2s, transform .15s;
+    border: none;
   }
-  .kp-way-code:hover { background: #88c8a0; color: #000; }
+  .kp-way-code:hover, .way-pill:hover, .weekly-item-way:hover, .trainer-way:hover {
+    background: #3584e4;
+    transform: scale(1.02);
+  }
+  .weekly-item-way { margin-top: 6px; }
+  .trainer-way { margin: 8px 0; }
   .kp-no-way      { color: #404030; }
   .kp-kp-val      { color: #f0c040; font-weight: 700; width: 60px; }
   .kp-note-text-inline { color: #9090a0; font-size: 0.8em; font-style: italic; }
@@ -1155,10 +1165,6 @@
   .delves-delve-link{font-weight:700;font-size:15px;color:var(--gold);text-decoration:none}
   .delves-delve-link:hover{color:var(--gold2);text-decoration:underline}
   .delves-zone-cell{font-size:13px;color:var(--muted)}
-  .delves-zone-cell .delves-way{color:#69ccf0;font-family:monospace;font-size:12px;background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px}
-  .delves-copy-cell{width:44px;text-align:center}
-  .delves-copy-btn{background:rgba(79,142,247,.2);border:1px solid rgba(79,142,247,.4);color:#69ccf0;font-size:14px;padding:6px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
-  .delves-copy-btn:hover{background:rgba(79,142,247,.35);border-color:#69ccf0}
   .delves-key-info{background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(31,111,235,.08));border:2px solid rgba(79,142,247,.5);border-radius:12px;padding:16px 20px;margin:24px 0;display:flex;align-items:flex-start;gap:14px}
   .delves-key-info-icon{font-size:28px;flex-shrink:0}
   .delves-key-info-content{font-size:15px;color:var(--text);line-height:1.55}

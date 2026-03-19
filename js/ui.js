@@ -662,7 +662,7 @@ const WEEKLY_ITEMS = [
           en:'Complete any Midnight dungeon on any difficulty. Reward: gold + 1,000 rep of your choice. Follower dungeons count!',
           da:'Gennemfor en Midnight-dungeon pa vilkarlig svaerhedsgrad. Belonn: guld + 1.000 rep efter valg. Follower dungeons taeller med!'},
     where:'📍 Halduron Brightwing — tent bij Sanctum of Light, Silvermoon City.',
-    way:'/way #2393 50.2 48.1 Halduron Brightwing', tags:['rep','currency'] },
+    way:'/way #2393 49.0 64.8 Halduron Brightwing', tags:['rep','currency'] },
 
   { id:'w_liadrin', diff:'easy', dmfOnly:false,
     cat:{nl:'📜 Weekly Event Quest',en:'📜 Weekly Event Quest',da:'📜 Ugentlig Event Quest'},
@@ -716,7 +716,7 @@ const WEEKLY_ITEMS = [
           en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes.',
           da:'Gennemfor 2 Nightmare Prey-jagter for Champion-udrustning. Spor dit bytte i zonen og overlev baghold.'},
     where:'📍 Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
-    way:'/way #2393 57.0 61.0 Astalor Bloodsworn (Prey contracts)', tags:['gear'] },
+    way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear'] },
 
   { id:'w_delve1', diff:'medium', dmfOnly:false,
     cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
@@ -889,7 +889,7 @@ const WEEKLY_ITEMS = [
           en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Tip: focus on traps + ambushes, under 5 min/hunt. Afterwards: farm for Veteran Crests (15 per run, costs 50 Anguish).',
           da:'De forste 2 Hard Prey-jagter giver en Veteran-kasse (iLvl 240+). Tip: fokus pa falder + baghold, under 5 min/jagt. Derefter: farm Veteran Crests (15 pr. run, koster 50 Anguish).'},
     where:'Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
-    way:'/way #2393 57.0 61.0 Astalor Bloodsworn (Prey contracts)', tags:['gear','currency'] }];function isDmfWeek() {
+    way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear','currency'] }];function isDmfWeek() {
   const now = new Date();
   // DMF is actief van de eerste zondag t/m zaterdag van elke maand
   const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
