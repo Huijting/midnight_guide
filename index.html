@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a1a">
+<meta name="theme-color" content="#050508">
 <title>WoW: Midnight Guide — Season 1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
@@ -13,9 +13,10 @@
 <meta name="apple-mobile-web-app-title" content="Dungeon Guide">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
   <script src="https://wow.zamimg.com/widgets/power.js"></script>
 </head>
@@ -32,27 +33,32 @@
   </div>
 </div>
 
-<header id="site-header">
-  <!-- Rij 1: back | 🌙 Midnight gecentreerd | controls rechts -->
-  <div class="header-row header-row-top">
-    <div class="header-left">
+<header id="site-header" class="site-header-sticky">
+  <div class="header-inner">
+    <button id="hamburger-btn" class="hamburger-btn" onclick="toggleNavMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="header-logo" onclick="setMode('home');return false">🌙 Midnight</a>
+    <nav class="header-nav">
+      <a class="header-nav-link" href="#" onclick="setMode('dungeons');return false" id="nav-dungeons">Dungeons</a>
+      <a class="header-nav-link" href="#" onclick="setMode('specs');return false" id="nav-classes">Classes</a>
+      <a class="header-nav-link" href="#" onclick="setMode('raids');return false" id="nav-raids">Raids</a>
+      <a class="header-nav-link" href="#" onclick="setMode('weekly');return false" id="nav-weekly">Weekly</a>
+    </nav>
+    <div class="header-search-wrap" onclick="openSearch()" role="button" tabindex="0" aria-label="Search">
+      <span class="header-search-icon">🔍</span>
+      <span class="header-search-placeholder" id="header-search-placeholder">Search dungeon, spec, profession...</span>
+    </div>
+    <div class="header-actions">
       <button id="back-btn" onclick="goHome()">←</button>
-    </div>
-    <div class="header-center">
-      <div class="header-title">🌙 Midnight</div>
-    </div>
-    <div class="header-right">
       <button id="spec-btn" onclick="openSpecModal()">⚙ <span class="spec-btn-text">Kies spec</span></button>
-      <button class="search-header-btn" id="search-header-btn" onclick="openSearch()" title="Zoeken">🔍</button>
-            <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
+      <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
       <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
       <button class="lang-btn" onclick="setLang('da')">🇩🇰</button>
-      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">☀️</button>
       <button class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
   </div>
-  <!-- Rij 2: hoofd-navigatie tabs (scrollbaar) -->
-  <div class="header-row header-row-tabs">
+  <div class="header-tabs-wrap" id="header-tabs-wrap">
     <div class="mode-tabs mode-tabs-row1">
       <button class="mode-tab active" id="mode-tab-home" onclick="setMode('home')"><span id="tab-lbl-home">🌙 Home</span></button>
       <button class="mode-tab" id="mode-tab-raids" onclick="setMode('raids')"><span id="tab-lbl-raids">🏰 Raids</span></button>
@@ -62,8 +68,6 @@
       <button class="mode-tab" id="mode-tab-affixes" onclick="setMode('affixes')"><span id="tab-lbl-affixes">☠️ Affixes</span></button>
       <button class="mode-tab" id="mode-tab-delves" onclick="setMode('delves')"><span id="tab-lbl-delves">💎 Delves</span></button>
       <button class="mode-tab" id="mode-tab-prey" onclick="setMode('prey')"><span id="tab-lbl-prey">🎯 Prey</span></button>
-    </div>
-    <div class="mode-tabs mode-tabs-row2">
       <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Wekelijks</span></button>
       <button class="mode-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
     </div>
@@ -74,7 +78,7 @@
 <div id="landing-screen">
   <div class="landing-stars"></div>
   <div class="landing-hero">
-    <img id="landing-logo" src="assets/midnight-logo-nl.png" alt="Midnight Guide" class="landing-logo-img">
+    <img id="landing-logo" src="assets/midnight-logo-nl.png" alt="Midnight Guide" class="landing-logo-img" loading="lazy">
   </div>
   <div class="landing-cards">
     <div class="landing-card lc-dungeons" onclick="setMode('dungeons')">
@@ -209,6 +213,10 @@
 <div id="detail-screen">
   <div class="detail-hero">
     <div class="detail-hero-inner">
+      <div class="tldr-block" id="detail-tldr">
+        <div class="tldr-label">TL;DR</div>
+        <div class="tldr-content" id="d-tldr"></div>
+      </div>
       <div class="detail-eyebrow" id="d-eyebrow"></div>
       <h2 class="detail-title" id="d-title"></h2>
       <div class="detail-meta" id="d-meta"></div>

@@ -255,6 +255,7 @@ const UI = {
     glossary_title:"Woordenlijst",
     glossary_sub:  "WoW-begrippen uitgelegd voor beginners",
     glossary_intro:"Klik op een term om de uitleg te zien. Gouden woorden in de dungeon-tips zijn ook klikbaar!",
+    tldr_label: "TL;DR",
     tab_overview: "Overzicht",
     tab_bosses:   "Bazen",
     tab_route:    "Routeplanner",
@@ -321,6 +322,7 @@ const UI = {
     glossary_title:"Glossary",
     glossary_sub:  "WoW terms explained for beginners",
     glossary_intro:"Click a term to see its explanation. Gold words in dungeon tips are also clickable!",
+    tldr_label: "TL;DR",
     tab_overview: "Overview",
     tab_bosses:   "Bosses",
     tab_route:    "Route Planner",
@@ -387,6 +389,7 @@ const UI = {
     glossary_title:"Ordbog",
     glossary_sub:  "WoW-begreber forklaret for begyndere",
     glossary_intro:"Klik på et begreb for at se forklaringen. Gyldne ord i dungeon-tips kan også klikkes!",
+    tldr_label: "TL;DR",
     tab_overview: "Oversigt",
     tab_bosses:   "Bosser",
     tab_route:    "Ruteplanlægger",
@@ -554,6 +557,8 @@ function applyUIStrings() {
   if(document.body.classList.contains('mode-specs')) buildSpecGrid();
   if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
   if(document.body.classList.contains('mode-delves')) buildDelvesScreen();
+  const searchPh = document.getElementById('header-search-placeholder');
+  if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' }[lang] || 'Search...';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -751,6 +756,11 @@ const FLOOR_MAP_LEGEND = `<div class="fp-legend">
 
 function renderDetail(d) {
   const u = UI[lang];
+  const tldrEl = document.getElementById('d-tldr');
+  const tldrBlock = document.getElementById('detail-tldr');
+  const tldrContent = d.tldr ? t(d.tldr) : (d.route?.summary ? t(d.route.summary) : (d.tips?.[0] ? t(d.tips[0].text) : ''));
+  if (tldrEl) tldrEl.textContent = tldrContent;
+  if (tldrBlock) tldrBlock.style.display = tldrContent ? 'block' : 'none';
   document.getElementById('d-eyebrow').textContent = (t(d.zone)||d.zone||'').toUpperCase() + ' — ' + (d.type === 'mplus' ? u.type_mplus : d.type === 'raid' ? (u.badge_raid||'RAID') : u.type_normal);
   document.getElementById('d-title').textContent   = d.name;
   document.getElementById('d-meta').innerHTML      = `<span>⏱ ${d.time || '—'}</span><span>🔓 ${t(d.level)}</span><span>👹 ${d.bosses_short.length} ${u.lbl_bosses.toLowerCase()}</span>`;
@@ -867,7 +877,7 @@ function renderDetail(d) {
     mapSectionHtml = `<div class="route-section">
       <div class="route-title">${floorMapTitle}</div>
       <div class="route-screenshot-wrap">
-        <img class="route-screenshot-img" src="${routeScreenshot}" alt="${d.name} route map">
+        <img class="route-screenshot-img" src="${routeScreenshot}" alt="${d.name} route map" loading="lazy">
       </div>
     </div>`;
   } else if (floorScreenshots && floorScreenshots.length > 0) {
@@ -881,7 +891,7 @@ function renderDetail(d) {
       <div class="route-title">${floorMapTitle}</div>
       ${tabsHtml}
       <div class="route-screenshot-wrap">
-        <img class="route-screenshot-img" id="floor-img-${d.id}" src="${floorScreenshots[0].img}" alt="${floorScreenshots[0].label}">
+        <img class="route-screenshot-img" id="floor-img-${d.id}" src="${floorScreenshots[0].img}" alt="${floorScreenshots[0].label}" loading="lazy">
       </div>
     </div>`;
   } else if (floorMapSVG) {
@@ -952,9 +962,7 @@ function switchTab(name, event) {
 // ═══════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════
-if (localStorage.getItem('theme') === 'light') {
-  document.body.classList.add('light');
-}
+/* Strict dark mode — light theme disabled */
 if (localStorage.getItem('lang')) {
   lang = localStorage.getItem('lang');
 }
@@ -1353,7 +1361,12 @@ function applyTooltips(container){
 
 function setMode(mode){
   document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
-  document.body.classList.remove('detail-open');
+  document.body.classList.remove('detail-open','nav-menu-open');
+  document.getElementById('hamburger-btn')?.classList.remove('active');
+  document.querySelectorAll('.header-nav-link').forEach(a=>a.classList.remove('active'));
+  const navMap={dungeons:'nav-dungeons',specs:'nav-classes',raids:'nav-raids',weekly:'nav-weekly'};
+  const navEl=document.getElementById(navMap[mode]);
+  if(navEl)navEl.classList.add('active');
   document.getElementById('mode-tab-home').classList.toggle('active',mode==='home');
   document.getElementById('mode-tab-dungeons').classList.toggle('active',mode==='dungeons');
   document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');

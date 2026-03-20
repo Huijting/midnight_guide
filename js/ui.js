@@ -996,12 +996,16 @@ function openSearch() {
   document.getElementById('search-overlay').classList.add('open');
   const inp = document.getElementById('search-input');
   inp.value = '';
-  // Drietalige placeholder
   const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' };
   inp.placeholder = ph[lang] || ph.nl;
   document.getElementById('search-results').innerHTML = '';
   searchFocusIdx = -1;
   setTimeout(() => inp.focus(), 80);
+}
+
+function toggleNavMenu() {
+  document.body.classList.toggle('nav-menu-open');
+  document.getElementById('hamburger-btn')?.classList.toggle('active');
 }
 
 function closeSearch() {
@@ -1666,6 +1670,24 @@ function wrapSpell(spellText) {
   }
   
   return `<a href="${url}" class="wh-link wh-link-spell" data-wh-rename="false" target="_blank">${spellText.trim()}</a>`;
+}
+
+/**
+ * WoW Icon component — use for spells, talents, items.
+ * @param {string} type - 'spell' | 'item' | 'talent'
+ * @param {number} id - Wowhead spell/item ID
+ * @param {object} opts - { size: 'medium'|'large', className: '' }
+ * @returns {string} HTML for icon img
+ * Icon URLs: https://wow.zamimg.com/images/wow/icons/{size}/{iconName}.jpg
+ * For Wowhead tooltips, wrap in: <a href="https://www.wowhead.com/spell=ID" class="wh-link">...</a>
+ */
+function wowIcon(type, id, opts) {
+  const size = (opts && opts.size) || 'medium';
+  const cls = (opts && opts.className) || '';
+  const base = 'https://wow.zamimg.com/images/wow/icons/';
+  const iconName = (typeof WOW_ICON_NAMES !== 'undefined' && WOW_ICON_NAMES && WOW_ICON_NAMES[type] && WOW_ICON_NAMES[type][id]) ? WOW_ICON_NAMES[type][id] : 'inv_misc_questionmark';
+  const url = type === 'item' ? `https://www.wowhead.com/item=${id}` : `https://www.wowhead.com/spell=${id}`;
+  return `<a href="${url}" class="wow-icon-link wh-link ${cls}" data-wh-rename="false" target="_blank"><img class="wow-icon wow-icon-${type}" src="${base}${size}/${iconName}.jpg" alt="" loading="lazy" width="36" height="36"></a>`;
 }
 
 function wrapItem(itemName) {
