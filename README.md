@@ -73,6 +73,7 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 - 🌍 **EN/NL/DA:** Alle Delve-content in drie talen
 - 📋 Tip toegevoegd: "Klik op de Delve-naam voor korte tips"
 - 🔧 Torment's Rise /way coördinaten toegevoegd
+- 🐛 **Audit:** Syntaxfix (stray comma Weekly), Den of Echoes zone+hint, Soakc→Soak (DA), torenwaar→torent (NL), Windrunner /way 35.5,78.8
 
 ### v1.0 — 16 maart 2026
 - 🎯 Prey Systeem toegevoegd met unlock questline en uitleg

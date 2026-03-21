@@ -823,7 +823,6 @@ const WEEKLY_ITEMS = [
           da:'Mini-spil og quests giver +2 skill og +3 KP per profession. Glem ikke WHEE!-buffet for +10% XP/rep. Kun aktiv forste uge af maneden.'},
     where:'📍 Portal: Elwynn Forest (bij Goldshire, Alliance) of Mulgore (bij Thunder Bluff, Horde).',
     way:'/way Elwynn Forest 41.1 83.0 Darkmoon Faire portal (Alliance)', tags:['currency','crafting'] },
-,
 
   // ── Renown Champion Gear (eenmalig per character, maar weekly controleren) ──
   { id:'w_renown_helm', dmfOnly:false,

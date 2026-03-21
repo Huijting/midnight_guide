@@ -14,7 +14,7 @@ DUNGEONS.push({
   bosses_short: ['Imperator Averzian', 'Vorasius', 'Fallen-King Salhadaar', 'Vaelgor & Ezzorak', 'Lightblinded Vanguard', 'Crown of the Cosmos'],
 
   lore: {
-    nl: 'Hoog boven de Voidstorm torenwaar de Voidspire als een speer van duisternis. Xal\'atath heeft haar Devouring Host verzameld om de laatste verdediging van het Licht te doorbreken. Alleria Windrunner en de Champions of Azeroth voeren een wanhopige aanval uit op de spits — voordat alles verloren is.',
+    nl: 'Hoog boven de Voidstorm torent de Voidspire als een speer van duisternis. Xal\'atath heeft haar Devouring Host verzameld om de laatste verdediging van het Licht te doorbreken. Alleria Windrunner en de Champions of Azeroth voeren een wanhopige aanval uit op de spits — voordat alles verloren is.',
     en: 'High above the Voidstorm the Voidspire looms like a spear of darkness. Xal\'atath has gathered her Devouring Host to break the last defenses of the Light. Alleria Windrunner and the Champions of Azeroth launch a desperate assault on the summit — before all is lost.',
     da: 'Højt over Voidstorm truer Voidspire som et mørkets spyd. Xal\'atath har samlet sin Devouring Host for at bryde Lysets sidste forsvar. Alleria Windrunner og Azeroth\'s Champions lancerer et desperat angreb mod toppen — inden alt er tabt.',
   },
