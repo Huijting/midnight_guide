@@ -414,6 +414,17 @@
   </div>
 </div>
 
+<div id="delve-detail-modal" onclick="if(event.target===this)closeDelveDetail()">
+  <div id="delve-detail-inner">
+    <div id="delve-detail-header">
+      <span id="delve-detail-title"></span>
+      <button id="delve-detail-close" onclick="closeDelveDetail()">×</button>
+    </div>
+    <div id="delve-detail-content"></div>
+    <a id="delve-detail-wowhead" href="#" target="_blank" class="delves-delve-link">→ Wowhead</a>
+  </div>
+</div>
+
 <div id="spec-modal" onclick="if(event.target===this)closeSpecModal()">
   <div id="spec-modal-inner">
     <div id="spec-modal-header">

@@ -1099,11 +1099,14 @@ function buildRaidScreen(){
 // ── DELVES UI ──
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
-    bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen' },
+    bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen',
+    detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
-    bountiful_alt:'Bountiful Delves — Shift+J to open in-game' },
+    bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
+    detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead' },
   da: { delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
-    bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game' },
+    bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game',
+    detail_gimmick:'Hovedopgave', detail_danger:'Største fare', detail_tip:'Tip', wowhead:'→ Wowhead' },
 };
 
 function buildDelvesScreen() {
@@ -1138,13 +1141,11 @@ function buildDelvesScreen() {
         </thead>
         <tbody>`;
   delves.forEach(d => {
-    const tactics = (d.tactics && (d.tactics[lang] || d.tactics.en)) ? (d.tactics[lang] || d.tactics.en).replace(/"/g, '&quot;') : '';
     const zoneWay = d.way
-      ? `${d.zoneName} ; <span class="way-pill" onclick="copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
+      ? `${d.zoneName} ; <span class="way-pill" onclick="event.stopPropagation();copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
       : d.zoneName;
-    const urlEsc = (d.url || '').replace(/"/g, '&quot;');
     html += `<tr>
-      <td><span class="delves-delve-link" title="${tactics}" data-url="${urlEsc}" onclick="window.open(this.dataset.url)" role="button" tabindex="0">${d.name}</span></td>
+      <td><span class="delves-delve-link" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">${d.name}</span></td>
       <td class="delves-zone-cell">${zoneWay}</td>
     </tr>`;
   });
@@ -1192,6 +1193,28 @@ function buildDelvesScreen() {
     contentEl.innerHTML = html;
     if (typeof $WowheadPower !== 'undefined') { ($WowheadPower.refreshLinks || $WowheadPower.refresh)(); }
   }
+}
+
+function openDelveDetail(id) {
+  const d = DELVES_DATA.delves.find(x => x.id === id);
+  if (!d || !d.details) return;
+  const ui = DELVES_UI[lang] || DELVES_UI.en;
+  const det = d.details[lang] || d.details.en;
+  document.getElementById('delve-detail-title').textContent = d.name;
+  document.getElementById('delve-detail-content').innerHTML = `
+    <ul class="delve-detail-bullets">
+      <li><strong>${ui.detail_gimmick}:</strong> ${det.gimmick}</li>
+      <li><strong>${ui.detail_danger}:</strong> ${det.danger}</li>
+      <li><strong>${ui.detail_tip}:</strong> ${det.tip}</li>
+    </ul>`;
+  const wowheadEl = document.getElementById('delve-detail-wowhead');
+  if (wowheadEl && d.url) { wowheadEl.href = d.url; wowheadEl.textContent = ui.wowhead; }
+  document.getElementById('delve-detail-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDelveDetail() {
+  document.getElementById('delve-detail-modal').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function copyDelvesWay(way) {

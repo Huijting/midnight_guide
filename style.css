@@ -431,6 +431,21 @@
   .search-result-sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .search-result-badge{font-size:11px;padding:2px 7px;border-radius:10px;background:var(--deep);color:var(--muted);flex-shrink:0}
   #about-inner{background:var(--bg);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  /* Delve detail modal — matches about-modal (bottom sheet) */
+  #delve-detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
+  #delve-detail-modal.open{display:flex}
+  #delve-detail-inner{background:var(--panel);border:1px solid var(--border);border-radius:16px 16px 0 0;width:100%;max-width:480px;max-height:70vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  #delve-detail-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+  #delve-detail-title{font-size:18px;font-weight:800;color:var(--gold)}
+  #delve-detail-close{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1}
+  #delve-detail-close:hover{color:var(--text)}
+  #delve-detail-content{padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .delve-detail-bullets{list-style:none;padding:0;margin:0}
+  .delve-detail-bullets li{padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5;color:var(--text)}
+  .delve-detail-bullets li:last-child{border-bottom:none}
+  .delve-detail-bullets strong{color:var(--gold);font-weight:700}
+  #delve-detail-wowhead{display:block;text-align:center;padding:14px;background:var(--deep);color:var(--accent);font-weight:700;text-decoration:none;transition:background .2s}
+  #delve-detail-wowhead:hover{background:rgba(255,255,255,.06)}
   #about-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0}
   #about-title{font-size:17px;font-weight:800;color:var(--text)}
   #about-close-x{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
