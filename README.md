@@ -1,6 +1,6 @@
 # 🌙 WoW: Midnight Companion Guide
 
-Een trilinguïstische (NL/EN/DA) Progressive Web App voor World of Warcraft: Midnight.
+**v1.1** — Een trilinguïstische (NL/EN/DA) Progressive Web App voor World of Warcraft: Midnight.
 
 **Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
@@ -23,6 +23,9 @@ Inclusief **Trash Mob Gids** in de Route-tab met 69 mobs gedocumenteerd, kleurge
 
 ### 🎯 Prey Systeem (Nieuw in v1.0)
 Een complete, stapsgewijze gids voor de nieuwe solo-friendly endgame activiteit. Inclusief unlock questline, moeilijkheidsgraden en beloningen.
+
+### 💎 Delves (Verbeterd in v1.1)
+Alle 12 Midnight Delves met /way, loot tabel en sleutel-info. Klik op een Delve-naam voor een kort overzicht (3 tips). Tik op **Full Guide** voor een stap-voor-stap walkthrough met events, boss-mechanieken en geheimen — in EN, NL en DA.
 
 ### 📅 Wekelijks
 Overzicht van wekelijkse activiteiten: World Bosses, Timewalking, Crafting Orders, Delves en meer.
@@ -63,6 +66,13 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 ---
 
 ## 🛠️ Changelog
+
+### v1.1 — 20 maart 2026
+- 💎 **Delves:** Klik op een Delve-naam voor kort overzicht (gimmick, gevaar, tip)
+- 📖 **Full Guide:** Volledige walkthrough per Delve — events, boss-mechanieken, geheimen (Icy Veins, 12yo-vriendelijk)
+- 🌍 **EN/NL/DA:** Alle Delve-content in drie talen
+- 📋 Tip toegevoegd: "Klik op de Delve-naam voor korte tips"
+- 🔧 Torment's Rise /way coördinaten toegevoegd
 
 ### v1.0 — 16 maart 2026
 - 🎯 Prey Systeem toegevoegd met unlock questline en uitleg

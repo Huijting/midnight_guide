@@ -1,6 +1,6 @@
 // ── VERSIE ──
-const VERSION = "v1.0";
-const VERSION_DATE = "2026-03-16";
+const VERSION = "v1.1";
+const VERSION_DATE = "2026-03-20";
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -569,7 +569,8 @@ function updateLandingStrings() {
     nl: {
       title: 'Midnight Guide',
       subtitle: 'Jouw WoW: Midnight companion',
-      tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werk hij ook offline!',
+      news: '💎 <strong>v1.1</strong> — Klik op een Delve-naam voor tips. Full Guide voor complete walkthrough!',
+      tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!',
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, fases en rol-tactieken', r_count:'3 raids',
@@ -581,6 +582,7 @@ function updateLandingStrings() {
     en: {
       title: 'Midnight Guide',
       subtitle: 'Your WoW: Midnight companion',
+      news: '💎 <strong>v1.1</strong> — Click a Delve name for tips. Full Guide for complete walkthrough!',
       tip: '<strong>Tip:</strong> Install this app on your PC via the 📲 button top right, or the install icon in your address bar — works offline too!',
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
@@ -593,6 +595,7 @@ function updateLandingStrings() {
     da: {
       title: 'Midnight Guide',
       subtitle: 'Din WoW: Midnight-guide',
+      news: '💎 <strong>v1.1</strong> — Klik på Delve-navn for tip. Fuld guide til komplet walkthrough!',
       tip: '<strong>Tip:</strong> Installér denne app på din PC via 📲-knappen øverst til højre, eller installér-ikonet i adresselinjen — virker også offline!',
       credits: 'Lavet af Inchy & Gemma · WoW: Midnight · Uofficiel',
       d_title:'Dungeons', d_desc:'Boss-taktikker, M+-ruter og tips per dungeon', d_count:'8 dungeons',
@@ -608,6 +611,7 @@ function updateLandingStrings() {
   const h = (id, val) => { const el = document.getElementById(id); if(el) el.innerHTML = val; };
   const logoEl = document.getElementById('landing-logo');
   if (logoEl) logoEl.src = `assets/midnight-logo-${lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl'}.png`;
+  h('landing-news', L.news);
   h('landing-tip-text', L.tip);
   s('landing-credits', L.credits);
   s('lc-title-dungeons', L.d_title); s('lc-desc-dungeons', L.d_desc); s('lc-count-dungeons', L.d_count);

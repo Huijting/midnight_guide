@@ -622,6 +622,8 @@
   .landing-card-count{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--bg);color:var(--muted);border:1px solid var(--border); text-transform:uppercase; letter-spacing:0.5px}
 
   /* News/tip strip */
+  .landing-news{position:relative;z-index:1;margin:8px 16px 0;max-width:640px;margin-left:auto;margin-right:auto;background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.25);border-radius:10px;padding:8px 14px;font-size:12px;color:var(--text);text-align:center}
+  .landing-news strong{color:var(--gold)}
   .landing-tip{position:relative;z-index:1;margin:10px 16px 0;max-width:640px;margin-left:auto;margin-right:auto;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:flex-start}
   .landing-tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
   .landing-tip-text{font-size:11px;color:var(--muted);line-height:1.5}
