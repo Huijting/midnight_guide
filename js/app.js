@@ -1098,15 +1098,18 @@ function buildRaidScreen(){
 
 // ── DELVES UI ──
 const DELVES_UI = {
-  nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
+  nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen',
-    detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead' },
-  en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
+    detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
+    full_guide_btn:'Volledige gids', back_btn:'← Terug' },
+  en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
-    detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead' },
-  da: { delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
+    detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
+    full_guide_btn:'Full Guide', back_btn:'← Back' },
+  da: { delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delves_click_hint:'Klik på Delve-navnet for korte tip.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
     bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game',
-    detail_gimmick:'Hovedopgave', detail_danger:'Største fare', detail_tip:'Tip', wowhead:'→ Wowhead' },
+    detail_gimmick:'Hovedopgave', detail_danger:'Største fare', detail_tip:'Tip', wowhead:'→ Wowhead',
+    full_guide_btn:'Fuld guide', back_btn:'← Tilbage' },
 };
 
 function buildDelvesScreen() {
@@ -1131,6 +1134,7 @@ function buildDelvesScreen() {
   html += `<div class="delves-list-section">
     <h3 class="delves-section-title">${ui.delves_title}</h3>
     <p class="delves-section-sub">${ui.delves_sub}</p>
+    <p class="delves-section-hint">💡 ${ui.delves_click_hint}</p>
     <div class="delves-list-table-wrap">
       <table class="delves-list-table">
         <thead>
@@ -1195,24 +1199,48 @@ function buildDelvesScreen() {
   }
 }
 
+let delveDetailState = { id: null, view: 'summary' };
+
 function openDelveDetail(id) {
   const d = DELVES_DATA.delves.find(x => x.id === id);
   if (!d || !d.details) return;
+  delveDetailState = { id, view: 'summary' };
   const ui = DELVES_UI[lang] || DELVES_UI.en;
   const det = d.details[lang] || d.details.en;
   document.getElementById('delve-detail-title').textContent = d.name;
+  const hasFullGuide = d.fullGuide && (d.fullGuide[lang] || d.fullGuide.en);
   document.getElementById('delve-detail-content').innerHTML = `
     <ul class="delve-detail-bullets">
       <li><strong>${ui.detail_gimmick}:</strong> ${det.gimmick}</li>
       <li><strong>${ui.detail_danger}:</strong> ${det.danger}</li>
       <li><strong>${ui.detail_tip}:</strong> ${det.tip}</li>
-    </ul>`;
+    </ul>
+    ${hasFullGuide ? `<button class="delve-detail-btn delve-full-guide-btn" onclick="showDelveFullGuide('${id}')">📖 ${ui.full_guide_btn}</button>` : ''}`;
   const wowheadEl = document.getElementById('delve-detail-wowhead');
-  if (wowheadEl && d.url) { wowheadEl.href = d.url; wowheadEl.textContent = ui.wowhead; }
+  if (wowheadEl && d.url) { wowheadEl.href = d.url; wowheadEl.textContent = ui.wowhead; wowheadEl.style.display = ''; }
   document.getElementById('delve-detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
+function showDelveFullGuide(id) {
+  const d = DELVES_DATA.delves.find(x => x.id === id);
+  if (!d || !d.fullGuide) return;
+  delveDetailState = { id, view: 'full' };
+  const ui = DELVES_UI[lang] || DELVES_UI.en;
+  const guide = d.fullGuide[lang] || d.fullGuide.en;
+  document.getElementById('delve-detail-content').innerHTML = `
+    <button class="delve-detail-btn delve-back-btn" onclick="backToDelveSummary()">${ui.back_btn}</button>
+    <div class="delve-full-guide-body">${guide}</div>`;
+  document.getElementById('delve-detail-content').scrollTop = 0;
+}
+
+function backToDelveSummary() {
+  if (!delveDetailState.id) return;
+  openDelveDetail(delveDetailState.id);
+}
+
 function closeDelveDetail() {
+  delveDetailState = { id: null, view: 'summary' };
   document.getElementById('delve-detail-modal').classList.remove('open');
   document.body.style.overflow = '';
 }

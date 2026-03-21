@@ -1,0 +1,26 @@
+---
+description: Always research from known sites before adding game content or mechanics
+alwaysApply: true
+---
+
+# Research Before Adding Content
+
+**Always research first** from known, authoritative sources before adding or editing game-related content (Delves, Dungeons, mechanics, guides, etc.).
+
+## Preferred Sources
+- **Wowhead** — spells, NPCs, zones, IDs
+- **Icy Veins** — delve/dungeon guides, mechanics, boss strategies
+- **Method.gg** — exploration, coordinates
+- **NextTier** — Midnight guides, loot tables
+- **Boostmatch** — detailed boss guides (e.g. Torment's Rise)
+
+## Process
+1. Use web search and `mcp_web_fetch` to retrieve guides from these sites
+2. Base content (phases, boss names, ability names, mechanics) on the fetched sources
+3. Do **not** extrapolate or invent mechanics without a source
+4. If a source is unavailable (e.g. Wowhead CDN error), try alternatives before falling back to inference
+
+## When Adding Full Guides or Tactics
+- Verify boss names, spell names, and phase structure from Icy Veins or similar
+- Use exact terminology from the game (e.g. "Shadowveil Annihilation", "Wildroot Weave")
+- Mark placeholders clearly (e.g. "Info coming soon") when no verified source exists
