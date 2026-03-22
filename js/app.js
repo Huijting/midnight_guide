@@ -2180,11 +2180,11 @@ function renderPreyGuide() {
   if (!container) return;
 
   const data = typeof PREY_DATA !== 'undefined' ? PREY_DATA : null;
-  const ui = PREY_UI[lang] || PREY_UI.en;
+  const ui = PREY_UI[lang] || PREY_UI.nl;
 
   document.getElementById('prey-title').textContent = ui.title;
   const introEl = document.getElementById('prey-intro');
-  if (introEl && data) introEl.textContent = data.intro[lang] || data.intro.en;
+  if (introEl && data) introEl.textContent = data.intro[lang] || data.intro.nl;
 
   if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
 
@@ -2219,16 +2219,17 @@ function renderPreyGuide() {
     </div>
   </div>`;
 
+  const u = data.unlock;
   // ——— Getting Started ———
   html += `<div class="prey-section">
     <h3 class="prey-section-title">${ui.gettingStarted}</h3>
     <div class="prey-card">
-      <p><strong>1. Unlock:</strong> Reach level 90. Speak to <strong>${data.unlock.npc}</strong> in ${data.unlock.zone}.</p>
-      <p>Complete the intro questline ending with <em>"${data.unlock.questlineEnd}"</em> to unlock the Hunt Table.</p>
+      <p><strong>${u.unlockLabel[l] || u.unlockLabel.en}</strong> ${u.reachSpeak[l] || u.reachSpeak.en} <strong>${u.npc}</strong> in ${u.zone}.</p>
+      <p>${u.completeQuest[l] || u.completeQuest.en} <em>"${u.questlineEnd}"</em> ${u.toUnlock[l] || u.toUnlock.en}</p>
       <div class="kp-way-code prey-way" onclick="copyWay(this)" data-way="${way.replace(/"/g,'&quot;')}" title="${tipCopy}">📋 ${way}</div>
     </div>
     <div class="prey-card">
-      <h4 class="prey-step-label">Gameplay loop</h4>
+      <h4 class="prey-step-label">${data.gameplayLoopLabel[l] || data.gameplayLoopLabel.en}</h4>
       <ol class="prey-loop-list">`;
   loop.forEach((s, i) => {
     html += `<li><strong>${s.step}:</strong> ${s.text}</li>`;
@@ -2245,9 +2246,9 @@ function renderPreyGuide() {
     </div>
     <div class="prey-rewards-list">
       <p>${rewd.adventurer}</p>
-      <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain}">Veteran Track</span>: ${rewd.veteran}</p>
-      <p><span class="prey-tooltip-term" title="${tt.champion_track.explain}">Champion Track</span>: ${rewd.champion}</p>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain}">Anguish</span> fills your bar. <span class="prey-tooltip-term" title="${tt.dawncrests.explain}">Dawncrests</span> upgrade gear.</p>
+      <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain[l] || tt.veteran_track.explain.en}">Veteran Track</span>: ${rewd.veteran}</p>
+      <p><span class="prey-tooltip-term" title="${tt.champion_track.explain[l] || tt.champion_track.explain.en}">Champion Track</span>: ${rewd.champion}</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain[l] || tt.anguish.explain.en}">Anguish</span> ${rewd.anguishFills}. <span class="prey-tooltip-term" title="${tt.dawncrests.explain[l] || tt.dawncrests.explain.en}">Dawncrests</span> ${rewd.dawncrestsUpgrade}.</p>
     </div>
     <h4 class="prey-affix-heading">${ui.nightmareAffixes}</h4>
     <ul class="prey-affix-list">
@@ -2283,7 +2284,7 @@ function openPreyDetail(id) {
   const t = targets.find(x => x.id === id);
   if (!t) return;
   const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
-  const u = PREY_UI[lang] || PREY_UI.en;
+  const u = PREY_UI[lang] || PREY_UI.nl;
   const name = (t.name && t.name[l]) || t.name?.en || t.id;
   const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
   const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';

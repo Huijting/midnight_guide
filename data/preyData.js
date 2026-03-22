@@ -9,7 +9,12 @@ const PREY_DATA = {
     zone: 'Murder Row, Silvermoon City',
     way: '/way #2393 55.0 63.4 Magister Astalor Bloodsworn',
     questlineEnd: 'To the Sanctum!',
+    unlockLabel: { en: '1. Unlock:', nl: '1. Unlock:', da: '1. Unlock:' },
+    reachSpeak: { en: 'Reach level 90. Speak to', nl: 'Bereik level 90. Praat met', da: 'Nå niveau 90. Tal med' },
+    completeQuest: { en: 'Complete the intro questline ending with', nl: 'Voltooi de intro-questlijn die eindigt met', da: 'Fuldfør intro-questlinjen der slutter med' },
+    toUnlock: { en: 'to unlock the Hunt Table.', nl: 'om de Hunt Table te ontgrendelen.', da: 'for at låse Hunt Table op.' },
   },
+  gameplayLoopLabel: { en: 'Gameplay loop', nl: 'Spelloop', da: 'Spillemekanik' },
 
   // i18n intro strings
   intro: {
@@ -29,7 +34,7 @@ const PREY_DATA = {
     nl: [
       { step: 'Contract kiezen', text: 'Kies een doelwit bij de Hunt Table in Astalors Sanctum.' },
       { step: 'Anguish verzamelen', text: 'Vul de voortgangsbalk in de zone door World Quests te doen, Rares te doden of Schatten te vinden.' },
-      { step: 'Hinderlagn-fase', text: 'Het doelwit valt je willekeurig aan. Vecht tot het terugtrekt (meestal bij 50% HP).' },
+      { step: 'Hinderlaag-fase', text: 'Het doelwit valt je willekeurig aan. Vecht tot het terugtrekt (meestal bij 50% HP).' },
       { step: 'De finale jacht', text: 'Bij 100% balk: gebruik de Charged Anguish Crystal in je UI om de boss-locatie te onthullen voor een 1v1 duel.' },
     ],
     da: [
@@ -81,6 +86,8 @@ const PREY_DATA = {
       champion: 'Champion Gear (Nightmare)',
       weeklyTip: 'The first 2 Hunts per week give the best gear rewards (Veteran/Champion track).',
       greatVault: 'Prey contributes to the Great Vault <strong>World</strong> category.',
+      anguishFills: 'fills your bar',
+      dawncrestsUpgrade: 'upgrade gear',
     },
     nl: {
       adventurer: 'Adventurer gear (Normal)',
@@ -88,6 +95,8 @@ const PREY_DATA = {
       champion: 'Champion Gear (Nightmare)',
       weeklyTip: 'De eerste 2 Hunts per week geven de beste gear beloningen (Veteran/Champion track).',
       greatVault: 'Prey telt mee voor de Great Vault <strong>World</strong> categorie.',
+      anguishFills: 'vult je balk',
+      dawncrestsUpgrade: 'upgraden gear',
     },
     da: {
       adventurer: 'Adventurer gear (Normal)',
@@ -95,16 +104,18 @@ const PREY_DATA = {
       champion: 'Champion Gear (Nightmare)',
       weeklyTip: 'De første 2 Hunts om ugen giver de bedste gear-belønninger (Veteran/Champion track).',
       greatVault: 'Prey bidrager til Great Vault <strong>World</strong> kategorien.',
+      anguishFills: 'fylder din bjælke',
+      dawncrestsUpgrade: 'opgraderer gear',
     },
   },
 
-  // Tooltips — technical terms kept in English
+  // Tooltips — technical terms kept in English, explanations translated
   tooltips: {
-    anguish: { term: 'Anguish', explain: 'Progress currency gathered in the zone. Fills your bar toward the Final Hunt.' },
-    dawncrests: { term: 'Dawncrests', explain: 'Upgrade crests used to improve gear (part of the upgrade system).' },
-    veteran_track: { term: 'Veteran Track', explain: 'Mid-tier gear that upgrades with Veteran Crests.' },
-    champion_track: { term: 'Champion Track', explain: 'Top-tier gear that upgrades with Champion Crests.' },
-    charged_anguish_crystal: { term: 'Charged Anguish Crystal', explain: 'UI item used at 100% bar to reveal the boss lair location.' },
+    anguish: { term: 'Anguish', explain: { en: 'Progress currency gathered in the zone. Fills your bar toward the Final Hunt.', nl: 'Voortgangsvaluta in de zone. Vult je balk richting de Final Hunt.', da: 'Fremskridtsvaluta samlet i zonen. Fylder din bjælke mod Final Hunt.' } },
+    dawncrests: { term: 'Dawncrests', explain: { en: 'Upgrade crests used to improve gear (part of the upgrade system).', nl: 'Upgrade-crests om gear te verbeteren (deel van het upgradesysteem).', da: 'Upgrade-crests til at forbedre gear (del af upgradesystemet).' } },
+    veteran_track: { term: 'Veteran Track', explain: { en: 'Mid-tier gear that upgrades with Veteran Crests.', nl: 'Mid-tier gear dat upgradet met Veteran Crests.', da: 'Mid-tier gear der opgraderes med Veteran Crests.' } },
+    champion_track: { term: 'Champion Track', explain: { en: 'Top-tier gear that upgrades with Champion Crests.', nl: 'Top-tier gear dat upgradet met Champion Crests.', da: 'Top-tier gear der opgraderes med Champion Crests.' } },
+    charged_anguish_crystal: { term: 'Charged Anguish Crystal', explain: { en: 'UI item used at 100% bar to reveal the boss lair location.', nl: 'UI-item bij 100% balk om de boss-locatie te onthullen.', da: 'UI-element ved 100% bjælke for at afsløre bossens lejested.' } },
   },
 
   // Prey targets are in data/preyTargets.js (PREY_TARGETS)
