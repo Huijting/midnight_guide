@@ -712,9 +712,9 @@ const WEEKLY_ITEMS = [
   { id:'w_prey', diff:'medium', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts',da:'🎯 Prey Hunts'},
     name:{nl:'Nightmare Prey (2x)',en:'Nightmare Prey (2x)',da:'Nightmare Prey (2x)'},
-    desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-level gear. Track je prooi in de zone en overleef de hinderlagen.',
-          en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes.',
-          da:'Gennemfor 2 Nightmare Prey-jagter for Champion-udrustning. Spor dit bytte i zonen og overlev baghold.'},
+    desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-level gear. Track je prooi in de zone en overleef hinderlagen. Telt mee voor Great Vault World.',
+          en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes. Contributes to Great Vault World.',
+          da:'Gennemfor 2 Nightmare Prey-jagter for Champion-udrustning. Spor dit bytte i zonen og overlev baghold. Bidrager til Great Vault World.'},
     where:'📍 Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear'] },
 
@@ -884,9 +884,9 @@ const WEEKLY_ITEMS = [
   { id:'w_prey_hard', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts',da:'🎯 Prey Hunts'},
     name:{nl:'Hard Prey Hunts (2x) — Veteran gear',en:'Hard Prey Hunts (2x) — Veteran gear',da:'Hard Prey Hunts (2x) — Veteran udrustning'},
-    desc:{nl:'Eerste 2 Hard Prey hunts geven een Veteran gear box (iLvl 240+). Tip: focus op vallen + ambushes, onder de 5 min per hunt. Erna: farm voor Veteran Crests (15 per run, kost 50 Anguish).',
-          en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Tip: focus on traps + ambushes, under 5 min/hunt. Afterwards: farm for Veteran Crests (15 per run, costs 50 Anguish).',
-          da:'De forste 2 Hard Prey-jagter giver en Veteran-kasse (iLvl 240+). Tip: fokus pa falder + baghold, under 5 min/jagt. Derefter: farm Veteran Crests (15 pr. run, koster 50 Anguish).'},
+    desc:{nl:'Eerste 2 Hard Prey hunts geven een Veteran gear box (iLvl 240+). Telt mee voor Great Vault World. Tip: focus op vallen + ambushes, onder de 5 min per hunt.',
+          en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Contributes to Great Vault World. Tip: focus on traps + ambushes, under 5 min/hunt.',
+          da:'De forste 2 Hard Prey-jagter giver en Veteran-kasse (iLvl 240+). Bidrager til Great Vault World. Tip: fokus pa falder + baghold, under 5 min/jagt.'},
     where:'Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear','currency'] }];function isDmfWeek() {
   const now = new Date();

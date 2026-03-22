@@ -1086,6 +1086,17 @@
   body.mode-delves #raids-screen{display:none !important}
   body.mode-delves #glossary-screen{display:none !important}
   body.mode-delves #delves-screen{display:block !important}
+  /* Prey mode */
+  body.mode-prey #home-screen{display:none !important}
+  body.mode-prey #detail-screen{display:none !important}
+  body.mode-prey #prof-screen{display:none !important}
+  body.mode-prey #weekly-screen{display:none !important}
+  body.mode-prey .specs-screen{display:none !important}
+  body.mode-prey #affixes-screen{display:none !important}
+  body.mode-prey #raids-screen{display:none !important}
+  body.mode-prey #delves-screen{display:none !important}
+  body.mode-prey #glossary-screen{display:none !important}
+  body.mode-prey #prey-screen{display:block !important}
   .glossary-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
   .glossary-item-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:10px;transition:background .15s}
   .glossary-item-header:hover{background:var(--deep)}
@@ -1180,6 +1191,47 @@
   .delves-card-icon a,.delves-hero-icon,.delves-tab-icon{display:inline-flex;align-items:center}
   .delves-card-icon .wh-link,.landing-card-icon .wh-link{font-size:0}
   .delves-ilvl-gold{color:var(--gold) !important;font-weight:700}
+
+  /* ── PREY SCREEN ── */
+  #prey-screen{display:none;padding:20px;max-width:900px;margin:0 auto}
+  .prey-section{margin-bottom:28px}
+  .prey-section-title{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .prey-card{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px}
+  .prey-card p{margin:0 0 10px;font-size:14px;color:var(--text);line-height:1.6}
+  .prey-card p:last-child{margin-bottom:0}
+  .prey-way{margin-top:8px;display:inline-block}
+  .prey-step-label{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .prey-loop-list{margin:0;padding-left:20px;font-size:14px;color:var(--text);line-height:1.7}
+  .prey-loop-list li{margin-bottom:8px}
+  .prey-highlight-box{background:rgba(200,168,75,.1);border:1px solid rgba(200,168,75,.35);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:16px;margin-bottom:12px}
+  .prey-highlight-box p{margin:0 0 8px;font-size:14px;color:var(--text);line-height:1.6}
+  .prey-highlight-box p:last-child{margin-bottom:0}
+  .prey-diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+  .prey-diff-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+  .prey-diff-card.diff-normal{border-left:4px solid #4ade80}
+  .prey-diff-card.diff-hard{border-left:4px solid #fbbf24}
+  .prey-diff-card.diff-nightmare{border-left:4px solid #ef4444}
+  .prey-diff-badge{font-size:13px;font-weight:700;margin-bottom:6px;display:block}
+  .prey-diff-card p{margin:0;font-size:13px;color:var(--text);line-height:1.5}
+  .prey-rewards-list{margin-bottom:16px}
+  .prey-rewards-list p{margin:0 0 8px;font-size:14px;color:var(--text)}
+  .prey-tooltip-term{border-bottom:1px dashed var(--gold);color:var(--gold);cursor:help;font-weight:600}
+  .prey-affix-heading{font-size:14px;font-weight:800;color:var(--accent);margin:16px 0 10px}
+  .prey-affix-list{list-style:none;padding:0;margin:0}
+  .prey-affix-item{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:12px 14px;margin-bottom:10px;font-size:14px;color:var(--text);line-height:1.5}
+  .prey-targets-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--deep)}
+  .prey-targets-table{width:100%;border-collapse:collapse}
+  .prey-targets-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+  .prey-target-link{font-weight:700;color:var(--gold);cursor:pointer}
+  .prey-target-link:hover{color:var(--gold2);text-decoration:underline}
+  #prey-detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
+  #prey-detail-modal.open{display:flex}
+  #prey-detail-inner{background:var(--panel);border:1px solid var(--border);border-radius:16px 16px 0 0;width:100%;max-width:480px;max-height:70vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+  #prey-detail-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+  #prey-detail-title{font-size:18px;font-weight:800;color:var(--gold)}
+  #prey-detail-close{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1}
+  #prey-detail-close:hover{color:var(--text)}
+  #prey-detail-content{padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
   .specs-screen{display:none}
 

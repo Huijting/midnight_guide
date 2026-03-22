@@ -2133,127 +2133,121 @@ renderKpSources = function(p) {
 // ============================================================
 // PREY SYSTEM GUIDE
 // ============================================================
-const PREY_GUIDE_DATA = {
-  nl: {
-    title: "Het Prey Systeem",
-    intro: "Jaag op de gevaarlijkste doelwitten in Midnight. Een compleet stappenplan voor deze nieuwe solo-vriendelijke endgame activiteit.",
-    sections: [
-      {
-        title: "Voorbereiding: De Unlock Questline",
-        text: "Voordat je kan jagen, moet je een korte questline voltooien in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Praat met Ranger General Halduron in Farstrider Square om de quest te starten.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Klik om te kopiëren\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Verzamel 3 sporen net buiten de stad in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Lever de quest in bij Magister Astalor Bloodsworn in Murder Row. Hiermee ontgrendel je het Prey systeem!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Klik om te kopiëren\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
-      },
-      {
-        title: "Stap 1: De Jacht Beginnen",
-        text: "Ga naar <strong>Silvermoon City</strong> (Murder Row) en praat met <em>Magister Astalor Bloodsworn</em>. Hier kies je jouw doelwit (Target) en de zone waar je wilt jagen."
-      },
-      {
-        title: "Stap 2: Voortgang Opbouwen",
-        text: "Je kunt niet direct naar de baas. Reis naar de gekozen zone en vul je voortgangsbalk door activiteiten te doen:<br>• Voltooi World Quests<br>• Versla Elite vijanden<br>• Open schatkisten<br>• Ontmantel vallen"
-      },
-      {
-        title: "Stap 3: De Confrontatie",
-        text: "Zodra je balk vol is, wordt de exacte locatie van je doelwit onthuld op de map. Ga ernaartoe en versla de baas om je beloningen te claimen!"
-      },
-      {
-        title: "Moeilijkheidsgraden",
-        text: "Je kunt de jacht afstellen op jouw niveau:<br>🟢 <strong>Normal:</strong> Basis mechanics. Andere spelers in de open wereld kunnen je helpen.<br>🟡 <strong>Hard:</strong> Extra vaardigheden (Torments) voor de baas. Je staat er alleen voor in het eindgevecht.<br>🔴 <strong>Nightmare:</strong> De ultieme uitdaging met extra affixes, maar ook de beste beloningen."
-      },
-      {
-        title: "Beloningen",
-        text: "Waarom doe je dit?<br>🎁 <strong>Gear:</strong> Schaalbaar van Adventurer tot Champion track (afhankelijk van moeilijkheid).<br>🎁 <strong>Cosmetics:</strong> Unieke Mana Wyrm mounts en transmogs.<br>🎁 <strong>Valuta:</strong> Anguish Runes om spullen mee te kopen.<br>🎁 <strong>Great Vault:</strong> Telt mee voor je wekelijkse 'Outdoor' vault slot!"
-      }
-    ],
-    tip: "Gouden Tip: De eerste 4 jachten per week geven de meeste en beste beloningen. Zorg dat je die op de hoogst mogelijke moeilijkheidsgraad doet die je aankan!"
-  },
-  en: {
-    title: "The Prey System",
-    intro: "Hunt the most dangerous targets in Midnight. A complete step-by-step guide for this new solo-friendly endgame activity.",
-    sections: [
-      {
-        title: "Preparation: The Unlock Questline",
-        text: "Before you can hunt, you must complete a short questline in Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Speak with Ranger General Halduron in Farstrider Square to start the quest.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Click to copy\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Gather 3 tracks just outside the city in Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Turn in the quest to Magister Astalor Bloodsworn in Murder Row. This unlocks the Prey system!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Click to copy\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
-      },
-      {
-        title: "Step 1: Starting the Hunt",
-        text: "Go to <strong>Silvermoon City</strong> (Murder Row) and speak with <em>Magister Astalor Bloodsworn</em>. Here you select your target and the zone you want to hunt in."
-      },
-      {
-        title: "Step 2: Building Progress",
-        text: "You can't face the boss immediately. Travel to the chosen zone and fill your progress bar by completing activities:<br>• Complete World Quests<br>• Defeat Elite enemies<br>• Open treasures<br>• Disable traps"
-      },
-      {
-        title: "Step 3: The Confrontation",
-        text: "Once your bar is full, the exact location of your target is revealed on the map. Go there and defeat the boss to claim your rewards!"
-      },
-      {
-        title: "Difficulties",
-        text: "You can tune the hunt to your level:<br>🟢 <strong>Normal:</strong> Basic mechanics. Other players in the open world can help you.<br>🟡 <strong>Hard:</strong> Extra abilities (Torments) for the boss. You are on your own for the final fight.<br>🔴 <strong>Nightmare:</strong> The ultimate challenge with extra affixes, but also the best rewards."
-      },
-      {
-        title: "Rewards",
-        text: "Why do this?<br>🎁 <strong>Gear:</strong> Scales from Adventurer to Champion track (depending on difficulty).<br>🎁 <strong>Cosmetics:</strong> Unique Mana Wyrm mounts and transmogs.<br>🎁 <strong>Currency:</strong> Anguish Runes to buy items.<br>🎁 <strong>Great Vault:</strong> Counts towards your weekly 'Outdoor' vault slot!"
-      }
-    ],
-    tip: "Golden Tip: The first 4 hunts per week give the most and best rewards. Make sure to do these on the highest difficulty you can handle!"
-  },
-  da: {
-    title: "Prey Systemet",
-    intro: "Jagt de farligste mål i Midnight. En komplet trin-for-trin guide til denne nye solo-venlige endgame aktivitet.",
-    sections: [
-      {
-        title: "Forberedelse: Unlock Questline",
-        text: "Før du kan jage, skal du fuldføre en kort questline i Silvermoon City:<br><br>1. <strong>Shadows in the Woods:</strong> Tal med Ranger General Halduron i Farstrider Square for at starte questen.<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 49.0 64.8 Halduron Brightwing\" title=\"Klik for at kopiere\">📋 /way #2393 49.0 64.8 Halduron Brightwing</span><br><br>2. <strong>Tracking the Beast:</strong> Saml 3 spor lige uden for byen i Eversong Woods.<br><br>3. <strong>The Hunter's Call:</strong> Aflever questen til Magister Astalor Bloodsworn i Murder Row. Dette låser op for Prey systemet!<br><span class=\"kp-way-code\" style=\"display:inline-block; margin-top:4px; margin-bottom:8px;\" onclick=\"copyWay(this)\" data-way=\"/way #2393 54.97 63.31 Magister Astalor Bloodsworn\" title=\"Klik for at kopiere\">📋 /way #2393 54.97 63.31 Magister Astalor Bloodsworn</span>"
-      },
-      {
-        title: "Trin 1: Start Jagten",
-        text: "Gå til <strong>Silvermoon City</strong> (Murder Row) og tal med <em>Magister Astalor Bloodsworn</em>. Her vælger du dit mål og den zone, du vil jage i."
-      },
-      {
-        title: "Trin 2: Opbyg Fremskridt",
-        text: "Du kan ikke møde bossen med det samme. Rejs til den valgte zone og fyld din fremskridtsbjælke ved at fuldføre aktiviteter:<br>• Gennemfør World Quests<br>• Besejr Elite fjender<br>• Åbn skatte<br>• Deaktiver fælder"
-      },
-      {
-        title: "Trin 3: Konfrontationen",
-        text: "Når din bjælke er fuld, afsløres målets nøjagtige placering på kortet. Tag dertil og besejr bossen for at få dine belønninger!"
-      },
-      {
-        title: "Sværhedsgrader",
-        text: "Du kan tilpasse jagten til dit niveau:<br>🟢 <strong>Normal:</strong> Grundlæggende mekanikker. Andre spillere i den åbne verden kan hjælpe dig.<br>🟡 <strong>Hard:</strong> Ekstra evner (Torments) til bossen. Du er på egen hånd i den endelige kamp.<br>🔴 <strong>Nightmare:</strong> Den ultimative udfordring med ekstra affixes, men også de bedste belønninger."
-      },
-      {
-        title: "Belønninger",
-        text: "Hvorfor gøre dette?<br>🎁 <strong>Gear:</strong> Skalerer fra Adventurer til Champion track (afhængigt af sværhedsgrad).<br>🎁 <strong>Cosmetics:</strong> Unikke Mana Wyrm mounts og transmogs.<br>🎁 <strong>Valuta:</strong> Anguish Runes til at købe genstande.<br>🎁 <strong>Great Vault:</strong> Tæller med i dit ugentlige 'Outdoor' vault slot!"
-      }
-    ],
-    tip: "Gyldent Tip: De første 4 jagter om ugen giver de fleste og bedste belønninger. Sørg for at gøre disse på den højeste sværhedsgrad, du kan klare!"
-  }
+const PREY_UI = {
+  nl: { title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren' },
+  en: { title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy' },
+  da: { title:'Prey Systemet', gettingStarted:'Kom i gang', weeklyChecklist:'Ugentlig strategi', rewards:'Belønninger', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik for at kopiere' },
 };
 
 function renderPreyGuide() {
   const container = document.getElementById('prey-content');
   if (!container) return;
-  
-  const data = PREY_GUIDE_DATA[lang] || PREY_GUIDE_DATA.nl;
-  
-  document.getElementById('prey-title').textContent = data.title;
-  document.getElementById('prey-intro').textContent = data.intro;
 
-  let html = `<div style="display: flex; flex-direction: column; gap: 16px;">`;
-  
-  data.sections.forEach((sec, i) => {
-    html += `
-      <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-        <h3 style="font-family: 'Inter', sans-serif; color: var(--accent); margin-bottom: 8px; font-size: 18px;">${sec.title}</h3>
-        <p style="font-size: 14px; color: var(--text); line-height: 1.6;">${sec.text}</p>
-      </div>
-    `;
-  });
-  
-  html += `</div>
-    <div style="background-color: rgba(200, 168, 75, 0.1); padding: 16px; border-left: 4px solid var(--gold); margin-top: 32px; border-radius: 0 8px 8px 0;">
-      <p style="font-size: 14px; color: var(--text); margin: 0; font-weight: bold;">${data.tip}</p>
+  const data = typeof PREY_DATA !== 'undefined' ? PREY_DATA : null;
+  const ui = PREY_UI[lang] || PREY_UI.en;
+
+  document.getElementById('prey-title').textContent = ui.title;
+  const introEl = document.getElementById('prey-intro');
+  if (introEl && data) introEl.textContent = data.intro[lang] || data.intro.en;
+
+  if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
+
+  const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
+  const loop = data.loop[l] || data.loop.en;
+  const rewd = data.rewards[l] || data.rewards.en;
+  const diffNorm = data.difficulties.normal[l];
+  const diffHard = data.difficulties.hard[l];
+  const diffNight = data.difficulties.nightmare[l];
+  const affixBlood = data.nightmareAffixes.bloody_command[l];
+  const affixEcho = data.nightmareAffixes.echo_of_predation[l];
+  const way = data.unlock.way;
+  const tipCopy = ui.tooltipCopy;
+  const tt = data.tooltips;
+
+  let html = '';
+
+  // ——— Getting Started ———
+  html += `<div class="prey-section">
+    <h3 class="prey-section-title">${ui.gettingStarted}</h3>
+    <div class="prey-card">
+      <p><strong>1. Unlock:</strong> Reach level 90. Speak to <strong>${data.unlock.npc}</strong> in ${data.unlock.zone}.</p>
+      <p>Complete the intro questline ending with <em>"${data.unlock.questlineEnd}"</em> to unlock the Hunt Table.</p>
+      <div class="kp-way-code prey-way" onclick="copyWay(this)" data-way="${way.replace(/"/g,'&quot;')}" title="${tipCopy}">📋 ${way}</div>
     </div>
-  `;
+    <div class="prey-card">
+      <h4 class="prey-step-label">Gameplay loop</h4>
+      <ol class="prey-loop-list">`;
+  loop.forEach((s, i) => {
+    html += `<li><strong>${s.step}:</strong> ${s.text}</li>`;
+  });
+  html += `</ol></div></div>`;
+
+  // ——— Weekly Checklist / Strategy ———
+  html += `<div class="prey-section">
+    <h3 class="prey-section-title">${ui.weeklyChecklist}</h3>
+    <div class="prey-highlight-box">
+      <p>⭐ <strong>${rewd.weeklyTip}</strong></p>
+      <p>${rewd.greatVault}</p>
+    </div>
+  </div>`;
+
+  // ——— Difficulties + Nightmare Affixes ———
+  html += `<div class="prey-section">
+    <h3 class="prey-section-title">${ui.rewards}</h3>
+    <div class="prey-diff-grid">
+      <div class="prey-diff-card diff-normal"><span class="prey-diff-badge">🟢 Normal</span><p>${diffNorm.desc}</p></div>
+      <div class="prey-diff-card diff-hard"><span class="prey-diff-badge">🟡 Hard</span><p>${diffHard.desc}</p></div>
+      <div class="prey-diff-card diff-nightmare"><span class="prey-diff-badge">🔴 Nightmare</span><p>${diffNight.desc}</p></div>
+    </div>
+    <div class="prey-rewards-list">
+      <p>${rewd.adventurer}</p>
+      <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain}">Veteran Track</span>: ${rewd.veteran}</p>
+      <p><span class="prey-tooltip-term" title="${tt.champion_track.explain}">Champion Track</span>: ${rewd.champion}</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain}">Anguish</span> fills your bar. <span class="prey-tooltip-term" title="${tt.dawncrests.explain}">Dawncrests</span> upgrade gear.</p>
+    </div>
+    <h4 class="prey-affix-heading">${ui.nightmareAffixes}</h4>
+    <ul class="prey-affix-list">
+      <li class="prey-affix-item"><strong>${affixBlood.name}:</strong> ${affixBlood.explain}</li>
+      <li class="prey-affix-item"><strong>${affixEcho.name}:</strong> ${affixEcho.explain}</li>
+    </ul>
+  </div>`;
+
+  // Prey targets (modal-ready) — when PREY_DATA.targets has entries
+  if (data.targets && data.targets.length > 0) {
+    html += `<div class="prey-section">
+      <h3 class="prey-section-title">Prey Targets</h3>
+      <div class="prey-targets-table-wrap">
+        <table class="prey-targets-table"><tbody>`;
+    data.targets.forEach(t => {
+      const name = (typeof t.name === 'object') ? (t.name[l] || t.name.en) : t.name;
+      html += `<tr><td><span class="prey-target-link" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">${name}</span></td><td>${t.zoneName || '—'}</td></tr>`;
+    });
+    html += `</tbody></table></div></div>`;
+  }
 
   container.innerHTML = html;
+}
+
+function openPreyDetail(id) {
+  if (typeof PREY_DATA === 'undefined' || !PREY_DATA.targets) return;
+  const t = PREY_DATA.targets.find(x => x.id === id);
+  if (!t) return;
+  const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
+  const name = (typeof t.name === 'object') ? (t.name[l] || t.name.en) : t.name;
+  const det = t.details && (t.details[l] || t.details.en) ? t.details[l] || t.details.en : { gimmick: '—', danger: '—', tip: '—' };
+  const preyUi = PREY_UI[lang] || PREY_UI.en;
+  document.getElementById('prey-detail-title').textContent = name;
+  document.getElementById('prey-detail-content').innerHTML = `
+    <ul class="delve-detail-bullets">
+      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_gimmick : 'Gimmick'}:</strong> ${det.gimmick}</li>
+      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_danger : 'Danger'}:</strong> ${det.danger}</li>
+      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_tip : 'Tip'}:</strong> ${det.tip}</li>
+    </ul>`;
+  document.getElementById('prey-detail-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePreyDetail() {
+  document.getElementById('prey-detail-modal').classList.remove('open');
+  document.body.style.overflow = '';
 }

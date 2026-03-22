@@ -306,6 +306,7 @@
 <script src="data/professions/kp_sources.js" defer></script>
 <script src="data/professions/kp_data.js" defer></script>
 <script src="data/affixes.js" defer></script>
+<script src="data/preyData.js" defer></script>
 <script src="data/help.js" defer></script>
 <script src="data/specs/cons_bis_data.js" defer></script>
 <script src="data/specs/bm_hunter.js" defer></script>
@@ -423,6 +424,16 @@
     </div>
     <div id="delve-detail-content"></div>
     <a id="delve-detail-wowhead" href="#" target="_blank" class="delves-delve-link">→ Wowhead</a>
+  </div>
+</div>
+
+<div id="prey-detail-modal" onclick="if(event.target===this)closePreyDetail()" class="prey-modal">
+  <div id="prey-detail-inner">
+    <div id="prey-detail-header">
+      <span id="prey-detail-title"></span>
+      <button id="prey-detail-close" onclick="closePreyDetail()">×</button>
+    </div>
+    <div id="prey-detail-content"></div>
   </div>
 </div>
 
