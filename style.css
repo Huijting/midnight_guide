@@ -1224,6 +1224,23 @@
   .prey-targets-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
   .prey-target-link{font-weight:700;color:var(--gold);cursor:pointer}
   .prey-target-link:hover{color:var(--gold2);text-decoration:underline}
+  .prey-weekly-box{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+  .prey-check-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text);cursor:pointer}
+  .prey-check-item input{accent-color:var(--gold);cursor:pointer}
+  .prey-reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;margin-left:auto}
+  .prey-reset-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .prey-target-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .prey-target-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+  .prey-target-card:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(201,162,39,.15)}
+  .prey-target-card-name{font-weight:800;font-size:15px;color:var(--gold);margin-bottom:4px}
+  .prey-target-card-zone{font-size:12px;color:var(--muted)}
+  .prey-targets-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
+  .prey-detail-zone{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .prey-detail-subtitle{font-size:14px;font-weight:800;color:var(--accent);margin:16px 0 8px}
+  .prey-detail-subtitle:first-of-type{margin-top:0}
+  .prey-detail-loot-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+  .prey-detail-loot-table th{text-align:left;padding:8px 12px;background:rgba(201,162,39,.1);color:var(--gold);border:1px solid var(--border)}
+  .prey-detail-loot-table td{padding:8px 12px;border:1px solid var(--border);color:var(--text)}
   #prey-detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;align-items:flex-end;justify-content:center;padding:0}
   #prey-detail-modal.open{display:flex}
   #prey-detail-inner{background:var(--panel);border:1px solid var(--border);border-radius:16px 16px 0 0;width:100%;max-width:480px;max-height:70vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.5)}

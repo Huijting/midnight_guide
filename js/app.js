@@ -2134,10 +2134,46 @@ renderKpSources = function(p) {
 // PREY SYSTEM GUIDE
 // ============================================================
 const PREY_UI = {
-  nl: { title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren' },
-  en: { title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy' },
-  da: { title:'Prey Systemet', gettingStarted:'Kom i gang', weeklyChecklist:'Ugentlig strategi', rewards:'Belønninger', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik for at kopiere' },
+  nl: {
+    title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
+    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — klik voor details', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel',
+    summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid'
+  },
+  en: {
+    title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
+    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — click for details', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table',
+    summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty'
+  },
+  da: {
+    title:'Prey Systemet', gettingStarted:'Kom i gang', weeklyChecklist:'Ugentlig strategi', rewards:'Belønninger', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik for at kopiere',
+    weeklyHunt1:'Ugentlig jagt #1', weeklyHunt2:'Ugentlig jagt #2', resetWeekly:'Nulstil ugentlig', targetsLabel:'Prey-mål', targetsHint:'Sorteret efter zone — klik for detaljer', location:'Placering', fullGuide:'Fuld guide', lootTable:'Loot-tabel',
+    summaryLabel:'Oversigt', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Sværhedsgrad'
+  },
 };
+
+function getPreyWeeklyKey() {
+  return 'prey_weekly_' + (typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default');
+}
+
+function preyWeeklyLoadState() {
+  try { return JSON.parse(localStorage.getItem(getPreyWeeklyKey()) || '{}'); } catch(e) { return {}; }
+}
+
+function preyWeeklySaveState(state) {
+  try { localStorage.setItem(getPreyWeeklyKey(), JSON.stringify(state)); } catch(e) {}
+}
+
+function preyWeeklyToggle(id) {
+  const state = preyWeeklyLoadState();
+  state[id] = !state[id];
+  preyWeeklySaveState(state);
+  renderPreyGuide();
+}
+
+function preyWeeklyReset() {
+  try { localStorage.removeItem(getPreyWeeklyKey()); } catch(e) {}
+  renderPreyGuide();
+}
 
 function renderPreyGuide() {
   const container = document.getElementById('prey-content');
@@ -2166,6 +2202,23 @@ function renderPreyGuide() {
 
   let html = '';
 
+  // ——— Weekly Checklist (top) ———
+  const preyState = preyWeeklyLoadState();
+  const hunt1 = !!preyState.hunt1;
+  const hunt2 = !!preyState.hunt2;
+  html += `<div class="prey-section prey-weekly-checklist">
+    <h3 class="prey-section-title">${ui.weeklyChecklist}</h3>
+    <div class="prey-weekly-box">
+      <label class="prey-check-item"><input type="checkbox" ${hunt1?'checked':''} onchange="preyWeeklyToggle('hunt1')"> ${ui.weeklyHunt1}</label>
+      <label class="prey-check-item"><input type="checkbox" ${hunt2?'checked':''} onchange="preyWeeklyToggle('hunt2')"> ${ui.weeklyHunt2}</label>
+      <button type="button" class="prey-reset-btn" onclick="preyWeeklyReset()">↺ ${ui.resetWeekly}</button>
+    </div>
+    <div class="prey-highlight-box" style="margin-top:12px">
+      <p>⭐ <strong>${rewd.weeklyTip}</strong></p>
+      <p>${rewd.greatVault}</p>
+    </div>
+  </div>`;
+
   // ——— Getting Started ———
   html += `<div class="prey-section">
     <h3 class="prey-section-title">${ui.gettingStarted}</h3>
@@ -2181,15 +2234,6 @@ function renderPreyGuide() {
     html += `<li><strong>${s.step}:</strong> ${s.text}</li>`;
   });
   html += `</ol></div></div>`;
-
-  // ——— Weekly Checklist / Strategy ———
-  html += `<div class="prey-section">
-    <h3 class="prey-section-title">${ui.weeklyChecklist}</h3>
-    <div class="prey-highlight-box">
-      <p>⭐ <strong>${rewd.weeklyTip}</strong></p>
-      <p>${rewd.greatVault}</p>
-    </div>
-  </div>`;
 
   // ——— Difficulties + Nightmare Affixes ———
   html += `<div class="prey-section">
@@ -2212,37 +2256,61 @@ function renderPreyGuide() {
     </ul>
   </div>`;
 
-  // Prey targets (modal-ready) — when PREY_DATA.targets has entries
-  if (data.targets && data.targets.length > 0) {
+  // ——— Prey Targets (cards, sorted by zone) ———
+  const targets = typeof PREY_TARGETS !== 'undefined' ? [...PREY_TARGETS] : [];
+  if (targets.length > 0) {
+    targets.sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''));
     html += `<div class="prey-section">
-      <h3 class="prey-section-title">Prey Targets</h3>
-      <div class="prey-targets-table-wrap">
-        <table class="prey-targets-table"><tbody>`;
-    data.targets.forEach(t => {
-      const name = (typeof t.name === 'object') ? (t.name[l] || t.name.en) : t.name;
-      html += `<tr><td><span class="prey-target-link" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">${name}</span></td><td>${t.zoneName || '—'}</td></tr>`;
+      <h3 class="prey-section-title">${ui.targetsLabel}</h3>
+      <p class="prey-targets-hint">${ui.targetsHint || 'Sorted by zone — click for details'}</p>
+      <div class="prey-target-cards">`;
+    targets.forEach(t => {
+      const name = (t.name && t.name[l]) || t.name?.en || t.id || '—';
+      const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
+      html += `<div class="prey-target-card" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
+        <div class="prey-target-card-name">${name}</div>
+        <div class="prey-target-card-zone">${zoneName}</div>
+      </div>`;
     });
-    html += `</tbody></table></div></div>`;
+    html += `</div></div>`;
   }
 
   container.innerHTML = html;
 }
 
 function openPreyDetail(id) {
-  if (typeof PREY_DATA === 'undefined' || !PREY_DATA.targets) return;
-  const t = PREY_DATA.targets.find(x => x.id === id);
+  const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  const t = targets.find(x => x.id === id);
   if (!t) return;
   const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
-  const name = (typeof t.name === 'object') ? (t.name[l] || t.name.en) : t.name;
-  const det = t.details && (t.details[l] || t.details.en) ? t.details[l] || t.details.en : { gimmick: '—', danger: '—', tip: '—' };
-  const preyUi = PREY_UI[lang] || PREY_UI.en;
+  const u = PREY_UI[lang] || PREY_UI.en;
+  const name = (t.name && t.name[l]) || t.name?.en || t.id;
+  const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
+  const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
+  const summary = t.summary && (t.summary[l] || t.summary.en) ? (t.summary[l] || t.summary.en) : [];
+  const fullGuide = t.fullGuide && (t.fullGuide[l] || t.fullGuide.en) ? (t.fullGuide[l] || t.fullGuide.en) : '';
+  const loot = t.loot || { normal: 220, hard: 233, nightmare: 246 };
+
+  let bullets = '';
+  if (Array.isArray(summary) && summary.length > 0) {
+    bullets = summary.map(b => `<li>${b}</li>`).join('');
+  } else {
+    const ab = (t.abilities && t.abilities[l]) || t.abilities?.en || '—';
+    bullets = `<li>${ab}</li>`;
+  }
+
+  const lootRows = `<tr><td>${u.normal}</td><td>${loot.normal || '—'}</td></tr><tr><td>${u.hard}</td><td>${loot.hard || '—'}</td></tr><tr><td>${u.nightmare}</td><td>${loot.nightmare || '—'}</td></tr>`;
+
   document.getElementById('prey-detail-title').textContent = name;
+  const wayHtml = wayStr ? `<div class="kp-way-code prey-way" onclick="copyWay(this)" data-way="${wayStr.replace(/"/g,'&quot;')}" title="${u.tooltipCopy}">📋 ${wayStr}</div>` : '';
   document.getElementById('prey-detail-content').innerHTML = `
-    <ul class="delve-detail-bullets">
-      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_gimmick : 'Gimmick'}:</strong> ${det.gimmick}</li>
-      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_danger : 'Danger'}:</strong> ${det.danger}</li>
-      <li><strong>${(DELVES_UI && DELVES_UI[l]) ? DELVES_UI[l].detail_tip : 'Tip'}:</strong> ${det.tip}</li>
-    </ul>`;
+    <div class="prey-detail-zone"><strong>${u.location}:</strong> ${zoneName}</div>
+    ${wayHtml}
+    <h4 class="prey-detail-subtitle">${u.summaryLabel}</h4>
+    <ul class="delve-detail-bullets">${bullets}</ul>
+    ${fullGuide ? `<h4 class="prey-detail-subtitle">${u.fullGuide}</h4><div class="delve-full-guide-body">${fullGuide}</div>` : ''}
+    <h4 class="prey-detail-subtitle">${u.lootTable}</h4>
+    <table class="prey-detail-loot-table"><thead><tr><th>${u.difficulty || 'Difficulty'}</th><th>${u.ilvl}</th></tr></thead><tbody>${lootRows}</tbody></table>`;
   document.getElementById('prey-detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

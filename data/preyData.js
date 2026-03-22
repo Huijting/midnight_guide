@@ -107,7 +107,5 @@ const PREY_DATA = {
     charged_anguish_crystal: { term: 'Charged Anguish Crystal', explain: 'UI item used at 100% bar to reveal the boss lair location.' },
   },
 
-  // Prey targets — expandable list for modal/accordion (placeholder structure)
-  // Add specific targets when verified from Wowhead/NextTier
-  targets: [],
+  // Prey targets are in data/preyTargets.js (PREY_TARGETS)
 };
