@@ -1,8 +1,3 @@
-// ── VERSIE ──
-const VERSION = "v1.5.0";
-const VERSION_DATE = "2026-03-24";
-
-
 // ═══════════════════════════════════════════════════════════════
 // SPEC SELECTOR
 // ═══════════════════════════════════════════════════════════════
@@ -248,8 +243,8 @@ const FOOTER = {
   }};
 
 function updateFooter() {
-  const vEl = document.getElementById('footer-version-nr');
-  if (vEl) vEl.textContent = VERSION + ' — ' + VERSION_DATE;
+  const vEl = document.getElementById('version-display');
+  if (vEl && typeof APP_VERSION !== 'undefined') vEl.textContent = 'v' + APP_VERSION;
   const f = FOOTER[lang];
   if (!f) return;
   const el_season = document.getElementById('footer-season');
@@ -1767,7 +1762,7 @@ async function buildDelvesScreen() {
   delves.forEach(d => {
     const isBountiful = bountifulSet.has(d.id);
     const zoneWay = d.way
-      ? `${d.zoneName} ; <span class="way-pill" onclick="event.stopPropagation();copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
+      ? `<div class="delves-zone-row"><span class="delves-zone-text">${d.zoneName}</span><span class="delves-way-actions"><span class="way-pill" onclick="event.stopPropagation();copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span></span></div>`
       : d.zoneName;
     const rowClass = isBountiful ? 'delve-row-bountiful' : '';
     const chest = isBountiful
@@ -2443,7 +2438,14 @@ function renderKpSources(p) {
             </div>
           </div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-style: italic; background: rgba(200, 168, 75, 0.05); padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--gold);">${charTip}</div>
-        <table class="kp-table">
+        <table class="kp-table kp-table--treasures">
+          <colgroup>
+            <col class="kp-col-check">
+            <col class="kp-col-name">
+            <col class="kp-col-zone">
+            <col class="kp-col-way">
+            <col class="kp-col-hint">
+          </colgroup>
           <thead>
             <tr><th>✔</th><th>Naam</th><th>Zone</th><th>/way</th><th></th></tr>
           </thead>
@@ -2472,7 +2474,12 @@ function renderKpSources(p) {
           <span class="kp-section-title">📅 Wekelijkse KP bronnen</span>
           <span class="kp-section-sub">Reset elke week</span>
         </div>
-        <table class="kp-table">
+        <table class="kp-table kp-table--kp-rows">
+          <colgroup>
+            <col class="kp-col-kp-src">
+            <col class="kp-col-kp-val">
+            <col class="kp-col-kp-note">
+          </colgroup>
           <thead><tr><th>Bron</th><th>KP</th><th>Opmerking</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
@@ -2514,7 +2521,12 @@ function renderKpSources(p) {
         <div class="kp-section-header">
           <span class="kp-section-title">🎁 Eenmalige KP bronnen</span>
         </div>
-        <table class="kp-table">
+        <table class="kp-table kp-table--kp-rows">
+          <colgroup>
+            <col class="kp-col-kp-src">
+            <col class="kp-col-kp-val">
+            <col class="kp-col-kp-note">
+          </colgroup>
           <thead><tr><th>Bron</th><th>KP</th><th>Opmerking</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>

@@ -3,7 +3,9 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v2.2.1';
+// Keep APP_VERSION in sync with js/constants.js
+const APP_VERSION = '2.2.1';
+const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
   '/',

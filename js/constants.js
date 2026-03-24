@@ -1,3 +1,6 @@
+/** App display + cache bump — keep `sw.js` APP_VERSION in sync (service worker cannot import this file). */
+const APP_VERSION = '2.2.1';
+
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {
   nl: { title:'🗺 Route op Keystone.guru', hint:'Tik buiten het venster of druk op Sluiten', close:'✕ Sluiten', btn_label:'Bekijk M+ route op Keystone.guru', btn_sub:'Opent Keystone.guru in een nieuw tabblad' },
