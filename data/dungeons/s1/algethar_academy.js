@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const ALGETHAR_ACADEMY =   id:"algethar", name:"Algeth'ar Academy", zone:"Thaldraszus", type:"mplus",
+const ALGETHAR_ACADEMY = {
+  id:"algethar", name:"Algeth'ar Academy", zone:"Thaldraszus", type:"mplus",
   bosses_short:["Overgrown Ancient","Crawth","Vexamus","Echo of Doragosa"],
   level:{nl:"Returning — Dragonflight",en:"Returning — Dragonflight"},
   time:"35 min",
@@ -52,4 +53,4 @@ const ALGETHAR_ACADEMY =   id:"algethar", name:"Algeth'ar Academy", zone:"Thaldr
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

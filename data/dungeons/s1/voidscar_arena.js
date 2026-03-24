@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const VOIDSCAR_ARENA =   id:"voidscar", name:"Voidscar Arena", zone:"Voidstorm — Slayer's Rise", type:"normal",
+const VOIDSCAR_ARENA = {
+  id:"voidscar", name:"Voidscar Arena", zone:"Voidstorm — Slayer's Rise", type:"normal",
   bosses_short:["Taz'Rah","Atroxus","Charonus"],
   level:{nl:"Ontgrendel lvl 90",en:"Unlock level 90"},
   lore:{
@@ -43,4 +44,4 @@ const VOIDSCAR_ARENA =   id:"voidscar", name:"Voidscar Arena", zone:"Voidstorm �
       {mob:"Gravitic Sentry",tags:["avoid","tank"],tip:{nl:"Gravity Pulse: AoE pull op alle spelers richting de mob — positioneer niet bij de rand. Void Lash: tank cleave.",en:"Gravity Pulse: AoE pull of all players toward the mob — don't position near the edge. Void Lash: tank cleave."}}
     ],    mdt:false, kg_url:null
   }
-}
+};

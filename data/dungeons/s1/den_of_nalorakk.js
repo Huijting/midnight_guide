@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const DEN_OF_NALORAKK =   id:"nalorakk", name:"Den of Nalorakk", zone:"Zul'Aman", type:"normal",
+const DEN_OF_NALORAKK = {
+  id:"nalorakk", name:"Den of Nalorakk", zone:"Zul'Aman", type:"normal",
   bosses_short:["The Hoardmonger","Sentinel of Winter","Nalorakk"],
   level:{nl:"Ontgrendel lvl 88",en:"Unlock level 88"},
   lore:{
@@ -43,4 +44,4 @@ const DEN_OF_NALORAKK =   id:"nalorakk", name:"Den of Nalorakk", zone:"Zul'Aman"
       {mob:"Nalorakk Bear-Guard",tags:["tank","purge"],tip:{nl:"Bear Swipe: frontale cleave — tank van groep afgewend. Enrage: purge of sooth.",en:"Bear Swipe: frontal cleave — face tank away from group. Enrage: purge or sooth."}}
     ],    mdt:false, kg_url:null
   }
-},
+};

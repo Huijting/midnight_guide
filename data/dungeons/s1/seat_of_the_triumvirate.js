@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const SEAT_OF_THE_TRIUMVIRATE =   id:"triumvirate", name:"Seat of the Triumvirate", zone:"Argus — Mac'Aree", type:"mplus",
+const SEAT_OF_THE_TRIUMVIRATE = {
+  id:"triumvirate", name:"Seat of the Triumvirate", zone:"Argus — Mac'Aree", type:"mplus",
   bosses_short:["Zuraal the Ascended","Saprish","Viceroy Nezhar","L'ura"],
   level:{nl:"Returning — Legion",en:"Returning — Legion"},
   time:"35 min",
@@ -52,4 +53,4 @@ const SEAT_OF_THE_TRIUMVIRATE =   id:"triumvirate", name:"Seat of the Triumvirat
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

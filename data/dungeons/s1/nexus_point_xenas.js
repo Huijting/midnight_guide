@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const NEXUS_POINT_XENAS =   id:"nexus", name:"Nexus-Point Xenas", zone:"Voidstorm", type:"mplus",
+const NEXUS_POINT_XENAS = {
+  id:"nexus", name:"Nexus-Point Xenas", zone:"Voidstorm", type:"mplus",
   bosses_short:["Corewright Kasreth","Corewarden Nysarra","Lothraxion"],
   level:{nl:"Ontgrendel lvl 90",en:"Unlock level 90"},
   lore:{
@@ -55,4 +56,4 @@ const NEXUS_POINT_XENAS =   id:"nexus", name:"Nexus-Point Xenas", zone:"Voidstor
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

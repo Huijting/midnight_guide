@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-guide-v13';
+const CACHE_NAME = 'midnight-v1.2.1-season1-live';
 
 const PRECACHE = [
   '/',
@@ -15,6 +15,7 @@ const PRECACHE = [
   '/icons/icon-512.png',
   // Handleiding
   '/data/help.js',
+  '/data/affixes.js',
   // Dungeons — Season 1 (split)
   '/data/dungeons/s1/windrunner_spire.js',
   '/data/dungeons/s1/magisters_terrace.js',

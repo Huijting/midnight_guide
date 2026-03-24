@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const THE_BLINDING_VALE =   id:"blindingvale", name:"The Blinding Vale", zone:"Harandar", type:"normal",
+const THE_BLINDING_VALE = {
+  id:"blindingvale", name:"The Blinding Vale", zone:"Harandar", type:"normal",
   bosses_short:["Meittik","Ikuzz the Light Hunter","Lightwarden Ruia","Ziekket"],
   level:{nl:"Ontgrendel lvl 88",en:"Unlock level 88"},
   lore:{
@@ -49,4 +50,4 @@ const THE_BLINDING_VALE =   id:"blindingvale", name:"The Blinding Vale", zone:"H
       {mob:"Corrupted Rootwalker",tags:["tank","avoid"],tip:{nl:"Grasping Roots: root op random speler — root break of wachten. Toxic Spores: AoE gifplas op de grond.",en:"Grasping Roots: root on random player — root break or wait it out. Toxic Spores: AoE poison puddle on the ground."}}
     ],    mdt:false, kg_url:null
   }
-},
+};

@@ -1,5 +1,43 @@
-// data/affixes.js — M+ Affixes Midnight Season 1
-// Drietalig: NL / EN / DA
+// data/affixes.js — M+ Affixes Midnight Season 1 (NL / EN)
+
+/**
+ * Extra dungeon-specific lines for the current week1 affix row (same order as week1_affixes: Ascendant, Fortified, Peril).
+ * Keys = dungeon id (mplus only).
+ */
+const AFFIX_WEEK1_DUNGEON_TIPS = {
+  windrunner: {
+    nl: ['Veel casters in de spire — roteer interrupts op Orbs naast Mystic-packs.', 'Kleinere pulls bij de spiralen; Fortified maakt overpulls hier pijnlijk.', 'Peril: geen heroïsche “alles in één pull”; één wipe kost veel timer.'],
+    en: ['Many casters in the spire — rotate orb interrupts alongside Mystic packs.', 'Smaller pulls on the spirals; Fortified punishes overpulls hard here.', "Peril: skip the ‘one mega pull’ hero play — one wipe burns a lot of timer."],
+  },
+  magisters: {
+    nl: ['Ascendant tijdens Seranel/Gemellus en caster-pulls: vooraf interrupt-rotatie afspreken.', 'Fortified: Degentrius-route en grote packs iets veiliger trekken.', 'Peril: netjes spelen bij Degentrius en véél caster trash — deaths tellen dubbel.'],
+    en: ['Ascendant during Seranel/Gemellus and caster pulls: agree on interrupt order up front.', 'Fortified: pull Degentrius paths and big packs a bit safer.', 'Peril: play clean on Degentrius and heavy caster trash — deaths hurt twice.'],
+  },
+  maisara: {
+    nl: ['Orbs tijdens hexer/beast pulls: niemand “solo interrupt” — backup klaar houden.', 'Fortified jungle/trash: CC en los trekken waar het kan.', 'Peril: bossfights met veel movement — personals spare, niet gamble.'],
+    en: ['Orbs during hexer/beast pulls: don’t solo interrupts — have backup ready.', 'Fortified jungle/trash: use CC and split where you can.', 'Peril: movement-heavy bosses — save personals, don’t gamble.'],
+  },
+  nexus: {
+    nl: ['Voidcallers + Orbs: ranged bereik interrupts, melee niet alles laten doen.', 'Fortified void-packs: stap voor stap, geen dubbele grote pulls.', 'Peril: wipe op boss met lange runback = key killer — speel conservatief.'],
+    en: ['Voidcallers + orbs: ranged should cover interrupts, not only melee.', 'Fortified void packs: step-by-step, no double huge pulls.', 'Peril: a boss wipe with a long run back kills the key — play safe.'],
+  },
+  algethar: {
+    nl: ['Ascendant in brede academy-pulls: assign per platform/half room.', 'Fortified: overzichtelijke pulls bij Vexamus/Overgrown — pad ruim houden.', 'Peril: Crawth / last bosses — mechanics > parse, deaths zijn duur.'],
+    en: ['Ascendant in wide academy pulls: assign interrupts per side of the room.', 'Fortified: tidy pulls around Vexamus/Overgrown — keep space.', 'Peril: Crawth / late bosses — mechanics over parsing; deaths are expensive.'],
+  },
+  pitofsaron: {
+    nl: ['Orbs + caster groups (especially gauntlet): interrupt-CDs spreiden.', 'Fortified: Ick & Krick / tight corridors — kleinere hooks.', 'Peril: Forgemaster / Garfrost — één slip op hoge key kost enorm veel tijd.'],
+    en: ['Orbs + caster packs (gauntlet): spread interrupt CDs.', 'Fortified: Ick & Krick / tight corridors — smaller hooks.', 'Peril: Forgemaster / Garfrost — one mistake on a high key costs a ton of time.'],
+  },
+  triumvirate: {
+    nl: ['Ascendant + Subjugators/Voidcallers: focus orbs vóór Dark Prayer stapelt.', 'Fortified Mac’Aree trash: defensive rotation op grote pulls.', 'Peril: L’ura platform — één death tijdens knockback = drama.'],
+    en: ['Ascendant + Subjugators/Voidcallers: handle orbs before Dark Prayer stacks.', 'Fortified Mac’Aree trash: rotate defensives on big pulls.', 'Peril: L’ura platform — one death during knockbacks is brutal.'],
+  },
+  skyreach: {
+    nl: ['Windtunnel / open platforms: zie orbs snel — ranged pakken losse orbs.', 'Fortified bird packs: los trekken, geen dubbele Solar Zealot facepull.', 'Peril: Rukhran / last boss — movement deaths zijn 15s+ run + tilt.'],
+    en: ['Wind tunnels / open platforms: spot orbs fast — ranged grab strays.', 'Fortified bird packs: split pulls, no double Solar Zealot facepulls.', 'Peril: Rukhran / last boss — movement deaths cost 15s+ and morale.'],
+  },
+};
 
 const AFFIX_UI = {
   nl: {

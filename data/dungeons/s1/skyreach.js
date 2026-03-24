@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const SKYREACH =   id:"skyreach", name:"Skyreach", zone:"Spires of Arak", type:"mplus",
+const SKYREACH = {
+  id:"skyreach", name:"Skyreach", zone:"Spires of Arak", type:"mplus",
   bosses_short:["Ranjit","Araknath","Rukhran","High Sage Viryx"],
   level:{nl:"Returning — WoD",en:"Returning — WoD"},
   time:"30 min",
@@ -52,4 +53,4 @@ const SKYREACH =   id:"skyreach", name:"Skyreach", zone:"Spires of Arak", type:"
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

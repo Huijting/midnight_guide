@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const MURDER_ROW =   id:"murderrow", name:"Murder Row", zone:"Silvermoon City", type:"normal",
+const MURDER_ROW = {
+  id:"murderrow", name:"Murder Row", zone:"Silvermoon City", type:"normal",
   bosses_short:["Kystia Manaheart","Zaen Bladesorrow","Xathuux","Lithiel Cinderfury"],
   level:{nl:"Ontgrendel lvl 83",en:"Unlock level 83"},
   lore:{
@@ -51,4 +52,4 @@ const MURDER_ROW =   id:"murderrow", name:"Murder Row", zone:"Silvermoon City", 
       {mob:"Furious Vilefiend",tags:["tank","int"],tip:{nl:"Lithiel roept deze op. Taunten + in positie voor DPS-cleave. Devouring Frenzy: zware melee. Vile Screech: interrupt.",en:"Summoned by Lithiel. Taunt + position for DPS cleave. Devouring Frenzy: heavy melee. Vile Screech: interrupt."}}
     ],    mdt:false, kg_url:null
   }
-},
+};

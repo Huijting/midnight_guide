@@ -13,3 +13,6 @@ const DUNGEONS = [
   DEN_OF_NALORAKK,
   VOIDSCAR_ARENA
 ];
+
+/** Same array as DUNGEONS (raids append to this list at runtime). */
+const allDungeons = DUNGEONS;

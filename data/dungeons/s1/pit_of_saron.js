@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const PIT_OF_SARON =   id:"pitofsaron", name:"Pit of Saron", zone:"Icecrown", type:"mplus",
+const PIT_OF_SARON = {
+  id:"pitofsaron", name:"Pit of Saron", zone:"Icecrown", type:"mplus",
   bosses_short:["Forgemaster Garfrost","Ick and Krick","Scourgelord Tyrannus"],
   level:{nl:"Returning — Wrath",en:"Returning — Wrath"},
   time:"30 min",
@@ -47,4 +48,4 @@ const PIT_OF_SARON =   id:"pitofsaron", name:"Pit of Saron", zone:"Icecrown", ty
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

@@ -66,4 +66,4 @@ const WINDRUNNER_SPIRE = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

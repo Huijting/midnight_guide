@@ -122,6 +122,26 @@
   .section-label{max-width:var(--content-max);margin:32px auto 12px;padding:0 24px;display:flex;align-items:center;gap:10px}
   .section-label h2{font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
   .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+  .section-label-mplus{margin-top:20px;margin-bottom:16px}
+  .section-label-mplus h2{font-size:12px;letter-spacing:.12em;color:var(--gold2)}
+  .section-label-normal{margin-top:28px}
+  .dungeon-grid-mplus{padding-bottom:28px}
+  .raid-card-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:2px}
+  .badge-open-now{background:rgba(74,222,128,0.15)!important;color:#4ade80!important;border:1px solid rgba(74,222,128,0.35)!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important}
+  .overview-affix-block{margin:20px 0 8px;padding:14px 16px;background:var(--info-bg);border:1px solid var(--border);border-radius:10px}
+  .overview-affix-title{font-size:13px;font-weight:800;color:var(--gold2);margin:0 0 4px;letter-spacing:.04em}
+  .overview-affix-sub{font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.4}
+  .overview-affix-row{padding:10px 0 12px;border-bottom:1px solid var(--border)}
+  .overview-affix-row:last-child{border-bottom:none;padding-bottom:0}
+  .overview-affix-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
+  .overview-affix-icon{font-size:22px;line-height:1}
+  .overview-affix-meta{flex:1;min-width:0}
+  .overview-affix-level-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.35}
+  .overview-affix-level{color:var(--muted);font-weight:600;margin-right:4px}
+  .overview-affix-name{color:var(--text)}
+  .overview-affix-badge{display:inline-block;margin-top:4px;font-size:9px;font-weight:800;letter-spacing:.1em;padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--muted)}
+  .overview-affix-what{font-size:13px;color:var(--text);margin:0 0 6px;line-height:1.5;opacity:.95}
+  .overview-affix-dungeon-tip{font-size:12px;color:var(--gold);line-height:1.45;padding:8px 10px;background:rgba(200,168,75,.08);border-radius:6px;border-left:2px solid var(--gold)}
   .dungeon-grid{max-width:var(--content-max);margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:1fr;gap:20px}
 
   /* ═══════════════════════════════════════

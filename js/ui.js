@@ -874,17 +874,32 @@ const WEEKLY_ITEMS = [
   return now >= firstSunday && now < endSunday;
 }
 
-function getWeeklyKey() {
-  // Reset op woensdag 09:00 EU time
+/** Start of current WoW EU weekly period (Wednesday 07:00 UTC). */
+function getCurrentWowWeeklyPeriodStartUtc() {
   const now = new Date();
-  const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-  const eu = new Date(utc.getTime() + 3600000); // CET (UTC+1, geen zomertijd correctie voor eenvoud)
-  const day = eu.getDay(); // 0=zo, 3=wo
-  const diff = (day >= 3) ? day - 3 : day + 4;
-  const monday = new Date(eu);
-  monday.setDate(eu.getDate() - diff);
-  monday.setHours(9, 0, 0, 0);
-  return 'weekly_check_' + monday.toISOString().slice(0, 10);
+  const y = now.getUTCFullYear();
+  const mo = now.getUTCMonth();
+  const day = now.getUTCDate();
+  let periodStart = new Date(Date.UTC(y, mo, day, 7, 0, 0, 0));
+  const dow = now.getUTCDay();
+  const daysSinceWed = (dow - 3 + 7) % 7;
+  periodStart.setUTCDate(periodStart.getUTCDate() - daysSinceWed);
+  if (now.getTime() < periodStart.getTime()) {
+    periodStart.setUTCDate(periodStart.getUTCDate() - 7);
+  }
+  return periodStart;
+}
+
+function getNextWowWeeklyResetUtc() {
+  const start = getCurrentWowWeeklyPeriodStartUtc();
+  const next = new Date(start.getTime());
+  next.setUTCDate(next.getUTCDate() + 7);
+  return next;
+}
+
+function getWeeklyKey() {
+  const t = getCurrentWowWeeklyPeriodStartUtc();
+  return 'weekly_check_' + t.toISOString().slice(0, 10);
 }
 
 let weeklyCountdownInterval;
@@ -897,17 +912,8 @@ function startWeeklyCountdown() {
 
   function update() {
     const now = new Date();
-    const d = new Date(now);
-    let daysUntilWed = (3 - d.getDay() + 7) % 7;
-    
-    d.setDate(d.getDate() + daysUntilWed);
-    d.setHours(5, 0, 0, 0);
-
-    if (now.getTime() >= d.getTime()) {
-      d.setDate(d.getDate() + 7);
-    }
-
-    const diff = d.getTime() - now.getTime();
+    const target = getNextWowWeeklyResetUtc();
+    const diff = target.getTime() - now.getTime();
     if (diff <= 0) {
       resetEl.textContent = "0 dagen, 0 uur, 0 min, 0 sec";
       return;
@@ -1008,8 +1014,9 @@ function doSearch(q) {
   const grpLbl = groupLabels[lang] || groupLabels.nl;
 
   // ── Dungeons ──
-  if (typeof DUNGEONS !== 'undefined') {
-    DUNGEONS.forEach(d => {
+  const dungeonList = typeof getAllDungeons === 'function' ? getAllDungeons() : (typeof DUNGEONS !== 'undefined' ? DUNGEONS : []);
+  if (dungeonList.length) {
+    dungeonList.forEach(d => {
       const name = (typeof d.name === 'object') ? (d.name[lang] || d.name.nl || '') : (d.name || '');
       const zone = (typeof d.zone === 'object') ? (d.zone[lang] || d.zone.nl || '') : (d.zone || '');
       const bosses = (d.bosses_short || []).join(' ').toLowerCase();
@@ -1148,7 +1155,7 @@ function weeklyUpdateProgress(state) {
 const WEEKLY_UI = {
   nl: {
     title: '📅 Weekly Checklist',
-    reset_info: 'Reset elke woensdag · Volgende reset:',
+    reset_info: 'WoW EU: woensdag 07:00 UTC · Volgende reset:',
     reset_btn: '↺ Alles resetten',
     copy_tip: 'Klik om te kopiëren',
     copied: '✅ Gekopieerd!',
@@ -1162,7 +1169,7 @@ const WEEKLY_UI = {
   },
   en: {
     title: '📅 Weekly Checklist',
-    reset_info: 'Resets every Wednesday · Next reset:',
+    reset_info: 'WoW EU: Wednesday 07:00 UTC · Next reset:',
     reset_btn: '↺ Reset all',
     copy_tip: 'Click to copy',
     copied: '✅ Copied!',

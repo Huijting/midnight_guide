@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const MAGISTERS_TERRACE =   id:"magisters", name:"Magisters' Terrace", zone:"Isle of Quel'Danas", type:"mplus",
+const MAGISTERS_TERRACE = {
+  id:"magisters", name:"Magisters' Terrace", zone:"Isle of Quel'Danas", type:"mplus",
   bosses_short:["Arcanotron Custos","Seranel Sunlash","Gemellus","Degentrius"],
   level:{nl:"Ontgrendel lvl 90",en:"Unlock level 90"},
   lore:{
@@ -61,4 +62,4 @@ const MAGISTERS_TERRACE =   id:"magisters", name:"Magisters' Terrace", zone:"Isl
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   }
-},
+};

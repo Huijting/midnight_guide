@@ -256,6 +256,7 @@ const UI = {
     lbl_type:     "TYPE",
     lbl_unlock:   "ONTGRENDEL",
     lbl_bosses:   "AANTAL BAZEN",
+    overview_affix_title: "Actuele affixes (deze week)",
     type_mplus:   "⚔ Mythic+ Seizoen 1",
     type_normal:  "📖 Alleen Normal",
     lust_moment:  "Moment",
@@ -323,6 +324,7 @@ const UI = {
     lbl_type:     "TYPE",
     lbl_unlock:   "UNLOCK",
     lbl_bosses:   "BOSSES",
+    overview_affix_title: "Current affixes (this week)",
     type_mplus:   "⚔ Mythic+ Season 1",
     type_normal:  "📖 Normal Only",
     lust_moment:  "Moment",
@@ -583,6 +585,15 @@ function switchRole(uid, role) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// DUNGEON LIST (bundle + raids pushed at load)
+// ═══════════════════════════════════════════════════════════════
+function getAllDungeons() {
+  if (typeof allDungeons !== 'undefined') return allDungeons;
+  if (typeof DUNGEONS !== 'undefined') return DUNGEONS;
+  return [];
+}
+
+// ═══════════════════════════════════════════════════════════════
 // RENDER HOME
 // ═══════════════════════════════════════════════════════════════
 function renderHome() {
@@ -592,7 +603,7 @@ function renderHome() {
   mplusGrid.innerHTML = '';
   normalGrid.innerHTML = '';
 
-  DUNGEONS.forEach(d => {
+  getAllDungeons().forEach(d => {
     const isMplus = d.type === 'mplus';
     const isRaid  = d.type === 'raid';
     const card = document.createElement('div');
@@ -622,7 +633,7 @@ function renderHome() {
 // OPEN DUNGEON
 // ═══════════════════════════════════════════════════════════════
 function openDungeon(id) {
-  const d = DUNGEONS.find(x => x.id === id);
+  const d = getAllDungeons().find(x => x.id === id);
   if (!d) return;
   currentDungeon = d;
   renderDetail(d);
@@ -671,6 +682,38 @@ const FLOOR_MAP_LEGEND = `<div class="fp-legend">
 
 // [Data moved to external file]
 
+function buildOverviewAffixesSection(d) {
+  if (d.type !== 'mplus' || typeof AFFIX_UI === 'undefined') return '';
+  const aff = AFFIX_UI[lang] || AFFIX_UI.nl;
+  const rows = aff.week1_affixes || [];
+  const dungeonTips = (typeof AFFIX_WEEK1_DUNGEON_TIPS !== 'undefined' && AFFIX_WEEK1_DUNGEON_TIPS[d.id])
+    ? AFFIX_WEEK1_DUNGEON_TIPS[d.id]
+    : null;
+  const tipArr = dungeonTips ? (dungeonTips[lang] || dungeonTips.nl) : null;
+  const bl = aff.badge_labels || {};
+  const u = UI[lang];
+  const body = rows.map((a, i) => {
+    const extra = tipArr && tipArr[i] ? `<div class="overview-affix-dungeon-tip">${tipArr[i]}</div>` : '';
+    const badgeHtml = a.badge && bl[a.badge] ? `<span class="overview-affix-badge">${bl[a.badge]}</span>` : '';
+    return `<div class="overview-affix-row" style="border-left:3px solid ${a.color || 'var(--border)'}">
+      <div class="overview-affix-head">
+        <span class="overview-affix-icon" aria-hidden="true">${a.icon}</span>
+        <div class="overview-affix-meta">
+          <div class="overview-affix-level-name"><span class="overview-affix-level">${a.level}</span> <span class="overview-affix-name">${a.name}</span></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <p class="overview-affix-what">${a.what}</p>
+      ${extra}
+    </div>`;
+  }).join('');
+  return `<section class="overview-affix-block" aria-label="${u.overview_affix_title}">
+    <h3 class="overview-affix-title">${u.overview_affix_title}</h3>
+    <p class="overview-affix-sub">${aff.week1_sub || ''}</p>
+    ${body}
+  </section>`;
+}
+
 function renderDetail(d) {
   const u = UI[lang];
   const tldrEl = document.getElementById('d-tldr');
@@ -684,6 +727,7 @@ function renderDetail(d) {
   document.getElementById('d-lore').textContent    = t(d.lore);
 
   // Overview
+  const affixOverview = buildOverviewAffixesSection(d);
   document.getElementById('overview-content').innerHTML = `
     <div class="overview-grid">
       <div class="info-card"><div class="info-card-title">${u.lbl_zone}</div><div class="info-card-val">${t(d.zone)||d.zone}</div></div>
@@ -691,7 +735,8 @@ function renderDetail(d) {
       <div class="info-card"><div class="info-card-title">${u.lbl_unlock}</div><div class="info-card-val">${t(d.level)}</div></div>
       <div class="info-card"><div class="info-card-title">${u.lbl_bosses}</div><div class="info-card-val">${d.bosses_short.join(' · ')}</div></div>
     </div>
-    ${d.tips.map(tip => `<div class="tip-box"><strong>${t(tip.title)}:</strong> ${t(tip.text)}</div>`).join('')}`;
+    ${affixOverview}
+    ${(d.tips || []).map(tip => `<div class="tip-box"><strong>${t(tip.title)}:</strong> ${t(tip.text)}</div>`).join('')}`;
 
   // Determine auto-selected role tab based on chosen spec
   const autoRole = (() => {
@@ -949,7 +994,7 @@ function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
 
 
 function openRaid(id) {
-  const d = DUNGEONS.find(x => x.id === id);
+  const d = getAllDungeons().find(x => x.id === id);
   if (!d) return;
   currentDungeon = d;
   renderDetail(d);
@@ -968,18 +1013,20 @@ function buildRaidScreen(){
       icon: '🌀',
       name: 'The Dreamrift',
       zone: { nl:'Harandar — Rift of Aln', en:'Harandar — Rift of Aln'},
-      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026'},
+      opens: { nl:'Seizoen 1 — live', en:'Season 1 — live'},
       bosses: ['Chimaerus, the Undreamt God'],
       available: true,
+      openNow: true,
     },
     {
       id: 'voidspire',
       icon: '🔮',
       name: 'The Voidspire',
       zone: { nl:'Voidstorm', en:'Voidstorm'},
-      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026'},
+      opens: { nl:'Seizoen 1 — live', en:'Season 1 — live'},
       bosses: ['Imperator Averzian','Vorasius','Fallen-King Salhadaar','Vaelgor & Ezzorak','Lightblinded Vanguard','Crown of the Cosmos'],
       available: true,
+      openNow: true,
     },
     {
       id: 'marchqueldanas',
@@ -996,9 +1043,12 @@ function buildRaidScreen(){
       <div class="dungeon-card raid ${r.available ? '' : 'raid-coming-soon'}" ${r.available ? `onclick="openRaid('${r.id}')"` : ''} style="${r.available ? '' : 'opacity:0.6; cursor:default;'}">
         <div class="card-accent" style="background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div>
         <div class="card-body">
+          <div class="raid-card-badges">
           <span class="card-badge badge-raid" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.3)">
             ${r.available ? (lang==='nl'?'BESCHIKBAAR':'AVAILABLE') : (lang==='nl'?'BINNENKORT':'SOON')}
           </span>
+          ${r.openNow ? `<span class="card-badge badge-open-now">${lang==='nl'?'NU OPEN':'OPEN NOW'}</span>` : ''}
+          </div>
           <div class="card-name" style="display:flex; align-items:center; gap:8px; margin-top: 4px;">
             <span>${r.icon}</span> ${r.name}
           </div>

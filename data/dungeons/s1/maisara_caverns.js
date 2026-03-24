@@ -1,5 +1,6 @@
 // WoW Midnight — Season 1 dungeon data
-const MAISARA_CAVERNS =   id:"maisara", name:"Maisara Caverns", zone:"Zul'Aman", type:"mplus",
+const MAISARA_CAVERNS = {
+  id:"maisara", name:"Maisara Caverns", zone:"Zul'Aman", type:"mplus",
   bosses_short:["Muro'jin & Nekraxx","Vordaza","Rak'tul"],
   level:{nl:"Ontgrendel lvl 85",en:"Unlock level 85"},
   lore:{
@@ -60,4 +61,4 @@ const MAISARA_CAVERNS =   id:"maisara", name:"Maisara Caverns", zone:"Zul'Aman",
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/retail/maisara-caverns/new"
   }
-},
+};
