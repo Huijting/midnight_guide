@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050508">
+<meta name="theme-color" content="#050508" id="meta-theme-color">
 <title>WoW: Midnight Guide — Season 1</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=6">
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
   <script src="https://wow.zamimg.com/widgets/power.js"></script>
 </head>
@@ -42,10 +42,11 @@
     </div>
     <div class="header-actions">
       <button id="back-btn" onclick="goHome()">←</button>
-      <button id="spec-btn" onclick="openSpecModal()">⚙ <span class="spec-btn-text">Kies spec</span></button>
-      <button class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
-      <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
-      <button class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
+      <button type="button" id="spec-btn" onclick="openSpecModal()">⚙ <span class="spec-btn-text">Kies spec</span></button>
+      <button type="button" id="theme-toggle" class="theme-btn" onclick="toggleTheme()" title="Dark / Light" aria-label="Dark / Light theme">☀️</button>
+      <button type="button" class="lang-btn active" onclick="setLang('nl')">🇳🇱</button>
+      <button type="button" class="lang-btn" onclick="setLang('en')">🇬🇧</button>
+      <button type="button" class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
   </div>
   <div class="header-tabs-wrap" id="header-tabs-wrap">
@@ -204,7 +205,7 @@
   <div class="detail-hero">
     <div class="detail-hero-inner">
       <div class="tldr-block" id="detail-tldr">
-        <div class="tldr-label">TL;DR</div>
+        <div class="tldr-label" id="detail-tldr-label">🎯 Sneloverzicht</div>
         <div class="tldr-content" id="d-tldr"></div>
       </div>
       <div class="detail-eyebrow" id="d-eyebrow"></div>
@@ -346,10 +347,10 @@
 <script src="data/professions/cooking.js" defer></script>
 <script src="data/professions/fishing.js" defer></script>
 <script src="js/constants.js" defer></script>
-<script src="js/ui.js?v=1.4.1" defer></script>
+<script src="js/ui.js?v=1.5.2" defer></script>
 
 <!-- ══ APP ══ -->
-<script src="js/app.js?v=1.4.1" defer></script>
+<script src="js/app.js?v=1.5.2" defer></script>
 
 <footer id="site-footer">
   <div class="footer-inner">

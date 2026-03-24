@@ -40,7 +40,42 @@
   --danger-red: rgba(200, 50, 50, 0.42);
   --danger-red-border: rgba(255, 100, 100, 0.55);
 }
-  /* Light theme removed — strict dark mode only */
+
+  /* Light theme — toggled via body.light + localStorage theme */
+  body.light {
+    --weekly-check-tick: #111;
+    --bg: #eef0f4;
+    --deep: #e2e5ec;
+    --panel: #ffffff;
+    --border: #c5cad6;
+    --gold: #7a6218;
+    --gold2: #9a7f22;
+    --accent: #5a4a78;
+    --mplus: #a67c1a;
+    --normal: #5c6b82;
+    --tank: #2d6fb8;
+    --heal: #2a9d5c;
+    --dps: #c42d4a;
+    --text: #12141a;
+    --muted: #5c6370;
+    --silver: #4a5060;
+    --head-bg: rgba(255, 255, 255, 0.94);
+    --tab-bg: rgba(248, 249, 252, 0.98);
+    --boss-hdr: #f0f2f6;
+    --boss-desc-bg: rgba(0, 0, 0, 0.05);
+    --boss-desc-col: #4b5568;
+    --tank-bg: rgba(74, 144, 217, 0.12);
+    --heal-bg: rgba(61, 184, 106, 0.12);
+    --dps-bg: rgba(224, 64, 96, 0.1);
+    --tip-bg: rgba(180, 145, 40, 0.14);
+    --info-bg: var(--panel);
+    --route-bg: var(--deep);
+    --void-glow: 0 0 10px rgba(90, 74, 120, 0.15);
+  }
+  body.light {
+    background-image: none;
+  }
+
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
 
@@ -53,8 +88,11 @@
   }
 
   /* ── HEADER (Sticky, Clean) ── */
-  #site-header{position:sticky;top:0;z-index:100;background:var(--head-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.4)}
-  .header-inner{max-width:var(--content-max);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  #site-header{position:sticky;top:0;z-index:100;background:var(--head-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.4);display:flex;flex-direction:column;align-items:stretch}
+  .header-inner{max-width:var(--content-max);margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
+  @media (min-width: 769px) {
+    .header-inner{flex-wrap:nowrap}
+  }
   .header-logo{font-size:18px;font-weight:800;color:var(--gold);text-decoration:none;white-space:nowrap;letter-spacing:.02em;flex-shrink:0}
   .header-logo:hover{color:var(--gold2)}
   .header-search-wrap{flex:1;min-width:160px;max-width:min(420px,100%);display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 14px;cursor:pointer;transition:border-color .2s}
@@ -62,7 +100,7 @@
   .header-search-icon{font-size:16px;opacity:.7}
   .header-search-placeholder{font-size:14px;color:var(--muted);flex:1}
   .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
-  .header-tabs-wrap{padding:0 20px 10px;border-top:1px solid var(--border);margin-top:-1px;max-width:var(--content-max);margin-left:auto;margin-right:auto}
+  .header-tabs-wrap{padding:0 20px 10px;border-top:1px solid var(--border);margin-top:-1px;max-width:var(--content-max);margin-left:auto;margin-right:auto;display:flex;align-items:center;min-height:48px}
   #back-btn{display:none;background:none;border:1px solid var(--border);color:var(--gold);font-size:13px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0}
   #back-btn:hover{background:var(--gold);color:var(--bg)}
   @media(max-width:768px){
@@ -247,10 +285,10 @@
   .detail-title{font-family:'Inter', sans-serif;font-size:clamp(20px,5vw,36px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:7px}
   .detail-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:10px}
   .detail-lore{font-style:italic;color:rgba(255,255,255,0.72);max-width:680px;font-size:15px;line-height:1.65;border-left:2px solid var(--gold);padding-left:14px}
-  /* TL;DR block */
-  .tldr-block{display:none;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:14px 18px;margin-bottom:20px}
-  .tldr-label{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
-  .tldr-content{font-size:14px;color:var(--text);line-height:1.6}
+  /* Quick summary (was TL;DR) */
+  .tldr-block{display:none;background:transparent;border:none;border-left:4px solid var(--gold);border-radius:0;padding:6px 10px 6px 12px;margin-bottom:16px}
+  .tldr-label{font-size:0.9rem;font-weight:700;letter-spacing:.04em;color:var(--gold);text-transform:none;margin-bottom:4px}
+  .tldr-content{font-size:0.9rem;color:var(--text);line-height:1.55}
   /* WoW icon component */
   .wow-icon{width:36px;height:36px;border-radius:4px;vertical-align:middle;object-fit:contain}
   .wow-icon-link{display:inline-flex;align-items:center;gap:4px;text-decoration:none;transition:opacity .2s}
@@ -1331,10 +1369,12 @@
   #prey-screen{display:none;padding:20px;max-width:900px;margin:0 auto}
   .prey-section{margin-bottom:28px}
   .prey-section-title{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-  .prey-card{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px}
+  .prey-card{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+  body.light .prey-card{background:rgba(0,0,0,.04)}
   .prey-card p{margin:0 0 10px;font-size:14px;color:var(--text);line-height:1.6}
   .prey-card p:last-child{margin-bottom:0}
-  .prey-way{margin-top:8px;display:inline-block}
+  .prey-way{margin:10px 8px 6px 0;display:inline-block;max-width:100%;box-sizing:border-box}
+  .prey-card .kp-way-code,.prey-card .prey-way{margin:10px 4px 8px 0}
   .prey-step-label{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
   .prey-loop-list{margin:0;padding-left:20px;font-size:14px;color:var(--text);line-height:1.7}
   .prey-loop-list li{margin-bottom:8px}
@@ -1359,18 +1399,61 @@
   .prey-targets-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
   .prey-target-link{font-weight:700;color:var(--gold);cursor:pointer}
   .prey-target-link:hover{color:var(--gold2);text-decoration:underline}
-  .prey-weekly-box{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+  .prey-weekly-box{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 28px}
+  @media (min-width:520px){.prey-weekly-box{flex-wrap:nowrap;gap:0 32px}}
+  body.light .prey-weekly-box{background:rgba(0,0,0,.04)}
   .prey-check-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text);cursor:pointer}
   .prey-check-item input{accent-color:var(--gold);cursor:pointer}
-  .prey-reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;margin-left:auto}
+  .prey-reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;margin-left:auto;flex-shrink:0}
   .prey-reset-btn:hover{border-color:var(--gold);color:var(--gold)}
-  .prey-target-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-  .prey-target-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+  .prey-spotlight{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(201,162,39,.1));border:1px solid rgba(167,139,250,.45);border-radius:14px;padding:16px 18px;margin-bottom:20px}
+  .prey-spotlight-badge{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+  .prey-spotlight-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+  .prey-spotlight-name{font-size:20px;font-weight:800;color:var(--gold);line-height:1.2}
+  .prey-spotlight-loc{font-size:13px;color:var(--muted);margin-top:4px}
+  .prey-spotlight-meter-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;width:100%}
+  .prey-spotlight-meter-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .prey-spotlight-threat{font-size:12px;font-weight:800;color:var(--text)}
+  .prey-spotlight-btn{background:var(--gold);color:#000;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:800;cursor:pointer;flex-shrink:0}
+  .prey-spotlight-btn:hover{filter:brightness(1.08)}
+  .prey-targets-progress-section .prey-targets-progress-sub{font-size:13px;color:var(--muted);margin:-6px 0 10px;line-height:1.5}
+  .prey-ilvl-note{color:var(--gold2);font-weight:600}
+  .prey-ilvl-pill{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:6px;background:rgba(201,162,39,.15);font-size:11px;font-weight:800;color:var(--gold)}
+  .prey-danger-track{height:8px;background:var(--deep);border-radius:999px;overflow:hidden;border:1px solid var(--border);flex:1;min-width:80px;max-width:220px}
+  .prey-danger-track-lg{max-width:none;height:10px}
+  .prey-spotlight-meter-wrap .prey-danger-track-lg{max-width:280px;flex:1 1 auto;min-width:100px}
+  .prey-danger-track-global{max-width:none;height:12px;margin-top:4px}
+  .prey-danger-fill{height:100%;min-width:0;border-radius:999px;transition:width .35s ease;background:linear-gradient(90deg,#22c55e,#eab308,#f97316,#ef4444)}
+  .prey-danger-fill-1,.prey-danger-fill-2{opacity:.85}
+  .prey-danger-fill-global{background:linear-gradient(90deg,rgba(201,162,39,.5),var(--gold));box-shadow:0 0 12px rgba(201,162,39,.25)}
+  .prey-target-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .prey-target-card-wrap{display:flex;flex-direction:column;gap:6px}
+  .prey-target-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:border-color .2s,box-shadow .2s;flex:1}
   .prey-target-card:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(201,162,39,.15)}
+  .prey-target-done{opacity:.88;border-color:rgba(74,222,128,.35)}
   .prey-target-card-name{font-weight:800;font-size:15px;color:var(--gold);margin-bottom:4px}
-  .prey-target-card-zone{font-size:12px;color:var(--muted)}
+  .prey-target-card-zone{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .prey-target-card-meter{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:10px;margin-top:8px;width:100%}
+  .prey-card-meter-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;flex-shrink:0}
+  .prey-target-card-meter .prey-danger-track{flex:1 1 auto;max-width:200px;min-width:72px}
+  .prey-card-threat{font-size:11px;font-weight:800;color:var(--text)}
+  .prey-killed-label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);cursor:pointer;padding:0 2px}
+  .prey-killed-label input{accent-color:var(--gold);cursor:pointer}
   .prey-targets-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
   .prey-detail-zone{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .prey-detail-danger-block{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+  .prey-detail-danger-lbl{display:block;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  .prey-detail-threat{display:block;font-size:12px;color:var(--text);margin-top:8px}
+  .prey-detail-danger-block .prey-danger-track{max-width:none}
+  .prey-role-tip-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:8px}
+  @media(min-width:520px){.prey-role-tip-grid{grid-template-columns:repeat(3,1fr)}}
+  .prey-role-tip{border:1px solid var(--border);border-radius:10px;padding:12px;font-size:13px;line-height:1.5;background:var(--deep)}
+  .prey-role-tip strong{display:block;margin-bottom:6px;font-size:12px}
+  .prey-role-tip p{margin:0;color:var(--text)}
+  .prey-role-tank{border-left:3px solid #5ba3e8}
+  .prey-role-heal{border-left:3px solid #9b7fd9}
+  .prey-role-dps{border-left:3px solid #e8556a}
+  .prey-loot-footnote{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.45}
   .prey-detail-subtitle{font-size:14px;font-weight:800;color:var(--accent);margin:16px 0 8px}
   .prey-detail-subtitle:first-of-type{margin-top:0}
   .prey-detail-loot-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
@@ -1384,6 +1467,7 @@
   #prey-detail-close{background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1}
   #prey-detail-close:hover{color:var(--text)}
   #prey-detail-content{padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  #prey-detail-content .kp-way-code,#prey-detail-content .prey-way{margin:12px 8px 8px 0;display:inline-block;max-width:calc(100% - 16px)}
 
   .specs-screen{display:none}
 

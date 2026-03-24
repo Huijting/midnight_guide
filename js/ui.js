@@ -802,8 +802,8 @@ const WEEKLY_ITEMS = [
   { id:'w_prey', diff:'medium', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
     name:{nl:'Nightmare Prey (2x)',en:'Nightmare Prey (2x)'},
-    desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-level gear. Track je prooi in de zone en overleef hinderlagen. Telt mee voor Great Vault World.',
-          en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes. Contributes to Great Vault World.'},
+    desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-track gear (~210+ iLvl, Midnight S1). Track je prooi in de zone en overleef hinderlagen. Telt mee voor Great Vault World.',
+          en:'Complete 2 Nightmare Prey hunts for Champion-track gear (~210+ iLvl, Midnight S1). Track your prey through the zone and survive ambushes. Contributes to Great Vault World.'},
     where:'📍 Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear'] },
 
@@ -958,8 +958,8 @@ const WEEKLY_ITEMS = [
   { id:'w_prey_hard', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
     name:{nl:'Hard Prey Hunts (2x) — Veteran gear',en:'Hard Prey Hunts (2x) — Veteran gear'},
-    desc:{nl:'Eerste 2 Hard Prey hunts geven een Veteran gear box (iLvl 240+). Telt mee voor Great Vault World. Tip: focus op vallen + ambushes, onder de 5 min per hunt.',
-          en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Contributes to Great Vault World. Tip: focus on traps + ambushes, under 5 min/hunt.'},
+    desc:{nl:'Eerste 2 Hard Prey hunts geven Veteran/Hero-track beloningen (~195–226+ iLvl, Midnight S1). Telt mee voor Great Vault World. Tip: vallen + ambushes, onder de 5 min per hunt.',
+          en:'First 2 Hard Prey hunts give Veteran/Hero-track rewards (~195–226+ iLvl, Midnight S1). Contributes to Great Vault World. Tip: traps + ambushes, under 5 min/hunt.'},
     where:'Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear','currency'] }];function isDmfWeek() {
   const now = new Date();
@@ -1242,6 +1242,7 @@ function searchKeyNav(e) {
 
 function copyWay(el) {
   const way = el.dataset.way;
+  if (way == null || way === '') return;
   const wui = WEEKLY_UI[lang] || WEEKLY_UI.nl;
   const origHTML = el.innerHTML;
   navigator.clipboard.writeText(way).then(() => {
@@ -1254,8 +1255,13 @@ function copyWay(el) {
 }
 
 function weeklyUpdateProgress(state) {
-  const total = WEEKLY_ITEMS.length;
-  const done = WEEKLY_ITEMS.filter(i => state[i.id]).length;
+  let total = WEEKLY_ITEMS.length;
+  let done = WEEKLY_ITEMS.filter(i => state[i.id]).length;
+  if (typeof getPreyWeeklyBarSlot === 'function') {
+    const s = getPreyWeeklyBarSlot();
+    total += s.total;
+    done += s.done;
+  }
   const pct = total ? Math.round(done / total * 100) : 0;
   const fill = document.getElementById('weekly-progress-fill');
   const label = document.getElementById('weekly-progress-label');
@@ -1279,6 +1285,8 @@ const WEEKLY_UI = {
     wat_nu_empty: '🎉 Je weekly taken zijn allemaal afgevinkt! Ga lekker spelen 😄',
     bountiful_sync_note: '📦 Bountiful Delves: markeer je 4 dagelijkse sleutels en vault-vakjes op de 💎 Delves-tab — account-breed voor tank, healer én DPS.',
     diff: {easy:'🟢 Makkelijk', medium:'🟡 Gemiddeld', hard:'🔴 Uitdagend'},
+    prey_synthetic_cat: '🎯 Prey',
+    prey_synthetic_desc: 'Telt live mee via localStorage (midnight_prey_progress). Vink doelwitten af op de Prey-tab. Groen vinkje bij 12/12.',
   },
   en: {
     title: '📅 Weekly Checklist',
@@ -1294,6 +1302,8 @@ const WEEKLY_UI = {
     wat_nu_empty: '🎉 All weekly tasks checked off! Go have fun 😄',
     bountiful_sync_note: '📦 Bountiful Delves: track your 4 daily keys and vault slots on the 💎 Delves tab — account-wide for tank, healer and DPS.',
     diff: {easy:'🟢 Easy', medium:'🟡 Medium', hard:'🔴 Challenging'},
+    prey_synthetic_cat: '🎯 Prey',
+    prey_synthetic_desc: 'Live count from localStorage (midnight_prey_progress). Check off targets on the Prey tab. Green check at 12/12.',
   }
 };
 function buildWeeklyList() {
@@ -1314,6 +1324,37 @@ function buildWeeklyList() {
 
   const wui0 = WEEKLY_UI[lang] || WEEKLY_UI.nl;
   let html = (wui0.bountiful_sync_note ? `<div class="weekly-bountiful-sync-note">${wui0.bountiful_sync_note}</div>` : '');
+
+  if (typeof getPreyWeeklyKillProgress === 'function') {
+    const pk = getPreyWeeklyKillProgress();
+    const preyAllDone = pk.total > 0 && pk.done >= pk.total;
+    const preyName = lang === 'en'
+      ? `🎯 Prey Targets Killed: ${pk.done}/${pk.total}`
+      : `🎯 Prey doelwitten gedood: ${pk.done}/${pk.total}`;
+    const catKeyPrey = 'prey_synthetic';
+    const isOpenPrey = openCats[catKeyPrey] === true;
+    html += `<div class="weekly-category weekly-category-prey-synthetic">
+      <div class="weekly-cat-header ${isOpenPrey ? 'open' : ''} ${preyAllDone ? 'all-done' : ''}" onclick="weeklyCatToggle(this,'${catKeyPrey}')">
+        <div class="weekly-cat-left">
+          <span class="weekly-cat-done-icon">✅</span>
+          <span class="weekly-cat-title">${wui0.prey_synthetic_cat}</span>
+          <span class="weekly-cat-badge">${preyAllDone ? 1 : 0}/1</span>
+        </div>
+        <span class="weekly-cat-chevron">▾</span>
+      </div>
+      <div class="weekly-cat-items ${isOpenPrey ? 'open' : ''}">
+        <div class="weekly-item weekly-item-synthetic weekly-item-prey-track ${preyAllDone ? 'done' : ''}" onclick="setMode('prey'); window.scrollTo(0,0);">
+          <div class="weekly-check">${preyAllDone ? '✓' : ''}</div>
+          <div class="weekly-item-body">
+            <div class="weekly-item-name">${preyName}</div>
+            <div class="weekly-item-desc">${wui0.prey_synthetic_desc}</div>
+            <div class="weekly-item-tags"><span class="weekly-tag gear">🎯 Prey</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
   Object.entries(cats).forEach(([cat, items]) => {
     const catDone = items.filter(i => stateSynced[i.id]).length;
     const allDone = catDone === items.length;
@@ -1533,13 +1574,13 @@ function buildSpecGrid() {
   document.getElementById('spec-grid').innerHTML = `<div class="spec-class-grid">${html}</div>`;
   document.getElementById('spec-grid-view').style.display = '';
   document.getElementById('spec-detail-view').classList.remove('visible');
+  if (typeof updateSpecHeaderBtnVisibility === 'function') updateSpecHeaderBtnVisibility();
 }
 
 function showSpec(id) {
   const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
   const s = specs.find(x => x.id === id);
   if (!s) return;
-  currentSpec = s;
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   const L = l => (typeof l === 'object') ? (l[lang] || l.nl) : l;
 
@@ -1572,6 +1613,7 @@ function showSpec(id) {
   setTimeout(refreshWowheadTooltips, 50);
   document.getElementById('spec-detail-view').classList.add('visible');
   window.scrollTo(0,0);
+  if (typeof updateSpecHeaderBtnVisibility === 'function') updateSpecHeaderBtnVisibility();
 }
 
 function switchSpecTab(id) {
@@ -1883,15 +1925,15 @@ function renderSpecTab(s, tid, ui) {
 
 const BANNER_UI = {
   nl: {
-    title: '🚀 Seizoen 1: LIVE!',
-    body: 'De ultieme gids voor Midnight is hier. Kies je rol (🛡️, 💊, ⚔️) voor tactieken op maat, gebruik de nieuwe Tank-GPS en check de Daily Bountiful Delves.',
+    title: '🚀 Seizoen 1: LIVE! Check de nieuwe Pro-Guides en Prey Tracker.',
+    body: '',
     tip_desktop: '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     tip_mobile:  '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     btn: '→ Naar de site',
   },
   en: {
-    title: '🚀 Season 1: LIVE!',
-    body: 'The ultimate Midnight guide is here. Choose your role (🛡️, 💊, ⚔️) for custom boss strategies, use the new Tank GPS, and track Daily Bountiful Delves.',
+    title: '🚀 Season 1: LIVE! Check the new Pro-Guides and Prey Tracker.',
+    body: '',
     tip_desktop: '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     tip_mobile:  '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     btn: '→ Go to the site',
@@ -1899,7 +1941,7 @@ const BANNER_UI = {
 };
 
 /** Moet gelijk zijn aan de check in app.js (DOMContentLoaded) — nieuwe banner = nieuwe key. */
-window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v1_4_0';
+window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v1_5_0';
 
 function renderBanner() {
   const b = BANNER_UI[lang] || BANNER_UI.nl;
@@ -1920,7 +1962,7 @@ function setBannerLang(l) {
 
 function closeBanner() {
   document.getElementById('dev-banner').classList.remove('open');
-  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_4_0', '1');
+  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_5_0', '1');
 }
 
 function copyMacro(el) {
@@ -1931,5 +1973,5 @@ function copyMacro(el) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.4').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.5.2').catch(() => {});
 }

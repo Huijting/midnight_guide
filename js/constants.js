@@ -3,6 +3,9 @@ const KG_STRINGS = {
   nl: { title:'🗺 Route op Keystone.guru', hint:'Tik buiten het venster of druk op Sluiten', close:'✕ Sluiten', btn_label:'Bekijk M+ route op Keystone.guru', btn_sub:'Opent Keystone.guru in een nieuw tabblad' },
   en: { title:'🗺 Route on Keystone.guru', hint:'Tap outside or press Close', close:'✕ Close', btn_label:'View M+ route on Keystone.guru', btn_sub:'Opens Keystone.guru in a new tab' }};
 
+/** Midnight Season 1 item-level anchors (world → mythic). Source of truth for Prey copy, tooltips, Delves tables, and cons BiS mythic-cap rows (ilvl = mythic). */
+const ILVL_MIDNIGHT = { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
+
 // ── Alle professions samenvoegen ──
 const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHING,ENCHANTING,ENGINEERING,INSCRIPTION,JEWELCRAFTING,TAILORING,COOKING,FISHING];
 

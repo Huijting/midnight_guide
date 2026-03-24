@@ -1,5 +1,5 @@
 // ── VERSIE ──
-const VERSION = "v1.4.1";
+const VERSION = "v1.5.0";
 const VERSION_DATE = "2026-03-24";
 
 
@@ -148,17 +148,32 @@ function updateSpecBtn() {
   const btn = document.getElementById('spec-btn');
   if (!btn) return;
   const ui = SPEC_UI[lang];
-  if (currentSpec) {
+  if (currentSpec && currentSpec.classId && currentSpec.specId) {
     const cls = CLASSES.find(c => c.id === currentSpec.classId);
     const sp  = cls?.specs.find(s => s.id === currentSpec.specId);
     if (cls && sp) {
       btn.innerHTML = cls.icon + ' <span class="spec-btn-text">' + sp.name[lang] + '</span>';
       btn.style.color = 'var(--gold)';
-      return;
+    } else {
+      btn.innerHTML = '⚙ <span class="spec-btn-text">' + ui.btn_no_spec + '</span>';
+      btn.style.color = 'var(--muted)';
     }
+  } else {
+    btn.innerHTML = '⚙ <span class="spec-btn-text">' + ui.btn_no_spec + '</span>';
+    btn.style.color = 'var(--muted)';
   }
-  btn.innerHTML = '⚙ <span class="spec-btn-text">' + ui.btn_no_spec + '</span>';
-  btn.style.color = 'var(--muted)';
+  updateSpecHeaderBtnVisibility();
+}
+
+/** Spec header button only on spec guide detail, dungeon detail, or raid boss detail — not home / raid list / prey / etc. */
+function updateSpecHeaderBtnVisibility() {
+  const sb = document.getElementById('spec-btn');
+  if (!sb) return;
+  const specDetailOpen = document.getElementById('spec-detail-view')?.classList.contains('visible');
+  const dungeonDetail = document.body.classList.contains('detail-open');
+  const raidDetail = document.body.classList.contains('raid-detail-open');
+  const show = dungeonDetail || raidDetail || (document.body.classList.contains('mode-specs') && specDetailOpen);
+  sb.style.display = show ? '' : 'none';
 }
 
 function openSpecModal() {
@@ -249,7 +264,7 @@ const UI = {
     glossary_intro:"Klik op een term om de uitleg te zien. Gouden woorden in de dungeon-tips zijn ook klikbaar!",
     glossary_section_general:"📖 Algemene termen",
     glossary_section_tank:"🛡️ Tank Termen",
-    tldr_label: "TL;DR",
+    tldr_label: "🎯 Sneloverzicht",
     tab_overview: "Overzicht",
     tab_bosses:   "Bazen",
     tab_route:    "Routeplanner",
@@ -341,7 +356,7 @@ const UI = {
     glossary_intro:"Click a term to see its explanation. Gold words in dungeon tips are also clickable!",
     glossary_section_general:"📖 General terms",
     glossary_section_tank:"🛡️ Tank terms",
-    tldr_label: "TL;DR",
+    tldr_label: "🎯 Quick Summary",
     tab_overview: "Overview",
     tab_bosses:   "Bosses",
     tab_route:    "Route Planner",
@@ -483,6 +498,7 @@ function setLang(l) {
   applyUIStrings();
   updateFooter();
   updateSpecBtn();
+  syncThemeToggleLabel();
   const sm = document.getElementById('spec-modal');
   if (sm && sm.classList.contains('visible')) renderSpecModal();
   if (currentDungeon) renderDetail(currentDungeon);
@@ -537,7 +553,8 @@ function applyUIStrings() {
   h('tab-lbl-raids', u.tab_raids);
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl = document.getElementById('tab-lbl-glossary');
-  if (_glbl) _glbl.innerHTML = (u.tab_glossary || u.lbl_glossary || '📖 Woordenlijst');
+  if (_glbl) _glbl.innerHTML = u.tab_glossary || u.lbl_glossary || (lang === 'en' ? '📖 Glossary' : '📖 Woordenlijst');
+  t('detail-tldr-label', u.tldr_label);
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
   if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
@@ -594,10 +611,28 @@ function updateLandingStrings() {
   s('lc-title-specs',   L.s_title); s('lc-desc-specs',   L.s_desc); s('lc-count-specs',   L.s_count);
 }
 
+function syncThemeToggleLabel() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+  const u = UI[lang] || UI.nl;
+  const isLight = document.body.classList.contains('light');
+  toggle.textContent = isLight ? u.theme_dark : u.theme_light;
+  toggle.setAttribute('title', isLight ? (lang === 'nl' ? 'Schakel naar donker thema' : 'Switch to dark theme') : (lang === 'nl' ? 'Schakel naar licht thema' : 'Switch to light theme'));
+  const meta = document.getElementById('meta-theme-color');
+  if (meta) meta.setAttribute('content', isLight ? '#eef0f4' : '#050508');
+}
+
+function applySavedTheme() {
+  const t = localStorage.getItem('theme');
+  if (t === 'light') document.body.classList.add('light');
+  else document.body.classList.remove('light');
+  syncThemeToggleLabel();
+}
+
 function toggleTheme() {
   const isLight = document.body.classList.toggle('light');
-  document.getElementById('theme-toggle').textContent = isLight ? UI[lang].theme_dark : UI[lang].theme_light;
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  syncThemeToggleLabel();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -737,6 +772,7 @@ function openDungeon(id) {
   document.getElementById('back-btn').style.display      = 'inline-block';
   switchTab('overview');
   window.scrollTo(0, 0);
+  updateSpecHeaderBtnVisibility();
 }
 
 function goHome() {
@@ -746,6 +782,7 @@ function goHome() {
     currentDungeon = null;
     document.getElementById('back-btn').style.display = 'none';
     window.scrollTo(0, 0);
+    updateSpecHeaderBtnVisibility();
     return;
   }
   // Normale dungeons → terug naar dungeon grid
@@ -755,6 +792,7 @@ function goHome() {
   document.getElementById('detail-screen').style.display = '';
   document.getElementById('back-btn').style.display = 'none';
   window.scrollTo(0, 0);
+  updateSpecHeaderBtnVisibility();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -904,6 +942,8 @@ function renderDetail(d) {
   const tldrContent = d.tldr ? t(d.tldr) : (d.route?.summary ? t(d.route.summary) : (d.tips?.[0] ? t(d.tips[0].text) : ''));
   if (tldrEl) tldrEl.textContent = tldrContent;
   if (tldrBlock) tldrBlock.style.display = tldrContent ? 'block' : 'none';
+  const tldrLbl = document.getElementById('detail-tldr-label');
+  if (tldrLbl) tldrLbl.textContent = u.tldr_label;
   document.getElementById('d-eyebrow').textContent = (t(d.zone)||d.zone||'').toUpperCase() + ' — ' + (d.type === 'mplus' ? u.type_mplus : d.type === 'raid' ? (u.badge_raid||'RAID') : u.type_normal);
   document.getElementById('d-title').textContent   = d.name;
   document.getElementById('d-meta').innerHTML      = `<span>⏱ ${d.time || '—'}</span><span>🔓 ${t(d.level)}</span><span>👹 ${d.bosses_short.length} ${u.lbl_bosses.toLowerCase()}</span>`;
@@ -1209,12 +1249,13 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', function() {
   try {
     document.body.classList.add('mode-home');
-    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_4_0';
+    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_5_0';
     if (typeof renderBanner === 'function') renderBanner();
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');
     }
     applyUIStrings();
+    applySavedTheme();
     updateFooter();
     updateSpecBtn();
     renderHome();
@@ -1253,6 +1294,7 @@ function openRaid(id) {
   switchTab('overview');
   window.scrollTo(0, 0);
   if (typeof refreshWowheadTooltips === 'function') setTimeout(refreshWowheadTooltips, 50);
+  updateSpecHeaderBtnVisibility();
 }
 
 function buildRaidScreen(){
@@ -1952,8 +1994,7 @@ function setMode(mode){
   const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
-  const sb=document.getElementById('spec-btn');
-  if(sb)sb.style.display=(mode==='dungeons' || mode==='raids')?'':'none';
+  updateSpecHeaderBtnVisibility();
   const backBtn = document.getElementById('back-btn');
   if (backBtn) backBtn.style.display = 'none';
   if(mode==='home'){
@@ -2640,26 +2681,75 @@ renderKpSources = function(p) {
 const PREY_UI = {
   nl: {
     title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
-    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — klik voor details', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel',
-    summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid'
+    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — tik voor details; vink af als je dit week gedood hebt', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel',
+    summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid',
+    spotlightTitle:'🎯 Doelwit van de week', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Midnight S1 schaal',
+    lootFootnote: I => `Wereld ~${I.world}+ · schaalt richting ~${I.mythic}+ op zwaarste kills.`,
+    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol'
   },
   en: {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
-    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — click for details', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table',
-    summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty'
+    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — tap for details; check off when killed this week', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table',
+    summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
+    spotlightTitle:'🎯 Target of the Week', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Midnight S1 scale',
+    lootFootnote: I => `World ~${I.world}+ · scales toward ~${I.mythic}+ on hardest clears.`,
+    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Role tactics'
   }
 };
+
+const MIDNIGHT_PREY_STORAGE_KEY = 'midnight_prey_progress';
 
 function getPreyWeeklyKey() {
   return 'prey_weekly_' + (typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default');
 }
 
+/** One-time: move `killed` from legacy prey_weekly_* into midnight_prey_progress. */
+function migratePreyKilledFromLegacyOnce() {
+  if (localStorage.getItem(MIDNIGHT_PREY_STORAGE_KEY)) return;
+  const wk = typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default';
+  try {
+    const raw = localStorage.getItem(getPreyWeeklyKey());
+    if (!raw) return;
+    const old = JSON.parse(raw);
+    if (old.killed && typeof old.killed === 'object' && Object.keys(old.killed).length) {
+      localStorage.setItem(MIDNIGHT_PREY_STORAGE_KEY, JSON.stringify({ week: wk, killed: old.killed }));
+      delete old.killed;
+      localStorage.setItem(getPreyWeeklyKey(), JSON.stringify(old));
+    }
+  } catch (e) {}
+}
+
+function getPreyKilledMapRaw() {
+  migratePreyKilledFromLegacyOnce();
+  const wk = typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default';
+  try {
+    const o = JSON.parse(localStorage.getItem(MIDNIGHT_PREY_STORAGE_KEY) || '{}');
+    if (o.week !== wk) return {};
+    return (o.killed && typeof o.killed === 'object') ? o.killed : {};
+  } catch (e) { return {}; }
+}
+
+function setPreyKilledMap(map) {
+  const wk = typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default';
+  try {
+    localStorage.setItem(MIDNIGHT_PREY_STORAGE_KEY, JSON.stringify({ week: wk, killed: map }));
+  } catch (e) {}
+}
+
 function preyWeeklyLoadState() {
-  try { return JSON.parse(localStorage.getItem(getPreyWeeklyKey()) || '{}'); } catch(e) { return {}; }
+  try {
+    const o = JSON.parse(localStorage.getItem(getPreyWeeklyKey()) || '{}');
+    return { hunt1: !!o.hunt1, hunt2: !!o.hunt2 };
+  } catch (e) { return { hunt1: false, hunt2: false }; }
 }
 
 function preyWeeklySaveState(state) {
-  try { localStorage.setItem(getPreyWeeklyKey(), JSON.stringify(state)); } catch(e) {}
+  try {
+    localStorage.setItem(getPreyWeeklyKey(), JSON.stringify({
+      hunt1: !!state.hunt1,
+      hunt2: !!state.hunt2
+    }));
+  } catch (e) {}
 }
 
 function preyWeeklyToggle(id) {
@@ -2667,11 +2757,48 @@ function preyWeeklyToggle(id) {
   state[id] = !state[id];
   preyWeeklySaveState(state);
   renderPreyGuide();
+  if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
 function preyWeeklyReset() {
-  try { localStorage.removeItem(getPreyWeeklyKey()); } catch(e) {}
+  try { localStorage.removeItem(getPreyWeeklyKey()); } catch (e) {}
+  try { localStorage.removeItem(MIDNIGHT_PREY_STORAGE_KEY); } catch (e) {}
   renderPreyGuide();
+  if (typeof buildWeeklyList === 'function') buildWeeklyList();
+}
+
+function getPreyWeeklyKillProgress() {
+  const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  const total = targets.length;
+  const killed = getPreyKilledMapRaw();
+  const done = targets.filter(t => killed[t.id]).length;
+  return { done, total };
+}
+
+/** Single weekly bar slot: 1/1 only when all prey targets killed (not 12 granular slots). */
+function getPreyWeeklyBarSlot() {
+  const p = getPreyWeeklyKillProgress();
+  if (!p.total) return { total: 0, done: 0 };
+  return { total: 1, done: (p.done >= p.total) ? 1 : 0 };
+}
+
+function getPreySpotlightTarget() {
+  const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  if (!targets.length) return null;
+  const key = typeof getWeeklyKey === 'function' ? getWeeklyKey() : '0';
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = Math.imul(31, h) + key.charCodeAt(i);
+  const idx = Math.abs(h) % targets.length;
+  return targets[idx];
+}
+
+function preyTargetKilledToggle(id, inputEl) {
+  const map = { ...getPreyKilledMapRaw() };
+  if (inputEl && typeof inputEl.checked === 'boolean') map[id] = inputEl.checked;
+  else map[id] = !map[id];
+  setPreyKilledMap(map);
+  renderPreyGuide();
+  if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
 function renderPreyGuide() {
@@ -2698,11 +2825,44 @@ function renderPreyGuide() {
   const way = data.unlock.way;
   const tipCopy = ui.tooltipCopy;
   const tt = data.tooltips;
+  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
 
   let html = '';
 
-  // ——— Weekly Checklist (top) ———
   const preyState = preyWeeklyLoadState();
+  const killedMap = getPreyKilledMapRaw();
+  const pk = getPreyWeeklyKillProgress();
+  const spot = getPreySpotlightTarget();
+
+  if (spot) {
+    const sn = (spot.name && spot.name[l]) || spot.name?.en || spot.id;
+    const sz = (spot.zone && spot.zone[l]) || spot.zone?.en || '—';
+    const sloc = (spot.location && (spot.location[l] || spot.location.en)) ? (spot.location[l] || spot.location.en) : sz;
+    const dr = Math.min(5, Math.max(1, Number(spot.difficulty_rating) || 3));
+    const pctD = Math.round(dr / 5 * 100);
+    html += `<div class="prey-spotlight">
+      <div class="prey-spotlight-badge">${ui.spotlightTitle}</div>
+      <div class="prey-spotlight-inner">
+        <div class="prey-spotlight-text">
+          <div class="prey-spotlight-name">${sn}</div>
+          <div class="prey-spotlight-loc">${sloc}</div>
+          <div class="prey-spotlight-meter-wrap" aria-hidden="true"><span class="prey-spotlight-meter-label">${ui.dangerMeter}</span>
+            <div class="prey-danger-track prey-danger-track-lg"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
+            <span class="prey-spotlight-threat">${ui.threatLabel} ${dr}/5</span>
+          </div>
+        </div>
+        <button type="button" class="prey-spotlight-btn" onclick="openPreyDetail('${spot.id}')">${ui.spotlightCta}</button>
+      </div>
+    </div>`;
+  }
+
+  html += `<div class="prey-section prey-targets-progress-section">
+    <h3 class="prey-section-title">${ui.targetsProgress}</h3>
+    <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${ui.ilvlScale}: ${I.world}–${I.mythic}+</span></p>
+    <div class="prey-danger-track prey-danger-track-global"><div class="prey-danger-fill prey-danger-fill-global" style="width:${pk.total ? Math.round(pk.done / pk.total * 100) : 0}%"></div></div>
+  </div>`;
+
+  // ——— Weekly Checklist ———
   const hunt1 = !!preyState.hunt1;
   const hunt2 = !!preyState.hunt2;
   html += `<div class="prey-section prey-weekly-checklist">
@@ -2744,10 +2904,10 @@ function renderPreyGuide() {
       <div class="prey-diff-card diff-nightmare"><span class="prey-diff-badge">🔴 Nightmare</span><p>${diffNight.desc}</p></div>
     </div>
     <div class="prey-rewards-list">
-      <p>${rewd.adventurer}</p>
+      <p>${rewd.adventurer} <span class="prey-ilvl-pill">~${I.world}+</span></p>
       <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain[l] || tt.veteran_track.explain.en}">Veteran Track</span>: ${rewd.veteran}</p>
       <p><span class="prey-tooltip-term" title="${tt.champion_track.explain[l] || tt.champion_track.explain.en}">Champion Track</span>: ${rewd.champion}</p>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain[l] || tt.anguish.explain.en}">Anguish</span> ${rewd.anguishFills}. <span class="prey-tooltip-term" title="${tt.dawncrests.explain[l] || tt.dawncrests.explain.en}">Dawncrests</span> ${rewd.dawncrestsUpgrade}.</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain[l] || tt.anguish.explain.en}">Anguish</span> ${rewd.anguishFills}. <span class="prey-tooltip-term" title="${tt.dawncrests.explain[l] || tt.dawncrests.explain.en}">Dawncrests</span> ${rewd.dawncrestsUpgrade}. <strong>Anchor iLvl:</strong> World ${I.world} · Hero ${I.hero} · Champion ${I.champion} · Hero raid ${I.hero_raid} · Mythic ${I.mythic}</p>
     </div>
     <h4 class="prey-affix-heading">${ui.nightmareAffixes}</h4>
     <ul class="prey-affix-list">
@@ -2767,9 +2927,20 @@ function renderPreyGuide() {
     targets.forEach(t => {
       const name = (t.name && t.name[l]) || t.name?.en || t.id || '—';
       const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
-      html += `<div class="prey-target-card" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
-        <div class="prey-target-card-name">${name}</div>
-        <div class="prey-target-card-zone">${zoneName}</div>
+      const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
+      const pctD = Math.round(dr / 5 * 100);
+      const killed = !!killedMap[t.id];
+      html += `<div class="prey-target-card-wrap">
+        <div class="prey-target-card${killed ? ' prey-target-done' : ''}" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
+          <div class="prey-target-card-name">${name}</div>
+          <div class="prey-target-card-zone">${zoneName}</div>
+          <div class="prey-target-card-meter">
+            <span class="prey-card-meter-lbl">${ui.dangerMeter}</span>
+            <div class="prey-danger-track"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
+            <span class="prey-card-threat">${dr}/5</span>
+          </div>
+        </div>
+        <label class="prey-killed-label"><input type="checkbox" ${killed ? 'checked' : ''} onchange="preyTargetKilledToggle('${t.id}',this)"> ${ui.killedLabel}</label>
       </div>`;
     });
     html += `</div></div>`;
@@ -2786,17 +2957,28 @@ function openPreyDetail(id) {
   const u = PREY_UI[lang] || PREY_UI.nl;
   const name = (t.name && t.name[l]) || t.name?.en || t.id;
   const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
+  const locStr = (t.location && (t.location[l] || t.location.en)) ? (t.location[l] || t.location.en) : '';
   const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
   const summary = t.summary && (t.summary[l] || t.summary.en) ? (t.summary[l] || t.summary.en) : [];
   const fullGuide = t.fullGuide && (t.fullGuide[l] || t.fullGuide.en) ? (t.fullGuide[l] || t.fullGuide.en) : '';
-  const loot = t.loot || { normal: 220, hard: 233, nightmare: 246 };
+  const loot = t.loot || { normal: 182, hard: 197, nightmare: 212 };
+  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
+  const preyKilledMap = getPreyKilledMapRaw();
+  const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
+  const pctD = Math.round(dr / 5 * 100);
+  const pro = t.pro_tip || {};
+  const pt = role => {
+    const p = pro[role];
+    if (!p) return '—';
+    return (p[l] || p.en || '—').replace(/</g, '&lt;');
+  };
 
   let bullets = '';
   if (Array.isArray(summary) && summary.length > 0) {
-    bullets = summary.map(b => `<li>${b}</li>`).join('');
+    bullets = summary.map(b => `<li>${String(b).replace(/</g, '&lt;')}</li>`).join('');
   } else {
     const ab = (t.abilities && t.abilities[l]) || t.abilities?.en || '—';
-    bullets = `<li>${ab}</li>`;
+    bullets = `<li>${String(ab).replace(/</g, '&lt;')}</li>`;
   }
 
   const lootRows = `<tr><td>${u.normal}</td><td>${loot.normal || '—'}</td></tr><tr><td>${u.hard}</td><td>${loot.hard || '—'}</td></tr><tr><td>${u.nightmare}</td><td>${loot.nightmare || '—'}</td></tr>`;
@@ -2804,13 +2986,25 @@ function openPreyDetail(id) {
   document.getElementById('prey-detail-title').textContent = name;
   const wayHtml = wayStr ? `<div class="kp-way-code prey-way" onclick="copyWay(this)" data-way="${wayStr.replace(/"/g,'&quot;')}" title="${u.tooltipCopy}">📋 ${wayStr}</div>` : '';
   document.getElementById('prey-detail-content').innerHTML = `
-    <div class="prey-detail-zone"><strong>${u.location}:</strong> ${zoneName}</div>
+    <div class="prey-detail-zone"><strong>${u.location}:</strong> ${zoneName}${locStr ? ` — <em>${locStr.replace(/</g, '&lt;')}</em>` : ''}</div>
     ${wayHtml}
+    <div class="prey-detail-danger-block">
+      <span class="prey-detail-danger-lbl">${u.dangerMeter}</span>
+      <div class="prey-danger-track prey-danger-track-lg"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
+      <span class="prey-detail-threat">${u.threatLabel} ${dr}/5 (${u.killedLabel}: ${preyKilledMap[id] ? '✓' : '—'})</span>
+    </div>
     <h4 class="prey-detail-subtitle">${u.summaryLabel}</h4>
     <ul class="delve-detail-bullets">${bullets}</ul>
+    <h4 class="prey-detail-subtitle">${u.roleTips}</h4>
+    <div class="prey-role-tip-grid">
+      <div class="prey-role-tip prey-role-tank"><strong>${u.roleTank}</strong><p>${pt('tank')}</p></div>
+      <div class="prey-role-tip prey-role-heal"><strong>${u.roleHeal}</strong><p>${pt('heal')}</p></div>
+      <div class="prey-role-tip prey-role-dps"><strong>${u.roleDps}</strong><p>${pt('dps')}</p></div>
+    </div>
     ${fullGuide ? `<h4 class="prey-detail-subtitle">${u.fullGuide}</h4><div class="delve-full-guide-body">${fullGuide}</div>` : ''}
     <h4 class="prey-detail-subtitle">${u.lootTable}</h4>
-    <table class="prey-detail-loot-table"><thead><tr><th>${u.difficulty || 'Difficulty'}</th><th>${u.ilvl}</th></tr></thead><tbody>${lootRows}</tbody></table>`;
+    <table class="prey-detail-loot-table"><thead><tr><th>${u.difficulty || 'Difficulty'}</th><th>${u.ilvl}</th></tr></thead><tbody>${lootRows}</tbody></table>
+    <p class="prey-loot-footnote"><strong>${u.ilvlScale}:</strong> ${typeof u.lootFootnote === 'function' ? u.lootFootnote(I) : ''}</p>`;
   document.getElementById('prey-detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
