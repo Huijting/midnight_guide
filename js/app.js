@@ -1427,9 +1427,9 @@ let currentProf = null;
 
 const PROF_UI = {
   nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'🛠 Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Bronnen:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Gids', tab_kpbronnen:'🗺️ KP',
-    prof_card_kp_trees:'{n} KP-bomen',prof_card_item_highlights:'{n}+ item-highlights',prof_card_hint_gather:'Dagelijks: farmroutes & mats',prof_card_hint_craft:'Recepten, orders & KP',prof_card_hint_sec:'Buffs, vis & utility'},
+    prof_card_knowledge_quests:'Kennisquests',prof_card_daily_orders:'Dagelijkse orders: ~3',prof_card_hint_gather:'Dagelijkse routes & mats',prof_card_hint_craft:'Kennisquests · Dagelijkse orders: ~3',prof_card_hint_sec:'Buffs, vis & utility'},
   en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'🛠 Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Sources:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP',
-    prof_card_kp_trees:'{n} KP trees',prof_card_item_highlights:'{n}+ item highlights',prof_card_hint_gather:'Daily: farming routes & mats',prof_card_hint_craft:'Recipes, orders & KP',prof_card_hint_sec:'Buffs, fish & utilities'}};
+    prof_card_knowledge_quests:'Knowledge quests',prof_card_daily_orders:'Daily orders: ~3',prof_card_hint_gather:'Daily routes & mats',prof_card_hint_craft:'Knowledge quests · Daily orders: ~3',prof_card_hint_sec:'Buffs, fish & utilities'}};
 
 function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
 function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
@@ -1443,14 +1443,11 @@ function countProfKpTrees(id) {
 
 function getProfCardCompactLine(p, ui) {
   const treeN = countProfKpTrees(p.id);
-  const itemN = Array.isArray(p.items) ? p.items.length : 0;
-  if (treeN > 0) {
-    let s = ui.prof_card_kp_trees.replace('{n}', String(treeN));
-    if (itemN > 0) s += ' · ' + ui.prof_card_item_highlights.replace('{n}', String(itemN));
-    return s;
-  }
+  const kq = ui.prof_card_knowledge_quests || 'Knowledge quests';
+  const ord = ui.prof_card_daily_orders || 'Daily orders: ~3';
+  if (treeN > 0) return `${kq} · ${ord}`;
   if (p.cat === 'gathering') return ui.prof_card_hint_gather;
-  if (p.cat === 'crafting') return ui.prof_card_hint_craft;
+  if (p.cat === 'crafting') return ui.prof_card_hint_craft || `${kq} · ${ord}`;
   return ui.prof_card_hint_sec;
 }
 
@@ -1639,7 +1636,9 @@ const DELVES_UI = {
     bountiful_keys_today:'Sleutels vandaag: {n}/4',
     bountiful_countdown_prefix:'Volgende dagelijkse Bountiful-rotatie over',
     delves_bountiful_roles_note:'👥 Account-breed: max. 4 Bountiful-sleutels per dag en Great Vault 1/4–4/4 gelden voor alle rollen (tank, healer, DPS) — hetzelfde als op de Weekly-tab.',
-    delves_tier_range:'T1–T8',
+    delves_tier_range:'T1–T11',
+    delves_tier_peak:'Tier {n}',
+    delves_reward_peak:'{n}+ ilvl · Champ / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
     delves_champ_ilvl:'~210+ Champ / GV',
     delves_bountiful_badge:'Bountiful',
@@ -1660,7 +1659,9 @@ const DELVES_UI = {
     bountiful_keys_today:'Keys today: {n}/4',
     bountiful_countdown_prefix:'Next daily Bountiful rotation in',
     delves_bountiful_roles_note:'👥 Account-wide: up to 4 Bountiful keys per day and Great Vault 1/4–4/4 count for all roles (tank, healer, DPS) — same tracking as on the Weekly tab.',
-    delves_tier_range:'T1–T8',
+    delves_tier_range:'T1–T11',
+    delves_tier_peak:'Tier {n}',
+    delves_reward_peak:'{n}+ ilvl · Champ / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
     delves_champ_ilvl:'~210+ Champ / GV',
     delves_bountiful_badge:'Bountiful',
@@ -1823,9 +1824,11 @@ async function buildDelvesScreen() {
   const bountifulNums = lootTable.filter(r => typeof r.bountiful === 'number').map(r => r.bountiful);
   const minB = bountifulNums.length ? Math.min(...bountifulNums) : 182;
   const maxB = bountifulNums.length ? Math.max(...bountifulNums) : 205;
-  const tierRangeLabel = ui.delves_tier_range || 'T1–T8';
   const ilvlBand = (ui.delves_ilvl_band || 'Bountiful {min}–{max}+').replace(/\{min\}/g, String(minB)).replace(/\{max\}/g, String(maxB));
-  const champNote = ui.delves_champ_ilvl || '';
+  const maxTierNum = lootTable.reduce((mx, r) => Math.max(mx, Number(r.tier) || 0), 0) || 8;
+  const tierPeakLabel = (ui.delves_tier_peak || 'Tier {n}').replace(/\{n\}/g, String(maxTierNum));
+  const champN = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT.champion : 210;
+  const rewardPeakLabel = (ui.delves_reward_peak || '{n}+ ilvl · Champ / GV').replace(/\{n\}/g, String(champN));
 
   let html = '';
 
@@ -1869,7 +1872,7 @@ async function buildDelvesScreen() {
       : '';
     const wayEsc = d.way ? d.way.replace(/"/g, '&quot;') : '';
     const wayBtn = d.way
-      ? `<button type="button" class="delves-way-copy-btn" onclick="event.stopPropagation();copyDelvesWay(this.dataset.way)" data-way="${wayEsc}" title="${ui.copy_way}">📋 ${ui.copy_way}</button>`
+      ? `<button type="button" class="delves-way-copy-btn" onclick="event.stopPropagation();copyDelvesWay(this.getAttribute('data-way'))" data-way="${wayEsc}" title="${ui.copy_way}">📋 ${ui.copy_way}</button>`
       : '';
     html += `<div class="delves-vault-card${isBountiful ? ' delves-vault-card--bountiful' : ''}" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">
       <div class="delves-vault-card-bg" aria-hidden="true"></div>
@@ -1881,10 +1884,10 @@ async function buildDelvesScreen() {
         <h4 class="delves-vault-name">${d.name}</h4>
         <p class="delves-vault-zone">${d.zoneName}</p>
         <div class="delves-vault-badges">
-          <span class="delves-vault-badge">${tierRangeLabel}</span>
-          <span class="delves-vault-badge delves-vault-badge-ilvl">${ilvlBand}</span>
-          <span class="delves-vault-badge delves-vault-badge-champ">${champNote}</span>
+          <span class="delves-vault-badge delves-vault-badge-tier">${tierPeakLabel}</span>
+          <span class="delves-vault-badge delves-vault-badge-reward">${rewardPeakLabel}</span>
         </div>
+        <p class="delves-vault-subband">${ilvlBand}</p>
         ${wayBtn}
         ${bountifulBtns}
       </div>
@@ -3022,9 +3025,13 @@ function getPreySpotlightTarget() {
   return targets[idx];
 }
 
-function preyStarsString(dr) {
+function preySkullsStringHtml(dr) {
   const n = Math.min(5, Math.max(1, Number(dr) || 3));
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
+  let s = '';
+  for (let i = 1; i <= 5; i++) {
+    s += `<span class="prey-skull${i <= n ? ' prey-skull--on' : ' prey-skull--off'}" aria-hidden="true">💀</span>`;
+  }
+  return s;
 }
 
 function preyRewardTypeLine(t, l) {
@@ -3084,7 +3091,7 @@ function renderPreyGuide() {
     const sloc = (spot.location && (spot.location[l] || spot.location.en)) ? (spot.location[l] || spot.location.en) : sz;
     const dr = Math.min(5, Math.max(1, Number(spot.difficulty_rating) || 3));
     const pctD = Math.round(dr / 5 * 100);
-    const stars = preyStarsString(dr);
+    const skulls = preySkullsStringHtml(dr);
     const rewardLn = preyRewardTypeLine(spot, l);
     html += `<div class="prey-spotlight prey-spotlight--bounty">
       <div class="prey-spotlight-badge">${ui.spotlightTitle}</div>
@@ -3092,7 +3099,7 @@ function renderPreyGuide() {
         <div class="prey-spotlight-text">
           <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
           <div class="prey-spotlight-name">${sn}</div>
-          <div class="prey-bounty-stars" aria-label="${ui.threatLabel} ${dr}/5">${stars}</div>
+          <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
           <div class="prey-bounty-reward-line">${rewardLn}</div>
           <div class="prey-spotlight-loc">${sloc}</div>
           <div class="prey-spotlight-meter-wrap" aria-hidden="true"><span class="prey-spotlight-meter-label">${ui.dangerMeter}</span>
@@ -3179,7 +3186,7 @@ function renderPreyGuide() {
       const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
       const pctD = Math.round(dr / 5 * 100);
       const killed = !!killedMap[t.id];
-      const stars = preyStarsString(dr);
+      const skulls = preySkullsStringHtml(dr);
       const rewardLn = preyRewardTypeLine(t, l);
       const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
       const wayAttr = wayStr.replace(/"/g, '&quot;');
@@ -3191,7 +3198,7 @@ function renderPreyGuide() {
           <div class="prey-bounty-card-inner">
             <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
             <div class="prey-target-card-name">${name}</div>
-            <div class="prey-bounty-stars" aria-label="${ui.threatLabel} ${dr}/5">${stars}</div>
+            <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
             <div class="prey-bounty-reward-line">${rewardLn}</div>
             <div class="prey-target-card-zone">${zoneName}</div>
             <div class="prey-target-card-meter">

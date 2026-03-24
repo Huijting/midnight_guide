@@ -296,7 +296,7 @@
      RESPONSIVE — TELEFOON (max 480px)
   ═══════════════════════════════════════ */
   @media(max-width:480px){
-    .dungeon-grid{grid-template-columns:1fr;gap:12px;padding:0 10px 40px}
+    .dungeon-grid{grid-template-columns:1fr;gap:var(--grid-gap-immersive);padding:0 10px 40px}
     .header-inner{min-height:48px;gap:8px}
     .lang-btn{padding:4px 7px;font-size:11px}
     /* Hero */
@@ -333,7 +333,7 @@
      RESPONSIVE — TABLET (481px – 768px)
   ═══════════════════════════════════════ */
   @media(min-width:481px) and (max-width:768px){
-    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:var(--grid-gap-immersive)}
     .overview-grid{grid-template-columns:repeat(2,1fr)}
     .header-sub{font-size:9px}
     .lang-btn,.theme-btn{padding:4px 9px;font-size:12px}
@@ -346,7 +346,7 @@
      RESPONSIVE — PC (769px+)
   ═══════════════════════════════════════ */
   @media(min-width:769px){
-    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+    .dungeon-grid{grid-template-columns:repeat(2,1fr);gap:var(--grid-gap-immersive)}
     .overview-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
     /* Hover effecten alleen op PC */
     .dungeon-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.25);border-color:var(--gold)}
@@ -368,7 +368,7 @@
      GROOT SCHERM (1200px+)
   ═══════════════════════════════════════ */
   @media(min-width:1024px){
-    .dungeon-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+    .dungeon-grid{grid-template-columns:repeat(4,1fr);gap:var(--grid-gap-immersive)}
   }
   @media(min-width:1200px){
     .boss-roles-desktop{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
@@ -380,8 +380,9 @@
 
   /* Immersive cinematic grid (data/dungeons.json backgrounds) */
   .dungeon-card.dungeon-card--immersive{
-    height:160px;padding:0;border-radius:12px;position:relative;isolation:isolate;
+    height:160px;padding:0;border-radius:var(--immersive-card-radius);position:relative;isolation:isolate;
     background-color:#1a0f2e;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   }
   .dungeon-card.dungeon-card--raid-immersive{
     height:200px;
@@ -1231,10 +1232,14 @@
   .prof-hero-title span{color:var(--gold)}
   .prof-hero-sub{color:var(--muted);font-size:14px}
   .prof-grid{max-width:var(--content-max);margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--grid-gap-immersive)}
-  .prof-card{min-height:148px;background:rgba(13,13,18,.55);border:1px solid rgba(201,162,39,.42);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:transform .2s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)}
-  .prof-card--immersive:hover{border-color:rgba(243,156,18,.75);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.4),0 0 28px rgba(243,156,18,.28),inset 0 1px 0 rgba(255,255,255,.08)}
-  .prof-card-bg{position:absolute;inset:0;background-size:cover;background-position:50% 40%;opacity:.22;transform:scale(1.02);transition:transform .35s ease,opacity .25s}
-  .prof-card--immersive:hover .prof-card-bg{transform:scale(1.08);opacity:.3}
+  .prof-card{min-height:148px;background:rgba(13,13,18,.55);border:1px solid rgba(201,162,39,.42);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:transform .2s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)}
+  @media(hover:hover){
+    .prof-card--immersive:hover{border-color:rgba(243,156,18,.75);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.4),0 0 28px rgba(243,156,18,.28),inset 0 1px 0 rgba(255,255,255,.08)}
+  }
+  .prof-card-bg{position:absolute;inset:0;background-size:cover;background-position:50% 40%;opacity:.3;transform:scale(1.02);transition:transform .35s ease,opacity .25s}
+  @media(hover:hover){
+    .prof-card--immersive:hover .prof-card-bg{transform:scale(1.08);opacity:.34}
+  }
   .prof-card-glass{position:absolute;inset:0;background:linear-gradient(145deg,rgba(10,8,14,.88) 0%,rgba(13,13,18,.72) 45%,rgba(10,8,14,.55) 100%);pointer-events:none}
   .prof-card-inner{position:relative;z-index:2;padding:16px 14px 14px;min-height:148px;display:flex;flex-direction:column;align-items:flex-start}
   .prof-card-icon{font-size:2rem;margin-bottom:6px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
@@ -1452,19 +1457,19 @@
   .prof-source-label{font-size:11px;color:var(--muted);margin-right:2px}
   .prof-link-btn{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;transition:all .2s}
   .prof-link-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
-  @media(max-width:480px){.prof-grid{gap:12px;padding:0 10px 40px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))} .item-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.prof-grid{gap:var(--grid-gap-immersive);padding:0 10px 40px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))} .item-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:768px){.mode-tabs{gap:2px;justify-content:flex-start}.mode-tab{padding:4px 8px;font-size:11px;flex:0 0 auto}}
 
   /* ── SPECS — class accordion grid ─────────────────────── */
   .spec-class-grid.spec-class-grid--accordion{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:10px 0;max-width:1100px;margin:0 auto;width:100%;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--grid-gap-immersive);padding:10px 0;max-width:1100px;margin:0 auto;width:100%;
   }
   .specs-screen .spec-class-grid.spec-class-grid--accordion{padding:4px 12px 24px}
   #spec-modal .spec-class-grid.spec-class-grid--accordion{padding-bottom:4px}
   .spec-class-card{
     --card-accent:var(--gold);
-    background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:16px;overflow:hidden;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:var(--immersive-card-radius);overflow:hidden;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     box-shadow:0 4px 24px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.04) inset;
     border-left:4px solid var(--card-accent);
     transition:box-shadow .25s ease,border-color .25s ease,transform .2s ease;
@@ -1789,12 +1794,12 @@
   .delves-vault-theme .delves-section-title{color:#7ee8ff;text-shadow:0 0 18px rgba(0,210,255,.25)}
   .delves-vault-theme .delves-bountiful-banner{border-radius:var(--immersive-card-radius);border:1px solid rgba(0,210,255,.22);background:linear-gradient(180deg,rgba(0,40,55,.5) 0%,rgba(5,8,14,.4) 100%);box-shadow:inset 0 0 60px rgba(0,210,255,.06)}
   .immersive-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--grid-gap-immersive)}
-  @media(max-width:480px){.immersive-card-grid{grid-template-columns:1fr;gap:12px}}
+  @media(max-width:480px){.immersive-card-grid{grid-template-columns:1fr;gap:var(--grid-gap-immersive)}}
   .delves-card-grid{margin-top:4px}
   .delves-vault-card{position:relative;border-radius:var(--immersive-card-radius);border:1px solid rgba(0,210,255,.35);background:rgba(4,12,22,.75);cursor:pointer;overflow:hidden;transition:transform .2s,box-shadow .25s,border-color .2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(0,210,255,.12)}
   .delves-vault-card:hover{border-color:rgba(0,210,255,.65);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 24px rgba(0,210,255,.15)}
   .delves-vault-card--bountiful{border-color:rgba(240,180,41,.55);animation:delve-vault-bountiful-pulse 2.6s ease-in-out infinite}
-  @keyframes delve-vault-bountiful-pulse{0%,100%{box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.25),0 0 20px rgba(0,210,255,.12)}50%{box-shadow:0 8px 36px rgba(0,0,0,.45),0 0 0 1px rgba(240,180,41,.55),0 0 32px rgba(240,180,41,.35),0 0 28px rgba(0,210,255,.2)}}
+  @keyframes delve-vault-bountiful-pulse{0%,100%{border-color:rgba(240,180,41,.45);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.2),0 0 18px rgba(0,210,255,.1)}50%{border-color:rgba(255,210,120,.95);box-shadow:0 8px 36px rgba(0,0,0,.45),0 0 0 2px rgba(240,180,41,.75),0 0 36px rgba(240,180,41,.45),0 0 28px rgba(0,210,255,.22)}}
   .delves-vault-card-bg{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(0,210,255,.03) 12px,rgba(0,210,255,.03) 13px),linear-gradient(165deg,rgba(0,35,48,.9) 0%,rgba(5,8,14,.92) 40%,rgba(8,12,22,.88) 100%),radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,210,255,.12),transparent 55%)}
   .delves-vault-card-inner{position:relative;z-index:2;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
   .delves-vault-card-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:28px}
@@ -1803,14 +1808,16 @@
   .delves-vault-zone{font-size:12px;color:rgba(186,230,253,.75);margin:0;line-height:1.4}
   .delves-vault-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
   .delves-vault-badge{font-size:10px;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.35);color:#a5f3fc}
-  .delves-vault-badge-ilvl{color:#fef9c3;border-color:rgba(240,180,41,.4);background:rgba(240,180,41,.1)}
-  .delves-vault-badge-champ{color:#d8b4fe;border-color:rgba(167,139,250,.4);background:rgba(139,92,246,.12)}
+  .delves-vault-badge-tier{color:#e0f7ff;border-color:rgba(0,210,255,.5);background:rgba(0,210,255,.14)}
+  .delves-vault-badge-reward{color:#fef9c3;border-color:rgba(240,180,41,.45);background:rgba(240,180,41,.12)}
+  .delves-vault-subband{font-size:10px;font-weight:600;color:rgba(186,230,253,.55);margin:0;line-height:1.35}
   .delves-way-copy-btn{margin-top:6px;width:100%;min-height:48px;padding:12px 16px;font-size:14px;font-weight:800;font-family:inherit;border-radius:12px;border:2px solid rgba(0,210,255,.55);background:linear-gradient(180deg,rgba(0,210,255,.22),rgba(0,120,160,.2));color:#ecfeff;cursor:pointer;transition:background .2s,transform .15s,border-color .2s;box-shadow:0 4px 16px rgba(0,210,255,.15)}
   .delves-way-copy-btn:hover{background:linear-gradient(180deg,rgba(0,210,255,.35),rgba(0,140,180,.28));border-color:rgba(0,210,255,.85)}
   .delves-way-copy-btn:active{transform:scale(.98)}
   .delve-card-actions{margin-top:4px}
   body.light .delves-vault-card{background:rgba(255,255,255,.92);border-color:rgba(14,165,233,.35)}
   body.light .delves-vault-name{color:#0c4a6e;text-shadow:none}
+  body.light .delves-vault-subband{color:rgba(12,74,110,.65)}
   .delves-section-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;margin-top:24px}
   .delves-section-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
   .delves-section-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
@@ -1913,7 +1920,10 @@
   .prey-spotlight{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(201,162,39,.1));border:1px solid rgba(167,139,250,.45);border-radius:var(--immersive-card-radius);padding:16px 18px;margin-bottom:20px}
   .prey-spotlight--bounty{border:2px solid rgba(138,43,226,.45);background:linear-gradient(145deg,rgba(30,15,45,.9) 0%,rgba(12,8,20,.88) 100%),repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(138,43,226,.04) 2px,rgba(138,43,226,.04) 3px);box-shadow:0 8px 28px rgba(138,43,226,.15),inset 0 0 0 1px rgba(138,43,226,.12)}
   .prey-bounty-wanted-tag{font-size:10px;font-weight:900;letter-spacing:.2em;color:var(--prey-void-purple);text-transform:uppercase;margin-bottom:6px;text-shadow:0 0 12px rgba(138,43,226,.4)}
-  .prey-bounty-stars{font-size:15px;letter-spacing:2px;color:#fbbf24;line-height:1;margin:4px 0 2px}
+  .prey-bounty-skulls{display:flex;flex-wrap:wrap;gap:3px 5px;font-size:15px;line-height:1;margin:4px 0 2px}
+  .prey-skull{display:inline-block;transition:opacity .2s,filter .2s,transform .2s}
+  .prey-skull--on{opacity:1;filter:drop-shadow(0 0 6px rgba(138,43,226,.55))}
+  .prey-skull--off{opacity:.22;filter:grayscale(1)}
   .prey-bounty-reward-line{font-size:12px;font-weight:700;color:#e9d5ff;border-left:3px solid var(--prey-void-purple);padding-left:10px;margin:6px 0;line-height:1.4}
   .prey-spotlight-badge{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
   .prey-spotlight-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
@@ -1936,7 +1946,7 @@
   .prey-danger-fill-global{background:linear-gradient(90deg,rgba(201,162,39,.5),var(--gold));box-shadow:0 0 12px rgba(201,162,39,.25)}
   .prey-target-cards{gap:var(--grid-gap-immersive)}
   .prey-target-card-wrap{display:flex;flex-direction:column;gap:8px}
-  .prey-bounty-card{background:linear-gradient(165deg,rgba(35,20,55,.95) 0%,rgba(10,8,16,.92) 55%,rgba(18,12,28,.9) 100%);border:2px solid rgba(138,43,226,.4);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:border-color .2s,box-shadow .25s,transform .2s;flex:1;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 0 0 1px rgba(201,162,39,.08)}
+  .prey-bounty-card{background:linear-gradient(165deg,rgba(35,20,55,.95) 0%,rgba(10,8,16,.92) 55%,rgba(18,12,28,.9) 100%);border:2px solid rgba(138,43,226,.4);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:border-color .2s,box-shadow .25s,transform .2s;flex:1;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 0 0 1px rgba(201,162,39,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
   .prey-bounty-card:hover{border-color:rgba(138,43,226,.75);box-shadow:0 10px 32px rgba(138,43,226,.2),0 0 20px rgba(138,43,226,.12)}
   .prey-bounty-card-inner{padding:14px 14px 12px}
   .prey-target-done{opacity:.88;border-color:rgba(74,222,128,.45)}
