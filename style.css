@@ -19,6 +19,20 @@
   
   --mplus:#d4a84b; --normal:#7a8aa8;
   --tank:#4a90d9; --heal:#3db86a; --dps:#e04060;
+  /* WoW class colors (UI accents) */
+  --class-deathknight: #c41f3b;
+  --class-demonhunter: #a330c9;
+  --class-druid: #ff7d0a;
+  --class-evoker: #33937f;
+  --class-hunter: #abd473;
+  --class-mage: #3fc7eb;
+  --class-monk: #00ff96;
+  --class-paladin: #f48cba;
+  --class-priest: #d6d6ff;
+  --class-rogue: #fff569;
+  --class-shaman: #0070de;
+  --class-warlock: #8787ed;
+  --class-warrior: #c79c6e;
   
   --text: #e8e8ec;
   --muted: #9ca3af;
@@ -129,15 +143,11 @@
     text-shadow: none;
     animation: none;
   }
-  body.light .spec-row,
   body.light .rot-table td,
   body.light .stat-row,
   body.light .res-table td,
   body.light .bis-table td {
     border-bottom-color: var(--border);
-  }
-  body.light .spec-row:hover {
-    background: rgba(0, 0, 0, 0.04);
   }
   body.light .bis-table-wowhead tbody tr {
     border-bottom-color: var(--border);
@@ -850,24 +860,15 @@
   #spec-btn:hover{border-color:var(--gold);color:var(--gold)}
   #spec-modal{display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,0.7);align-items:flex-start;justify-content:center;padding:60px 12px 24px;overflow-y:auto}
   #spec-modal.visible{display:flex}
-  #spec-modal-inner{background:var(--deep);border:1px solid var(--border);border-radius:14px;width:100%;max-width:700px;padding:20px}
+  #spec-modal-inner{background:var(--deep);border:1px solid var(--border);border-radius:14px;width:100%;max-width:820px;padding:20px}
   #spec-modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
   #spec-modal-title{font-family:'Inter', sans-serif;font-size:18px;font-weight:700;color:var(--gold)}
   #spec-modal-subtitle{font-size:13px;color:var(--muted);margin-bottom:16px}
   #spec-close-x{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:0 4px;line-height:1}
   #spec-close-x:hover{color:var(--text)}
-  .spec-class-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:1060px;margin:0 auto}
-  .spec-class-block{width:200px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px}
-  .spec-class-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:7px}
-  .spec-specs-row{display:flex;flex-direction:column;gap:4px}
-  .spec-spec-btn{background:var(--deep);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;color:var(--text);cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:7px}
-  .spec-spec-btn:hover{border-color:var(--gold);color:var(--gold)}
-  .spec-spec-btn.spec-active{border-color:var(--gold);background:rgba(200,168,75,0.08)}
-  .spec-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;min-width:40px}
   #spec-reset-btn{margin-top:14px;background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s}
   #spec-reset-btn:hover{border-color:red;color:red}
   .lust-name{color:var(--gold);font-weight:700}
-  @media(max-width:480px){.spec-class-block{width:calc(50% - 5px)}}
 
   /* ── FOOTER ── */
   #site-footer{background:var(--deep);border-top:1px solid var(--border);padding:20px 16px 28px;margin-top:36px;opacity:.97}
@@ -1426,22 +1427,84 @@
   @media(max-width:480px){.prof-grid{gap:8px;padding:0 10px 16px} .prof-card{width:calc(50% - 4px)} .item-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:768px){.mode-tabs{gap:2px;justify-content:flex-start}.mode-tab{padding:4px 8px;font-size:11px;flex:0 0 auto}}
 
-  /* ── SPECS ─────────────────────────────────────────────── */
-  /* Spec grid — Method-stijl per klasse */
-  .spec-class-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:10px;max-width:1060px;margin:0 auto}
-  .spec-class-block{width:200px;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-  .spec-class-header{padding:10px 14px 8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-  .spec-class-name{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
-  .spec-class-icon{font-size:20px}
-  .spec-list{padding:4px 0}
-  .spec-row{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.04)}
-  .spec-row:last-child{border-bottom:none}
-  .spec-row:hover{background:rgba(255,255,255,.06)}
-  .spec-row-icon{font-size:20px;width:26px;text-align:center;flex-shrink:0}
-  .spec-row-info{flex:1;min-width:0}
-  .spec-row-name{font-size:13px;font-weight:700;color:var(--gold)}
-  .spec-row-role{font-size:10px;color:var(--muted);margin-top:1px}
-  .spec-row-arrow{color:var(--muted);font-size:14px}
+  /* ── SPECS — class accordion grid ─────────────────────── */
+  .spec-class-grid.spec-class-grid--accordion{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:10px 0;max-width:1100px;margin:0 auto;width:100%;
+  }
+  .specs-screen .spec-class-grid.spec-class-grid--accordion{padding:4px 12px 24px}
+  #spec-modal .spec-class-grid.spec-class-grid--accordion{padding-bottom:4px}
+  .spec-class-card{
+    --card-accent:var(--gold);
+    background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:16px;overflow:hidden;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 4px 24px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.04) inset;
+    border-left:4px solid var(--card-accent);
+    transition:box-shadow .25s ease,border-color .25s ease,transform .2s ease;
+  }
+  .spec-class-card:hover{
+    box-shadow:0 6px 28px rgba(0,0,0,.45),0 0 24px rgba(201,162,39,.14);
+    border-color:rgba(212,175,55,.32);
+  }
+  .spec-class-card--deathknight{--card-accent:var(--class-deathknight)}
+  .spec-class-card--demonhunter{--card-accent:var(--class-demonhunter)}
+  .spec-class-card--druid{--card-accent:var(--class-druid)}
+  .spec-class-card--evoker{--card-accent:var(--class-evoker)}
+  .spec-class-card--hunter{--card-accent:var(--class-hunter)}
+  .spec-class-card--mage{--card-accent:var(--class-mage)}
+  .spec-class-card--monk{--card-accent:var(--class-monk)}
+  .spec-class-card--paladin{--card-accent:var(--class-paladin)}
+  .spec-class-card--priest{--card-accent:var(--class-priest)}
+  .spec-class-card--rogue{--card-accent:var(--class-rogue)}
+  .spec-class-card--shaman{--card-accent:var(--class-shaman)}
+  .spec-class-card--warlock{--card-accent:var(--class-warlock)}
+  .spec-class-card--warrior{--card-accent:var(--class-warrior)}
+  .spec-class-card-head{
+    width:100%;display:flex;align-items:center;gap:10px;padding:12px 14px;margin:0;border:none;cursor:pointer;text-align:left;
+    background:rgba(0,0,0,.2);color:var(--text);font-family:inherit;transition:background .2s ease;
+  }
+  .spec-class-card-head:hover{background:rgba(0,0,0,.32)}
+  .spec-class-card-head:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .spec-class-crest{
+    width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 2px 10px rgba(0,0,0,.4);
+  }
+  .spec-class-card-title{
+    flex:1;min-width:0;font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--text);
+    font-family:var(--font-display),Georgia,serif;
+  }
+  .spec-class-chevron{
+    width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:rotate(45deg);transition:transform .3s ease;margin-right:4px;flex-shrink:0;opacity:.85;
+  }
+  .spec-class-card.is-expanded .spec-class-chevron{transform:rotate(-135deg);margin-top:4px}
+  .spec-class-card-body{
+    max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.4,0,0.2,1);
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .spec-class-card.is-expanded .spec-class-card-body{max-height:560px}
+  .spec-class-card-body-inner{padding:6px 8px 10px}
+  .spec-class-empty{font-size:12px;color:var(--muted);margin:10px 12px;line-height:1.45;font-style:italic}
+  .spec-accordion-spec-row{
+    width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;margin:0 0 4px;border:none;border-radius:10px;cursor:pointer;text-align:left;
+    background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.06);color:var(--text);font-family:inherit;
+    transition:background .15s,border-color .15s,transform .15s;
+  }
+  .spec-accordion-spec-row:last-child{margin-bottom:0}
+  .spec-accordion-spec-row:hover{background:rgba(255,255,255,.07);border-color:rgba(212,175,55,.25)}
+  .spec-accordion-spec-row:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+  .spec-accordion-spec-row--active{border-color:rgba(201,162,39,.55);background:rgba(201,162,39,.12);box-shadow:0 0 0 1px rgba(201,162,39,.2)}
+  .spec-accordion-spec-icon{font-size:22px;width:28px;text-align:center;flex-shrink:0;line-height:1}
+  .spec-accordion-spec-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .spec-accordion-spec-name{font-size:13px;font-weight:700;color:var(--gold2)}
+  .spec-accordion-spec-role{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px}
+  .spec-accordion-role-ico{font-size:12px;line-height:1}
+  body.light .spec-class-card{background:rgba(255,255,255,.72);border-color:rgba(122,98,24,.22);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+  body.light .spec-class-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1)}
+  body.light .spec-class-card-head{background:rgba(255,255,255,.45)}
+  body.light .spec-class-card-head:hover{background:rgba(255,255,255,.65)}
+  body.light .spec-accordion-spec-row{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08)}
+  body.light .spec-accordion-spec-row:hover{background:rgba(201,162,39,.1)}
+  body.light .spec-accordion-spec-row--active{background:rgba(201,162,39,.18)}
   .spec-detail{display:none;padding:0 0 80px}
   .spec-detail.visible{display:block}
   .spec-hero{background:linear-gradient(135deg,#1a1400,#0d0d1a);border-bottom:1px solid var(--border);padding:16px}

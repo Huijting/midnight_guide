@@ -1533,58 +1533,123 @@ const SPEC_TAB_UI = {
       }
 };
 
-// currentSpec al gedeclareerd op regel 1110 — niet nogmaals declareren
+// currentSpec al gedeclareerd in app.js — globaal
+
+function specAccordionMatchClassSpec(cls, sp) {
+  const en = typeof sp.spec === 'object' ? sp.spec.en : String(sp.spec);
+  const nl = typeof sp.spec === 'object' ? (sp.spec.nl || sp.spec.en) : en;
+  return cls.specs.find(s => s.name.en === en || s.name.nl === nl);
+}
+
+/** Header modal + Specs tab: 13 class cards, accordion specs (glass + class colors). */
+function renderSpecPickerAccordion(containerId, options) {
+  const el = typeof containerId === 'string' ? document.getElementById(containerId) : containerId;
+  if (!el || typeof CLASSES === 'undefined') return;
+  const ctx = options && options.context === 'modal' ? 'modal' : 'screen';
+  const expandClassId = options && options.expandClassId ? options.expandClassId : null;
+  const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
+  const specsAll = typeof ALL_SPECS !== 'undefined' ? ALL_SPECS : [];
+  const emptyMsg = lang === 'en' ? 'Guide coming soon for this class.' : 'Gids voor deze klas komt later.';
+  const roleIco = { tank: '🛡️', heal: '💊', dps: '⚔️' };
+
+  const cards = CLASSES.map(cls => {
+    const classNameEn = cls.name.en;
+    const inSpecs = specsAll.filter(s => s.class === classNameEn).sort((a, b) => {
+      const na = typeof a.spec === 'object' ? (a.spec[lang] || a.spec.nl) : a.spec;
+      const nb = typeof b.spec === 'object' ? (b.spec[lang] || b.spec.nl) : b.spec;
+      return na.localeCompare(nb);
+    });
+    const title = (cls.name[lang] || cls.name.en).replace(/</g, '&lt;');
+    const crest = `https://wow.zamimg.com/images/wow/icons/large/classicon_${cls.id}.jpg`;
+    const rows = inSpecs.map(sp => {
+      const specName = (typeof sp.spec === 'object' ? (sp.spec[lang] || sp.spec.nl) : sp.spec).replace(/</g, '&lt;');
+      const spDef = specAccordionMatchClassSpec(cls, sp);
+      const roleLbl = ui['role_' + sp.role] || ui.role_dps || sp.role;
+      const ri = roleIco[sp.role] || '⚔️';
+      const escId = String(sp.id).replace(/'/g, "\\'");
+      let active = false;
+      try {
+        active = typeof currentSpec !== 'undefined' && currentSpec && currentSpec.classId === cls.id && spDef && currentSpec.specId === spDef.id;
+      } catch (_) {}
+      const onclk =
+        ctx === 'modal'
+          ? `onclick="event.stopPropagation();saveSpec('${cls.id}','${spDef ? spDef.id : ''}');"`
+          : `onclick="event.stopPropagation();showSpec('${escId}');"`;
+      if (ctx === 'modal' && !spDef) return '';
+      return `<button type="button" class="spec-accordion-spec-row${active ? ' spec-accordion-spec-row--active' : ''}" ${onclk}>
+        <span class="spec-accordion-spec-icon" aria-hidden="true">${sp.icon}</span>
+        <span class="spec-accordion-spec-meta">
+          <span class="spec-accordion-spec-name">${specName}</span>
+          <span class="spec-accordion-spec-role"><span class="spec-accordion-role-ico" aria-hidden="true">${ri}</span>${roleLbl}</span>
+        </span>
+      </button>`;
+    }).join('');
+    const inner =
+      rows ||
+      `<p class="spec-class-empty">${emptyMsg}</p>`;
+    return `<div class="spec-class-card spec-class-card--${cls.id}" data-class-id="${cls.id}">
+      <button type="button" class="spec-class-card-head" onclick="toggleSpecClassAccordion(this)" aria-expanded="false" aria-controls="spec-acc-panel-${cls.id}" id="spec-acc-head-${cls.id}">
+        <img class="spec-class-crest" src="${crest}" width="36" height="36" alt="" loading="lazy" decoding="async" />
+        <span class="spec-class-card-title">${title}</span>
+        <span class="spec-class-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="spec-class-card-body" id="spec-acc-panel-${cls.id}" role="region" aria-labelledby="spec-acc-head-${cls.id}">
+        <div class="spec-class-card-body-inner">${inner}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  el.className = 'spec-class-grid spec-class-grid--accordion';
+  el.innerHTML = cards;
+
+  if (expandClassId) {
+    requestAnimationFrame(() => {
+      expandSpecClassAccordion(el, expandClassId);
+      const card = el.querySelector(`[data-class-id="${expandClassId}"]`);
+      card && card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  }
+}
+
+function expandSpecClassAccordion(root, classId) {
+  if (!root || !classId) return;
+  const card = root.querySelector(`[data-class-id="${classId}"]`);
+  if (!card) return;
+  root.querySelectorAll('.spec-class-card.is-expanded').forEach(c => {
+    c.classList.remove('is-expanded');
+    const h = c.querySelector('.spec-class-card-head');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  });
+  card.classList.add('is-expanded');
+  const btn = card.querySelector('.spec-class-card-head');
+  if (btn) btn.setAttribute('aria-expanded', 'true');
+}
+
+window.toggleSpecClassAccordion = function (trigger) {
+  const card = trigger.closest('.spec-class-card');
+  const root = trigger.closest('.spec-class-grid--accordion');
+  if (!card || !root) return;
+  const opening = !card.classList.contains('is-expanded');
+  if (opening) {
+    root.querySelectorAll('.spec-class-card.is-expanded').forEach(c => {
+      c.classList.remove('is-expanded');
+      const h = c.querySelector('.spec-class-card-head');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+    card.classList.add('is-expanded');
+    trigger.setAttribute('aria-expanded', 'true');
+  } else {
+    card.classList.remove('is-expanded');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+};
 
 function buildSpecGrid() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
-  const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
-
-  // Groepeer per klasse, bewaar volgorde van eerste verschijning
-  const classOrder = [];
-  const byClass = {};
-  specs.forEach(s => {
-    if (!byClass[s.class]) { byClass[s.class] = []; classOrder.push(s.class); }
-    byClass[s.class].push(s);
-  });
-
-  // Class emoji map
-  const classIcon = {
-    'Hunter':'🏹','Mage':'🔵','Paladin':'⚔️','Death Knight':'💀',
-    'Warrior':'🛡️','Rogue':'🗡️','Druid':'🌿','Priest':'✨',
-    'Shaman':'⚡','Warlock':'🟣','Monk':'🥋','Demon Hunter':'😈',
-    'Evoker':'🐉'
-  };
-
-  classOrder.sort();
-  const html = classOrder.map(cls => {
-    const clsSpecs = byClass[cls].sort((a,b) => {
-        const nameA = (typeof a.spec === 'object') ? (a.spec[lang] || a.spec.nl) : a.spec;
-        const nameB = (typeof b.spec === 'object') ? (b.spec[lang] || b.spec.nl) : b.spec;
-        return nameA.localeCompare(nameB);
-      });
-    const rows = clsSpecs.map(s => {
-      const specName = (typeof s.spec === 'object') ? (s.spec[lang] || s.spec.nl) : s.spec;
-      const roleLbl = ui['role_'+s.role] || ui.role_dps || s.role;
-      return `<div class="spec-row" onclick="showSpec('${s.id}')">
-        <div class="spec-row-icon">${s.icon}</div>
-        <div class="spec-row-info">
-          <div class="spec-row-name">${specName}</div>
-          <div class="spec-row-role">${roleLbl}</div>
-        </div>
-        <div class="spec-row-arrow">&#10132;</div>
-      </div>`;
-    }).join('');
-    return `<div class="spec-class-block">
-      <div class="spec-class-header">
-        <span class="spec-class-icon">${classIcon[cls]||'⚔️'}</span>
-        <span class="spec-class-name">${cls}</span>
-      </div>
-      <div class="spec-list">${rows}</div>
-    </div>`;
-  }).join('') || '<p style="padding:20px;color:var(--muted);font-size:13px">Nog geen specs beschikbaar.</p>';
-
-  document.getElementById('spec-grid').innerHTML = `<div class="spec-class-grid">${html}</div>`;
+  let expand = typeof currentSpec !== 'undefined' && currentSpec && currentSpec.classId ? currentSpec.classId : null;
+  if (!expand && typeof window.midnightLastSpecGuideClassId === 'string') expand = window.midnightLastSpecGuideClassId;
+  renderSpecPickerAccordion('spec-grid', { context: 'screen', expandClassId: expand });
   document.getElementById('spec-grid-view').style.display = '';
   document.getElementById('spec-detail-view').classList.remove('visible');
   if (typeof updateSpecHeaderBtnVisibility === 'function') updateSpecHeaderBtnVisibility();
@@ -1594,6 +1659,10 @@ function showSpec(id) {
   const specs = (typeof ALL_SPECS !== 'undefined') ? ALL_SPECS : [];
   const s = specs.find(x => x.id === id);
   if (!s) return;
+  if (typeof CLASSES !== 'undefined') {
+    const cid = CLASSES.find(c => c.name.en === s.class);
+    if (cid) window.midnightLastSpecGuideClassId = cid.id;
+  }
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   const L = l => (typeof l === 'object') ? (l[lang] || l.nl) : l;
 

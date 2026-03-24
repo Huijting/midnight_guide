@@ -209,25 +209,11 @@ function renderSpecModal() {
   document.getElementById('spec-modal-subtitle').textContent = ui.subtitle;
   document.getElementById('spec-reset-btn').textContent      = '× ' + ui.reset;
 
-  const roleLabel = { tank: ui.role_tank, heal: ui.role_heal, dps: ui.role_dps };
-  const roleColor = { tank: 'var(--tank)', heal: 'var(--heal)', dps: 'var(--dps)' };
-
   const grid = document.getElementById('spec-class-grid');
-  grid.innerHTML = CLASSES.map(cls => {
-    const specs = cls.specs.map(sp => {
-      const active = currentSpec && currentSpec.classId === cls.id && currentSpec.specId === sp.id;
-      return `<button class="spec-spec-btn${active?' spec-active':''}"
-        style="${active?'border-color:var(--gold);color:var(--gold);':''}"
-        onclick="saveSpec('${cls.id}','${sp.id}')">
-        <span class="spec-role" style="color:${roleColor[sp.role]}">${roleLabel[sp.role]}</span>
-        ${sp.name[lang]}
-      </button>`;
-    }).join('');
-    return `<div class="spec-class-block">
-      <div class="spec-class-name">${cls.icon} ${cls.name[lang]}</div>
-      <div class="spec-specs-row">${specs}</div>
-    </div>`;
-  }).join('');
+  if (grid && typeof renderSpecPickerAccordion === 'function') {
+    const expand = currentSpec && currentSpec.classId ? currentSpec.classId : null;
+    renderSpecPickerAccordion(grid, { context: 'modal', expandClassId: expand });
+  }
 }
 
 
