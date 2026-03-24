@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v1.5.3';
+const CACHE_NAME = 'midnight-v2.1.0';
 
 const PRECACHE = [
   '/',

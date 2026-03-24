@@ -1004,16 +1004,20 @@ let weeklyCountdownInterval;
 
 function startWeeklyCountdown() {
   if (weeklyCountdownInterval) clearInterval(weeklyCountdownInterval);
-  
+
   const resetEl = document.getElementById('weekly-next-reset');
-  if (!resetEl) return;
+  const dashEl = document.getElementById('dash-weekly-countdown');
+  if (!resetEl && !dashEl) return;
 
   function update() {
     const now = new Date();
     const target = getNextWowWeeklyResetUtc();
     const diff = target.getTime() - now.getTime();
     if (diff <= 0) {
-      resetEl.textContent = "0 dagen, 0 uur, 0 min, 0 sec";
+      if (resetEl) {
+        resetEl.textContent = lang === 'en' ? '0 days, 0 hrs, 0 min, 0 sec' : '0 dagen, 0 uur, 0 min, 0 sec';
+      }
+      if (dashEl) dashEl.textContent = lang === 'en' ? 'Reset' : 'Reset';
       return;
     }
 
@@ -1022,10 +1026,19 @@ function startWeeklyCountdown() {
     const mins = Math.floor((diff / 1000 / 60) % 60);
     const secs = Math.floor((diff / 1000) % 60);
 
-    if (lang === 'en') {
-      resetEl.textContent = `${days} days, ${hours} hrs, ${mins} min, ${secs} sec`;
-    } else {
-      resetEl.textContent = `${days} dagen, ${hours} uur, ${mins} min, ${secs} sec`;
+    if (resetEl) {
+      if (lang === 'en') {
+        resetEl.textContent = `${days} days, ${hours} hrs, ${mins} min, ${secs} sec`;
+      } else {
+        resetEl.textContent = `${days} dagen, ${hours} uur, ${mins} min, ${secs} sec`;
+      }
+    }
+    if (dashEl) {
+      if (lang === 'en') {
+        dashEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+      } else {
+        dashEl.textContent = `${days}d ${hours}u ${mins}m ${secs}s`;
+      }
     }
   }
 
@@ -1973,5 +1986,5 @@ function copyMacro(el) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.5.3').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=2.1.0').catch(() => {});
 }

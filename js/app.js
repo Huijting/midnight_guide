@@ -583,12 +583,52 @@ function applyUIStrings() {
 // ═══════════════════════════════════════════════════════════════
 // THEME
 // ═══════════════════════════════════════════════════════════════
+function renderDashboardWidgets() {
+  if (!document.body.classList.contains('mode-home')) return;
+  const affHost = document.getElementById('dash-mplus-affixes');
+  if (affHost && typeof AFFIX_UI !== 'undefined') {
+    const aff = AFFIX_UI[lang] || AFFIX_UI.nl;
+    const rows = aff.week1_affixes || [];
+    affHost.innerHTML = rows.map(a => {
+      const c = a.color || 'var(--gold)';
+      const nm = (a.name || '').replace(/</g, '&lt;');
+      return `<span class="dash-affix-chip" style="--chip-accent:${c}"><span class="dash-affix-ico" aria-hidden="true">${a.icon || '⚡'}</span><span class="dash-affix-name">${nm}</span></span>`;
+    }).join('');
+  }
+  const n = typeof getTodayDailyKeysList === 'function' ? getTodayDailyKeysList().length : 0;
+  const bFill = document.getElementById('dash-bountiful-fill');
+  const bLbl = document.getElementById('dash-bountiful-label');
+  if (bFill) bFill.style.width = `${Math.min(100, (n / 4) * 100)}%`;
+  if (bLbl) bLbl.textContent = `${n} / 4`;
+
+  const spot = typeof getPreySpotlightTarget === 'function' ? getPreySpotlightTarget() : null;
+  const uiP = typeof PREY_UI !== 'undefined' ? (PREY_UI[lang] || PREY_UI.nl) : {};
+  const nameEl = document.getElementById('dash-prey-target-name');
+  const fillD = document.getElementById('dash-prey-danger-fill');
+  const valD = document.getElementById('dash-prey-danger-val');
+  const lblD = document.getElementById('dash-prey-danger-lbl');
+  if (lblD && uiP.dangerMeter) lblD.textContent = uiP.dangerMeter;
+  if (spot) {
+    const l = lang === 'en' ? 'en' : 'nl';
+    const sn = (spot.name && spot.name[l]) || spot.name?.en || spot.id;
+    const prefix = lang === 'en' ? 'Current target: ' : 'Huidig doelwit: ';
+    if (nameEl) nameEl.textContent = prefix + sn;
+    const dr = Math.min(5, Math.max(1, Number(spot.difficulty_rating) || 3));
+    if (fillD) fillD.style.width = `${Math.round((dr / 5) * 100)}%`;
+    if (valD) valD.textContent = `${uiP.threatLabel || ''} ${dr}/5`.trim();
+  } else {
+    if (nameEl) nameEl.textContent = '—';
+    if (fillD) fillD.style.width = '0%';
+    if (valD) valD.textContent = '—';
+  }
+}
+
 function updateLandingStrings() {
   const LANDING = {
     nl: {
       title: 'Midnight Guide',
       subtitle: 'Jouw WoW: Midnight companion',
-      news: '🛡️ <strong>v1.4.1</strong> — Masterclass: eigen Tank/Healer/DPS-tabs; dungeon-rolkaarten verbeterd voor mobiel.',
+      news: '🛡️ <strong>v2.1</strong> — Dashboard met SVG-icons, hero-blend en finetuned header; Bento-widgets + PWA-cache bijgewerkt.',
       tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!',
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
@@ -597,11 +637,18 @@ function updateLandingStrings() {
       w_title:'Wekelijks', w_desc:'Weekly reset, World Bosses en checklist', w_count:'Elke week',
       p_title:'Professies', p_desc:'KP gidsen, crafting orders en trainer locaties', p_count:'13 professies',
       s_title:'Specs', s_desc:'Rotaties, stats, macro\'s en consumables', s_count:'38 specs',
+      prey_title: 'Prey',
+      dash_kicker_dungeons: 'Mythic+ · Actuele affixes',
+      dash_kicker_delves: 'Daily Bountiful',
+      dash_kicker_weekly: 'Woensdag reset (EU)',
+      dash_kicker_prey: 'Huidig doelwit',
+      dashboard_tagline: 'Midnight · Seizoen 1',
+      w_cta: 'Checklist',
     },
     en: {
       title: 'Midnight Guide',
       subtitle: 'Your WoW: Midnight companion',
-      news: '🛡️ <strong>v1.4.1</strong> — Masterclass: dedicated Tank/Healer/DPS tabs; boss role cards improved on mobile.',
+      news: '🛡️ <strong>v2.1</strong> — Dashboard SVG icons, hero blend & header layout; bento widgets + PWA cache refresh.',
       tip: '<strong>Tip:</strong> Install this app on your PC via the 📲 button top right, or the install icon in your address bar — works offline too!',
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
@@ -610,6 +657,13 @@ function updateLandingStrings() {
       w_title:'Weekly', w_desc:'Weekly reset, World Bosses and checklist', w_count:'Every week',
       p_title:'Professions', p_desc:'KP guides, crafting orders and trainer locations', p_count:'13 professions',
       s_title:'Specs', s_desc:'Rotations, stats, macros and consumables', s_count:'38 specs',
+      prey_title: 'Prey',
+      dash_kicker_dungeons: 'Mythic+ · Current affixes',
+      dash_kicker_delves: 'Daily Bountiful',
+      dash_kicker_weekly: 'Wednesday reset (EU)',
+      dash_kicker_prey: 'Current target',
+      dashboard_tagline: 'Midnight · Season 1',
+      w_cta: 'Checklist',
     }
   };
   const L = LANDING[lang] || LANDING.nl;
@@ -620,12 +674,23 @@ function updateLandingStrings() {
   h('landing-news', L.news);
   h('landing-tip-text', L.tip);
   s('landing-credits', L.credits);
-  s('lc-title-dungeons', L.d_title); s('lc-desc-dungeons', L.d_desc); s('lc-count-dungeons', L.d_count);
+  s('dashboard-tagline', L.dashboard_tagline);
+  s('dash-title-dungeons', L.d_title);
+  s('dash-title-delves', L.v_title);
+  s('dash-title-weekly', L.w_title);
+  s('dash-title-prey', L.prey_title);
+  s('dash-kicker-dungeons', L.dash_kicker_dungeons);
+  s('dash-kicker-delves', L.dash_kicker_delves);
+  s('dash-kicker-weekly', L.dash_kicker_weekly);
+  s('dash-kicker-prey', L.dash_kicker_prey);
+  s('lc-count-dungeons', L.d_count);
+  s('lc-count-delves', L.v_count);
+  s('lc-count-weekly', L.w_cta);
   s('lc-title-raids', L.r_title); s('lc-desc-raids', L.r_desc); s('lc-count-raids', L.r_count);
-  s('lc-title-delves', L.v_title); s('lc-desc-delves', L.v_desc); s('lc-count-delves', L.v_count);
-  s('lc-title-weekly',   L.w_title); s('lc-desc-weekly',   L.w_desc); s('lc-count-weekly',   L.w_count);
   s('lc-title-professions', L.p_title); s('lc-desc-professions', L.p_desc); s('lc-count-professions', L.p_count);
-  s('lc-title-specs',   L.s_title); s('lc-desc-specs',   L.s_desc); s('lc-count-specs',   L.s_count);
+  s('lc-title-specs', L.s_title); s('lc-desc-specs', L.s_desc); s('lc-count-specs', L.s_count);
+  renderDashboardWidgets();
+  if (typeof startWeeklyCountdown === 'function') startWeeklyCountdown();
 }
 
 function syncThemeToggleLabel() {
@@ -1432,6 +1497,7 @@ function toggleBountifulDailyKey(delveId) {
   }
   setTodayDailyKeysList(list);
   void buildDelvesScreen();
+  if (document.body.classList.contains('mode-home')) renderDashboardWidgets();
 }
 
 let delveDailyCountdownTimer = null;

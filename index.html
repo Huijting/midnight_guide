@@ -14,9 +14,9 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=10">
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
   <script src="https://wow.zamimg.com/widgets/power.js"></script>
 </head>
@@ -33,10 +33,10 @@
   </div>
 </div>
 
-<header id="site-header" class="site-header-sticky">
-  <div class="header-inner">
-    <a href="#" class="header-logo" onclick="setMode('home');return false">🌙 Midnight</a>
-    <div class="header-search-wrap" onclick="openSearch()" role="button" tabindex="0" aria-label="Search">
+<header id="site-header" class="site-header-sticky site-header-v2">
+  <div class="header-inner header-inner-main">
+    <a href="#" class="header-logo font-display" onclick="setMode('home');return false">🌙 Midnight</a>
+    <div class="header-search-wrap header-search-compact" onclick="openSearch()" role="button" tabindex="0" aria-label="Search">
       <span class="header-search-icon">🔍</span>
       <span class="header-search-placeholder" id="header-search-placeholder">Search dungeon, spec, profession...</span>
     </div>
@@ -49,8 +49,8 @@
       <button type="button" class="pwa-header-btn" id="pwa-header-btn" onclick="openPwaModal()" title="Installeer als app">📲</button>
     </div>
   </div>
-  <div class="header-tabs-wrap" id="header-tabs-wrap">
-    <div class="mode-tabs mode-tabs-row1">
+  <div class="header-pill-wrap" id="header-pill-wrap">
+    <nav class="mode-tabs mode-tabs-pill" id="header-tabs-pill" aria-label="Hoofdmenu">
       <button class="mode-tab active" id="mode-tab-home" onclick="setMode('home')"><span id="tab-lbl-home">🌙 Home</span></button>
       <button class="mode-tab" id="mode-tab-raids" onclick="setMode('raids')"><span id="tab-lbl-raids">🏰 Raids</span></button>
       <button class="mode-tab" id="mode-tab-dungeons" onclick="setMode('dungeons')"><span id="tab-lbl-dungeons">⚔ Dungeons</span></button>
@@ -60,55 +60,88 @@
       <button class="mode-tab" id="mode-tab-prey" onclick="setMode('prey')"><span id="tab-lbl-prey">🎯 Prey</span></button>
       <button class="mode-tab" id="mode-tab-weekly" onclick="setMode('weekly')"><span id="tab-lbl-weekly">📅 Wekelijks</span></button>
       <button class="mode-tab" id="mode-tab-glossary" onclick="setMode('glossary')"><span id="tab-lbl-glossary">📖 Woordenlijst</span></button>
-    </div>
+    </nav>
   </div>
 </header>
 
 <!-- ═══ LANDING SCREEN ═══ -->
 <div id="landing-screen">
   <div class="landing-stars"></div>
-  <div class="landing-hero">
-    <img id="landing-logo" src="assets/midnight-logo-nl.png" alt="Midnight Guide" class="landing-logo-img" loading="lazy">
+  <div class="landing-hero landing-hero-compact">
+    <img id="landing-logo" src="assets/midnight-logo-nl.png" alt="Midnight Guide" class="landing-logo-img landing-logo-mask" loading="lazy" width="320" height="120">
   </div>
-  <div class="landing-cards">
-    <div class="landing-card lc-dungeons" onclick="setMode('dungeons')">
-      <span class="landing-card-icon" style="color:var(--gold)"><i class="fas fa-skull"></i></span>
-      <div class="landing-card-title" id="lc-title-dungeons">Dungeons</div>
-      <div class="landing-card-desc" id="lc-desc-dungeons">Boss tactieken, M+ routes en tips per dungeon</div>
-      <span class="landing-card-count" id="lc-count-dungeons">8 dungeons</span>
-    </div>
-    <div class="landing-card lc-raids" onclick="setMode('raids')">
-      <span class="landing-card-icon" style="color:var(--gold)"><i class="fas fa-dungeon"></i></span>
-      <div class="landing-card-title" id="lc-title-raids">Raids</div>
-      <div class="landing-card-desc" id="lc-desc-raids">Boss mechanics, fases en rol-tactieken</div>
-      <span class="landing-card-count" id="lc-count-raids">3 raids</span>
-    </div>
-    <div class="landing-card lc-delves" onclick="setMode('delves')">
-      <span class="landing-card-icon" style="color:var(--gold)">💎</span>
-      <div class="landing-card-title" id="lc-title-delves">Delves</div>
-      <div class="landing-card-desc" id="lc-desc-delves">Bountiful Delves, loot tabel en sleutel-info</div>
-      <span class="landing-card-count" id="lc-count-delves">Season 1</span>
-    </div>
-    <div class="landing-card lc-weekly" onclick="setMode('weekly')">
-      <span class="landing-card-icon" style="color:var(--gold)"><i class="fas fa-calendar-alt"></i></span>
-      <div class="landing-card-title" id="lc-title-weekly">Wekelijks</div>
-      <div class="landing-card-desc" id="lc-desc-weekly">Weekly reset overzicht, World Bosses en affixen</div>
-      <span class="landing-card-count" id="lc-count-weekly">Elke week</span>
-    </div>
-    <div class="landing-card lc-professions" onclick="setMode('professions')">
-      <span class="landing-card-icon" style="color:var(--gold)"><i class="fas fa-hammer"></i></span>
-      <div class="landing-card-title" id="lc-title-professions">Professies</div>
-      <div class="landing-card-desc" id="lc-desc-professions">KP gidsen, crafting orders en trainer locaties</div>
-      <span class="landing-card-count" id="lc-count-professions">13 professies</span>
-    </div>
-    <div class="landing-card lc-specs" onclick="setMode('specs')">
-      <span class="landing-card-icon" style="color:var(--gold)"><i class="fas fa-crosshairs"></i></span>
-      <div class="landing-card-title" id="lc-title-specs">Specs</div>
-      <div class="landing-card-desc" id="lc-desc-specs">Rotaties, stats, macro's en consumables</div>
-      <span class="landing-card-count" id="lc-count-specs">38 specs</span>
-    </div>
+  <p class="dashboard-tagline font-display" id="dashboard-tagline">Midnight · Seizoen 1</p>
+  <div class="dashboard-bento" id="dashboard-bento">
+    <article class="dash-widget dash-w-dungeons lc-dungeons" onclick="setMode('dungeons')" role="button" tabindex="0">
+      <span class="status-badge status-badge--live">LIVE</span>
+      <div class="dash-widget-head">
+        <span class="dash-widget-icon dash-icon-accent-dungeons" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-dasharray="3.2 2.8"/><ellipse cx="12" cy="11.5" rx="5.2" ry="6"/><path d="M9.5 10.5h.01M14.5 10.5h.01"/><path d="M9 16c.85 1.15 1.85 1.75 3 1.75s2.15-.6 3-1.75"/></g></svg></span></span>
+        <h3 class="dash-widget-title font-display" id="dash-title-dungeons">Dungeons</h3>
+      </div>
+      <p class="dash-widget-kicker" id="dash-kicker-dungeons">Mythic+ · Actuele affixes</p>
+      <div class="dash-affix-chips" id="dash-mplus-affixes"></div>
+      <span class="dash-widget-cta" id="lc-count-dungeons">8 dungeons</span>
+    </article>
+    <article class="dash-widget dash-w-delves lc-delves" onclick="setMode('delves')" role="button" tabindex="0">
+      <span class="status-badge status-badge--season">Season 1</span>
+      <div class="dash-widget-head">
+        <span class="dash-widget-icon dash-icon-accent-delves" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3h12l4 6-10 13L2 9l4-6Z" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 3 8 9l4 13 4-13-3-6M2 9h20" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+        <h3 class="dash-widget-title font-display" id="dash-title-delves">Delves</h3>
+      </div>
+      <p class="dash-widget-kicker" id="dash-kicker-delves">Daily Bountiful</p>
+      <div class="dash-progress-wrap" aria-label="Bountiful keys today">
+        <div class="dash-progress-bar"><div class="dash-progress-fill" id="dash-bountiful-fill" style="width:0%"></div></div>
+        <div class="dash-progress-label mono" id="dash-bountiful-label">0 / 4</div>
+      </div>
+      <span class="dash-widget-cta" id="lc-count-delves">12 Delves</span>
+    </article>
+    <article class="dash-widget dash-w-weekly lc-weekly" onclick="setMode('weekly')" role="button" tabindex="0">
+      <span class="status-badge status-badge--season">Season 1</span>
+      <div class="dash-widget-head">
+        <span class="dash-widget-icon dash-icon-accent-weekly" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12 7.59 16.41A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+        <h3 class="dash-widget-title font-display" id="dash-title-weekly">Wekelijks</h3>
+      </div>
+      <p class="dash-widget-kicker" id="dash-kicker-weekly">Woensdag reset (EU)</p>
+      <div class="dash-countdown mono" id="dash-weekly-countdown" aria-live="polite">—</div>
+      <span class="dash-widget-cta" id="lc-count-weekly">Checklist</span>
+    </article>
+    <article class="dash-widget dash-w-prey lc-prey" onclick="setMode('prey')" role="button" tabindex="0">
+      <span class="status-badge status-badge--new">NEW</span>
+      <div class="dash-widget-head">
+        <span class="dash-widget-icon dash-icon-accent-prey" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.65"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.65"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg></span></span>
+        <h3 class="dash-widget-title font-display" id="dash-title-prey">Prey</h3>
+      </div>
+      <p class="dash-widget-kicker" id="dash-kicker-prey">Huidig doelwit</p>
+      <div class="dash-prey-target" id="dash-prey-target-name">—</div>
+      <div class="dash-prey-meter-wrap">
+        <span class="dash-prey-meter-lbl" id="dash-prey-danger-lbl">Dreiging</span>
+        <div class="dash-prey-meter"><div class="dash-prey-meter-fill prey-danger-fill" id="dash-prey-danger-fill" style="width:0%"></div></div>
+        <span class="dash-prey-meter-val" id="dash-prey-danger-val">—</span>
+      </div>
+    </article>
+    <article class="dash-widget dash-w-link dash-w-raids lc-raids" onclick="setMode('raids')" role="button" tabindex="0">
+      <span class="status-badge status-badge--live">LIVE</span>
+      <span class="dash-widget-icon sm dash-icon-accent-raids" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 18.5 16.5 5.5M16.5 18.5 7.5 5.5" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/><path d="M2 18h20" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/><path d="M4 11 6 5l4 3 4-6 4 6 4-3 2 6" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 18v-3h8v3" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+      <h3 class="dash-widget-title font-display sm" id="lc-title-raids">Raids</h3>
+      <p class="dash-widget-desc" id="lc-desc-raids">Boss mechanics</p>
+      <span class="dash-widget-cta sm" id="lc-count-raids">3 raids</span>
+    </article>
+    <article class="dash-widget dash-w-link dash-w-specs lc-specs" onclick="setMode('specs')" role="button" tabindex="0">
+      <span class="status-badge status-badge--new">NEW</span>
+      <span class="dash-widget-icon sm dash-icon-accent-specs" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2.5M12 18.5V21M4.2 4.2l1.8 1.8M18 18l1.8 1.8M3 12h2.5M18.5 12H21M4.2 19.8l1.8-1.8M18 6l1.8-1.8" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.65"/></svg></span></span>
+      <h3 class="dash-widget-title font-display sm" id="lc-title-specs">Specs</h3>
+      <p class="dash-widget-desc" id="lc-desc-specs">Rotaties &amp; BiS</p>
+      <span class="dash-widget-cta sm" id="lc-count-specs">38 specs</span>
+    </article>
+    <article class="dash-widget dash-w-link dash-w-prof lc-professions" onclick="setMode('professions')" role="button" tabindex="0">
+      <span class="status-badge status-badge--season">S1</span>
+      <span class="dash-widget-icon sm dash-icon-accent-prof" aria-hidden="true"><span class="dash-icon-float"><svg class="dash-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 9 8 19M21 6l-3 3M16.5 2.5 14 5" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+      <h3 class="dash-widget-title font-display sm" id="lc-title-professions">Professies</h3>
+      <p class="dash-widget-desc" id="lc-desc-professions">KP &amp; trainers</p>
+      <span class="dash-widget-cta sm" id="lc-count-professions">13 professies</span>
+    </article>
   </div>
-  <div class="landing-news" id="landing-news">🛡️ <strong>v1.4.1</strong> — Masterclass: eigen Tank/Healer/DPS-tabs; dungeon-rolkaarten verbeterd voor mobiel.</div>
+  <div class="landing-news" id="landing-news">🛡️ <strong>v2.1</strong> — Dashboard met SVG-icons, hero-blend en finetuned header; Bento-widgets + PWA-cache bijgewerkt.</div>
   <div class="landing-tip">
     <span class="landing-tip-icon">💡</span>
     <div class="landing-tip-text" id="landing-tip-text"><strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!</div>
@@ -347,10 +380,10 @@
 <script src="data/professions/cooking.js" defer></script>
 <script src="data/professions/fishing.js" defer></script>
 <script src="js/constants.js" defer></script>
-<script src="js/ui.js?v=1.5.2" defer></script>
+<script src="js/ui.js?v=2.1.0" defer></script>
 
 <!-- ══ APP ══ -->
-<script src="js/app.js?v=1.5.3" defer></script>
+<script src="js/app.js?v=2.1.0" defer></script>
 
 <footer id="site-footer">
   <div class="footer-inner">
