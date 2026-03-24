@@ -1,9 +1,12 @@
 // Prey Targets — WoW: Midnight Season 1 (12 contracts)
 // difficulty_rating 1–5 = solo threat (Danger Meter). Loot ~ILVL_MIDNIGHT band (see js/constants.js).
+// crafting_drops: optional drops shown in Prey detail modal (profession + used_for tooltips).
+// Note: “Dark-Iron Saboteur” contract is represented on Praetor Singularis (no separate NPC id in this dataset).
 
 const PREY_TARGETS = [
   {
     id: 'mordril_shadowfell',
+    crafting_drops: [],
     name: { en: 'Mordril Shadowfell', nl: 'Mordril Shadowfell' },
     zone: { en: 'Eversong Woods', nl: 'Eversong Woods' },
     location: { en: 'North Eversong — Void Scar trail', nl: 'Noord-Eversong — Void Scar-pad' },
@@ -31,6 +34,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'deliah_gloomsong',
+    crafting_drops: [],
     name: { en: 'Deliah Gloomsong', nl: 'Deliah Gloomsong' },
     zone: { en: 'Eversong Woods', nl: 'Eversong Woods' },
     location: { en: 'East Eversong — Gloomsong rise', nl: 'Oost-Eversong — Gloomsong-heuvel' },
@@ -58,6 +62,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'talon_of_janalaii',
+    crafting_drops: [],
     name: { en: "The Talon of Jan'alaii", nl: "De Klauw van Jan'alaii" },
     zone: { en: "Zul'Aman", nl: "Zul'Aman" },
     location: { en: "Zul'Aman — Amani overlook", nl: "Zul'Aman — Amani-uitkijk" },
@@ -85,6 +90,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'wing_of_akilzon',
+    crafting_drops: [],
     name: { en: "The Wing of Akil'zon", nl: "De Vleugel van Akil'zon" },
     zone: { en: "Zul'Aman", nl: "Zul'Aman" },
     location: { en: "Zul'Aman — Storm roost", nl: "Zul'Aman — Stormnest" },
@@ -135,10 +141,18 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Eruption:</strong> Sidestep. <strong>Arcane Cascade:</strong> Interrupt. <strong>Void Minion:</strong> Kill first.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Eruption:</strong> Opzij. <strong>Arcane Cascade:</strong> Onderbreek. <strong>Void Minion:</strong> Eerst dood.</p>'
     },
-    loot: { normal: 186, hard: 202, nightmare: 218 }
+    loot: { normal: 186, hard: 202, nightmare: 218 },
+    crafting_drops: [
+      {
+        label: { en: '3x Shadowed Iron Bolts', nl: '3x Shadowed Iron Bolts' },
+        profession: { en: 'Engineering / Blacksmithing', nl: 'Techniek / Smidskunst' },
+        used_for: { en: 'Engineering and Blacksmithing crafts', nl: 'Techniek- en smids-recepten' }
+      }
+    ]
   },
   {
     id: 'consul_nebulor',
+    crafting_drops: [],
     name: { en: 'Consul Nebulor', nl: 'Consul Nebulor' },
     zone: { en: 'Voidstorm', nl: 'Voidstorm' },
     location: { en: 'Voidstorm — Nebulor terrace', nl: 'Voidstorm — Nebulor-terras' },
@@ -166,6 +180,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'executor_kaenius',
+    crafting_drops: [],
     name: { en: 'Executor Kaenius', nl: 'Executor Kaenius' },
     zone: { en: 'Voidstorm', nl: 'Voidstorm' },
     location: { en: 'Voidstorm — Execution grounds', nl: 'Voidstorm — Executieplein' },
@@ -193,6 +208,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'imperator_enigmalia',
+    crafting_drops: [],
     name: { en: 'Imperator Enigmalia', nl: 'Imperator Enigmalia' },
     zone: { en: 'Voidstorm', nl: 'Voidstorm' },
     location: { en: 'Voidstorm — Enigmalia throne approach', nl: 'Voidstorm — Enigmalia-troon' },
@@ -243,10 +259,24 @@ const PREY_TARGETS = [
       en: '<h4>Before the fight</h4><p>Fill Anguish on the Isle; expect longer ambush paths near the Sunwell gate.</p><h4>Boss mechanics</h4><p><strong>Phoenix:</strong> Kill or shield breaks slowly. <strong>Pyroblast:</strong> Kick. <strong>Arcane Burst:</strong> Spread.</p>',
       nl: '<h4>Voor het gevecht</h4><p>Vul Anguish op het eiland; langere hinderlagen bij Sunwell-poort.</p><h4>Boss-mechanieken</h4><p><strong>Phoenix:</strong> Dood of shield breekt traag. <strong>Pyroblast:</strong> Kick. <strong>Arcane Burst:</strong> Spreiden.</p>'
     },
-    loot: { normal: 189, hard: 206, nightmare: 226 }
+    loot: { normal: 189, hard: 206, nightmare: 226 },
+    crafting_drops: [
+      {
+        label: { en: '2x Abyssal Shard', nl: '2x Abyssal Shard' },
+        profession: { en: 'Blacksmithing', nl: 'Smidskunst' },
+        used_for: { en: 'Void-Forged Weapons', nl: 'Void-gesmede wapens' }
+      }
+    ]
   },
   {
     id: 'silvermoon_stalker',
+    crafting_drops: [
+      {
+        label: { en: '5x Void-Stained Leather', nl: '5x Void-Stained Leather' },
+        profession: { en: 'Leatherworking', nl: 'Lederbewerking' },
+        used_for: { en: 'Epic Mail/Leather', nl: 'Epische mail/leder' }
+      }
+    ],
     name: { en: 'Silvermoon Stalker', nl: 'Silvermoon Stalker' },
     zone: { en: 'Silvermoon City outskirts', nl: 'Rand van Silvermoon' },
     location: { en: 'Murder Row gate — eastern ridge', nl: 'Murder Row-poort — oostelijke richel' },
@@ -274,6 +304,13 @@ const PREY_TARGETS = [
   },
   {
     id: 'abyssal_commander',
+    crafting_drops: [
+      {
+        label: { en: '1x Void-Infused Essence', nl: '1x Void-Infused Essence' },
+        profession: { en: 'Jewelcrafting', nl: 'Juwelen' },
+        used_for: { en: 'High-End Trinkets', nl: 'High-end trinkets' }
+      }
+    ],
     name: { en: 'Abyssal Commander', nl: 'Abyssal Commander' },
     zone: { en: 'Voidstorm coast', nl: 'Voidstorm-kust' },
     location: { en: 'Shattered abyssal beachhead', nl: 'Gespleten abyssale strandkop' },
@@ -301,6 +338,7 @@ const PREY_TARGETS = [
   },
   {
     id: 'twilight_riftstalker',
+    crafting_drops: [],
     name: { en: 'Twilight Riftstalker', nl: 'Twilight Riftstalker' },
     zone: { en: 'Ghostlands border', nl: 'Ghostlands-grens' },
     location: { en: 'Dead Scar twilight tear', nl: 'Dead Scar scheur' },

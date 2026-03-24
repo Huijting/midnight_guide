@@ -1973,5 +1973,5 @@ function copyMacro(el) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.5.2').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.5.3').catch(() => {});
 }

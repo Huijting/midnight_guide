@@ -165,15 +165,32 @@ function updateSpecBtn() {
   updateSpecHeaderBtnVisibility();
 }
 
-/** Spec header button only on spec guide detail, dungeon detail, or raid boss detail — not home / raid list / prey / etc. */
+/** Sync coarse view name for header logic / debugging (spec-detail | dungeon-detail | …). */
+function syncMidnightCurrentView() {
+  const body = document.body.classList;
+  if (body.contains('mode-specs') && document.getElementById('spec-detail-view')?.classList.contains('visible')) {
+    window.midnightCurrentView = 'spec-detail';
+  } else if (body.contains('detail-open') || body.contains('raid-detail-open')) {
+    window.midnightCurrentView = 'dungeon-detail';
+  } else if (body.contains('mode-home')) {
+    window.midnightCurrentView = 'home';
+  } else if (body.contains('mode-prey')) {
+    window.midnightCurrentView = 'prey';
+  } else {
+    const m = document.body.className.match(/\bmode-([a-z]+)\b/);
+    window.midnightCurrentView = m ? m[1] : 'other';
+  }
+}
+
+/** Spec header button only on spec guide detail or dungeon/raid boss detail (same surface as dungeon-detail). Hidden on home, prey, lists, etc. */
 function updateSpecHeaderBtnVisibility() {
   const sb = document.getElementById('spec-btn');
   if (!sb) return;
-  const specDetailOpen = document.getElementById('spec-detail-view')?.classList.contains('visible');
-  const dungeonDetail = document.body.classList.contains('detail-open');
-  const raidDetail = document.body.classList.contains('raid-detail-open');
-  const show = dungeonDetail || raidDetail || (document.body.classList.contains('mode-specs') && specDetailOpen);
+  const specDetail = document.body.classList.contains('mode-specs') && document.getElementById('spec-detail-view')?.classList.contains('visible');
+  const dungeonDetail = document.body.classList.contains('detail-open') || document.body.classList.contains('raid-detail-open');
+  const show = specDetail || dungeonDetail;
   sb.style.display = show ? '' : 'none';
+  syncMidnightCurrentView();
 }
 
 function openSpecModal() {
@@ -2681,7 +2698,7 @@ renderKpSources = function(p) {
 const PREY_UI = {
   nl: {
     title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
-    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — tik voor details; vink af als je dit week gedood hebt', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel',
+    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — tik voor details; vink af als je dit week gedood hebt', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel', craftingMaterials:'🛠️ Crafting Materialen',
     summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid',
     spotlightTitle:'🎯 Doelwit van de week', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Midnight S1 schaal',
     lootFootnote: I => `Wereld ~${I.world}+ · schaalt richting ~${I.mythic}+ op zwaarste kills.`,
@@ -2689,7 +2706,7 @@ const PREY_UI = {
   },
   en: {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
-    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — tap for details; check off when killed this week', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table',
+    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — tap for details; check off when killed this week', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table', craftingMaterials:'🛠️ Crafting materials',
     summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
     spotlightTitle:'🎯 Target of the Week', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Midnight S1 scale',
     lootFootnote: I => `World ~${I.world}+ · scales toward ~${I.mythic}+ on hardest clears.`,
@@ -2983,6 +3000,24 @@ function openPreyDetail(id) {
 
   const lootRows = `<tr><td>${u.normal}</td><td>${loot.normal || '—'}</td></tr><tr><td>${u.hard}</td><td>${loot.hard || '—'}</td></tr><tr><td>${u.nightmare}</td><td>${loot.nightmare || '—'}</td></tr>`;
 
+  const escAttr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  const drops = Array.isArray(t.crafting_drops) ? t.crafting_drops : [];
+  const craftingBlock = drops.length === 0 ? '' : (() => {
+    const items = drops.map(d => {
+      if (!d) return '';
+      const label = (d.label && (d.label[l] || d.label.en)) || d.item || '';
+      const prof = (d.profession && (d.profession[l] || d.profession.en)) || '';
+      const use = (d.used_for && (d.used_for[l] || d.used_for.en)) || '';
+      const tip = lang === 'en'
+        ? `Used by ${prof}: ${use}.`
+        : `Wordt gebruikt door ${prof}: ${use}.`;
+      const safeLabel = String(label).replace(/</g, '&lt;');
+      return `<li><button type="button" class="prey-craft-link" title="${escAttr(tip)}">${safeLabel}</button></li>`;
+    }).filter(Boolean).join('');
+    if (!items) return '';
+    return `<h4 class="prey-detail-subtitle prey-crafting-heading">${u.craftingMaterials}</h4><ul class="prey-crafting-list">${items}</ul>`;
+  })();
+
   document.getElementById('prey-detail-title').textContent = name;
   const wayHtml = wayStr ? `<div class="kp-way-code prey-way" onclick="copyWay(this)" data-way="${wayStr.replace(/"/g,'&quot;')}" title="${u.tooltipCopy}">📋 ${wayStr}</div>` : '';
   document.getElementById('prey-detail-content').innerHTML = `
@@ -3004,6 +3039,7 @@ function openPreyDetail(id) {
     ${fullGuide ? `<h4 class="prey-detail-subtitle">${u.fullGuide}</h4><div class="delve-full-guide-body">${fullGuide}</div>` : ''}
     <h4 class="prey-detail-subtitle">${u.lootTable}</h4>
     <table class="prey-detail-loot-table"><thead><tr><th>${u.difficulty || 'Difficulty'}</th><th>${u.ilvl}</th></tr></thead><tbody>${lootRows}</tbody></table>
+    ${craftingBlock}
     <p class="prey-loot-footnote"><strong>${u.ilvlScale}:</strong> ${typeof u.lootFootnote === 'function' ? u.lootFootnote(I) : ''}</p>`;
   document.getElementById('prey-detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
