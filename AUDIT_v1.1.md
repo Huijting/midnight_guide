@@ -35,7 +35,7 @@
 |------|--------|
 | **js/ui.js** | Removed stray comma after Darkmoon Faire item (line 826–827) — was causing invalid array syntax. |
 | **data/delves.js** | Den of Echoes: added zoneName `Harandar`, zone hint in tactics/details (between Gulf of Memory and Har'alnor). |
-| **data/dungeons/season1.js** | Fixed typo: "Soakc" → "Soak" (Arcanotron Custos, Danish DPS). Windrunner Spire entrance: 35.2,78.4 → 35.5,78.8 (Icy Veins). |
+| **data/dungeons/s1/** | Season 1 dungeons split per dungeon + `dungeons_bundle.js` + `season1_shared.js` (maps, SPEC_TIPS, GLOSSARY). |
 | **data/raids/voidspire.js** | Fixed typo: "torenwaar" → "torent" (Dutch lore). |
 
 ---

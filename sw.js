@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-guide-v12';
+const CACHE_NAME = 'midnight-guide-v13';
 
 const PRECACHE = [
   '/',
@@ -15,8 +15,21 @@ const PRECACHE = [
   '/icons/icon-512.png',
   // Handleiding
   '/data/help.js',
-  // Dungeons
-  '/data/dungeons/season1.js',
+  // Dungeons — Season 1 (split)
+  '/data/dungeons/s1/windrunner_spire.js',
+  '/data/dungeons/s1/magisters_terrace.js',
+  '/data/dungeons/s1/maisara_caverns.js',
+  '/data/dungeons/s1/nexus_point_xenas.js',
+  '/data/dungeons/s1/algethar_academy.js',
+  '/data/dungeons/s1/pit_of_saron.js',
+  '/data/dungeons/s1/seat_of_the_triumvirate.js',
+  '/data/dungeons/s1/skyreach.js',
+  '/data/dungeons/s1/murder_row.js',
+  '/data/dungeons/s1/the_blinding_vale.js',
+  '/data/dungeons/s1/den_of_nalorakk.js',
+  '/data/dungeons/s1/voidscar_arena.js',
+  '/data/dungeons/s1/dungeons_bundle.js',
+  '/data/dungeons/s1/season1_shared.js',
   // Professies
   '/data/professions/alchemy.js',
   '/data/professions/blacksmithing.js',
