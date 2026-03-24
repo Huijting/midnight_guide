@@ -2259,6 +2259,26 @@ function renderRaidList() {
   });
 }
 
+/** Prey tactical board (v2.7) — merged into PREY_UI in app.js */
+const PREY_MAP_UI = {
+  nl: {
+    mapTitle: 'Tactische kaart — Silvermoon-omgeving',
+    mapSub: 'Tik op een pin om naar dat premiejacht-bord te scrollen.',
+    mapPinAria: name => `Scroll naar premie: ${name}`,
+    maintenanceTitle: 'In onderhoud',
+    maintenanceText:
+      'We gaan voor nu met iets anders verder. De tactische kaart en pins worden nog bijgewerkt — gebruik de bountykaarten hieronder voor locatie en /way.',
+  },
+  en: {
+    mapTitle: 'Tactical map — Silvermoon outskirts',
+    mapSub: 'Tap a pin to scroll to that bounty poster.',
+    mapPinAria: name => `Scroll to bounty: ${name}`,
+    maintenanceTitle: 'Under maintenance',
+    maintenanceText:
+      "We're focusing on other things for now. The tactical map and pins are still being updated — use the bounty posters below for location and /way.",
+  },
+};
+
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=2.2.1').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=2.7.4').catch(() => {});
 }

@@ -2924,7 +2924,7 @@ const PREY_UI = {
     spotlightTitle:'🎯 Doelwit van de week', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Midnight S1 schaal',
     copyWayCta:'Kopieer /way', wantedLabel:'Gezocht',
     lootFootnote: I => `Wereld ~${I.world}+ · schaalt richting ~${I.mythic}+ op zwaarste kills.`,
-    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol'
+    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol',
   },
   en: {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
@@ -2933,9 +2933,17 @@ const PREY_UI = {
     spotlightTitle:'🎯 Target of the Week', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Midnight S1 scale',
     copyWayCta:'Copy /way', wantedLabel:'WANTED',
     lootFootnote: I => `World ~${I.world}+ · scales toward ~${I.mythic}+ on hardest clears.`,
-    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Role tactics'
+    roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Role tactics',
   }
 };
+
+(function mergePreyMapUi() {
+  if (typeof PREY_MAP_UI === 'undefined') return;
+  ['nl', 'en'].forEach(l => {
+    const src = PREY_MAP_UI[l] || PREY_MAP_UI.nl;
+    if (src && PREY_UI[l]) Object.assign(PREY_UI[l], src);
+  });
+})();
 
 const MIDNIGHT_PREY_STORAGE_KEY = 'midnight_prey_progress';
 
@@ -3034,12 +3042,107 @@ function getPreySpotlightTarget() {
 
 function preySkullsStringHtml(dr) {
   const n = Math.min(5, Math.max(1, Number(dr) || 3));
+  const highDanger = n >= 4;
   let s = '';
   for (let i = 1; i <= 5; i++) {
-    s += `<span class="prey-skull${i <= n ? ' prey-skull--on' : ' prey-skull--off'}" aria-hidden="true">💀</span>`;
+    const on = i <= n;
+    const tier = on ? (highDanger ? ' prey-skull--high' : ' prey-skull--mid') : '';
+    s += `<span class="prey-skull${on ? ' prey-skull--on' + tier : ' prey-skull--off'}" aria-hidden="true">💀</span>`;
   }
   return s;
 }
+
+/** Resolve media paths against the page URL (fixes CSS url() vs stylesheet base + ?v= cache bust). */
+function preyMediaUrl(path) {
+  if (!path) return '';
+  const s = String(path).trim();
+  if (/^https?:\/\//i.test(s)) return s;
+  const rel = s.replace(/^\//, '');
+  try {
+    return new URL(rel, window.location.href).href;
+  } catch (e) {
+    return rel;
+  }
+}
+
+function syncPreyTacticalMapBackground() {
+  const outer = document.getElementById('prey-map-container');
+  const stage = document.getElementById('prey-map-stage');
+  if (outer) {
+    outer.style.backgroundColor = '#0a090d';
+  }
+  if (!stage) return;
+  const ver = typeof APP_VERSION !== 'undefined' ? String(APP_VERSION) : '';
+  /* Official Prey tactical map only — never image_6.png or other filenames */
+  const path = ver
+    ? `assets/images/maps/silvermoon-map.png?v=${encodeURIComponent(ver)}`
+    : 'assets/images/maps/silvermoon-map.png';
+  const u = preyMediaUrl(path);
+  stage.style.backgroundImage = u ? `url(${JSON.stringify(u)})` : '';
+  stage.style.backgroundSize = 'contain';
+  stage.style.backgroundRepeat = 'no-repeat';
+  stage.style.backgroundPosition = 'center';
+}
+
+function preyEscHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/** Zone-themed poster art URL (local assets); optional `bountyArt` on target overrides. */
+function getPreyCardBgUrl(t) {
+  const withVer = rel => {
+    const ver = typeof APP_VERSION !== 'undefined' ? String(APP_VERSION) : '';
+    if (!ver || /^https?:\/\//i.test(rel)) return rel;
+    const sep = rel.includes('?') ? '&' : '?';
+    return `${rel}${sep}v=${encodeURIComponent(ver)}`;
+  };
+  if (t && t.bountyArt) {
+    let raw = String(t.bountyArt).trim();
+    const um = raw.match(/^url\(\s*['"]?(.+?)['"]?\s*\)$/i);
+    if (um) raw = um[1];
+    raw = raw.replace(/^["']|["']$/g, '');
+    return preyMediaUrl(withVer(raw));
+  }
+  const z = ((t.zone && t.zone.en) || '').toLowerCase();
+  let rel = 'images/raids/rift-of-aln-bg.svg';
+  if (z.includes('silvermoon')) rel = 'images/dungeons/murder-row-bg.svg';
+  else if (z.includes('eversong')) rel = 'images/dungeons/windrunner-spire-bg.svg';
+  else if (z.includes("zul'")) rel = 'images/dungeons/den-of-nalorakk-bg.svg';
+  else if (z.includes('voidstorm')) rel = 'images/raids/voidspire-bg.svg';
+  else if (z.includes('quel') || z.includes('danas')) rel = 'images/raids/march-queldanas-bg.svg';
+  else if (z.includes('ghost')) rel = 'images/dungeons/murder-row-bg.svg';
+  return preyMediaUrl(withVer(rel));
+}
+
+function preyEscImgSrc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function renderPreyMapPins(sortedTargets, killedMap, ui, l) {
+  const pinsRoot = document.getElementById('prey-map-pins');
+  if (!pinsRoot) return;
+  if (!sortedTargets.length) {
+    pinsRoot.innerHTML = '';
+    return;
+  }
+  const escAttr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  pinsRoot.innerHTML = sortedTargets.map(t => {
+    const mp = t.mapPin || { left: 50, top: 50 };
+    const name = (t.name && t.name[l]) || t.name?.en || t.id;
+    const killed = !!killedMap[t.id];
+    const aria = typeof ui.mapPinAria === 'function' ? ui.mapPinAria(name) : `Scroll to ${name}`;
+    const pinState = killed ? 'prey-map-pin--killed' : 'prey-map-pin--active';
+    const iconClass = killed ? 'fa-solid fa-circle-check' : 'fa-solid fa-crosshairs';
+    const tipHtml = preyEscHtml(name);
+    return `<button type="button" class="prey-map-pin ${pinState}" style="left:${mp.left}%;top:${mp.top}%" aria-label="${escAttr(aria)}" data-prey-target="${t.id}" onclick="preyScrollToTargetCard('${t.id}')"><span class="prey-map-pin__glyph" aria-hidden="true"><i class="${iconClass}"></i></span><span class="prey-map-pin__tip">${tipHtml}</span></button>`;
+  }).join('');
+}
+
+function preyScrollToTargetCard(id) {
+  const el = document.getElementById('prey-card-' + id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+window.preyScrollToTargetCard = preyScrollToTargetCard;
 
 function preyRewardTypeLine(t, l) {
   if (t.rewardType && (t.rewardType[l] || t.rewardType.en)) return t.rewardType[l] || t.rewardType.en;
@@ -3066,11 +3169,20 @@ function renderPreyGuide() {
   const data = typeof PREY_DATA !== 'undefined' ? PREY_DATA : null;
   const ui = PREY_UI[lang] || PREY_UI.nl;
 
+  const mMaintTitle = document.getElementById('prey-map-maintenance-title');
+  const mMaintText = document.getElementById('prey-map-maintenance-text');
+  if (mMaintTitle) mMaintTitle.textContent = ui.maintenanceTitle || '';
+  if (mMaintText) mMaintText.textContent = ui.maintenanceText || '';
+
   document.getElementById('prey-title').textContent = ui.title;
   const introEl = document.getElementById('prey-intro');
   if (introEl && data) introEl.textContent = data.intro[lang] || data.intro.nl;
 
   if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
+
+  const targetsSorted = typeof PREY_TARGETS !== 'undefined'
+    ? [...PREY_TARGETS].sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''))
+    : [];
 
   const l = lang === 'en' ? 'en' : 'nl';
   const loop = data.loop[l] || data.loop.en;
@@ -3180,14 +3292,12 @@ function renderPreyGuide() {
   </div>`;
 
   // ——— Prey Targets (cards, sorted by zone) ———
-  const targets = typeof PREY_TARGETS !== 'undefined' ? [...PREY_TARGETS] : [];
-  if (targets.length > 0) {
-    targets.sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''));
+  if (targetsSorted.length > 0) {
     html += `<div class="prey-section">
       <h3 class="prey-section-title">${ui.targetsLabel}</h3>
       <p class="prey-targets-hint">${ui.targetsHint || 'Sorted by zone — click for details'}</p>
       <div class="prey-target-cards immersive-card-grid">`;
-    targets.forEach(t => {
+    targetsSorted.forEach(t => {
       const name = (t.name && t.name[l]) || t.name?.en || t.id || '—';
       const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
       const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
@@ -3198,11 +3308,13 @@ function renderPreyGuide() {
       const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
       const wayAttr = wayStr.replace(/"/g, '&quot;');
       const wayBtn = wayStr
-        ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--block" onclick="event.stopPropagation();copyWay(this)" data-way="${wayAttr}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>`
+        ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--bounty-primary" onclick="event.stopPropagation();copyWay(this)" data-way="${wayAttr}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>`
         : '';
-      html += `<div class="prey-target-card-wrap">
+      const bgSrc = preyEscImgSrc(getPreyCardBgUrl(t));
+      html += `<div id="prey-card-${t.id}" class="prey-target-card-wrap">
         <div class="prey-bounty-card${killed ? ' prey-target-done' : ''}" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
-          <div class="prey-bounty-card-inner">
+          <div class="prey-bounty-card__art" aria-hidden="true"><img class="prey-bounty-card__art-img" src="${bgSrc}" alt="" width="400" height="260" decoding="async" loading="lazy"></div>
+          <div class="prey-bounty-card__glass">
             <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
             <div class="prey-target-card-name">${name}</div>
             <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
@@ -3216,13 +3328,22 @@ function renderPreyGuide() {
           </div>
           ${wayBtn}
         </div>
-        <label class="prey-killed-label"><input type="checkbox" ${killed ? 'checked' : ''} onchange="preyTargetKilledToggle('${t.id}',this)"> ${ui.killedLabel}</label>
+        <label class="prey-killed-label prey-killed-label--tactical"><input type="checkbox" ${killed ? 'checked' : ''} onchange="preyTargetKilledToggle('${t.id}',this)"> ${ui.killedLabel}</label>
       </div>`;
     });
     html += `</div></div>`;
   }
 
   container.innerHTML = html;
+
+  const mapSec = document.getElementById('prey-map-section');
+  const mapHeading = document.getElementById('prey-map-heading');
+  const mapSubEl = document.getElementById('prey-map-sub');
+  if (mapSec) mapSec.style.display = targetsSorted.length ? '' : 'none';
+  if (mapHeading) mapHeading.textContent = targetsSorted.length ? (ui.mapTitle || '') : '';
+  if (mapSubEl) mapSubEl.textContent = targetsSorted.length ? (ui.mapSub || '') : '';
+  renderPreyMapPins(targetsSorted, killedMap, ui, l);
+  syncPreyTacticalMapBackground();
 }
 
 function openPreyDetail(id) {

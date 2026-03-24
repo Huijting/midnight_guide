@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=2.5.2">
+  <link rel="stylesheet" href="style.css?v=2.7.4">
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
   <script src="https://wow.zamimg.com/widgets/power.js"></script>
 </head>
@@ -291,6 +291,24 @@
     <div class="prof-guide-container prey-guide-panel">
       <h2 style="font-family: 'Inter', sans-serif; color: var(--gold); text-align: center; margin-bottom: 12px; font-size: clamp(20px, 5vw, 28px);" id="prey-title">Het Prey Systeem</h2>
       <p style="font-size: 14px; margin-bottom: 24px; text-align: center; color: var(--text);" id="prey-intro">Jaag op de gevaarlijkste doelwitten in Midnight. Een compleet stappenplan voor deze nieuwe solo-vriendelijke endgame activiteit.</p>
+
+      <div class="prey-map-section" id="prey-map-section">
+        <h3 class="prey-map-heading" id="prey-map-heading"></h3>
+        <p class="prey-map-sub" id="prey-map-sub"></p>
+        <div id="prey-map-container" class="prey-map-container" role="application" aria-describedby="prey-map-sub prey-map-maintenance-msg">
+          <div class="prey-map-wrap">
+            <div class="prey-map-stage" id="prey-map-stage" aria-hidden="false">
+              <div class="prey-map-pins" id="prey-map-pins"></div>
+            </div>
+            <div class="prey-map-maintenance" id="prey-map-maintenance" role="status" aria-live="polite">
+              <div class="prey-map-maintenance__panel" id="prey-map-maintenance-msg">
+                <span class="prey-map-maintenance__title" id="prey-map-maintenance-title"></span>
+                <p class="prey-map-maintenance__text" id="prey-map-maintenance-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div id="prey-content"></div>
     </div>
@@ -389,10 +407,10 @@
 <script src="data/professions/cooking.js" defer></script>
 <script src="data/professions/fishing.js" defer></script>
 <script src="js/constants.js" defer></script>
-<script src="js/ui.js?v=2.5.2" defer></script>
+<script src="js/ui.js?v=2.7.4" defer></script>
 
 <!-- ══ APP ══ -->
-<script src="js/app.js?v=2.5.2" defer></script>
+<script src="js/app.js?v=2.7.4" defer></script>
 
 <footer id="site-footer">
   <div class="footer-inner">

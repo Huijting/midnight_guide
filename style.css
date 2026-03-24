@@ -1925,6 +1925,74 @@
 
   /* ── PREY SCREEN ── */
   #prey-screen{display:none}
+  .prey-map-section{margin-bottom:26px}
+  .prey-map-heading{font-size:clamp(16px,3.5vw,19px);font-weight:800;color:var(--gold);text-align:center;margin:0 0 6px;line-height:1.25}
+  .prey-map-sub{font-size:12px;color:var(--muted);text-align:center;margin:0 0 14px;line-height:1.45;max-width:36em;margin-left:auto;margin-right:auto}
+  .prey-map-container{
+    position:relative;width:100%;display:flex;align-items:center;justify-content:center;
+    padding:12px;background-color:#0a090d;border-radius:var(--immersive-card-radius);
+    border:1px solid rgba(138,43,226,.35);overflow:hidden;
+    box-shadow:inset 0 0 50px rgba(0,0,0,.55),0 8px 28px rgba(0,0,0,.35);
+  }
+  body.light .prey-map-container{border-color:rgba(138,43,226,.28);box-shadow:inset 0 0 40px rgba(255,255,255,.12),0 6px 20px rgba(0,0,0,.08)}
+  /* Block + width:100% — NOT inline-block (shrink-to-fit + child 100% = collapsed width/height) */
+  .prey-map-wrap{position:relative;width:100%;max-width:100%;display:block}
+  .prey-map-maintenance{
+    position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;
+    padding:16px;pointer-events:auto;
+    background:linear-gradient(180deg,rgba(10,9,13,.94) 0%,rgba(10,9,13,.82) 50%,rgba(10,9,13,.65) 100%);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .prey-map-maintenance__panel{
+    max-width:min(100%,26rem);text-align:center;padding:14px 18px 16px;
+    background:rgba(18,12,28,.82);border:1px solid rgba(201,162,39,.42);border-radius:14px;
+    box-shadow:0 12px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .prey-map-maintenance__title{
+    display:block;font-size:clamp(15px,3.5vw,18px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:10px;text-shadow:0 0 20px rgba(201,162,39,.35);
+  }
+  .prey-map-maintenance__text{
+    margin:0;font-size:13px;line-height:1.55;color:var(--text);font-weight:600;
+  }
+  body.light .prey-map-maintenance{background:linear-gradient(180deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.72) 100%)}
+  body.light .prey-map-maintenance__panel{background:rgba(255,255,255,.94);border-color:rgba(138,43,226,.3)}
+  body.light .prey-map-maintenance__text{color:#1a1520}
+  /* Stage matches silvermoon-map.png 2020×1348; width from parent so aspect-ratio yields real height */
+  .prey-map-stage{
+    position:relative;width:100%;max-width:min(100%,calc(min(52vh,440px)*(2020/1348)));
+    aspect-ratio:2020/1348;max-height:min(52vh,440px);min-height:200px;margin:0 auto;
+    background-color:#0a090d;background-repeat:no-repeat;background-position:center;background-size:contain;
+  }
+  .prey-map-pins{position:absolute;inset:0;pointer-events:none;z-index:1}
+  .prey-map-pins .prey-map-pin{pointer-events:auto}
+  @keyframes prey-pin-pulse{
+    0%,100%{filter:drop-shadow(0 0 2px #C41E3A) drop-shadow(0 0 8px rgba(196,30,58,.5))}
+    50%{filter:drop-shadow(0 0 6px #C41E3A) drop-shadow(0 0 16px rgba(196,30,58,.85))}
+  }
+  .prey-map-pin{
+    position:absolute;left:0;top:0;padding:0;margin:0;border:none;background:transparent;cursor:pointer;
+    transform:translate(-50%,-50%);line-height:1;color:#C41E3A;
+    transition:transform .18s ease,filter .2s ease;
+  }
+  .prey-map-pin:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
+  .prey-map-pin__glyph{
+    display:flex;align-items:center;justify-content:center;font-size:clamp(17px,3.8vw,24px);line-height:1;
+  }
+  .prey-map-pin--active .prey-map-pin__glyph{color:#C41E3A;animation:prey-pin-pulse 1.5s ease-in-out infinite}
+  .prey-map-pin--killed .prey-map-pin__glyph{color:#22c55e;animation:none;filter:drop-shadow(0 0 6px rgba(34,197,94,.65))}
+  .prey-map-pin:hover,.prey-map-pin:focus-visible{transform:translate(-50%,-50%) scale(1.12)}
+  .prey-map-pin__tip{
+    position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
+    padding:7px 12px;font-size:12px;font-weight:800;color:var(--text);letter-spacing:.02em;
+    white-space:nowrap;pointer-events:none;z-index:5;opacity:0;visibility:hidden;
+    transition:opacity .22s ease,visibility .22s ease;
+    background:rgba(10,8,16,.78);border:1px solid rgba(201,162,39,.38);border-radius:12px;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 28px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  body.light .prey-map-pin__tip{background:rgba(255,255,255,.88);border-color:rgba(138,43,226,.28);color:#12141a;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .prey-map-pin:hover .prey-map-pin__tip,.prey-map-pin:focus-visible .prey-map-pin__tip{opacity:1;visibility:visible}
   .prey-screen-shell{width:100%;max-width:var(--content-max);margin:0 auto;padding:20px 24px 48px}
   .prey-guide-panel{
     padding:20px;border-radius:var(--immersive-card-radius);margin-top:10px;color:var(--text);
@@ -1978,7 +2046,8 @@
   .prey-bounty-wanted-tag{font-size:10px;font-weight:900;letter-spacing:.2em;color:var(--prey-void-purple);text-transform:uppercase;margin-bottom:6px;text-shadow:0 0 12px rgba(138,43,226,.4)}
   .prey-bounty-skulls{display:flex;flex-wrap:wrap;gap:3px 5px;font-size:15px;line-height:1;margin:4px 0 2px}
   .prey-skull{display:inline-block;transition:opacity .2s,filter .2s,transform .2s}
-  .prey-skull--on{opacity:1;filter:drop-shadow(0 0 6px rgba(138,43,226,.55))}
+  .prey-skull--on.prey-skull--mid{opacity:1;filter:drop-shadow(0 0 8px rgba(234,179,8,.8))}
+  .prey-skull--on.prey-skull--high{opacity:1;filter:drop-shadow(0 0 10px rgba(239,68,68,.9))}
   .prey-skull--off{opacity:.22;filter:grayscale(1)}
   .prey-bounty-reward-line{font-size:12px;font-weight:700;color:#e9d5ff;border-left:3px solid var(--prey-void-purple);padding-left:10px;margin:6px 0;line-height:1.4}
   .prey-spotlight-badge{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
@@ -2002,10 +2071,13 @@
   .prey-danger-fill-global{background:linear-gradient(90deg,rgba(201,162,39,.5),var(--gold));box-shadow:0 0 12px rgba(201,162,39,.25)}
   .prey-target-cards{gap:var(--grid-gap-immersive)}
   .prey-target-card-wrap{display:flex;flex-direction:column;gap:8px}
-  .prey-bounty-card{background:linear-gradient(165deg,rgba(35,20,55,.95) 0%,rgba(10,8,16,.92) 55%,rgba(18,12,28,.9) 100%);border:2px solid rgba(138,43,226,.4);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:border-color .2s,box-shadow .25s,transform .2s;flex:1;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 0 0 1px rgba(201,162,39,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .prey-bounty-card{position:relative;background:linear-gradient(165deg,rgba(35,20,55,.88) 0%,rgba(10,8,16,.85) 55%,rgba(18,12,28,.82) 100%);border:2px solid rgba(138,43,226,.4);border-radius:var(--immersive-card-radius);padding:0;cursor:pointer;transition:border-color .2s,box-shadow .25s,transform .2s,filter .35s ease;flex:1;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.45),inset 0 0 0 1px rgba(201,162,39,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
   .prey-bounty-card:hover{border-color:rgba(138,43,226,.75);box-shadow:0 10px 32px rgba(138,43,226,.2),0 0 20px rgba(138,43,226,.12)}
-  .prey-bounty-card-inner{padding:14px 14px 12px}
-  .prey-target-done{opacity:.88;border-color:rgba(74,222,128,.45)}
+  .prey-bounty-card__art{position:absolute;inset:0;overflow:hidden;pointer-events:none;transition:filter .35s ease,opacity .35s ease}
+  .prey-bounty-card__art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.36;display:block}
+  .prey-bounty-card__glass{position:relative;z-index:1;padding:14px 14px 12px}
+  .prey-target-done{filter:saturate(0.12) brightness(.92);border-color:rgba(74,222,128,.5);opacity:.92}
+  .prey-target-done .prey-bounty-card__art-img{opacity:.14}
   .prey-target-card-name{font-weight:900;font-size:16px;color:var(--gold2);margin-bottom:4px;line-height:1.25;text-shadow:0 1px 10px rgba(0,0,0,.5)}
   .prey-target-card-zone{font-size:12px;color:var(--muted);margin-bottom:6px}
   .prey-target-card-meter{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:10px;margin-top:8px;width:100%}
@@ -2013,7 +2085,9 @@
   .prey-target-card-meter .prey-danger-track{flex:1 1 auto;max-width:200px;min-width:72px}
   .prey-card-threat{font-size:11px;font-weight:800;color:var(--text)}
   .prey-way-copy-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;padding:14px 16px;margin:0;font-size:15px;font-weight:800;font-family:inherit;border:none;border-radius:0 0 calc(var(--immersive-card-radius) - 3px) calc(var(--immersive-card-radius) - 3px);background:linear-gradient(180deg,rgba(138,43,226,.45),rgba(88,28,135,.5));color:#faf5ff;border-top:1px solid rgba(138,43,226,.5);cursor:pointer;transition:background .2s,filter .15s;box-shadow:0 -4px 20px rgba(138,43,226,.15)}
-  .prey-way-copy-btn:hover{background:linear-gradient(180deg,rgba(167,85,247,.55),rgba(109,40,217,.55));filter:brightness(1.05)}
+  .prey-way-copy-btn--bounty-primary{position:relative;z-index:2;border-radius:0 0 calc(var(--immersive-card-radius) - 3px) calc(var(--immersive-card-radius) - 3px);background:linear-gradient(180deg,#e8c84a,#9a7618);color:#1a0f05;border-top:1px solid rgba(255,255,255,.28);box-shadow:0 -6px 24px rgba(201,162,39,.35)}
+  .prey-way-copy-btn--bounty-primary:hover{background:linear-gradient(180deg,#f0d060,#b8860b);filter:brightness(1.06)}
+  .prey-way-copy-btn:hover:not(.prey-way-copy-btn--bounty-primary){background:linear-gradient(180deg,rgba(167,85,247,.55),rgba(109,40,217,.55));filter:brightness(1.05)}
   .prey-way-copy-btn:active{filter:brightness(.95)}
   .prey-way-copy-btn--block{border-radius:12px;border:2px solid rgba(138,43,226,.55);margin-top:12px}
   .prey-card .prey-way-copy-btn--block{margin-top:0;border-radius:12px}
@@ -2021,6 +2095,10 @@
   .prey-way-raw{font-size:11px;color:var(--muted);margin:8px 0 0;padding:8px 10px;background:var(--deep);border-radius:8px;border:1px solid var(--border);word-break:break-all}
   .prey-killed-label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);cursor:pointer;padding:0 2px}
   .prey-killed-label input{accent-color:var(--gold);cursor:pointer}
+  .prey-killed-label--tactical{align-items:center;gap:14px;padding:14px 16px;margin-top:2px;font-size:14px;font-weight:700;color:var(--text);background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color .2s,background .2s}
+  body.light .prey-killed-label--tactical{background:rgba(0,0,0,.05)}
+  .prey-killed-label--tactical:hover{border-color:rgba(201,162,39,.45)}
+  .prey-killed-label--tactical input{width:26px;height:26px;min-width:26px;min-height:26px;cursor:pointer;flex-shrink:0}
   .prey-targets-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
   .prey-detail-zone{font-size:14px;color:var(--muted);margin-bottom:16px}
   .prey-detail-danger-block{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px}
