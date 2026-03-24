@@ -1520,6 +1520,7 @@ const SPEC_TAB_UI = {
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
         macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
         cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
+        pick_tab_hint:'Kies een tab hierboven — inhoud opent pas als je erop klikt.',
       },
   en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
         tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables & BiS'],
@@ -1530,6 +1531,7 @@ const SPEC_TAB_UI = {
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
         cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
+        pick_tab_hint:'Choose a tab above — content opens only after you tap it.',
       }
 };
 
@@ -1647,9 +1649,8 @@ window.toggleSpecClassAccordion = function (trigger) {
 function buildSpecGrid() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
-  let expand = typeof currentSpec !== 'undefined' && currentSpec && currentSpec.classId ? currentSpec.classId : null;
-  if (!expand && typeof window.midnightLastSpecGuideClassId === 'string') expand = window.midnightLastSpecGuideClassId;
-  renderSpecPickerAccordion('spec-grid', { context: 'screen', expandClassId: expand });
+  // Geen klas automatisch uitklappen op het Specs-tabblad — alles start dicht (ook Hunter e.d.).
+  renderSpecPickerAccordion('spec-grid', { context: 'screen', expandClassId: null });
   document.getElementById('spec-grid-view').style.display = '';
   document.getElementById('spec-detail-view').classList.remove('visible');
   if (typeof updateSpecHeaderBtnVisibility === 'function') updateSpecHeaderBtnVisibility();
@@ -1681,15 +1682,18 @@ function showSpec(id) {
       <div class="spec-cons"><div class="spec-cons-title">${ui.cons}</div><ul>${(s.cons[lang]||s.cons.nl||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
     </div>`;
 
-  // Tabs
-  document.getElementById('spec-tab-btns').innerHTML = ui.tabs.map((t,i) =>
-    `<button class="spec-tab-btn${i===0?' active':''}" onclick="switchSpecTab('${ui.tab_ids[i]}')">${t}</button>`
+  // Tabs — geen actieve tab tot de gebruiker klikt (alles “dicht”)
+  document.getElementById('spec-tab-btns').innerHTML = ui.tabs.map((t, i) =>
+    `<button type="button" class="spec-tab-btn" onclick="switchSpecTab('${ui.tab_ids[i]}')" aria-selected="false">${t}</button>`
   ).join('');
 
-  // Panels
-  document.getElementById('spec-tab-panels').innerHTML = ui.tab_ids.map((tid,i) =>
-    `<div class="spec-tab-content${i===0?' active':''}" id="stab-${tid}">${renderSpecTab(s, tid, ui)}</div>`
+  // Panels + placeholder
+  const panelsHtml = ui.tab_ids.map(tid =>
+    `<div class="spec-tab-content" id="stab-${tid}">${renderSpecTab(s, tid, ui)}</div>`
   ).join('');
+  document.getElementById('spec-tab-panels').innerHTML =
+    panelsHtml +
+    `<div class="spec-tab-placeholder" id="spec-tab-pick-hint" role="status">${ui.pick_tab_hint || ''}</div>`;
 
   document.getElementById('spec-grid-view').style.display = 'none';
   setTimeout(refreshWowheadTooltips, 50);
@@ -1699,11 +1703,16 @@ function showSpec(id) {
 }
 
 function switchSpecTab(id) {
-  document.querySelectorAll('.spec-tab-btn').forEach((b,i) => {
-    const tid = (SPEC_TAB_UI[lang]||SPEC_TAB_UI.nl).tab_ids[i];
-    b.classList.toggle('active', tid === id);
+  const uiTabs = (SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl).tab_ids;
+  document.querySelectorAll('.spec-tab-btn').forEach((b, i) => {
+    const tid = uiTabs[i];
+    const on = tid === id;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
   });
-  document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-'+id));
+  document.querySelectorAll('.spec-tab-content').forEach(p => p.classList.toggle('active', p.id === 'stab-' + id));
+  const ph = document.getElementById('spec-tab-pick-hint');
+  if (ph) ph.hidden = true;
   setTimeout(refreshWowheadTooltips, 50);
 }
 

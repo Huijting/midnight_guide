@@ -1,5 +1,6 @@
 // Prey Targets — WoW: Midnight Season 1 (12 contracts)
 // difficulty_rating 1–5 = solo threat (Danger Meter). Loot ~ILVL_MIDNIGHT band (see js/constants.js).
+// rewardType: optional { en, nl } line for bounty cards (e.g. weapon / trinket); else UI falls back to gear + ilvl band.
 // crafting_drops: optional drops shown in Prey detail modal (profession + used_for tooltips).
 // Note: “Dark-Iron Saboteur” contract is represented on Praetor Singularis (no separate NPC id in this dataset).
 
@@ -30,7 +31,8 @@ const PREY_TARGETS = [
       en: '<h4>Before the fight</h4><p>Fill your Anguish bar by doing World Quests and killing rares in Eversong Woods.</p><h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Interrupt. <strong>Shadow Pool:</strong> Move out. <strong>Void Surge:</strong> Defensive or interrupt.</p>',
       nl: '<h4>Voor het gevecht</h4><p>Vul Anguish met World Quests en rares in Eversong.</p><h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Onderbreek. <strong>Shadow Pool:</strong> Stap uit. <strong>Void Surge:</strong> Defensive of interrupt.</p>'
     },
-    loot: { normal: 182, hard: 197, nightmare: 212 }
+    loot: { normal: 182, hard: 197, nightmare: 212 },
+    rewardType: { en: '⚔️ Weapon & gear', nl: '⚔️ Wapen & gear' }
   },
   {
     id: 'deliah_gloomsong',
@@ -58,7 +60,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Shadow Mend:</strong> Interrupt. <strong>Gloomfire:</strong> Dispel. <strong>Void Rift:</strong> Dodge.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Shadow Mend:</strong> Onderbreek. <strong>Gloomfire:</strong> Dispel. <strong>Void Rift:</strong> Ontwijk.</p>'
     },
-    loot: { normal: 182, hard: 197, nightmare: 212 }
+    loot: { normal: 182, hard: 197, nightmare: 212 },
+    rewardType: { en: '💍 Trinket & accessories', nl: '💍 Trinket & accessoires' }
   },
   {
     id: 'talon_of_janalaii',
@@ -86,7 +89,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Hex:</strong> Interrupt. <strong>Lightning Totem:</strong> Kill fast. <strong>Chain Lightning:</strong> Dodge.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Hex:</strong> Onderbreek. <strong>Lightning Totem:</strong> Snel dood. <strong>Chain Lightning:</strong> Ontwijk.</p>'
     },
-    loot: { normal: 184, hard: 199, nightmare: 215 }
+    loot: { normal: 184, hard: 199, nightmare: 215 },
+    rewardType: { en: '⚔️ Weapon', nl: '⚔️ Wapen' }
   },
   {
     id: 'wing_of_akilzon',
@@ -114,7 +118,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Storm Bolt:</strong> Interrupt. <strong>Cyclone:</strong> Dodge. <strong>Windfury Curse:</strong> Dispel.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Storm Bolt:</strong> Onderbreek. <strong>Cyclone:</strong> Ontwijk. <strong>Windfury Curse:</strong> Dispel.</p>'
     },
-    loot: { normal: 184, hard: 199, nightmare: 215 }
+    loot: { normal: 184, hard: 199, nightmare: 215 },
+    rewardType: { en: '🪶 Off-hand & gear', nl: '🪶 Schildhand & gear' }
   },
   {
     id: 'praetor_singularis',
@@ -142,6 +147,7 @@ const PREY_TARGETS = [
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Eruption:</strong> Opzij. <strong>Arcane Cascade:</strong> Onderbreek. <strong>Void Minion:</strong> Eerst dood.</p>'
     },
     loot: { normal: 186, hard: 202, nightmare: 218 },
+    rewardType: { en: '🛠️ Crafting mats + gear', nl: '🛠️ Craft-mats + gear' },
     crafting_drops: [
       {
         label: { en: '3x Shadowed Iron Bolts', nl: '3x Shadowed Iron Bolts' },
@@ -176,7 +182,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Dark Summoning:</strong> Kill Emissary. <strong>Void Cone:</strong> Not in front. <strong>Discordant Hymn:</strong> Move.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Dark Summoning:</strong> Dood Emissary. <strong>Void Cone:</strong> Niet ervoor. <strong>Discordant Hymn:</strong> Bewegen.</p>'
     },
-    loot: { normal: 186, hard: 202, nightmare: 218 }
+    loot: { normal: 186, hard: 202, nightmare: 218 },
+    rewardType: { en: '🛡️ Armor & gear', nl: '🛡️ Harnas & gear' }
   },
   {
     id: 'executor_kaenius',
@@ -204,7 +211,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Interrupt. <strong>Crushing Rift:</strong> Dodge. <strong>Execute:</strong> Defensive under 30%.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Onderbreek. <strong>Crushing Rift:</strong> Ontwijk. <strong>Execute:</strong> Defensive onder 30%.</p>'
     },
-    loot: { normal: 188, hard: 204, nightmare: 220 }
+    loot: { normal: 188, hard: 204, nightmare: 220 },
+    rewardType: { en: '⚔️ Weapon', nl: '⚔️ Wapen' }
   },
   {
     id: 'imperator_enigmalia',
@@ -232,7 +240,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Always interrupt. <strong>Umbral Rage:</strong> Move out. <strong>Dark Communion:</strong> Kill add.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Altijd kick. <strong>Umbral Rage:</strong> Eruit. <strong>Dark Communion:</strong> Dood add.</p>'
     },
-    loot: { normal: 189, hard: 205, nightmare: 222 }
+    loot: { normal: 189, hard: 205, nightmare: 222 },
+    rewardType: { en: '💍 Trinket & rings', nl: '💍 Trinket & ringen' }
   },
   {
     id: 'void_touched_kaelthas',
@@ -260,6 +269,7 @@ const PREY_TARGETS = [
       nl: '<h4>Voor het gevecht</h4><p>Vul Anguish op het eiland; langere hinderlagen bij Sunwell-poort.</p><h4>Boss-mechanieken</h4><p><strong>Phoenix:</strong> Dood of shield breekt traag. <strong>Pyroblast:</strong> Kick. <strong>Arcane Burst:</strong> Spreiden.</p>'
     },
     loot: { normal: 189, hard: 206, nightmare: 226 },
+    rewardType: { en: '⚔️ Weapon & caster gear', nl: '⚔️ Wapen & caster-gear' },
     crafting_drops: [
       {
         label: { en: '2x Abyssal Shard', nl: '2x Abyssal Shard' },
@@ -300,7 +310,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Shadow Pounce:</strong> Dodge telegraph. <strong>Rending Strike:</strong> Mitigate or kite. <strong>Vanish:</strong> AoE reveal.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Shadow Pounce:</strong> Ontwijk. <strong>Rending Strike:</strong> Mitigatie of kiten. <strong>Vanish:</strong> AoE reveal.</p>'
     },
-    loot: { normal: 183, hard: 198, nightmare: 213 }
+    loot: { normal: 183, hard: 198, nightmare: 213 },
+    rewardType: { en: '🥾 Leather & mail gear', nl: '🥾 Leder- & mail-gear' }
   },
   {
     id: 'abyssal_commander',
@@ -334,7 +345,8 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Abyssal Crusher:</strong> Kill. <strong>Tidal Surge:</strong> Line dodge. <strong>Command Shield:</strong> Break with damage.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Abyssal Crusher:</strong> Dood. <strong>Tidal Surge:</strong> Lijn ontwijken. <strong>Command Shield:</strong> Schade.</p>'
     },
-    loot: { normal: 187, hard: 203, nightmare: 219 }
+    loot: { normal: 187, hard: 203, nightmare: 219 },
+    rewardType: { en: '💍 Trinket & JC mats', nl: '💍 Trinket & JC-mats' }
   },
   {
     id: 'twilight_riftstalker',
@@ -362,6 +374,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Twilight Rift:</strong> Stand in and DPS or kick channel. <strong>Tether:</strong> Break LOS or kill add.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Twilight Rift:</strong> Erin en DPS of kick channel. <strong>Tether:</strong> LOS of add dood.</p>'
     },
-    loot: { normal: 181, hard: 196, nightmare: 211 }
+    loot: { normal: 181, hard: 196, nightmare: 211 },
+    rewardType: { en: '🎁 Gear & rings', nl: '🎁 Gear & ringen' }
   }
 ];
