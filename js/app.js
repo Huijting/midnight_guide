@@ -807,6 +807,10 @@ function getAllDungeons() {
 // RENDER HOME
 // ═══════════════════════════════════════════════════════════════
 function renderHome() {
+  if (typeof renderDungeonList === 'function') {
+    renderDungeonList();
+    return;
+  }
   const u = UI[lang];
   const mplusGrid  = document.getElementById('mplus-grid');
   const normalGrid = document.getElementById('normal-grid');
@@ -1328,7 +1332,7 @@ window.addEventListener('resize', () => {
 });
 
 // Wacht tot HTML klaar is voordat we de pagina opbouwen
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
   try {
     document.body.classList.add('mode-home');
     const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_5_0';
@@ -1336,6 +1340,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');
     }
+    if (typeof loadDungeonsGridMeta === 'function') await loadDungeonsGridMeta();
     applyUIStrings();
     applySavedTheme();
     updateFooter();

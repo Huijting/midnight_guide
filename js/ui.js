@@ -1985,6 +1985,92 @@ function copyMacro(el) {
   });
 }
 
+// ═══ Dungeon grid (home) — backgrounds from data/dungeons.json ═══
+async function loadDungeonsGridMeta() {
+  window.DUNGEONS_GRID_META = window.DUNGEONS_GRID_META || {};
+  try {
+    const res = await fetch('data/dungeons.json?v=2.2');
+    if (!res.ok) return;
+    window.DUNGEONS_GRID_META = await res.json();
+  } catch (e) {
+    console.warn('Midnight: dungeons.json kon niet geladen worden', e);
+  }
+}
+
+function renderDungeonList() {
+  const mplusGrid = document.getElementById('mplus-grid');
+  const normalGrid = document.getElementById('normal-grid');
+  if (!mplusGrid || !normalGrid) return;
+  if (typeof getAllDungeons !== 'function' || typeof UI === 'undefined') return;
+
+  const u = UI[lang] || UI.nl;
+  const metaAll = window.DUNGEONS_GRID_META || {};
+  mplusGrid.innerHTML = '';
+  normalGrid.innerHTML = '';
+
+  getAllDungeons().forEach(d => {
+    const isMplus = d.type === 'mplus';
+    const isRaid = d.type === 'raid';
+    if (isRaid) return;
+
+    const meta = metaAll[d.id] || {};
+    const themeGlow = meta.theme_color || 'rgba(107, 91, 149, 0.45)';
+    const bgUrl = (meta.image_url || '').trim();
+    const bossCount = Array.isArray(d.bosses_short) ? d.bosses_short.length : 0;
+    const bossesLabel = lang === 'en'
+      ? `${bossCount} ${bossCount === 1 ? 'BOSS' : 'BOSSES'}`
+      : `${bossCount} ${bossCount === 1 ? 'BAAS' : 'BAZEN'}`;
+
+    const card = document.createElement('div');
+    card.className = `dungeon-card dungeon-card--immersive${isMplus ? ' mplus' : ''}`;
+    card.style.setProperty('--card-theme-glow', themeGlow);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', d.name);
+    card.addEventListener('click', () => {
+      if (typeof openDungeon === 'function') openDungeon(d.id);
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (typeof openDungeon === 'function') openDungeon(d.id);
+      }
+    });
+
+    const modeLabel = isMplus ? u.badge_mplus : u.badge_normal;
+    card.innerHTML = `
+      <div class="dungeon-card-bg"></div>
+      <div class="dungeon-card-overlay" aria-hidden="true"></div>
+      <span class="dungeon-card-mode-tag">${modeLabel}</span>
+      <span class="dungeon-card-boss-count">${bossesLabel}</span>
+      <div class="dungeon-card-footer">
+        <h3 class="dungeon-card-title"></h3>
+        <div class="dungeon-card-role-icons" aria-hidden="true">
+          <span>🛡️</span><span>💊</span><span>⚔️</span>
+        </div>
+      </div>`;
+
+    const titleEl = card.querySelector('.dungeon-card-title');
+    if (titleEl) titleEl.textContent = d.name;
+
+    const roleIcons = card.querySelector('.dungeon-card-role-icons');
+    if (roleIcons) {
+      roleIcons.setAttribute('title', lang === 'en' ? 'Tank, Healer & DPS tactics' : 'Tank, Healer & DPS tactieken');
+    }
+
+    const bgEl = card.querySelector('.dungeon-card-bg');
+    if (bgEl) {
+      if (bgUrl) {
+        bgEl.style.backgroundImage = `url("${bgUrl.replace(/"/g, '')}")`;
+      } else {
+        bgEl.style.backgroundImage = `linear-gradient(165deg, ${themeGlow}, #0a090d)`;
+      }
+    }
+
+    (isMplus ? mplusGrid : normalGrid).appendChild(card);
+  });
+}
+
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=2.1.0').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=2.2.0').catch(() => {});
 }

@@ -1,0 +1,50 @@
+{
+  "windrunner": {
+    "image_url": "images/dungeons/windrunner-spire-bg.svg",
+    "theme_color": "rgba(200, 140, 170, 0.5)"
+  },
+  "magisters": {
+    "image_url": "images/dungeons/magisters-terrace-bg.svg",
+    "theme_color": "rgba(220, 60, 60, 0.45)"
+  },
+  "maisara": {
+    "image_url": "images/dungeons/maisara-caverns-bg.svg",
+    "theme_color": "rgba(60, 160, 90, 0.5)"
+  },
+  "nexus": {
+    "image_url": "images/dungeons/nexus-point-xenas-bg.svg",
+    "theme_color": "rgba(140, 80, 220, 0.55)"
+  },
+  "algethar": {
+    "image_url": "images/dungeons/algethar-academy-bg.svg",
+    "theme_color": "rgba(100, 140, 255, 0.45)"
+  },
+  "pitofsaron": {
+    "image_url": "images/dungeons/pit-of-saron-bg.svg",
+    "theme_color": "rgba(120, 200, 255, 0.45)"
+  },
+  "triumvirate": {
+    "image_url": "images/dungeons/seat-of-the-triumvirate-bg.svg",
+    "theme_color": "rgba(160, 100, 255, 0.5)"
+  },
+  "skyreach": {
+    "image_url": "images/dungeons/skyreach-bg.svg",
+    "theme_color": "rgba(100, 190, 255, 0.45)"
+  },
+  "murderrow": {
+    "image_url": "images/dungeons/murder-row-bg.svg",
+    "theme_color": "rgba(200, 50, 70, 0.48)"
+  },
+  "blindingvale": {
+    "image_url": "images/dungeons/blinding-vale-bg.svg",
+    "theme_color": "rgba(220, 200, 120, 0.4)"
+  },
+  "nalorakk": {
+    "image_url": "images/dungeons/den-of-nalorakk-bg.svg",
+    "theme_color": "rgba(180, 120, 60, 0.5)"
+  },
+  "voidscar": {
+    "image_url": "images/dungeons/voidscar-arena-bg.svg",
+    "theme_color": "rgba(120, 60, 200, 0.55)"
+  }
+}

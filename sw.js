@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v2.1.0';
+const CACHE_NAME = 'midnight-v2.2.0';
 
 const PRECACHE = [
   '/',
@@ -17,6 +17,19 @@ const PRECACHE = [
   '/data/help.js',
   '/data/affixes.js',
   '/data/bountiful-today.json',
+  '/data/dungeons.json',
+  '/images/dungeons/windrunner-spire-bg.svg',
+  '/images/dungeons/magisters-terrace-bg.svg',
+  '/images/dungeons/maisara-caverns-bg.svg',
+  '/images/dungeons/nexus-point-xenas-bg.svg',
+  '/images/dungeons/algethar-academy-bg.svg',
+  '/images/dungeons/pit-of-saron-bg.svg',
+  '/images/dungeons/seat-of-the-triumvirate-bg.svg',
+  '/images/dungeons/skyreach-bg.svg',
+  '/images/dungeons/murder-row-bg.svg',
+  '/images/dungeons/blinding-vale-bg.svg',
+  '/images/dungeons/den-of-nalorakk-bg.svg',
+  '/images/dungeons/voidscar-arena-bg.svg',
   // Dungeons — Season 1 (split)
   '/data/dungeons/s1/windrunner_spire.js',
   '/data/dungeons/s1/magisters_terrace.js',

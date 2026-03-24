@@ -362,6 +362,83 @@
   .dungeon-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
   .dungeon-card:active{transform:scale(0.98)}
 
+  /* Immersive cinematic grid (data/dungeons.json backgrounds) */
+  .dungeon-card.dungeon-card--immersive{
+    height:160px;padding:0;border-radius:12px;position:relative;isolation:isolate;
+    background:#0a090d;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-bg{
+    position:absolute;inset:0;z-index:0;
+    background-size:cover;background-position:center;
+    transition:transform .5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-overlay{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background-image:linear-gradient(180deg,rgba(10,9,13,0.4) 0%,rgba(10,9,13,0.95) 100%);
+    transition:background-image .35s ease,opacity .35s ease;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-mode-tag{
+    position:absolute;top:10px;left:10px;z-index:2;
+    font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;
+    background:rgba(0,0,0,0.42);color:rgba(255,255,255,0.92);
+    border:1px solid rgba(255,255,255,0.12);
+    max-width:calc(100% - 120px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .dungeon-card.dungeon-card--immersive.mplus .dungeon-card-mode-tag{
+    color:var(--mplus);border-color:rgba(232,160,32,0.4);background:rgba(232,160,32,0.14);
+  }
+  .dungeon-card.dungeon-card--immersive:not(.mplus) .dungeon-card-mode-tag{
+    color:var(--normal);border-color:rgba(100,120,160,0.35);background:rgba(100,120,160,0.12);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-boss-count{
+    position:absolute;top:10px;right:10px;z-index:2;
+    font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 8px;border-radius:999px;
+    color:rgba(255,255,255,0.88);background:rgba(0,0,0,0.38);
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-footer{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+    padding:10px 12px 12px;
+    background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.25) 40%,rgba(0,0,0,0.55) 100%);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-title{
+    margin:0;font-family:'Inter',sans-serif;font-size:clamp(13px,2.8vw,16px);font-weight:800;
+    color:#d4af37;line-height:1.2;text-align:left;
+    text-shadow:0 1px 10px rgba(0,0,0,0.9),0 0 20px rgba(0,0,0,0.5);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-role-icons{
+    display:flex;gap:5px;font-size:14px;line-height:1;opacity:.5;flex-shrink:0;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+  }
+  @media (hover:hover) and (min-width:769px){
+    .dungeon-card.dungeon-card--immersive:hover .dungeon-card-bg{transform:scale(1.05)}
+    .dungeon-card.dungeon-card--immersive:hover .dungeon-card-overlay{
+      background-image:linear-gradient(180deg,rgba(10,9,13,0.22) 0%,rgba(10,9,13,0.78) 100%);
+    }
+    .dungeon-card.dungeon-card--immersive:hover{
+      transform:translateY(-4px);
+      border-color:rgba(212,175,55,0.42);
+      box-shadow:0 14px 44px rgba(0,0,0,0.55),0 0 32px var(--card-theme-glow,rgba(107,91,149,0.45));
+    }
+  }
+  @media (hover:none){
+    .dungeon-card.dungeon-card--immersive:hover .dungeon-card-bg{transform:none}
+    .dungeon-card.dungeon-card--immersive:hover .dungeon-card-overlay{
+      background-image:linear-gradient(180deg,rgba(10,9,13,0.4) 0%,rgba(10,9,13,0.95) 100%);
+    }
+    .dungeon-card.dungeon-card--immersive:active .dungeon-card-bg{transform:scale(1.03)}
+  }
+  body.light .dungeon-card.dungeon-card--immersive .dungeon-card-overlay{
+    background-image:linear-gradient(180deg,rgba(255,255,255,0.35) 0%,rgba(10,9,13,0.9) 100%);
+  }
+  body.light .dungeon-card.dungeon-card--immersive:hover .dungeon-card-overlay{
+    background-image:linear-gradient(180deg,rgba(255,255,255,0.22) 0%,rgba(10,9,13,0.82) 100%);
+  }
+  body.light .dungeon-card.dungeon-card--immersive .dungeon-card-title{color:#9a7b1a;text-shadow:0 1px 6px rgba(255,255,255,0.6)}
+
   .card-accent{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold))}
   .dungeon-card.mplus .card-accent{background:linear-gradient(90deg,#b07010,var(--gold2),#b07010)}
   .card-body{padding:13px 15px 15px}
