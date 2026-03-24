@@ -53,5 +53,26 @@ const SEAT_OF_THE_TRIUMVIRATE = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 3, mobs: ["Dark Conjuror", "Merciless Subjugator"],
+        note: { nl: "Conservatory: Summon Voidcaller elke cast interrupt (Icy Veins). Subjugator Chains = raid defensive.", en: "Conservatory: interrupt EVERY Summon Voidcaller (Icy Veins). Subjugator Chains = group defensive." },
+        interrupts: { nl: "Summon Voidcaller (Conjuror) > Umbral Bolt.", en: "Summon Voidcaller (Conjuror) > Umbral Bolt." } },
+      { pullRef: 1, danger: 5, mobs: ["Zuraal the Ascended"],
+        note: { nl: "Baas 1: niet in Darkfathom-pilaren; tank boss uit zones.", en: "Boss 1: avoid Darkfathom pillars; tank boss out of bad." },
+        interrupts: { nl: "Boss-casts volgens tactiek.", en: "Boss casts per strategy." } },
+      { pullRef: 2, danger: 4, mobs: ["Bound Voidcaller", "Shadowguard Champion"],
+        note: { nl: "Shadowguard Incursion: Pulsing Void = kill snel; Battle Rage soothe; Relentless Pursuit = blijf in melee.", en: "Shadowguard: kill Bound Voidcaller fast (Pulsing Void). Soothe Battle Rage. Relentless Pursuit — stay in melee." },
+        interrupts: { nl: "Shadowmend (Riftstalker) > filler; Voidcaller = kill prio.", en: "Shadowmend (Riftstalker) > filler; Voidcaller = kill prio." } },
+      { pullRef: 3, danger: 5, mobs: ["Saprish"],
+        note: { nl: "Baas 2: Shadewing eerst dood (dungeon-tips).", en: "Boss 2: kill Shadewing first (dungeon tips)." },
+        interrupts: { nl: "Pet/add-casts — focus Shadewing.", en: "Pet/add casts — focus Shadewing." } },
+      { pullRef: 4, danger: 5, mobs: ["Viceroy Nezhar"],
+        note: { nl: "Baas 3: Entropic Force interrupt; tentakels snel.", en: "Boss 3: interrupt Entropic Force; tentacles fast." },
+        interrupts: { nl: "Entropic Force — hoogste prioriteit.", en: "Entropic Force — top priority." } },
+      { pullRef: 5, danger: 5, mobs: ["L'ura"],
+        note: { nl: "Eindbaas: Rift Wardens snel (lust-window); fase 2 Discordant Beam + Notes (Icy Veins).", en: "Final boss: kill Rift Wardens fast (lust window); P2 Discordant Beams + Notes (Icy Veins)." },
+        interrupts: { nl: "Warden/add-casts tijdens P1; P2 volgens beam-assignments.", en: "Warden/add casts in P1; P2 per beam assignments." } }
+    ]
+  }
 };

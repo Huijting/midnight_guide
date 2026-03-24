@@ -53,5 +53,29 @@ const SKYREACH = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 3, mobs: ["Skyreach Blood-Sage", "Skyreach Arcanologist"],
+        note: { nl: "Lower Quarter: Blood-Sage eerst — Healing Sphere interrupt. Rune of Power + Arcane Smash dodge.", en: "Lower Quarter: Blood-Sage first — interrupt Healing Sphere. Rune of Power + dodge Arcane Smash." },
+        interrupts: { nl: "Healing Sphere (Blood-Sage) > Rune of Power (Arcanologist).", en: "Healing Sphere (Blood-Sage) > Rune of Power (Arcanologist)." } },
+      { pullRef: 1, danger: 5, mobs: ["Ranjit"],
+        note: { nl: "Baas 1: loop door de opening in de Windwall; tank face weg van groep.", en: "Boss 1: walk through Windwall gap; face boss away." },
+        interrupts: { nl: "Boss-specifieke casts — roteer met party.", en: "Boss-specific casts — rotate with group." } },
+      { pullRef: 2, danger: 3, mobs: ["Life-Pact Familiar", "Skyreach Sun Talon"],
+        note: { nl: "Binnenring: Life-Pact Familiar ALTIJD eerst (healt alles bij dood). Dire Screech channel.", en: "Inner ring: ALWAYS kill Life-Pact Familiar first (full heal on death). Dire Screech channel." },
+        interrupts: { nl: "Dire Screech (Sun Talon) > Rushing Winds purge-bait. Familiar = kill target, geen kick.", en: "Dire Screech (Sun Talon). Familiar = kill target, not a kick." } },
+      { pullRef: 3, danger: 5, mobs: ["Araknath"],
+        note: { nl: "Baas 2: Solar Construct Prototype — Energize-beam blokkeren door in de beam te staan (Icy Veins trash).", en: "Boss 2: Solar Construct — block Energize beam by standing in it (trash guide)." },
+        interrupts: { nl: "Construct-casts: beam-bait > kicks op overige adds.", en: "Construct casts: beam bait > kicks on other adds." } },
+      { pullRef: 4, danger: 3, mobs: ["Skyreach Defender", "Dread Raven"],
+        note: { nl: "Buitenring: Focus Interrupt + Repel knockback; Raven patrol — centrum tanken.", en: "Outer ring: Focus Interrupt + Repel knockback; Raven patrol — tank in center." },
+        interrupts: { nl: "Focus Interrupt (Defender) > filler.", en: "Focus Interrupt (Defender) > filler." } },
+      { pullRef: 5, danger: 5, mobs: ["Rukhran"],
+        note: { nl: "Baas 3: Sunwing adds direct kill (Icy Veins).", en: "Boss 3: kill Sunwing adds immediately (Icy Veins)." },
+        interrupts: { nl: "Add-casts prioriteit — baas zelf volgens tactiek.", en: "Add casts first — boss per strategy." } },
+      { pullRef: 6, danger: 5, mobs: ["High Sage Viryx"],
+        note: { nl: "Eindbaas: Solar Blast op tank roteren; Shield Constructs = 99% DR — instant kill (dungeon-tips).", en: "Final boss: rotate Solar Blast interrupts; Shield Constructs = 99% DR — kill instantly." },
+        interrupts: { nl: "Solar Blast (tank) — vaste rotatie. Cast Down = switch naar Solar Zealot, geen kick.", en: "Solar Blast (tank) — fixed rotation. Cast Down = swap to Zealot." } }
+    ]
+  }
 };

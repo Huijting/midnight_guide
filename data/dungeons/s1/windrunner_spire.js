@@ -66,5 +66,32 @@ const WINDRUNNER_SPIRE = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 4, mobs: ["Restless Steward", "Spellguard Magus", "Territorial Dragonhawk"],
+        note: { nl: "Eerste grote pull links: Spirit Bolt + Arcane Salvo; Dragonhawk Fire Spit CC/stop. Sleep Magus uit 99% DR-bol (Spellguard's Protection).", en: "First big left pull: Spirit Bolt + Arcane Salvo; Dragonhawk Fire Spit with CC/stop. Move Magus out of the 99% DR sphere." },
+        interrupts: { nl: "Spirit Bolt (Steward) > Fire Spit (Dragonhawk). Daarna spare kicks op Shadow Bolt-achtige casts in de pack.", en: "Spirit Bolt (Steward) > Fire Spit (Dragonhawk). Then spare kicks on Shadow Bolts in the pack." } },
+      { pullRef: 1, danger: 3, mobs: ["Phantasmal Mystic", "Bloated Lasher"],
+        note: { nl: "Westelijke gang: Chain Lightning + Flame Nova (Icy Veins). Fungal Bolt + Spore Dispersal op Lasher — defensive.", en: "West corridor: Chain Lightning + Flame Nova (Icy Veins). Fungal Bolt + Spore Dispersal on Lasher — use defensives." },
+        interrupts: { nl: "Chain Lightning (Mystic) > Fungal Bolt (Lasher). Flame Nova = tank defensive, geen kick.", en: "Chain Lightning (Mystic) > Fungal Bolt (Lasher). Flame Nova = tank defensive, not a kick." } },
+      { pullRef: 2, danger: 5, mobs: ["Emberdawn"],
+        note: { nl: "Baas 1: Flaming Updraft in hoek leggen; Burning Gale + Searing Beak — tank hoekpositie.", en: "Boss 1: drop Flaming Updraft in a corner; Burning Gale + Searing Beak — tank in a corner." },
+        interrupts: { nl: "Geen vaste trash-kicks — boss frontal tijdens Burning Gale ontwijken.", en: "No trash kick list — dodge boss frontal during Burning Gale." } },
+      { pullRef: 3, danger: 4, mobs: ["Devoted Woebringer", "Ardent Cutthroat"],
+        note: { nl: "Naar Derelict Duo: focus Woebringer — Pulsing Shriek absorb doorbreken (Icy Veins). Poison Blades op Cutthroat.", en: "Toward Derelict Duo: focus Woebringer — break Pulsing Shriek absorb (Icy Veins). Poison Blades on Cutthroat." },
+        interrupts: { nl: "Pulsing Shriek window > Shadow Bolt (Woebringer) > Poison Blades (Cutthroat).", en: "Pulsing Shriek shield > Shadow Bolt (Woebringer) > Poison Blades (Cutthroat)." } },
+      { pullRef: 4, danger: 5, mobs: ["Kalis", "Latch"],
+        note: { nl: "Twee bazen tegelijk dood: Kalis Shadow Bolt; Debilitating Shriek via Latch Heaving Yank (Icy Veins).", en: "Kill both bosses together: interrupt Kalis's Shadow Bolt; Debilitating Shriek stopped via Latch's Heaving Yank (Icy Veins)." },
+        interrupts: { nl: "Shadow Bolt (Kalis) — spare kicks. Shriek = hook-mechanic, geen gewone kick.", en: "Shadow Bolt (Kalis). Shriek = hook mechanic, not a normal kick." } },
+      { pullRef: 5, danger: 3, mobs: ["Swiftshot Archer", "Phantasmal Mystic"],
+        note: { nl: "Centrale gang: Arrow Rain sidestep; Phantasmal Mystic Chain Lightning + Flame Nova.", en: "Central corridor: sidestep Arrow Rain; Phantasmal Mystic Chain Lightning + Flame Nova." },
+        interrupts: { nl: "Chain Lightning > Arrow Rain channel (CC/stop) indien mogelijk.", en: "Chain Lightning > Arrow Rain channel (CC/stop) if available." } },
+      { pullRef: 6, danger: 5, mobs: ["Commander Kroluk"],
+        note: { nl: "Baas 3: Rampage defensive; 66%/33% adds stacken voor cleave; Intimidating Shout stacken.", en: "Boss 3: defensive for Rampage; stack adds at 66%/33% for cleave; stack for Intimidating Shout." },
+        interrupts: { nl: "Add-fase: onderbreek Phantasmal Mystic casts waar mogelijk.", en: "Add phase: interrupt Phantasmal Mystic casts where possible." } },
+      { pullRef: 7, danger: 5, mobs: ["The Restless Heart"],
+        note: { nl: "Eindbaas: Tempest Slash mitigation; Turbulent Arrows / Billowing Wind (Icy Veins).", en: "Final boss: mitigate Tempest Slash; Turbulent Arrows / Billowing Wind (Icy Veins)." },
+        interrupts: { nl: "Geen klassieke kick-lijst — movement en defensives.", en: "No classic kick list — movement and defensives." } }
+    ]
+  }
 };

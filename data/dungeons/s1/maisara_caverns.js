@@ -61,5 +61,32 @@ const MAISARA_CAVERNS = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/retail/maisara-caverns/new"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 1, mobs: ["Cooking Pot"],
+        note: { nl: "Start rechts: Cooking Pot-buff in rechterhuis altijd pakken (route).", en: "Start right: always grab Cooking Pot buff in the right house (route)." },
+        interrupts: { nl: "Geen combat.", en: "No combat." } },
+      { pullRef: 1, danger: 4, mobs: ["Frenzied Berserker", "Dread Souleater"],
+        note: { nl: "Eerste grote pull rechts + lust: Blood Frenzy soothe; Necrotic Wave = healing absorb op raid (Icy Veins trash).", en: "First big right pull + lust: soothe Blood Frenzy; Necrotic Wave = raid healing absorb." },
+        interrupts: { nl: "Hooked Snare (Headhunter) / Shadowfrost Blast (Soulrender) als die in pull zitten > Berserker filler.", en: "Hooked Snare / Shadowfrost Blast if in pull > Berserker filler." } },
+      { pullRef: 2, danger: 3, mobs: ["Keen Headhunter", "Hulking Juggernaut"],
+        note: { nl: "Rechts: Juggernaut CC-immuun — Rending Gore + Deafening Roar stopcasting.", en: "Right: Juggernaut is CC-immune — Rending Gore + Deafening Roar stop casts." },
+        interrupts: { nl: "Hooked Snare (Headhunter) > Invoke Shadow-achtige casts van elites in de buurt.", en: "Hooked Snare (Headhunter) > elite shadow casts nearby." } },
+      { pullRef: 3, danger: 3, mobs: ["Grim Skirmisher", "Reanimated Warrior"],
+        note: { nl: "Links: Grim Ward één voor één breken; Reanimated Warrior op 0 HP CC'en (Icy Veins).", en: "Left: break Grim Ward one at a time; CC Reanimated Warrior at 0 HP." },
+        interrupts: { nl: "Geen vaste kick — CC timing op Reanimation belangrijker.", en: "No fixed kick — CC timing on Reanimation matters more." } },
+      { pullRef: 4, danger: 5, mobs: ["Muro'jin & Nekraxx"],
+        note: { nl: "Baas 1 duo: beide gelijk dood; Nekraxx dive doden.", en: "Boss 1 duo: even burn; dodge Nekraxx dives." },
+        interrupts: { nl: "Boss-casts roteren — duo-mechanic voorrang.", en: "Rotate boss casts — duo mechanics first." } },
+      { pullRef: 5, danger: 5, mobs: ["Vordaza", "Rak'tul"],
+        note: { nl: "Baas 2: Vordaza snel; daarna Rak'tul — zware tankdamage (dungeon-tips).", en: "Boss 2: burn Vordaza; then Rak'tul — heavy tank damage." },
+        interrupts: { nl: "Rak'tul/interrupt-intensief — volg boss-timers.", en: "Rak'tul is interrupt-heavy — follow boss timers." } },
+      { pullRef: 6, danger: 5, mobs: ["Hollow Soulrender", "Rokh'zal"],
+        note: { nl: "Grote pull voor eindbaas + lust: Rokh'zal Ritual Sacrifice MOET interrupt (wipe als door). Shadowfrost Blast.", en: "Big pre-final pull + lust: MUST interrupt Rokh'zal Ritual Sacrifice. Shadowfrost Blast." },
+        interrupts: { nl: "Ritual Sacrifice (Rokh'zal) > Invoke Shadow > Shadowfrost Blast (Soulrender).", en: "Ritual Sacrifice (Rokh'zal) > Invoke Shadow > Shadowfrost Blast (Soulrender)." } },
+      { pullRef: 7, danger: 5, mobs: ["Rak'tul, Vessel of Souls"],
+        note: { nl: "Eindbaas: hoogste interrupt-druk S1 — alle castbare skills + fragment-adds (dungeon/Icy Veins).", en: "Final boss: very high interrupt load — all cast abilities + fragment adds." },
+        interrupts: { nl: "Alle onderbreekbare boss-casts — vaste kick-ROTA verplicht.", en: "Every interruptible boss cast — mandatory kick rotation." } }
+    ]
+  }
 };

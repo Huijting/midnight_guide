@@ -247,6 +247,8 @@ const UI = {
     glossary_title:"Woordenlijst",
     glossary_sub:  "WoW-begrippen uitgelegd voor beginners",
     glossary_intro:"Klik op een term om de uitleg te zien. Gouden woorden in de dungeon-tips zijn ook klikbaar!",
+    glossary_section_general:"📖 Algemene termen",
+    glossary_section_tank:"🛡️ Tank Termen",
     tldr_label: "TL;DR",
     tab_overview: "Overzicht",
     tab_bosses:   "Bazen",
@@ -268,7 +270,14 @@ const UI = {
     danger_med: "Middel",
     danger_high: "Hoog",
     danger_boss: "Baas",
-    danger_lethal: "Lethal",
+    danger_lethal: "Lethaal",
+    danger_n1: "Gevaar 1/5",
+    danger_n2: "Gevaar 2/5",
+    danger_n3: "Gevaar 3/5",
+    danger_n4: "Gevaar 4/5",
+    danger_n5: "Gevaar 5/5",
+    tank_interrupt_label: "Interrupt prio:",
+    tank_source_footer: '<span class="tank-source-label">Bron:</span> <a href="https://www.icy-veins.com/wow/dungeons-guide" class="tank-source-link" target="_blank" rel="noopener noreferrer">Icy Veins</a> (dungeongidsen), <a href="https://keystone.guru" class="tank-source-link" target="_blank" rel="noopener noreferrer">Keystone.guru</a> (routepaden) en de trash-tabel van deze dungeon in de app (subtab <strong>Kaart &amp; route</strong>).',
     type_mplus:   "⚔ Mythic+ Seizoen 1",
     type_normal:  "📖 Alleen Normal",
     lust_moment:  "Moment",
@@ -327,6 +336,8 @@ const UI = {
     glossary_title:"Glossary",
     glossary_sub:  "WoW terms explained for beginners",
     glossary_intro:"Click a term to see its explanation. Gold words in dungeon tips are also clickable!",
+    glossary_section_general:"📖 General terms",
+    glossary_section_tank:"🛡️ Tank terms",
     tldr_label: "TL;DR",
     tab_overview: "Overview",
     tab_bosses:   "Bosses",
@@ -349,6 +360,13 @@ const UI = {
     danger_high: "High",
     danger_boss: "Boss",
     danger_lethal: "Lethal",
+    danger_n1: "Danger 1/5",
+    danger_n2: "Danger 2/5",
+    danger_n3: "Danger 3/5",
+    danger_n4: "Danger 4/5",
+    danger_n5: "Danger 5/5",
+    tank_interrupt_label: "Interrupts:",
+    tank_source_footer: '<span class="tank-source-label">Sources:</span> <a href="https://www.icy-veins.com/wow/dungeons-guide" class="tank-source-link" target="_blank" rel="noopener noreferrer">Icy Veins</a> (dungeon guides), <a href="https://keystone.guru" class="tank-source-link" target="_blank" rel="noopener noreferrer">Keystone.guru</a> (route maps), and this dungeon\'s trash table in the app (<strong>Map &amp; route</strong> subtab).',
     type_mplus:   "⚔ Mythic+ Season 1",
     type_normal:  "📖 Normal Only",
     lust_moment:  "Moment",
@@ -463,52 +481,61 @@ function setLang(l) {
   if (sm && sm.classList.contains('visible')) renderSpecModal();
   if (currentDungeon) renderDetail(currentDungeon);
   else renderHome();
-  if (document.getElementById('about-modal').classList.contains('open')) renderAboutContent();
-  if (document.getElementById('dev-banner').classList.contains('open')) renderBanner();
+  const aboutModal = document.getElementById('about-modal');
+  if (aboutModal && aboutModal.classList.contains('open')) renderAboutContent();
+  const devBanner = document.getElementById('dev-banner');
+  if (devBanner && devBanner.classList.contains('open') && typeof renderBanner === 'function') renderBanner();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
   if (document.body.classList.contains('mode-prey')) renderPreyGuide();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
-  if (document.getElementById('search-overlay').classList.contains('open')) {
+  const searchOv = document.getElementById('search-overlay');
+  if (searchOv && searchOv.classList.contains('open')) {
     const inp = document.getElementById('search-input');
     const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'};
-    inp.placeholder = ph[l] || ph.nl;
-    doSearch(inp.value);
+    if (inp) {
+      inp.placeholder = ph[l] || ph.nl;
+      doSearch(inp.value);
+    }
   }
 }
 
 function applyUIStrings() {
   const u = UI[lang];
-  const _hsub=document.getElementById('hdr-sub'); if(_hsub) _hsub.textContent = u.season_sub;
-  document.getElementById('hero-eyebrow').textContent = u.eyebrow;
-  document.getElementById('hero-title-span').textContent = u.guide;
-  document.getElementById('hero-sub').textContent = u.hero_sub;
-  document.getElementById('s1-label').textContent = u.s1_section;
-  document.getElementById('norm-label').textContent = u.norm_section;
-  document.getElementById('tab-btn-overview').textContent = u.tab_overview;
-  document.getElementById('tab-btn-bosses').textContent = u.tab_bosses;
-  document.getElementById('tab-btn-route').textContent = u.tab_route;
-  document.getElementById('back-btn').innerHTML = u.back;
-  document.getElementById('about-btn').textContent = u.about_btn;
-  document.getElementById('help-btn').textContent = u.help_btn;
-  if (document.getElementById('help-modal').classList.contains('open')) renderHelp();
-  document.getElementById('feedback-btn').textContent = u.feedback_btn;
-  document.getElementById('about-title').textContent = u.about_title;
-  document.getElementById('tab-lbl-home').innerHTML = u.tab_home;
-  document.getElementById('tab-lbl-dungeons').innerHTML = u.tab_dungeons;
-  document.getElementById('tab-lbl-professions').innerHTML = u.tab_professions;
-  document.getElementById('tab-lbl-weekly').innerHTML = u.tab_weekly;
-  document.getElementById('tab-lbl-specs').innerHTML = u.tab_specs;
-  const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.innerHTML = u.tab_prey;
-  document.getElementById('tab-lbl-raids').innerHTML = u.tab_raids;
+  if (!u) return;
+  const t = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  const h = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+  const _hsub = document.getElementById('hdr-sub'); if (_hsub) _hsub.textContent = u.season_sub;
+  t('hero-eyebrow', u.eyebrow);
+  t('hero-title-span', u.guide);
+  t('hero-sub', u.hero_sub);
+  t('s1-label', u.s1_section);
+  t('norm-label', u.norm_section);
+  t('tab-btn-overview', u.tab_overview);
+  t('tab-btn-bosses', u.tab_bosses);
+  t('tab-btn-route', u.tab_route);
+  h('back-btn', u.back);
+  t('about-btn', u.about_btn);
+  t('help-btn', u.help_btn);
+  const helpModal = document.getElementById('help-modal');
+  if (helpModal && helpModal.classList.contains('open') && typeof renderHelp === 'function') renderHelp();
+  t('feedback-btn', u.feedback_btn);
+  t('about-title', u.about_title);
+  h('tab-lbl-home', u.tab_home);
+  h('tab-lbl-dungeons', u.tab_dungeons);
+  h('tab-lbl-professions', u.tab_professions);
+  h('tab-lbl-weekly', u.tab_weekly);
+  h('tab-lbl-specs', u.tab_specs);
+  const preyLbl = document.getElementById('tab-lbl-prey'); if (preyLbl) preyLbl.innerHTML = u.tab_prey;
+  h('tab-lbl-raids', u.tab_raids);
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
-  const _glbl=document.getElementById('tab-lbl-glossary');
-  if(_glbl) _glbl.innerHTML=(u.tab_glossary||u.lbl_glossary||'📖 Woordenlijst');
+  const _glbl = document.getElementById('tab-lbl-glossary');
+  if (_glbl) _glbl.innerHTML = (u.tab_glossary || u.lbl_glossary || '📖 Woordenlijst');
   updateLandingStrings();
-  if(document.body.classList.contains('mode-specs')) buildSpecGrid();
-  if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
-  if(document.body.classList.contains('mode-delves')) buildDelvesScreen();
+  if (document.body.classList.contains('mode-specs')) buildSpecGrid();
+  if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
+  if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   const searchPh = document.getElementById('header-search-placeholder');
   if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'}[lang] || 'Search...';
 }
@@ -624,6 +651,7 @@ function renderHome() {
   const u = UI[lang];
   const mplusGrid  = document.getElementById('mplus-grid');
   const normalGrid = document.getElementById('normal-grid');
+  if (!mplusGrid || !normalGrid) return;
   mplusGrid.innerHTML = '';
   normalGrid.innerHTML = '';
 
@@ -761,7 +789,14 @@ function inferTankPathing(d, tfn) {
 
 function getTankPathing(d, tfn) {
   const tp = d.tank_pathing;
-  if (tp && Array.isArray(tp.pulls) && tp.pulls.length > 0) return tp;
+  const routeLen = d.route && Array.isArray(d.route.pulls) ? d.route.pulls.length : 0;
+  if (tp && Array.isArray(tp.pulls) && tp.pulls.length > 0) {
+    if (routeLen > 0 && tp.pulls.length !== routeLen) {
+      console.warn('[tank_pathing] Pull count mismatch for', d.id + ':', tp.pulls.length, 'entries vs', routeLen, 'route steps — using inferred tank path.');
+      return inferTankPathing(d, tfn);
+    }
+    return tp;
+  }
   return inferTankPathing(d, tfn);
 }
 
@@ -860,7 +895,7 @@ function renderDetail(d) {
         <span class="boss-num">${u.boss_label} ${b.num}</span>
         <span class="boss-name">${b.name}</span>
       </div>
-      ${b.desc ? `<div class="boss-desc">${t(b.desc)}</div>` : ''}
+      ${b.desc ? `<div class="boss-desc">${wrapGlossaryTermsInText(t(b.desc))}</div>` : ''}
       <div class="role-tabs">
         <button class="role-tab-btn${autoRole==='tank'?' active-tank':''}" onclick="switchRole('${uid}','tank')">🛡 Tank</button>
         <button class="role-tab-btn${autoRole==='heal'?' active-heal':''}" onclick="switchRole('${uid}','heal')">💚 Healer</button>
@@ -924,7 +959,7 @@ function renderDetail(d) {
             <span class="vr-label">${t(p.label)}</span>
             ${badges.join('')}
           </div>
-          <div class="vr-desc">${t(p.desc)}</div>
+          <div class="vr-desc">${wrapGlossaryTermsInText(t(p.desc))}</div>
         </div>
       </div>`;
   }).join('');
@@ -1025,16 +1060,23 @@ function renderDetail(d) {
     const mobLinks = (pull.mobs && pull.mobs.length)
       ? pull.mobs.map(m => `<button type="button" class="tank-mob-link" onclick="snapToRoutePull('${d.id}',${pull.pullRef})">${String(m).replace(/</g, '&lt;')}</button>`).join(', ')
       : `<button type="button" class="tank-mob-link tank-pull-only" onclick="snapToRoutePull('${d.id}',${pull.pullRef})">${u.tank_pull_cta} ${pull.pullRef + 1}</button>`;
-    const dang = dangerLabels[pull.danger] || pull.danger;
-    return `<div class="tank-pull-row tank-danger-${pull.danger}">
+    const dn = typeof pull.danger === 'number' ? pull.danger : null;
+    const dangerClass = dn != null && dn >= 1 && dn <= 5 ? `tank-danger-${dn}` : `tank-danger-${pull.danger}`;
+    const dang = dn != null && dn >= 1 && dn <= 5
+      ? (u['danger_n' + dn] || `${dn}/5`)
+      : (dangerLabels[pull.danger] || pull.danger);
+    const intLine = pull.interrupts ? `<p class="tank-pull-interrupts tank-pull-interrupts-must"><strong>${u.tank_interrupt_label}</strong> ${wrapGlossaryTermsInText(t(pull.interrupts))}</p>` : '';
+    return `<div class="tank-pull-row ${dangerClass}">
       <div class="tank-pull-head"><span class="tank-danger-pill">${dang}</span><span class="tank-pull-num">#${pull.pullRef + 1}</span></div>
-      <p class="tank-pull-note">${note}</p>
+      <p class="tank-pull-note">${wrapGlossaryTermsInText(note)}</p>
+      ${intLine}
       <div class="tank-pull-mobs">${mobLinks}</div>
     </div>`;
   }).join('');
   const tankPanelHtml = d.type === 'mplus'
     ? `<div class="route-subpanel route-subpanel-tank">
-        <div class="route-section"><div class="route-title">${u.tank_guide_title}</div><p class="tank-guide-sub">${u.tank_guide_sub}</p><div class="tank-pull-list">${tankRows}</div></div>
+        <div class="route-section"><div class="route-title">${u.tank_guide_title}</div><p class="tank-guide-sub">${u.tank_guide_sub}</p><div class="tank-pull-list">${tankRows}</div>
+        <p class="tank-source-footer" role="note">${u.tank_source_footer}</p></div>
       </div>`
     : '';
 
@@ -1108,18 +1150,21 @@ window.addEventListener('resize', () => {
 
 // Wacht tot HTML klaar is voordat we de pagina opbouwen
 document.addEventListener('DOMContentLoaded', function() {
-  document.body.classList.add('mode-home');
-  // Dev banner — toon eenmalig per versie
-  const BANNER_KEY = 'midnight_banner_v1';
-  renderBanner();
-  if (!localStorage.getItem(BANNER_KEY)) {
-    document.getElementById('dev-banner').classList.add('open');
+  try {
+    document.body.classList.add('mode-home');
+    const BANNER_KEY = 'midnight_banner_v1';
+    if (typeof renderBanner === 'function') renderBanner();
+    if (!localStorage.getItem(BANNER_KEY)) {
+      document.getElementById('dev-banner')?.classList.add('open');
+    }
+    applyUIStrings();
+    updateFooter();
+    updateSpecBtn();
+    renderHome();
+    initTooltips();
+  } catch (err) {
+    console.error('Midnight Guide: init mislukt', err);
   }
-  applyUIStrings();
-  updateFooter();
-  updateSpecBtn();
-  renderHome();
-  initTooltips();
 });
 
 // ── KEYSTONE.GURU POPUP ──
@@ -1647,6 +1692,73 @@ function buildAffixScreen() {}
 // ═══════════════════════════════════════════════════════════════
 // GLOSSARY + TOOLTIPS
 // ═══════════════════════════════════════════════════════════════
+function escapeTitleAttr(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/'/g, '&#39;');
+}
+
+/** Sorteer zinnen voor woordenlijst-wrap: langste eerst, overlap voorkomen (geen nested title-matches). */
+function buildSortedGlossaryWrapPhrases() {
+  const l = lang === 'en' ? 'en' : 'nl';
+  const phraseMap = new Map();
+  const add = (phrase, idx) => {
+    const p = String(phrase).trim();
+    if (p.length < 2) return;
+    const item = GLOSSARY[idx];
+    if (!item) return;
+    const title = item.def[l] || item.def.nl || '';
+    const low = p.toLowerCase();
+    const prev = phraseMap.get(low);
+    if (!prev || p.length > prev.phrase.length) phraseMap.set(low, { phrase: p, title });
+  };
+  GLOSSARY.forEach((item, idx) => {
+    add(item.term.nl, idx);
+    add(item.term.en, idx);
+  });
+  Object.keys(TOOLTIP_MAP).forEach(k => add(k, TOOLTIP_MAP[k]));
+  return [...phraseMap.values()].sort((a, b) => b.phrase.length - a.phrase.length);
+}
+
+/** Plain text only — markeert termen met <span class="glossary-term" title="…"> */
+function wrapGlossaryTermsPlainSegment(text) {
+  if (typeof GLOSSARY === 'undefined' || !text) return text;
+  const sorted = buildSortedGlossaryWrapPhrases();
+  const n = text.length;
+  const covered = new Array(n).fill(false);
+  const reps = [];
+  for (const { phrase, title } of sorted) {
+    const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('(?<![\\w-])(' + esc + ')(?![\\w-])', 'gi');
+    let m;
+    while ((m = re.exec(text)) !== null) {
+      const start = m.index;
+      const end = start + m[0].length;
+      let ok = true;
+      for (let i = start; i < end; i++) if (covered[i]) { ok = false; break; }
+      if (!ok) continue;
+      for (let i = start; i < end; i++) covered[i] = true;
+      reps.push({ start, end, title });
+    }
+  }
+  reps.sort((a, b) => b.start - a.start);
+  let out = text;
+  for (const r of reps) {
+    const slice = text.slice(r.start, r.end);
+    out = out.slice(0, r.start) + `<span class="glossary-term" title="${escapeTitleAttr(r.title)}">${slice}</span>` + out.slice(r.end);
+  }
+  return out;
+}
+
+/** Laat HTML-tags ongemoeid (bijv. Wowhead-links); verwerkt alleen tekst tussen tags. */
+function wrapGlossaryTermsInText(text) {
+  if (!text || typeof text !== 'string') return text;
+  const parts = text.split(/(<[^>]+>)/g);
+  return parts.map(part => (part.startsWith('<') ? part : wrapGlossaryTermsPlainSegment(part))).join('');
+}
+
 function buildGlossaryScreen(){
   const u=UI[lang];
   const t1=document.getElementById('glossary-title');
@@ -1659,18 +1771,27 @@ function buildGlossaryScreen(){
     el.innerHTML='<p style="color:var(--muted);padding:20px">Woordenlijst niet beschikbaar.</p>';
     return;
   }
-  el.innerHTML=(u.glossary_intro?`<div class="glossary-intro">${u.glossary_intro}</div>`:'')+
-    GLOSSARY.map((item,i)=>{
-      const term=item.term[lang]||item.term.nl;
-      const def=item.def[lang]||item.def.nl;
-      return `<div class="glossary-item" id="gitem-${i}">
+  const intro = u.glossary_intro ? `<div class="glossary-intro">${u.glossary_intro}</div>` : '';
+  const row = (item, i) => {
+    const term = item.term[lang] || item.term.nl;
+    const def = item.def[lang] || item.def.nl;
+    return `<div class="glossary-item" id="gitem-${i}">
         <div class="glossary-item-header" onclick="toggleGlossaryItem(${i})">
-          <span class="glossary-term">${term}</span>
+          <span class="glossary-entry-name">${term}</span>
           <span class="glossary-arrow">▶</span>
         </div>
         <div class="glossary-def">${def}</div>
       </div>`;
-    }).join('');
+  };
+  const pairs = GLOSSARY.map((item, i) => ({ item, i }));
+  const general = pairs.filter(x => x.item.category !== 'tank');
+  const tank = pairs.filter(x => x.item.category === 'tank');
+  const sec = (title, list) =>
+    list.length ? `<h3 class="glossary-section-title">${title}</h3>${list.map(({ item, i }) => row(item, i)).join('')}` : '';
+  el.innerHTML =
+    intro +
+    sec(u.glossary_section_general || '📖 Algemene termen', general) +
+    sec(u.glossary_section_tank || '🛡️ Tank Termen', tank);
 }
 function toggleGlossaryItem(i){
   const el=document.getElementById('gitem-'+i);
@@ -1687,12 +1808,15 @@ const TOOLTIP_MAP={
   'defensive':7,'defensives':7,'cooldown':7,'cooldowns':7,
   'aoe':8,
   'add':9,'adds':9,
-  'tankbuster':10,'tankbusters':10,
+  'tankbuster':10,'tankbusters':10,'tank buster':10,'tank busters':10,
   'dispel':11,'dispellen':11,'dispels':11,
   'purge':12,'purgen':12,'purges':12,
   'bloodlust':13,'lust':13,'heroism':13,
   'burst':14,'burst-venster':14,
-  'stack':15,'stacking':15,'spreiden':15,'spread':15
+  'stack':15,'stacking':15,'spreiden':15,'spread':15,
+  'snap-points':16,'snappoints':16,'snap points':16,'snap point':16,
+  'percent / count':17,'percentage':17,'percent':17,'procent':17,'dungeon count':17,'trash count':17,
+  'affix priority':18,'affix-prioriteit':18,'affixprioriteit':18
 };
 let _gBox=null;
 function initTooltips(){
@@ -1735,7 +1859,7 @@ function posTip(e){
 }
 function applyTooltips(container){
   if(typeof GLOSSARY==='undefined') return;
-  const sel='.boss-desc,.generic-tips li,.spec-tip,.tip-box';
+  const sel='.generic-tips li,.spec-tip,.tip-box';
   const nodes=container?container.querySelectorAll(sel):document.querySelectorAll(sel);
   const keys=Object.keys(TOOLTIP_MAP).sort((a,b)=>b.length-a.length);
   const esc=keys.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
@@ -1759,19 +1883,20 @@ function setMode(mode){
   const navMap={dungeons:'nav-dungeons',specs:'nav-classes',raids:'nav-raids',weekly:'nav-weekly'};
   const navEl=document.getElementById(navMap[mode]);
   if(navEl)navEl.classList.add('active');
-  document.getElementById('mode-tab-home').classList.toggle('active',mode==='home');
-  document.getElementById('mode-tab-dungeons').classList.toggle('active',mode==='dungeons');
-  document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
-  document.getElementById('mode-tab-weekly').classList.toggle('active',mode==='weekly');
-  document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
-  document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
+  document.getElementById('mode-tab-home')?.classList.toggle('active',mode==='home');
+  document.getElementById('mode-tab-dungeons')?.classList.toggle('active',mode==='dungeons');
+  document.getElementById('mode-tab-professions')?.classList.toggle('active',mode==='professions');
+  document.getElementById('mode-tab-weekly')?.classList.toggle('active',mode==='weekly');
+  document.getElementById('mode-tab-specs')?.classList.toggle('active',mode==='specs');
+  document.getElementById('mode-tab-raids')?.classList.toggle('active',mode==='raids');
   const delvesTab = document.getElementById('mode-tab-delves'); if(delvesTab) delvesTab.classList.toggle('active',mode==='delves');
   const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
   const sb=document.getElementById('spec-btn');
   if(sb)sb.style.display=(mode==='dungeons' || mode==='raids')?'':'none';
-  document.getElementById('back-btn').style.display='none';
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) backBtn.style.display = 'none';
   if(mode==='home'){
     updateLandingStrings();
   } else if(mode==='prey'){

@@ -53,5 +53,29 @@ const ALGETHAR_ACADEMY = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 3, mobs: ["Vile Lasher", "Aggravated Skitterfly"],
+        note: { nl: "Botanica trash: Detonation Seeds onder iedereen — spreiden. Vile Bite stacks op tank.", en: "Botanica trash: Detonation Seeds under everyone — spread. Vile Bite stacks on tank." },
+        interrupts: { nl: "Geen harde must-kick in minimale pull — dodge Detonation Seeds. Met extra casters: Arcane Bolt / Surge.", en: "No mandatory kick in a minimal pull — dodge Seeds. With extra casters: Arcane Bolt / Surge." } },
+      { pullRef: 1, danger: 5, mobs: ["Overgrown Ancient"],
+        note: { nl: "Baas 1: Lashing Roots onderbreken (Icy Veins-route).", en: "Boss 1: interrupt Lashing Roots (standard M+ route)." },
+        interrupts: { nl: "Lashing Roots — absolute #1 op deze baas.", en: "Lashing Roots — absolute #1 on this boss." } },
+      { pullRef: 2, danger: 4, mobs: ["Guardian Sentry", "Alpha Eagle"],
+        note: { nl: "The Quad: Storm Slash tankbuster; Raging Screech = zware AoE (Icy Veins trash). Patrouilles niet chainen.", en: "The Quad: Storm Slash tank buster; Raging Screech is heavy AoE. Don't chain patrols." },
+        interrupts: { nl: "Raging Screech (Eagle) > Arcane Bolt (Invoker) in de pack.", en: "Raging Screech (Eagle) > Arcane Bolt (Invoker) in the pack." } },
+      { pullRef: 3, danger: 5, mobs: ["Crawth"],
+        note: { nl: "Baas 2: Ruinous Winds — ballen en goals (arena-mechanic).", en: "Boss 2: Ruinous Winds — balls and goals mechanic." },
+        interrupts: { nl: "Geen vaste kick-meta — volg arena-mechanics.", en: "No standard kick meta — follow arena mechanics." } },
+      { pullRef: 4, danger: 5, mobs: ["Vexamus"],
+        note: { nl: "Baas 3: absorbeer geen Arcane Orbs; interrupt overige boss-casts volgens route.", en: "Boss 3: do not absorb Arcane Orbs; interrupt other boss casts per your route." },
+        interrupts: { nl: "Boss-specifieke casts (Arcane/Light) — roteer kicks na orb-regels.", en: "Boss arcane casts — rotate kicks after respecting orb rules." } },
+      { pullRef: 5, danger: 4, mobs: ["Algeth'ar Echoknight", "Spectral Invoker"],
+        note: { nl: "Headteacher's Enclave: Arcane Smash = raid defensive; Echoknight is prioriteit-target.", en: "Headteacher's Enclave: Arcane Smash = raid defensive; Echoknight is priority." },
+        interrupts: { nl: "Arcane Bolt (Invoker) > Corrupted Manafiend Surge als die mee in de pull zit.", en: "Arcane Bolt (Invoker) > Corrupted Manafiend Surge if pulled." } },
+      { pullRef: 6, danger: 5, mobs: ["Echo of Doragosa"],
+        note: { nl: "Eindbaas: Interrupt Expunge; Overwhelming Power stacks beheersen (Icy Veins).", en: "Final boss: interrupt Expunge; manage Overwhelming Power stacks (Icy Veins)." },
+        interrupts: { nl: "Expunge — hoogste prioriteit; daarna Arcane-spells volgens roster.", en: "Expunge — top priority; then arcane casts per roster." } }
+    ]
+  }
 };

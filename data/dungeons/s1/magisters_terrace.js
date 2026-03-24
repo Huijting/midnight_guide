@@ -62,5 +62,25 @@ const MAGISTERS_TERRACE = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 4, mobs: ["Arcane Magister", "Blazing Pyromancer", "Arcane Sentry"],
+        note: { nl: "Eerste grote pack bij ingang: CC-immuun Pyromancers, Magisters met Polymorph. Houd de groep compact; lust hier. Tank: Ethereal Shackles op jou = dispel/root break.", en: "First big entrance pack: CC-immune Pyromancers, Magisters with Polymorph. Stay tight; lust here. Tank: Ethereal Shackles on you — dispel or break root." },
+        interrupts: { nl: "Polymorph (Magister) > Pyroblast (Pyromancer) > Arcane Bolt (Magister).", en: "Polymorph (Magister) > Pyroblast (Pyromancer) > Arcane Bolt (Magister)." } },
+      { pullRef: 1, danger: 1, mobs: ["Arcane Tome"],
+        note: { nl: "Niet-combat: klik de Arcane Tome in de bibliotheek (+5% Haste 30 min, overleeft dood).", en: "Non-combat: click the Arcane Tome in the library (+5% Haste 30 min, persists through death)." } },
+      { pullRef: 2, danger: 5, mobs: ["Arcanotron Custos"],
+        note: { nl: "Baas 1: positioneer voor Arcane Expulsion/knockback; soak Energy Orbs tijdens Refueling (max ~3 orbs per speler).", en: "Boss 1: position for Arcane Expulsion/knockback; soak Energy Orbs during Refueling (~3 orbs per player max)." },
+        interrupts: { nl: "Geen vaste interrupt-rotatie — focust soaks en Residue.", en: "No fixed kick rotation — focus soaks and Residue pools." } },
+      { pullRef: 3, danger: 5, mobs: ["Seranel Sunlash"],
+        note: { nl: "Baas 2: Wave of Silence — iedereen IN Suppression Zone. Purge Hastening Ward op de baas. Runic Mark: één tegelijk naar zone.", en: "Boss 2: Wave of Silence — everyone IN Suppression Zone. Purge Hastening Ward. Runic Mark: one at a time into the zone." },
+        interrupts: { nl: "Mechanic > kicks — purge Hastening Ward heeft prioriteit.", en: "Mechanics > kicks — purging Hastening Ward is the priority." } },
+      { pullRef: 4, danger: 5, mobs: ["Gemellus"],
+        note: { nl: "Baas 3: focus Void-klonen / Triplicate-kopieën; Neural Link naar juiste kopie (Icy Veins).", en: "Boss 3: focus Void clones / Triplicate copies; Neural Link to the correct copy per Icy Veins." },
+        interrupts: { nl: "Meestal geen trash-kicks — maximale DPS op juiste target.", en: "Usually no trash-style kicks — max DPS on the correct target." } },
+      { pullRef: 5, danger: 5, mobs: ["Degentrius"],
+        note: { nl: "Eindbaas: quadranten voor Unstable Void Essence; raak Void Torrent-stralen niet. Tank: Hulking Fragment uit de groep.", en: "Final boss: quadrants for Unstable Void Essence; never touch Void Torrent beams. Tank: Hulking Fragment away from group." },
+        interrupts: { nl: "Geen vaste kick-lijst — coördineer soaks, beam-dodge en tankbuster-defensives.", en: "No fixed kick list — coordinate soaks, beam dodges, and tankbuster defensives." } }
+    ]
+  }
 };

@@ -48,5 +48,26 @@ const PIT_OF_SARON = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 3, mobs: ["Ymirjar Graveblade", "Gloombound Shadebringer"],
+        note: { nl: "Start naar Garfrost: Frostbane Slash stacks op tank — Icy Blast interrupt (Icy Veins trash).", en: "Start toward Garfrost: Frostbane Slash stacks — interrupt Icy Blast (Icy Veins trash)." },
+        interrupts: { nl: "Icy Blast (Graveblade) > Shadow Bolt (Shadebringer).", en: "Icy Blast (Graveblade) > Shadow Bolt (Shadebringer)." } },
+      { pullRef: 1, danger: 5, mobs: ["Forgemaster Garfrost"],
+        note: { nl: "Baas 1: Ore Chunks voor LoS tijdens Glacial Overload; smid-mechanics.", en: "Boss 1: Ore Chunks for LoS during Glacial Overload." },
+        interrupts: { nl: "Boss-casts volgens tactiek — geen vaste trash-kick-lijst.", en: "Boss casts per strategy — no fixed trash kick list." } },
+      { pullRef: 2, danger: 4, mobs: ["Dreadpulse Lich", "Iceborn Proto-Drake"],
+        note: { nl: "Gang naar Ick: Icy Blast elke cast; Torrent of Misery channel breken (Icy Veins). Drake + rider: rider eerst.", en: "Hall to Ick: interrupt every Icy Blast; break Torrent of Misery. Drake: kill rider first." },
+        interrupts: { nl: "Icy Blast (Lich) > Torrent of Misery. Proto-Drake Frost Breath = positie, geen kick.", en: "Icy Blast (Lich) > Torrent of Misery. Drake breath = positioning." } },
+      { pullRef: 3, danger: 5, mobs: ["Ick and Krick"],
+        note: { nl: "Baas 2: mobiel gevecht — Toxic Waste uit de groep lopen.", en: "Boss 2: mobile fight — run Toxic Waste out of the group." },
+        interrupts: { nl: "Poison/explosieve casts volgens encounter — roteer met party.", en: "Poison/explosive casts per encounter — rotate with group." } },
+      { pullRef: 4, danger: 4, mobs: ["Plungetalon Gargoyle", "Glacieth"],
+        note: { nl: "Opgang: Gargoyle van achteren (Stoneskin); Glacieth Cryoburst spreiden.", en: "Ascent: Gargoyle from behind (Stoneskin); spread Glacieth Cryoburst." },
+        interrupts: { nl: "Plungegrip/abduct-casts onderbreken indien mogelijk; anders drop combat-truc.", en: "Interrupt Plungegrip-style casts if possible; else drop-combat tricks." } },
+      { pullRef: 5, danger: 5, mobs: ["Scourgelord Tyrannus"],
+        note: { nl: "Eindbaas: Overlord's Brand healen; Army of the Dead — Plaguespreader casts interrupt (trash-tabel).", en: "Final boss: heal Overlord's Brand; Army of the Dead — interrupt Plaguespreader casts." },
+        interrupts: { nl: "Tijdens adds: Plaguespreader cast > alles andere.", en: "During adds: Plaguespreader cast > everything else." } }
+    ]
+  }
 };

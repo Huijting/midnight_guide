@@ -37,6 +37,8 @@
   --void-glow: 0 0 12px rgba(107, 91, 149, 0.2);
   --spacing: 1.5rem;
   --content-max: 1100px;
+  --danger-red: rgba(200, 50, 50, 0.42);
+  --danger-red-border: rgba(255, 100, 100, 0.55);
 }
   /* Light theme removed — strict dark mode only */
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -370,6 +372,22 @@
   .tank-pull-row.tank-danger-boss .tank-danger-pill{background:rgba(200,168,75,.2);color:var(--gold);border:1px solid rgba(200,168,75,.5)}
   .tank-pull-row.tank-danger-lethal{border-left-color:#ef4444}
   .tank-pull-row.tank-danger-lethal .tank-danger-pill{background:rgba(239,68,68,.18);color:#f87171;border:1px solid rgba(239,68,68,.45)}
+  .tank-pull-row.tank-danger-1{border-left-color:rgba(74,222,128,.55)}
+  .tank-pull-row.tank-danger-1 .tank-danger-pill{background:rgba(74,222,128,.14);color:#86efac;border:1px solid rgba(74,222,128,.4)}
+  .tank-pull-row.tank-danger-2{border-left-color:rgba(163,230,53,.5)}
+  .tank-pull-row.tank-danger-2 .tank-danger-pill{background:rgba(163,230,53,.12);color:#bef264;border:1px solid rgba(163,230,53,.35)}
+  .tank-pull-row.tank-danger-3{border-left-color:rgba(250,204,21,.55)}
+  .tank-pull-row.tank-danger-3 .tank-danger-pill{background:rgba(250,204,21,.12);color:#fde047;border:1px solid rgba(250,204,21,.4)}
+  .tank-pull-row.tank-danger-4{border-left-color:rgba(249,115,22,.65)}
+  .tank-pull-row.tank-danger-4 .tank-danger-pill{background:rgba(249,115,22,.16);color:#fdba74;border:1px solid rgba(249,115,22,.45)}
+  .tank-pull-row.tank-danger-5{border-left-color:rgba(192,132,252,.7)}
+  .tank-pull-row.tank-danger-5 .tank-danger-pill{background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(201,162,39,.18));color:#f5e6ff;border:1px solid rgba(201,162,39,.55);box-shadow:0 0 12px rgba(139,92,246,.25)}
+  .tank-pull-interrupts{font-size:12px;color:#c4b5fd;margin:0 0 8px;line-height:1.45;padding:8px 10px;background:rgba(139,92,246,.08);border-radius:8px;border-left:2px solid rgba(167,139,250,.45)}
+  .tank-pull-interrupts strong{color:#e9d5ff;font-weight:800;margin-right:6px}
+  .tank-source-footer{font-size:11px;line-height:1.5;color:var(--muted);margin:18px 0 0;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.18)}
+  .tank-source-label{color:var(--gold);font-weight:700;margin-right:4px}
+  .tank-source-link{color:#a5b4fc;text-decoration:none;font-weight:600;border-bottom:1px dotted rgba(165,180,252,.5)}
+  .tank-source-link:hover{color:#c4d4ff;border-bottom-color:#c4d4ff}
   .vr-area{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
   .vr-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--muted)}
   .vr-leg-item{display:flex;align-items:center;gap:5px}
@@ -659,7 +677,7 @@
   @media(max-width:420px){.landing-cards{max-width:320px} .landing-card{width:100%}}
   @media(min-width:700px){.landing-cards{max-width:900px} .landing-card{width:calc(25% - 7.5px)}}
   .landing-card{width:calc(50% - 5px);background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 12px 12px;text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
-  .landing-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;border-radius:16px}
+  .landing-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .2s;border-radius:16px;pointer-events:none}
   .landing-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
   .landing-card:hover::before{opacity:1}
   .landing-card:active{transform:translateY(-1px)}
@@ -1141,7 +1159,17 @@
   .glossary-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
   .glossary-item-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:10px;transition:background .15s}
   .glossary-item-header:hover{background:var(--deep)}
-  .glossary-term{font-size:15px;font-weight:800;color:var(--gold)}
+  .glossary-entry-name{font-size:15px;font-weight:800;color:var(--gold)}
+  .glossary-section-title{font-size:14px;font-weight:800;color:var(--gold);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);letter-spacing:.02em}
+  .glossary-section-title:first-of-type{margin-top:0}
+  /* Inline woordenlijst in route / tank-gids (native title-tooltip) */
+  .boss-desc .glossary-term,.vr-desc .glossary-term,.tank-pull-note .glossary-term,.tank-pull-interrupts .glossary-term{
+    cursor:help;border-bottom:1px dashed var(--gold2);text-decoration:none;color:inherit
+  }
+  .tank-pull-interrupts-must{
+    background:var(--danger-red);border:1px solid var(--danger-red-border);border-radius:8px;padding:8px 10px;margin-top:8px;line-height:1.5
+  }
+  .tank-pull-interrupts-must strong{color:#ffb4b4}
   .glossary-arrow{font-size:13px;color:var(--muted);transition:transform .2s;flex-shrink:0}
   .glossary-item.open .glossary-arrow{transform:rotate(90deg)}
   .glossary-def{display:none;padding:0 16px 14px;font-size:14px;color:var(--text);line-height:1.6;border-top:1px solid var(--border)}

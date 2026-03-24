@@ -3360,9 +3360,10 @@ const GLOSSARY = [
          en:"A debuff that deals damage to you every few seconds. You're not standing in it — it's on you. Some DoTs can be removed (dispel), others cannot."}
   },
   {
+    category: "tank",
     term:{nl:"Kite / Kiten",en:"Kite / Kiting"},
-    def:{nl:"Een vijand die jou volgt weghouden door weg te blijven lopen. Je blijft net buiten zijn bereik zodat hij jou of de groep niet raakt.",
-         en:"Keeping an enemy chasing you by continuously running away. You stay just out of its range so it can't hit you or the group."}
+    def:{nl:"Vijanden op afstand houden terwijl je wegrent om schade te vermijden wanneer defensives op zijn.",
+         en:"Keep enemies at range while you run away to avoid damage when your defensives are on cooldown."}
   },
   {
     term:{nl:"Taunt swap",en:"Taunt swap"},
@@ -3370,9 +3371,10 @@ const GLOSSARY = [
          en:"When the tank has a stacking debuff, the second tank taunts the boss over so the first tank can recover. Tanks alternate this way. Not something DPS or healers need to worry about."}
   },
   {
+    category: "tank",
     term:{nl:"LoS (Line of Sight)",en:"LoS (Line of Sight)"},
-    def:{nl:"Zichtlijn. Als jij achter een pilaar of object staat, kan de vijand jou niet raken met zijn aanval. Trucje: ga achter een obstakel staan als een baas een grote aanval cast.",
-         en:"Line of sight. If you stand behind a pillar or object, the enemy can't hit you with its attack. Trick: get behind an obstacle when a boss casts a big attack."}
+    def:{nl:"Uit het zicht van vijanden stappen (achter een muur/pilaar) om casters naar je toe te trekken.",
+         en:"Break line of sight (behind a wall or pillar) to pull casters toward you."}
   },
   {
     term:{nl:"Defensive / Cooldown",en:"Defensive / Cooldown"},
@@ -3390,9 +3392,10 @@ const GLOSSARY = [
          en:"Extra enemies that spawn during a boss fight. Almost always: kill them first before refocusing on the boss. They're called adds because they're additions to the fight."}
   },
   {
-    term:{nl:"Tankbuster",en:"Tankbuster"},
-    def:{nl:"Een zware aanval gericht specifiek op de tank. Kan de tank bijna doden zonder defensive. Healers: extra healen op dit moment. Tank: gebruik een defensive.",
-         en:"A heavy attack aimed specifically at the tank. Can nearly kill the tank without a defensive. Healers: extra healing at this moment. Tank: use a defensive."}
+    category: "tank",
+    term:{nl:"Tank Buster",en:"Tank Buster"},
+    def:{nl:"Een specifieke aanval van een baas die extreem veel schade doet en een grote defensive cooldown vereist.",
+         en:"A specific boss attack that deals extreme damage and requires a major defensive cooldown."}
   },
   {
     term:{nl:"Dispel",en:"Dispel"},
@@ -3418,5 +3421,23 @@ const GLOSSARY = [
     term:{nl:"Stack / Spreiden",en:"Stack / Spread"},
     def:{nl:"Stack = alle spelers gaan dicht bij elkaar staan. Spreiden = spelers gaan juist uit elkaar staan. Wanneer dit nodig is staat het in de boss-tips — het hangt af van de mechanic.",
          en:"Stack = all players stand close together. Spread = players move apart. When this is needed it's stated in the boss tips — it depends on the mechanic."}
+  },
+  {
+    category: "tank",
+    term:{nl:"Snap-points",en:"Snap-points"},
+    def:{nl:"Specifieke plekken op de kaart waar vijanden naartoe \"teleporteren\" als je ze daarheen trekt voor een compacte pull.",
+         en:"Specific spots on the map where enemies snap or teleport when you pull them there, for a tight pack."}
+  },
+  {
+    category: "tank",
+    term:{nl:"Percent / Count",en:"Percent / Count"},
+    def:{nl:"De hoeveelheid trash (vijanden) die je moet doden om de dungeon-meter (voor de baas) te vullen.",
+         en:"How much trash (enemies) you must kill to fill the dungeon progress bar before the boss."}
+  },
+  {
+    category: "tank",
+    term:{nl:"Affix-prioriteit",en:"Affix Priority"},
+    def:{nl:"De vijand die deze week extra gevaarlijk is door actieve modifiers zoals Fortified.",
+         en:"The enemy or pack that is especially dangerous this week because of active affixes like Fortified."}
   }
 ];

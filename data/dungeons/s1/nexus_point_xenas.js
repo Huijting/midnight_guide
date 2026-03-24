@@ -56,5 +56,20 @@ const NEXUS_POINT_XENAS = {
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
   },
-  tank_pathing: null
+  tank_pathing: {
+    pulls: [
+      { pullRef: 0, danger: 4, mobs: ["Circuit Seer", "Flux Engineer"],
+        note: { nl: "Eerste lust-pull: Mana Batteries binnen 12s vernietigen na Circuit Seer (Icy Veins / dungeon-trash). Suppression Field spreiden.", en: "First lust pull: destroy Mana Batteries within ~12s after Circuit Seer activation. Spread Suppression Field." },
+        interrupts: { nl: "Umbral Bolt (Adept) / Creeping Void (Voidcaller) in pack > Arcing Mana channel breaks via kill/switch.", en: "Umbral Bolt / Creeping Void in pack > break Arcing Mana via swap/kill." } },
+      { pullRef: 1, danger: 5, mobs: ["Chief Corewright Kasreth"],
+        note: { nl: "Baas 1: adds + energiebogen; tank positie voor arc dodges.", en: "Boss 1: adds + energy arcs; tank position for dodges." },
+        interrupts: { nl: "Add-summon casts indien aanwezig — volgens encounter.", en: "Add summon casts if present — per encounter." } },
+      { pullRef: 2, danger: 5, mobs: ["Corewarden Nysarra"],
+        note: { nl: "Baas 2 (lust): orbs absorberen/vernietigen vóór boss (route).", en: "Boss 2 (lust): destroy orbs before boss absorbs (route)." },
+        interrupts: { nl: "Orb-fase > losse boss-casts roteren.", en: "Orb phase > rotate loose boss casts." } },
+      { pullRef: 3, danger: 5, mobs: ["Lothraxion"],
+        note: { nl: "Eindbaas: Divine Guile — echte Lothraxion heeft geen gele hoorns; verkeerde interrupt = Core Exposure (Icy Veins).", en: "Final boss: Divine Guile — real Lothraxion has no yellow horns; wrong interrupt = Core Exposure (Icy Veins)." },
+        interrupts: { nl: "Divine Guile: alleen de echte baas interrupten na callout.", en: "Divine Guile: interrupt only the real boss after callout." } }
+    ]
+  }
 };
