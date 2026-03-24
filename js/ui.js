@@ -1186,7 +1186,8 @@ function buildWeeklyList() {
   const el = document.getElementById('weekly-list');
   if (!el) return;
 
-  const state = weeklyLoadState();
+  if (typeof pruneBountifulWeeklyMap === 'function') pruneBountifulWeeklyMap(weeklyLoadState());
+  const stateSynced = weeklyLoadState();
   const openCats = JSON.parse(sessionStorage.getItem('weekly_open_cats') || '{}');
 
   // Groepeer per categorie (gebruik vertaalde cat-naam als sleutel)
@@ -1199,7 +1200,7 @@ function buildWeeklyList() {
 
   let html = '';
   Object.entries(cats).forEach(([cat, items]) => {
-    const catDone = items.filter(i => state[i.id]).length;
+    const catDone = items.filter(i => stateSynced[i.id]).length;
     const allDone = catDone === items.length;
     const catKey = cat.replace(/[^a-z0-9]/gi,'_');
     const isOpen = openCats[catKey] === true; // standaard gesloten
@@ -1214,7 +1215,7 @@ function buildWeeklyList() {
       </div>
       <div class="weekly-cat-items ${isOpen?'open':''}">`;
     items.forEach(item => {
-      const done = !!state[item.id];
+      const done = !!stateSynced[item.id];
       const wui2 = WEEKLY_UI[lang] || WEEKLY_UI.nl;
       const tags = item.tags.map(t => `<span class="weekly-tag ${t}">${wui2.tags[t] || t}</span>`).join('');
       const iname = (typeof item.name === 'object') ? (item.name[lang] || item.name.nl) : item.name;
@@ -1235,7 +1236,7 @@ function buildWeeklyList() {
   });
 
   el.innerHTML = html;
-  weeklyUpdateProgress(state);
+  weeklyUpdateProgress(stateSynced);
 
   const resetEl = document.getElementById('weekly-next-reset');
   if (resetEl) startWeeklyCountdown();

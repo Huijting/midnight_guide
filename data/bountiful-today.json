@@ -1,5 +1,11 @@
 {
-  "fetched": "2025-03-19T12:00:00.000Z",
-  "reset": "2025-03-19",
-  "delves": ["collegiate_calamity", "sunkiller_sanctum", "grudge_pit", "atalaman"]
+  "fetched": "2026-03-24T08:00:00.000Z",
+  "reset": "2026-03-19",
+  "delves": [
+    "shadow_enclave",
+    "collegiate_calamity",
+    "twilight_crypts",
+    "grudge_pit"
+  ],
+  "note": "Written by scripts/fetch-bountiful-delves.js or manually. EU day boundary: Wednesday 07:00 UTC. Must be exactly 4 valid delve ids from data/delves.js."
 }

@@ -1066,20 +1066,162 @@ function buildRaidScreen(){
 }
 
 // ── DELVES UI ──
+const BOUNTIFUL_WEEKLY_MAP_KEY = '__bountifulDelveMap';
+
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen',
+    bountiful_json_ok:'Vandaag Bountiful (live data)',
+    bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
+    bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
+    bountiful_weekly_btn:'Weekly',
+    bountiful_weekly_title:'Telt mee voor Bountiful Delve (1/4–4/4) op de Weekly Checklist',
+    bountiful_weekly_full:'Alle 4 weekly Bountiful vakjes staan al aan — vink eventueel één uit op de Weekly-tab.',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
     full_guide_btn:'Volledige gids', back_btn:'← Terug' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
+    bountiful_json_ok:'Today’s Bountiful (live data)',
+    bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
+    bountiful_no_ids:'Bountiful: no list available. Check back later or update `data/bountiful-today.json`.',
+    bountiful_weekly_btn:'Weekly',
+    bountiful_weekly_title:'Counts toward Bountiful Delve (1/4–4/4) on the Weekly Checklist',
+    bountiful_weekly_full:'All 4 weekly Bountiful boxes are already checked — clear one on the Weekly tab if needed.',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
     full_guide_btn:'Full Guide', back_btn:'← Back' }
 };
 
-function buildDelvesScreen() {
+let bountifulFetchPromise = null;
+let bountifulFetchResult = { ok: false, fromJson: false, ids: [], error: null };
+
+function getBountifulScheduleFallbackIds() {
+  const sched = typeof DELVES_DATA !== 'undefined' && DELVES_DATA.bountifulSchedule;
+  if (!sched || !sched.length) return [];
+  const offset = Number(DELVES_DATA.bountifulScheduleOffset) || 0;
+  const now = new Date();
+  const dowUtc = now.getUTCDay();
+  const dayIx = (dowUtc + 4) % 7;
+  const row = sched[(dayIx + offset + 700) % 7];
+  return Array.isArray(row) ? row.slice(0, 4) : [];
+}
+
+function validateBountifulIdList(arr) {
+  const delves = typeof DELVES_DATA !== 'undefined' && DELVES_DATA.delves ? DELVES_DATA.delves : [];
+  const valid = new Set(delves.map(d => d.id));
+  const out = [];
+  if (!Array.isArray(arr)) return out;
+  for (const id of arr) {
+    if (typeof id === 'string' && valid.has(id) && !out.includes(id)) out.push(id);
+  }
+  return out;
+}
+
+async function fetchBountifulDelves() {
+  if (bountifulFetchPromise) return bountifulFetchPromise;
+  bountifulFetchPromise = (async () => {
+    try {
+      const res = await fetch('data/bountiful-today.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const raw = data.delves || data.delveIds || [];
+      const ids = validateBountifulIdList(raw);
+      if (ids.length !== 4) throw new Error('Expected 4 valid delve ids, got ' + ids.length);
+      bountifulFetchResult = { ok: true, fromJson: true, ids, error: null };
+    } catch (e) {
+      const fallback = validateBountifulIdList(getBountifulScheduleFallbackIds());
+      bountifulFetchResult = {
+        ok: fallback.length === 4,
+        fromJson: false,
+        ids: fallback.length === 4 ? fallback : [],
+        error: e
+      };
+    }
+    return bountifulFetchResult;
+  })();
+  return bountifulFetchPromise;
+}
+
+/** Reset fetch (e.g. after weekly rollover) — optional call from weekly screen. */
+function resetBountifulFetchCache() {
+  bountifulFetchPromise = null;
+  bountifulFetchResult = { ok: false, fromJson: false, ids: [], error: null };
+}
+
+function getActiveBountifulDelveIds() {
+  return bountifulFetchResult.ids && bountifulFetchResult.ids.length === 4
+    ? bountifulFetchResult.ids.slice()
+    : [];
+}
+
+function getBountifulWeeklyMap(state) {
+  const m = state[BOUNTIFUL_WEEKLY_MAP_KEY];
+  return m && typeof m === 'object' && !Array.isArray(m) ? { ...m } : {};
+}
+
+function pruneBountifulWeeklyMap(state) {
+  const raw = state[BOUNTIFUL_WEEKLY_MAP_KEY];
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return;
+  let dirty = false;
+  for (const delveId of Object.keys(raw)) {
+    const slot = raw[delveId];
+    if (!state['w_delve' + slot]) {
+      delete raw[delveId];
+      dirty = true;
+    }
+  }
+  if (dirty) {
+    if (Object.keys(raw).length) state[BOUNTIFUL_WEEKLY_MAP_KEY] = raw;
+    else delete state[BOUNTIFUL_WEEKLY_MAP_KEY];
+    if (typeof weeklySaveState === 'function') weeklySaveState(state);
+  }
+}
+
+function toggleBountifulDelveForWeekly(delveId) {
+  if (typeof weeklyLoadState !== 'function' || typeof weeklySaveState !== 'function') return;
+  const active = getActiveBountifulDelveIds();
+  if (!active.includes(delveId)) return;
+  const state = weeklyLoadState();
+  pruneBountifulWeeklyMap(state);
+  const map = getBountifulWeeklyMap(state);
+
+  if (map[delveId]) {
+    const slot = map[delveId];
+    delete map[delveId];
+    state['w_delve' + slot] = false;
+    if (Object.keys(map).length) state[BOUNTIFUL_WEEKLY_MAP_KEY] = map;
+    else delete state[BOUNTIFUL_WEEKLY_MAP_KEY];
+  } else {
+    let assigned = null;
+    for (let i = 1; i <= 4; i++) {
+      if (!state['w_delve' + i]) {
+        assigned = i;
+        break;
+      }
+    }
+    if (assigned === null) {
+      const ui = DELVES_UI[lang] || DELVES_UI.nl;
+      const toast = document.getElementById('toast-notification');
+      if (toast) {
+        toast.textContent = ui.bountiful_weekly_full;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2800);
+      }
+      return;
+    }
+    map[delveId] = assigned;
+    state['w_delve' + assigned] = true;
+    state[BOUNTIFUL_WEEKLY_MAP_KEY] = map;
+  }
+  weeklySaveState(state);
+  if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
+  if (typeof buildWeeklyList === 'function') buildWeeklyList();
+}
+
+async function buildDelvesScreen() {
   if (typeof DELVES_DATA === 'undefined') return;
   const ui = DELVES_UI[lang] || DELVES_UI.nl;
+
+  await fetchBountifulDelves();
 
   const delves = DELVES_DATA.delves;
   const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;
@@ -1087,12 +1229,28 @@ function buildDelvesScreen() {
   const delveById = {};
   delves.forEach(d => { delveById[d.id] = d; });
 
+  const bountifulIds = getActiveBountifulDelveIds();
+  const bountifulSet = new Set(bountifulIds);
+  let weeklyState = typeof weeklyLoadState === 'function' ? weeklyLoadState() : {};
+  pruneBountifulWeeklyMap(weeklyState);
+  weeklyState = typeof weeklyLoadState === 'function' ? weeklyLoadState() : {};
+  const weeklyMap = getBountifulWeeklyMap(weeklyState);
+
   let html = '';
 
   // Bountiful — afbeelding per taal (Shift+J instructie)
   const bountifulImg = `assets/delves/bountiful-delves-${lang === 'en' ? 'en' : 'nl'}.png`;
+  let statusNote = '';
+  if (bountifulIds.length === 4) {
+    statusNote = bountifulFetchResult.fromJson
+      ? `<p class="delves-bountiful-status delves-bountiful-status-ok">✨ ${ui.bountiful_json_ok}</p>`
+      : `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_schedule_fallback}</p>`;
+  } else {
+    statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_no_ids}</p>`;
+  }
   html += `<div class="delves-bountiful-banner">
     <img src="${bountifulImg}" alt="${ui.bountiful_alt}" class="delves-bountiful-img" loading="lazy">
+    ${statusNote}
   </div>`;
 
   // Alle Delves — tabel met Delve naam en Zone + /way
@@ -1110,11 +1268,21 @@ function buildDelvesScreen() {
         </thead>
         <tbody>`;
   delves.forEach(d => {
+    const isBountiful = bountifulSet.has(d.id);
     const zoneWay = d.way
       ? `${d.zoneName} ; <span class="way-pill" onclick="event.stopPropagation();copyDelvesWay(this.dataset.way)" data-way="${d.way.replace(/"/g, '&quot;')}" title="${ui.copy_way}">📋 ${d.way}</span>`
       : d.zoneName;
-    html += `<tr>
-      <td><span class="delves-delve-link" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">${d.name}</span></td>
+    const rowClass = isBountiful ? 'delve-row-bountiful' : '';
+    const chest = isBountiful
+      ? `<span class="delves-bountiful-chest" aria-hidden="true"><span class="delves-chest-icon">📦</span><span class="delves-glimmer" aria-hidden="true"></span></span>`
+      : '';
+    const slot = weeklyMap[d.id];
+    const weeklyChecked = slot && weeklyState['w_delve' + slot];
+    const weeklyBtn = isBountiful
+      ? `<button type="button" class="delves-bountiful-weekly-btn${weeklyChecked ? ' is-done' : ''}" onclick="event.stopPropagation();toggleBountifulDelveForWeekly('${d.id}')" title="${ui.bountiful_weekly_title.replace(/"/g, '&quot;')}">${weeklyChecked ? '✓ ' : ''}${ui.bountiful_weekly_btn}</button>`
+      : '';
+    html += `<tr class="${rowClass}">
+      <td><div class="delves-name-cell">${chest}<span class="delves-delve-link" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">${d.name}</span>${weeklyBtn}</div></td>
       <td class="delves-zone-cell">${zoneWay}</td>
     </tr>`;
   });

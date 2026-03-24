@@ -1186,6 +1186,19 @@
   .delves-section-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
   .delves-bountiful-banner{margin-top:0;margin-bottom:20px;border-radius:12px;overflow:hidden;max-width:100%}
   .delves-bountiful-img{display:block;width:100%;height:auto;max-width:800px;margin:0 auto;border-radius:12px}
+  .delves-bountiful-status{font-size:12px;line-height:1.45;margin:10px auto 0;max-width:800px;padding:0 8px;text-align:center}
+  .delves-bountiful-status-ok{color:#86efac}
+  .delves-bountiful-status-warn{color:#fbbf24}
+  .delves-name-cell{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+  .delves-bountiful-chest{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0}
+  .delves-chest-icon{font-size:18px;line-height:1;filter:drop-shadow(0 0 6px rgba(240,180,41,.65));position:relative;z-index:1}
+  .delves-glimmer{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.45),transparent 55%);animation:delve-glimmer-pulse 2.2s ease-in-out infinite}
+  @keyframes delve-glimmer-pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.95;transform:scale(1.08)}}
+  .delves-list-table tr.delve-row-bountiful{background:linear-gradient(90deg,rgba(240,180,41,.12),rgba(240,180,41,.02) 45%,transparent 72%);animation:delve-row-shine 3s ease-in-out infinite}
+  @keyframes delve-row-shine{0%,100%{box-shadow:inset 0 0 0 0 rgba(240,180,41,0)}50%{box-shadow:inset 3px 0 14px -2px rgba(240,180,41,.2)}}
+  .delves-bountiful-weekly-btn{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;border:1px solid rgba(240,180,41,.45);background:rgba(240,180,41,.1);color:var(--gold);cursor:pointer;flex-shrink:0}
+  .delves-bountiful-weekly-btn:hover{background:rgba(240,180,41,.2);border-color:var(--gold)}
+  .delves-bountiful-weekly-btn.is-done{background:rgba(74,222,128,.15);border-color:rgba(74,222,128,.5);color:#86efac}
   .delves-list-table-wrap{overflow-x:auto;border:1px solid rgba(79,142,247,.4);border-radius:12px;background:var(--deep);margin-bottom:8px}
   .delves-list-table{width:100%;border-collapse:collapse;font-size:14px}
   .delves-list-table th{background:rgba(79,142,247,.15);color:#69ccf0;font-weight:800;padding:12px 14px;text-align:left;border-bottom:1px solid rgba(79,142,247,.3)}

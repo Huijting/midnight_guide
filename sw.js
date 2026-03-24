@@ -16,6 +16,7 @@ const PRECACHE = [
   // Handleiding
   '/data/help.js',
   '/data/affixes.js',
+  '/data/bountiful-today.json',
   // Dungeons — Season 1 (split)
   '/data/dungeons/s1/windrunner_spire.js',
   '/data/dungeons/s1/magisters_terrace.js',
