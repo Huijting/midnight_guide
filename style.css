@@ -176,6 +176,9 @@
     .boss-header{padding:10px 12px}
     .role-tabs{gap:5px;padding:10px 10px}
     .role-tab-btn{font-size:13px;padding:10px 4px}
+    .role-card-btn{padding:10px 4px}
+    .role-card-ico{font-size:18px}
+    .help-master-role-btn{padding:8px 4px;font-size:10px}
     .role-panel{padding:11px 12px}
     .role-panel ul li{font-size:14px;padding:7px 0 7px 16px}
     /* Route */
@@ -292,6 +295,19 @@
   .role-tab-btn.active-tank{color:#fff;background:var(--tank);border-color:var(--tank)}
   .role-tab-btn.active-heal{color:#fff;background:var(--heal);border-color:var(--heal)}
   .role-tab-btn.active-dps{color:#fff;background:var(--dps);border-color:var(--dps)}
+  .boss-role-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 14px;background:var(--deep);border-bottom:1px solid var(--border)}
+  .role-card-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 6px;font-size:12px;font-weight:800;border-radius:10px;border:2px solid var(--border);cursor:pointer;background:var(--panel);color:var(--muted);transition:all .15s;min-width:0;width:100%;-webkit-tap-highlight-color:transparent}
+  .role-card-ico{font-size:22px;line-height:1}
+  .role-card-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.04em;line-height:1.2;text-align:center;word-break:break-word}
+  .role-card-btn:hover{border-color:var(--gold);color:var(--text)}
+  .role-card-btn.active.role-card-tank{border-color:#5ba3e8;background:rgba(74,144,217,.2);color:#b8d9ff;box-shadow:0 0 0 1px rgba(91,163,232,.4)}
+  .role-card-btn.active.role-card-heal{border-color:#9b7fd9;background:rgba(155,127,217,.15);color:#e0d4ff;box-shadow:0 0 0 1px rgba(155,127,217,.45)}
+  .role-card-btn.active.role-card-dps{border-color:#e8556a;background:rgba(224,64,96,.15);color:#ffc0c8;box-shadow:0 0 0 1px rgba(232,85,106,.45)}
+  .role-tips-ul{list-style:none;padding:0;margin:0}
+  .role-tip-line,.generic-tips .role-tip-line,.spec-tip.role-tip-line{padding:8px 10px;margin:6px 0;border-radius:8px;border-left:4px solid transparent}
+  .role-tip-tank{border-left-color:#5ba3e8;background:rgba(74,144,217,.12)}
+  .role-tip-heal{border-left-color:#7c5cbf;background:linear-gradient(90deg,rgba(124,92,191,.14),rgba(61,184,106,.08))}
+  .role-tip-dps{border-left-color:#e04060;background:rgba(224,64,96,.1)}
   .role-panel{display:none;padding:13px 15px}
   .role-panel.active{display:block}
   .role-panel.tank-panel{background:var(--tank-bg)}
@@ -617,13 +633,43 @@
   #help-btn:hover{border-color:var(--gold);color:var(--gold)}
   #help-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;padding:16px;overflow-y:auto}
   #help-modal.open{display:flex;align-items:flex-start;justify-content:center}
-  #help-box{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:540px;width:100%;margin-top:40px}
+  #help-box{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:min(560px,100%);width:100%;margin-top:40px;max-height:88vh;display:flex;flex-direction:column}
   #help-box h2{font-family:'Inter', sans-serif;color:var(--gold);font-size:18px;margin-bottom:6px}
   #help-intro{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+  .help-tab-bar{display:flex;gap:6px;margin-bottom:14px;flex-shrink:0}
+  .help-tab-btn{flex:1;padding:10px 8px;font-size:12px;font-weight:800;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--muted);cursor:pointer;transition:all .15s}
+  .help-tab-btn:hover{color:var(--text);border-color:var(--gold)}
+  .help-tab-btn.active{background:var(--gold);color:#000;border-color:var(--gold)}
+  #help-tab-panels{overflow-y:auto;flex:1;min-height:0;padding-right:4px}
+  .help-panel{display:none}
+  .help-panel.active{display:block}
+  .help-master-intro{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.55}
+  .help-sources-note{font-size:11px;color:var(--muted);margin-bottom:16px;padding:10px 12px;background:var(--deep);border-radius:8px;border-left:3px solid var(--accent);line-height:1.5}
+  .help-master-block{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:12px;background:var(--panel)}
+  .help-master-head{font-size:14px;font-weight:800;margin-bottom:8px}
+  .help-master-tank .help-master-head{color:#7ec8ff}
+  .help-master-heal .help-master-head{color:#c4a8ff}
+  .help-master-dps .help-master-head{color:#ff8a9a}
+  .help-master-body{font-size:12px;color:var(--muted);line-height:1.65}
+  .help-master-role-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px}
+  .help-master-role-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;width:100%;padding:10px 6px;font-size:11px;font-weight:800;border-radius:10px;border:2px solid var(--border);background:var(--panel);color:var(--muted);cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+  .help-master-role-btn:hover{color:var(--text);border-color:var(--gold)}
+  .help-master-role-btn.active.help-master-role-tank{border-color:#5ba3e8;background:rgba(74,144,217,.2);color:#b8d9ff;box-shadow:0 0 0 1px rgba(91,163,232,.35)}
+  .help-master-role-btn.active.help-master-role-heal{border-color:#9b7fd9;background:rgba(155,127,217,.15);color:#e0d4ff;box-shadow:0 0 0 1px rgba(155,127,217,.4)}
+  .help-master-role-btn.active.help-master-role-dps{border-color:#e8556a;background:rgba(224,64,96,.15);color:#ffc0c8;box-shadow:0 0 0 1px rgba(232,85,106,.4)}
+  .help-master-role-lbl{display:block;line-height:1.25;text-align:center;word-break:break-word}
+  .help-master-role-panel{display:none;margin-bottom:4px}
+  .help-master-role-panel.active{display:block}
+  .help-community-h3{font-size:15px;color:var(--gold);margin:0 0 8px}
+  .help-community-intro{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.55}
+  .help-community-terms{font-size:12px;color:var(--text);line-height:1.7;white-space:pre-line;padding:12px;background:var(--deep);border-radius:10px;border:1px solid var(--border)}
+  .weekly-bountiful-sync-note{font-size:12px;color:var(--muted);padding:12px 14px;margin-bottom:14px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:10px;line-height:1.55}
+  .delves-bountiful-roles-note{font-size:12px;color:var(--muted);margin:10px 0 0;padding:10px 12px;background:rgba(107,91,149,.12);border-radius:8px;border:1px solid var(--border);line-height:1.5}
+  .delve-role-ease{font-size:13px;color:var(--text);margin:14px 0;padding:10px 12px;background:var(--deep);border-radius:8px;border-left:3px solid var(--gold);line-height:1.5}
   .help-section{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px}
   .help-section-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px}
   .help-section-text{font-size:12px;color:var(--muted);line-height:1.7;white-space:pre-line}
-  #help-close{display:block;margin:16px auto 0;background:none;border:1px solid var(--border);color:var(--muted);padding:8px 24px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
+  #help-close{display:block;margin:16px auto 0;flex-shrink:0;background:none;border:1px solid var(--border);color:var(--muted);padding:8px 24px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
   #help-close:hover{border-color:var(--gold);color:var(--gold)}
   #help-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1300;align-items:flex-end;justify-content:center;padding:0}
   #help-modal.open{display:flex}

@@ -581,19 +581,117 @@ function openHelp() {
 function closeHelp() {
   document.getElementById('help-modal').classList.remove('open');
 }
+
+function helpFormatMasterBody(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+function switchHelpTab(ix) {
+  const bar = document.getElementById('help-tab-bar');
+  if (!bar) return;
+  bar.querySelectorAll('.help-tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === ix);
+    b.setAttribute('aria-selected', i === ix ? 'true' : 'false');
+  });
+  document.querySelectorAll('.help-panel').forEach((p, i) => {
+    p.classList.toggle('active', i === ix);
+    p.hidden = i !== ix;
+  });
+  if (ix === 1) switchHelpMasterRole('tank');
+}
+
+/** Sub-tabs binnen Masterclass: Tank / Healer / DPS (los van de drie hoofdtabs). */
+function switchHelpMasterRole(role) {
+  const bar = document.getElementById('help-master-role-bar');
+  if (!bar) return;
+  const roles = ['tank', 'heal', 'dps'];
+  if (!roles.includes(role)) role = 'tank';
+  bar.querySelectorAll('.help-master-role-btn').forEach(b => {
+    const r = b.getAttribute('data-role');
+    const on = r === role;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+    b.tabIndex = on ? 0 : -1;
+  });
+  roles.forEach(r => {
+    const p = document.getElementById('help-master-panel-' + r);
+    if (!p) return;
+    const on = r === role;
+    p.classList.toggle('active', on);
+    p.hidden = !on;
+  });
+}
+
 function renderHelp() {
   const h = (typeof HELP_CONTENT !== 'undefined') ? (HELP_CONTENT[lang] || HELP_CONTENT.nl) : null;
   if (!h) return;
   document.getElementById('help-title').textContent = h.title;
-  document.getElementById('help-intro').textContent = h.intro;
   document.getElementById('help-close').textContent = h.close;
-  document.getElementById('help-btn').textContent = '❓ ' + h.title.replace('📖 ','');
-  document.getElementById('help-sections').innerHTML = h.sections.map(s =>
+  document.getElementById('help-btn').textContent = '❓ ' + h.title.replace('📖 ', '');
+
+  const tabBar = document.getElementById('help-tab-bar');
+  const tabPanels = document.getElementById('help-tab-panels');
+  if (!tabBar || !tabPanels) return;
+
+  const t0 = h.tab_overview || 'Overview';
+  const t1 = h.tab_masterclass || 'Masterclass';
+  const t2 = h.tab_community || 'Terms';
+
+  tabBar.innerHTML = `
+    <button type="button" class="help-tab-btn active" role="tab" aria-selected="true" onclick="switchHelpTab(0)">${t0}</button>
+    <button type="button" class="help-tab-btn" role="tab" aria-selected="false" onclick="switchHelpTab(1)">${t1}</button>
+    <button type="button" class="help-tab-btn" role="tab" aria-selected="false" onclick="switchHelpTab(2)">${t2}</button>`;
+
+  const overviewSections = (h.sections || []).map(s =>
     `<div class="help-section">
       <div class="help-section-title">${s.icon} ${s.title}</div>
       <div class="help-section-text">${s.text}</div>
     </div>`
   ).join('');
+
+  const mc = h.masterclass || {};
+  const tank = mc.tank || {};
+  const heal = mc.heal || {};
+  const dps = mc.dps || {};
+  const mcAria = h.masterclass_tabs_aria || 'Masterclass per rol';
+
+  tabPanels.innerHTML = `
+    <div class="help-panel active" id="help-panel-0" role="tabpanel">
+      <p class="help-intro" id="help-intro"></p>
+      <div id="help-sections-inner">${overviewSections}</div>
+    </div>
+    <div class="help-panel" id="help-panel-1" role="tabpanel" hidden>
+      <p class="help-master-intro">${h.masterclass_intro || ''}</p>
+      <p class="help-sources-note">${h.sources_note || ''}</p>
+      <div id="help-master-role-bar" class="help-master-role-bar" role="tablist" aria-label="${mcAria.replace(/"/g, '&quot;')}">
+        <button type="button" class="help-master-role-btn help-master-role-tank active" data-role="tank" role="tab" aria-selected="true" onclick="switchHelpMasterRole('tank')"><span class="help-master-role-lbl">${tank.title || '🛡️ Tank'}</span></button>
+        <button type="button" class="help-master-role-btn help-master-role-heal" data-role="heal" role="tab" aria-selected="false" tabindex="-1" onclick="switchHelpMasterRole('heal')"><span class="help-master-role-lbl">${heal.title || '💊 Healer'}</span></button>
+        <button type="button" class="help-master-role-btn help-master-role-dps" data-role="dps" role="tab" aria-selected="false" tabindex="-1" onclick="switchHelpMasterRole('dps')"><span class="help-master-role-lbl">${dps.title || '⚔️ DPS'}</span></button>
+      </div>
+      <div id="help-master-panel-tank" class="help-master-role-panel active" role="tabpanel">
+        <div class="help-master-block help-master-tank"><div class="help-master-body">${helpFormatMasterBody(tank.body || '')}</div></div>
+      </div>
+      <div id="help-master-panel-heal" class="help-master-role-panel" role="tabpanel" hidden>
+        <div class="help-master-block help-master-heal"><div class="help-master-body">${helpFormatMasterBody(heal.body || '')}</div></div>
+      </div>
+      <div id="help-master-panel-dps" class="help-master-role-panel" role="tabpanel" hidden>
+        <div class="help-master-block help-master-dps"><div class="help-master-body">${helpFormatMasterBody(dps.body || '')}</div></div>
+      </div>
+    </div>
+    <div class="help-panel" id="help-panel-2" role="tabpanel" hidden>
+      <h3 class="help-community-h3">${h.community_title || ''}</h3>
+      <p class="help-community-intro">${h.community_intro || ''}</p>
+      <div class="help-community-terms" id="help-community-terms-body"></div>
+    </div>`;
+
+  const introEl = document.getElementById('help-intro');
+  if (introEl) introEl.textContent = h.intro;
+  const commEl = document.getElementById('help-community-terms-body');
+  if (commEl) commEl.textContent = h.community_terms || '';
+  switchHelpTab(0);
 }
 
 function openAbout() {
@@ -1165,6 +1263,7 @@ const WEEKLY_UI = {
     wat_nu_btn: '⚡ Wat doe ik eerst?',
     wat_nu_title: '🎯 Begin hiermee:',
     wat_nu_empty: '🎉 Je weekly taken zijn allemaal afgevinkt! Ga lekker spelen 😄',
+    bountiful_sync_note: '📦 Bountiful Delves: markeer je 4 dagelijkse sleutels en vault-vakjes op de 💎 Delves-tab — account-breed voor tank, healer én DPS.',
     diff: {easy:'🟢 Makkelijk', medium:'🟡 Gemiddeld', hard:'🔴 Uitdagend'},
   },
   en: {
@@ -1179,6 +1278,7 @@ const WEEKLY_UI = {
     wat_nu_btn: '⚡ What should I do first?',
     wat_nu_title: '🎯 Start with this:',
     wat_nu_empty: '🎉 All weekly tasks checked off! Go have fun 😄',
+    bountiful_sync_note: '📦 Bountiful Delves: track your 4 daily keys and vault slots on the 💎 Delves tab — account-wide for tank, healer and DPS.',
     diff: {easy:'🟢 Easy', medium:'🟡 Medium', hard:'🔴 Challenging'},
   }
 };
@@ -1198,7 +1298,8 @@ function buildWeeklyList() {
     cats[catLabel].push(item);
   });
 
-  let html = '';
+  const wui0 = WEEKLY_UI[lang] || WEEKLY_UI.nl;
+  let html = (wui0.bountiful_sync_note ? `<div class="weekly-bountiful-sync-note">${wui0.bountiful_sync_note}</div>` : '');
   Object.entries(cats).forEach(([cat, items]) => {
     const catDone = items.filter(i => stateSynced[i.id]).length;
     const allDone = catDone === items.length;
@@ -1813,5 +1914,5 @@ function copyMacro(el) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.3').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.4').catch(() => {});
 }

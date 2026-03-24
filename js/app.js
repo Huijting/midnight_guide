@@ -1,6 +1,6 @@
 // ── VERSIE ──
-const VERSION = "v1.1";
-const VERSION_DATE = "2026-03-20";
+const VERSION = "v1.4.1";
+const VERSION_DATE = "2026-03-24";
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -262,6 +262,9 @@ const UI = {
     overview_affix_boss_title: "Affix-tips voor bazen",
     tab_route_map: "Kaart & route",
     tab_route_tank: "Tank-gids",
+    role_card_tank: "Tank",
+    role_card_heal: "Healer",
+    role_card_dps: "DPS",
     tank_guide_title: "Tank — pad & gevaar per pull",
     tank_guide_sub: "Klik op een monsternaam of pull-nummer om die stap in de routelijst te markeren (Snap-to-Map).",
     tank_guide_empty: "Geen M+ route — Tank-gids is alleen voor Mythic+.",
@@ -351,6 +354,9 @@ const UI = {
     overview_affix_boss_title: "Affix tips for bosses",
     tab_route_map: "Map & route",
     tab_route_tank: "Tank guide",
+    role_card_tank: "Tank",
+    role_card_heal: "Healer",
+    role_card_dps: "DPS",
     tank_guide_title: "Tank — pathing & danger per pull",
     tank_guide_sub: "Click a mob name or pull number to highlight that step in the route list (Snap-to-Map).",
     tank_guide_empty: "No M+ route — Tank guide is for Mythic+ only.",
@@ -548,7 +554,7 @@ function updateLandingStrings() {
     nl: {
       title: 'Midnight Guide',
       subtitle: 'Jouw WoW: Midnight companion',
-      news: '💎 <strong>v1.1</strong> — Klik op een Delve-naam voor tips. Full Guide voor complete walkthrough!',
+      news: '🛡️ <strong>v1.4.1</strong> — Masterclass: eigen Tank/Healer/DPS-tabs; dungeon-rolkaarten verbeterd voor mobiel.',
       tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!',
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
@@ -561,7 +567,7 @@ function updateLandingStrings() {
     en: {
       title: 'Midnight Guide',
       subtitle: 'Your WoW: Midnight companion',
-      news: '💎 <strong>v1.1</strong> — Click a Delve name for tips. Full Guide for complete walkthrough!',
+      news: '🛡️ <strong>v1.4.1</strong> — Masterclass: dedicated Tank/Healer/DPS tabs; boss role cards improved on mobile.',
       tip: '<strong>Tip:</strong> Install this app on your PC via the 📲 button top right, or the install icon in your address bar — works offline too!',
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
@@ -598,12 +604,39 @@ function toggleTheme() {
 // ROLE TABS
 // ═══════════════════════════════════════════════════════════════
 
+function getRoleTipLineClass(text, role) {
+  const s = String(text).toLowerCase();
+  if (role === 'tank') {
+    if (/\btank\s*buster|\btankbuster|hulking fragment|defensive|active mitigation|\blos\b|line of sight|percent|\/count|snap[- ]?point|route pull|grote pull|zware melee|mitigation/.test(s)) {
+      return 'role-tip-line role-tip-tank';
+    }
+  } else if (role === 'heal') {
+    if (/dispel|magic dispel|curse|purge|aoe|ramp|group damage|raid damage|mana\b|heavy damage|burst heal|tick|corrupt|shackle|pre-heal/.test(s)) {
+      return 'role-tip-line role-tip-heal';
+    }
+  } else if (role === 'dps') {
+    if (/interrupt|kick\b|prio|priority|burst window|shield|adds\b|target switch|switch target|cc\b|stop\b|soak|purge\b/.test(s)) {
+      return 'role-tip-line role-tip-dps';
+    }
+  }
+  return 'role-tip-line';
+}
+
 function renderRolePanel(dungeonId, bossIndex, role, genericTips) {
   const specTips = getSpecTips(dungeonId, bossIndex, role);
-  const generic = replaceLust(t(genericTips).map(x => `<li>${x}</li>`).join(''));
+  const tipLines = t(genericTips);
+  const generic = (Array.isArray(tipLines) ? tipLines : []).map(x => {
+    const inner = replaceLust(x);
+    const lc = getRoleTipLineClass(inner, role);
+    return `<li class="${lc}">${inner}</li>`;
+  }).join('');
 
   if (specTips && specTips.length > 0) {
-    const specHtml = specTips.map(tip => `<li class="spec-tip">${replaceLust(tip)}</li>`).join('');
+    const specHtml = specTips.map(tip => {
+      const inner = replaceLust(tip);
+      const lc = getRoleTipLineClass(inner, role);
+      return `<li class="spec-tip ${lc}">${inner}</li>`;
+    }).join('');
     const cls = CLASSES.find(c => c.id === currentSpec?.classId);
     const sp  = cls?.specs.find(s => s.id === currentSpec?.specId);
     const label = cls && sp ? `${cls.icon} ${sp.name[lang]}` : '';
@@ -611,7 +644,7 @@ function renderRolePanel(dungeonId, bossIndex, role, genericTips) {
             <div class="generic-tips-divider"></div>
             <ul class="generic-tips">${generic}</ul>`;
   }
-  return `<ul>${generic}</ul>`;
+  return `<ul class="role-tips-ul">${generic}</ul>`;
 }
 
 function switchFloor(dungeonId, idx) {
@@ -626,13 +659,22 @@ function switchFloor(dungeonId, idx) {
 
 function switchRole(uid, role) {
   const roles = ['tank','heal','dps'];
-  const card = document.getElementById(`${uid}-tank`).closest('.boss-card');
+  const anchor = document.getElementById(`${uid}-tank`) || document.getElementById(`${uid}-heal`);
+  const card = anchor?.closest('.boss-card');
+  if (!card) return;
   card.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
-  card.querySelectorAll('.role-tab-btn').forEach((b, i) => {
+  card.querySelectorAll('.role-card-btn').forEach(b => {
+    const r = b.getAttribute('data-role');
+    if (!r || !roles.includes(r)) return;
+    b.classList.toggle('active', r === role);
+    b.setAttribute('aria-selected', r === role ? 'true' : 'false');
+  });
+  const legacyBtns = card.querySelectorAll('.role-tab-btn');
+  legacyBtns.forEach((b, i) => {
     b.className = 'role-tab-btn';
     if (roles[i] === role) b.classList.add('active-' + roles[i]);
   });
-  document.getElementById(`${uid}-${role}`).classList.add('active');
+  document.getElementById(`${uid}-${role}`)?.classList.add('active');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -896,10 +938,10 @@ function renderDetail(d) {
         <span class="boss-name">${b.name}</span>
       </div>
       ${b.desc ? `<div class="boss-desc">${wrapGlossaryTermsInText(t(b.desc))}</div>` : ''}
-      <div class="role-tabs">
-        <button class="role-tab-btn${autoRole==='tank'?' active-tank':''}" onclick="switchRole('${uid}','tank')">🛡 Tank</button>
-        <button class="role-tab-btn${autoRole==='heal'?' active-heal':''}" onclick="switchRole('${uid}','heal')">💚 Healer</button>
-        <button class="role-tab-btn${autoRole==='dps'?' active-dps':''}" onclick="switchRole('${uid}','dps')">⚔ DPS</button>
+      <div class="boss-role-cards" role="tablist" aria-label="Role tips">
+        <button type="button" class="role-card-btn role-card-tank${autoRole==='tank'?' active':''}" data-role="tank" onclick="switchRole('${uid}','tank')" aria-selected="${autoRole==='tank'}"><span class="role-card-ico" aria-hidden="true">🛡️</span><span class="role-card-lbl">${u.role_card_tank}</span></button>
+        <button type="button" class="role-card-btn role-card-heal${autoRole==='heal'?' active':''}" data-role="heal" onclick="switchRole('${uid}','heal')" aria-selected="${autoRole==='heal'}"><span class="role-card-ico" aria-hidden="true">💊</span><span class="role-card-lbl">${u.role_card_heal}</span></button>
+        <button type="button" class="role-card-btn role-card-dps${autoRole==='dps'?' active':''}" data-role="dps" onclick="switchRole('${uid}','dps')" aria-selected="${autoRole==='dps'}"><span class="role-card-ico" aria-hidden="true">⚔️</span><span class="role-card-lbl">${u.role_card_dps}</span></button>
       </div>
       <div id="${uid}-tank" class="role-panel tank-panel${autoRole==='tank'?' active':''}">
         ${renderRolePanel(d.id, bi, 'tank', b.tank)}
@@ -1356,6 +1398,8 @@ const DELVES_UI = {
     bountiful_vault_full:'Alle 4 vault-vakjes voor Bountiful staan al aan — vink er één uit op de Delves- of Weekly-tab.',
     bountiful_keys_today:'Sleutels vandaag: {n}/4',
     bountiful_countdown_prefix:'Volgende dagelijkse Bountiful-rotatie over',
+    delves_bountiful_roles_note:'👥 Account-breed: max. 4 Bountiful-sleutels per dag en Great Vault 1/4–4/4 gelden voor alle rollen (tank, healer, DPS) — hetzelfde als op de Weekly-tab.',
+    role_ease_label:'💡 Rol-tip:',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
     full_guide_btn:'Volledige gids', back_btn:'← Terug' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
@@ -1371,6 +1415,8 @@ const DELVES_UI = {
     bountiful_vault_full:'All 4 vault slots for Bountiful are already checked — clear one on Delves or Weekly.',
     bountiful_keys_today:'Keys today: {n}/4',
     bountiful_countdown_prefix:'Next daily Bountiful rotation in',
+    delves_bountiful_roles_note:'👥 Account-wide: up to 4 Bountiful keys per day and Great Vault 1/4–4/4 count for all roles (tank, healer, DPS) — same tracking as on the Weekly tab.',
+    role_ease_label:'💡 Role tip:',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
     full_guide_btn:'Full Guide', back_btn:'← Back' }
 };
@@ -1545,6 +1591,7 @@ async function buildDelvesScreen() {
     ${statusNote}
     <p class="delves-daily-keys-summary" id="delves-daily-keys-summary">${ui.bountiful_keys_today.replace('{n}', String(dailyList.length))}</p>
     <p class="delves-daily-countdown" id="delves-daily-countdown" aria-live="polite"></p>
+    <p class="delves-bountiful-roles-note">${ui.delves_bountiful_roles_note || ''}</p>
   </div>`;
 
   // Alle Delves — tabel met Delve naam en Zone + /way
@@ -1641,12 +1688,14 @@ function openDelveDetail(id) {
   const det = d.details[lang] || d.details.en;
   document.getElementById('delve-detail-title').textContent = d.name;
   const hasFullGuide = d.fullGuide && (d.fullGuide[lang] || d.fullGuide.en);
+  const roleEase = d.roleEase && (d.roleEase[lang] || d.roleEase.en);
   document.getElementById('delve-detail-content').innerHTML = `
     <ul class="delve-detail-bullets">
       <li><strong>${ui.detail_gimmick}:</strong> ${det.gimmick}</li>
       <li><strong>${ui.detail_danger}:</strong> ${det.danger}</li>
       <li><strong>${ui.detail_tip}:</strong> ${det.tip}</li>
     </ul>
+    ${roleEase ? `<p class="delve-role-ease"><strong>${ui.role_ease_label}</strong> ${roleEase}</p>` : ''}
     ${hasFullGuide ? `<button class="delve-detail-btn delve-full-guide-btn" onclick="showDelveFullGuide('${id}')">📖 ${ui.full_guide_btn}</button>` : ''}`;
   const wowheadEl = document.getElementById('delve-detail-wowhead');
   if (wowheadEl && d.url) { wowheadEl.href = d.url; wowheadEl.textContent = ui.wowhead; wowheadEl.style.display = ''; }
