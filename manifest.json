@@ -1,7 +1,7 @@
 {
   "name": "WoW Midnight Guide",
   "short_name": "Midnight Guide",
-  "version": "2.7.4",
+  "version": "2.8.0",
   "description": "Dungeon & Profession guide voor WoW: Midnight — Seizoen 1",
   "start_url": "./index.html",
   "display": "standalone",

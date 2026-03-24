@@ -469,8 +469,13 @@ const SPELL_IDS = {
   "Zephyr": 374227,
 };
 
-// Wowhead item IDs voor consumables (flasks, potions, food, runes) — Midnight 12.0 S1
+// Wowhead item IDs voor consumables — Midnight S1 (voeg IDs toe wanneer Wowhead beschikbaar is; null = zoeklink)
 const ITEM_IDS = {
+  "Flask of the Sunwell": null,
+  "Void-Tinged Adrenaline": null,
+  "Eversong Spiced Ribs": null,
+  "Sun-Drenched Sharpening Stone": null,
+  "Eternal Augment Rune": null,
   "Flask of Tempered Mastery": 212278,
   "Flask of Tempered Swiftness": 212272,
   "Flask of Tempered Versatility": 212277,
@@ -1520,7 +1525,10 @@ const SPEC_TAB_UI = {
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
         macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
+        cons_copy_list:'Kopieer boodschappenlijst', cons_copied:'Gekopieerd!',
+        cons_verified_effect_flask:'Primair stat', cons_verified_effect_pot:'Burst hoofdstat', cons_verified_effect_food:'Critical Strike & Mastery — beste voor DPS', cons_verified_effect_weapon:'', cons_verified_effect_augment:'',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Wapen', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
+        bis_verified_pending:'BiS-uitrustingslijsten worden driemaal gecontroleerd tegen de live server loottabellen. Geverifieerde gegevens worden toegevoegd na de reset.',
         pick_tab_hint:'Kies een tab hierboven — inhoud opent pas als je erop klikt.',
       },
   en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
@@ -1531,9 +1539,21 @@ const SPEC_TAB_UI = {
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
+        cons_copy_list:'Copy shopping list', cons_copied:'Copied!',
+        cons_verified_effect_flask:'Primary stat', cons_verified_effect_pot:'Burst main stat', cons_verified_effect_food:'Critical Strike & Mastery — best for DPS', cons_verified_effect_weapon:'', cons_verified_effect_augment:'',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
+        bis_verified_pending:'BiS Gear lists are being triple-checked against the live server loot tables. Verified data will be added after the reset.',
         pick_tab_hint:'Choose a tab above — content opens only after you tap it.',
       }
+};
+
+/** Midnight Season 1 — verified consumable names (same for all specs). Effects = localized strings from SPEC_TAB_UI. */
+const MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES = {
+  flask: 'Flask of the Sunwell',
+  potion: 'Void-Tinged Adrenaline',
+  food: 'Eversong Spiced Ribs',
+  weapon: 'Sun-Drenched Sharpening Stone',
+  augment: 'Eternal Augment Rune',
 };
 
 // currentSpec al gedeclareerd in app.js — globaal
@@ -1653,7 +1673,11 @@ function buildSpecGrid() {
   // Geen klas automatisch uitklappen op het Specs-tabblad — alles start dicht (ook Hunter e.d.).
   renderSpecPickerAccordion('spec-grid', { context: 'screen', expandClassId: null });
   document.getElementById('spec-grid-view').style.display = '';
-  document.getElementById('spec-detail-view').classList.remove('visible');
+  const specDet = document.getElementById('spec-detail-view');
+  if (specDet) {
+    specDet.removeAttribute('data-spec-class');
+    specDet.classList.remove('visible');
+  }
   if (typeof updateSpecHeaderBtnVisibility === 'function') updateSpecHeaderBtnVisibility();
 }
 
@@ -1667,6 +1691,14 @@ function showSpec(id) {
   }
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   const L = l => (typeof l === 'object') ? (l[lang] || l.nl) : l;
+
+  const clsRow = typeof CLASSES !== 'undefined' ? CLASSES.find(c => c.name.en === s.class) : null;
+  const specClassId = clsRow ? clsRow.id : '';
+  const specDetEl = document.getElementById('spec-detail-view');
+  if (specDetEl) {
+    if (specClassId) specDetEl.setAttribute('data-spec-class', specClassId);
+    else specDetEl.removeAttribute('data-spec-class');
+  }
 
   // Hero
   document.getElementById('spec-hero').innerHTML = `
@@ -1684,9 +1716,11 @@ function showSpec(id) {
     </div>`;
 
   // Tabs — geen actieve tab tot de gebruiker klikt (alles “dicht”)
-  document.getElementById('spec-tab-btns').innerHTML = ui.tabs.map((t, i) =>
-    `<button type="button" class="spec-tab-btn" onclick="switchSpecTab('${ui.tab_ids[i]}')" aria-selected="false">${t}</button>`
-  ).join('');
+  document.getElementById('spec-tab-btns').innerHTML = ui.tabs.map((t, i) => {
+    const tid = ui.tab_ids[i];
+    const glow = tid === 'consumables' ? ' spec-tab-btn--consumables-glow' : '';
+    return `<button type="button" class="spec-tab-btn${glow}" data-spec-tab="${tid}" onclick="switchSpecTab('${tid}')" aria-selected="false">${t}</button>`;
+  }).join('');
 
   // Panels + placeholder
   const panelsHtml = ui.tab_ids.map(tid =>
@@ -1764,6 +1798,29 @@ function onBisCheckChange(ev) {
   const specId = cb.getAttribute('data-spec');
   const slot = cb.getAttribute('data-slot');
   if (specId && slot) setBisChecked(specId, slot, cb.checked);
+}
+
+/** Glass-style BiS table shell with verified placeholder text only (no fake rows). */
+function renderBisPlaceholderGlass(ui) {
+  const msg = (ui && ui.bis_verified_pending) ? String(ui.bis_verified_pending) : '';
+  return `<div class="bis-glass-shell">
+    <div class="bis-glass-inner">
+      <table class="bis-glass-table">
+        <thead>
+          <tr>
+            <th>${ui.bis_slot}</th>
+            <th>${ui.bis_name}</th>
+            <th>${ui.bis_ilvl}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bis-glass-placeholder-row">
+            <td colspan="3"><p class="bis-glass-placeholder-text">${msg.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 function renderBisTable(bisData, specId, ui) {
@@ -1908,7 +1965,7 @@ function renderSpecTab(s, tid, ui) {
   const dataKey = tid === 'resource' ? 'resource_info' : tid;
   const rawD = s[dataKey] ? s[dataKey][lang] : null;
   const d = hasContent(rawD) ? rawD : (s[dataKey] ? s[dataKey].nl : null);
-  if (!d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
+  if (tid !== 'consumables' && !d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
 
   if (tid === 'cheatsheet') {
     const rules = (d.rules||[]).map(r=>`<div class="cheat-rule">${r}</div>`).join('');
@@ -1961,27 +2018,32 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'consumables') {
-    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, rune: ui.cons_rune, oil: ui.cons_weapon };
-    const consCards = (d||[]).map(c=>`<div class="cons-card">
-      <div class="cons-type">${typeLabel[c.type]||c.type}</div>
+    const n = MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES;
+    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, weapon: ui.cons_weapon, augment: ui.cons_rune };
+    const rows = [
+      { type: 'flask', name: n.flask, effect: ui.cons_verified_effect_flask },
+      { type: 'pot', name: n.potion, effect: ui.cons_verified_effect_pot },
+      { type: 'food', name: n.food, effect: ui.cons_verified_effect_food },
+      { type: 'weapon', name: n.weapon, effect: ui.cons_verified_effect_weapon },
+      { type: 'augment', name: n.augment, effect: ui.cons_verified_effect_augment },
+    ];
+    const consCards = rows.map(c => `<div class="cons-card cons-card--verified">
+      <div class="cons-type cons-type--verified">${typeLabel[c.type] || c.type}</div>
       <div class="cons-name">${wrapItem(c.name)}</div>
-      <div class="cons-effect">${c.effect}</div>
-      ${c.note?`<div class="cons-note">💡 ${c.note}</div>`:''}
+      ${c.effect ? `<div class="cons-effect">${c.effect}</div>` : ''}
     </div>`).join('');
-    const weaponBuffKey = (s.role==='heal'||s.class==='Mage'||s.class==='Priest'||s.class==='Warlock'||['balance_druid','elemental_shaman','restoration_shaman','devastation_evoker','preservation_evoker','augmentation_evoker'].includes(s.id))?'int':((s.role==='tank'&&s.class!=='Monk')||s.class==='Warrior'||s.class==='Death Knight'||['ret_paladin','protection_paladin'].includes(s.id))?'str':'agi';
-    const wb = typeof WEAPON_BUFFS!=='undefined'&&WEAPON_BUFFS[weaponBuffKey];
-    const oilCard = wb ? `<div class="cons-card">
-      <div class="cons-type">${ui.cons_weapon}</div>
-      <div class="cons-name">${wrapItem(wb.name)}</div>
-      <div class="cons-effect">${(typeof wb.note==='object'?(wb.note[lang]||wb.note.nl):wb.note)||''}</div>
-    </div>` : '';
-    const consHtml = (consCards||'<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>') + oilCard;
-    const bisData = typeof BIS_GEAR!=='undefined'&&BIS_GEAR[s.id];
-    const bisHtml = bisData&&bisData.length ? renderBisTable(bisData, s.id, ui) : `<p style="color:var(--muted);font-size:13px;padding:12px;line-height:1.6">${ui.bis_fallback}</p>`;
-    return `<div class="cons-bis-wrapper">
+    const consHtml = `<div class="cons-verified-wrap">
+      <div class="cons-verified-head">
+        <h3 class="cons-verified-heading">${ui.cons_bis_sub1}</h3>
+        <button type="button" class="cons-copy-btn" id="spec-cons-copy-btn" onclick="copySpecConsumablesList()">${ui.cons_copy_list}</button>
+      </div>
+      ${consCards}
+    </div>`;
+    const bisHtml = renderBisPlaceholderGlass(ui);
+    return `<div class="cons-bis-wrapper cons-bis-wrapper--verified">
       <div class="cons-bis-subtabs">
-        <button class="cons-bis-subbtn active" onclick="switchConsBisSubTab('cons')">${ui.cons_bis_sub1}</button>
-        <button class="cons-bis-subbtn" onclick="switchConsBisSubTab('bis')">${ui.cons_bis_sub2}</button>
+        <button type="button" class="cons-bis-subbtn cons-bis-subbtn--spec active" onclick="switchConsBisSubTab('cons')">${ui.cons_bis_sub1}</button>
+        <button type="button" class="cons-bis-subbtn cons-bis-subbtn--spec" onclick="switchConsBisSubTab('bis')">${ui.cons_bis_sub2}</button>
       </div>
       <div class="cons-bis-panel active" id="cons-bis-panel-cons">${consHtml}</div>
       <div class="cons-bis-panel" id="cons-bis-panel-bis">${bisHtml}</div>
@@ -2062,6 +2124,37 @@ function copyMacro(el) {
     el.classList.add('copied');
     setTimeout(() => el.classList.remove('copied'), 2000);
   });
+}
+
+function buildVerifiedConsumablesCopyText() {
+  const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
+  const n = MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES;
+  const line = (label, name, effect) => {
+    const extra = effect ? ` (${effect})` : '';
+    return `${label}: ${name}${extra}`;
+  };
+  return [
+    line(ui.cons_flask, n.flask, ui.cons_verified_effect_flask),
+    line(ui.cons_pot, n.potion, ui.cons_verified_effect_pot),
+    line(ui.cons_food, n.food, ui.cons_verified_effect_food),
+    line(ui.cons_weapon, n.weapon, ui.cons_verified_effect_weapon),
+    line(ui.cons_rune, n.augment, ui.cons_verified_effect_augment),
+  ].join('\n');
+}
+
+function copySpecConsumablesList() {
+  const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
+  const text = buildVerifiedConsumablesCopyText();
+  const btn = document.getElementById('spec-cons-copy-btn');
+  const origLabel = btn ? btn.textContent : '';
+  const done = () => {
+    if (!btn) return;
+    btn.textContent = ui.cons_copied || 'Copied!';
+    setTimeout(() => { btn.textContent = origLabel; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => {});
+  }
 }
 
 // ═══ Dungeon grid (home) — backgrounds from data/dungeons.json ═══
@@ -2280,5 +2373,5 @@ const PREY_MAP_UI = {
 };
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=2.7.4').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=2.8.0').catch(() => {});
 }
