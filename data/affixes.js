@@ -278,3 +278,68 @@ const AFFIX_UI = {
     ],
   }
 };
+
+/**
+ * Dashboard dungeon widget — one-liner tips by chosen spec role × active week1 affix (slug from affix name).
+ * Keys must match slugs from affixSlugFromWeeklyName() in app.js.
+ */
+const DASH_WEEKLY_PRO_TIPS = {
+  nl: {
+    tank: {
+      ascendant: 'Ascendant: jij staat vaak dicht bij orbs — roteer interrupts met melee en grijp losse orbs voordat casts afronden.',
+      fortified: 'Fortified: trek iets kleiner, zet CC vóór de pull; bewaar grote defensives voor de zwaarste trash-packs.',
+      peril: "Challenger's Peril: gecontroleerde paden en pulls — elke death kost 15s op de timer.",
+      tyrannical: 'Tyrannical: strakkere taunt-swaps op tankbusters; personals niet verspillen vóór zware boss-fases.',
+      afflicted: 'Afflicted: markeer prioriteit voor de groep — laat affix-adds niet stapelen met zware boss-casts.',
+      bargain_rot: 'Bargain-week: check welke variant live is en speel de mechanic — anders wordt combat onnodig zwaar.',
+      generic: 'Stem pull-grootte en cooldowns af op de affix-chips hierboven — deze week telt.',
+    },
+    heal: {
+      ascendant: 'Ascendant: help orbs mee tracken tijdens boss-casts — plan externe cooldowns als interrupts stroef zijn.',
+      fortified: 'Fortified: trash doet meer pijn — spaar throughput voor grote packs en communiceer defensive gaps.',
+      peril: 'Peril: deaths kosten 15s — speel veilig op mechanics; liever over-healen dan risico-wipes.',
+      tyrannical: 'Tyrannical: boss-DoTs en stomps doen meer pijn — cooldowns plannen per boss-fase, niet “alles in pull 1”.',
+      afflicted: 'Afflicted: jij coördineert dispels/CC op affix targets — DPS helpt met off-dispels op zware casts.',
+      bargain_rot: 'Bargain-week: let op extra schade-spikes als de mechanic wordt genegeerd — hou mana voor recoveries.',
+      generic: 'Lees de affix-chips en anticipeer op burst (trash vs boss) — pas healing-tempo daarop aan.',
+    },
+    dps: {
+      ascendant: 'Ascendant: spreek interrupt-rotaties af — orbs laten doorlopen is erger dan een paar seconden minder parse.',
+      fortified: 'Fortified: focus prioriteit-mobs en interrupts; grote pulls zijn riskanter — CC en stuns waar het kan.',
+      peril: 'Peril: mechanics > parse — één failed soak kan de key breken op de timer.',
+      tyrannical: 'Tyrannical: boss-mechanics en interrupts vóór padding; personals voor lethal hits, niet voor meter.',
+      afflicted: 'Afflicted: help de healer met off-dispels/stuns op affix targets tijdens zware boss-casts.',
+      bargain_rot: 'Bargain-week: speel de roterende mechanic — de buff loont alleen als iedereen meedoet.',
+      generic: 'Check welke affixen live zijn en schakel van AoE- naar single-target prioriteit waar nodig.',
+    },
+  },
+  en: {
+    tank: {
+      ascendant: 'Ascendant: you are often closest to orbs — rotate interrupts with melee and pick up stray orbs before casts finish.',
+      fortified: 'Fortified: pull slightly smaller, plan CC before the pull; save big defensives for the worst trash packs.',
+      peril: "Challenger's Peril: safe pathing and controlled pulls — every death costs 15s on the timer.",
+      tyrannical: 'Tyrannical: tighter taunt swaps on tank busters; do not burn personals before heavy boss phases.',
+      afflicted: 'Afflicted: call priority for the group — do not let affix adds stack with brutal boss casts.',
+      bargain_rot: 'Bargain week: know which variant is live and play the mechanic — ignoring it inflates damage taken.',
+      generic: 'Match pull size and cooldowns to the affix chips above — this week matters.',
+    },
+    heal: {
+      ascendant: 'Ascendant: track orbs during boss casts — plan externals if interrupts get messy.',
+      fortified: 'Fortified: trash hits harder — save throughput for big packs and call defensive gaps early.',
+      peril: 'Peril: deaths cost 15s — play safe on mechanics; overhealing with personals beats gambling a wipe.',
+      tyrannical: 'Tyrannical: boss DoTs and stomps hurt more — plan cooldowns per phase, not all in the opener.',
+      afflicted: 'Afflicted: you lead dispels/CC on affix targets — DPS helps with off-dispels during heavy casts.',
+      bargain_rot: 'Bargain week: watch for damage spikes if the mechanic is ignored — keep mana for recovery windows.',
+      generic: 'Read the affix chips and expect burst windows (trash vs boss) — pace healing accordingly.',
+    },
+    dps: {
+      ascendant: 'Ascendant: agree on interrupt order — letting orbs complete hurts more than a few seconds of lower DPS.',
+      fortified: 'Fortified: prioritize interrupts and priority mobs; huge pulls are riskier — use CC where it helps.',
+      peril: 'Peril: mechanics over parse — one failed soak can brick the key on timer.',
+      tyrannical: 'Tyrannical: boss mechanics and kicks over padding; personals for lethal hits, not for meter.',
+      afflicted: 'Afflicted: help healers with off-dispels/stuns on affix targets during heavy boss casts.',
+      bargain_rot: 'Bargain week: play the rotating mechanic — the reward only pays off if everyone contributes.',
+      generic: 'See which affixes are live and swap AoE vs single-target focus where it matters.',
+    },
+  },
+};

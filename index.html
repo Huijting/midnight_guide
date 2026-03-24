@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
   <script src="https://wow.zamimg.com/widgets/power.js"></script>
 </head>
@@ -80,7 +80,13 @@
       </div>
       <p class="dash-widget-kicker" id="dash-kicker-dungeons">Mythic+ · Actuele affixes</p>
       <div class="dash-affix-chips" id="dash-mplus-affixes"></div>
-      <span class="dash-widget-cta" id="lc-count-dungeons">8 dungeons</span>
+      <div class="dungeon-quick-access" id="dungeon-quick-access" onclick="event.stopPropagation()" role="presentation"></div>
+      <div class="dungeon-weekly-pro-tip-glass" id="dungeon-weekly-pro-tip-wrap" onclick="event.stopPropagation()">
+        <p class="dungeon-weekly-pro-tip" id="dungeon-weekly-pro-tip"></p>
+      </div>
+      <div class="dash-widget-footer-row">
+        <span class="dash-widget-cta dash-widget-cta--secondary" id="lc-count-dungeons">8 dungeons</span>
+      </div>
     </article>
     <article class="dash-widget dash-w-delves lc-delves" onclick="setMode('delves')" role="button" tabindex="0">
       <span class="status-badge status-badge--season">Season 1</span>
@@ -141,7 +147,7 @@
       <span class="dash-widget-cta sm" id="lc-count-professions">13 professies</span>
     </article>
   </div>
-  <div class="landing-news" id="landing-news">🛡️ <strong>v2.1</strong> — Dashboard met SVG-icons, hero-blend en finetuned header; Bento-widgets + PWA-cache bijgewerkt.</div>
+  <div class="landing-news" id="landing-news">🛡️ <strong>v2.3</strong> — Dungeon-widget: featured mini-cards, weektip op affix+rol; PWA v2.3.0.</div>
   <div class="landing-tip">
     <span class="landing-tip-icon">💡</span>
     <div class="landing-tip-text" id="landing-tip-text"><strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!</div>
@@ -380,10 +386,10 @@
 <script src="data/professions/cooking.js" defer></script>
 <script src="data/professions/fishing.js" defer></script>
 <script src="js/constants.js" defer></script>
-<script src="js/ui.js?v=2.2.1" defer></script>
+<script src="js/ui.js?v=2.3.0" defer></script>
 
 <!-- ══ APP ══ -->
-<script src="js/app.js?v=2.2.1" defer></script>
+<script src="js/app.js?v=2.3.0" defer></script>
 
 <footer id="site-footer">
   <div class="footer-inner">

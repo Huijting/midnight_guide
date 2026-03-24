@@ -129,6 +129,7 @@ function saveSpec(classId, specId) {
   closeSpecModal();
   // Re-render current view to update lust names
   if (currentDungeon) renderDetail(currentDungeon);
+  if (document.body.classList.contains('mode-home')) renderDashboardWidgets();
 }
 
 function clearSpec() {
@@ -137,6 +138,7 @@ function clearSpec() {
   updateSpecBtn();
   closeSpecModal();
   if (currentDungeon) renderDetail(currentDungeon);
+  if (document.body.classList.contains('mode-home')) renderDashboardWidgets();
 }
 
 function updateSpecBtn() {
@@ -577,6 +579,71 @@ function applyUIStrings() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// DASHBOARD — DUNGEON WIDGET (featured + weekly tip)
+// ═══════════════════════════════════════════════════════════════
+const DASH_FEATURED_DUNGEONS = [
+  { id: 'magisters', badge: 'trending' },
+  { id: 'skyreach', badge: 'hot' },
+];
+
+const DUNGEON_MINI_BG = {
+  magisters: 'images/dungeons/magisters-terrace-bg.svg',
+  skyreach: 'images/dungeons/skyreach-bg.svg',
+};
+
+function getDashboardSpecRole() {
+  if (!currentSpec) return 'dps';
+  const cls = CLASSES.find(c => c.id === currentSpec.classId);
+  const sp = cls?.specs.find(s => s.id === currentSpec.specId);
+  const r = sp?.role;
+  return r === 'tank' || r === 'heal' ? r : 'dps';
+}
+
+function getDashboardWeeklyProTipBody() {
+  if (typeof AFFIX_UI === 'undefined' || typeof DASH_WEEKLY_PRO_TIPS === 'undefined') return '';
+  const l = lang === 'en' ? 'en' : 'nl';
+  const role = getDashboardSpecRole();
+  const tips = DASH_WEEKLY_PRO_TIPS[l]?.[role] || DASH_WEEKLY_PRO_TIPS[l]?.dps;
+  if (!tips) return '';
+  const aff = AFFIX_UI[l] || AFFIX_UI.nl;
+  const rows = aff.week1_affixes || [];
+  for (const a of rows) {
+    const slug = affixSlugFromWeeklyName(a.name);
+    if (slug && tips[slug]) return tips[slug];
+  }
+  return tips.generic || '';
+}
+
+function openFeaturedDungeon(id, ev) {
+  if (ev) {
+    ev.stopPropagation();
+    ev.preventDefault();
+  }
+  setMode('dungeons');
+  openDungeon(id);
+}
+
+function renderDungeonQuickAccess(dashStr) {
+  const host = document.getElementById('dungeon-quick-access');
+  if (!host) return;
+  const list = typeof getAllDungeons === 'function' ? getAllDungeons() : [];
+  const parts = [];
+  for (const f of DASH_FEATURED_DUNGEONS) {
+    const d = list.find(x => x.id === f.id);
+    if (!d) continue;
+    const bg = DUNGEON_MINI_BG[f.id] || '';
+    const badge =
+      f.badge === 'hot'
+        ? `<span class="dungeon-mini-badge dungeon-mini-badge--hot">${dashStr.badge_hot}</span>`
+        : `<span class="dungeon-mini-badge dungeon-mini-badge--trending">${dashStr.badge_trending}</span>`;
+    const nm = (d.name || f.id).replace(/</g, '&lt;');
+    const escId = String(f.id).replace(/'/g, "\\'");
+    parts.push(`<button type="button" class="dungeon-mini-card" style="--dungeon-mini-bg:url('${bg}')" onclick="openFeaturedDungeon('${escId}',event)" aria-label="${dashStr.open_prefix} ${nm}">${badge}<span class="dungeon-mini-card-title">${nm}</span></button>`);
+  }
+  host.innerHTML = parts.length ? `<div class="dungeon-quick-access-inner">${parts.join('')}</div>` : '';
+}
+
+// ═══════════════════════════════════════════════════════════════
 // THEME
 // ═══════════════════════════════════════════════════════════════
 function renderDashboardWidgets() {
@@ -591,6 +658,20 @@ function renderDashboardWidgets() {
       return `<span class="dash-affix-chip" style="--chip-accent:${c}"><span class="dash-affix-ico" aria-hidden="true">${a.icon || '⚡'}</span><span class="dash-affix-name">${nm}</span></span>`;
     }).join('');
   }
+  const dashStr = lang === 'en'
+    ? { badge_trending: 'Trending', badge_hot: 'Hot', tip_prefix: '💡 Weekly tip:', open_prefix: 'Open' }
+    : { badge_trending: 'Trending', badge_hot: 'Hot', tip_prefix: '💡 Weektip:', open_prefix: 'Openen' };
+  renderDungeonQuickAccess(dashStr);
+  const tipEl = document.getElementById('dungeon-weekly-pro-tip');
+  const tipWrap = document.getElementById('dungeon-weekly-pro-tip-wrap');
+  const body = getDashboardWeeklyProTipBody();
+  if (tipEl) {
+    if (body) {
+      const esc = body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      tipEl.innerHTML = `<span class="dungeon-weekly-pro-tip-label">${dashStr.tip_prefix}</span><span class="dungeon-weekly-pro-tip-body"> ${esc}</span>`;
+    } else tipEl.innerHTML = '';
+  }
+  if (tipWrap) tipWrap.style.display = body ? '' : 'none';
   const n = typeof getTodayDailyKeysList === 'function' ? getTodayDailyKeysList().length : 0;
   const bFill = document.getElementById('dash-bountiful-fill');
   const bLbl = document.getElementById('dash-bountiful-label');
@@ -624,7 +705,7 @@ function updateLandingStrings() {
     nl: {
       title: 'Midnight Guide',
       subtitle: 'Jouw WoW: Midnight companion',
-      news: '🛡️ <strong>v2.1</strong> — Dashboard met SVG-icons, hero-blend en finetuned header; Bento-widgets + PWA-cache bijgewerkt.',
+      news: '🛡️ <strong>v2.3</strong> — Dungeon-widget: featured mini-cards, weektip op affix+rol, strakkere layout; PWA v2.3.0.',
       tip: '<strong>Tip:</strong> Installeer deze app op je PC via de 📲-knop rechtsboven, of via het installeer-icoon in je adresbalk — dan werkt hij ook offline!',
       credits: 'Gemaakt door Inchy & Gemma · WoW: Midnight · Niet officieel',
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
@@ -644,7 +725,7 @@ function updateLandingStrings() {
     en: {
       title: 'Midnight Guide',
       subtitle: 'Your WoW: Midnight companion',
-      news: '🛡️ <strong>v2.1</strong> — Dashboard SVG icons, hero blend & header layout; bento widgets + PWA cache refresh.',
+      news: '🛡️ <strong>v2.3</strong> — Dungeon widget: featured mini-cards, weekly role tip, tighter layout; PWA v2.3.0.',
       tip: '<strong>Tip:</strong> Install this app on your PC via the 📲 button top right, or the install icon in your address bar — works offline too!',
       credits: 'Made by Inchy & Gemma · WoW: Midnight · Unofficial',
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
