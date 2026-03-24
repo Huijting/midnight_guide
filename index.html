@@ -35,16 +35,7 @@
 
 <header id="site-header" class="site-header-sticky">
   <div class="header-inner">
-    <button id="hamburger-btn" class="hamburger-btn" onclick="toggleNavMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
     <a href="#" class="header-logo" onclick="setMode('home');return false">🌙 Midnight</a>
-    <nav class="header-nav">
-      <a class="header-nav-link" href="#" onclick="setMode('dungeons');return false" id="nav-dungeons">Dungeons</a>
-      <a class="header-nav-link" href="#" onclick="setMode('specs');return false" id="nav-classes">Classes</a>
-      <a class="header-nav-link" href="#" onclick="setMode('raids');return false" id="nav-raids">Raids</a>
-      <a class="header-nav-link" href="#" onclick="setMode('weekly');return false" id="nav-weekly">Weekly</a>
-    </nav>
     <div class="header-search-wrap" onclick="openSearch()" role="button" tabindex="0" aria-label="Search">
       <span class="header-search-icon">🔍</span>
       <span class="header-search-placeholder" id="header-search-placeholder">Search dungeon, spec, profession...</span>

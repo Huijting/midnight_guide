@@ -1089,7 +1089,22 @@ function renderDetail(d) {
       const tagMap = {int:'t-int',avoid:'t-avoid',purge:'t-purge',stop:'t-stop',tank:'t-tank'};
       const tagLbl = {int:u.tag_int,avoid:u.tag_avoid,purge:u.tag_purge,stop:u.tag_stop,tank:u.tag_tank};
       const cards = d.route.trash.map(m=>{
-        const tags = (m.tags||[]).map(tg=>'<span class="trash-tag '+(tagMap[tg]||'')+'">'+(tagLbl[tg]||tg)+'</span>').join('');
+        let tagList = [...(m.tags || [])];
+        const hasIntTag = tagList.some(tg => {
+          const x = String(tg).toLowerCase();
+          return x === 'int' || x === 'interrupt';
+        });
+        if ((m.must_interrupt === true || m.high_priority === true) && !hasIntTag) tagList = ['int', ...tagList];
+        const tags = tagList.map(tg =>
+          typeof renderDungeonDetailTrashTag === 'function'
+            ? renderDungeonDetailTrashTag(tg, m, tagMap, tagLbl)
+            : (() => {
+                const low = String(tg).toLowerCase();
+                const isInt = low === 'int' || low === 'interrupt';
+                const cls = 'trash-tag ' + (tagMap[tg] || '') + (isInt ? ' interrupt-danger' : '');
+                return '<span class="' + cls.trim() + '">' + (tagLbl[tg] || tg) + '</span>';
+              })()
+        ).join('');
         return '<div class="trash-card"><div class="trash-card-header"><span class="trash-mob-name">'+m.mob+'</span><div class="trash-tags">'+tags+'</div></div><div class="trash-card-tip">'+t(m.tip)+'</div></div>';
       }).join('');
       return '<div class="trash-section route-section"><div class="route-title">'+u.trash_title+'</div><div class="trash-grid">'+cards+'</div></div>';
@@ -1107,7 +1122,7 @@ function renderDetail(d) {
     const dang = dn != null && dn >= 1 && dn <= 5
       ? (u['danger_n' + dn] || `${dn}/5`)
       : (dangerLabels[pull.danger] || pull.danger);
-    const intLine = pull.interrupts ? `<p class="tank-pull-interrupts tank-pull-interrupts-must"><strong>${u.tank_interrupt_label}</strong> ${wrapGlossaryTermsInText(t(pull.interrupts))}</p>` : '';
+    const intLine = pull.interrupts ? `<p class="tank-pull-interrupts tank-pull-interrupts-must"><strong>${u.tank_interrupt_label}</strong> <span class="interrupt-danger">${wrapGlossaryTermsInText(t(pull.interrupts))}</span></p>` : '';
     return `<div class="tank-pull-row ${dangerClass}">
       <div class="tank-pull-head"><span class="tank-danger-pill">${dang}</span><span class="tank-pull-num">#${pull.pullRef + 1}</span></div>
       <p class="tank-pull-note">${wrapGlossaryTermsInText(note)}</p>
@@ -1194,7 +1209,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', function() {
   try {
     document.body.classList.add('mode-home');
-    const BANNER_KEY = 'midnight_banner_v1';
+    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_4_0';
     if (typeof renderBanner === 'function') renderBanner();
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');
@@ -1927,11 +1942,6 @@ function applyTooltips(container){
 function setMode(mode){
   document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
   document.body.classList.remove('detail-open','nav-menu-open');
-  document.getElementById('hamburger-btn')?.classList.remove('active');
-  document.querySelectorAll('.header-nav-link').forEach(a=>a.classList.remove('active'));
-  const navMap={dungeons:'nav-dungeons',specs:'nav-classes',raids:'nav-raids',weekly:'nav-weekly'};
-  const navEl=document.getElementById(navMap[mode]);
-  if(navEl)navEl.classList.add('active');
   document.getElementById('mode-tab-home')?.classList.toggle('active',mode==='home');
   document.getElementById('mode-tab-dungeons')?.classList.toggle('active',mode==='dungeons');
   document.getElementById('mode-tab-professions')?.classList.toggle('active',mode==='professions');

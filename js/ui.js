@@ -1068,6 +1068,21 @@ function weeklyCatToggle(header, catKey) {
 // ═══════════════════════════════════════════════════════════════
 let searchFocusIdx = -1;
 
+/**
+ * Dungeon detail — trash tag pill HTML. Applies `.interrupt-danger` for `int` / `interrupt`
+ * (and mob flags `must_interrupt` / `high_priority` add `int` in app.js before this runs).
+ */
+function renderDungeonDetailTrashTag(tg, mob, tagMap, tagLbl) {
+  const raw = String(tg);
+  const lower = raw.toLowerCase();
+  const isInterruptTag = lower === 'int' || lower === 'interrupt';
+  const base = (tagMap && (tagMap[raw] || tagMap[lower])) || '';
+  const lab = tagLbl && (tagLbl[raw] !== undefined && tagLbl[raw] !== null ? tagLbl[raw] : tagLbl[lower]);
+  const label = String(lab != null ? lab : raw).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const cls = ('trash-tag ' + base + (isInterruptTag ? ' interrupt-danger' : '')).trim();
+  return '<span class="' + cls + '">' + label + '</span>';
+}
+
 function openSearch() {
   document.getElementById('search-overlay').classList.add('open');
   const inp = document.getElementById('search-input');
@@ -1080,8 +1095,7 @@ function openSearch() {
 }
 
 function toggleNavMenu() {
-  document.body.classList.toggle('nav-menu-open');
-  document.getElementById('hamburger-btn')?.classList.toggle('active');
+  /* Legacy: hamburger + duplicate nav removed; primary nav is mode-tabs only. */
 }
 
 function closeSearch() {
@@ -1869,20 +1883,23 @@ function renderSpecTab(s, tid, ui) {
 
 const BANNER_UI = {
   nl: {
-    title: '🚧 Bezig met bouwen!',
-    body: 'We zijn op dit moment druk bezig met de <strong>Specs-sectie</strong> — rotaties, stats, cooldowns en tips voor alle klassen.<br><br>Sommige onderdelen zijn nog niet af of kunnen veranderen. Feedback is altijd welkom via de knop onderin!',
-    tip_desktop: '💡 <strong>Tip:</strong> Zie je iets vreemd of wil je de nieuwste versie? Druk <strong>Ctrl+Shift+R</strong> voor een harde herlaad.',
-    tip_mobile:  '💡 <strong>Tip:</strong> Iets vreemd of wil je de nieuwste versie? Sluit de browser, veeg hem weg uit recente apps en open opnieuw.',
+    title: '🚀 Seizoen 1: LIVE!',
+    body: 'De ultieme gids voor Midnight is hier. Kies je rol (🛡️, 💊, ⚔️) voor tactieken op maat, gebruik de nieuwe Tank-GPS en check de Daily Bountiful Delves.',
+    tip_desktop: '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
+    tip_mobile:  '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     btn: '→ Naar de site',
   },
   en: {
-    title: '🚧 Under construction!',
-    body: 'We are currently working hard on the <strong>Specs section</strong> — rotations, stats, cooldowns and tips for all classes.<br><br>Some parts are not finished yet or may change. Feedback is always welcome via the button below!',
-    tip_desktop: '💡 <strong>Tip:</strong> Something look off, or want the latest version? Press <strong>Ctrl+Shift+R</strong> for a hard reload.',
-    tip_mobile:  '💡 <strong>Tip:</strong> Something look off or want the latest version? Close the browser, swipe it away from recent apps and reopen.',
+    title: '🚀 Season 1: LIVE!',
+    body: 'The ultimate Midnight guide is here. Choose your role (🛡️, 💊, ⚔️) for custom boss strategies, use the new Tank GPS, and track Daily Bountiful Delves.',
+    tip_desktop: '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
+    tip_mobile:  '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     btn: '→ Go to the site',
   }
 };
+
+/** Moet gelijk zijn aan de check in app.js (DOMContentLoaded) — nieuwe banner = nieuwe key. */
+window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v1_4_0';
 
 function renderBanner() {
   const b = BANNER_UI[lang] || BANNER_UI.nl;
@@ -1903,7 +1920,7 @@ function setBannerLang(l) {
 
 function closeBanner() {
   document.getElementById('dev-banner').classList.remove('open');
-  localStorage.setItem('midnight_banner_v1', '1');
+  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_4_0', '1');
 }
 
 function copyMacro(el) {

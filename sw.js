@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v1.4.1-role-tabs';
+const CACHE_NAME = 'midnight-v1.4.1';
 
 const PRECACHE = [
   '/',
