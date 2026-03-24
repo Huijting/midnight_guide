@@ -8,7 +8,7 @@ const WEAPON_BUFFS = {
 };
 
 // BiS gear per spec — Midnight Season 1 (The Dreamrift, Voidspire, March on Quel'Danas)
-// ilvl squish — Midnight S1 (align with ILVL_MIDNIGHT in js/constants.js). BiS rows use mythic cap 239.
+// ilvl — Midnight S1 (align with ILVL_MIDNIGHT in js/constants.js; mythic ceiling 272). BiS rows still use prior tier data until refreshed.
 // versions: lfr, n, h, m = Raid Finder, Normal, Heroic, Mythic
 // rarity: epic #a335ee, rare #0070dd, legendary #ff8000
 const BIS_GEAR = {

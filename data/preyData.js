@@ -41,12 +41,12 @@ const PREY_DATA = {
   // Difficulties & Affixes
   difficulties: {
     normal: {
-      en: { name: 'Normal', desc: 'Basic intro, rewards Adventurer / world-track gear (~180+ iLvl, Midnight S1).', unlock: 'Default from first unlock.' },
-      nl: { name: 'Normal', desc: 'Basis intro, Adventurer/world-track gear (~180+ iLvl, Midnight S1).', unlock: 'Standaard na unlock.' }
+      en: { name: 'Normal', desc: 'Basic intro, rewards Adventurer / world-track gear (~226+ ilvl, Midnight S1).', unlock: 'Default from first unlock.' },
+      nl: { name: 'Normal', desc: 'Basis intro, Adventurer/world-track gear (~226+ iLvl, Midnight S1).', unlock: 'Standaard na unlock.' }
     },
     hard: {
-      en: { name: 'Hard', desc: 'Unlocked after your first Normal hunt. Adds "Torments" (zone-wide debuffs). Rewards Veteran / Hero track gear (~195–226+ iLvl, Midnight S1 scale).', unlock: 'After 1 Normal hunt.' },
-      nl: { name: 'Hard', desc: 'Ontgrendeld na je eerste Normal hunt. Voegt "Torments" toe. Beloningen Veteran/Hero-track (~195–226+ iLvl, Midnight S1).', unlock: 'Na 1 Normal hunt.' }
+      en: { name: 'Hard', desc: 'Unlocked after your first Normal hunt. Adds "Torments" (zone-wide debuffs). Rewards Veteran / Hero track gear (~233–259+ ilvl, Midnight S1).', unlock: 'After 1 Normal hunt.' },
+      nl: { name: 'Hard', desc: 'Ontgrendeld na je eerste Normal hunt. Voegt "Torments" toe. Beloningen Veteran/Hero-track (~233–259+ iLvl, Midnight S1).', unlock: 'Na 1 Normal hunt.' }
     },
     nightmare: {
       en: { name: 'Nightmare', desc: 'New in Season 1. Solo only. Adds deadly affixes. Rewards Champion Gear.', unlock: 'Solo only.' },
@@ -70,8 +70,8 @@ const PREY_DATA = {
   rewards: {
     en: {
       adventurer: 'Adventurer gear (Normal)',
-      veteran: 'Veteran / Hero track — from ~195 iLvl upward on Hard (Midnight S1)',
-      champion: 'Champion track — ~210+ toward ~239 on Nightmare',
+      veteran: 'Veteran / Hero track — from ~233 ilvl upward on Hard (Midnight S1)',
+      champion: 'Champion track — ~246+ toward ~272 on Nightmare',
       weeklyTip: 'The first 2 Hunts per week give the best gear rewards (Veteran/Champion track).',
       greatVault: 'Prey contributes to the Great Vault <strong>World</strong> category.',
       anguishFills: 'fills your bar',
@@ -79,8 +79,8 @@ const PREY_DATA = {
     },
     nl: {
       adventurer: 'Adventurer gear (Normal)',
-      veteran: 'Veteran/Hero-track — vanaf ~195 iLvl op Hard (Midnight S1)',
-      champion: 'Champion-track — ~210+ richting ~239 op Nightmare',
+      veteran: 'Veteran/Hero-track — vanaf ~233 iLvl op Hard (Midnight S1)',
+      champion: 'Champion-track — ~246+ richting ~272 op Nightmare',
       weeklyTip: 'De eerste 2 Hunts per week geven de beste gear beloningen (Veteran/Champion track).',
       greatVault: 'Prey telt mee voor de Great Vault <strong>World</strong> categorie.',
       anguishFills: 'vult je balk',

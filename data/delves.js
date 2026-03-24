@@ -59,19 +59,21 @@ const DELVES_DATA = {
       fullGuide: { en: '<h4>Phases</h4><p>Info coming soon. Check Wowhead for the latest guide.</p><h4>Boss mechanics</h4><p>—</p><h4>Secrets</h4><p>—</p>', nl: '<h4>Fasen</h4><p>Info volgt. Check Wowhead voor de nieuwste guide.</p><h4>Boss-mechanieken</h4><p>—</p><h4>Geheimen</h4><p>—</p>'}},
   ],
 
-  // Loot table — Midnight Season 1 (aligned ~ILVL_MIDNIGHT: world 180 → mythic 239 band)
+  // Loot table — Midnight S1 (259-scale).
+  // GEVERIFIEERD (geen aannames): Tier 8 Bountiful 250 / GV 259 (Hero 1/6); Tier 11 Bountiful 256 / GV 266 (Hero 3/6).
+  // T1–7 & T9–10: tussenliggende waarden zijn geïnterpoleerd tot er een volledige Wowhead-/guide-tabel is — bij afwijking hier aanpassen.
   lootTable: [
-    { tier: 1,  bountiful: 182, trovehunter: '—', greatVault: 188 },
-    { tier: 2,  bountiful: 184, trovehunter: '—', greatVault: 190 },
-    { tier: 3,  bountiful: 186, trovehunter: '—', greatVault: 192 },
-    { tier: 4,  bountiful: 188, trovehunter: 195, greatVault: 198 },
-    { tier: 5,  bountiful: 190, trovehunter: 202, greatVault: 205 },
-    { tier: 6,  bountiful: 195, trovehunter: 208, greatVault: 212 },
-    { tier: 7,  bountiful: 200, trovehunter: 214, greatVault: 218 },
-    { tier: 8,  bountiful: 205, trovehunter: 222, greatVault: 226 },
-    { tier: 9,  bountiful: 205, trovehunter: 222, greatVault: 226 },
-    { tier: 10, bountiful: 205, trovehunter: 222, greatVault: 226 },
-    { tier: 11, bountiful: 205, trovehunter: 222, greatVault: 226 },
+    { tier: 1,  bountiful: 226, trovehunter: '—', greatVault: 233 },
+    { tier: 2,  bountiful: 229, trovehunter: '—', greatVault: 237 },
+    { tier: 3,  bountiful: 233, trovehunter: '—', greatVault: 240 },
+    { tier: 4,  bountiful: 236, trovehunter: 238, greatVault: 244 },
+    { tier: 5,  bountiful: 239, trovehunter: 241, greatVault: 248 },
+    { tier: 6,  bountiful: 243, trovehunter: 245, greatVault: 252 },
+    { tier: 7,  bountiful: 247, trovehunter: 249, greatVault: 255 },
+    { tier: 8,  bountiful: 250, trovehunter: 254, greatVault: 259 },
+    { tier: 9,  bountiful: 252, trovehunter: 257, greatVault: 262 },
+    { tier: 10, bountiful: 254, trovehunter: 259, greatVault: 264 },
+    { tier: 11, bountiful: 256, trovehunter: 261, greatVault: 266 },
   ],
 
   // Key info — meertalig

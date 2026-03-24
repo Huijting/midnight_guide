@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '2.5.0';
+const APP_VERSION = '2.5.2';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
@@ -20,6 +20,7 @@ const PRECACHE = [
   '/data/affixes.js',
   '/data/bountiful-today.json',
   '/data/dungeons.json',
+  '/data/delves.js',
   '/data/raids.json',
   '/images/raids/rift-of-aln-bg.svg',
   '/images/raids/voidspire-bg.svg',

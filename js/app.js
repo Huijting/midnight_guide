@@ -1638,9 +1638,11 @@ const DELVES_UI = {
     delves_bountiful_roles_note:'👥 Account-breed: max. 4 Bountiful-sleutels per dag en Great Vault 1/4–4/4 gelden voor alle rollen (tank, healer, DPS) — hetzelfde als op de Weekly-tab.',
     delves_tier_range:'T1–T11',
     delves_tier_peak:'Tier {n}',
-    delves_reward_peak:'{n}+ ilvl · Champ / GV',
+    delves_reward_peak:'{n}+ ilvl · Hero / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
-    delves_champ_ilvl:'~210+ Champ / GV',
+    delves_champ_ilvl:'~259 Hero / GV (Tier 8)',
+    loot_farm_caption:'⭐ Tier 8 — aanbevolen farm (goud in de tabel). Great Vault World: tot ~259 iLvl (Hero) bij Tier 8.',
+    loot_gv_hero_note:'📌 Tier 8+ Delves belonen HERO-track gear in de Great Vault.',
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Rol-tip:',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
@@ -1661,9 +1663,11 @@ const DELVES_UI = {
     delves_bountiful_roles_note:'👥 Account-wide: up to 4 Bountiful keys per day and Great Vault 1/4–4/4 count for all roles (tank, healer, DPS) — same tracking as on the Weekly tab.',
     delves_tier_range:'T1–T11',
     delves_tier_peak:'Tier {n}',
-    delves_reward_peak:'{n}+ ilvl · Champ / GV',
+    delves_reward_peak:'{n}+ ilvl · Hero / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
-    delves_champ_ilvl:'~210+ Champ / GV',
+    delves_champ_ilvl:'~259 Hero / GV (Tier 8)',
+    loot_farm_caption:'⭐ Tier 8 — recommended farming tier (gold row). Great Vault World: up to ~259 ilvl (Hero) at Tier 8.',
+    loot_gv_hero_note:'📌 Tier 8+ Delves reward HERO track gear in the Great Vault.',
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Role tip:',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
@@ -1827,8 +1831,8 @@ async function buildDelvesScreen() {
   const ilvlBand = (ui.delves_ilvl_band || 'Bountiful {min}–{max}+').replace(/\{min\}/g, String(minB)).replace(/\{max\}/g, String(maxB));
   const maxTierNum = lootTable.reduce((mx, r) => Math.max(mx, Number(r.tier) || 0), 0) || 8;
   const tierPeakLabel = (ui.delves_tier_peak || 'Tier {n}').replace(/\{n\}/g, String(maxTierNum));
-  const champN = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT.champion : 210;
-  const rewardPeakLabel = (ui.delves_reward_peak || '{n}+ ilvl · Champ / GV').replace(/\{n\}/g, String(champN));
+  const heroN = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT.hero : 259;
+  const rewardPeakLabel = (ui.delves_reward_peak || '{n}+ ilvl · Hero / GV').replace(/\{n\}/g, String(heroN));
 
   let html = '';
 
@@ -1907,8 +1911,10 @@ async function buildDelvesScreen() {
   html += `<div class="delves-loot-section">
     <h3 class="delves-section-title">${ui.loot_title}</h3>
     <p class="delves-section-sub">${ui.loot_sub}</p>
-    <div class="delves-loot-table-wrap">
-      <table class="delves-loot-table">
+    <p class="delves-loot-farm-caption">${ui.loot_farm_caption || ''}</p>
+    <p class="delves-loot-gv-hero-note">${ui.loot_gv_hero_note || ''}</p>
+    <div class="delves-loot-table-wrap delves-loot-table-wrap--glass">
+      <table class="delves-loot-table delves-loot-table--glass">
         <thead>
           <tr>
             <th>${ui.tier}</th>
@@ -1918,16 +1924,17 @@ async function buildDelvesScreen() {
           </tr>
         </thead>
         <tbody>`;
+  const farmTier = 8;
   lootTable.forEach(row => {
     const bVal = row.bountiful;
     const tVal = row.trovehunter === '—' ? '—' : row.trovehunter;
     const gVal = row.greatVault;
-    const goldClass = (bVal >= 250 || tVal >= 259 || gVal >= 259) ? ' delves-ilvl-gold' : '';
-    html += `<tr>
+    const trClass = Number(row.tier) === farmTier ? 'delves-loot-row--farm-tier' : '';
+    html += `<tr class="${trClass}">
       <td>${row.tier}</td>
-      <td class="${goldClass}">${bVal}</td>
-      <td class="${goldClass}">${tVal}</td>
-      <td class="${goldClass}">${gVal}</td>
+      <td>${bVal}</td>
+      <td>${tVal}</td>
+      <td>${gVal}</td>
     </tr>`;
   });
   html += `</tbody></table></div></div>`;
@@ -3076,7 +3083,7 @@ function renderPreyGuide() {
   const way = data.unlock.way;
   const tipCopy = ui.tooltipCopy;
   const tt = data.tooltips;
-  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
+  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
 
   let html = '';
 
@@ -3231,7 +3238,7 @@ function openPreyDetail(id) {
   const summary = t.summary && (t.summary[l] || t.summary.en) ? (t.summary[l] || t.summary.en) : [];
   const fullGuide = t.fullGuide && (t.fullGuide[l] || t.fullGuide.en) ? (t.fullGuide[l] || t.fullGuide.en) : '';
   const loot = t.loot || { normal: 182, hard: 197, nightmare: 212 };
-  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
+  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
   const preyKilledMap = getPreyKilledMapRaw();
   const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
   const pctD = Math.round(dr / 5 * 100);

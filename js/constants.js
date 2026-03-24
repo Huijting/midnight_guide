@@ -1,13 +1,13 @@
 /** App display + cache bump — keep `sw.js` APP_VERSION in sync (service worker cannot import this file). */
-const APP_VERSION = '2.5.0';
+const APP_VERSION = '2.5.2';
 
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {
   nl: { title:'🗺 Route op Keystone.guru', hint:'Tik buiten het venster of druk op Sluiten', close:'✕ Sluiten', btn_label:'Bekijk M+ route op Keystone.guru', btn_sub:'Opent Keystone.guru in een nieuw tabblad' },
   en: { title:'🗺 Route on Keystone.guru', hint:'Tap outside or press Close', close:'✕ Close', btn_label:'View M+ route on Keystone.guru', btn_sub:'Opens Keystone.guru in a new tab' }};
 
-/** Midnight Season 1 item-level anchors (world → mythic). Source of truth for Prey copy, tooltips, Delves tables, and cons BiS mythic-cap rows (ilvl = mythic). */
-const ILVL_MIDNIGHT = { world: 180, hero: 195, champion: 210, hero_raid: 226, mythic: 239 };
+/** Midnight Season 1 item-level anchors (Delves / Great Vault / tracks). veteran–mythic align with 259-scale (LFR 233 → Mythic 272). */
+const ILVL_MIDNIGHT = { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
 
 // ── Alle professions samenvoegen ──
 const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHING,ENCHANTING,ENGINEERING,INSCRIPTION,JEWELCRAFTING,TAILORING,COOKING,FISHING];

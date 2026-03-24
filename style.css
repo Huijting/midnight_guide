@@ -324,7 +324,7 @@
     .role-panel{padding:11px 12px}
     .role-panel ul li{font-size:14px;padding:7px 0 7px 16px}
     /* Route */
-    .lust-table th,.lust-table td{padding:8px 12px;font-size:13px}
+    .lust-table th,.lust-table td{padding:8px;font-size:13px}
     /* Footer */
     .footer-disclaimer{font-size:11px}
   }
@@ -689,7 +689,7 @@
   .route-title{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:11px;text-transform:uppercase}
   .route-diagram{background:var(--route-bg);border:1px solid var(--border);border-radius:10px;padding:14px;overflow-x:auto;margin-bottom:12px}
   .lust-table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:14px;table-layout:fixed}
-  .lust-table th,.lust-table td{padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+  .lust-table th,.lust-table td{padding:8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
   .lust-table th{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--accent);background:var(--panel);text-transform:uppercase}
   .lust-table td.lust-moment{width:34%;white-space:normal}
   .lust-table td:last-child{max-width:0;word-wrap:break-word;overflow-wrap:break-word}
@@ -1225,6 +1225,33 @@
   .wat-nu-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .wat-nu-text{font-size:13px;font-weight:700;color:var(--text)}
   .wat-nu-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  /* Section glass — Prof (amber) / Delves (azure) / Prey (void); glow layer opacity 0.3 */
+  .section-surface{position:relative;isolation:isolate}
+  .section-surface::before{
+    content:'';
+    position:absolute;
+    pointer-events:none;
+    z-index:0;
+    border-radius:var(--immersive-card-radius);
+    opacity:.3;
+  }
+  .section-surface--amber::before{
+    inset:6px 10px 20px;
+    background:radial-gradient(ellipse 95% 58% at 50% -8%,rgba(243,156,18,.65),transparent 65%);
+    box-shadow:0 0 72px rgba(243,156,18,.22);
+  }
+  .section-surface--azure::before{
+    inset:6px 10px 20px;
+    background:radial-gradient(ellipse 95% 58% at 50% -8%,rgba(0,210,255,.6),transparent 65%);
+    box-shadow:0 0 64px rgba(0,210,255,.22);
+  }
+  .section-surface--void::before{
+    inset:6px 10px 20px;
+    background:radial-gradient(ellipse 95% 58% at 50% -8%,rgba(138,43,226,.62),transparent 65%);
+    box-shadow:0 0 68px rgba(138,43,226,.22);
+  }
+  .section-surface > *{position:relative;z-index:1}
+
   /* ── PROFESSIONS ── */
   #prof-screen{display:none;padding:0 0 60px}
   .prof-hero{text-align:center;padding:28px 16px 16px;background:linear-gradient(180deg,rgba(80,40,160,.10) 0%,transparent 100%)}
@@ -1357,12 +1384,12 @@
   
   .kp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; table-layout: fixed; }
   .kp-table th {
-    text-align: left; padding: 8px 12px;
+    text-align: left; padding: 8px;
     color: #a09060; font-size: 0.8em; font-weight: 600;
     border-bottom: 1px solid #2a2a1a;
     vertical-align: top;
   }
-  .kp-table td { padding: 8px 12px; border-bottom: 1px solid #1a1a0f; vertical-align: top; }
+  .kp-table td { padding: 8px; border-bottom: 1px solid #1a1a0f; vertical-align: top; }
   .kp-table tr:last-child td { border-bottom: none; }
   .kp-table tr:hover td { background: rgba(255,255,255,0.03); }
   .kp-table--treasures .kp-col-check { width: 44px; }
@@ -1443,7 +1470,7 @@
     .kp-summary { gap: 6px; padding: 8px; }
     .kp-summary-item { min-width: 60px; padding: 6px 8px; }
     .kp-way-code { font-size: 0.72em; }
-    .kp-table th, .kp-table td { padding: 8px 10px; }
+    .kp-table th, .kp-table td { padding: 8px; }
   }
 
   .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
@@ -1564,8 +1591,8 @@
   .spec-section-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin:16px 0 8px}
   .spec-section-title:first-child{margin-top:4px}
   .rot-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
-  .rot-table th{text-align:left;padding:8px 12px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;border-bottom:1px solid var(--border);vertical-align:top}
-  .rot-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+  .rot-table th{text-align:left;padding:8px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;border-bottom:1px solid var(--border);vertical-align:top}
+  .rot-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
   .rot-table td:last-child{max-width:min(72ch,100%);word-wrap:break-word;overflow-wrap:break-word}
   .rot-prio{font-weight:800;color:var(--gold);text-align:center}
   .rot-spell{font-weight:700;color:var(--text)}
@@ -1607,8 +1634,8 @@
   .cheat-rule{background:rgba(224,64,96,.08);border:1px solid rgba(224,64,96,.2);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--text);line-height:1.4}
   .cheat-rule::before{content:'⚠ ';color:#e04060}
   .res-table{width:100%;font-size:12px;border-collapse:collapse;table-layout:fixed}
-  .res-table th{text-align:left;padding:8px 12px;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--border);vertical-align:top}
-  .res-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;color:var(--muted)}
+  .res-table th{text-align:left;padding:8px;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--border);vertical-align:top}
+  .res-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;color:var(--muted)}
   .res-table td:first-child{color:var(--text);font-weight:700;width:32%}
   .res-table td:last-child{max-width:0;word-wrap:break-word;overflow-wrap:break-word}
   .pet-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px}
@@ -1629,8 +1656,8 @@
   .cons-bis-panel{display:none}
   .cons-bis-panel.active{display:block}
   .bis-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
-  .bis-table th{text-align:left;padding:8px 12px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);vertical-align:top}
-  .bis-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+  .bis-table th{text-align:left;padding:8px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);vertical-align:top}
+  .bis-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
   .bis-slot{font-weight:700;color:var(--gold);width:72px}
   .bis-name-cell{max-width:0;word-wrap:break-word;overflow-wrap:break-word}
   .bis-source,.bis-type{font-size:11px;word-wrap:break-word;overflow-wrap:break-word;max-width:min(140px,28vw)}
@@ -1643,10 +1670,10 @@
   .bis-table-container{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px;border-radius:8px;border:1px solid var(--border)}
   .bis-table-wowhead{min-width:640px;font-family:Inter,sans-serif}
   .bis-table-wowhead thead{background:#2a2a2e;color:#fff}
-  .bis-table-wowhead thead th{padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:none;white-space:nowrap;vertical-align:top}
+  .bis-table-wowhead thead th{padding:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:none;white-space:nowrap;vertical-align:top}
   .bis-table-wowhead tbody tr{border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
   .bis-table-wowhead tbody tr:hover{background:rgba(255,255,255,.04)}
-  .bis-table-wowhead tbody td{padding:8px 12px;vertical-align:top}
+  .bis-table-wowhead tbody td{padding:8px;vertical-align:top}
   /* WoWhead-style link colors (spell/item) */
   .wh-link-spell{color:#69ccf0 !important}
   .wh-link-spell:hover{color:#99ddff !important}
@@ -1800,7 +1827,7 @@
   .delves-vault-card:hover{border-color:rgba(0,210,255,.65);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 24px rgba(0,210,255,.15)}
   .delves-vault-card--bountiful{border-color:rgba(240,180,41,.55);animation:delve-vault-bountiful-pulse 2.6s ease-in-out infinite}
   @keyframes delve-vault-bountiful-pulse{0%,100%{border-color:rgba(240,180,41,.45);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.2),0 0 18px rgba(0,210,255,.1)}50%{border-color:rgba(255,210,120,.95);box-shadow:0 8px 36px rgba(0,0,0,.45),0 0 0 2px rgba(240,180,41,.75),0 0 36px rgba(240,180,41,.45),0 0 28px rgba(0,210,255,.22)}}
-  .delves-vault-card-bg{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(0,210,255,.03) 12px,rgba(0,210,255,.03) 13px),linear-gradient(165deg,rgba(0,35,48,.9) 0%,rgba(5,8,14,.92) 40%,rgba(8,12,22,.88) 100%),radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,210,255,.12),transparent 55%)}
+  .delves-vault-card-bg{position:absolute;inset:0;pointer-events:none;opacity:.3;background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(0,210,255,.08) 12px,rgba(0,210,255,.08) 13px),linear-gradient(165deg,rgba(0,35,48,.95) 0%,rgba(5,8,14,.94) 40%,rgba(8,12,22,.92) 100%),radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,210,255,.35),transparent 55%)}
   .delves-vault-card-inner{position:relative;z-index:2;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
   .delves-vault-card-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:28px}
   .delves-bountiful-pill{font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(139,92,246,.35),rgba(240,180,41,.25));border:1px solid rgba(240,180,41,.45);color:#fef3c7}
@@ -1844,8 +1871,8 @@
   .delves-bountiful-vault-btn.is-done{background:rgba(74,222,128,.15);border-color:rgba(74,222,128,.5);color:#86efac}
   .delves-list-table-wrap{overflow-x:auto;border:1px solid rgba(79,142,247,.4);border-radius:12px;background:var(--deep);margin-bottom:8px}
   .delves-list-table{width:100%;border-collapse:collapse;font-size:14px;table-layout:fixed}
-  .delves-list-table th{background:rgba(79,142,247,.15);color:#69ccf0;font-weight:800;padding:8px 12px;text-align:left;border-bottom:1px solid rgba(79,142,247,.3)}
-  .delves-list-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+  .delves-list-table th{background:rgba(79,142,247,.15);color:#69ccf0;font-weight:800;padding:8px;text-align:left;border-bottom:1px solid rgba(79,142,247,.3)}
+  .delves-list-table td{padding:8px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
   .delves-list-table th:first-child{width:44%}
   .delves-list-table th:last-child{width:56%}
   .delves-zone-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -1861,11 +1888,34 @@
   .delves-key-info-content{font-size:15px;color:var(--text);line-height:1.55}
   .delves-key-info-content strong{color:var(--accent)}
   .delves-loot-table-wrap{overflow-x:auto;border:1px solid rgba(240,180,41,.4);border-radius:12px;background:var(--deep)}
+  .delves-loot-table-wrap--glass{
+    border-radius:var(--immersive-card-radius);
+    border:1px solid rgba(0,210,255,.22);
+    background:rgba(6,10,20,.5);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .delves-loot-farm-caption,.delves-loot-gv-hero-note{font-size:12px;line-height:1.5;color:rgba(186,230,253,.85);margin:0 0 8px;max-width:720px}
+  .delves-loot-gv-hero-note{color:rgba(240,200,120,.9);margin-bottom:12px}
+  body.light .delves-loot-farm-caption,body.light .delves-loot-gv-hero-note{color:var(--muted)}
   .delves-loot-table{width:100%;border-collapse:collapse;font-size:14px}
-  .delves-loot-table th{background:rgba(240,180,41,.15);color:var(--gold);font-weight:800;padding:8px 12px;text-align:left;border-bottom:1px solid rgba(240,180,41,.3);vertical-align:top}
-  .delves-loot-table td{padding:8px 12px;vertical-align:top;border-bottom:1px solid var(--border);color:var(--text)}
+  .delves-loot-table--glass th{background:rgba(0,210,255,.1);color:#e0f7ff;border-bottom:1px solid rgba(0,210,255,.28)}
+  .delves-loot-table th{background:rgba(240,180,41,.15);color:var(--gold);font-weight:800;padding:8px;text-align:left;border-bottom:1px solid rgba(240,180,41,.3);vertical-align:top}
+  .delves-loot-table td{padding:8px;vertical-align:top;border-bottom:1px solid var(--border);color:var(--text)}
   .delves-loot-table tbody tr:last-child td{border-bottom:none}
   .delves-loot-table tbody tr:hover{background:rgba(255,255,255,.03)}
+  .delves-loot-row--farm-tier td{
+    background:linear-gradient(90deg,rgba(201,162,39,.28),rgba(240,180,41,.14) 45%,rgba(201,162,39,.12));
+    color:var(--gold2);
+    font-weight:800;
+    border-bottom-color:rgba(240,180,41,.35);
+    box-shadow:inset 0 0 0 1px rgba(240,180,41,.25);
+  }
+  .delves-loot-row--farm-tier:hover td{background:linear-gradient(90deg,rgba(201,162,39,.34),rgba(240,180,41,.2) 45%,rgba(201,162,39,.16))}
+  body.light .delves-loot-table-wrap--glass{background:rgba(255,255,255,.72);border-color:rgba(14,165,233,.3)}
+  body.light .delves-loot-table--glass th{background:rgba(14,165,233,.12);color:#0c4a6e}
+  body.light .delves-loot-row--farm-tier td{color:#6b5410}
   .delves-icon-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);text-decoration:none}
   .delves-icon-link:hover{color:var(--gold);text-decoration:underline}
   .delves-key-info .delves-key-info-icon{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;flex-shrink:0}
@@ -1876,8 +1926,14 @@
   /* ── PREY SCREEN ── */
   #prey-screen{display:none}
   .prey-screen-shell{width:100%;max-width:var(--content-max);margin:0 auto;padding:20px 24px 48px}
-  .prey-guide-panel{padding:20px;border-radius:var(--immersive-card-radius);margin-top:10px;color:var(--text);border:1px solid rgba(138,43,226,.25);background:rgba(8,4,18,.35);box-shadow:inset 0 0 40px rgba(138,43,226,.06)}
-  body.light .prey-guide-panel{background:rgba(255,255,255,.9);border-color:rgba(138,43,226,.2)}
+  .prey-guide-panel{
+    padding:20px;border-radius:var(--immersive-card-radius);margin-top:10px;color:var(--text);
+    border:1px solid rgba(138,43,226,.38);
+    background:rgba(8,4,18,.35);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:0 8px 32px rgba(0,0,0,.35),0 0 48px rgba(138,43,226,.12),inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  body.light .prey-guide-panel{background:rgba(255,255,255,.82);border-color:rgba(138,43,226,.28)}
   .prey-section{margin-bottom:28px}
   .prey-section-title{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
   .prey-card{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px}
@@ -1983,8 +2039,8 @@
   .prey-detail-subtitle{font-size:14px;font-weight:800;color:var(--accent);margin:16px 0 8px}
   .prey-detail-subtitle:first-of-type{margin-top:0}
   .prey-detail-loot-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
-  .prey-detail-loot-table th{text-align:left;padding:8px 12px;background:rgba(201,162,39,.1);color:var(--gold);border:1px solid var(--border)}
-  .prey-detail-loot-table td{padding:8px 12px;border:1px solid var(--border);color:var(--text)}
+  .prey-detail-loot-table th{text-align:left;padding:8px;background:rgba(201,162,39,.1);color:var(--gold);border:1px solid var(--border)}
+  .prey-detail-loot-table td{padding:8px;border:1px solid var(--border);color:var(--text)}
   .prey-crafting-heading{margin-top:18px}
   .prey-crafting-list{list-style:none;padding:0;margin:0 0 12px;font-size:13px;line-height:1.55}
   .prey-crafting-list li{margin-bottom:8px}
