@@ -365,7 +365,15 @@
   /* Immersive cinematic grid (data/dungeons.json backgrounds) */
   .dungeon-card.dungeon-card--immersive{
     height:160px;padding:0;border-radius:12px;position:relative;isolation:isolate;
-    background:#0a090d;
+    background-color:#1a0f2e;
+  }
+  .dungeon-card.dungeon-card--raid-immersive{
+    height:200px;
+    border:1px solid rgba(212,175,55,0.4);
+    box-shadow:0 4px 24px rgba(0,0,0,0.35);
+  }
+  .dungeon-card.dungeon-card--raid-immersive.raid-card--locked{
+    opacity:0.65;cursor:default;pointer-events:none;
   }
   .dungeon-card.dungeon-card--immersive .dungeon-card-bg{
     position:absolute;inset:0;z-index:0;
@@ -376,6 +384,13 @@
     position:absolute;inset:0;z-index:1;pointer-events:none;
     background-image:linear-gradient(180deg,rgba(10,9,13,0.4) 0%,rgba(10,9,13,0.95) 100%);
     transition:background-image .35s ease,opacity .35s ease;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-meta-row{
+    position:absolute;top:10px;left:10px;z-index:2;
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-width:calc(100% - 100px);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-meta-row .dungeon-card-mode-tag{
+    position:static;
   }
   .dungeon-card.dungeon-card--immersive .dungeon-card-mode-tag{
     position:absolute;top:10px;left:10px;z-index:2;
@@ -398,6 +413,29 @@
     color:rgba(255,255,255,0.88);background:rgba(0,0,0,0.38);
     border:1px solid rgba(255,255,255,0.1);
   }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-aux-tag{
+    font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 7px;border-radius:999px;background:rgba(0,0,0,0.52);color:rgba(255,255,255,0.9);
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-aux-tag.is-live{
+    border-color:rgba(74,222,128,0.35);color:#bbf7d0;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-aux-tag.raid-open-now{
+    border-color:rgba(250,204,21,0.42);color:#fde68a;
+  }
+  .dungeon-card.dungeon-card--raid-immersive .raid-mode-tag{
+    color:#ddd6fe!important;border-color:rgba(167,139,250,0.45)!important;
+    background:rgba(98,48,180,0.22)!important;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-footer .dungeon-card-title-stack{
+    flex:1;min-width:0;text-align:left;
+  }
+  .dungeon-card.dungeon-card--immersive .dungeon-card-raid-sub{
+    margin:3px 0 0;font-size:10px;line-height:1.35;color:rgba(255,255,255,0.72);
+    text-shadow:0 1px 6px rgba(0,0,0,0.85);max-width:100%;
+  }
+  body.light .dungeon-card.dungeon-card--immersive .dungeon-card-raid-sub{color:rgba(40,40,55,0.88);text-shadow:none}
   .dungeon-card.dungeon-card--immersive .dungeon-card-footer{
     position:absolute;left:0;right:0;bottom:0;z-index:2;
     display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
@@ -423,6 +461,9 @@
       border-color:rgba(212,175,55,0.42);
       box-shadow:0 14px 44px rgba(0,0,0,0.55),0 0 32px var(--card-theme-glow,rgba(107,91,149,0.45));
     }
+    .dungeon-card.dungeon-card--raid-immersive:hover{
+      border-color:rgba(212,175,55,0.65);
+    }
   }
   @media (hover:none){
     .dungeon-card.dungeon-card--immersive:hover .dungeon-card-bg{transform:none}
@@ -438,6 +479,7 @@
     background-image:linear-gradient(180deg,rgba(255,255,255,0.22) 0%,rgba(10,9,13,0.82) 100%);
   }
   body.light .dungeon-card.dungeon-card--immersive .dungeon-card-title{color:#9a7b1a;text-shadow:0 1px 6px rgba(255,255,255,0.6)}
+  body.light .dungeon-card.dungeon-card--raid-immersive{border-color:rgba(122,98,24,0.5)}
 
   .card-accent{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold))}
   .dungeon-card.mplus .card-accent{background:linear-gradient(90deg,#b07010,var(--gold2),#b07010)}
@@ -1766,7 +1808,7 @@
 }
 
 /* 2. Clean panels — no ornamental clutter */
-.dungeon-card, .prof-card, .weekly-progress, .weekly-cat-header, .vr-card, .role-panel, .boss-card, 
+.dungeon-card:not(.dungeon-card--immersive), .prof-card, .weekly-progress, .weekly-cat-header, .vr-card, .role-panel, .boss-card, 
 #spec-modal-inner, #pwa-modal-inner, #help-modal-inner, #about-modal-inner, .search-results, .wat-nu-panel, .mode-tabs, .prof-guide-container {
   background-color: var(--panel);
   border: 1px solid var(--border);

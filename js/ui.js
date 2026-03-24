@@ -2071,6 +2071,115 @@ function renderDungeonList() {
   });
 }
 
+// ═══ Raid hub — immersive cards + data/raids.json ═══
+async function loadRaidsGridMeta() {
+  window.RAIDS_GRID_META = window.RAIDS_GRID_META || {};
+  try {
+    const res = await fetch('data/raids.json?v=2.2.1');
+    if (!res.ok) return;
+    window.RAIDS_GRID_META = await res.json();
+  } catch (e) {
+    console.warn('Midnight: raids.json kon niet geladen worden', e);
+  }
+}
+
+function renderRaidList() {
+  const host = document.getElementById('raids-content');
+  if (!host || typeof getRaidScreenList !== 'function' || typeof UI === 'undefined') return;
+  const u = UI[lang] || UI.nl;
+  const raids = getRaidScreenList();
+  const metaAll = window.RAIDS_GRID_META || {};
+  const raidBadgePlain = String(u.badge_raid || '🏰 RAID').replace(/<[^>]*>/g, '');
+
+  host.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'dungeon-grid raid-grid';
+  host.appendChild(grid);
+
+  raids.forEach(r => {
+    const meta = metaAll[r.id] || {};
+    const themeGlow = meta.theme_color || 'rgba(167, 139, 250, 0.5)';
+    const bgUrl = (meta.image_url || '').trim();
+    const bossCount = Array.isArray(r.bosses) ? r.bosses.length : 0;
+    const bossesLabel = lang === 'en'
+      ? `${bossCount} ${bossCount === 1 ? 'BOSS' : 'BOSSES'}`
+      : `${bossCount} ${bossCount === 1 ? 'BAAS' : 'BAZEN'}`;
+    const clickable = r.available !== false;
+
+    const availLabel = r.available
+      ? (lang === 'nl' ? 'BESCHIKBAAR' : 'AVAILABLE')
+      : (lang === 'nl' ? 'BINNENKORT' : 'SOON');
+    const openNowLabel = r.openNow ? (lang === 'nl' ? 'NU OPEN' : 'OPEN NOW') : '';
+
+    const card = document.createElement('div');
+    card.className = `dungeon-card raid-card dungeon-card--immersive dungeon-card--raid-immersive${clickable ? '' : ' raid-card--locked'}`;
+    card.style.setProperty('--card-theme-glow', themeGlow);
+    if (clickable) {
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', r.name);
+      card.addEventListener('click', () => {
+        if (typeof openRaid === 'function') openRaid(r.id);
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (typeof openRaid === 'function') openRaid(r.id);
+        }
+      });
+    } else {
+      card.style.opacity = '0.65';
+      card.style.cursor = 'default';
+    }
+
+    card.innerHTML = `
+      <div class="dungeon-card-bg"></div>
+      <div class="dungeon-card-overlay" aria-hidden="true"></div>
+      <div class="dungeon-card-meta-row raid-card-meta" aria-hidden="true">
+        <span class="dungeon-card-mode-tag raid-mode-tag"></span>
+        ${openNowLabel ? `<span class="dungeon-card-aux-tag raid-open-now">${openNowLabel}</span>` : ''}
+        <span class="dungeon-card-aux-tag raid-avail-tag ${r.available ? 'is-live' : 'is-soon'}">${availLabel}</span>
+      </div>
+      <span class="dungeon-card-boss-count">${bossesLabel}</span>
+      <div class="dungeon-card-footer raid-card-footer">
+        <div class="dungeon-card-title-stack">
+          <h3 class="dungeon-card-title raid-card-title"></h3>
+          <p class="dungeon-card-raid-sub"></p>
+        </div>
+        <div class="dungeon-card-role-icons" aria-hidden="true">
+          <span>🛡️</span><span>💊</span><span>⚔️</span>
+        </div>
+      </div>`;
+
+    const modeTag = card.querySelector('.raid-mode-tag');
+    if (modeTag) modeTag.textContent = raidBadgePlain;
+
+    const titleEl = card.querySelector('.raid-card-title');
+    if (titleEl) titleEl.textContent = `${r.icon ? r.icon + ' ' : ''}${r.name}`;
+
+    const subEl = card.querySelector('.dungeon-card-raid-sub');
+    if (subEl && typeof t === 'function') {
+      subEl.textContent = `📍 ${t(r.zone)} · ${t(r.opens)}`;
+    }
+
+    const roleIcons = card.querySelector('.dungeon-card-role-icons');
+    if (roleIcons) {
+      roleIcons.setAttribute('title', lang === 'en' ? 'Tank, Healer & DPS tactics' : 'Tank, Healer & DPS tactieken');
+    }
+
+    const bgEl = card.querySelector('.dungeon-card-bg');
+    if (bgEl) {
+      if (bgUrl) {
+        bgEl.style.backgroundImage = `url("${bgUrl.replace(/"/g, '')}")`;
+      } else {
+        bgEl.style.backgroundImage = `linear-gradient(165deg, ${themeGlow}, #0a090d)`;
+      }
+    }
+
+    grid.appendChild(card);
+  });
+}
+
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=2.2.0').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=2.2.1').catch(() => {});
 }

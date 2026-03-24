@@ -528,6 +528,7 @@ function setLang(l) {
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
   if (document.body.classList.contains('mode-prey')) renderPreyGuide();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
+  if (document.body.classList.contains('mode-raids') && typeof renderRaidList === 'function') renderRaidList();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
   const searchOv = document.getElementById('search-overlay');
   if (searchOv && searchOv.classList.contains('open')) {
@@ -1341,6 +1342,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       document.getElementById('dev-banner')?.classList.add('open');
     }
     if (typeof loadDungeonsGridMeta === 'function') await loadDungeonsGridMeta();
+    if (typeof loadRaidsGridMeta === 'function') await loadRaidsGridMeta();
     applyUIStrings();
     applySavedTheme();
     updateFooter();
@@ -1384,15 +1386,15 @@ function openRaid(id) {
   updateSpecHeaderBtnVisibility();
 }
 
-function buildRaidScreen(){
-  const el = document.getElementById('raids-content');
-  const raids = [
+/** Raid hub cards — used by renderRaidList() in ui.js */
+function getRaidScreenList() {
+  return [
     {
       id: 'dreamrift',
       icon: '🌀',
       name: 'The Dreamrift',
-      zone: { nl:'Harandar — Rift of Aln', en:'Harandar — Rift of Aln'},
-      opens: { nl:'Seizoen 1 — live', en:'Season 1 — live'},
+      zone: { nl: 'Harandar — Rift of Aln', en: 'Harandar — Rift of Aln' },
+      opens: { nl: 'Seizoen 1 — live', en: 'Season 1 — live' },
       bosses: ['Chimaerus, the Undreamt God'],
       available: true,
       openNow: true,
@@ -1401,9 +1403,9 @@ function buildRaidScreen(){
       id: 'voidspire',
       icon: '🔮',
       name: 'The Voidspire',
-      zone: { nl:'Voidstorm', en:'Voidstorm'},
-      opens: { nl:'Seizoen 1 — live', en:'Season 1 — live'},
-      bosses: ['Imperator Averzian','Vorasius','Fallen-King Salhadaar','Vaelgor & Ezzorak','Lightblinded Vanguard','Crown of the Cosmos'],
+      zone: { nl: 'Voidstorm', en: 'Voidstorm' },
+      opens: { nl: 'Seizoen 1 — live', en: 'Season 1 — live' },
+      bosses: ['Imperator Averzian', 'Vorasius', 'Fallen-King Salhadaar', 'Vaelgor & Ezzorak', 'Lightblinded Vanguard', 'Crown of the Cosmos'],
       available: true,
       openNow: true,
     },
@@ -1411,22 +1413,31 @@ function buildRaidScreen(){
       id: 'marchqueldanas',
       icon: '🌅',
       name: "March on Quel'Danas",
-      zone: { nl:"Isle of Quel'Danas", en:"Isle of Quel'Danas"},
-      opens: { nl:'Opent 31 maart 2026', en:'Opens March 31, 2026'},
+      zone: { nl: "Isle of Quel'Danas", en: "Isle of Quel'Danas" },
+      opens: { nl: 'Opent 31 maart 2026', en: 'Opens March 31, 2026' },
       bosses: ["Belo'ren, Child of Al'ar", "Midnight Falls (L'ura)"],
       available: true,
     },
   ];
+}
 
+function buildRaidScreen() {
+  if (typeof renderRaidList === 'function') {
+    renderRaidList();
+    return;
+  }
+  const el = document.getElementById('raids-content');
+  if (!el) return;
+  const raids = getRaidScreenList();
   el.innerHTML = `<div class="dungeon-grid">` + raids.map(r => `
       <div class="dungeon-card raid ${r.available ? '' : 'raid-coming-soon'}" ${r.available ? `onclick="openRaid('${r.id}')"` : ''} style="${r.available ? '' : 'opacity:0.6; cursor:default;'}">
         <div class="card-accent" style="background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div>
         <div class="card-body">
           <div class="raid-card-badges">
           <span class="card-badge badge-raid" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.3)">
-            ${r.available ? (lang==='nl'?'BESCHIKBAAR':'AVAILABLE') : (lang==='nl'?'BINNENKORT':'SOON')}
+            ${r.available ? (lang === 'nl' ? 'BESCHIKBAAR' : 'AVAILABLE') : (lang === 'nl' ? 'BINNENKORT' : 'SOON')}
           </span>
-          ${r.openNow ? `<span class="card-badge badge-open-now">${lang==='nl'?'NU OPEN':'OPEN NOW'}</span>` : ''}
+          ${r.openNow ? `<span class="card-badge badge-open-now">${lang === 'nl' ? 'NU OPEN' : 'OPEN NOW'}</span>` : ''}
           </div>
           <div class="card-name" style="display:flex; align-items:center; gap:8px; margin-top: 4px;">
             <span>${r.icon}</span> ${r.name}

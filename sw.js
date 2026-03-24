@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v2.2.0';
+const CACHE_NAME = 'midnight-v2.2.1';
 
 const PRECACHE = [
   '/',
@@ -18,6 +18,10 @@ const PRECACHE = [
   '/data/affixes.js',
   '/data/bountiful-today.json',
   '/data/dungeons.json',
+  '/data/raids.json',
+  '/images/raids/rift-of-aln-bg.svg',
+  '/images/raids/voidspire-bg.svg',
+  '/images/raids/march-queldanas-bg.svg',
   '/images/dungeons/windrunner-spire-bg.svg',
   '/images/dungeons/magisters-terrace-bg.svg',
   '/images/dungeons/maisara-caverns-bg.svg',
@@ -104,11 +108,24 @@ const PRECACHE = [
   '/data/specs/windwalker_monk.js',
 ];
 
-// Install: cache alle bestanden meteen bij eerste bezoek
+/**
+ * Precache één voor één: één ontbrekend bestand breekt de hele install niet af.
+ */
+async function precacheResilient(cache, urls) {
+  for (const url of urls) {
+    try {
+      await cache.add(url);
+    } catch (err) {
+      console.warn('[SW] Precache mislukt (overslaan):', url, err);
+    }
+  }
+}
+
+// Install: cache bestanden resilient (geen addAll-all-or-nothing)
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE))
+    caches.open(CACHE_NAME).then(cache => precacheResilient(cache, PRECACHE))
   );
 });
 

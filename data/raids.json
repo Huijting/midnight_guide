@@ -1,0 +1,14 @@
+{
+  "dreamrift": {
+    "image_url": "images/raids/rift-of-aln-bg.svg",
+    "theme_color": "rgba(140, 100, 220, 0.55)"
+  },
+  "voidspire": {
+    "image_url": "images/raids/voidspire-bg.svg",
+    "theme_color": "rgba(100, 60, 200, 0.55)"
+  },
+  "marchqueldanas": {
+    "image_url": "images/raids/march-queldanas-bg.svg",
+    "theme_color": "rgba(220, 160, 80, 0.45)"
+  }
+}
