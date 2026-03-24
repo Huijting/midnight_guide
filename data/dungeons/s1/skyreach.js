@@ -52,5 +52,6 @@ const SKYREACH = {
       {mob:"Dread Raven",tags:["tank","avoid"],tip:{nl:"Patrouille. Charging Buffet: charge naar tank + knockback — staan in het centrum van het platform.",en:"Patrol mob. Charging Buffet: charges tank + knockback — stand in the center of the platform."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

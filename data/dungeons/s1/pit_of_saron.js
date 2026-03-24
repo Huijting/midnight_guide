@@ -47,5 +47,6 @@ const PIT_OF_SARON = {
       {mob:"Quarry Tormentor",tags:["purge"],tip:{nl:"Curse of Torment op random speler — curse dispel. Vrij gevangenen voor extra % count en pad naar Tyrannus.",en:"Curse of Torment on random player — curse dispel. Free prisoners for extra % count and path to Tyrannus."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

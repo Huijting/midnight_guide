@@ -39,6 +39,28 @@ const AFFIX_WEEK1_DUNGEON_TIPS = {
   },
 };
 
+/** Boss-focused lines keyed by slug (matched from active affix names). Shown on dungeon Overview. */
+const AFFIX_BOSS_FOCUS = {
+  nl: {
+    ascendant: { title: 'Ascendant — tijdens bazen', text: 'Orbs blijven ook tijdens bossfights spawnen. Spreek af wie interrupt/CC op orbs doet terwijl de rest boss-casts afhandelt. Laat nooit alle orbs door — de boss wordt dan sneller en gevaarlijker.' },
+    fortified: { title: 'Fortified — trash vs boss', text: 'Trash heeft +20% HP en schade; bosses zijn normaal (tenzij Tyrannical ook actief is). Tank: kleinere pulls en meer CC vóór de boss. Bewaar grote cooldowns voor de zwaarste packs, niet voor de eerste trash.' },
+    tyrannical: { title: 'Tyrannical — bazen', text: 'Bazen hebben +25% HP en +15% schade. Tank: strakkere taunt-swaps en defensives op tankbusters. Healer: boss-DoTs en stomps doen meer pijn. DPS: mechanics en interrupts vóór parse.' },
+    peril: { title: "Challenger's Peril — boss-wipes", text: 'Elke dood kost 15 teller-seconden. Op boss: één mislukte soak of failed mechanic kan de key breken. Speel veilig — personals voor lethal mechanics, niet voor extra DPS.' },
+    afflicted: { title: 'Afflicted — dispel-prioriteit', text: 'Afflicted targets moeten snel worden opgeruimd (dispel/CC volgens affix-regels). Healer leidt; DPS met off-dispels helpt. Laat niets stapelen tijdens zware boss-casts.' },
+    bargain_rot: { title: "Xal'atath's Bargain (roterend)", text: 'Welke variant ook actief is: negeer de affix-mechanic niet — vijanden worden gebuffed en jij mist de beloning. Check in-game welke variant deze week draait.' },
+    generic: { title: 'Mythic+ — boss focus', text: 'Lees de actieve affixen hierboven. Pas tempo en cooldowns aan: fortified-weeks = respecteer trash; tyrannical = respecteer boss-timers en defensives.' },
+  },
+  en: {
+    ascendant: { title: 'Ascendant — during bosses', text: 'Orbs still spawn during boss fights. Assign who kicks/CCs orbs while others handle boss casts. Never let all orbs complete — enemies get haste/speed and the boss phase becomes much scarier.' },
+    fortified: { title: 'Fortified — trash vs boss', text: 'Trash has +20% HP and damage; bosses are unchanged unless Tyrannical is also active. Tank: smaller pulls and more CC before the boss. Save big cooldowns for the worst packs, not random trash.' },
+    tyrannical: { title: 'Tyrannical — bosses', text: 'Bosses have +25% HP and +15% damage. Tank: tighter taunt swaps and defensives on tank busters. Healer: boss DoTs and stomps hurt more. DPS: mechanics and interrupts over padding.' },
+    peril: { title: "Challenger's Peril — boss wipes", text: 'Each death costs 15 seconds. On bosses, one failed soak or mechanic can brick the key. Play safe — use personals for lethal mechanics, not for extra DPS.' },
+    afflicted: { title: 'Afflicted — dispel priority', text: 'Afflicted targets need fast answers (dispel/CC per affix rules). Healer leads; DPS with off-dispels help. Do not let stacks climb during heavy boss casts.' },
+    bargain_rot: { title: "Xal'atath's Bargain (rotating)", text: 'Whatever variant is live: do not ignore the mechanic — enemies get buffed and you lose the reward. Check in-game which variant is active this week.' },
+    generic: { title: 'Mythic+ — boss focus', text: 'Read the active affixes above. Adjust tempo and cooldowns: fortified weeks respect trash; tyrannical respects boss timers and defensives.' },
+  },
+};
+
 const AFFIX_UI = {
   nl: {
     title:    '⚡ M+ Affixes',

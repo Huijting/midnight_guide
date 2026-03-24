@@ -257,6 +257,18 @@ const UI = {
     lbl_unlock:   "ONTGRENDEL",
     lbl_bosses:   "AANTAL BAZEN",
     overview_affix_title: "Actuele affixes (deze week)",
+    overview_affix_boss_title: "Affix-tips voor bazen",
+    tab_route_map: "Kaart & route",
+    tab_route_tank: "Tank-gids",
+    tank_guide_title: "Tank — pad & gevaar per pull",
+    tank_guide_sub: "Klik op een monsternaam of pull-nummer om die stap in de routelijst te markeren (Snap-to-Map).",
+    tank_guide_empty: "Geen M+ route — Tank-gids is alleen voor Mythic+.",
+    tank_pull_cta: "Pull",
+    danger_low: "Laag",
+    danger_med: "Middel",
+    danger_high: "Hoog",
+    danger_boss: "Baas",
+    danger_lethal: "Lethal",
     type_mplus:   "⚔ Mythic+ Seizoen 1",
     type_normal:  "📖 Alleen Normal",
     lust_moment:  "Moment",
@@ -290,7 +302,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -325,6 +337,18 @@ const UI = {
     lbl_unlock:   "UNLOCK",
     lbl_bosses:   "BOSSES",
     overview_affix_title: "Current affixes (this week)",
+    overview_affix_boss_title: "Affix tips for bosses",
+    tab_route_map: "Map & route",
+    tab_route_tank: "Tank guide",
+    tank_guide_title: "Tank — pathing & danger per pull",
+    tank_guide_sub: "Click a mob name or pull number to highlight that step in the route list (Snap-to-Map).",
+    tank_guide_empty: "No M+ route — Tank guide is for Mythic+ only.",
+    tank_pull_cta: "Pull",
+    danger_low: "Low",
+    danger_med: "Medium",
+    danger_high: "High",
+    danger_boss: "Boss",
+    danger_lethal: "Lethal",
     type_mplus:   "⚔ Mythic+ Season 1",
     type_normal:  "📖 Normal Only",
     lust_moment:  "Moment",
@@ -358,7 +382,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -444,6 +468,7 @@ function setLang(l) {
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
   if (document.body.classList.contains('mode-prey')) renderPreyGuide();
+  if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
   if (document.getElementById('search-overlay').classList.contains('open')) {
     const inp = document.getElementById('search-input');
@@ -475,7 +500,6 @@ function applyUIStrings() {
   document.getElementById('tab-lbl-professions').innerHTML = u.tab_professions;
   document.getElementById('tab-lbl-weekly').innerHTML = u.tab_weekly;
   document.getElementById('tab-lbl-specs').innerHTML = u.tab_specs;
-  document.getElementById('tab-lbl-affixes').innerHTML = u.tab_affixes;
   const preyLbl = document.getElementById('tab-lbl-prey'); if(preyLbl) preyLbl.innerHTML = u.tab_prey;
   document.getElementById('tab-lbl-raids').innerHTML = u.tab_raids;
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
@@ -503,7 +527,7 @@ function updateLandingStrings() {
       d_title:'Dungeons', d_desc:'Boss tactieken, M+ routes en tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, fases en rol-tactieken', r_count:'3 raids',
       v_title:'Delves', v_desc:'Alle Delves met /way, loot tabel en sleutel-info', v_count:'12 Delves',
-      w_title:'Wekelijks', w_desc:'Weekly reset overzicht, World Bosses en affixen', w_count:'Elke week',
+      w_title:'Wekelijks', w_desc:'Weekly reset, World Bosses en checklist', w_count:'Elke week',
       p_title:'Professies', p_desc:'KP gidsen, crafting orders en trainer locaties', p_count:'13 professies',
       s_title:'Specs', s_desc:'Rotaties, stats, macro\'s en consumables', s_count:'38 specs',
     },
@@ -516,7 +540,7 @@ function updateLandingStrings() {
       d_title:'Dungeons', d_desc:'Boss tactics, M+ routes and tips per dungeon', d_count:'8 dungeons',
       r_title:'Raids', r_desc:'Boss mechanics, phases and role tactics', r_count:'3 raids',
       v_title:'Delves', v_desc:'All Delves with /way, loot table and key info', v_count:'12 Delves',
-      w_title:'Weekly', w_desc:'Weekly reset overview, World Bosses and affixes', w_count:'Every week',
+      w_title:'Weekly', w_desc:'Weekly reset, World Bosses and checklist', w_count:'Every week',
       p_title:'Professions', p_desc:'KP guides, crafting orders and trainer locations', p_count:'13 professions',
       s_title:'Specs', s_desc:'Rotations, stats, macros and consumables', s_count:'38 specs',
     }
@@ -682,6 +706,87 @@ const FLOOR_MAP_LEGEND = `<div class="fp-legend">
 
 // [Data moved to external file]
 
+function affixSlugFromWeeklyName(name) {
+  const n = (name || '').toLowerCase();
+  if (/ascendant/.test(n)) return 'ascendant';
+  if (/tyrannical|tyrann/.test(n)) return 'tyrannical';
+  if (/afflict/.test(n)) return 'afflicted';
+  if (/peril|challenger/.test(n)) return 'peril';
+  if (/fortified/.test(n)) return 'fortified';
+  if (/bargain|voidbound|pulsar|devour/.test(n)) return 'bargain_rot';
+  return null;
+}
+
+function buildAffixBossTipsBlock() {
+  if (typeof AFFIX_UI === 'undefined' || typeof AFFIX_BOSS_FOCUS === 'undefined') return '';
+  const aff = AFFIX_UI[lang] || AFFIX_UI.nl;
+  const rows = aff.week1_affixes || [];
+  const fb = AFFIX_BOSS_FOCUS[lang] || AFFIX_BOSS_FOCUS.en;
+  const u = UI[lang];
+  const seen = new Set();
+  const parts = [];
+  for (const a of rows) {
+    const slug = affixSlugFromWeeklyName(a.name);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    const block = fb[slug] || fb.generic;
+    if (!block) continue;
+    parts.push(`<div class="overview-affix-boss-tip"><h4 class="overview-affix-boss-title">${block.title}</h4><p>${block.text}</p></div>`);
+  }
+  if (!parts.length) return '';
+  return `<div class="overview-affix-boss-wrap"><h3 class="overview-affix-title">${u.overview_affix_boss_title}</h3>${parts.join('')}</div>`;
+}
+
+function inferTankPathing(d, tfn) {
+  const pulls = d.route?.pulls || [];
+  const trash = d.route?.trash || [];
+  return {
+    pulls: pulls.map((p, i) => {
+      const lb = tfn(p.label);
+      const ds = tfn(p.desc);
+      const typ = (p.type || '').toLowerCase();
+      const isBoss = typ === 'boss' || /baas|boss/i.test(lb);
+      let danger = 'med';
+      if (isBoss) danger = 'boss';
+      else if (i === 0 || /lust|🔥|bloodlust/i.test(lb + ds)) danger = 'high';
+      const mobs = [];
+      if (!isBoss && trash.length >= 1) {
+        mobs.push(trash[i % trash.length].mob);
+        if (trash.length > 1) mobs.push(trash[(i + 1) % trash.length].mob);
+      }
+      return { pullRef: i, danger, note: p.desc || p.label, mobs };
+    }),
+  };
+}
+
+function getTankPathing(d, tfn) {
+  const tp = d.tank_pathing;
+  if (tp && Array.isArray(tp.pulls) && tp.pulls.length > 0) return tp;
+  return inferTankPathing(d, tfn);
+}
+
+function switchRouteSubtab(which) {
+  const root = document.getElementById('route-content');
+  if (!root) return;
+  root.querySelectorAll('.route-subtab').forEach(b => b.classList.toggle('active', b.dataset.subtab === which));
+  root.querySelectorAll('.route-subpanel').forEach(p => {
+    const isMap = p.classList.contains('route-subpanel-map');
+    const isTank = p.classList.contains('route-subpanel-tank');
+    p.classList.toggle('active', (which === 'map' && isMap) || (which === 'tank' && isTank));
+  });
+  document.querySelectorAll('#route-content .vr-step.snap-active').forEach(el => el.classList.remove('snap-active'));
+}
+
+function snapToRoutePull(dungeonId, idx) {
+  switchRouteSubtab('map');
+  document.querySelectorAll('#route-content .vr-step').forEach(el => el.classList.remove('snap-active'));
+  const el = document.getElementById(`vr-step-${dungeonId}-${idx}`);
+  if (el) {
+    el.classList.add('snap-active');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+  }
+}
+
 function buildOverviewAffixesSection(d) {
   if (d.type !== 'mplus' || typeof AFFIX_UI === 'undefined') return '';
   const aff = AFFIX_UI[lang] || AFFIX_UI.nl;
@@ -711,6 +816,7 @@ function buildOverviewAffixesSection(d) {
     <h3 class="overview-affix-title">${u.overview_affix_title}</h3>
     <p class="overview-affix-sub">${aff.week1_sub || ''}</p>
     ${body}
+    ${buildAffixBossTipsBlock()}
   </section>`;
 }
 
@@ -774,9 +880,13 @@ function renderDetail(d) {
   const _bel=document.getElementById('bosses-content');
   if(_bel) setTimeout(()=>applyTooltips(_bel),0);
 
-  // Route — Visual Route Map + KG button
+  // Route — Visual Route Map + Tank guide + KG
   const r = d.route;
   const kgS = KG_STRINGS[lang];
+
+  if (!r || !Array.isArray(r.pulls)) {
+    document.getElementById('route-content').innerHTML = `<div class="route-section"><p class="tip-box">${u.tank_guide_empty}</p></div>`;
+  } else {
 
   // Helper: determine step type from label/content
   function getStepType(p) {
@@ -794,7 +904,7 @@ function renderDetail(d) {
     return lbl.includes('🔥') || lbl.toLowerCase().includes('bloodlust') || lbl.toLowerCase().includes('lust');
   }
 
-  // Build visual route steps
+  // Build visual route steps (ids for Snap-to-Map)
   const steps = r.pulls.map((p, i) => {
     const type = getStepType(p);
     const lust = hasLust(p);
@@ -805,9 +915,9 @@ function renderDetail(d) {
     if (lust)           badges.push(`<span class="vr-badge lust">🔥 ${u.vr_label_lust||'LUST'}</span>`);
     const area = p.area ? `<div class="vr-area">${t(p.area)}</div>` : '';
     return `
-      <div class="vr-step">
+      <div class="vr-step" id="vr-step-${d.id}-${i}" data-pull-idx="${i}">
         <div class="vr-connector"></div>
-        <div class="vr-node type-${type}">${nodeIcon}</div>
+        <div class="vr-node type-${type}"><span class="vr-node-num">${nodeIcon}</span></div>
         <div class="vr-card type-${type}">
           ${area}
           <div class="vr-label-row">
@@ -864,7 +974,7 @@ function renderDetail(d) {
     </div>`;
   }
 
-  document.getElementById('route-content').innerHTML = `
+  const innerRouteMap = `
     ${mapSectionHtml}
     ${r.summary ? `<div class="route-section"><div class="route-title">📋 ${u.route_sum}</div><div class="tip-box">${t(r.summary)}</div></div>` : ''}
     ${r.lust && r.lust.length ? `
@@ -907,6 +1017,40 @@ function renderDetail(d) {
       }).join('');
       return '<div class="trash-section route-section"><div class="route-title">'+u.trash_title+'</div><div class="trash-grid">'+cards+'</div></div>';
     })() : ''}`;
+
+  const tp = getTankPathing(d, t);
+  const dangerLabels = { low: u.danger_low, med: u.danger_med, high: u.danger_high, boss: u.danger_boss, lethal: u.danger_lethal };
+  const tankRows = tp.pulls.map(pull => {
+    const note = t(pull.note);
+    const mobLinks = (pull.mobs && pull.mobs.length)
+      ? pull.mobs.map(m => `<button type="button" class="tank-mob-link" onclick="snapToRoutePull('${d.id}',${pull.pullRef})">${String(m).replace(/</g, '&lt;')}</button>`).join(', ')
+      : `<button type="button" class="tank-mob-link tank-pull-only" onclick="snapToRoutePull('${d.id}',${pull.pullRef})">${u.tank_pull_cta} ${pull.pullRef + 1}</button>`;
+    const dang = dangerLabels[pull.danger] || pull.danger;
+    return `<div class="tank-pull-row tank-danger-${pull.danger}">
+      <div class="tank-pull-head"><span class="tank-danger-pill">${dang}</span><span class="tank-pull-num">#${pull.pullRef + 1}</span></div>
+      <p class="tank-pull-note">${note}</p>
+      <div class="tank-pull-mobs">${mobLinks}</div>
+    </div>`;
+  }).join('');
+  const tankPanelHtml = d.type === 'mplus'
+    ? `<div class="route-subpanel route-subpanel-tank">
+        <div class="route-section"><div class="route-title">${u.tank_guide_title}</div><p class="tank-guide-sub">${u.tank_guide_sub}</p><div class="tank-pull-list">${tankRows}</div></div>
+      </div>`
+    : '';
+
+  const showTankTab = d.type === 'mplus';
+  if (showTankTab) {
+    document.getElementById('route-content').innerHTML = `
+      <div class="route-subtab-bar" role="tablist">
+        <button type="button" class="route-subtab active" role="tab" data-subtab="map" onclick="switchRouteSubtab('map')">${u.tab_route_map}</button>
+        <button type="button" class="route-subtab" role="tab" data-subtab="tank" onclick="switchRouteSubtab('tank')">${u.tab_route_tank}</button>
+      </div>
+      <div class="route-subpanel route-subpanel-map active">${innerRouteMap}</div>
+      ${tankPanelHtml}`;
+  } else {
+    document.getElementById('route-content').innerHTML = innerRouteMap;
+  }
+  }
   if (typeof refreshWowheadTooltips === 'function') setTimeout(refreshWowheadTooltips, 50);
 }
 
@@ -917,8 +1061,12 @@ function switchTab(name, event) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   document.getElementById(`tab-${name}`).classList.add('active');
-  if (event) event.target.classList.add('active');
-  else document.getElementById(`tab-btn-${name}`).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  else {
+    const btn = document.getElementById(`tab-btn-${name}`);
+    if (btn) btn.classList.add('active');
+  }
+  if (name === 'route') setTimeout(() => { if (typeof switchRouteSubtab === 'function') switchRouteSubtab('map'); }, 0);
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -1067,6 +1215,87 @@ function buildRaidScreen(){
 
 // ── DELVES UI ──
 const BOUNTIFUL_WEEKLY_MAP_KEY = '__bountifulDelveMap';
+const BOUNTIFUL_DAILY_KEYS_STORAGE = 'bountiful_daily_keys_v1';
+
+function getWowDailyDateKeyUtc() {
+  const n = new Date();
+  if (n.getUTCHours() < 7) {
+    const d = new Date(Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate() - 1));
+    return d.toISOString().slice(0, 10);
+  }
+  return n.toISOString().slice(0, 10);
+}
+
+function getNextDailyResetUtcMs() {
+  const n = new Date();
+  let next = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate(), 7, 0, 0, 0);
+  if (n.getTime() >= next) next = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate() + 1, 7, 0, 0, 0);
+  return next;
+}
+
+function loadDailyKeysObject() {
+  try { return JSON.parse(localStorage.getItem(BOUNTIFUL_DAILY_KEYS_STORAGE) || '{}') || {}; } catch (e) { return {}; }
+}
+
+function getTodayDailyKeysList() {
+  const d = getWowDailyDateKeyUtc();
+  const o = loadDailyKeysObject();
+  const arr = o[d];
+  return Array.isArray(arr) ? arr.slice() : [];
+}
+
+function setTodayDailyKeysList(ids) {
+  const d = getWowDailyDateKeyUtc();
+  const o = loadDailyKeysObject();
+  o[d] = ids.slice(0, 4);
+  localStorage.setItem(BOUNTIFUL_DAILY_KEYS_STORAGE, JSON.stringify(o));
+}
+
+function toggleBountifulDailyKey(delveId) {
+  if (!getActiveBountifulDelveIds().includes(delveId)) return;
+  const ui = DELVES_UI[lang] || DELVES_UI.nl;
+  let list = getTodayDailyKeysList();
+  const i = list.indexOf(delveId);
+  if (i >= 0) list.splice(i, 1);
+  else {
+    if (list.length >= 4) {
+      const toast = document.getElementById('toast-notification');
+      if (toast) {
+        toast.textContent = ui.bountiful_daily_full;
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2800);
+      }
+      return;
+    }
+    list.push(delveId);
+  }
+  setTodayDailyKeysList(list);
+  void buildDelvesScreen();
+}
+
+let delveDailyCountdownTimer = null;
+function startDelveDailyCountdown() {
+  if (delveDailyCountdownTimer) clearInterval(delveDailyCountdownTimer);
+  const el = document.getElementById('delves-daily-countdown');
+  if (!el) return;
+  const ui = DELVES_UI[lang] || DELVES_UI.nl;
+  function tick() {
+    const diff = getNextDailyResetUtcMs() - Date.now();
+    if (diff <= 0) {
+      clearInterval(delveDailyCountdownTimer);
+      delveDailyCountdownTimer = null;
+      resetBountifulFetchCache();
+      void buildDelvesScreen();
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.textContent = `${ui.bountiful_countdown_prefix} ${h}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s · 07:00 UTC`;
+  }
+  tick();
+  delveDailyCountdownTimer = setInterval(tick, 1000);
+}
 
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
@@ -1074,9 +1303,14 @@ const DELVES_UI = {
     bountiful_json_ok:'Vandaag Bountiful (live data)',
     bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
     bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
-    bountiful_weekly_btn:'Weekly',
-    bountiful_weekly_title:'Telt mee voor Bountiful Delve (1/4–4/4) op de Weekly Checklist',
-    bountiful_weekly_full:'Alle 4 weekly Bountiful vakjes staan al aan — vink eventueel één uit op de Weekly-tab.',
+    bountiful_daily_btn:'DAG. BOUNTIFUL',
+    bountiful_daily_title:'Sleutel vandaag gebruikt (reset 07:00 UTC) — max. 4 per WoW-dag',
+    bountiful_daily_full:'Je hebt al 4 sleutels vandaag gemarkeerd — haal er één weg of wacht tot de dagelijkse reset (07:00 UTC).',
+    bountiful_vault_btn:'VAULT',
+    bountiful_vault_title:'Great Vault / wekelijkse voortgang (1/4–4/4) — zelfde vakjes als op de Weekly-tab',
+    bountiful_vault_full:'Alle 4 vault-vakjes voor Bountiful staan al aan — vink er één uit op de Delves- of Weekly-tab.',
+    bountiful_keys_today:'Sleutels vandaag: {n}/4',
+    bountiful_countdown_prefix:'Volgende dagelijkse Bountiful-rotatie over',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
     full_guide_btn:'Volledige gids', back_btn:'← Terug' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
@@ -1084,9 +1318,14 @@ const DELVES_UI = {
     bountiful_json_ok:'Today’s Bountiful (live data)',
     bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
     bountiful_no_ids:'Bountiful: no list available. Check back later or update `data/bountiful-today.json`.',
-    bountiful_weekly_btn:'Weekly',
-    bountiful_weekly_title:'Counts toward Bountiful Delve (1/4–4/4) on the Weekly Checklist',
-    bountiful_weekly_full:'All 4 weekly Bountiful boxes are already checked — clear one on the Weekly tab if needed.',
+    bountiful_daily_btn:'DAILY BOUNTIFUL',
+    bountiful_daily_title:'Key used today (resets 07:00 UTC) — up to 4 per WoW day',
+    bountiful_daily_full:'You already marked 4 keys for today — uncheck one or wait for the daily reset (07:00 UTC).',
+    bountiful_vault_btn:'VAULT',
+    bountiful_vault_title:'Great Vault / weekly progress (1/4–4/4) — same boxes as the Weekly tab',
+    bountiful_vault_full:'All 4 vault slots for Bountiful are already checked — clear one on Delves or Weekly.',
+    bountiful_keys_today:'Keys today: {n}/4',
+    bountiful_countdown_prefix:'Next daily Bountiful rotation in',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
     full_guide_btn:'Full Guide', back_btn:'← Back' }
 };
@@ -1202,7 +1441,7 @@ function toggleBountifulDelveForWeekly(delveId) {
       const ui = DELVES_UI[lang] || DELVES_UI.nl;
       const toast = document.getElementById('toast-notification');
       if (toast) {
-        toast.textContent = ui.bountiful_weekly_full;
+        toast.textContent = ui.bountiful_vault_full;
         toast.style.opacity = '1';
         setTimeout(() => { toast.style.opacity = '0'; }, 2800);
       }
@@ -1222,6 +1461,14 @@ async function buildDelvesScreen() {
   const ui = DELVES_UI[lang] || DELVES_UI.nl;
 
   await fetchBountifulDelves();
+
+  const _wowDay = getWowDailyDateKeyUtc();
+  if (typeof window !== 'undefined') {
+    if (window.__midnightWowDayKey && window.__midnightWowDayKey !== _wowDay) resetBountifulFetchCache();
+    window.__midnightWowDayKey = _wowDay;
+  }
+
+  const dailyList = getTodayDailyKeysList();
 
   const delves = DELVES_DATA.delves;
   const keyInfo = DELVES_DATA.keyInfo[lang] || DELVES_DATA.keyInfo.nl;
@@ -1251,6 +1498,8 @@ async function buildDelvesScreen() {
   html += `<div class="delves-bountiful-banner">
     <img src="${bountifulImg}" alt="${ui.bountiful_alt}" class="delves-bountiful-img" loading="lazy">
     ${statusNote}
+    <p class="delves-daily-keys-summary" id="delves-daily-keys-summary">${ui.bountiful_keys_today.replace('{n}', String(dailyList.length))}</p>
+    <p class="delves-daily-countdown" id="delves-daily-countdown" aria-live="polite"></p>
   </div>`;
 
   // Alle Delves — tabel met Delve naam en Zone + /way
@@ -1278,11 +1527,15 @@ async function buildDelvesScreen() {
       : '';
     const slot = weeklyMap[d.id];
     const weeklyChecked = slot && weeklyState['w_delve' + slot];
-    const weeklyBtn = isBountiful
-      ? `<button type="button" class="delves-bountiful-weekly-btn${weeklyChecked ? ' is-done' : ''}" onclick="event.stopPropagation();toggleBountifulDelveForWeekly('${d.id}')" title="${ui.bountiful_weekly_title.replace(/"/g, '&quot;')}">${weeklyChecked ? '✓ ' : ''}${ui.bountiful_weekly_btn}</button>`
+    const dailyOn = dailyList.includes(d.id);
+    const bountifulBtns = isBountiful
+      ? `<div class="delves-row-btns">
+      <button type="button" class="delves-bountiful-daily-btn${dailyOn ? ' is-done' : ''}" onclick="event.stopPropagation();toggleBountifulDailyKey('${d.id}')" title="${ui.bountiful_daily_title.replace(/"/g, '&quot;')}">${dailyOn ? '✓ ' : ''}${ui.bountiful_daily_btn}</button>
+      <button type="button" class="delves-bountiful-vault-btn${weeklyChecked ? ' is-done' : ''}" onclick="event.stopPropagation();toggleBountifulDelveForWeekly('${d.id}')" title="${ui.bountiful_vault_title.replace(/"/g, '&quot;')}">${weeklyChecked ? '✓ ' : ''}${ui.bountiful_vault_btn}</button>
+    </div>`
       : '';
     html += `<tr class="${rowClass}">
-      <td><div class="delves-name-cell">${chest}<span class="delves-delve-link" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">${d.name}</span>${weeklyBtn}</div></td>
+      <td><div class="delves-name-cell">${chest}<span class="delves-delve-link" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">${d.name}</span>${bountifulBtns}</div></td>
       <td class="delves-zone-cell">${zoneWay}</td>
     </tr>`;
   });
@@ -1329,6 +1582,7 @@ async function buildDelvesScreen() {
   if (contentEl) {
     contentEl.innerHTML = html;
     if (typeof $WowheadPower !== 'undefined') { ($WowheadPower.refreshLinks || $WowheadPower.refresh)(); }
+    startDelveDailyCountdown();
   }
 }
 
@@ -1387,54 +1641,8 @@ function copyDelvesWay(way) {
   });
 }
 
-function buildAffixScreen(){
-  const ui = (typeof AFFIX_UI !== 'undefined') ? (AFFIX_UI[lang] || AFFIX_UI.nl) : null;
-  if (!ui) return;
-  document.getElementById('affixes-hero-title').textContent = ui.title;
-  document.getElementById('affixes-hero-sub').textContent = ui.subtitle;
-  const el = document.getElementById('affixes-content');
-  let html = '';
-  if (ui.week1_affixes && ui.week1_affixes.length) {
-    html += `<div class="affix-week1-block">
-      <div class="affix-week1-title">${ui.week1_title}</div>
-      <div class="affix-week1-sub">${ui.week1_sub}</div>
-      <div class="affix-week1-list">${ui.week1_affixes.map(a => {
-        const warn = a.warning ? '<div class="affix-week1-warning">⚠️ -15 sec per death!</div>' : '';
-        return `<div class="affix-week1-item ${a.badge === 'seasonal' ? 'seasonal-glow' : ''}" style="border-left-color:${a.color}">
-          <span class="affix-week1-level">${a.level}+</span>
-          <span class="affix-week1-icon">${a.icon}</span>
-          <span class="affix-week1-name">${a.name}</span>
-          <span class="affix-type-badge ${(a.badge||'').toLowerCase()}">${(ui.badge_labels && ui.badge_labels[a.badge]) || a.badge || ''}</span>
-          <div class="affix-week1-what">${a.what}</div>${warn}</div>`;
-      }).join('')}</div>
-    </div>`;
-  }
-  html += ui.sections.map(s => {
-    const variantsHtml = s.variants ? `
-      <div class="affix-variants">
-        ${s.variants.map(v => `
-          <div class="affix-variant">
-            <div class="affix-variant-header">${v.icon} ${v.name}</div>
-            <div class="affix-variant-what">${v.what}</div>
-            <div class="affix-variant-how">${v.how}</div>
-          </div>`).join('')}
-      </div>` : '';
-    return `
-      <div class="affix-section" style="border-left:3px solid ${s.color}">
-        <div class="affix-level-badge">${ui.level_label} ${s.level}</div>
-        <div class="affix-header">
-          <span class="affix-icon">${s.icon}</span>
-          <span class="affix-name">${s.name}</span>
-          <span class="affix-type-badge ${(s.badge||'').toLowerCase()}">${s.badge||''}</span>
-        </div>
-        <div class="affix-what">${s.what}</div>
-        ${s.how ? `<div class="affix-how">${s.how}</div>` : ''}
-        ${variantsHtml}
-        ${s.tip ? `<div class="affix-tip">${ui.tip_label} ${s.tip}</div>` : ''}
-      </div>`;
-  }).join('');
-  el.innerHTML = html;
-}
+/** Affixes are shown on each M+ dungeon Overview; standalone tab removed. */
+function buildAffixScreen() {}
 
 // ═══════════════════════════════════════════════════════════════
 // GLOSSARY + TOOLTIPS
@@ -1556,7 +1764,6 @@ function setMode(mode){
   document.getElementById('mode-tab-professions').classList.toggle('active',mode==='professions');
   document.getElementById('mode-tab-weekly').classList.toggle('active',mode==='weekly');
   document.getElementById('mode-tab-specs').classList.toggle('active',mode==='specs');
-  document.getElementById('mode-tab-affixes').classList.toggle('active',mode==='affixes');
   document.getElementById('mode-tab-raids').classList.toggle('active',mode==='raids');
   const delvesTab = document.getElementById('mode-tab-delves'); if(delvesTab) delvesTab.classList.toggle('active',mode==='delves');
   const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
@@ -1581,8 +1788,6 @@ function setMode(mode){
     if(ht)ht.innerHTML=PROF_UI[lang].hero_title.replace('— ','— <span>')+' </span>';
     const hs=document.getElementById('prof-hero-sub');
     if(hs)hs.textContent=PROF_UI[lang].hero_sub;
-  } else if(mode==='affixes'){
-    buildAffixScreen();
   } else if(mode==='raids'){
     document.body.classList.remove('raid-detail-open');
     currentDungeon = null;
@@ -1603,7 +1808,7 @@ function setMode(mode){
     if(currentDungeon)goHome();
   }
   
-    ['home','dungeons','professions','weekly','affixes','raids','delves','glossary','specs','prey'].forEach(id=>{
+    ['home','dungeons','professions','weekly','raids','delves','glossary','specs','prey'].forEach(id=>{
       const el=document.getElementById(id+'-screen');
       if(el)el.style.display=(id===mode)?'':'none';
     });

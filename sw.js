@@ -3,7 +3,7 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-const CACHE_NAME = 'midnight-v1.2.1-season1-live';
+const CACHE_NAME = 'midnight-v1.3-season1-live';
 
 const PRECACHE = [
   '/',

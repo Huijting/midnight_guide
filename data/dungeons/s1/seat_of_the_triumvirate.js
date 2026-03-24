@@ -52,5 +52,6 @@ const SEAT_OF_THE_TRIUMVIRATE = {
       {mob:"Grand Shadow-Weaver",tags:["avoid","stop"],tip:{nl:"CC-immuun. Umbral Waves (Gates of the Abyss): dodge. Void Infusion: channel op random speler — drop combat of defensive.",en:"CC-immune. Umbral Waves (Gates of the Abyss): dodge. Void Infusion: channels on random player — drop combat or defensive."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

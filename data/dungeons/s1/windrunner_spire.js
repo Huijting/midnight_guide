@@ -65,5 +65,6 @@ const WINDRUNNER_SPIRE = {
       {mob:"Storming Soulfont",tags:["stop"],tip:{nl:"Geeft energie aan The Restless Heart als hij lang leeft — CC of kill snel. Gust Shot van de baas vernietigt Soulfonts.",en:"Feeds energy to The Restless Heart if it lives long — CC or kill fast. Gust Shot from Restless Heart destroys Soulfonts."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

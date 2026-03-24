@@ -52,5 +52,6 @@ const ALGETHAR_ACADEMY = {
       {mob:"Corrupted Manafiend",tags:["int","avoid"],tip:{nl:"Surge: interrupt. Mana Void: AoE zone — dodge.",en:"Surge: interrupt. Mana Void: AoE zone — dodge."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

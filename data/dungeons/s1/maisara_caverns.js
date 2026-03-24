@@ -60,5 +60,6 @@ const MAISARA_CAVERNS = {
       {mob:"Rokh'zal",tags:["int","stop"],tip:{nl:"Tough mini-boss. Invoke Shadow: interrupt. Ritual Sacrifice: interrupt! Als hij dit voltooit voor hij dood is = wipe.",en:"Tough mini-boss. Invoke Shadow: interrupt. Ritual Sacrifice: interrupt! If he completes this before dying = wipe."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/retail/maisara-caverns/new"
-  }
+  },
+  tank_pathing: null
 };

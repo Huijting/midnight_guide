@@ -55,5 +55,6 @@ const NEXUS_POINT_XENAS = {
       {mob:"Lingering Image",tags:["stop","avoid"],tip:{nl:"Fixate op random speler — kite. Cluster Weakness: passief extra AoE schade. Kill snel voor Lothraxion.",en:"Fixates random player — kite. Cluster Weakness: passively takes extra AoE damage. Kill fast before Lothraxion."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };

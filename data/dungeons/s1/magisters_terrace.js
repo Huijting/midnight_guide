@@ -61,5 +61,6 @@ const MAGISTERS_TERRACE = {
       {mob:"Devouring Tyrant",tags:["tank","avoid"],tip:{nl:"Tough mob. Devouring Strike: tank healing absorb. Void Bomb op random speler: healing absorb + AoE plas — loop weg van de groep.",en:"Tough mob. Devouring Strike: tank healing absorb. Void Bomb on random player: healing absorb + AoE puddle — move away from group."}}
     ],
     mdt:true, kg_url:"https://keystone.guru/routes/expansion/midnight/season/1"
-  }
+  },
+  tank_pathing: null
 };
