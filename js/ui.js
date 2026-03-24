@@ -499,7 +499,6 @@ function renderAboutContent() {
 
   let readmeFile = 'README.md';
     if (lang === 'en') readmeFile = 'README_en.md';
-    if (lang === 'da') readmeFile = 'README_da.md';
     fetch(readmeFile)
     .then(r => r.ok ? r.text() : Promise.reject(r.status))
     .then(md => { el.innerHTML = mdToHtml(md); })
@@ -647,246 +646,222 @@ function closeFeedback() {
 
 const WEEKLY_ITEMS = [
   { id:'w_worldboss', diff:'easy', dmfOnly:false,
-    cat:{nl:'🌍 World Boss',en:'🌍 World Boss',da:'🌍 World Boss'},
-    name:{nl:'World Boss verslaan',en:'Defeat the World Boss',da:'Besejr World Boss'},
+    cat:{nl:'🌍 World Boss',en:'🌍 World Boss'},
+    name:{nl:'World Boss verslaan',en:'Defeat the World Boss'},
     desc:{nl:'Versla de weekly world boss voor Champion-level gear. Rouleert elke week per zone.',
-          en:'Defeat the weekly world boss for Champion-level gear. Rotates each week per zone.',
-          da:'Besejr den ugentlige world boss for Champion-udrustning. Skifter zone hver uge.'},
+          en:'Defeat the weekly world boss for Champion-level gear. Rotates each week per zone.'},
     where:'📍 Check de wereldkaart voor de actieve boss | Check the world map for the active boss.',
     way:'', tags:['gear'] },
 
   { id:'w_dungeon', diff:'easy', dmfOnly:false,
-    cat:{nl:'🏰 Weekly Dungeon Quest',en:'🏰 Weekly Dungeon Quest',da:'🏰 Ugentlig Dungeon Quest'},
-    name:{nl:'Weekly dungeon quest (Halduron Brightwing)',en:'Weekly dungeon quest (Halduron Brightwing)',da:'Ugentlig dungeon-quest (Halduron Brightwing)'},
+    cat:{nl:'🏰 Weekly Dungeon Quest',en:'🏰 Weekly Dungeon Quest'},
+    name:{nl:'Weekly dungeon quest (Halduron Brightwing)',en:'Weekly dungeon quest (Halduron Brightwing)'},
     desc:{nl:'Voltooi een Midnight dungeon op willekeurige moeilijkheid. Beloning: goud + 1.000 rep naar keuze. Follower dungeons tellen ook mee!',
-          en:'Complete any Midnight dungeon on any difficulty. Reward: gold + 1,000 rep of your choice. Follower dungeons count!',
-          da:'Gennemfor en Midnight-dungeon pa vilkarlig svaerhedsgrad. Belonn: guld + 1.000 rep efter valg. Follower dungeons taeller med!'},
+          en:'Complete any Midnight dungeon on any difficulty. Reward: gold + 1,000 rep of your choice. Follower dungeons count!'},
     where:'📍 Halduron Brightwing — tent bij Sanctum of Light, Silvermoon City.',
     way:'/way #2393 49.0 64.8 Halduron Brightwing', tags:['rep','currency'] },
 
   { id:'w_liadrin', diff:'easy', dmfOnly:false,
-    cat:{nl:'📜 Weekly Event Quest',en:'📜 Weekly Event Quest',da:'📜 Ugentlig Event Quest'},
-    name:{nl:'Weekly Event Quest (Lady Liadrin)',en:'Weekly Event Quest (Lady Liadrin)',da:'Ugentlig Event Quest (Lady Liadrin)'},
+    cat:{nl:'📜 Weekly Event Quest',en:'📜 Weekly Event Quest'},
+    name:{nl:'Weekly Event Quest (Lady Liadrin)',en:'Weekly Event Quest (Lady Liadrin)'},
     desc:{nl:'Kies 1 van 4 world event quests. Beloning: Apex Cache (gear, valuta, 100 Coffer Key Shards) + kans op Spark of Radiance.',
-          en:'Choose 1 of 4 world event quests. Reward: Apex Cache (gear, currency, 100 Coffer Key Shards) + chance at Spark of Radiance.',
-          da:'Vaelg 1 af 4 world event-quests. Belonn: Apex Cache (udrustning, valuta, 100 Coffer Key Shards) + chance for Spark of Radiance.'},
+          en:'Choose 1 of 4 world event quests. Reward: Apex Cache (gear, currency, 100 Coffer Key Shards) + chance at Spark of Radiance.'},
     where:'📍 Lady Liadrin — tent bij Sanctum of Light, Silvermoon City.',
     way:'/way #2393 49.03 64.61 Lady Liadrin (weekly quests)', tags:['gear','currency'] },
 
   { id:'w_abundance', diff:'easy', dmfOnly:false,
-    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
-    name:{nl:'Abundance (weekly)',en:'Abundance (weekly)',da:'Abundance (ugentlig)'},
+    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
+    name:{nl:'Abundance (weekly)',en:'Abundance (weekly)'},
     desc:{nl:'Verzamel 20.000 punten in de Abundance caves. 3 minuten per run, doneer regelmatig aan Dundun. Beloning: 1.000 Amani Tribe rep + cache.',
-          en:'Collect 20,000 points in the Abundance caves. 3 minutes per run, donate regularly to Dundun. Reward: 1,000 Amani Tribe rep + cache.',
-          da:'Saml 20.000 point i Abundance-hulerne. 3 minutter per run, dona regelmassigt til Dundun. Belonn: 1.000 Amani Tribe rep + cache.'},
+          en:'Collect 20,000 points in the Abundance caves. 3 minutes per run, donate regularly to Dundun. Reward: 1,000 Amani Tribe rep + cache.'},
     where:'📍 Eerst ontgrendelen: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman. Dan wekelijks bij cave-ingang. | First unlock: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman.',
     way:'/way #2437 47.2 62.1 Chel the Chip (unlock Abundance)', tags:['rep','currency'] },
 
   { id:'w_haranir', diff:'easy', dmfOnly:false,
-    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
-    name:{nl:'Legends of the Haranir (weekly)',en:'Legends of the Haranir (weekly)',da:'Legends of the Haranir (ugentlig)'},
+    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
+    name:{nl:'Legends of the Haranir (weekly)',en:'Legends of the Haranir (weekly)'},
     desc:{nl:'Kies een Harati relikwie en voltooi het scenario. Beloning: Avid Learner\&#39;s Supply Pack + housing decor. Keuze is Warband-wide!',
-          en:'Choose a Harati relic and complete the scenario. Reward: Avid Learner\&#39;s Supply Pack + housing decor. Choice is Warband-wide!',
-          da:'Vaelg en Harati-relikviee og gennemfor scenariet. Belonn: Avid Learner\&#39;s Supply Pack + boligdeko. Valget galder hele Warband!'},
+          en:'Choose a Harati relic and complete the scenario. Reward: Avid Learner\&#39;s Supply Pack + housing decor. Choice is Warband-wide!'},
     where:'📍 Zurashar Kassameh — Reliquary, The Den, Harandar.',
     way:'/way #2413 54.2 53.0 Zurashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
 
   { id:'w_soiree', diff:'easy', dmfOnly:false,
-    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
-    name:{nl:'Saltheril\&#39;s Soiree (weekly)',en:'Saltheril\&#39;s Soiree (weekly)',da:'Saltheril\&#39;s Soiree (ugentlig)'},
+    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
+    name:{nl:'Saltheril\&#39;s Soiree (weekly)',en:'Saltheril\&#39;s Soiree (weekly)'},
     desc:{nl:'Kies een subfactie (Magisters/Blood Knights/Farstriders/Shades). Geeft Brimming Arcana + 2.000 Silvermoon Court rep. Keuze kan andere facties schaden! Eerst ontgrendelen via Jonas Everdawn.',
-          en:'Choose a subfaction (Magisters/Blood Knights/Farstriders/Shades). Gives Brimming Arcana + 2,000 Silvermoon Court rep. Your choice can hurt other factions! Unlock first via Jonas Everdawn.',
-          da:'Vaelg en subfraktion. Giver Brimming Arcana + 2.000 Silvermoon Court rep. Dit valg kan skade andre fraktioner! Lase op via Jonas Everdawn forst.'},
+          en:'Choose a subfaction (Magisters/Blood Knights/Farstriders/Shades). Gives Brimming Arcana + 2,000 Silvermoon Court rep. Your choice can hurt other factions! Unlock first via Jonas Everdawn.'},
     where:'📍 Unlock: Jonas Everdawn — ten noorden van Sanctum of Light, Silvermoon City → dan Lord Saltheril, Fairbreeze Village.',
     way:'/way #2393 50.1 45.2 Jonas Everdawn (unlock Soiree)', tags:['rep','currency'] },
 
   { id:'w_stormarion', diff:'easy', dmfOnly:false,
-    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events',da:'🌿 Zone Events'},
-    name:{nl:'Stormarion Assault (weekly)',en:'Stormarion Assault (weekly)',da:'Stormarion Assault (ugentlig)'},
+    cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
+    name:{nl:'Stormarion Assault (weekly)',en:'Stormarion Assault (weekly)'},
     desc:{nl:'Verdedig Stormarion Citadel — elke 30 min 3 golven vijanden. Geen voorquest nodig. Geeft cache + Great Vault World-voortgang.',
-          en:'Defend Stormarion Citadel — 3 waves every 30 min. No pre-quest needed. Rewards cache + Great Vault World progress.',
-          da:'Forsvar Stormarion Citadel — 3 bolger hvert 30. min. Ingen forquest kraevet. Giver cache + Great Vault World-fremgang.'},
+          en:'Defend Stormarion Citadel — 3 waves every 30 min. No pre-quest needed. Rewards cache + Great Vault World progress.'},
     where:'📍 Voidstorm — Stormarion Citadel.',
     way:'/way #2405 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
 
   { id:'w_prey', diff:'medium', dmfOnly:false,
-    cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts',da:'🎯 Prey Hunts'},
-    name:{nl:'Nightmare Prey (2x)',en:'Nightmare Prey (2x)',da:'Nightmare Prey (2x)'},
+    cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
+    name:{nl:'Nightmare Prey (2x)',en:'Nightmare Prey (2x)'},
     desc:{nl:'Voltooi 2 Nightmare Prey hunts voor Champion-level gear. Track je prooi in de zone en overleef hinderlagen. Telt mee voor Great Vault World.',
-          en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes. Contributes to Great Vault World.',
-          da:'Gennemfor 2 Nightmare Prey-jagter for Champion-udrustning. Spor dit bytte i zonen og overlev baghold. Bidrager til Great Vault World.'},
+          en:'Complete 2 Nightmare Prey hunts for Champion-level gear. Track your prey through the zone and survive ambushes. Contributes to Great Vault World.'},
     where:'📍 Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear'] },
 
   { id:'w_delve1', diff:'medium', dmfOnly:false,
-    cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
-    name:{nl:'Bountiful Delve (1/4)',en:'Bountiful Delve (1/4)',da:'Bountiful Delve (1/4)'},
+    cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)'},
+    name:{nl:'Bountiful Delve (1/4)',en:'Bountiful Delve (1/4)'},
     desc:{nl:'Vereist een Restored Coffer Key. Valeera begeleidt je. Bountiful Delves geven upgrade-track loot, normale Delves niet.',
-          en:'Requires a Restored Coffer Key. Valeera accompanies you. Bountiful Delves give upgrade-track loot, regular Delves do not.',
-          da:'Kraever en Restored Coffer Key. Valeera ledsager dig. Bountiful Delves giver loot pa upgrade-sporet.'},
+          en:'Requires a Restored Coffer Key. Valeera accompanies you. Bountiful Delves give upgrade-track loot, regular Delves do not.'},
     where:'📍 Delve-ingangen verspreid over alle zones — gouden kistje-icoon op de kaart.',
     way:'', tags:['gear'] },
-  { id:'w_delve2', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
-    name:{nl:'Bountiful Delve (2/4)',en:'Bountiful Delve (2/4)',da:'Bountiful Delve (2/4)'},
-    desc:{nl:'2e run.',en:'2nd run.',da:'2. run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
-  { id:'w_delve3', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
-    name:{nl:'Bountiful Delve (3/4)',en:'Bountiful Delve (3/4)',da:'Bountiful Delve (3/4)'},
-    desc:{nl:'3e run.',en:'3rd run.',da:'3. run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
-  { id:'w_delve4', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)',da:'🏚 Delves (Bountiful)'},
-    name:{nl:'Bountiful Delve (4/4)',en:'Bountiful Delve (4/4)',da:'Bountiful Delve (4/4)'},
-    desc:{nl:'4e run — maximale Great Vault World-voortgang.',en:'4th run — maximum Great Vault World progress.',da:'4. run — maksimal Great Vault World-fremgang.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
+  { id:'w_delve2', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)'},
+    name:{nl:'Bountiful Delve (2/4)',en:'Bountiful Delve (2/4)'},
+    desc:{nl:'2e run.',en:'2nd run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
+  { id:'w_delve3', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)'},
+    name:{nl:'Bountiful Delve (3/4)',en:'Bountiful Delve (3/4)'},
+    desc:{nl:'3e run.',en:'3rd run.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
+  { id:'w_delve4', diff:'medium', dmfOnly:false, cat:{nl:'🏚 Delves (Bountiful)',en:'🏚 Delves (Bountiful)'},
+    name:{nl:'Bountiful Delve (4/4)',en:'Bountiful Delve (4/4)'},
+    desc:{nl:'4e run — maximale Great Vault World-voortgang.',en:'4th run — maximum Great Vault World progress.'}, where:'📍 Zie delve 1.', way:'', tags:['gear'] },
 
-  { id:'w_mplus1', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
-    name:{nl:'M+ Key voltooien (1/8)',en:'Complete M+ Key (1/8)',da:'Gennemfor M+ Key (1/8)'},
-    desc:{nl:'Eerste key voor Great Vault Dungeon-slot.',en:'First key for Great Vault Dungeon slot.',da:'Forste key til Great Vault Dungeon-slot.'},
+  { id:'w_mplus1', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'},
+    name:{nl:'M+ Key voltooien (1/8)',en:'Complete M+ Key (1/8)'},
+    desc:{nl:'Eerste key voor Great Vault Dungeon-slot.',en:'First key for Great Vault Dungeon slot.'},
     where:'📍 Geen quest — gebruik je eigen key of join via group finder.', way:'', tags:['gear'] },
-  { id:'w_mplus2', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (2/8)',en:'Complete M+ Key (2/8)',da:'Gennemfor M+ Key (2/8)'}, desc:{nl:'2e key.',en:'2nd key.',da:'2. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus3', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (3/8)',en:'Complete M+ Key (3/8)',da:'Gennemfor M+ Key (3/8)'}, desc:{nl:'3e key.',en:'3rd key.',da:'3. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus4', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (4/8)',en:'Complete M+ Key (4/8)',da:'Gennemfor M+ Key (4/8)'}, desc:{nl:'4e key.',en:'4th key.',da:'4. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus5', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (5/8)',en:'Complete M+ Key (5/8)',da:'Gennemfor M+ Key (5/8)'}, desc:{nl:'5e key.',en:'5th key.',da:'5. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus6', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (6/8)',en:'Complete M+ Key (6/8)',da:'Gennemfor M+ Key (6/8)'}, desc:{nl:'6e key.',en:'6th key.',da:'6. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus7', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (7/8)',en:'Complete M+ Key (7/8)',da:'Gennemfor M+ Key (7/8)'}, desc:{nl:'7e key.',en:'7th key.',da:'7. key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
-  { id:'w_mplus8', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
-    name:{nl:'M+ Key voltooien (8/8)',en:'Complete M+ Key (8/8)',da:'Gennemfor M+ Key (8/8)'},
-    desc:{nl:'8 keys = maximale vault keuze. +10 of hoger geeft Myth-level reward.',en:'8 keys = maximum vault choice. +10 or higher gives Myth-level reward.',da:'8 keys = maksimal vault-valg. +10 eller hojere giver Myth-niveau belonning.'},
+  { id:'w_mplus2', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (2/8)',en:'Complete M+ Key (2/8)'}, desc:{nl:'2e key.',en:'2nd key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus3', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (3/8)',en:'Complete M+ Key (3/8)'}, desc:{nl:'3e key.',en:'3rd key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus4', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (4/8)',en:'Complete M+ Key (4/8)'}, desc:{nl:'4e key.',en:'4th key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus5', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (5/8)',en:'Complete M+ Key (5/8)'}, desc:{nl:'5e key.',en:'5th key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus6', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (6/8)',en:'Complete M+ Key (6/8)'}, desc:{nl:'6e key.',en:'6th key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus7', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'}, name:{nl:'M+ Key voltooien (7/8)',en:'Complete M+ Key (7/8)'}, desc:{nl:'7e key.',en:'7th key.'}, where:'📍 Zie boven.', way:'', tags:['gear'] },
+  { id:'w_mplus8', diff:'hard', dmfOnly:false, cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'},
+    name:{nl:'M+ Key voltooien (8/8)',en:'Complete M+ Key (8/8)'},
+    desc:{nl:'8 keys = maximale vault keuze. +10 of hoger geeft Myth-level reward.',en:'8 keys = maximum vault choice. +10 or higher gives Myth-level reward.'},
     where:'📍 Zie boven.', way:'', tags:['gear'] },
   { id:'w_vault', diff:'medium', dmfOnly:false,
-    cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+',da:'⚔ Mythic+'},
-    name:{nl:'Great Vault ophalen',en:'Collect Great Vault',da:'Hent Great Vault'},
+    cat:{nl:'⚔ Mythic+',en:'⚔ Mythic+'},
+    name:{nl:'Great Vault ophalen',en:'Collect Great Vault'},
     desc:{nl:'Kies je wekelijkse beloning na reset (woensdag EU). Niet ophalen = Thalassian Token of Merit per slot.',
-          en:'Choose your weekly reward after reset (Wednesday EU). Not collecting = Thalassian Token of Merit per slot.',
-          da:'Vaelg din ugentlige belonning efter reset (onsdag EU). Ikke hente = Thalassian Token of Merit per slot.'},
+          en:'Choose your weekly reward after reset (Wednesday EU). Not collecting = Thalassian Token of Merit per slot.'},
     where:'📍 Vaultkeeper Elysa — The Bazaar, Silvermoon City.',
     way:'/way #2393 54.1 51.2 Vaultkeeper Elysa (Great Vault)', tags:['gear'] },
 
   { id:'w_raid1', diff:'medium', dmfOnly:false,
-    cat:{nl:'🏰 Raid',en:'🏰 Raid',da:'🏰 Raid'},
-    name:{nl:'Voidspire (LFR/Normal/Heroic)',en:'Voidspire (LFR/Normal/Heroic)',da:'Voidspire (LFR/Normal/Heroic)'},
+    cat:{nl:'🏰 Raid',en:'🏰 Raid'},
+    name:{nl:'Voidspire (LFR/Normal/Heroic)',en:'Voidspire (LFR/Normal/Heroic)'},
     desc:{nl:'6 bazen in Voidstorm. Geeft gear, rep en Great Vault Raid-voortgang. LFR beschikbaar na week 1.',
-          en:'6 bosses in Voidstorm. Gives gear, rep and Great Vault Raid progress. LFR available after week 1.',
-          da:'6 bossen i Voidstorm. Giver udrustning, rep og Great Vault Raid-fremgang. LFR tilgaengelig efter uge 1.'},
+          en:'6 bosses in Voidstorm. Gives gear, rep and Great Vault Raid progress. LFR available after week 1.'},
     where:'📍 Voidspire — Voidstorm. Via Dungeon Finder of directe ingang.',
     way:'/way #2405 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
   { id:'w_raid2', diff:'medium', diff:'medium', dmfOnly:false,
-    cat:{nl:'🏰 Raid',en:'🏰 Raid',da:'🏰 Raid'},
-    name:{nl:'Dreamrift (LFR/Normal/Heroic)',en:'Dreamrift (LFR/Normal/Heroic)',da:'Dreamrift (LFR/Normal/Heroic)'},
-    desc:{nl:'Tweede raid voor extra gear en vault slots.',en:'Second raid for extra gear and vault slots.',da:'Andet raid for ekstra udrustning og vault-pladser.'},
+    cat:{nl:'🏰 Raid',en:'🏰 Raid'},
+    name:{nl:'Dreamrift (LFR/Normal/Heroic)',en:'Dreamrift (LFR/Normal/Heroic)'},
+    desc:{nl:'Tweede raid voor extra gear en vault slots.',en:'Second raid for extra gear and vault slots.'},
     where:'📍 Dreamrift — via Dungeon Finder of directe ingang.', way:'', tags:['gear','rep'] },
 
   { id:'w_rep_silver', dmfOnly:false,
-    cat:{nl:'🤝 Reputatie',en:'🤝 Reputation',da:'🤝 Reputation'},
-    name:{nl:'Silvermoon Court Renown',en:'Silvermoon Court Renown',da:'Silvermoon Court Renown'},
+    cat:{nl:'🤝 Reputatie',en:'🤝 Reputation'},
+    name:{nl:'Silvermoon Court Renown',en:'Silvermoon Court Renown'},
     desc:{nl:'Via Saltheril\&#39;s Soiree, World Quests en zone-activiteiten. Contract van een Scribe geeft rep bij alle WQs.',
-          en:'Via Saltheril\&#39;s Soiree, World Quests and zone activities. Contract from a Scribe gives rep on all WQs.',
-          da:'Via Saltheril\&#39;s Soiree, World Quests og zone-aktiviteter. Kontrakt fra en Scribe giver rep pa alle WQs.'},
+          en:'Via Saltheril\&#39;s Soiree, World Quests and zone activities. Contract from a Scribe gives rep on all WQs.'},
     where:'📍 Vendor: Caeris Fairdawn — Saltheril\&#39;s Haven, Eversong Woods.',
     way:'/way #2395 43.4 47.4 Caeris Fairdawn (Silvermoon Court vendor)', tags:['rep'] },
   { id:'w_rep_amani', dmfOnly:false,
-    cat:{nl:'🤝 Reputatie',en:'🤝 Reputation',da:'🤝 Reputation'},
-    name:{nl:'Amani Tribe Renown',en:'Amani Tribe Renown',da:'Amani Tribe Renown'},
+    cat:{nl:'🤝 Reputatie',en:'🤝 Reputation'},
+    name:{nl:'Amani Tribe Renown',en:'Amani Tribe Renown'},
     desc:{nl:'Via Abundance weekly en Zul-Aman activiteiten. Renown 9 geeft Champion-level necklace.',
-          en:'Via Abundance weekly and Zul-Aman activities. Renown 9 gives Champion-level necklace.',
-          da:'Via Abundance-ugentlig og Zul-Aman-aktiviteter. Renown 9 giver Champion-halskaedet.'},
+          en:'Via Abundance weekly and Zul-Aman activities. Renown 9 gives Champion-level necklace.'},
     where:'📍 Via Abundance event in Zul-Aman.',
     way:'/way #2437 47.2 62.1 Amani-Zar Village (Abundance/Amani hub)', tags:['rep'] },
 
   { id:'w_craft_orders', dmfOnly:false,
-    cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders',da:'🔨 Crafting Orders'},
-    name:{nl:'Patron Crafting Orders verwerken',en:'Process Patron Crafting Orders',da:'Behandl Patron Crafting Orders'},
+    cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders'},
+    name:{nl:'Patron Crafting Orders verwerken',en:'Process Patron Crafting Orders'},
     desc:{nl:'Voornaamste bron van wekelijkse KP. Verwerk publieke orders voor gold en profession XP.',
-          en:'Main source of weekly KP. Process public orders for gold and profession XP.',
-          da:'Vigtigste kilde til ugentlig KP. Behandl offentlige ordrer for guld og profession-XP.'},
+          en:'Main source of weekly KP. Process public orders for gold and profession XP.'},
     where:'📍 Mar-nah — The Bazaar, Silvermoon City.',
     way:'/way #2393 46.2 53.8 Mar-nah (Crafting Orders)', tags:['crafting','currency'] },
   { id:'w_craft_weekly', dmfOnly:false,
-    cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders',da:'🔨 Crafting Orders'},
-    name:{nl:'Weekly Crafting Quest',en:'Weekly Crafting Quest',da:'Ugentlig Crafting Quest'},
+    cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders'},
+    name:{nl:'Weekly Crafting Quest',en:'Weekly Crafting Quest'},
     desc:{nl:'Speciale weekly quest voor bonus KP of profession XP.',
-          en:'Special weekly quest for bonus KP or profession XP.',
-          da:'Speciel ugentlig quest for bonus KP eller profession-XP.'},
+          en:'Special weekly quest for bonus KP or profession XP.'},
     where:'📍 Bij je eigen profession trainer — gebruik de /way uit de Professies-tab van jouw professie.',
     way:'', tags:['crafting','rep'] },
 
   { id:'w_timewalking', dmfOnly:false,
-    cat:{nl:'⏳ Timewalking',en:'⏳ Timewalking',da:'⏳ Timewalking'},
-    name:{nl:'Timewalking (indien actief)',en:'Timewalking (if active)',da:'Timewalking (hvis aktiv)'},
+    cat:{nl:'⏳ Timewalking',en:'⏳ Timewalking'},
+    name:{nl:'Timewalking (indien actief)',en:'Timewalking (if active)'},
     desc:{nl:'Voltooi 5 Timewalking dungeons voor bonus gear. Alleen actief in specifieke weken — check de in-game kalender (J).',
-          en:'Complete 5 Timewalking dungeons for bonus gear. Only active certain weeks — check the in-game calendar (J).',
-          da:'Gennemfor 5 Timewalking dungeons for bonus-udrustning. Kun aktiv visse uger — tjek den interne kalender (J).'},
+          en:'Complete 5 Timewalking dungeons for bonus gear. Only active certain weeks — check the in-game calendar (J).'},
     where:'📍 Queue via Dungeon Finder. Actief weken staan in de kalender.', way:'', tags:['gear'] },
 
   { id:'w_dmf', diff:'easy', dmfOnly:true,
-    cat:{nl:'🎡 Darkmoon Faire',en:'🎡 Darkmoon Faire',da:'🎡 Darkmoon Faire'},
-    name:{nl:'Darkmoon Faire',en:'Darkmoon Faire',da:'Darkmoon Faire'},
+    cat:{nl:'🎡 Darkmoon Faire',en:'🎡 Darkmoon Faire'},
+    name:{nl:'Darkmoon Faire',en:'Darkmoon Faire'},
     desc:{nl:'Mini-games en quests geven +2 skill en +3 KP per profession. Vergeet de WHEE!-buff niet voor +10% XP/rep. Alleen actief eerste week van de maand.',
-          en:'Mini-games and quests give +2 skill and +3 KP per profession. Don\&#39;t forget the WHEE! buff for +10% XP/rep. Only active first week of month.',
-          da:'Mini-spil og quests giver +2 skill og +3 KP per profession. Glem ikke WHEE!-buffet for +10% XP/rep. Kun aktiv forste uge af maneden.'},
+          en:'Mini-games and quests give +2 skill and +3 KP per profession. Don\&#39;t forget the WHEE! buff for +10% XP/rep. Only active first week of month.'},
     where:'📍 Portal: Elwynn Forest (bij Goldshire, Alliance) of Mulgore (bij Thunder Bluff, Horde).',
     way:'/way Elwynn Forest 41.1 83.0 Darkmoon Faire portal (Alliance)', tags:['currency','crafting'] },
 
   // ── Renown Champion Gear (eenmalig per character, maar weekly controleren) ──
   { id:'w_renown_helm', dmfOnly:false,
-    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards',da:'🏅 Renown Belonninger'},
-    name:{nl:'Champion Helm (Silvermoon Court Renown 9)',en:'Champion Helm (Silvermoon Court Renown 9)',da:'Champion Hjelm (Silvermoon Court Renown 9)'},
+    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
+    name:{nl:'Champion Helm (Silvermoon Court Renown 9)',en:'Champion Helm (Silvermoon Court Renown 9)'},
     desc:{nl:'Haal de Champion Helm (iLvl 246) via Silvermoon Court Renown 9. Eenmalig — vink af zodra je hem hebt.',
-          en:'Collect Champion Helm (iLvl 246) at Silvermoon Court Renown 9. One-time — check off once collected.',
-          da:'Hent Champion-hjelmen (iLvl 246) ved Silvermoon Court Renown 9. Engangs — afkryds nar du har den.'},
+          en:'Collect Champion Helm (iLvl 246) at Silvermoon Court Renown 9. One-time — check off once collected.'},
     where:'Vendor: Caeris Fairdawn — Saltheril&#39;s Haven, Eversong Woods.',
     way:'/way #2395 43.4 47.4 Caeris Fairdawn', tags:['gear','rep'] },
 
   { id:'w_renown_neck', dmfOnly:false,
-    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards',da:'🏅 Renown Belonninger'},
-    name:{nl:'Champion Necklace (Amani Tribe Renown 9)',en:'Champion Necklace (Amani Tribe Renown 9)',da:'Champion Halskaedet (Amani Tribe Renown 9)'},
+    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
+    name:{nl:'Champion Necklace (Amani Tribe Renown 9)',en:'Champion Necklace (Amani Tribe Renown 9)'},
     desc:{nl:'Haal de Champion Necklace (iLvl 246) via Amani Tribe Renown 9.',
-          en:'Collect Champion Necklace (iLvl 246) at Amani Tribe Renown 9.',
-          da:'Hent Champion-halskaedet (iLvl 246) ved Amani Tribe Renown 9.'},
+          en:'Collect Champion Necklace (iLvl 246) at Amani Tribe Renown 9.'},
     where:'Amani Tribe vendor — Amani-Zar Village, Zul-Aman.',
     way:'/way #2437 47.2 62.1 Amani Tribe vendor', tags:['gear','rep'] },
 
   { id:'w_renown_waist', dmfOnly:false,
-    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards',da:'🏅 Renown Belonninger'},
-    name:{nl:'Champion Belt (Haranir Renown 8)',en:'Champion Belt (Haranir Renown 8)',da:'Champion Baelte (Haranir Renown 8)'},
+    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
+    name:{nl:'Champion Belt (Haranir Renown 8)',en:'Champion Belt (Haranir Renown 8)'},
     desc:{nl:'Haal de Champion Belt (iLvl 246) via Haranir Renown 8.',
-          en:'Collect Champion Belt (iLvl 246) at Haranir Renown 8.',
-          da:'Hent Champion-baeltet (iLvl 246) ved Haranir Renown 8.'},
+          en:'Collect Champion Belt (iLvl 246) at Haranir Renown 8.'},
     where:'Haranir vendor — The Den, Harandar.',
     way:'/way #2413 54.2 53.0 The Den, Harandar', tags:['gear','rep'] },
 
   { id:'w_renown_trinket', dmfOnly:false,
-    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards',da:'🏅 Renown Belonninger'},
-    name:{nl:'Champion Trinket (Singularity Renown 7)',en:'Champion Trinket (Singularity Renown 7)',da:'Champion Trinket (Singularity Renown 7)'},
+    cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
+    name:{nl:'Champion Trinket (Singularity Renown 7)',en:'Champion Trinket (Singularity Renown 7)'},
     desc:{nl:'Haal de Champion Trinket (iLvl 246) via Singularity Renown 7.',
-          en:'Collect Champion Trinket (iLvl 246) at Singularity Renown 7.',
-          da:'Hent Champion-trinket (iLvl 246) ved Singularity Renown 7.'},
+          en:'Collect Champion Trinket (iLvl 246) at Singularity Renown 7.'},
     where:'Singularity vendor — Stormarion Citadel, Voidstorm.',
     way:'/way #2405 26.4 67.6 Singularity vendor', tags:['gear','rep'] },
 
   // ── Sparks of Radiance ──
   { id:'w_spark_liadrin', dmfOnly:false,
-    cat:{nl:'✨ Sparks of Radiance',en:'✨ Sparks of Radiance',da:'✨ Sparks of Radiance'},
-    name:{nl:'Spark of Radiance (Liadrin quest)',en:'Spark of Radiance (Liadrin quest)',da:'Spark of Radiance (Liadrin quest)'},
+    cat:{nl:'✨ Sparks of Radiance',en:'✨ Sparks of Radiance'},
+    name:{nl:'Spark of Radiance (Liadrin quest)',en:'Spark of Radiance (Liadrin quest)'},
     desc:{nl:'Kans op Spark via wekelijkse Liadrin quest. Bewaar voor BiS slot — craft niks voordat je weet wat je wil!',
-          en:'Chance at Spark from weekly Liadrin quest. Save for BiS slot — don&#39;t craft until you know what you want!',
-          da:'Chance for Spark fra ugentlig Liadrin-quest. Gem til BiS-plads — craft intet forend du ved hvad du vil!'},
+          en:'Chance at Spark from weekly Liadrin quest. Save for BiS slot — don&#39;t craft until you know what you want!'},
     where:'Lady Liadrin — tent bij Sanctum of Light, Silvermoon City.',
     way:'/way #2393 49.03 64.61 Lady Liadrin', tags:['currency'] },
 
   { id:'w_spark_worldtour', dmfOnly:false,
-    cat:{nl:'✨ Sparks of Radiance',en:'✨ Sparks of Radiance',da:'✨ Sparks of Radiance'},
-    name:{nl:'Spark of Radiance (World Tour — alle 8 M0)',en:'Spark of Radiance (World Tour — all 8 M0)',da:'Spark of Radiance (World Tour — alle 8 M0)'},
+    cat:{nl:'✨ Sparks of Radiance',en:'✨ Sparks of Radiance'},
+    name:{nl:'Spark of Radiance (World Tour — alle 8 M0)',en:'Spark of Radiance (World Tour — all 8 M0)'},
     desc:{nl:'Voltooi alle 8 M0 dungeons (World Tour quest) voor een gegarandeerde Spark. Bewaar — craft niks!',
-          en:'Complete all 8 M0 dungeons (World Tour quest) for a guaranteed Spark. Save it — don&#39;t craft yet!',
-          da:'Gennemfor alle 8 M0 dungeons (World Tour) for en garanteret Spark. Gem den — craft ingenting endnu!'},
+          en:'Complete all 8 M0 dungeons (World Tour quest) for a guaranteed Spark. Save it — don&#39;t craft yet!'},
     where:'World Tour quest NPC — tent bij Lady Liadrin, Silvermoon City.',
     way:'/way #2393 49.03 64.61 World Tour quest NPC', tags:['currency'] },
 
   // ── Hard Prey voor Veteran gear + Crests ──
   { id:'w_prey_hard', dmfOnly:false,
-    cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts',da:'🎯 Prey Hunts'},
-    name:{nl:'Hard Prey Hunts (2x) — Veteran gear',en:'Hard Prey Hunts (2x) — Veteran gear',da:'Hard Prey Hunts (2x) — Veteran udrustning'},
+    cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
+    name:{nl:'Hard Prey Hunts (2x) — Veteran gear',en:'Hard Prey Hunts (2x) — Veteran gear'},
     desc:{nl:'Eerste 2 Hard Prey hunts geven een Veteran gear box (iLvl 240+). Telt mee voor Great Vault World. Tip: focus op vallen + ambushes, onder de 5 min per hunt.',
-          en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Contributes to Great Vault World. Tip: focus on traps + ambushes, under 5 min/hunt.',
-          da:'De forste 2 Hard Prey-jagter giver en Veteran-kasse (iLvl 240+). Bidrager til Great Vault World. Tip: fokus pa falder + baghold, under 5 min/jagt.'},
+          en:'First 2 Hard Prey hunts give a Veteran gear box (iLvl 240+). Contributes to Great Vault World. Tip: focus on traps + ambushes, under 5 min/hunt.'},
     where:'Magister Astalor Bloodsworn — Murder Row, Silvermoon City.',
     way:'/way #2393 54.97 63.31 Magister Astalor Bloodsworn (Prey)', tags:['gear','currency'] }];function isDmfWeek() {
   const now = new Date();
@@ -945,8 +920,6 @@ function startWeeklyCountdown() {
 
     if (lang === 'en') {
       resetEl.textContent = `${days} days, ${hours} hrs, ${mins} min, ${secs} sec`;
-    } else if (lang === 'da') {
-      resetEl.textContent = `${days} dage, ${hours} timer, ${mins} min, ${secs} sek`;
     } else {
       resetEl.textContent = `${days} dagen, ${hours} uur, ${mins} min, ${secs} sec`;
     }
@@ -995,7 +968,7 @@ function openSearch() {
   document.getElementById('search-overlay').classList.add('open');
   const inp = document.getElementById('search-input');
   inp.value = '';
-  const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' };
+  const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'};
   inp.placeholder = ph[lang] || ph.nl;
   document.getElementById('search-results').innerHTML = '';
   searchFocusIdx = -1;
@@ -1025,14 +998,12 @@ function doSearch(q) {
   const results = [];
   const badges = {
     nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie', delves:'Delves' },
-    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' },
-    da: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' },
+    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' }
   };
   const badge = badges[lang] || badges.nl;
   const groupLabels = {
     nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies', delves:'💎 Delves' },
-    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions', delves:'💎 Delves' },
-    da: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professioner', delves:'💎 Delves' },
+    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions', delves:'💎 Delves' }
   };
   const grpLbl = groupLabels[lang] || groupLabels.nl;
 
@@ -1073,8 +1044,8 @@ function doSearch(q) {
 
   // ── Delves ──
   if (q.includes('delve') || q.includes('bountiful') || q.includes('loot')) {
-    const delveLbl = { nl:'Delves', en:'Delves', da:'Delves' }[lang];
-    const delveSub = { nl:'Alle Delves met /way & Loot', en:'All Delves with /way & Loot', da:'Alle Delves med /way & Loot' }[lang];
+    const delveLbl = { nl:'Delves', en:'Delves'}[lang];
+    const delveSub = { nl:'Alle Delves met /way & Loot', en:'All Delves with /way & Loot'}[lang];
     results.push({ type:'delves', icon: '💎', name: delveLbl, sub: delveSub, badge: 'Delves', action: () => { closeSearch(); setMode('delves'); } });
   }
   if (typeof DELVES_DATA !== 'undefined' && DELVES_DATA.delves) {
@@ -1202,21 +1173,7 @@ const WEEKLY_UI = {
     wat_nu_title: '🎯 Start with this:',
     wat_nu_empty: '🎉 All weekly tasks checked off! Go have fun 😄',
     diff: {easy:'🟢 Easy', medium:'🟡 Medium', hard:'🔴 Challenging'},
-  },
-  da: {
-    title: '📅 Ugentlig Tjekliste',
-    reset_info: 'Nulstilles hver onsdag · Naeste nulstilling:',
-    reset_btn: '↺ Nulstil alt',
-    copy_tip: 'Klik for at kopiere',
-    copied: '✅ Kopieret!',
-    tags: {gear:'⚔ Udrustning', rep:'💚 Rep', currency:'💰 Valuta', crafting:'🔨 Crafting'},
-    progress: (done, total) => `${done} / ${total} fuldfort`,
-    dmf_note: '🎡 Darkmoon Faire er aktiv denne uge!',
-    wat_nu_btn: '⚡ Hvad skal jeg gøre først?',
-    wat_nu_title: '🎯 Start her:',
-    wat_nu_empty: '🎉 Alle ugentlige opgaver er afkrydset! Nyd spillet 😄',
-    diff: {easy:'🟢 Let', medium:'🟡 Middel', hard:'🔴 Udfordrende'},
-  },
+  }
 };
 function buildWeeklyList() {
   const el = document.getElementById('weekly-list');
@@ -1332,16 +1289,7 @@ const PWA_CONTENT = {
     ios: '<strong>iPhone / iPad</strong> — Safari → share (□↑) → "Add to Home Screen"',
     pc: '<strong>PC / Mac</strong> — click the install icon in the address bar, or use the button below.',
     btn: 'Install'
-  },
-  da: {
-    title: '📲 Installer som app',
-    sub: 'Føj guiden til din startskærm for hurtig adgang.',
-    android: '<strong>Android</strong> — Chrome → menu (⋮) → "Føj til startskærm"',
-    ios: '<strong>iPhone / iPad</strong> — Safari → del (□↑) → "Føj til hjemmeskærm"',
-    pc: '<strong>PC / Mac</strong> — klik på installationsikonet i adresselinjen, eller brug knappen nedenfor.',
-    btn: 'Installer'
-  }
-};
+  }};
 
 let deferredPrompt = null;
 
@@ -1405,17 +1353,7 @@ const SPEC_TAB_UI = {
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
         macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
         cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon Oil', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
-      },
-  da: { grid_sub:'Vælg en spec for rotation, stats, cooldowns og tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Snydeark','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Makroer','🎯 Ressource','🧪 Forbrug & BiS'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
-        pros:'✅ Styrker', cons:'❌ Svagheder',
-        opener:'Åbner', single:'Single Target', aoe:'AoE / Mythic+',
-        prio:'#', spell:'Spell', why:'Hvorfor', imp:'Prioritet',
-        generate:'Generer Focus', spend:'Brug Focus', pets:'Kæledyrstyper',
-        macro_copy:'Klik på koden for at kopiere', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Mad', cons_rune:'Augment Rune', cons_note:'Bemærkning',
-        cons_bis_sub1:'Forbrug', cons_bis_sub2:'BiS Gear', cons_weapon:'Våbenolie', bis_slot:'Plads', bis_item:'Genstand', bis_name:'Navn', bis_ilvl:'ILvl', bis_req:'Krav', bis_versions:'Versioner', bis_side:'Side', bis_source:'Kilde', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-liste kommer snart. Tjek <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> eller <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for aktuel BiS.',
-      },
+      }
 };
 
 // currentSpec al gedeclareerd op regel 1110 — niet nogmaals declareren
@@ -1834,14 +1772,7 @@ const BANNER_UI = {
     tip_desktop: '💡 <strong>Tip:</strong> Something look off, or want the latest version? Press <strong>Ctrl+Shift+R</strong> for a hard reload.',
     tip_mobile:  '💡 <strong>Tip:</strong> Something look off or want the latest version? Close the browser, swipe it away from recent apps and reopen.',
     btn: '→ Go to the site',
-  },
-  da: {
-    title: '🚧 Under opbygning!',
-    body: 'Vi arbejder i øjeblikket hårdt på <strong>Specs-sektionen</strong> — rotationer, stats, cooldowns og tips til alle klasser.<br><br>Nogle dele er endnu ikke færdige eller kan ændre sig. Feedback er altid velkommen via knappen nedenfor!',
-    tip_desktop: '💡 <strong>Tip:</strong> Ser noget mærkeligt ud, eller vil du have den nyeste version? Tryk <strong>Ctrl+Shift+R</strong> for en hård genindlæsning.',
-    tip_mobile:  '💡 <strong>Tip:</strong> Noget ser mærkeligt ud eller vil du have nyeste version? Luk browseren, svirp den væk fra seneste apps og åbn igen.',
-    btn: '→ Gå til sitet',
-  },
+  }
 };
 
 function renderBanner() {

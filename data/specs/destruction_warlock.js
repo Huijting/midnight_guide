@@ -4,28 +4,25 @@ const SPEC_DESTRUCTION_WARLOCK = {
   id: 'destruction_warlock',
   icon: '🔥',
   class: 'Warlock',
-  spec:   { nl: 'Destruction', en: 'Destruction', da: 'Destruction' },
+  spec:   { nl: 'Destruction', en: 'Destruction'},
   role:   'dps',
   armor:  'Cloth',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand', da: 'Stav eller enhånds + offhand' },
+  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Soul Shards',
   patch: '1.0',
   color: '#8788EE',
 
   summary: {
     nl: 'Destruction Warlock zet alles in brand. Bouw Shards op via Incinerate, dump ze met Chaos Bolt voor indrukwekkende single target burst. Eenvoudigste Warlock spec om te leren.',
-    en: 'Destruction Warlock sets everything on fire. Build Shards via Incinerate, dump them with Chaos Bolt for impressive single target burst. Easiest Warlock spec to learn.',
-    da: 'Destruction Warlock sætter alt i brand. Opbyg Shards via Incinerate, dump dem med Chaos Bolt for imponerende single target burst. Nemmeste Warlock-spec at lære.',
+    en: 'Destruction Warlock sets everything on fire. Build Shards via Incinerate, dump them with Chaos Bolt for impressive single target burst. Easiest Warlock spec to learn.'
   },
   pros: {
     nl: ['Eenvoudige en intuïtieve rotation', 'Uitstekende single target burst', 'Chaos Bolt is één van de indrukwekkendste spells visueel', 'Goed in execute phase'],
-    en: ['Simple and intuitive rotation', 'Excellent single target burst', 'Chaos Bolt is one of the most impressive spells visually', 'Good in execute phase'],
-    da: ['Simpel og intuitiv rotation', 'Fremragende single target burst', 'Chaos Bolt er en af de mest imponerende trylleformularer visuelt', 'God i execute-fase'],
+    en: ['Simple and intuitive rotation', 'Excellent single target burst', 'Chaos Bolt is one of the most impressive spells visually', 'Good in execute phase']
   },
   cons: {
     nl: ['Minder sterk in AoE dan Affliction of Demo', 'Chaos Bolt heeft lange cast time — kwetsbaar bij movement', 'Burst is afhankelijk van Shard pooling'],
-    en: ['Less strong in AoE than Affliction or Demo', 'Chaos Bolt has long cast time — vulnerable during movement', 'Burst depends on Shard pooling'],
-    da: ['Mindre stærk i AoE end Affliction eller Demo', 'Chaos Bolt har lang casttid — sårbar under bevægelse', 'Burst afhænger af Shard-pooling'],
+    en: ['Less strong in AoE than Affliction or Demo', 'Chaos Bolt has long cast time — vulnerable during movement', 'Burst depends on Shard pooling']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
         'Summon Infernal always with Shards saved for Chaos Bolt spam',
         'Backdraft procs (from Conflagrate) always use before Chaos Bolt',
       ],
-    },
-    da: {
-      opener: 'Immolate → Conflagrate → Incinerate x2 → Chaos Bolt (4+ Shards) → Summon Infernal → Chaos Bolt spam',
-      single: 'Immolate aktiv → Conflagrate på CD → Incinerate fylder → Chaos Bolt ved 3+ Shards',
-      aoe:    'Spred Immolate → Rain of Fire → Chaos Bolt (rammer alt med Fire and Brimstone talent)',
-      rules: [
-        'Immolate altid aktiv på mål',
-        'Conflagrate altid på cooldown — genererer Shards',
-        'Chaos Bolt ved 3+ Shards — største skadeknap',
-        'Summon Infernal altid med Shards gemt til Chaos Bolt-spam',
-        'Backdraft-procs (fra Conflagrate) brug altid inden Chaos Bolt',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
         { spell: 'Chaos Bolt (F&B)', why: 'Fire and Brimstone: Chaos Bolt hits all targets' },
         { spell: 'Conflagrate', why: 'Always on CD even in AoE' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Backdraft (proc fra Conflagrate) gør dine næste 2 Incinerates og Chaos Bolt 30% hurtigere. Brug det altid straks!',
-      opener: [
-        { spell: 'Immolate', why: 'Påfør DoT — kræves til Conflagrate' },
-        { spell: 'Conflagrate', why: 'Shard-generator + Backdraft proc' },
-        { spell: 'Incinerate x2', why: 'Brug Backdraft — hurtigere casts' },
-        { spell: 'Chaos Bolt', why: 'Ved 4+ Shards — massivt single target træf' },
-        { spell: 'Summon Infernal', why: 'Største cooldown — sammen med Shard-dump' },
-      ],
-      single: [
-        { spell: 'Immolate', why: 'Forny når <5 sek tilbage' },
-        { spell: 'Conflagrate', why: 'Altid på CD — Backdraft + Shard-generering' },
-        { spell: 'Chaos Bolt', why: '3+ Shards — dump altid straks' },
-        { spell: 'Incinerate', why: 'Fylder — bruger Backdraft-procs' },
-        { spell: 'Channel Demonfire', why: 'Kraftfuld channel som talent — efter Chaos Bolt' },
-      ],
-      aoe: [
-        { spell: 'Immolate på mål', why: 'DoT på hovedmål' },
-        { spell: 'Rain of Fire', why: 'AoE-channel på fjendergruppe' },
-        { spell: 'Chaos Bolt (F&B)', why: 'Fire and Brimstone: Chaos Bolt rammer alle mål' },
-        { spell: 'Conflagrate', why: 'Altid på CD selv i AoE' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
         { rank:4, stat:'Mastery',         bars:2, note:'Increases Fire damage (Mastery: Chaotic Energies)' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Haste og Critical Strike er begge fremragende for Destruction — Haste til Incinerate-hastighed, Crit til Chaos Bolt-crits.',
-      list: [
-        { rank:1, stat:'Intellect',       bars:5, note:'Primær stat' },
-        { rank:2, stat:'Critical Strike', bars:4, note:'Chaos Bolt-crits er massive — hver 1% crit er værdifuld' },
-        { rank:3, stat:'Haste',           bars:4, note:'Hurtigere Incinerate = flere Shards' },
-        { rank:4, stat:'Mastery',         bars:2, note:'Øger ild-skade (Mastery: Chaotic Energies)' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       { spell:'Havoc',              cd:'25 sec', effect:'Your next single target spell also hits a 2nd target', when:'At 2 targets — effectively doubles Chaos Bolt damage' },
       { spell:'Dark Soul: Instability', cd:'2 min', effect:'+30% Crit 20 sec', when:'Together with Infernal for maximum burst' },
       { spell:'Channel Demonfire',  cd:'25 sec', effect:'Powerful channel with 15 Imps', when:'Directly after Chaos Bolt for maximum effect' },
-    ],
-    da: [
-      { spell:'Summon Infernal',    cd:'3 min',  effect:'Kraftfuld dæmon + stun AoE ved landing i 3 sek', when:'På pull — altid med 4+ Shards til Chaos Bolt-spam bagefter' },
-      { spell:'Conflagrate',        cd:'12 sec', effect:'Shard-generering + Backdraft proc', when:'Altid på cooldown — vent aldrig' },
-      { spell:'Havoc',              cd:'25 sec', effect:'Din næste single target trylleformel rammer også et 2. mål', when:'Ved 2 mål — fordobler effektivt Chaos Bolt-skade' },
-      { spell:'Dark Soul: Instability', cd:'2 min', effect:'+30% Crit i 20 sek', when:'Sammen med Infernal til maksimal burst' },
-      { spell:'Channel Demonfire',  cd:'25 sec', effect:'Kraftfuld channel med 15 Imps', when:'Direkte efter Chaos Bolt for maksimal effekt' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       { spell:'Banish',          type:'CC',        note:'Removes Demon/Elemental from fight' },
       { spell:'Demonic Circle',  type:'Mobility',  note:'Teleport back to your circle' },
       { spell:'Havoc',           type:'Cleave',    note:'Your ST spells also hit a 2nd target 10 sec' },
-    ],
-    da: [
-      { spell:'Healthstone',     type:'Healing',   note:'Gratis HP-genopretning — altid i din taske' },
-      { spell:'Soulstone',       type:'Genoplivning', note:'Pre-placer til auto-genoplivning ved død' },
-      { spell:'Banish',          type:'CC',        note:'Fjerner Demon/Elemental fra kampen' },
-      { spell:'Demonic Circle',  type:'Mobilitet', note:'Teleportér tilbage til din cirkel' },
-      { spell:'Havoc',           type:'Cleave',    note:'Dine ST trylleformularer rammer også et 2. mål i 10 sek' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       { icon:'👹', title:'Havoc = free cleave', text:'At 2 targets: Havoc on the other target, then Chaos Bolt on the main target. Both targets receive full Chaos Bolt damage. Enormously efficient.' },
       { icon:'🌧️', title:'Rain of Fire vs Chaos Bolt', text:'At 3+ targets: Rain of Fire spam is better than Chaos Bolt. At 1-2 targets always stick with Chaos Bolt as the Shard dump.' },
       { icon:'💣', title:'Infernal timing', text:'Summon Infernal is your biggest cooldown. Make sure you have 4+ Shards before the summon — then immediately spam Chaos Bolt with full Shards in the Infernal window.' },
-    ],
-    da: [
-      { icon:'🔥', title:'Chaos Bolt = tilfredsstillelse', text:'En Chaos Bolt-crit kan gøre massiv skade. Sørg altid for at have 3+ Shards inden Infernal og dump dem straks i Chaos Bolt. Det er kernen i Destruction.' },
-      { icon:'⚡', title:'Spild aldrig Backdraft', text:'Conflagrate giver dig Backdraft: 30% hurtigere Chaos Bolt og Incinerate. Brug altid straks — at lade Backdraft udløbe er tabt skade.' },
-      { icon:'👹', title:'Havoc = gratis cleave', text:'Ved 2 mål: Havoc på det andet mål, derefter Chaos Bolt på hovedmålet. Begge mål modtager fuld Chaos Bolt-skade. Enormt effektivt.' },
-      { icon:'🌧️', title:'Rain of Fire vs Chaos Bolt', text:'Ved 3+ mål: Rain of Fire-spam er bedre end Chaos Bolt. Ved 1-2 mål holder du dig altid til Chaos Bolt som Shard-dump.' },
-      { icon:'💣', title:'Infernal-timing', text:'Summon Infernal er din største cooldown. Sørg for at have 4+ Shards inden kaldet — bagefter spammer du straks Chaos Bolt med fulde Shards i Infernal-vinduet.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       { name:'Infernal + Dark Soul', code:'/cast Summon Infernal\n/cast Dark Soul: Instability', note:'Maximum burst opener — Infernal + Crit boost simultaneously.' },
       { name:'Havoc on mouseover', code:'/cast [@mouseover,harm][] Havoc', note:'Quickly place Havoc on 2nd target for free cleave.' },
       { name:'Soulstone on healer', code:'/cast [@raid2] Soulstone', note:'Pre-place Soulstone on the healer (adjust "raid2").' },
-    ],
-    da: [
-      { name:'Infernal + Dark Soul', code:'/cast Summon Infernal\n/cast Dark Soul: Instability', note:'Maksimalt burst-opener — Infernal + Crit-boost samtidigt.' },
-      { name:'Havoc på mouseover', code:'/cast [@mouseover,harm][] Havoc', note:'Sæt hurtigt Havoc på 2. mål til gratis cleave.' },
-      { name:'Soulstone på healer', code:'/cast [@raid2] Soulstone', note:'Pre-placer Soulstone på healeren (tilpas "raid2").' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       ],
       pet_tip: '💡 Pool Shards before Summon Infernal — then dump them directly with Chaos Bolt for the biggest burst window!',
       pets: [],
-    },
-    da: {
-      intro: 'Destruction bruger Soul Shards (0-5). Shards genereres via Conflagrate og Incinerate og bruges via Chaos Bolt. Enkleste Shard-økonomi af de tre Warlock-specs.',
-      generate: [
-        'Conflagrate — 1 Shard per brug (mest pålidelig)',
-        'Incinerate — chance for Shard via Backdraft-stacks',
-        'Immolate-ticks — lille chance for Shard',
-        'Roaring Blaze talent — ekstra Shard-generering',
-      ],
-      spend: [
-        'Chaos Bolt (1 Shard) — største single target skade',
-        'Rain of Fire (1 Shard) — AoE-channel',
-        'Channel Demonfire (talent) — kraftfuld channel',
-      ],
-      pet_tip: '💡 Pool Shards inden Summon Infernal — dump dem derefter straks med Chaos Bolt for det største burst-vindue!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_DESTRUCTION_WARLOCK = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',     note:'Ask for feast' },
       { type:'food',   name:'Royal Roast',    effect:'Solo food backup.',                           note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                       note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect i 1 time.',                     note:'Altid aktiv' },
-      { type:'pot',    name:'Potion of Recklessness',        effect:'Stor Intellect-boost i 25 sek.',              note:'Brug under Infernal burst-vindue' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed om feast' },
-      { type:'food',   name:'Royal Roast',    effect:'Solo-mad backup.',                            note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
-    ],
+    ]
   },
 };
 

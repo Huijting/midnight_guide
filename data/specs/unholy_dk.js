@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_UNHOLY_DK = {
   id:'unholy_dk', icon:'☠️', class:'Death Knight',
-  spec:{nl:'Unholy',en:'Unholy',da:'Unholy'},
+  spec:{nl:'Unholy',en:'Unholy'},
   role:'dps', armor:'Plate',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon',da:'Tohåndsvåben'},
+  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
   resource:'Runes + Runic Power',
   patch:'1.0', color:'#33937F',
   summary:{
     nl:'Unholy Death Knight commandeert een leger van de doden. Legt vijanden vol met ziekte en laat Ghoul en Apocalypse burst je schade vertienvoudigen.',
-    en:'Unholy Death Knight commands an army of the dead. Loads enemies with disease and lets your Ghoul and Apocalypse burst multiply your damage tenfold.',
-    da:'Unholy Death Knight kommanderer en hær af de døde. Fylder fjender med sygdom og lader din Ghoul og Apocalypse-burst mangfoldiggøre din skade.',
+    en:'Unholy Death Knight commands an army of the dead. Loads enemies with disease and lets your Ghoul and Apocalypse burst multiply your damage tenfold.'
   },
   pros:{
     nl:['Uitstekende AoE burst via Apocalypse','Permanent pet (Ghoul) — passieve schade altijd actief','Sterk in langere fights — DoTs stapelen op','Goede utility (Death Grip, Strangulate)','Dark Transformation = enorme Ghoul burst'],
-    en:['Excellent AoE burst via Apocalypse','Permanent pet (Ghoul) — passive damage always active','Strong in longer fights — DoTs stack up','Good utility (Death Grip, Strangulate)','Dark Transformation = massive Ghoul burst'],
-    da:['Fremragende AoE-burst via Apocalypse','Permanent kæledyr (Ghoul) — passiv skade altid aktiv','Stærk i længere kampe — DoTs stakler op','God utility (Death Grip, Strangulate)','Dark Transformation = massivt Ghoul-burst'],
+    en:['Excellent AoE burst via Apocalypse','Permanent pet (Ghoul) — passive damage always active','Strong in longer fights — DoTs stack up','Good utility (Death Grip, Strangulate)','Dark Transformation = massive Ghoul burst']
   },
   cons:{
     nl:['Lage mobiliteit','Rune management is complex','Lage burst zonder Apocalypse/Dark Transformation','Ziekte management vereist aandacht'],
-    en:['Low mobility','Rune management is complex','Low burst without Apocalypse/Dark Transformation','Disease management requires attention'],
-    da:['Lav mobilitet','Rune-styring er kompleks','Lav burst uden Apocalypse/Dark Transformation','Sygdomsstyring kræver opmærksomhed'],
+    en:['Low mobility','Rune management is complex','Low burst without Apocalypse/Dark Transformation','Disease management requires attention']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_UNHOLY_DK = {
         'Death Coil at 80+ Runic Power — never waste it',
         'Always use Dark Transformation immediately — Ghoul burst window',
       ],
-    },
-    da:{
-      opener:'Outbreak → Festering Strike x2 → Apocalypse → Dark Transformation → Scourge Strike → Death Coil-spam',
-      single:'Outbreak (sygdomme oppe) → Festering Strike (opbyg Wounds) → Scourge Strike → Death Coil (Runic Power) → Apocalypse på CD',
-      aoe:'Outbreak AoE → Epidemic → Scourge Strike via Death and Decay → Apocalypse på gruppe',
-      rules:[
-        'Hold altid sygdomme aktive — Festering Wound og Virulent Plague er afgørende',
-        'Opbyg Festering Wounds til 6 inden Apocalypse for maksimalt Ghoul-burst',
-        'Apocalypse på CD — dette er din stærkeste evne',
-        'Death Coil ved 80+ Runic Power — spild den aldrig',
-        'Brug altid Dark Transformation straks — Ghoul burst-vindue',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -111,33 +96,7 @@ const SPEC_UNHOLY_DK = {
         {spell:'Scourge Strike',      why:'Inside Death and Decay: hits multiple targets via cleave'},
         {spell:'Apocalypse',          why:'On CD — also strong in AoE via extra undead'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Festering Wounds er kernen i Unholy. Opbyg 6 via Festering Strike, derefter burst alt med Apocalypse + Dark Transformation. Dette er din skade-cyklus!',
-      opener:[
-        {spell:'Outbreak',            why:'AoE-sygdoms-applicator — Virulent Plague på alle mål'},
-        {spell:'Festering Strike x2', why:'Opbygger Festering Wounds på målet'},
-        {spell:'Apocalypse',          why:'Burst ved 6 Festering Wounds — kalder ekstra udøde'},
-        {spell:'Dark Transformation', why:'Transformerer din Ghoul til en kraftfuld burst-maskine'},
-        {spell:'Scourge Strike',      why:'Fjerner Festering Wounds for ekstra burst-skade'},
-        {spell:'Death Coil',          why:'Runic Power-dump — styrk din Ghoul via Sudden Doom-proc'},
-      ],
-      single:[
-        {spell:'Outbreak',            why:'Hold sygdomme oppe — brug ved udløb'},
-        {spell:'Festering Strike',    why:'Opbyg Wounds til 6 til Apocalypse'},
-        {spell:'Scourge Strike',      why:'Fjerner Wounds for skade — brug efter Apocalypse'},
-        {spell:'Death Coil',          why:'Ved 80+ Runic Power eller Sudden Doom-proc — cap aldrig'},
-        {spell:'Apocalypse',          why:'På CD med 6 Wounds — stærkeste evne'},
-        {spell:'Dark Transformation', why:'På CD — brug altid straks til Ghoul-burst'},
-      ],
-      aoe:[
-        {spell:'Outbreak',            why:'AoE-sygdoms-applicator på flere mål på én gang'},
-        {spell:'Epidemic',            why:'AoE Death Coil — spreder Virulent Plague-skade'},
-        {spell:'Death and Decay',     why:'AoE-jord — Scourge Strike rammer ekstra mål inde i den'},
-        {spell:'Scourge Strike',      why:'Inde i Death and Decay: rammer flere mål via cleave'},
-        {spell:'Apocalypse',          why:'På CD — også stærk i AoE via ekstra udøde'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -159,17 +118,7 @@ const SPEC_UNHOLY_DK = {
         {rank:4,stat:'Mastery',        bars:3,note:'Mastery: Dreadblade — increases Unholy damage'},
         {rank:5,stat:'Versatility',    bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Strength er altid #1. Haste sænker GCD og fremskynder Rune-genopladning. Mastery: Dreadblade øger direkte skaden af Unholy-evner.',
-      list:[
-        {rank:1,stat:'Strength',       bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',          bars:4,note:'Hurtigere Rune-genopladning + lavere GCD'},
-        {rank:3,stat:'Critical Strike',bars:3,note:'Øger burst-skade, udløser procs'},
-        {rank:4,stat:'Mastery',        bars:3,note:'Mastery: Dreadblade — øger Unholy-skade'},
-        {rank:5,stat:'Versatility',    bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -185,14 +134,7 @@ const SPEC_UNHOLY_DK = {
       {spell:'Unholy Assault',      cd:'1.5 min', effect:'Burst + gives everyone in group Festering Wounds buff', when:'On CD — combine with Apocalypse window'},
       {spell:'Anti-Magic Shell',    cd:'1 min',   effect:'Absorbs 100% magic damage 5 sec',                      when:'At magic-heavy mechanics — proactively'},
       {spell:'Death and Decay',     cd:'30 sec',  effect:'AoE ground — empowers Scourge Strike and AoE rotation', when:'Always place down at 2+ targets'},
-    ],
-    da:[
-      {spell:'Apocalypse',          cd:'1.5 min', effect:'Burst ved 6 Festering Wounds + kalder ekstra udøde',    when:'På CD med 6 Wounds — brug aldrig uden Wounds'},
-      {spell:'Dark Transformation', cd:'1 min',   effect:'Ghoul transformerer til kraftfuld burst-mode i 20 sek', when:'På CD — altid straks efter Apocalypse'},
-      {spell:'Unholy Assault',      cd:'1.5 min', effect:'Burst + giver alle i gruppen Festering Wounds-buff',    when:'På CD — kombiner med Apocalypse-vindue'},
-      {spell:'Anti-Magic Shell',    cd:'1 min',   effect:'Absorberer 100% magic-skade i 5 sek',                  when:'Ved magic-tunge mekanikker — proaktivt'},
-      {spell:'Death and Decay',     cd:'30 sek',  effect:'AoE-jord — styrker Scourge Strike og AoE-rotation',    when:'Læg altid ned ved 2+ mål'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -210,15 +152,7 @@ const SPEC_UNHOLY_DK = {
       {spell:'Anti-Magic Zone',     type:'Defensive', note:'Large AoE magic absorb dome for the group'},
       {spell:'Raise Ally',          type:'Ress',      note:'Battle ress on 10 min CD'},
       {spell:'Death Gate',          type:'Mobility',  note:'Teleport to Ebon Hold — usable outside M+'},
-    ],
-    da:[
-      {spell:'Death Grip',          type:'Pull',      note:'Træk 1 fjende til dig — interrupt på afstand og positionsredskab'},
-      {spell:'Strangulate',         type:'Interrupt', note:'Silence + interrupt på 45 sek CD'},
-      {spell:'Chains of Ice',       type:'Slow',      note:'70% bevægelses-slow — kiting-redskab'},
-      {spell:'Anti-Magic Zone',     type:'Defensiv',  note:'Stor AoE magic-absorb-kuppel for gruppen'},
-      {spell:'Raise Ally',          type:'Ress',      note:'Battle ress på 10 min CD'},
-      {spell:'Death Gate',          type:'Mobilitet', note:'Teleportér til Ebon Hold — brugbar uden for M+'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -234,14 +168,7 @@ const SPEC_UNHOLY_DK = {
       {icon:'🦠',title:'Keep diseases up',         text:'Virulent Plague and Festering Wound must always be active. Outbreak is the easiest way to reapply them. In AoE: one Outbreak applies them to multiple targets at once.'},
       {icon:'💀',title:'Death Coil timing',        text:'Death Coil empowers your Ghoul via the Sudden Doom buff. Always use at 80+ Runic Power to prevent capping. On a Sudden Doom proc: always use immediately for the free boost.'},
       {icon:'🧲',title:'Death Grip as interrupt',  text:'Death Grip pulls a caster to you — this also acts as an interrupt since they have to restart their cast after moving. Handy in M+ to pull a dangerous caster into melee range.'},
-    ],
-    da:[
-      {icon:'☠️',title:'Festering Wounds-cyklus',  text:'Dette er kernen i Unholy. Opbyg 6 Festering Wounds via Festering Strike, derefter burst med Apocalypse der fjerner dem alle og spawner ekstra Ghouls. Opbyg derefter igen. Brug aldrig Apocalypse med færre end 4 Wounds.'},
-      {icon:'👻',title:'Ghoul-mikrostyring',        text:'Din permanente Ghoul gør passiv skade men bliver ekstremt kraftfuld via Dark Transformation. Brug altid Dark Transformation straks når det er tilgængeligt — vent aldrig. Ghoulen gør derefter massiv burst-skade i 20 sek.'},
-      {icon:'🦠',title:'Hold sygdomme oppe',        text:'Virulent Plague og Festering Wound skal altid være aktive. Outbreak er den nemmeste måde at genansøge dem på. I AoE: én Outbreak anvender dem på flere mål på én gang.'},
-      {icon:'💀',title:'Death Coil-timing',         text:'Death Coil styrker din Ghoul via Sudden Doom-buff. Brug altid ved 80+ Runic Power for at forhindre loft. Ved en Sudden Doom-proc: brug altid straks for det gratis boost.'},
-      {icon:'🧲',title:'Death Grip som interrupt',  text:'Death Grip trækker en caster til dig — dette fungerer også som en interrupt da de skal genstarte deres cast efter bevægelse. Praktisk i M+ for at trække en farlig caster ind i melee-rækkevidde.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -253,12 +180,7 @@ const SPEC_UNHOLY_DK = {
       {name:'Strangulate (Focus)',  code:'#showtooltip Strangulate\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Strangulate', note:'Silence/interrupt on focus > mouseover > target.'},
       {name:'Death Grip + Chains',  code:'#showtooltip Death Grip\n/cast Death Grip\n/cast Chains of Ice', note:'Grip + immediate slow — mob cannot run away.'},
       {name:'Apocalypse burst',     code:'/cast Dark Transformation\n/cast Apocalypse', note:'Burst combo — Ghoul transforms and Apocalypse fires simultaneously.'},
-    ],
-    da:[
-      {name:'Strangulate (Focus)',  code:'#showtooltip Strangulate\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Strangulate', note:'Silence/interrupt på focus > mouseover > mål.'},
-      {name:'Death Grip + Chains',  code:'#showtooltip Death Grip\n/cast Death Grip\n/cast Chains of Ice', note:'Grip + øjeblikkelig slow — fjenden kan ikke løbe væk.'},
-      {name:'Apocalypse burst',     code:'/cast Dark Transformation\n/cast Apocalypse', note:'Burst-kombination — Ghoul transformerer og Apocalypse fyres simultant.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -298,26 +220,7 @@ const SPEC_UNHOLY_DK = {
         {name:'Ghoul',description:'Permanent pet — always active, follows you everywhere. Reanimate if it dies.'},
         {name:'Apocalypse Ghouls',description:'Temporary extra Ghouls after Apocalypse — deal burst damage.'},
       ],
-    },
-    da:{
-      intro:'Unholy DK bruger Runes (6 i alt, genoplader over tid) og Runic Power (0-125). Runes er din primære angrebsressource. Runic Power bruges på Death Coil til skade og Ghoul-forstærkning.',
-      generate:[
-        'Scourge Strike — bruger 1 Unholy Rune, genererer Runic Power',
-        'Festering Strike — bruger 2 Runes, genererer Runic Power',
-        'Runes genoplader automatisk over 10 sek per Rune',
-        'Apocalypse — gratis burst, ingen Rune-omkostninger',
-      ],
-      spend:[
-        'Death Coil — koster 40 Runic Power, skade + Ghoul-boost',
-        'Epidemic — koster 30 Runic Power, AoE Death Coil-effekt',
-        'Death Strike — koster 45 Runic Power, nødselv-heling',
-      ],
-      pet_tip:'💡 Cap aldrig Runic Power — brug Death Coil ved 80+ RP. I AoE: brug Epidemic i stedet for Death Coil for mere skade på flere mål!',
-      pets:[
-        {name:'Ghoul',description:'Permanent kæledyr — altid aktivt, følger dig overalt. Genopvæk hvis det dør.'},
-        {name:'Apocalypse Ghouls',description:'Midlertidige ekstra Ghouls efter Apocalypse — gør burst-skade.'},
-      ],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -333,14 +236,7 @@ const SPEC_UNHOLY_DK = {
       {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Strength and Stamina via group feast.',      note:'Ask for feast'},
       {type:'food',  name:"Meat Lover's Delight",        effect:'Solo food — Strength backup.',               note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primary stat 1 hour.',                      note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Shattered Sun',  effect:'Øger Strength markant i 1 time.',             note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Recklessness',              effect:'Stor Strength-boost i 25 sek.',               note:'På pull eller Apocalypse burst-vindue'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Strength og Stamina via gruppefeast.',       note:'Bed om feast'},
-      {type:'food',  name:"Meat Lover's Delight",        effect:'Solo-mad — Strength backup.',                note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primær stat 1 time.',                        note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_UNHOLY_DK);

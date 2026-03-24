@@ -4,28 +4,25 @@ const SPEC_AFFLICTION_WARLOCK = {
   id: 'affliction_warlock',
   icon: '🟣',
   class: 'Warlock',
-  spec:   { nl: 'Affliction', en: 'Affliction', da: 'Affliction' },
+  spec:   { nl: 'Affliction', en: 'Affliction'},
   role:   'dps',
   armor:  'Cloth',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand', da: 'Stav eller enhånds + offhand' },
+  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Soul Shards',
   patch: '1.0',
   color: '#8788EE',
 
   summary: {
     nl: 'Affliction Warlock is de ultieme DoT-meester. Laad vijanden vol met vloeken en ziekte-spells en laat ze langzaam sterven terwijl jij geneest van hun pijn via Drain Life.',
-    en: 'Affliction Warlock is the ultimate DoT master. Load enemies with curses and disease spells and let them slowly die while you heal from their pain via Drain Life.',
-    da: 'Affliction Warlock er den ultimative DoT-mester. Læs fjender med forbandelser og sygdoms-trylleformularer og lad dem langsomt dø, mens du healer fra deres smerte via Drain Life.',
+    en: 'Affliction Warlock is the ultimate DoT master. Load enemies with curses and disease spells and let them slowly die while you heal from their pain via Drain Life.'
   },
   pros: {
     nl: ['Beste multi-target sustained schade in het spel', 'Uitstekende zelfheling via Drain Life', 'Sterk in lange fights — DoTs schalen met fight duur', 'Goede utility (Curse of Exhaustion, Banish)'],
-    en: ['Best multi-target sustained damage in the game', 'Excellent self-healing via Drain Life', 'Strong in long fights — DoTs scale with fight duration', 'Good utility (Curse of Exhaustion, Banish)'],
-    da: ['Bedste multi-target vedvarende skade i spillet', 'Fremragende selvheling via Drain Life', 'Stærk i lange kampe — DoTs skalerer med kampvarighed', 'God utility (Curse of Exhaustion, Banish)'],
+    en: ['Best multi-target sustained damage in the game', 'Excellent self-healing via Drain Life', 'Strong in long fights — DoTs scale with fight duration', 'Good utility (Curse of Exhaustion, Banish)']
   },
   cons: {
     nl: ['Lage burst — DoTs hebben tijd nodig om schade te doen', 'Slecht op targets die snel sterven', 'Kwetsbaar bij zware movement fights'],
-    en: ['Low burst — DoTs need time to deal damage', 'Poor on targets that die quickly', 'Vulnerable in heavy movement fights'],
-    da: ['Lav burst — DoTs har brug for tid til at gøre skade', 'Dårlig på mål der dør hurtigt', 'Sårbar i kampe med meget bevægelse'],
+    en: ['Low burst — DoTs need time to deal damage', 'Poor on targets that die quickly', 'Vulnerable in heavy movement fights']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_AFFLICTION_WARLOCK = {
         'Drain Soul as execute (<20% HP) instead of Drain Life',
         'Seed of Corruption on 3+ targets — AoE DoT explosion',
       ],
-    },
-    da: {
-      opener: 'Agony → Corruption → Unstable Affliction → Haunt → Malefic Rapture (Soul Shard dump)',
-      single: 'Hold 3 DoTs aktive → Haunt på CD → Malefic Rapture ved 3+ Shards → Drain Soul fylder',
-      aoe:    'Agony + Corruption på alle mål → Seed of Corruption → Malefic Rapture (rammer alt via DoTs)',
-      rules: [
-        'Agony, Corruption og Unstable Affliction altid aktive',
-        'Haunt altid på cooldown — øger al din DoT-skade',
-        'Malefic Rapture ved 3+ Soul Shards — stor burst',
-        'Drain Soul som execute (<20% HP) i stedet for Drain Life',
-        'Seed of Corruption på 3+ mål — AoE DoT-eksplosion',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_AFFLICTION_WARLOCK = {
         { spell: 'Seed of Corruption', why: 'Explodes when DoT fires — massive AoE' },
         { spell: 'Malefic Rapture', why: 'Hits all targets with active DoTs simultaneously' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Flere DoTs på flere mål = flere Soul Shards = mere Malefic Rapture. Affliction bliver stærkere med flere fjender!',
-      opener: [
-        { spell: 'Agony', why: 'DoT #1 — opbygger stacks op til 10, altid først' },
-        { spell: 'Corruption', why: 'DoT #2 — instant cast' },
-        { spell: 'Unstable Affliction', why: 'DoT #3 — genererer Soul Shards' },
-        { spell: 'Haunt', why: 'Øger al DoT-skade med 30%' },
-        { spell: 'Malefic Rapture', why: 'Soul Shard dump — rammer alle DoT-mål' },
-      ],
-      single: [
-        { spell: 'Agony-fornyelse', why: '<5 sek tilbage — lad aldrig falde af' },
-        { spell: 'Unstable Affliction', why: 'Forny — genererer Soul Shards' },
-        { spell: 'Haunt', why: 'Altid på CD — +30% DoT-skade' },
-        { spell: 'Malefic Rapture', why: '3+ Shards — største direkte skadeknap' },
-        { spell: 'Drain Life/Soul', why: 'Fylder — Drain Soul ved <20% HP' },
-      ],
-      aoe: [
-        { spell: 'Agony på alle mål', why: 'Stack-opbygning på hvert mål' },
-        { spell: 'Corruption på alle mål', why: 'Hurtig DoT-spredning' },
-        { spell: 'Seed of Corruption', why: 'Eksploderer når DoT afgår — massiv AoE' },
-        { spell: 'Malefic Rapture', why: 'Rammer alle mål med aktive DoTs på én gang' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_AFFLICTION_WARLOCK = {
         { rank:4, stat:'Critical Strike', bars:2, note:'Less valuable than with other specs' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Haste er den bedste sekundære stat — DoTs tikker hurtigere = flere Soul Shards = mere Malefic Rapture.',
-      list: [
-        { rank:1, stat:'Intellect',       bars:5, note:'Primær stat' },
-        { rank:2, stat:'Haste',           bars:5, note:'Hurtigere DoT-ticks = flere Shards = mere skade' },
-        { rank:3, stat:'Mastery',         bars:3, note:'Øger DoT-skade (Mastery: Potent Afflictions)' },
-        { rank:4, stat:'Critical Strike', bars:2, note:'Mindre værdifuld end hos andre specs' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       { spell:'Malefic Rapture',    cd:'Soul Shards', effect:'Hits all targets with DoTs', when:'3+ Shards — always dump before generating new Shards' },
       { spell:'Dark Soul: Misery',  cd:'2 min',   effect:'+30% Haste 20 sec', when:'Combined with Summon Darkglare for maximum burst' },
       { spell:'Drain Soul',         cd:'-',       effect:'Execute channel <20% HP + Soul Shard gen', when:'Always when target is <20% HP' },
-    ],
-    da: [
-      { spell:'Haunt',              cd:'15 sec',  effect:'+30% DoT-skade i 18 sek', when:'Altid på cooldown — spring aldrig over' },
-      { spell:'Summon Darkglare',   cd:'3 min',   effect:'Dæmon der forstærker al DoT-skade', when:'På pull ved boss, altid med aktive DoTs' },
-      { spell:'Malefic Rapture',    cd:'Soul Shards', effect:'Rammer alle mål med DoTs', when:'3+ Shards — dump altid inden generering af nye Shards' },
-      { spell:'Dark Soul: Misery',  cd:'2 min',   effect:'+30% Haste i 20 sek', when:'Kombineret med Summon Darkglare til maksimal burst' },
-      { spell:'Drain Soul',         cd:'-',       effect:'Execute channel <20% HP + Soul Shard gen', when:'Altid når mål er <20% HP' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       { spell:'Banish',             type:'CC',        note:'Removes Demon/Elemental from fight 40 sec' },
       { spell:'Curse of Exhaustion', type:'Slow',     note:'70% slow on target — excellent for kiting' },
       { spell:'Demonic Circle',     type:'Mobility',  note:'Teleport back to your circle — dodge mechanics' },
-    ],
-    da: [
-      { spell:'Healthstone',        type:'Healing',   note:'Gratis personlig HP-genopretning — altid i din taske' },
-      { spell:'Soulstone',          type:'Genoplivning', note:'Pre-placer på gruppemedlem — auto-genoplivning ved død' },
-      { spell:'Banish',             type:'CC',        note:'Fjerner Demon/Elemental fra kampen i 40 sek' },
-      { spell:'Curse of Exhaustion', type:'Slow',     note:'70% slow på mål — fremragende til kiting' },
-      { spell:'Demonic Circle',     type:'Mobilitet', note:'Teleportér tilbage til din cirkel — undvig mekanikker' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       { icon:'🔮', title:'Placing Demonic Circle', text:'Always place your circle at the start of a boss. If you get a mechanic that moves you far away, you teleport directly back.' },
       { icon:'💀', title:'Pre-placing Soulstone', text:'Before large pulls: place Soulstone on the healer. If they die, there\'s an auto-rez. Communicate this with your team.' },
       { icon:'⏱️', title:'Affliction = ramp-up', text:'Affliction has relatively low damage the first 10 sec while DoTs stack up. This is normal in M+ — don\'t panic if you\'re behind on meters.' },
-    ],
-    da: [
-      { icon:'🟣', title:'DoTs = skade OG Shards', text:'Hvert DoT-tick kan generere en Soul Shard. Flere DoTs på flere mål = eksponentielt flere Shards = mere Malefic Rapture. Det er derfor Affliction AoE er så stærk.' },
-      { icon:'💉', title:'Drain Life = overlevelse', text:'Affliction healer sig selv via Drain Life. Når du er lavt på HP i M+, channel Drain Life kortvarigt — du behøver ikke altid at bede healeren om hjælp.' },
-      { icon:'🔮', title:'Placering af Demonic Circle', text:'Placer altid din cirkel ved starten af en boss. Hvis du får en mekanik der flytter dig langt væk, teleporterer du straks tilbage.' },
-      { icon:'💀', title:'Pre-placering af Soulstone', text:'Før store pulls: placer Soulstone på healeren. Hvis de dør, er der en auto-genoplivning. Kommunikér dette med dit hold.' },
-      { icon:'⏱️', title:'Affliction = ramp-up', text:'Affliction har relativt lav skade de første 10 sek mens DoTs opbuildes. Dette er normalt i M+ — gå ikke i panik hvis du er bagud på meters.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       { name:'Summon Darkglare + Dark Soul', code:'/cast Summon Darkglare\n/cast Dark Soul: Misery', note:'Maximum burst opener — both CDs in one GCD.' },
       { name:'Agony on mouseover', code:'/cast [@mouseover,harm][] Agony', note:'Quickly spread DoTs in AoE without switching targets.' },
       { name:'Demonic Circle Teleport', code:'/cast Demonic Circle: Teleport', note:'One button for quick teleport back to your circle.' },
-    ],
-    da: [
-      { name:'Summon Darkglare + Dark Soul', code:'/cast Summon Darkglare\n/cast Dark Soul: Misery', note:'Maksimalt burst-opener — begge CDs i én GCD.' },
-      { name:'Agony på mouseover', code:'/cast [@mouseover,harm][] Agony', note:'Spred hurtigt DoTs i AoE uden at skifte mål.' },
-      { name:'Demonic Circle Teleport', code:'/cast Demonic Circle: Teleport', note:'Én knap til hurtig teleport tilbage til din cirkel.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       ],
       pet_tip: '💡 Never sit at 5 Shards — always dump with Malefic Rapture so new Shards don\'t go to waste!',
       pets: [],
-    },
-    da: {
-      intro: 'Affliction bruger Soul Shards (0-5) som ressource. Shards genereres via DoT-ticks og bruges via Malefic Rapture. Flere DoTs = flere Shards.',
-      generate: [
-        'Unstable Affliction-ticks — største Shard-generator',
-        'Agony-ticks — chance for Shard ved højere stacks',
-        'Drain Soul — ekstra Shards ved channeling på <20% HP mål',
-        'Haunt returnerer — giver Shard tilbage ved måls død',
-      ],
-      spend: [
-        'Malefic Rapture (1 Shard) — rammer ALLE mål med DoTs',
-        'Haunt (1 Shard) — +30% DoT-skade-buff',
-        'Unstable Affliction (1 Shard) — kraftigste DoT',
-      ],
-      pet_tip: '💡 Sid aldrig på 5 Shards — dump altid med Malefic Rapture så nye Shards ikke går til spilde!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_AFFLICTION_WARLOCK = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',     note:'Ask for feast' },
       { type:'food',   name:'Royal Roast',    effect:'Solo food backup.',                           note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                       note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect markant i 1 time.',             note:'Altid aktiv' },
-      { type:'pot',    name:'Potion of Recklessness',        effect:'Stor Intellect-boost i 25 sek.',              note:'Brug under Darkglare burst-vindue' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed om feast' },
-      { type:'food',   name:'Royal Roast',    effect:'Solo-mad backup.',                            note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
-    ],
+    ]
   },
 };
 

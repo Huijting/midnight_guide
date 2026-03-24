@@ -43,7 +43,7 @@
 ## 3. Extended Audit (Dungeons, Raids, Specs, Professions, Affixes, Prey, Weekly)
 
 ### Dungeons (8 M+ + 4 Normal)
-- **Structure:** All 12 dungeons have bosses, tips, routes, trash. Boss tactics per Tank/Healer/DPS in NL/EN/DA ✓
+- **Structure:** All 12 dungeons have bosses, tips, routes, trash. Boss tactics per Tank/Healer/DPS in NL/EN ✓
 - **Trash mob gids:** 69 mobs with interrupt/dodge/purge tags ✓
 - **Corrections:** Soakc typo, Windrunner Spire /way
 - **Note:** Magisters' Terrace uses same coords (35.2, 78.4) for Quel'Danas — different zone from Windrunner; coords may differ per dungeon. Kept as-is (Magisters entrance in Quel'Danas).
@@ -82,8 +82,8 @@
 
 - **Technical game terms:** Spell names, zone names, item names kept in English ✓
 - **12yo-friendly tone:** Descriptions are concise and jargon-free ✓
-- **NL/EN/DA consistency:** All Delves have details + fullGuide in 3 languages ✓
-- **Changelog variance:** NL help references Prey System for v1.0; EN/DA reference Glossary. Intentional regional differences — no change.
+- **NL/EN consistency:** All Delves have details + fullGuide in Dutch and English ✓
+- **Changelog variance:** NL help references Prey System for v1.0; EN references Glossary. Intentional regional differences — no change.
 
 ---
 

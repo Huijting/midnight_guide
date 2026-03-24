@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_WINDWALKER_MONK = {
   id:'windwalker_monk', icon:'🌪️', class:'Monk',
-  spec:{nl:'Windwalker',en:'Windwalker',da:'Windwalker'},
+  spec:{nl:'Windwalker',en:'Windwalker'},
   role:'melee', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens',en:'Two one-hand weapons',da:'To enhåndsvåben'},
+  weapon:{nl:'Twee eenhandige wapens',en:'Two one-hand weapons'},
   resource:'Energy + Chi',
   patch:'1.0', color:'#00FF98',
   summary:{
     nl:'Windwalker is een snelle melee DPS met uitstekende mobiliteit en burst via Storm, Earth and Fire. Bouwt Chi op voor Strike of the Windlord en Fists of Fury. Unieke mechanic: Mastery verhoogt schade als je beweegt.',
-    en:'Windwalker is a fast melee DPS with excellent mobility and burst via Storm, Earth and Fire. Builds Chi for Strike of the Windlord and Fists of Fury. Unique mechanic: Mastery increases damage when you move.',
-    da:'Windwalker er en hurtig melee DPS med fremragende mobilitet og burst via Storm, Earth and Fire. Opbygger Chi til Strike of the Windlord og Fists of Fury. Unik mekanik: Mastery øger skade når du bevæger dig.',
+    en:'Windwalker is a fast melee DPS with excellent mobility and burst via Storm, Earth and Fire. Builds Chi for Strike of the Windlord and Fists of Fury. Unique mechanic: Mastery increases damage when you move.'
   },
   pros:{
     nl:['Uitstekende mobiliteit — Roll + Flying Serpent Kick','Sterke burst via Storm, Earth and Fire','Goede AoE via Spinning Crane Kick','Unieke utility (Paralysis, Leg Sweep, Transcendence)','Lage instap, hoge skill ceiling'],
-    en:['Excellent mobility — Roll + Flying Serpent Kick','Strong burst via Storm, Earth and Fire','Good AoE via Spinning Crane Kick','Unique utility (Paralysis, Leg Sweep, Transcendence)','Low entry, high skill ceiling'],
-    da:['Fremragende mobilitet — Roll + Flying Serpent Kick','Stærkt burst via Storm, Earth and Fire','God AoE via Spinning Crane Kick','Unik utility (Paralysis, Leg Sweep, Transcendence)','Lav indgang, højt færdighedsloft'],
+    en:['Excellent mobility — Roll + Flying Serpent Kick','Strong burst via Storm, Earth and Fire','Good AoE via Spinning Crane Kick','Unique utility (Paralysis, Leg Sweep, Transcendence)','Low entry, high skill ceiling']
   },
   cons:{
     nl:['Chi management vereist aandacht','Fists of Fury verplicht stilstaan','Minder sustained DPS tussen burst windows','Tea cooldown vereist planning'],
-    en:['Chi management requires attention','Fists of Fury requires standing still','Less sustained DPS between burst windows','Tea cooldown requires planning'],
-    da:['Chi-styring kræver opmærksomhed','Fists of Fury kræver at stå stille','Mindre vedvarende DPS mellem burst-vinduer','Tea-cooldown kræver planlægning'],
+    en:['Chi management requires attention','Fists of Fury requires standing still','Less sustained DPS between burst windows','Tea cooldown requires planning']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_WINDWALKER_MONK = {
         'Don\'t let Chi overflow — dump via Blackout Kick',
         'Spinning Crane Kick at 3+ targets in AoE',
       ],
-    },
-    da:{
-      opener:'Tiger Palm → Rising Sun Kick → Blackout Kick → Storm, Earth and Fire → Strike of the Windlord → Fists of Fury',
-      single:'Rising Sun Kick → Blackout Kick → Tiger Palm Chi-generator → Strike of the Windlord på CD',
-      aoe:'Spinning Crane Kick × 3 → Rising Sun Kick → Storm, Earth and Fire → Strike of the Windlord',
-      rules:[
-        'Rising Sun Kick altid på CD — højeste prioritet',
-        'Storm, Earth and Fire til burst — kombiner altid med Strike of the Windlord',
-        'Afbryd aldrig Fists of Fury-kanal — stor skade',
-        'Lad ikke Chi løbe over — dump via Blackout Kick',
-        'Spinning Crane Kick ved 3+ mål i AoE',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_WINDWALKER_MONK = {
         {spell:'Strike of the Windlord',why:'AoE burst attack'},
         {spell:'Fists of Fury',why:'AoE channel damage'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Storm, Earth and Fire splitter dig i 3 ånder der angriber samtidigt. Brug det ALTID sammen med Strike of the Windlord og Fists of Fury for maksimalt burst — ånderne kopierer alle dine angreb!',
-      opener:[
-        {spell:'Tiger Palm',why:'Chi-generering — inden burst-vindue'},
-        {spell:'Rising Sun Kick',why:'Højeste prio-angreb — altid først'},
-        {spell:'Storm, Earth and Fire',why:'Split i 3 ånder til burst'},
-        {spell:'Strike of the Windlord',why:'Største burst-angreb'},
-        {spell:'Fists of Fury',why:'Kanal — maksimér skadekanal'},
-      ],
-      single:[
-        {spell:'Rising Sun Kick',why:'Altid på CD — højeste prioritet'},
-        {spell:'Fists of Fury',why:'Stor skade — afbryd aldrig'},
-        {spell:'Strike of the Windlord',why:'På CD — burst-finisher'},
-        {spell:'Blackout Kick',why:'Chi-dump — forhindrer overflow'},
-        {spell:'Tiger Palm',why:'Chi-generatorfylder'},
-      ],
-      aoe:[
-        {spell:'Spinning Crane Kick',why:'AoE-angreb — 3+ mål'},
-        {spell:'Rising Sun Kick',why:'Altid på CD også i AoE'},
-        {spell:'Storm, Earth and Fire',why:'AoE burst — ånder kopierer SCK'},
-        {spell:'Strike of the Windlord',why:'AoE burst-angreb'},
-        {spell:'Fists of Fury',why:'AoE kanal-skade'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_WINDWALKER_MONK = {
         {rank:4,stat:'Versatility',bars:2,note:'Damage + survival'},
         {rank:5,stat:'Haste',bars:2,note:'Energy regen and GCD reduction'},
       ],
-    },
-    da:{
-      tip:'Agility er primær. Mastery øger skade under bevægelse — unikt for Windwalker. Haste reducerer Energy-regenereringstid.',
-      list:[
-        {rank:1,stat:'Agility',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Mastery',bars:4,note:'Skadebonus under bevægelse (Dance of Chi-Ji)'},
-        {rank:3,stat:'Critical Strike',bars:3,note:'Større angreb + procs'},
-        {rank:4,stat:'Versatility',bars:2,note:'Skade + overlevelse'},
-        {rank:5,stat:'Haste',bars:2,note:'Energy-regenerering og GCD-reduktion'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_WINDWALKER_MONK = {
       {spell:'Serenity',cd:'3 min',effect:'Replaces SEF: all chi costs 0 + damage boost',when:'Talent alternative to SEF — bigger burst'},
       {spell:'Touch of Death',cd:'2 min',effect:'Instant kill at <15% HP or massive damage',when:'Execute phase or largest burst moment'},
       {spell:'Invoke Xuen',cd:'3 min',effect:'White tiger summon does AoE damage',when:'Large pulls or boss opener'},
-    ],
-    da:[
-      {spell:'Storm, Earth and Fire',cd:'1.5 min',effect:'Splitter i 3 ånder der angriber samtidigt',when:'På pull + hver boss-fase — altid med Strike of the Windlord'},
-      {spell:'Strike of the Windlord',cd:'40 sec',effect:'Kraftfuldt angreb, nulstiller Rising Sun Kick',when:'Altid på CD — gå aldrig glip af det'},
-      {spell:'Serenity',cd:'3 min',effect:'Erstatter SEF: alle chi-omkostninger 0 + skadeboost',when:'Talent-alternativ til SEF — større burst'},
-      {spell:'Touch of Death',cd:'2 min',effect:'Instant-drab ved <15% HP eller massiv skade',when:'Execute-fase eller største burst-øjeblik'},
-      {spell:'Invoke Xuen',cd:'3 min',effect:'Hvid tiger-indkaldelse gør AoE-skade',when:'Store pulls eller boss-åbner'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_WINDWALKER_MONK = {
       {spell:'Transcendence',type:'Mobility',note:'Spirit marker teleport — unique positional reset'},
       {spell:'Flying Serpent Kick',type:'Gap closer',note:'Fast sprint to target'},
       {spell:'Spear Hand Strike',type:'Interrupt',note:'Interrupt and silence 4 sec'},
-    ],
-    da:[
-      {spell:'Paralysis',type:'CC',note:'Single target stun i 1 min — afbryder cast'},
-      {spell:'Leg Sweep',type:'AoE Stun',note:'AoE stun i 3 sek i rækkevidde'},
-      {spell:'Transcendence',type:'Mobilitet',note:'Spirit-markør teleport — unik positionsreset'},
-      {spell:'Flying Serpent Kick',type:'Gap closer',note:'Hurtig sprint til mål'},
-      {spell:'Spear Hand Strike',type:'Interrupt',note:'Interrupt og silence i 4 sek'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_WINDWALKER_MONK = {
       {icon:'⚡',title:'Don\'t let Chi overflow',text:'Your maximum Chi is 5. Tiger Palm generates Chi — stop when you already have 4. Overflowing Chi is wasted damage. Always dump first via Blackout Kick.'},
       {icon:'🌀',title:'Transcendence for mechanics',text:'Always place your Transcendence Spirit in a safe spot away from the boss. On a mechanic you need to avoid: teleport back to Spirit. Free escape without DPS loss.'},
       {icon:'🎯',title:'Touch of Death = execute',text:'Touch of Death does enormous damage below 15% HP of the boss. Save it for the execute phase — it\'s your largest single-hit attack and only has 2 min CD.'},
-    ],
-    da:[
-      {icon:'🌪️',title:'Storm, Earth and Fire = burst-kerne',text:'SEF splitter dig i 3 kopier der duplikerer alle angreb. Aktivér det altid sammen med Strike of the Windlord og Fists of Fury — ånderne udfører også disse angreb. Brug det aldrig alene.'},
-      {icon:'🥊',title:'Afbryd aldrig Fists of Fury',text:'Fists of Fury er en 4-sekunders kanal og gør enorm skade. Sørg for at stå sikkert inden du bruger det — bevægelse annullerer det. Planlæg det omkring mekanikker.'},
-      {icon:'⚡',title:'Lad ikke Chi løbe over',text:'Dit maksimale Chi er 5. Tiger Palm genererer Chi — stop når du allerede har 4. Overflydende Chi er spildt skade. Dump altid først via Blackout Kick.'},
-      {icon:'🌀',title:'Transcendence til mekanikker',text:'Placer altid din Transcendence-ånd et sikkert sted væk fra bossen. Ved en mekanik du skal undgå: teleportér tilbage til ånden. Gratis flugt uden DPS-tab.'},
-      {icon:'🎯',title:'Touch of Death = execute',text:'Touch of Death gør enorm skade under 15% HP på bossen. Gem det til execute-fasen — det er dit største single-hit angreb og har kun 2 min CD.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_WINDWALKER_MONK = {
       {name:'SEF + Strike combo',code:'/cast Storm, Earth and Fire\n/cast Strike of the Windlord',note:'Burst opener — both together for maximum spirit damage.'},
       {name:'Touch of Death quick',code:'/cast Touch of Death',note:'Execute finisher — bind to clear button.'},
       {name:'Transcendence transfer',code:'/cast Transcendence: Transfer',note:'Teleport to Spirit — quick escape.'},
-    ],
-    da:[
-      {name:'SEF + Strike combo',code:'/cast Storm, Earth and Fire\n/cast Strike of the Windlord',note:'Burst-åbner — begge sammen for maksimal ånde-skade.'},
-      {name:'Touch of Death hurtigt',code:'/cast Touch of Death',note:'Execute-finisher — bind til tydelig knap.'},
-      {name:'Transcendence transfer',code:'/cast Transcendence: Transfer',note:'Teleportér til ånd — hurtig flugt.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_WINDWALKER_MONK = {
       spend:['Strike of the Windlord (2 Chi) — burst attack','Fists of Fury (3 Chi) — channel AoE','Blackout Kick (1 Chi) — Chi dump','Spinning Crane Kick (2 Chi) — AoE'],
       pet_tip:'💡 Always keep 3 Chi in reserve for Fists of Fury — never dump everything just before you want to use it!',
       pets:[],
-    },
-    da:{
-      intro:'Windwalker bruger Energy (automatisk) og Chi (finishers). Energy regenererer automatisk. Du genererer Chi via Tiger Palm og andre angreb.',
-      generate:['Tiger Palm (25 Energy) → 1 Chi','Expel Harm → 1 Chi','Keg Smash er kun Brewmaster'],
-      spend:['Strike of the Windlord (2 Chi) — burst-angreb','Fists of Fury (3 Chi) — kanal AoE','Blackout Kick (1 Chi) — Chi-dump','Spinning Crane Kick (2 Chi) — AoE'],
-      pet_tip:'💡 Hold altid 3 Chi i reserve til Fists of Fury — dump aldrig alt lige inden du vil bruge det!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_WINDWALKER_MONK = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Agility and Stamina.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Blood Knights',effect:'Øger Agility i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Agility-burst under SEF-vindue.',note:'På pull'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Agility og Stamina.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_WINDWALKER_MONK);

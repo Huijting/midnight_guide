@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_BREWMASTER_MONK = {
   id:'brewmaster_monk', icon:'🍺', class:'Monk',
-  spec:{nl:'Brewmaster',en:'Brewmaster',da:'Brewmaster'},
+  spec:{nl:'Brewmaster',en:'Brewmaster'},
   role:'tank', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens of staaf',en:'Two one-hand weapons or staff',da:'To enhåndsvåben eller stav'},
+  weapon:{nl:'Twee eenhandige wapens of staaf',en:'Two one-hand weapons or staff'},
   resource:'Energy + Chi',
   patch:'1.0', color:'#00FF98',
   summary:{
     nl:'Brewmaster is een unieke tank die schade niet blokkeert maar verspreidt via Stagger. Grote hits worden omgezet in een DoT op jezelf — de healer heeft meer tijd om te reageren. Vereist actief Purify om die DoT te wissen.',
-    en:'Brewmaster is a unique tank that doesn\'t block damage but spreads it via Stagger. Large hits are converted to a DoT on yourself — the healer has more time to react. Requires active Purify to clear that DoT.',
-    da:'Brewmaster er en unik tank der ikke blokerer skade men spreder den via Stagger. Store træf konverteres til en DoT på dig selv — healeren har mere tid til at reagere. Kræver aktiv Purify for at rense den DoT.',
+    en:'Brewmaster is a unique tank that doesn\'t block damage but spreads it via Stagger. Large hits are converted to a DoT on yourself — the healer has more time to react. Requires active Purify to clear that DoT.'
   },
   pros:{
     nl:['Stagger maakt inkomende schade veel voorspelbaarder voor healers','Uitstekende AoE threat via Keg Smash','Goede mobiliteit met Roll en Transcendence','Sterk self-sustain via Expel Harm','Unieke Celestial Brew voor grote absorb shields'],
-    en:['Stagger makes incoming damage much more predictable for healers','Excellent AoE threat via Keg Smash','Good mobility with Roll and Transcendence','Strong self-sustain via Expel Harm','Unique Celestial Brew for large absorb shields'],
-    da:['Stagger gør indkommende skade meget mere forudsigelig for healere','Fremragende AoE-trussel via Keg Smash','God mobilitet med Roll og Transcendence','Stærk self-sustain via Expel Harm','Unik Celestial Brew til store absorb-skjolde'],
+    en:['Stagger makes incoming damage much more predictable for healers','Excellent AoE threat via Keg Smash','Good mobility with Roll and Transcendence','Strong self-sustain via Expel Harm','Unique Celestial Brew for large absorb shields']
   },
   cons:{
     nl:['Stagger vereist constant Purify aandacht','Minder defensieve cooldowns dan plate tanks','Leer-armor = minder rustingwaarde','Complexer dan andere tanks door actief resource management'],
-    en:['Stagger requires constant Purify attention','Fewer defensive cooldowns than plate tanks','Leather armor = less armor value','More complex than other tanks due to active resource management'],
-    da:['Stagger kræver konstant Purify-opmærksomhed','Færre defensive cooldowns end plate-tanks','Læderpanser = mindre panserværdi','Mere kompleks end andre tanks pga. aktiv ressourcestyring'],
+    en:['Stagger requires constant Purify attention','Fewer defensive cooldowns than plate tanks','Leather armor = less armor value','More complex than other tanks due to active resource management']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_BREWMASTER_MONK = {
         'Keep Shuffle buff (Blackout Kick) always active',
         'Expel Harm when low on HP — free self-heal',
       ],
-    },
-    da:{
-      opener:'Keg Smash → Tiger Palm → Blackout Kick → Celestial Brew ved stor skade',
-      single:'Keg Smash → Blackout Kick → Tiger Palm fylder → Purify ved Heavy Stagger',
-      aoe:'Keg Smash AoE → Spinning Crane Kick → Breath of Fire → Blackout Kick',
-      rules:[
-        'Purify ved Heavy Stagger (rød bjælke) — altid prioritet',
-        'Keg Smash altid på CD — AoE-trussel og Shuffle-oppetid',
-        'Brug Celestial Brew proaktivt — vent ikke på nødsituation',
-        'Hold Shuffle-buff (Blackout Kick) altid aktiv',
-        'Expel Harm når du er lav på HP — gratis selvhealing',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_BREWMASTER_MONK = {
         {spell:'Blackout Kick',why:'Monitor Shuffle uptime'},
         {spell:'Celestial Brew',why:'On large AoE packs'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Stagger er din kernemekanik: store træf konverteres 40% til en 10-sek DoT. PURIFY den DoT ved Heavy Stagger (rød bjælke) — ellers stakker den farligt højt!',
-      opener:[
-        {spell:'Keg Smash',why:'AoE-trussel + aktivér Shuffle-buff'},
-        {spell:'Tiger Palm',why:'Chi-genereringsfylder'},
-        {spell:'Blackout Kick',why:'Shuffle-buff — 20% dodge-chance'},
-        {spell:'Breath of Fire',why:'AoE DoT på alle fjender'},
-        {spell:'Celestial Brew',why:'Pre-pull absorb-skjold'},
-      ],
-      single:[
-        {spell:'Keg Smash',why:'Altid på CD — bedste trussel + Shuffle'},
-        {spell:'Blackout Kick',why:'Hold Shuffle-buff aktiv'},
-        {spell:'Tiger Palm',why:'Chi-generering og fylder'},
-        {spell:'Purify',why:'Ved Heavy Stagger straks!'},
-        {spell:'Expel Harm',why:'Lav HP — gratis selvhealing'},
-      ],
-      aoe:[
-        {spell:'Keg Smash',why:'AoE-trussel på alle mål'},
-        {spell:'Spinning Crane Kick',why:'AoE-skade + Chi ved 3+ mål'},
-        {spell:'Breath of Fire',why:'AoE DoT via Keg Smash-debuff'},
-        {spell:'Blackout Kick',why:'Overvåg Shuffle-oppetid'},
-        {spell:'Celestial Brew',why:'Ved store AoE-grupper'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_BREWMASTER_MONK = {
         {rank:4,stat:'Mastery',bars:3,note:'Increases Stagger percentage'},
         {rank:5,stat:'Critical Strike',bars:2,note:'Synergizes with some talents'},
       ],
-    },
-    da:{
-      tip:'Brewmaster ønsker ikke at stable specifikke sekundære stats — Agility og Stamina er vigtigst. Versatility giver skadereduktion og er den bedste sekundære stat.',
-      list:[
-        {rank:1,stat:'Agility',bars:5,note:'Primær stat — angreb og dodge'},
-        {rank:2,stat:'Stamina',bars:5,note:'Mere HP = mere Stagger-buffer'},
-        {rank:3,stat:'Versatility',bars:4,note:'Skadereduktion + ekstra skade'},
-        {rank:4,stat:'Mastery',bars:3,note:'Øger Stagger-procent'},
-        {rank:5,stat:'Critical Strike',bars:2,note:'Synergerer med nogle talenter'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_BREWMASTER_MONK = {
       {spell:'Expel Harm',cd:'15 sec',effect:'Heals yourself for % of max HP',when:'Always at low HP — low CD'},
       {spell:'Purify',cd:'1 sec',effect:'Removes % of staggered damage',when:'On Heavy Stagger (red bar) — always immediately!'},
       {spell:'Invoke Niuzao',cd:'3 min',effect:'Celestial Ox tank helps and absorbs damage',when:'Large pulls or boss execute'},
-    ],
-    da:[
-      {spell:'Celestial Brew',cd:'1 min',effect:'Stort absorb-skjold baseret på Stagger',when:'Proaktivt inden stor skade — ikke reaktivt'},
-      {spell:'Fortifying Brew',cd:'7 min',effect:'+20% HP og skadereduktion i 15 sek',when:'Stor boss-mekanik eller spiky skadefase'},
-      {spell:'Expel Harm',cd:'15 sec',effect:'Healer dig selv for % af maks HP',when:'Altid ved lav HP — lav CD'},
-      {spell:'Purify',cd:'1 sec',effect:'Fjerner % af staggeret skade',when:'Ved Heavy Stagger (rød bjælke) — altid straks!'},
-      {spell:'Invoke Niuzao',cd:'3 min',effect:'Celestial Ox-tank hjælper og absorberer skade',when:'Store pulls eller boss-execute'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_BREWMASTER_MONK = {
       {spell:'Transcendence',type:'Mobility',note:'Teleport to Spirit location — unique positional tool'},
       {spell:'Leg Sweep',type:'AoE Stun',note:'AoE stun 3 sec in range'},
       {spell:'Expel Harm',type:'Self-heal',note:'Burst self-heal on low CD — no healer needed'},
-    ],
-    da:[
-      {spell:'Paralysis',type:'CC',note:'Single target stun i 1 min — afbryder cast'},
-      {spell:'Ring of Peace',type:'AoE CC',note:'AoE disarm og knock-back zone'},
-      {spell:'Transcendence',type:'Mobilitet',note:'Teleportér til Spirit-lokation — unikt positionsredskab'},
-      {spell:'Leg Sweep',type:'AoE Stun',note:'AoE stun i 3 sek i rækkevidde'},
-      {spell:'Expel Harm',type:'Selvhealing',note:'Burst selvhealing ved lav CD — ingen healer nødvendig'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_BREWMASTER_MONK = {
       {icon:'🥋',title:'Shuffle always active',text:'Shuffle (via Blackout Kick) gives you 20% extra dodge chance. Without Shuffle you\'re much more vulnerable. Blackout Kick is never a waste — it keeps your defense in order.'},
       {icon:'🌀',title:'Transcendence = lifesaver',text:'Transcendence lets you place a Spirit marker and teleport to it later. Always place it in a safe position. In M+ use this for mechanics that would otherwise be deadly.'},
       {icon:'💚',title:'Expel Harm early',text:'Expel Harm has only 15 sec CD and heals you for a significant amount of HP. Use it actively to reduce healer pressure — don\'t wait until you\'re almost dead.'},
-    ],
-    da:[
-      {icon:'🍺',title:'Forstå Stagger',text:'Stagger konverterer 40% af hvert stort træf til en 10-sekunders DoT. Det lyder farligt, men det giver healeren tid. Din opgave: brug Purify når den DoT bliver for høj (Heavy Stagger = rød bjælke i din HUD).'},
-      {icon:'🔮',title:'Celestial Brew = proaktivt',text:'Celestial Brew giver et stort absorb-skjold baseret på hvor meget du har staggeret. Brug det FØR det store træf — ikke bagefter. God timing her gør en enorm forskel for din healer.'},
-      {icon:'🥋',title:'Shuffle altid aktiv',text:'Shuffle (via Blackout Kick) giver dig 20% ekstra dodge-chance. Uden Shuffle er du meget mere sårbar. Blackout Kick er aldrig spild — det holder dit forsvar i orden.'},
-      {icon:'🌀',title:'Transcendence = livredder',text:'Transcendence lader dig placere en Spirit-markør og teleportere til den senere. Placer den altid på en sikker position. I M+ bruger du dette til mekanikker der ellers ville være dødelige.'},
-      {icon:'💚',title:'Expel Harm tidligt',text:'Expel Harm har kun 15 sek CD og healer dig for en stor del af HP. Brug det aktivt til at reducere healerpres — vent ikke til du næsten er død.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_BREWMASTER_MONK = {
       {name:'Purify on self',code:'/cast [@player] Purify',note:'Direct Purify on yourself — fastest way on Heavy Stagger.'},
       {name:'Transcendence quick',code:'/cast Transcendence\n/cast Transcendence: Transfer',note:'First press: place Spirit. Second press: teleport.'},
       {name:'Celestial Brew macro',code:'/cast Celestial Brew',note:'Bind to easy key — you use it constantly.'},
-    ],
-    da:[
-      {name:'Purify på dig selv',code:'/cast [@player] Purify',note:'Direkte Purify på dig selv — hurtigste måde ved Heavy Stagger.'},
-      {name:'Transcendence hurtigt',code:'/cast Transcendence\n/cast Transcendence: Transfer',note:'Første tryk: placer Spirit. Andet tryk: teleportér.'},
-      {name:'Celestial Brew makro',code:'/cast Celestial Brew',note:'Bind til nem tast — du bruger den konstant.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_BREWMASTER_MONK = {
       spend:['Blackout Kick (1 Chi) — Shuffle buff','Spinning Crane Kick (2 Chi) — AoE','Breath of Fire (Chi) — AoE DoT'],
       pet_tip:'💡 Never let Energy or Chi reach 0 — always keep something in reserve for Purify and Blackout Kick!',
       pets:[],
-    },
-    da:{
-      intro:'Brewmaster bruger Energy (til angreb) og Chi (til finishers). Energy regenererer automatisk. Du genererer Chi via Tiger Palm og Keg Smash.',
-      generate:['Tiger Palm (30 Energy) → 1 Chi','Keg Smash (40 Energy) → 2 Chi','Blackout Kick koster ingen Chi men giver Shuffle'],
-      spend:['Blackout Kick (1 Chi) — Shuffle-buff','Spinning Crane Kick (2 Chi) — AoE','Breath of Fire (Chi) — AoE DoT'],
-      pet_tip:'💡 Lad aldrig Energy eller Chi nå 0 — hold altid noget i reserve til Purify og Blackout Kick!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_BREWMASTER_MONK = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Agility and Stamina via group feast.',note:'Stamina crucial'},
       {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat 1 hour.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Blood Knights',effect:'Øger Agility og Stamina i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Primær stat-boost.',note:'Ved største pulls'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Agility og Stamina via gruppefeast.',note:'Stamina afgørende'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat i 1 time.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_BREWMASTER_MONK);

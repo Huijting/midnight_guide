@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_FIRE_MAGE = {
   id:'fire_mage', icon:'🔥', class:'Mage',
-  spec:{nl:'Fire',en:'Fire',da:'Fire'},
+  spec:{nl:'Fire',en:'Fire'},
   role:'dps', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#FF7C0A',
   summary:{
     nl:'Fire Mage leeft voor Hot Streak procs. Twee crits op rij = gratis instant Pyroblast. Hoge crit-afhankelijkheid maar enorme burst wanneer het klikt.',
-    en:'Fire Mage lives for Hot Streak procs. Two crits in a row = free instant Pyroblast. High crit dependency but massive burst when it clicks.',
-    da:'Fire Mage lever for Hot Streak-procs. To crits i træk = gratis instant Pyroblast. Høj crit-afhængighed men massivt burst når det virker.',
+    en:'Fire Mage lives for Hot Streak procs. Two crits in a row = free instant Pyroblast. High crit dependency but massive burst when it clicks.'
   },
   pros:{
     nl:['Enorme burst via Hot Streak procs','Uitstekende AoE via Flamestrike','Bevredigend om te spelen — proc-gebaseerd','Sterk in execute fase via Searing Touch'],
-    en:['Massive burst via Hot Streak procs','Excellent AoE via Flamestrike','Satisfying to play — proc-based','Strong in execute phase via Searing Touch'],
-    da:['Massivt burst via Hot Streak-procs','Fremragende AoE via Flamestrike','Tilfredsstillende at spille — proc-baseret','Stærk i execute-fase via Searing Touch'],
+    en:['Massive burst via Hot Streak procs','Excellent AoE via Flamestrike','Satisfying to play — proc-based','Strong in execute phase via Searing Touch']
   },
   cons:{
     nl:['RNG-afhankelijk — slechte procs = lage schade','Hoge crit vereiste voor optimale prestatie','Kwetsbaar bij movement — veel cast-spells','Inconsistente schade vergeleken met Arcane'],
-    en:['RNG-dependent — bad procs = low damage','High crit requirement for optimal performance','Vulnerable during movement — many cast spells','Inconsistent damage compared to Arcane'],
-    da:['RNG-afhængig — dårlige procs = lav skade','Høj crit-krav til optimal præstation','Sårbar under bevægelse — mange cast-trylleformularer','Inkonsistent skade sammenlignet med Arcane'],
+    en:['RNG-dependent — bad procs = low damage','High crit requirement for optimal performance','Vulnerable during movement — many cast spells','Inconsistent damage compared to Arcane']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_FIRE_MAGE = {
         'Combustion on CD — use ALL Fire Blast charges inside it',
         'AoE: Flamestrike replaces Pyroblast at 3+ targets',
       ],
-    },
-    da:{
-      opener:'Fireball → Combustion → Fire Blast x2 → Phoenix Flames → Pyroblast (Hot Streak) → Flamestrike (AoE)',
-      single:'Fireball → Fire Blast ved Heating Up-proc → Pyroblast ved Hot Streak → Combustion på CD',
-      aoe:'Flamestrike (Hot Streak) → spred Fire Blast → Living Bomb på flere mål',
-      rules:[
-        'Heating Up = 1 crit — brug Fire Blast til at konvertere til Hot Streak',
-        'Hot Streak = instant Pyroblast — lad den aldrig udløbe!',
-        'Gem altid Fire Blast til Heating Up → Hot Streak-konvertering',
-        'Combustion på CD — brug ALLE Fire Blast-charges inde i den',
-        'AoE: Flamestrike erstatter Pyroblast ved 3+ mål',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -111,33 +96,7 @@ const SPEC_FIRE_MAGE = {
         {spell:'Dragon\'s Breath',      why:'AoE burst + disorient around you — strong in AoE too'},
         {spell:'Combustion',            why:'In AoE: massive Flamestrike spam window'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Combustion får alle trylleformularer til at crite — brug straks alle dine Fire Blast-charges i den for en kæde af instant Pyroblasts. Dette er dit største skadevindue!',
-      opener:[
-        {spell:'Fireball',              why:'Opvarm — chance for Heating Up-proc'},
-        {spell:'Combustion',            why:'Stor burst-CD — alle trylleformularer criter midlertidigt'},
-        {spell:'Fire Blast x3',         why:'Alle charges inde i Combustion — chain Hot Streaks'},
-        {spell:'Phoenix Flames',        why:'Ekstra crit-garanti under Combustion'},
-        {spell:'Pyroblast (Hot Streak)',why:'Instant Pyroblast ved hver Hot Streak-proc'},
-        {spell:'Flamestrike',           why:'AoE-burst hvis 3+ mål til stede'},
-      ],
-      single:[
-        {spell:'Fireball',              why:'Hoved angreb — chance for Heating Up-proc'},
-        {spell:'Fire Blast',            why:'Brug kun ved Heating Up-proc — skaber Hot Streak'},
-        {spell:'Pyroblast (Hot Streak)',why:'Brug altid straks ved Hot Streak-proc'},
-        {spell:'Phoenix Flames',        why:'På CD — ekstra chance for proc, god fylder'},
-        {spell:'Combustion',            why:'På CD — bliv midlertidigt en crit-maskine'},
-        {spell:'Scorch (<30% HP)',      why:'Searing Touch: instant Scorch = automatisk crit i execute'},
-      ],
-      aoe:[
-        {spell:'Flamestrike (Hot Streak)',why:'AoE-version af Pyroblast — foretræk altid ved 3+ mål'},
-        {spell:'Fire Blast',            why:'Bruges til at udløse Hot Streak til Flamestrike'},
-        {spell:'Living Bomb',           why:'AoE-DoT på flere mål — god passiv skade'},
-        {spell:'Dragon\'s Breath',      why:'AoE-burst + disorient omkring dig — stærk i AoE også'},
-        {spell:'Combustion',            why:'I AoE: massivt Flamestrike-spam-vindue'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -159,17 +118,7 @@ const SPEC_FIRE_MAGE = {
         {rank:4,stat:'Haste',          bars:2,note:'Faster casts but less needed than Crit/Mastery'},
         {rank:5,stat:'Versatility',    bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Intellect er altid #1. Critical Strike er ekstremt værdifuld for Fire — flere crits = flere Hot Streak-procs = mere skade. Mastery øger skaden af alle dine fire-trylleformularer.',
-      list:[
-        {rank:1,stat:'Intellect',      bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Critical Strike',bars:5,note:'Flere crits = flere Hot Streak-procs = mere skade'},
-        {rank:3,stat:'Mastery',        bars:4,note:'Mastery: Ignite — øger brandskade på alle mål'},
-        {rank:4,stat:'Haste',          bars:2,note:'Hurtigere casts men mindre nødvendig end Crit/Mastery'},
-        {rank:5,stat:'Versatility',    bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -185,14 +134,7 @@ const SPEC_FIRE_MAGE = {
       {spell:'Phoenix Flames',    cd:'30 sec',  effect:'Always crits — extra Hot Streak conversion tool',       when:'On CD or specifically inside Combustion window'},
       {spell:'Dragon\'s Breath',  cd:'20 sec',  effect:'AoE burst + disorient around you',                    when:'AoE packs or when interrupt evasion needed'},
       {spell:'Time Warp',         cd:'5 min',   effect:'Group haste +30% for 40 sec',                         when:'On instruction from tank/raid leader'},
-    ],
-    da:[
-      {spell:'Combustion',        cd:'2 min',   effect:'Alle trylleformularer criter midlertidigt — massivt burst-vindue', when:'På pull + brug alle Fire Blast-charges inde i det'},
-      {spell:'Fire Blast',        cd:'12 sek',  effect:'Instant cast, criter altid — konverterer Heating Up til Hot Streak', when:'KUN ved Heating Up-proc — aldrig som fylder'},
-      {spell:'Phoenix Flames',    cd:'30 sek',  effect:'Criter altid — ekstra Hot Streak-konverteringsredskab', when:'På CD eller specifikt inde i Combustion-vindue'},
-      {spell:'Dragon\'s Breath',  cd:'20 sek',  effect:'AoE-burst + disorient omkring dig',                   when:'AoE-grupper eller når interrupt-undvigelse er nødvendig'},
-      {spell:'Time Warp',         cd:'5 min',   effect:'Gruppe-haste +30% i 40 sek',                          when:'På anvisning fra tank/raidleder'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -210,15 +152,7 @@ const SPEC_FIRE_MAGE = {
       {spell:'Frost Nova',        type:'CC',        note:'Freezes targets around you — escape or kiting'},
       {spell:'Blink',             type:'Mobility',  note:'Teleport 20 yards forward — dodge mechanics'},
       {spell:'Invisibility',      type:'Defensive', note:'Leave combat — aggro dump or emergency'},
-    ],
-    da:[
-      {spell:'Counterspell',      type:'Interrupt', note:'Interrupt på 24 sek CD — schoollock i 8 sek'},
-      {spell:'Time Warp',         type:'Bloodlust', note:'Gruppe-haste 30% — koordinér med gruppe'},
-      {spell:'Dragon\'s Breath',  type:'CC',        note:'AoE-disorient omkring dig — brydes ved skade'},
-      {spell:'Frost Nova',        type:'CC',        note:'Fryser mål omkring dig — flugt eller kiting'},
-      {spell:'Blink',             type:'Mobilitet', note:'Teleportér 20 meter frem — undvig mekanikker'},
-      {spell:'Invisibility',      type:'Defensiv',  note:'Forlad kamp — aggro-dump eller nødsituation'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -234,14 +168,7 @@ const SPEC_FIRE_MAGE = {
       {icon:'🌊',title:'AoE: Flamestrike priority',  text:'At 3+ targets Flamestrike completely replaces Pyroblast. Flamestrike consumes Hot Streak just like Pyroblast. Combine with Living Bomb for more AoE damage.'},
       {icon:'🎯',title:'Execute phase with Searing Touch', text:'Below 30% HP: Scorch becomes instant AND automatically crits via Searing Touch. This gives free Heating Up procs. Perfect for execute — spam Scorch and use the Hot Streaks.'},
       {icon:'❄️',title:'Frost Nova + Blink combo',   text:'Frost Nova freezes enemies, Blink away. Excellent when you\'re too close to enemies or need to dodge a mechanic while continuing to cast.'},
-    ],
-    da:[
-      {icon:'🔥',title:'Forstå Hot Streak',          text:'Heating Up = dit første crit (orange ikon). Brug derefter Fire Blast eller Phoenix Flames for et garanteret andet crit = Hot Streak. Hot Streak = gratis instant Pyroblast. Lad den aldrig udløbe!'},
-      {icon:'💥',title:'Optimering af Combustion',   text:'Combustion får alt til at crite — dette er dit burst-vindue. Brug ALLE Fire Blast-charges inde i det (3 charges). Kombiner med Time Warp ved pull for det største burst. Uden for Combustion: gem altid Fire Blast til Heating Up.'},
-      {icon:'🌊',title:'AoE: Flamestrike-prioritet', text:'Ved 3+ mål erstatter Flamestrike Pyroblast fuldstændigt. Flamestrike forbruger Hot Streak ligesom Pyroblast. Kombiner med Living Bomb for mere AoE-skade.'},
-      {icon:'🎯',title:'Execute-fase med Searing Touch', text:'Under 30% HP: Scorch bliver instant OG criter automatisk via Searing Touch. Dette giver gratis Heating Up-procs. Perfekt til execute — spam Scorch og brug Hot Streaks.'},
-      {icon:'❄️',title:'Frost Nova + Blink-kombination', text:'Frost Nova fryser fjender, Blink væk. Fremragende når du er for tæt på fjender eller skal undvige en mekanik mens du fortsætter med at caste.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -253,12 +180,7 @@ const SPEC_FIRE_MAGE = {
       {name:'Counterspell (Focus Kick)', code:'#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note:'Kick on focus > mouseover > target. Essential in M+!'},
       {name:'Combustion macro',          code:'#showtooltip Combustion\n/cast Combustion\n/use 13', note:'Combustion + trinket simultaneously — maximum burst window.'},
       {name:'Frost Nova + Blink escape', code:'/cast Frost Nova\n/cast Blink', note:'Freeze and escape in one button — quick escape combo.'},
-    ],
-    da:[
-      {name:'Counterspell (Focus Kick)', code:'#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note:'Spark på focus > mouseover > mål. Essentiel i M+!'},
-      {name:'Combustion-makro',          code:'#showtooltip Combustion\n/cast Combustion\n/use 13', note:'Combustion + trinket simultant — maksimalt burst-vindue.'},
-      {name:'Frost Nova + Blink-flugt',  code:'/cast Frost Nova\n/cast Blink', note:'Frys og flygt på én knap — hurtig flugt-kombination.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -292,23 +214,7 @@ const SPEC_FIRE_MAGE = {
       ],
       pet_tip:'💡 Hot Streak procs are FREE — they cost no mana. Always use them immediately. Fireball is your cheap filler. Pyroblast without Hot Streak costs lots of mana and is almost never worth it.',
       pets:[],
-    },
-    da:{
-      intro:'Fire Mage bruger Mana. Mana-styring er mindre kritisk for Fire end for Arcane, men du kan stadig løbe tør i længerevarende kampe. Det rigtige ressourcesystem er Hot Streak-procs.',
-      generate:[
-        'Mana regenererer passivt under kamp',
-        'Mana Gem (talent) — ekstra mana-gendannelse',
-        'Uden for kamp: mana går hurtigt tilbage til 100%',
-      ],
-      spend:[
-        'Pyroblast — hoved skadetrylleformel, gennemsnitlige omkostninger',
-        'Flamestrike — AoE-version, lignende omkostninger',
-        'Scorch — meget billig, kan altid bruges under bevægelse',
-        'Combustion — ingen mana-omkostninger, tidsbegrænset CD',
-      ],
-      pet_tip:'💡 Hot Streak-procs er GRATIS — de koster ingen mana. Brug dem altid straks. Fireball er din billige fylder. Pyroblast uden Hot Streak koster masser af mana og er næsten aldrig det værd.',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -324,14 +230,7 @@ const SPEC_FIRE_MAGE = {
       {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Intellect and Stamina via group feast.',     note:'Ask for feast'},
       {type:'food',  name:'Royal Roast',     effect:'Solo food — Intellect backup.',              note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primary stat 1 hour.',                      note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Magisters',  effect:'Øger Intellect markant i 1 time.',             note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Recklessness',         effect:'Stor Intellect-boost i 25 sek.',              note:'På pull eller Combustion-vindue'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',    effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed om feast'},
-      {type:'food',  name:'Royal Roast',     effect:'Solo-mad — Intellect backup.',               note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',     effect:'+Primær stat 1 time.',                        note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_FIRE_MAGE);

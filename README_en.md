@@ -1,6 +1,6 @@
 # 🌙 WoW: Midnight Companion Guide
 
-**v1.1** — A trilingual (NL/EN/DA) Progressive Web App for World of Warcraft: Midnight.
+**v1.1** — A bilingual (NL/EN) Progressive Web App for World of Warcraft: Midnight.
 
 **Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
@@ -25,7 +25,7 @@ Includes **Trash Mob Guide** in the Route tab with 69 mobs documented, color-cod
 A complete, step-by-step guide for the new solo-friendly endgame activity. Includes unlock questline, difficulties and rewards.
 
 ### 💎 Delves (Improved in v1.1)
-All 12 Midnight Delves with /way, loot table and key info. Click a Delve name for a short overview (3 tips). Tap **Full Guide** for a step-by-step walkthrough with events, boss mechanics and secrets — in EN, NL and DA.
+All 12 Midnight Delves with /way, loot table and key info. Click a Delve name for a short overview (3 tips). Tap **Full Guide** for a step-by-step walkthrough with events, boss mechanics and secrets — in Dutch and English.
 
 ### 📅 Weekly
 Overview of weekly activities: World Bosses, Timewalking, Crafting Orders, Delves and more.
@@ -61,7 +61,7 @@ Tap the install icon in your browser (Chrome/Safari) to add the app to your home
 
 ## 🌍 Languages
 
-🇳🇱 Nederlands | 🇬🇧 English | 🇩🇰 Dansk
+🇳🇱 Nederlands | 🇬🇧 English
 
 ---
 
@@ -70,7 +70,7 @@ Tap the install icon in your browser (Chrome/Safari) to add the app to your home
 ### v1.1 — March 20, 2026
 - 💎 **Delves:** Click a Delve name for a short overview (gimmick, danger, tip)
 - 📖 **Full Guide:** Complete walkthrough per Delve — events, boss mechanics, secrets (Icy Veins, 12yo-friendly)
-- 🌍 **EN/NL/DA:** All Delve content in three languages
+- 🌍 **EN/NL:** All Delve content in two languages (Danish removed)
 - 📋 Tip added: "Click the Delve name for quick tips"
 - 🔧 Torment's Rise /way coordinates added
 

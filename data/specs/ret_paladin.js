@@ -7,30 +7,27 @@ const SPEC_RET_PALADIN = {
   id: 'ret_paladin',
   icon: '⚔️',
   class: 'Paladin',
-  spec:  { nl: 'Retribution', en: 'Retribution', da: 'Retribution' },
+  spec:  { nl: 'Retribution', en: 'Retribution'},
   role:  'melee',
   armor: 'Plate',
-  weapon: { nl: 'Twee-handig zwaard / knots / bijl', en: 'Two-handed sword / mace / axe', da: 'Tohånds sværd / kølle / økse' },
+  weapon: { nl: 'Twee-handig zwaard / knots / bijl', en: 'Two-handed sword / mace / axe'},
   resource: 'Holy Power (0–5)',
   patch: '12.0.1',
   color: '#f8d347',
 
   summary: {
     nl: 'Melee DPS met heilige krachten. Bouw Holy Power op met generators en geef het uit voor zware slagen. Sterke defensieve cooldowns en groepsnuttigheid maken Ret tot een complete pakket.',
-    en: 'Melee DPS with holy power. Build Holy Power with generators and spend it for heavy strikes. Strong defensive cooldowns and group utility make Ret a complete package.',
-    da: 'Melee DPS med hellig kraft. Byg Holy Power op med generators og brug det til tunge slag. Stærke defensive cooldowns og gruppe-utility gør Ret til en komplet pakke.',
+    en: 'Melee DPS with holy power. Build Holy Power with generators and spend it for heavy strikes. Strong defensive cooldowns and group utility make Ret a complete package.'
   },
 
   pros: {
     nl: ['Sterke defensieve cooldowns (Divine Shield, Lay on Hands)', 'Goede groeps-utility (Blessing of Protection, Sacrifice)', 'Eenvoudig te leren rotatie', 'Sterk zowel single-target als AoE', 'Plate armor — meer survivability'],
-    en: ['Strong defensive cooldowns (Divine Shield, Lay on Hands)', 'Good group utility (Blessing of Protection, Sacrifice)', 'Easy to learn rotation', 'Strong both single-target and AoE', 'Plate armor — more survivability'],
-    da: ['Stærke defensive cooldowns (Divine Shield, Lay on Hands)', 'God gruppe-utility (Blessing of Protection, Sacrifice)', 'Nem at lære rotation', 'Stærk på både single-target og AoE', 'Plate rustning — mere overlevelsesevne'],
+    en: ['Strong defensive cooldowns (Divine Shield, Lay on Hands)', 'Good group utility (Blessing of Protection, Sacrifice)', 'Easy to learn rotation', 'Strong both single-target and AoE', 'Plate armor — more survivability']
   },
 
   cons: {
     nl: ['Melee — moet in de buurt van de boss blijven', 'Kwetsbaar voor AoE-schade in melee-range', 'Holy Power cappen = schade verlies', 'Minder mobiel dan ranged specs', 'Timing van cooldowns vereist oefening'],
-    en: ['Melee — must stay near the boss', 'Vulnerable to AoE damage in melee range', 'Capping Holy Power = damage loss', 'Less mobile than ranged specs', 'Timing cooldowns requires practice'],
-    da: ['Melee — skal blive tæt på bossen', 'Sårbar over for AoE-skade i melee-rækkevidde', 'Cap Holy Power = skade-tab', 'Mindre mobil end ranged specs', 'Timing af cooldowns kræver øvelse'],
+    en: ['Melee — must stay near the boss', 'Vulnerable to AoE damage in melee range', 'Capping Holy Power = damage loss', 'Less mobile than ranged specs', 'Timing cooldowns requires practice']
   },
 
   cheatsheet: {
@@ -59,20 +56,7 @@ const SPEC_RET_PALADIN = {
         'Keep Consecration active for extra damage',
         'Divine Storm on 2+ targets instead of Templar\'s Verdict',
       ],
-    },
-    da: {
-      opener:   "Avenging Wrath → Judgment → Blade of Justice → Templar's Verdict (3 HP) → Wake of Ashes → Templar's Verdict → Divine Storm (AoE)",
-      single:   "Judgment → Blade of Justice → Hammer of Wrath → Consecration → Templar's Verdict (3+ HP) → fyldstof",
-      aoe:      "Consecration → Wake of Ashes → Divine Storm → Judgment → Blade of Justice → Divine Storm (3+ HP)",
-      rules: [
-        'Cap aldrig Holy Power på 5 — brug altid ved 3-5',
-        'Avenging Wrath on cooldown — gem den aldrig',
-        'Judgment altid før Blade of Justice',
-        'Hammer of Wrath kun over 20% eller under AW',
-        'Hold Consecration aktiv for ekstra skade',
-        'Divine Storm ved 2+ mål i stedet for Templar\'s Verdict',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -135,37 +119,7 @@ const SPEC_RET_PALADIN = {
         { prio: '5', spell: 'Judgment',            note: 'On cooldown' },
         { prio: '6', spell: 'Blade of Justice',    note: 'On cooldown' },
       ],
-    },
-    da: {
-      apex_tip: '✨ Holy Power: Generer med Judgment, Blade of Justice, Consecration. Brug med Templar\'s Verdict (ST) eller Divine Storm (AoE). Cap aldrig på 5!',
-      opener: [
-        { step: 1, spell: 'Avenging Wrath',     note: 'Stor burst cooldown — gå altid først' },
-        { step: 2, spell: 'Judgment',            note: 'Genererer Holy Power + debuff' },
-        { step: 3, spell: 'Blade of Justice',    note: 'Høj skade + Holy Power' },
-        { step: 4, spell: "Templar's Verdict",   note: 'Brug 3 Holy Power' },
-        { step: 5, spell: 'Wake of Ashes',       note: 'Giver 3 Holy Power + høj skade' },
-        { step: 6, spell: "Templar's Verdict",   note: 'Direkte efter Wake of Ashes' },
-        { step: 7, spell: 'Hammer of Wrath',     note: 'Ekstra skade under Avenging Wrath' },
-      ],
-      single: [
-        { prio: '1', spell: 'Avenging Wrath',     note: 'On cooldown — øger al skade',                    importance: 'ALTID' },
-        { prio: '2', spell: 'Wake of Ashes',       note: 'On cooldown — 3 HP + høj skade',                importance: 'ALTID' },
-        { prio: '3', spell: 'Judgment',            note: 'On cooldown — debuff + HP generator',            importance: 'ALTID' },
-        { prio: '4', spell: 'Blade of Justice',    note: 'On cooldown — høj skade + HP',                  importance: 'ALTID' },
-        { prio: '5', spell: 'Hammer of Wrath',     note: 'Når tilgængeligt (>20% HP eller under AW)',     importance: 'HØJ' },
-        { prio: '6', spell: "Templar's Verdict",   note: 'Ved 3-5 Holy Power — single target-forbruger',  importance: 'HØJ' },
-        { prio: '7', spell: 'Consecration',        note: 'Hold aktiv — genererer HP og ekstra skade',     importance: 'MIDDEL' },
-        { prio: '8', spell: 'Exorcism / fyldstof', note: 'Fyldstof når alt er on cooldown',               importance: 'FYLD' },
-      ],
-      aoe: [
-        { prio: '1', spell: 'Avenging Wrath',    note: 'On cooldown — alle Divine Storms skalerer med det' },
-        { prio: '2', spell: 'Wake of Ashes',      note: 'On cooldown — rammer flere mål' },
-        { prio: '3', spell: 'Consecration',       note: 'Hold aktiv — AoE-skade + HP-generering' },
-        { prio: '4', spell: 'Divine Storm',        note: 'Ved 3+ HP — AoE-forbruger ved 2+ mål' },
-        { prio: '5', spell: 'Judgment',            note: 'On cooldown' },
-        { prio: '6', spell: 'Blade of Justice',    note: 'On cooldown' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -188,17 +142,7 @@ const SPEC_RET_PALADIN = {
         { rank: '4', stat: 'Mastery',        bars: 3, note: 'Increases holy damage — good but less than Haste' },
         { rank: '5', stat: 'Versatility',    bars: 2, note: 'Flat damage + defensive — least valuable' },
       ],
-    },
-    da: {
-      tip: '💡 Strength er din primære stat — tag altid højeste item level. Haste er meget stærk for Ret fordi det reducerer cooldowns og genererer mere Holy Power.',
-      list: [
-        { rank: '1', stat: 'Strength',       bars: 5, note: 'Primær stat — vælg altid højeste ilvl' },
-        { rank: '2', stat: 'Haste',          bars: 5, note: 'Reducerer cooldowns + mere HP-generering — top sekundær stat' },
-        { rank: '3', stat: 'Critical Strike', bars: 4, note: 'Øger skade og heals — meget værdifuldt' },
-        { rank: '4', stat: 'Mastery',        bars: 3, note: 'Øger hellig skade — godt men mindre end Haste' },
-        { rank: '5', stat: 'Versatility',    bars: 2, note: 'Flad skade + defensiv — mindst værdifuldt' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -219,16 +163,7 @@ const SPEC_RET_PALADIN = {
       { spell: 'Blessing of Protection', cd: '5 min',  effect: 'Makes target immune to physical damage — 10 sec', when: 'Tank in danger — also removes aggro' },
       { spell: 'Blessing of Sacrifice',  cd: '2 min',  effect: 'You absorb 30% of damage taken by target',        when: 'Tank or healer in danger during big pull' },
       { spell: 'Hammer of Justice',      cd: '1 min',  effect: '6 sec stun on enemy',                             when: 'Interrupt or emergency stop' },
-    ],
-    da: [
-      { spell: 'Avenging Wrath',        cd: '1.5 min', effect: 'Øger al skade betydeligt — burst window',         when: 'On cooldown — altid så hurtigt som muligt' },
-      { spell: 'Wake of Ashes',         cd: '45 sec',  effect: 'Rammer alle fjender med hellig skade + 3 HP',     when: 'On cooldown — opener og rotation' },
-      { spell: 'Divine Shield',         cd: '5 min',   effect: '100% immun mod al skade — 8 sek',                 when: 'Nødsituation — bemærk: fjerner dig fra kamp' },
-      { spell: 'Lay on Hands',          cd: '10 min',  effect: 'Healer målet fuldt — dig selv eller gruppedeltager', when: 'Nødsituation — forhindre tankdød eller red dig selv' },
-      { spell: 'Blessing of Protection', cd: '5 min',  effect: 'Gør målet immunt mod fysisk skade — 10 sek',      when: 'Tank i fare — fjerner også aggro' },
-      { spell: 'Blessing of Sacrifice',  cd: '2 min',  effect: 'Du absorberer 30% af skade taget af mål',         when: 'Tank eller healer i fare under stort pull' },
-      { spell: 'Hammer of Justice',      cd: '1 min',  effect: '6 sek bedøvelse på fjende',                       when: 'Afbryd eller nødstop' },
-    ],
+    ]
   },
 
   utility: {
@@ -249,16 +184,7 @@ const SPEC_RET_PALADIN = {
       { spell: 'Divine Shield',          type: 'Survival',       note: 'Immune 8 sec — absolute emergency' },
       { spell: 'Flash of Light',         type: 'Heal',           note: 'Small heal on yourself — when you are low' },
       { spell: 'Cleanse Toxins',         type: 'Dispel',         note: 'Removes poisons and diseases from ally' },
-    ],
-    da: [
-      { spell: 'Hammer of Justice',      type: 'Afbryd/Bedøv', note: '6 sek bedøvelse — også afbrydelse. Essentiel i M+!' },
-      { spell: 'Blessing of Protection', type: 'Defensiv',     note: 'Gør ally immun mod fysisk — red tanken' },
-      { spell: 'Blessing of Sacrifice',  type: 'Defensiv',     note: 'Absorber 30% af ally-skade — hjælp healeren' },
-      { spell: 'Lay on Hands',           type: 'Nødheal',      note: 'Fuld healing — red tanken eller dig selv' },
-      { spell: 'Divine Shield',          type: 'Overlevelse',  note: 'Immun 8 sek — absolut nødsituation' },
-      { spell: 'Flash of Light',         type: 'Heal',         note: 'Lille heal på dig selv — når du er lav' },
-      { spell: 'Cleanse Toxins',         type: 'Dispel',       note: 'Fjerner giftstoffer og sygdomme fra ally' },
-    ],
+    ]
   },
 
   tips: {
@@ -281,17 +207,7 @@ const SPEC_RET_PALADIN = {
       { icon: '🙏', title: 'Blessings for the group',       text: 'Blessing of Protection and Sacrifice are group cooldowns. Learn to use them for the group — not just for yourself.' },
       { icon: '⚡', title: 'Haste = everything faster',     text: 'Haste reduces the cooldown of generators. More Haste = more Holy Power per minute = more damage.' },
       { icon: '📍', title: 'Melee positioning',             text: 'Always stand behind the boss (avoid cleave). Keep Consecration active under the boss. During movement: Judgment and Hammer of Wrath are instant.' },
-    ],
-    da: [
-      { icon: '✨', title: 'Cap aldrig Holy Power',         text: 'Brug altid Holy Power ved 3-5. Cap på 5 = spild. Templar\'s Verdict (ST) eller Divine Storm (AoE) ved 3+.' },
-      { icon: '⚔️', title: 'Avenging Wrath on cooldown',   text: 'Din største burst cooldown. Brug den så snart den er klar — gem den aldrig. Under Avenging Wrath: brug så mange Holy Power-forbrugere som muligt.' },
-      { icon: '🌊', title: 'Wake of Ashes = combo starter', text: 'Giver 3 HP straks + høj skade. Brug efter Avenging Wrath for maksimal burst. Ved AoE rammer den alle mål.' },
-      { icon: '🛡️', title: 'Divine Shield smart brug',      text: 'Skal du til at dø? Divine Shield gør dig immun i 8 sek. OBS: du mister aggro. Brug det til mechanics der ellers ville dræbe dig.' },
-      { icon: '🏥', title: 'Lay on Hands = red tanken',     text: 'En af de stærkeste nødknapper i spillet. Red tanken når de er ved at dø — cooldown er lang, så brug det klogt.' },
-      { icon: '🙏', title: 'Velsignelser til gruppen',      text: 'Blessing of Protection og Sacrifice er gruppe-cooldowns. Lær at bruge dem til gruppen — ikke kun til dig selv.' },
-      { icon: '⚡', title: 'Haste = alt hurtigere',         text: 'Haste reducerer cooldown på generators. Mere Haste = mere Holy Power per minut = mere skade.' },
-      { icon: '📍', title: 'Melee positionering',           text: 'Stå altid bag bossen (undgå cleave). Hold Consecration aktiv under bossen. Under bevægelse: Judgment og Hammer of Wrath er instant.' },
-    ],
+    ]
   },
 
   macros: {
@@ -308,14 +224,7 @@ const SPEC_RET_PALADIN = {
       { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorb damage from ally — on mouseover.' },
       { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Emergency heal on mouseover > yourself — save the tank!' },
       { name: 'Avenging Wrath burst macro', code: '#showtooltip Avenging Wrath\n/cast Avenging Wrath\n/cast Wake of Ashes', note: 'Start burst window immediately with 3 Holy Power.' },
-    ],
-    da: [
-      { name: 'Hammer of Justice (Focus Kick)', code: '#showtooltip Hammer of Justice\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Hammer of Justice', note: 'Bedøv/afbryd på focus > mouseover > mål.' },
-      { name: 'Blessing of Protection (mouseover)', code: '#showtooltip Blessing of Protection\n/cast [@mouseover,help,nodead][@player] Blessing of Protection', note: 'BoP på mouseover > dig selv.' },
-      { name: 'Blessing of Sacrifice (mouseover)', code: '#showtooltip Blessing of Sacrifice\n/cast [@mouseover,help,nodead][@player] Blessing of Sacrifice', note: 'Absorber skade fra ally — på mouseover.' },
-      { name: 'Lay on Hands (mouseover)', code: '#showtooltip Lay on Hands\n/cast [@mouseover,help,nodead][@player] Lay on Hands', note: 'Nødheal på mouseover > dig selv — red tanken!' },
-      { name: 'Avenging Wrath burst makro', code: '#showtooltip Avenging Wrath\n/cast Avenging Wrath\n/cast Wake of Ashes', note: 'Start burst window direkte med 3 Holy Power.' },
-    ],
+    ]
   },
 
   consumables: {
@@ -332,14 +241,7 @@ const SPEC_RET_PALADIN = {
       { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength and Stamina.', note:'Ask for feast' },
       { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
       { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
-    ],
-    da: [
-      { type:'flask', name:'Flask of the Shattered Sun', effect:'Øger Strength i 1 time.', note:'Altid aktiv' },
-      { type:'pot', name:'Potion of Recklessness', effect:'Strength-boost under burst.', note:'På pull eller Avenging Wrath' },
-      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength og Stamina.', note:'Bed om feast' },
-      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
-      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -376,24 +278,7 @@ const SPEC_RET_PALADIN = {
       ],
       pet_tip: 'Paladin has no pet. Your "partner" is your Consecration — always keep it active on the ground under the boss. Does movement interrupt it? Reapply as soon as you stand still.',
       pets: [],
-    },
-    da: {
-      intro: 'Holy Power (0–5) er din ressource. Generer den med abilities, brug den til tunge angreb. Lad den aldrig cap på 5!',
-      generate: [
-        { spell: 'Judgment',         note: '+1 Holy Power (brug on cooldown)' },
-        { spell: 'Blade of Justice', note: '+2 Holy Power (høj prioritet)' },
-        { spell: 'Consecration',     note: '+1 Holy Power per tick (hold aktiv)' },
-        { spell: 'Wake of Ashes',    note: '+3 Holy Power straks (stor cooldown)' },
-        { spell: 'Hammer of Wrath',  note: '+1 Holy Power (>20% eller AW)' },
-      ],
-      spend: [
-        { spell: "Templar's Verdict",    note: 'Single target-forbruger — 3+ HP' },
-        { spell: 'Divine Storm',          note: 'AoE-forbruger — ved 2+ mål' },
-        { spell: "Justicar's Vengeance", note: 'Høj ST skade + heal — talent' },
-      ],
-      pet_tip: 'Paladin har intet kæledyr. Din "partner" er din Consecration — hold den altid aktiv på jorden under bossen. Afbrydes den af bevægelse? Genlæg den så snart du står stille.',
-      pets: [],
-    },
+    }
   },
 };
 

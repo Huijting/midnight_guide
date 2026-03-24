@@ -7,30 +7,27 @@ const SPEC_FROST_MAGE = {
   id: 'frost_mage',
   icon: '❄️',
   class: 'Mage',
-  spec:  { nl: 'Frost', en: 'Frost', da: 'Frost' },
+  spec:  { nl: 'Frost', en: 'Frost'},
   role:  'dps',
   armor: 'Cloth',
-  weapon: { nl: 'Staf / Toverstaf + boek', en: 'Staff / Wand + offhand', da: 'Stav / Tryllestav + offhand' },
+  weapon: { nl: 'Staf / Toverstaf + boek', en: 'Staff / Wand + offhand'},
   resource: 'Mana',
   patch: '12.0.1',
   color: '#90caf9',
 
   summary: {
     nl: 'Ranged DPS met ijsmagie. Bouw procs op (Brain Freeze, Fingers of Frost) en geef ze uit voor zware spells. Sterke CC-opties en uitstekend voor beginners. Proc-management is de sleutel tot hoge DPS.',
-    en: 'Ranged DPS with ice magic. Build up procs (Brain Freeze, Fingers of Frost) and spend them for heavy spells. Strong CC options and excellent for beginners. Proc management is the key to high DPS.',
-    da: 'Ranged DPS med ismagik. Byg procs op (Brain Freeze, Fingers of Frost) og brug dem til tunge spells. Stærke CC-muligheder og fremragende for begyndere. Proc management er nøglen til høj DPS.',
+    en: 'Ranged DPS with ice magic. Build up procs (Brain Freeze, Fingers of Frost) and spend them for heavy spells. Strong CC options and excellent for beginners. Proc management is the key to high DPS.'
   },
 
   pros: {
     nl: ['Geweldige CC — Frost Nova, Polymorph, Cone of Cold', 'Hoge burst via procs', 'Uitstekend voor beginners', 'Goede mobiliteit met Ice Floes', 'Sterke Bloodlust / Time Warp'],
-    en: ['Excellent CC — Frost Nova, Polymorph, Cone of Cold', 'High burst via procs', 'Excellent for beginners', 'Good mobility with Ice Floes', 'Strong Bloodlust / Time Warp'],
-    da: ['Fremragende CC — Frost Nova, Polymorph, Cone of Cold', 'Høj burst via procs', 'Fremragende for begyndere', 'God mobilitet med Ice Floes', 'Stærk Bloodlust / Time Warp'],
+    en: ['Excellent CC — Frost Nova, Polymorph, Cone of Cold', 'High burst via procs', 'Excellent for beginners', 'Good mobility with Ice Floes', 'Strong Bloodlust / Time Warp']
   },
 
   cons: {
     nl: ['Proc-afhankelijk — soms droge periodes zonder procs', 'Cloth armor — fragiel in melee', 'Mana management op lange encounters', 'Minder mobile dan melee specs', 'Squishier dan plate-klassen'],
-    en: ['Proc-dependent — sometimes dry spells without procs', 'Cloth armor — fragile in melee', 'Mana management on long encounters', 'Less mobile than melee specs', 'Squishier than plate classes'],
-    da: ['Proc-afhængig — nogle gange tørre perioder uden procs', 'Klæde rustning — skrøbelig i melee', 'Mana management på lange encounters', 'Mindre mobil end melee specs', 'Mere skrøbelig end plate-klasser'],
+    en: ['Proc-dependent — sometimes dry spells without procs', 'Cloth armor — fragile in melee', 'Mana management on long encounters', 'Less mobile than melee specs', 'Squishier than plate classes']
   },
 
   cheatsheet: {
@@ -61,21 +58,7 @@ const SPEC_FROST_MAGE = {
         'Use Ice Floes during movement — cast continues',
         'Blizzard on 3+ targets instead of Frostbolt',
       ],
-    },
-    da: {
-      opener:   "Frostbolt × 3 → Frozen Orb → Ice Lance (Fingers of Frost) → Flurry (Brain Freeze) → Ice Lance × 2 → Frostbolt",
-      single:   "Frostbolt (byg procs) → Flurry (Brain Freeze!) → Ice Lance × 2 → Fingers of Frost → Frozen Orb on CD → Ebonbolt on CD",
-      aoe:      "Frozen Orb → Blizzard → Ice Lance (Fingers of Frost) → Cone of Cold → Frost Nova (hvis i melee) → Blizzard igen",
-      rules: [
-        'Spild ALDRIG Brain Freeze — brug altid straks Flurry',
-        'Flurry altid efterfulgt af 2x Ice Lance',
-        'Fingers of Frost = gratis empowered Ice Lance',
-        'Frozen Orb on cooldown — genererer mange procs',
-        'Kast aldrig Frostbolt når du har Fingers of Frost',
-        'Brug Ice Floes under bevægelse — cast fortsætter',
-        'Blizzard ved 3+ mål i stedet for Frostbolt',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -134,35 +117,7 @@ const SPEC_FROST_MAGE = {
         { prio: '5', spell: 'Frost Nova',       note: 'Roots pack — safe distance + bonus damage' },
         { prio: '6', spell: 'Frostbolt',        note: 'Filler on fewer than 3 targets' },
       ],
-    },
-    da: {
-      apex_tip: '❄️ Procs forklaret: Brain Freeze = din næste Flurry er instant + høj skade. Fingers of Frost = din næste Ice Lance gør massiv skade. Spild aldrig nogen af dem!',
-      opener: [
-        { step: 1, spell: 'Frostbolt × 3',    note: 'Byg procs op — opvarmning' },
-        { step: 2, spell: 'Frozen Orb',        note: 'On cooldown — stor proc-generator' },
-        { step: 3, spell: 'Ice Lance',          note: 'Ved Fingers of Frost proc — instant, høj skade' },
-        { step: 4, spell: 'Flurry',            note: 'Ved Brain Freeze proc — brug ALTID straks' },
-        { step: 5, spell: 'Ice Lance × 2',     note: 'Direkte efter Flurry — frosset mål = bonusskade' },
-        { step: 6, spell: 'Ebonbolt',          note: 'Hvis talented — giver altid Brain Freeze' },
-        { step: 7, spell: 'Frostbolt',         note: 'Fyldstof — generer nye procs' },
-      ],
-      single: [
-        { prio: '1', spell: 'Flurry (Brain Freeze)',       note: 'ALTID straks ved proc — spild aldrig',      importance: 'ALTID' },
-        { prio: '2', spell: 'Ice Lance (Fingers of Frost)', note: 'ALTID straks ved proc — gratis skade',     importance: 'ALTID' },
-        { prio: '3', spell: 'Frozen Orb',       note: 'On cooldown — starter stort proc-vindue',              importance: 'ALTID' },
-        { prio: '4', spell: 'Ebonbolt',         note: 'On cooldown — giver altid Brain Freeze proc',          importance: 'HØJ' },
-        { prio: '5', spell: 'Ice Lance × 2',    note: 'Direkte efter Flurry — mål er frosset = bonus',        importance: 'HØJ' },
-        { prio: '6', spell: 'Frostbolt',        note: 'Fyldstof — bygger procs op',                           importance: 'FYLD' },
-      ],
-      aoe: [
-        { prio: '1', spell: 'Frozen Orb',      note: 'On cooldown — rammer alt + proc generator' },
-        { prio: '2', spell: 'Blizzard',         note: 'Kanal ved 3+ mål — høj AoE-skade' },
-        { prio: '3', spell: 'Ice Lance',        note: 'Ved Fingers of Frost proc — også under AoE' },
-        { prio: '4', spell: 'Cone of Cold',     note: 'On cooldown ved melee-packs — instant AoE' },
-        { prio: '5', spell: 'Frost Nova',       note: 'Rodfæster pack — sikker afstand + bonusskade' },
-        { prio: '6', spell: 'Frostbolt',        note: 'Fyldstof ved færre end 3 mål' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -185,17 +140,7 @@ const SPEC_FROST_MAGE = {
         { rank: '4', stat: 'Versatility',      bars: 3, note: 'Flat damage + defensive — solid choice' },
         { rank: '5', stat: 'Mastery',          bars: 2, note: 'Increases Frozen damage — less valuable than Crit' },
       ],
-    },
-    da: {
-      tip: '💡 Intellect er primær stat — tag altid højeste ilvl. Frost Mage vil have meget Crit (procs!) og Haste (hurtigere casts + flere procs per minut).',
-      list: [
-        { rank: '1', stat: 'Intellect',       bars: 5, note: 'Primær stat — øger al skade' },
-        { rank: '2', stat: 'Critical Strike',  bars: 5, note: 'Mere Crit = flere Brain Freeze procs = mere skade' },
-        { rank: '3', stat: 'Haste',            bars: 4, note: 'Hurtigere casts + flere Frostbolts per minut = flere procs' },
-        { rank: '4', stat: 'Versatility',      bars: 3, note: 'Flad skade + defensiv — solid valg' },
-        { rank: '5', stat: 'Mastery',          bars: 2, note: 'Øger Frozen-skade — mindre værdifuld end Crit' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -216,16 +161,7 @@ const SPEC_FROST_MAGE = {
       { spell: 'Ice Block',           cd: '4 min',   effect: '100% immune but frozen — 10 sec',                  when: 'Emergency — avoid one-shot mechanics' },
       { spell: 'Greater Invisibility', cd: '2 min',  effect: 'Invisible + 60% damage reduction while active',    when: 'Aggro dump or avoid mechanic' },
       { spell: 'Mirror Image',        cd: '2 min',   effect: 'Three images attacking + aggro dump',               when: 'Opener or big pull — bonus DPS + safety' },
-    ],
-    da: [
-      { spell: 'Frozen Orb',          cd: '1 min',   effect: 'Orb der bevæger sig gennem rummet + proc-generator', when: 'On cooldown — opener og rotation' },
-      { spell: 'Icy Veins',           cd: '3 min',   effect: 'Haste +30% — øger cast-hastighed enormt',           when: 'On cooldown — kombiner med Frozen Orb' },
-      { spell: 'Time Warp',           cd: '5 min',   effect: 'Bloodlust-ækvivalent — haste for hele gruppen',     when: 'Efter tankens anvisning eller ved boss-pull' },
-      { spell: 'Cold Snap',           cd: '5 min',   effect: 'Nulstiller Frozen Orb og Cone of Cold cooldowns',   when: 'Ved store burst-øjeblikke' },
-      { spell: 'Ice Block',           cd: '4 min',   effect: '100% immun men frosset — 10 sek',                   when: 'Nødsituation — undgå one-shot mechanics' },
-      { spell: 'Greater Invisibility', cd: '2 min',  effect: 'Usynlig + 60% skadereduktion mens aktiv',           when: 'Aggro-dump eller undgå mechanic' },
-      { spell: 'Mirror Image',        cd: '2 min',   effect: 'Tre billeder der angriber + aggro-dump',             when: 'Opener eller stort pull — bonus DPS + sikkerhed' },
-    ],
+    ]
   },
 
   utility: {
@@ -246,16 +182,7 @@ const SPEC_FROST_MAGE = {
       { spell: 'Cone of Cold',      type: 'Slow/AoE',  note: 'AoE slow + damage — great for kiting packs' },
       { spell: 'Ice Block',         type: 'Survival',  note: 'Fully immune — absolute emergency button' },
       { spell: 'Spellsteal',        type: 'Utility',   note: 'Steal a buff from enemy — powerful in M+' },
-    ],
-    da: [
-      { spell: 'Counterspell',      type: 'Afbryd',    note: 'Dit spark + stilner skole i 6 sek — essentiel i M+!' },
-      { spell: 'Frost Nova',        type: 'Root/CC',   note: 'Rodfæster alle fjender i melee-rækkevidde — kiting-værktøj' },
-      { spell: 'Polymorph',         type: 'CC',        note: 'Forvandler 1 mål i 60 sek — brydes ved skade' },
-      { spell: 'Time Warp',         type: 'Buff',      note: 'Gruppe-Bloodlust — stort fordel for raid/party' },
-      { spell: 'Cone of Cold',      type: 'Slow/AoE',  note: 'AoE slow + skade — god til kiting af packs' },
-      { spell: 'Ice Block',         type: 'Overlevelse', note: 'Fuldt immun — absolut nødknap' },
-      { spell: 'Spellsteal',        type: 'Utility',   note: 'Stjæl en buff fra fjende — kraftfuld i M+' },
-    ],
+    ]
   },
 
   tips: {
@@ -278,17 +205,7 @@ const SPEC_FROST_MAGE = {
       { icon: '🪄', title: 'Spellsteal is powerful',          text: 'In M+: many enemies have buffs you can steal. Spellsteal can make fights drastically easier. Learn which mobs have what.' },
       { icon: '🪞', title: 'Mirror Image = aggro dump',       text: 'Use Mirror Image directly after the opener — gives you bonus DPS AND redirects aggro. Ask the tank to wait a moment.' },
       { icon: '🧊', title: 'Ice Block = last resort',         text: 'Ice Block makes you immune but you cannot attack. Only use for mechanics that would otherwise one-shot you. Cooldown is long!' },
-    ],
-    da: [
-      { icon: '❄️', title: 'Spild aldrig Brain Freeze',       text: 'Når Brain Freeze procker: brug Flurry STRAKS. Derefter 2x Ice Lance — målet er frosset efter Flurry og Ice Lance giver bonusskade.' },
-      { icon: '🧊', title: 'Fingers of Frost = gratis skade', text: 'Fingers of Frost gør din næste Ice Lance super kraftfuld. Kast aldrig Frostbolt når du har denne proc aktiv.' },
-      { icon: '🌀', title: 'Frozen Orb on cooldown',          text: 'Frozen Orb er din største proc-generator. Brug den altid så snart den er klar. Bevæg dig mod orben — den genererer mere Fingers of Frost når du er tæt på.' },
-      { icon: '🐑', title: 'Polymorph i M+',                  text: 'Polymorph er den bedste single-target CC i spillet. Koordiner i M+ hvem der polymorpher hvilket mål. Vent på tanken.' },
-      { icon: '⏩', title: 'Ice Floes under bevægelse',        text: 'Skal du bevæge dig? Aktiver Ice Floes — du kan så kaste Frostbolt mens du løber. Prøv at gøre dette før mechanics rammer.' },
-      { icon: '🪄', title: 'Spellsteal er kraftfuld',         text: 'I M+: mange fjender har buffs du kan stjæle. Spellsteal kan gøre kampe drastisk lettere. Lær hvilke mobs der har hvad.' },
-      { icon: '🪞', title: 'Mirror Image = aggro-dump',        text: 'Brug Mirror Image direkte efter openeren — giver bonus DPS OG omdirigerer aggro. Bed tanken vente et øjeblik.' },
-      { icon: '🧊', title: 'Ice Block = sidste udvej',         text: 'Ice Block gør dig immun men du kan ikke angribe. Brug kun til mechanics der ellers ville one-shotte dig. Cooldown er lang!' },
-    ],
+    ]
   },
 
   macros: {
@@ -305,14 +222,7 @@ const SPEC_FROST_MAGE = {
       { name: 'Polymorph (mouseover)', code: '#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Polymorph', note: 'CC without switching target — fast and efficient.' },
       { name: 'Frost Nova + Ice Block combo', code: '#showtooltip Ice Block\n/cast Frost Nova\n/cast Ice Block', note: 'Root everything then block — total safety.' },
       { name: 'Spellsteal (mouseover)', code: '#showtooltip Spellsteal\n/cast [@mouseover,harm][@target,harm] Spellsteal', note: 'Steal buff from enemy on mouseover — handy in M+.' },
-    ],
-    da: [
-      { name: 'Counterspell (Focus Kick)', code: '#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
-      { name: 'Frozen Orb + Icy Veins', code: '#showtooltip Icy Veins\n/cast Icy Veins\n/cast Frozen Orb', note: 'Burst window starter — aktiver altid sammen.' },
-      { name: 'Polymorph (mouseover)', code: '#showtooltip Polymorph\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Polymorph', note: 'CC uden at skifte mål — hurtigt og effektivt.' },
-      { name: 'Frost Nova + Ice Block kombo', code: '#showtooltip Ice Block\n/cast Frost Nova\n/cast Ice Block', note: 'Rodfæst alt og bloker derefter — total sikkerhed.' },
-      { name: 'Spellsteal (mouseover)', code: '#showtooltip Spellsteal\n/cast [@mouseover,harm][@target,harm] Spellsteal', note: 'Stjæl buff fra fjende på mouseover — nyttig i M+.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -347,23 +257,7 @@ const SPEC_FROST_MAGE = {
       pets: [
         { type: 'Water Elemental 💧', bonus: 'Extra attacks + Fingers of Frost procs', use: 'Auto-summon via talent — always keep active' },
       ],
-    },
-    da: {
-      intro: 'Frost Mage bruger Mana men løber sjældent tør. Ved lange kampe: hold øje med Mana og brug Evocation som nødknap. I praksis spiller du omkring procs, ikke Mana.',
-      generate: [
-        { spell: 'Passiv regenerering', note: 'Mana genoprettes automatisk — sjældent et problem' },
-        { spell: 'Evocation',           note: '6 sek kanal: Mana genoprettes fuldt — nødknap' },
-      ],
-      spend: [
-        { spell: 'Frostbolt',  note: 'Hoved Mana-forbruger — lav omkostning' },
-        { spell: 'Blizzard',   note: 'AoE kanal — højere Mana-omkostninger' },
-        { spell: 'Polymorph',  note: 'CC — Mana-omkostning men aldrig et problem' },
-      ],
-      pet_tip: 'Frost Mage har intet fast kæledyr. Med visse talents har du et Water Elemental — dette er din ekstra DPS-kilde og genererer yderligere Fingers of Frost procs.',
-      pets: [
-        { type: 'Water Elemental 💧', bonus: 'Ekstra angreb + Fingers of Frost procs', use: 'Auto-fremkald via talent — hold altid aktiv' },
-      ],
-    },
+    }
   },
 
   consumables: {
@@ -380,14 +274,7 @@ const SPEC_FROST_MAGE = {
       { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Intellect and Stamina.', note:'Ask for feast' },
       { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
       { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
-    ],
-    da: [
-      { type:'flask', name:'Flask of the Magisters', effect:'Øger Intellect i 1 time.', note:'Altid aktiv' },
-      { type:'pot', name:'Potion of Recklessness', effect:'Intellect-boost under burst.', note:'På pull eller Icy Veins' },
-      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Intellect og Stamina.', note:'Bed om feast' },
-      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
-      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
-    ],
+    ]
   },
 };
 

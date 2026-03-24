@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_DEVASTATION_EVOKER = {
   id:'devastation_evoker', icon:'🔥', class:'Evoker',
-  spec:{nl:'Devastation',en:'Devastation',da:'Devastation'},
+  spec:{nl:'Devastation',en:'Devastation'},
   role:'dps', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon',da:'Tohåndsvåben'},
+  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{
     nl:'Devastation Evoker is een unieke ranged DPS die spells oplaadt voor meer schade. Gebaseerd op Blauwe en Rood Drakenmagie. Uniek: Hover geeft mobiliteit tijdens casten en Empower spells schalen met hoe lang je ze oplaadt.',
-    en:'Devastation Evoker is a unique ranged DPS that charges spells for more damage. Based on Blue and Red Dragon Magic. Unique: Hover gives mobility while casting and Empower spells scale with how long you charge them.',
-    da:'Devastation Evoker er en unik ranged DPS der oplader trylleformularer for mere skade. Baseret på Blå og Rød Dragemagi. Unikt: Hover giver mobilitet under casting og Empower-trylleformularer skalerer med hvor længe du oplader dem.',
+    en:'Devastation Evoker is a unique ranged DPS that charges spells for more damage. Based on Blue and Red Dragon Magic. Unique: Hover gives mobility while casting and Empower spells scale with how long you charge them.'
   },
   pros:{
     nl:['Empower spells = uniek oplaad-mechaniek voor burst','Hover = bewegen tijdens casten (uniek!)','Sterke AoE via Pyre en Firestorm','Goede single target via Disintegrate','Unieke utility: Rescue, Zephyr, Rewind'],
-    en:['Empower spells = unique charge mechanic for burst','Hover = moving while casting (unique!)','Strong AoE via Pyre and Firestorm','Good single target via Disintegrate','Unique utility: Rescue, Zephyr, Rewind'],
-    da:['Empower-trylleformularer = unik oplaadningsmekanik til burst','Hover = bevæge sig under casting (unikt!)','Stærk AoE via Pyre og Firestorm','God single target via Disintegrate','Unik utility: Rescue, Zephyr, Rewind'],
+    en:['Empower spells = unique charge mechanic for burst','Hover = moving while casting (unique!)','Strong AoE via Pyre and Firestorm','Good single target via Disintegrate','Unique utility: Rescue, Zephyr, Rewind']
   },
   cons:{
     nl:['Kort bereik (25 yards, niet 40)','Empower timing vereist oefening','Essence management — niet verspillen','Alleen speelbaar als Dracthyr race'],
-    en:['Short range (25 yards, not 40)','Empower timing requires practice','Essence management — don\'t waste','Only playable as Dracthyr race'],
-    da:['Kort rækkevidde (25 yards, ikke 40)','Empower-timing kræver øvelse','Essence-styring — spild det ikke','Kan kun spilles som Dracthyr-race'],
+    en:['Short range (25 yards, not 40)','Empower timing requires practice','Essence management — don\'t waste','Only playable as Dracthyr race']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_DEVASTATION_EVOKER = {
         'Hover proactively on movement mechanics',
         'Never let Essence reach 0 — always keep something in reserve',
       ],
-    },
-    da:{
-      opener:'Fire Breath (max opladning) → Dragonrage → Disintegrate → Pyre-spam → Eternity Surge',
-      single:'Disintegrate → Fire Breath (2-3 sek opladning) → Pyre ved procs → Eternity Surge på CD',
-      aoe:'Fire Breath max opladning → Firestorm → Pyre-spam → Eternity Surge (AoE) → Disintegrate',
-      rules:[
-        'Dragonrage er din burst-CD — kombiner altid med Fire Breath',
-        'Disintegrate er din bedste single target — afbryd aldrig',
-        'Oplad Fire Breath altid til rank 3 (maks) til åbner',
-        'Hover proaktivt ved bevægelsesmekanikker',
-        'Lad aldrig Essence nå 0 — hold altid noget i reserve',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_DEVASTATION_EVOKER = {
         {spell:'Eternity Surge',why:'AoE Empower on CD'},
         {spell:'Dragonrage',why:'AoE burst multiplier'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Empower-trylleformularer bliver stærkere jo længere du oplader dem. Fire Breath ved rank 3 (3 sekunders opladning) gør næsten det dobbelte af rank 1. Tag tid til at oplade — det er det værd!',
-      opener:[
-        {spell:'Fire Breath rank 3',why:'Maks opladet åbner — største burst-angreb'},
-        {spell:'Dragonrage',why:'Burst-CD — øger al Essence-skade'},
-        {spell:'Disintegrate',why:'Kanal — bedste single target'},
-        {spell:'Pyre',why:'Essence-dump under Dragonrage'},
-        {spell:'Eternity Surge',why:'Empower AoE-angreb på CD'},
-      ],
-      single:[
-        {spell:'Disintegrate',why:'Bedste single target — afbryd aldrig'},
-        {spell:'Fire Breath',why:'Oplad rank 2-3 på CD'},
-        {spell:'Living Flame',why:'Essence-generatorfylder'},
-        {spell:'Pyre',why:'Ved Charged Blast-proc'},
-        {spell:'Dragonrage',why:'Burst-vindue — på CD'},
-      ],
-      aoe:[
-        {spell:'Fire Breath rank 3',why:'Maks AoE åbner-skade'},
-        {spell:'Firestorm',why:'AoE kanal-zone'},
-        {spell:'Pyre',why:'AoE Essence-dump'},
-        {spell:'Eternity Surge',why:'AoE Empower på CD'},
-        {spell:'Dragonrage',why:'AoE burst-multiplikator'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_DEVASTATION_EVOKER = {
         {rank:4,stat:'Haste',bars:3,note:'Faster Disintegrate ticks'},
         {rank:5,stat:'Versatility',bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Intellect er primær. Critical Strike og Mastery er fremragende for Devastation — mere crit = mere Essence via Charged Blast.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Critical Strike',bars:4,note:'Mere crit = Charged Blast-procs + Pyre'},
-        {rank:3,stat:'Mastery',bars:4,note:'Øger Empower-trylleformuları-skade'},
-        {rank:4,stat:'Haste',bars:3,note:'Hurtigere Disintegrate-ticks'},
-        {rank:5,stat:'Versatility',bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_DEVASTATION_EVOKER = {
       {spell:'Eternity Surge',cd:'30 sec',effect:'Empower damage channel AoE',when:'In Dragonrage window'},
       {spell:'Firestorm',cd:'20 sec',effect:'AoE fire zone 12 sec',when:'AoE pulls'},
       {spell:'Deep Breath',cd:'2 min',effect:'Flies over battlefield + AoE damage',when:'Large AoE or movement'},
-    ],
-    da:[
-      {spell:'Dragonrage',cd:'2 min',effect:'+50% Essence-skade og procs i 18 sek',when:'På pull — kombiner altid med Fire Breath + Eternity Surge'},
-      {spell:'Fire Breath',cd:'20 sec',effect:'Empower AoE brandangreb — rank 1-4',when:'Altid på CD, rank 3 i burst'},
-      {spell:'Eternity Surge',cd:'30 sec',effect:'Empower skade-kanal AoE',when:'I Dragonrage-vindue'},
-      {spell:'Firestorm',cd:'20 sec',effect:'AoE ildzone i 12 sek',when:'AoE-pulls'},
-      {spell:'Deep Breath',cd:'2 min',effect:'Flyver over slagmark + AoE-skade',when:'Store AoE eller bevægelse'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_DEVASTATION_EVOKER = {
       {spell:'Tail Swipe',type:'AoE Knockback',note:'AoE knockback all enemies'},
       {spell:'Wing Buffet',type:'Interrupt',note:'Interrupt + knockback'},
       {spell:'Hover',type:'Mobility',note:'Move while casting — unique for ranged'},
-    ],
-    da:[
-      {spell:'Rescue',type:'Redning',note:'Bær gruppemedlem væk fra fare — unikt!'},
-      {spell:'Zephyr',type:'Gruppe-CD',note:'10% skadereduktion for gruppe i 8 sek'},
-      {spell:'Tail Swipe',type:'AoE Knockback',note:'AoE knockback alle fjender'},
-      {spell:'Wing Buffet',type:'Interrupt',note:'Interrupt + knockback'},
-      {spell:'Hover',type:'Mobilitet',note:'Bevæg dig under casting — unikt for ranged'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_DEVASTATION_EVOKER = {
       {icon:'💥',title:'Dragonrage = put everything in',text:'Dragonrage gives 18 seconds of increased Essence damage. Use in that window: Fire Breath rank 3 → Eternity Surge → everything that costs Essence. This is your full burst window.'},
       {icon:'📏',title:'25 yard range!',text:'Evokers only have 25 yards range, not 40 like other ranged. You need to stand closer to the boss. Position yourself deliberately — don\'t hang at the back of the group.'},
       {icon:'🤲',title:'Rescue = group saver',text:'Rescue picks up a group member and carries them to safety. Use it when someone is standing in a mechanic they can\'t dodge fast enough. Unique and enormously valuable in M+.'},
-    ],
-    da:[
-      {icon:'🔥',title:'Empower = opladning betaler sig',text:'Fire Breath rank 3 gør næsten dobbelt skade af rank 1. I dit burst-vindue (Dragonrage) brug altid rank 3. Uden for burst kan du tage rank 2 for hastighed.'},
-      {icon:'🐉',title:'Hover = unik mobilitet',text:'Hover lader dig bevæge dig under casting — noget ingen anden ranged DPS kan gøre. Aktivér det proaktivt ved bevægelsesmekanikker, så du aldrig mister DPS ved at skulle løbe.'},
-      {icon:'💥',title:'Dragonrage = put alt ind',text:'Dragonrage giver 18 sekunders øget Essence-skade. Brug i det vindue: Fire Breath rank 3 → Eternity Surge → alt der koster Essence. Dette er dit fulde burst-vindue.'},
-      {icon:'📏',title:'25 yards rækkevidde!',text:'Evokers har kun 25 yards rækkevidde, ikke 40 som andre ranged. Du skal stå tættere på bossen. Positionér dig bevidst — hæng ikke bagved gruppen.'},
-      {icon:'🤲',title:'Rescue = grupperedder',text:'Rescue samler et gruppemedlem op og bærer dem til sikkerhed. Brug det når nogen står i en mekanik de ikke kan undvige hurtigt nok. Unikt og enormt værdifuldt i M+.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_DEVASTATION_EVOKER = {
       {name:'Dragonrage burst',code:'/cast Dragonrage\n/cast Fire Breath',note:'Burst opener — activate both together.'},
       {name:'Hover mobile',code:'/cast Hover',note:'Mobility while casting — bind to easy key.'},
       {name:'Rescue on mouseover',code:'/cast [@mouseover] Rescue',note:'Save group member quickly without switching targets.'},
-    ],
-    da:[
-      {name:'Dragonrage burst',code:'/cast Dragonrage\n/cast Fire Breath',note:'Burst-åbner — aktivér begge sammen.'},
-      {name:'Hover mobil',code:'/cast Hover',note:'Mobilitet under casting — bind til nem tast.'},
-      {name:'Rescue på mouseover',code:'/cast [@mouseover] Rescue',note:'Red gruppemedlem hurtigt uden at skifte mål.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_DEVASTATION_EVOKER = {
       spend:['Disintegrate (3 Essence) — best single target channel','Pyre (3 Essence) — AoE dump','Eternity Surge — Empower, no Essence cost'],
       pet_tip:'💡 Never let Essence sit at max — that\'s waste. Cast Pyre or Disintegrate when you\'re at 5+ Essence!',
       pets:[],
-    },
-    da:{
-      intro:'Devastation bruger Mana (til Living Flame fylder) og Essence (0-6, til Pyre og Disintegrate). Essence regenererer automatisk, hurtigere via Haste.',
-      generate:['Passiv Essence-regenerering (1 per 5 sek)','Charged Blast-proc ved crit — gratis Pyre','Living Flame fylder'],
-      spend:['Disintegrate (3 Essence) — bedste single target-kanal','Pyre (3 Essence) — AoE-dump','Eternity Surge — Empower, ingen Essence-omkostning'],
-      pet_tip:'💡 Lad aldrig Essence sidde på maks — det er spild. Cast Pyre eller Disintegrate når du er på 5+ Essence!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_DEVASTATION_EVOKER = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-burst under Dragonrage.',note:'På pull'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_DEVASTATION_EVOKER);

@@ -4,28 +4,25 @@ const SPEC_SUBTLETY_ROGUE = {
   id: 'subtlety_rogue',
   icon: '🌑',
   class: 'Rogue',
-  spec:   { nl: 'Subtlety', en: 'Subtlety', da: 'Subtlety' },
+  spec:   { nl: 'Subtlety', en: 'Subtlety'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)', da: 'To dolke (dual wield)' },
+  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',
 
   summary: {
     nl: 'Subtlety Rogue is de meester van schaduw en list. Wisselt tussen Stealth en aanval via Shadow Dance voor continue burst cycli. Complex maar bevredigend om te spelen.',
-    en: 'Subtlety Rogue is the master of shadow and trickery. Alternates between Stealth and attack via Shadow Dance for continuous burst cycles. Complex but satisfying to play.',
-    da: 'Subtlety Rogue er mester i skygge og list. Skifter mellem Stealth og angreb via Shadow Dance til kontinuerlige burst-cykler. Kompleks men tilfredsstillende at spille.',
+    en: 'Subtlety Rogue is the master of shadow and trickery. Alternates between Stealth and attack via Shadow Dance for continuous burst cycles. Complex but satisfying to play.'
   },
   pros: {
     nl: ['Hoogste single target burst van alle Rogues', 'Uitstekende defensieve tools (Evasion, CloS)', 'Shadow Dance geeft frequent burst windows', 'Shroud voor M+ skips'],
-    en: ['Highest single target burst of all Rogues', 'Excellent defensive tools (Evasion, CloS)', 'Shadow Dance gives frequent burst windows', 'Shroud for M+ skips'],
-    da: ['Højeste single target burst af alle Rogues', 'Fremragende defensive redskaber (Evasion, CloS)', 'Shadow Dance giver hyppige burst-vinduer', 'Shroud til M+-spring'],
+    en: ['Highest single target burst of all Rogues', 'Excellent defensive tools (Evasion, CloS)', 'Shadow Dance gives frequent burst windows', 'Shroud for M+ skips']
   },
   cons: {
     nl: ['Moeilijkste Rogue spec om te leren', 'Lage AoE vergeleken met Outlaw', 'Fouten in Shadow Dance cycling kosten veel schade'],
-    en: ['Hardest Rogue spec to learn', 'Low AoE compared to Outlaw', 'Mistakes in Shadow Dance cycling cost a lot of damage'],
-    da: ['Sværeste Rogue-spec at lære', 'Lav AoE sammenlignet med Outlaw', 'Fejl i Shadow Dance-cycling koster meget skade'],
+    en: ['Hardest Rogue spec to learn', 'Low AoE compared to Outlaw', 'Mistakes in Shadow Dance cycling cost a lot of damage']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_SUBTLETY_ROGUE = {
         'Shuriken Toss for CP generation outside melee range',
         'Shadow Dance every 1 min — never skip',
       ],
-    },
-    da: {
-      opener: '(Stealth) Shadowstrike → Symbols of Death → Shadow Dance → Shadowstrike x2 → Eviscerate (5 CPs)',
-      single: 'Symbols of Death → Shadow Dance → Shadowstrike-spam → Eviscerate (5 CPs) → gentag',
-      aoe:    'Shadow Dance → Shadowstrike (Shadow Techniques) → Shuriken Storm-spam → Eviscerate',
-      rules: [
-        'Symbols of Death altid inden Shadow Dance',
-        'Shadowstrike har altid prioritet i Shadow Dance-vindue',
-        'Eviscerate ved 5 CPs — aldrig ved mindre',
-        'Shuriken Toss til CP-generering uden for melee-rækkevidde',
-        'Shadow Dance hvert 1 min — spring aldrig over',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_SUBTLETY_ROGUE = {
         { spell: 'Shadowstrike', why: 'In Dance window — higher damage than Shuriken' },
         { spell: 'Eviscerate', why: '5 CPs — also the finisher in AoE' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Symbols of Death → Shadow Dance er dit burst-vindue. Al skade i Shadow Dance er øget. Dump alle dine CPs i Eviscerate mens det er aktivt!',
-      opener: [
-        { spell: 'Shadowstrike (Stealth)', why: 'Ekstra skade + CPs fra stealth' },
-        { spell: 'Symbols of Death', why: 'Øger skade for hele burst-vinduet' },
-        { spell: 'Shadow Dance', why: 'Stealth-vindue — Shadowstrike tilgængeligt' },
-        { spell: 'Shadowstrike x2', why: 'I Shadow Dance — hurtig CP-opbygning' },
-        { spell: 'Eviscerate', why: '5 CPs — største finisher' },
-      ],
-      single: [
-        { spell: 'Symbols of Death', why: 'Altid inden Shadow Dance — øger skade' },
-        { spell: 'Shadow Dance', why: 'Burst-vindue — Shadowstrike prioritet' },
-        { spell: 'Shadowstrike', why: 'I Shadow Dance — mere skade end Backstab' },
-        { spell: 'Eviscerate', why: '5 CPs — vent altid på 5' },
-        { spell: 'Backstab', why: 'Uden for Shadow Dance — normal fylder' },
-      ],
-      aoe: [
-        { spell: 'Shuriken Storm', why: 'AoE CP-generator — rammer alle omkring dig' },
-        { spell: 'Shadow Dance', why: 'Burst-vindue — også i AoE-situationer' },
-        { spell: 'Shadowstrike', why: 'I Dance-vindue — højere skade end Shuriken' },
-        { spell: 'Eviscerate', why: '5 CPs — også finishere i AoE' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_SUBTLETY_ROGUE = {
         { rank:4, stat:'Mastery',         bars:3, note:'Increases damage in Shadow Dance window' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Haste reducerer Shadowstrike casttid og giver dig mere tid i Shadow Dance. Afgørende for Subtlety.',
-      list: [
-        { rank:1, stat:'Agility',         bars:5, note:'Primær stat' },
-        { rank:2, stat:'Haste',           bars:5, note:'Flere Shadowstrikes per Dance-vindue' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Større Eviscerate-crits' },
-        { rank:4, stat:'Mastery',         bars:3, note:'Øger skade i Shadow Dance-vindue' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_SUBTLETY_ROGUE = {
       { spell:'Shadow Blades',     cd:'3 min',   effect:'Every attack generates CP + bonus damage', when:'On pull at boss — maximum CP storm' },
       { spell:'Vanish',            cd:'2 min',   effect:'Back into stealth + reset', when:'Extra Shadow Dance or Shadowstrike refresh' },
       { spell:'Evasion',           cd:'2 min',   effect:'100% dodge 10 sec', when:'Major mechanic or emergency' },
-    ],
-    da: [
-      { spell:'Shadow Dance',      cd:'1 min',   effect:'3 sek stealth — Shadowstrike tilgængeligt', when:'Altid med Symbols of Death aktiv til maksimalt burst' },
-      { spell:'Symbols of Death',  cd:'30 sec',  effect:'+40% Combo Point-generering + skade-boost', when:'Altid inden Shadow Dance — spring aldrig over' },
-      { spell:'Shadow Blades',     cd:'3 min',   effect:'Hvert angreb genererer CP + bonusskade', when:'På pull ved boss — maksimal CP-storm' },
-      { spell:'Vanish',            cd:'2 min',   effect:'Tilbage i stealth + nulstilling', when:'Ekstra Shadow Dance eller Shadowstrike-fornyelse' },
-      { spell:'Evasion',           cd:'2 min',   effect:'100% dodge i 10 sek', when:'Stor mekanik eller nødsituation' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_SUBTLETY_ROGUE = {
       { spell:'Blind',                 type:'CC',          note:'1 min disables — breaks on damage' },
       { spell:'Sap',                   type:'CC',          note:'Stealth CC on humanoid/beast' },
       { spell:'Cloak of Shadows',      type:'Defensive',   note:'Removes all magical debuffs — 1 min CD' },
-    ],
-    da: [
-      { spell:'Shroud of Concealment', type:'Stealth',    note:'Gruppe-stealth i 15 sek — bedste M+-spring-redskab' },
-      { spell:'Kick',                  type:'Interrupt',   note:'Hurtig interrupt 15 sek CD' },
-      { spell:'Blind',                 type:'CC',          note:'1 min deaktivering — brydes ved skade' },
-      { spell:'Sap',                   type:'CC',          note:'Stealth CC på humanoid/beast' },
-      { spell:'Cloak of Shadows',      type:'Defensiv',    note:'Fjerner alle magiske debuffs — 1 min CD' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_SUBTLETY_ROGUE = {
       { icon:'🥷', title:'Sap before the pull', text:'Sap (from stealth) CCs a target before the pull. Combine with Shroud to disable dangerous casters or elites before you start.' },
       { icon:'🛡️', title:'Evasion + Cloak defensively', text:'Subtlety has two strong defensive CDs: Evasion (100% dodge) and Cloak (magic immunity). Learn when mechanics are dodgeable and use them proactively.' },
       { icon:'🎯', title:'Backstab vs Shadowstrike', text:'Shadowstrike deals more damage than Backstab and has no positional requirement. Always use Shadowstrike when in Shadow Dance — Backstab only when Dance is not active.' },
-    ],
-    da: [
-      { icon:'🌑', title:'Dance-cycling er alt', text:'Subtlety drejer sig om: Symbols of Death → Shadow Dance → Shadowstrike-spam → Eviscerate. Du gentager dette hvert minut. Misser du dette vindue, mister du 30%+ skade.' },
-      { icon:'⚡', title:'Spring aldrig Symbols of Death over', text:'Symbols of Death giver dig +40% CP-generering. Brug det altid direkte inden Shadow Dance. Hvis du misser det, gør du markant mindre i burst-vinduet.' },
-      { icon:'🥷', title:'Sap inden pull', text:'Sap (fra stealth) CC\'er et mål inden pull. Kombiner med Shroud for at deaktivere farlige castere eller elites inden du starter.' },
-      { icon:'🛡️', title:'Evasion + Cloak defensivt', text:'Subtlety har to stærke defensive CDs: Evasion (100% dodge) og Cloak (magisk immunitet). Lær hvornår mekanikker kan dodges og brug dem proaktivt.' },
-      { icon:'🎯', title:'Backstab vs Shadowstrike', text:'Shadowstrike gør mere skade end Backstab og har intet positionskrav. Brug altid Shadowstrike når du er i Shadow Dance — Backstab kun når Dance ikke er aktiv.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_SUBTLETY_ROGUE = {
       { name:'Symbols + Shadow Dance', code:'/cast Symbols of Death\n/cast Shadow Dance', note:'Burst window trigger — Symbols active just as Dance begins.' },
       { name:'Vanish + Shadowstrike', code:'/cast Vanish\n/cast Shadowstrike', note:'Extra stealth Shadowstrike outside regular Dance windows.' },
       { name:'Shroud group', code:'/cast Shroud of Concealment', note:'Group stealth for M+ skips.' },
-    ],
-    da: [
-      { name:'Symbols + Shadow Dance', code:'/cast Symbols of Death\n/cast Shadow Dance', note:'Burst-vindue trigger — Symbols aktiv præcis da Dance begynder.' },
-      { name:'Vanish + Shadowstrike', code:'/cast Vanish\n/cast Shadowstrike', note:'Ekstra stealth Shadowstrike uden for regulære Dance-vinduer.' },
-      { name:'Shroud gruppe', code:'/cast Shroud of Concealment', note:'Gruppe-stealth til M+-spring.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_SUBTLETY_ROGUE = {
       ],
       pet_tip: '💡 Never Eviscerate at less than 5 CPs. Waiting for 5 is always better than dumping early!',
       pets: [],
-    },
-    da: {
-      intro: 'Subtlety bruger Energy (0-100) og Combo Points (0-5). Shadowstrike (i Shadow Dance) er den mest effektive CP-generator.',
-      generate: [
-        'Shadowstrike — 2 CPs (i Shadow Dance eller Stealth)',
-        'Backstab — 1 CP (uden for Dance)',
-        'Shuriken Storm — 1 CP per ramt mål (AoE)',
-        'Symbols of Death — +40% CP-generering på alt',
-      ],
-      spend: [
-        'Eviscerate (5 CPs) — stærkeste finisher, altid ved 5',
-        'Rupture (5 CPs) — DoT-mulighed til længere kampe',
-        'Shadow Vault (5 CPs) — AoE finisher ved 3+ mål',
-      ],
-      pet_tip: '💡 Brug aldrig Eviscerate ved færre end 5 CPs. At vente på 5 er altid bedre end at dumpe for tidligt!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_SUBTLETY_ROGUE = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',     note:'Ask for feast' },
       { type:'food',   name:'Royal Roast',          effect:'Solo food backup.',                         note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                     note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility i 1 time.',                     note:'Altid aktiv' },
-      { type:'pot',    name:'Potion of Recklessness',             effect:'Agility-boost med Shadow Blades opener.',    note:'På pull for maksimalt burst' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',      note:'Bed om feast' },
-      { type:'food',   name:'Royal Roast',          effect:'Solo-mad backup.',                          note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                      note:'Brug altid' },
-    ],
+    ]
   },
 };
 

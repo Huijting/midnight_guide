@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_MISTWEAVER_MONK = {
   id:'mistweaver_monk', icon:'🌿', class:'Monk',
-  spec:{nl:'Mistweaver',en:'Mistweaver',da:'Mistweaver'},
+  spec:{nl:'Mistweaver',en:'Mistweaver'},
   role:'heal', armor:'Leather',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#00FF98',
   summary:{
     nl:'Mistweaver is een unieke healer die via melee aanvallen (Fistweaving) extra heals genereert. Vivify healt via Renewing Mist HoTs de hele groep tegelijk. Sterke raid cooldown met Revival.',
-    en:'Mistweaver is a unique healer that generates extra heals via melee attacks (Fistweaving). Vivify heals the whole group simultaneously via Renewing Mist HoTs. Strong raid cooldown with Revival.',
-    da:'Mistweaver er en unik healer der genererer ekstra heals via melee-angreb (Fistweaving). Vivify healer hele gruppen samtidigt via Renewing Mist HoTs. Stærk raid-cooldown med Revival.',
+    en:'Mistweaver is a unique healer that generates extra heals via melee attacks (Fistweaving). Vivify heals the whole group simultaneously via Renewing Mist HoTs. Strong raid cooldown with Revival.'
   },
   pros:{
     nl:['Vivify healt automatisch iedereen met Renewing Mist','Revival = sterkste groep-CD in spel','Fistweaving stijl = healen EN damage','Uitstekende mobiliteit met Roll','Life Cocoon = sterke persoonlijke CD'],
-    en:['Vivify automatically heals everyone with Renewing Mist','Revival = strongest group CD in game','Fistweaving style = healing AND damage','Excellent mobility with Roll','Life Cocoon = strong personal CD'],
-    da:['Vivify healer automatisk alle med Renewing Mist','Revival = stærkeste gruppe-CD i spillet','Fistweaving-stil = healing OG skade','Fremragende mobilitet med Roll','Life Cocoon = stærk personlig CD'],
+    en:['Vivify automatically heals everyone with Renewing Mist','Revival = strongest group CD in game','Fistweaving style = healing AND damage','Excellent mobility with Roll','Life Cocoon = strong personal CD']
   },
   cons:{
     nl:['Renewing Mist vereist continu aandacht','Fistweaving vereist melee positie','Minder sterk in pure noodhealing vs Holy Paladin','Mana intensief bij grote schade'],
-    en:['Renewing Mist requires continuous attention','Fistweaving requires melee position','Weaker in pure emergency healing vs Holy Paladin','Mana intensive during major damage'],
-    da:['Renewing Mist kræver kontinuerlig opmærksomhed','Fistweaving kræver melee-position','Svagere i ren nødhealing vs Holy Paladin','Manaintensiv under stor skade'],
+    en:['Renewing Mist requires continuous attention','Fistweaving requires melee position','Weaker in pure emergency healing vs Holy Paladin','Mana intensive during major damage']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_MISTWEAVER_MONK = {
         'Save Revival for major group emergency',
         'Life Cocoon on tank at major spike damage',
       ],
-    },
-    da:{
-      opener:'Renewing Mist på alle spillere → Vivify på laveste HP → Rising Sun Kick i melee → Enveloping Mist i nødsituation',
-      single:'Renewing Mist på CD → Vivify fylder → Enveloping Mist ved lav HP → Rising Sun Kick til Fistweaving',
-      aoe:'Spred Renewing Mist → Vivify (healer alle med RM) → Essence Font ved høj gruppeskade → Revival når alle er lave',
-      rules:[
-        'Renewing Mist altid på CD — hold på 6 mål samtidigt',
-        'Vivify på mål med Renewing Mist = healer også alle andre',
-        'Enveloping Mist kun ved lav HP på tank — manaomkostning',
-        'Gem Revival til stor gruppenødsituation',
-        'Life Cocoon på tank ved stor spike-skade',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_MISTWEAVER_MONK = {
         {spell:'Revival',why:'Group emergency — instant full heal entire group'},
         {spell:'Invoke Yu\'lon',why:'Summoned mist serpent extra heals'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Vivify healer ALLE der har Renewing Mist, ikke kun målet. Hold Renewing Mist aktiv på så mange spillere som muligt — hvert Vivify-cast bliver en gratis AoE-heal!',
-      opener:[
-        {spell:'Renewing Mist',why:'HoT på så mange spillere som muligt — hopper automatisk'},
-        {spell:'Vivify',why:'Healer alle Renewing Mist-mål samtidigt'},
-        {spell:'Life Cocoon',why:'Pre-pull absorb på tank'},
-        {spell:'Rising Sun Kick',why:'Fistweaving-skade til ekstra heals'},
-        {spell:'Essence Font',why:'Ved AoE gruppe-skadesåbner'},
-      ],
-      single:[
-        {spell:'Renewing Mist',why:'Altid på CD — hopper til laveste HP'},
-        {spell:'Vivify',why:'Fylder — healer også alle RM-mål'},
-        {spell:'Enveloping Mist',why:'Stor single target nødheal'},
-        {spell:'Rising Sun Kick',why:'Fistweaving proc-generering'},
-        {spell:'Life Cocoon',why:'Tank spike-skade CD'},
-      ],
-      aoe:[
-        {spell:'Renewing Mist',why:'Spred over gruppe — hopper automatisk'},
-        {spell:'Essence Font',why:'Kanal: healer 6 mål samtidigt hurtigt'},
-        {spell:'Vivify',why:'Healer alle RM-mål samtidigt'},
-        {spell:'Revival',why:'Gruppenød — instant fuld heal hele gruppe'},
-        {spell:'Invoke Yu\'lon',why:'Indkaldt tågesnog med ekstra heals'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_MISTWEAVER_MONK = {
         {rank:4,stat:'Versatility',bars:2,note:'Extra healing + survival'},
         {rank:5,stat:'Critical Strike',bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Haste er kongen for Mistweaver — kortere Renewing Mist CD og hurtigere Vivify-casts. Mastery øger alle direkte heals.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Haste',bars:5,note:'Kortere RM CD + hurtigere Vivify'},
-        {rank:3,stat:'Mastery',bars:3,note:'Øger alle direkte heals'},
-        {rank:4,stat:'Versatility',bars:2,note:'Ekstra healing + overlevelse'},
-        {rank:5,stat:'Critical Strike',bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_MISTWEAVER_MONK = {
       {spell:'Invoke Yu\'lon',cd:'3 min',effect:'Mist serpent summon heals automatically',when:'Major healing windows — dungeons and boss'},
       {spell:'Invoke Chi-Ji',cd:'3 min',effect:'Red Crane heals group + reduces Enveloping Mist cost',when:'Alternative to Yu\'lon in high movement fights'},
       {spell:'Thunder Focus Tea',cd:'30 sec',effect:'Empowers next spell (Vivify, RM, etc.)',when:'On CD — before Vivify for free AoE bounce'},
-    ],
-    da:[
-      {spell:'Revival',cd:'3 min',effect:'Healer hele gruppe til fuld HP og fjerner Magic/Curse',when:'Gruppenød — stærkeste gruppe-CD i spillet'},
-      {spell:'Life Cocoon',cd:'2 min',effect:'Stort absorb-skjold + HoT-modtagelse +50%',when:'Tank stor spike eller spiller næsten død'},
-      {spell:'Invoke Yu\'lon',cd:'3 min',effect:'Tågesnog-indkaldelse healer automatisk med',when:'Store healingvinduer — dungeons og boss'},
-      {spell:'Invoke Chi-Ji',cd:'3 min',effect:'Rød trane healer gruppe + reducerer Enveloping Mist-omkostning',when:'Alternativ til Yu\'lon i høj bevægelsesfights'},
-      {spell:'Thunder Focus Tea',cd:'30 sec',effect:'Styrker næste trylleformular (Vivify, RM osv.)',when:'På CD — inden Vivify til gratis AoE-bounce'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_MISTWEAVER_MONK = {
       {spell:'Leg Sweep',type:'AoE Stun',note:'AoE stun 3 sec in range'},
       {spell:'Diffuse Magic',type:'Defensive',note:'Removes Magic debuffs + 90% magic damage reduction'},
       {spell:'Transcendence',type:'Mobility',note:'Spirit marker teleport — unique positional tool'},
-    ],
-    da:[
-      {spell:'Revival',type:'Gruppe-CD',note:'Healer + dispeller hele gruppe — stærkest i spillet'},
-      {spell:'Paralysis',type:'CC',note:'Single target stun i 1 min'},
-      {spell:'Leg Sweep',type:'AoE Stun',note:'AoE stun i 3 sek i rækkevidde'},
-      {spell:'Diffuse Magic',type:'Defensiv',note:'Fjerner Magic-debuffs + 90% magisk skadereduktion'},
-      {spell:'Transcendence',type:'Mobilitet',note:'Spirit-markør teleport — unikt positionsredskab'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_MISTWEAVER_MONK = {
       {icon:'🥋',title:'Fistweaving in M+',text:'In M+ you can use Rising Sun Kick in melee for extra heals via procs. This gives you free healing on top of your normal casts. Stand next to the tank and melee along.'},
       {icon:'🌀',title:'Essence Font on group damage',text:'Essence Font is a channel that quickly heals 6 players. Use it during large AoE group damage, not as filler. It\'s mana-intensive but enormously powerful at the right moment.'},
       {icon:'🫧',title:'Life Cocoon proactively',text:'Life Cocoon absorbs damage AND increases the target\'s HoT intake by 50%. Use it on the tank just before a major mechanic — not after. The absorb is already active when the hit arrives.'},
-    ],
-    da:[
-      {icon:'🌿',title:'Vivify = gratis AoE via Renewing Mist',text:'Vivify healer ikke kun dit mål, men også alle der har Renewing Mist. Det er kernen i Mistweaver. Hold RM aktiv på 5-6 spillere samtidigt — da bliver hvert Vivify en kraftfuld gruppeheal.'},
-      {icon:'🐲',title:'Gem Revival',text:'Revival healer hele gruppen til fuld HP OG fjerner alle Magic og Curse-debuffs. Dette er den stærkeste gruppe-CD i spillet. Gem det til rigtige nødsituationer — brug det ikke til mindre skade.'},
-      {icon:'🥋',title:'Fistweaving i M+',text:'I M+ kan du bruge Rising Sun Kick i melee til ekstra heals via procs. Dette giver dig gratis healing oven på dine normale casts. Stå ved siden af tanken og hug med.'},
-      {icon:'🌀',title:'Essence Font ved gruppeskade',text:'Essence Font er en kanal der hurtigt healer 6 spillere. Brug det ved stor AoE gruppeskade, ikke som fylder. Det er manaintensivt men enormt kraftfuldt på det rigtige tidspunkt.'},
-      {icon:'🫧',title:'Life Cocoon proaktivt',text:'Life Cocoon absorberer skade OG øger målets HoT-modtagelse med 50%. Brug det på tanken lige inden en stor mekanik — ikke bagefter. Absorbet er allerede aktivt når træffet ankommer.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_MISTWEAVER_MONK = {
       {name:'Vivify mouseover',code:'/cast [@mouseover,help][] Vivify',note:'Heal on group member without switching targets.'},
       {name:'Life Cocoon mouseover',code:'/cast [@mouseover,help][] Life Cocoon',note:'Quick absorb on tank or party member.'},
       {name:'Revival',code:'/cast Revival',note:'Group emergency — bind to clear button.'},
-    ],
-    da:[
-      {name:'Vivify mouseover',code:'/cast [@mouseover,help][] Vivify',note:'Heal på gruppemedlem uden at skifte mål.'},
-      {name:'Life Cocoon mouseover',code:'/cast [@mouseover,help][] Life Cocoon',note:'Hurtigt absorb på tank eller gruppemedlem.'},
-      {name:'Revival',code:'/cast Revival',note:'Gruppenød — bind til tydelig knap.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_MISTWEAVER_MONK = {
       spend:['Vivify — moderate mana, highest throughput','Enveloping Mist — expensive, large single heal','Essence Font — expensive channel on AoE','Renewing Mist — cheap HoT'],
       pet_tip:'💡 Vivify is your most mana-efficient heal thanks to Renewing Mist bounces. Enveloping Mist only in real emergencies — it costs 3x as much!',
       pets:[],
-    },
-    da:{
-      intro:'Mistweaver bruger Mana. Mana-styring er afgørende — Vivify er effektivt, Enveloping Mist er dyrt. Brug Enveloping Mist sparsomt.',
-      generate:['Passiv manaregenering','Thunder Focus Tea (gratis forstærket cast)'],
-      spend:['Vivify — moderat mana, højeste throughput','Enveloping Mist — dyr, stor single heal','Essence Font — dyr kanal ved AoE','Renewing Mist — billig HoT'],
-      pet_tip:'💡 Vivify er din mest manaeffektive heal takket være Renewing Mist-bounces. Enveloping Mist kun ved rigtige nødsituationer — den koster 3x så meget!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_MISTWEAVER_MONK = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina via group feast.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food backup.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat 1 hour.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost ved store healingvinduer.',note:'Brug med Revival eller Yu\'lon'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina via gruppefeast.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad backup.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat i 1 time.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_MISTWEAVER_MONK);

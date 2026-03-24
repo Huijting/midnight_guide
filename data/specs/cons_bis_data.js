@@ -2,9 +2,9 @@
 // Source: Icy Veins BiS guides (March 2026) — Overall BiS from all sources
 // Weapon oils/enchants (shared by role) — Midnight Season 1
 const WEAPON_BUFFS = {
-  int: { name: 'Thalassian Phoenix Oil', id: 243734, note: { nl: 'Intellect casters (Crit+Haste)', en: 'Intellect casters (Crit+Haste)', da: 'Intellect casters (Crit+Haste)' } },
-  agi: { name: 'Thalassian Phoenix Oil', id: 243734, note: { nl: 'Agility melee/ranged (Crit+Haste)', en: 'Agility melee/ranged (Crit+Haste)', da: 'Agility melee/ranged (Crit+Haste)' } },
-  str: { name: 'Refulgent Whetstone', id: 237371, note: { nl: 'Strength melee (Attack Power)', en: 'Strength melee (Attack Power)', da: 'Strength melee (Attack Power)' } },
+  int: { name: 'Thalassian Phoenix Oil', id: 243734, note: { nl: 'Intellect casters (Crit+Haste)', en: 'Intellect casters (Crit+Haste)'} },
+  agi: { name: 'Thalassian Phoenix Oil', id: 243734, note: { nl: 'Agility melee/ranged (Crit+Haste)', en: 'Agility melee/ranged (Crit+Haste)'} },
+  str: { name: 'Refulgent Whetstone', id: 237371, note: { nl: 'Strength melee (Attack Power)', en: 'Strength melee (Attack Power)'} },
 };
 
 // BiS gear per spec — Midnight Season 1 (The Dreamrift, Voidspire, March on Quel'Danas)

@@ -9,30 +9,27 @@ const SPEC_BM_HUNTER = {
   id: 'bm_hunter',
   icon: '🏹',
   class: 'Hunter',
-  spec:  { nl: 'Beast Mastery', en: 'Beast Mastery', da: 'Beast Mastery' },
+  spec:  { nl: 'Beast Mastery', en: 'Beast Mastery'},
   role:  'dps',
   armor: 'Mail',
-  weapon: { nl: 'Boog / Gun / Crossbow', en: 'Bow / Gun / Crossbow', da: 'Bue / Pistol / Armbryst' },
+  weapon: { nl: 'Boog / Gun / Crossbow', en: 'Bow / Gun / Crossbow'},
   resource: 'Focus (0–120)',
   patch: '12.0.1',
   color: '#e88c2a',
 
   summary: {
     nl: 'Ranged DPS die zijn pet het werk laat doen. Simpele rotatie, hoge mobiliteit, sterk voor solo en groepsplay. Jouw pet doet een groot deel van de schade — houdt hem in leven!',
-    en: 'Ranged DPS that lets your pet do the work. Simple rotation, high mobility, strong for solo and group play. Your pet deals a large portion of damage — keep it alive!',
-    da: 'Ranged DPS der lader sit kæledyr gøre arbejdet. Simpel rotation, høj mobilitet, stærk til solo og gruppespil.',
+    en: 'Ranged DPS that lets your pet do the work. Simple rotation, high mobility, strong for solo and group play. Your pet deals a large portion of damage — keep it alive!'
   },
 
   pros: {
     nl: ['Simpele rotatie — snel te leren', 'Pet tankt mobs — ideaal voor solo/questen', 'Hoge mobiliteit — cast bijna alles al bewegend', 'Vlakke, consistente DPS', 'Sterke utility (Misdirection, Freezing Trap)'],
-    en: ['Simple rotation — quick to learn', 'Pet tanks mobs — ideal for solo/questing', 'High mobility — cast almost everything while moving', 'Flat, consistent DPS', 'Strong utility (Misdirection, Freezing Trap)'],
-    da: ['Simpel rotation — hurtig at lære', 'Pet tanker mobs — perfekt til solo', 'Høj mobilitet', 'Stabil, konsistent DPS', 'Stærk utility'],
+    en: ['Simple rotation — quick to learn', 'Pet tanks mobs — ideal for solo/questing', 'High mobility — cast almost everything while moving', 'Flat, consistent DPS', 'Strong utility (Misdirection, Freezing Trap)']
   },
 
   cons: {
     nl: ['Minder burst dan andere specs', 'Pet kan sterven bij slechte positionering', 'Afhankelijk van pet — pet bugs kosten DPS', 'Focus management vereist aandacht', 'Scatter Shot weg in Midnight'],
-    en: ['Less burst than other specs', 'Pet can die on bad positioning', 'Reliant on pet — pet bugs cost DPS', 'Focus management requires attention', 'Scatter Shot removed in Midnight'],
-    da: ['Mindre burst end andre specs', 'Pet kan dø ved dårlig positionering', 'Afhængig af pet', 'Focus management kræver opmærksomhed'],
+    en: ['Less burst than other specs', 'Pet can die on bad positioning', 'Reliant on pet — pet bugs cost DPS', 'Focus management requires attention', 'Scatter Shot removed in Midnight']
   },
 
   // ── RESOURCE ──────────────────────────────────────────────
@@ -57,8 +54,7 @@ const SPEC_BM_HUNTER = {
         { type: 'Cunning 🔴', bonus: 'Verlengde duur roots/snares', use: 'PvP of situaties met veel CC' },
       ],
     },
-    en: { intro: 'Focus (0–120) is your primary resource. Never sit at 0 and never let it cap — both are waste!', generate: [], spend: [], pets: [] },
-    da: { intro: 'Focus (0–120) er din primære ressource.', generate: [], spend: [], pets: [] },
+    en: { intro: 'Focus (0–120) is your primary resource. Never sit at 0 and never let it cap — both are waste!', generate: [], spend: [], pets: [] }
   },
 
   // ── ROTATIE ───────────────────────────────────────────────
@@ -92,8 +88,7 @@ const SPEC_BM_HUNTER = {
         { prio: '6', spell: 'Cobra Shot',     note: 'Vul gaps — zorg dat je altijd iets cast' },
       ],
     },
-    en: { apex_tip: '', opener: [], single: [], aoe: [] },
-    da: { apex_tip: '', opener: [], single: [], aoe: [] },
+    en: { apex_tip: '', opener: [], single: [], aoe: [] }
   },
 
   // ── STATS ─────────────────────────────────────────────────
@@ -108,8 +103,7 @@ const SPEC_BM_HUNTER = {
         { rank: '5', stat: 'Versatility',    bars: 2, note: 'Vlakke % schade bonus — minst waardevol voor BM' },
       ],
     },
-    en: { tip: '', list: [] },
-    da: { tip: '', list: [] },
+    en: { tip: '', list: [] }
   },
 
   // ── COOLDOWNS ─────────────────────────────────────────────
@@ -123,8 +117,7 @@ const SPEC_BM_HUNTER = {
       { spell: 'Intimidation',        cd: '1 min',   effect: 'Stunt de target 5 seconden',                             when: 'Interrupt zware cast of noodstop' },
       { spell: 'Misdirection',        cd: '30 sec',  effect: 'Stuurt jouw threat naar tank of pet',                    when: 'Bij grote pulls of aggro-problemen' },
     ],
-    en: [],
-    da: [],
+    en: []
   },
 
   // ── UTILITY ───────────────────────────────────────────────
@@ -139,8 +132,7 @@ const SPEC_BM_HUNTER = {
       { spell: 'Aspect of the Cheetah',type: 'Mobility',  note: 'Verhoogt bewegingssnelheid tijdelijk — gebruik tussen packs in M+' },
       { spell: 'Disengage',            type: 'Mobility',  note: 'Sprong achteruit — snel afstand creëren van vijanden' },
     ],
-    en: [],
-    da: [],
+    en: []
   },
 
   // ── TIPS ──────────────────────────────────────────────────
@@ -157,8 +149,7 @@ const SPEC_BM_HUNTER = {
       { icon: '🎯', title: "Hunter's Mark altijd aan",    text: 'Altijd actief op hoofdtarget. Bij meerdere Hunters in de groep: maar 1 persoon zet hem. WeakAura instellen die waarschuwt als hij ontbreekt.' },
       { icon: '📏', title: 'Afstand houden',              text: 'Minimale range is 5 meter. Nooit recht op een boss staan. Bij mechanics: blijf bewegen maar zet je rotatie door!' },
     ],
-    en: [],
-    da: [],
+    en: []
   },
 
   // ── MACRO'S ───────────────────────────────────────────────
@@ -171,8 +162,7 @@ const SPEC_BM_HUNTER = {
       { name: 'Misdirection (op tank of pet)', code: '#showtooltip Misdirection\n/cast [@focus,help,nodead][@mouseover,help,nodead][@pet] Misdirection', note: 'Stuurt threat naar focus > mouseover > pet. Altijd klaar voor grote pulls.' },
       { name: "Hunter's Mark (mouseover)", code: "#showtooltip Hunter's Mark\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Hunter's Mark", note: 'Zet mark op mouseover — handig als je snel van target wisselt.' },
     ],
-    en: [],
-    da: [],
+    en: []
   },
 
   // ── CHEAT SHEET ───────────────────────────────────────────
@@ -193,8 +183,7 @@ const SPEC_BM_HUNTER = {
         'Nooit Focus tot max laten oplopen',
       ],
     },
-    en: { opener: '', single: '', aoe: '', rules: [] },
-    da: { opener: '', single: '', aoe: '', rules: [] },
+    en: { opener: '', single: '', aoe: '', rules: [] }
   },
 
   consumables: {
@@ -211,14 +200,7 @@ const SPEC_BM_HUNTER = {
       { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility and Stamina.', note:'Ask for feast' },
       { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
       { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
-    ],
-    da: [
-      { type:'flask', name:'Flask of the Blood Knights', effect:'Øger Agility i 1 time.', note:'Altid aktiv' },
-      { type:'pot', name:'Potion of Recklessness', effect:'Agility-boost under burst.', note:'På pull eller Bestial Wrath' },
-      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility og Stamina.', note:'Bed om feast' },
-      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
-      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
-    ],
+    ]
   },
 };
 

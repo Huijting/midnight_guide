@@ -4,28 +4,25 @@ const SPEC_SHADOW_PRIEST = {
   id: 'shadow_priest',
   icon: '🌑',
   class: 'Priest',
-  spec:   { nl: 'Shadow', en: 'Shadow', da: 'Shadow' },
+  spec:   { nl: 'Shadow', en: 'Shadow'},
   role:   'dps',
   armor:  'Cloth',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand', da: 'Stav eller enhånds + offhand' },
+  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Insanity',
   patch: '1.0',
   color: '#ABCDEF',
 
   summary: {
     nl: 'Shadow Priest is een DoT-gebaseerde ranged DPS die Insanity opbouwt voor Voidform. Draait om het actief houden van drie DoTs en het maximaliseren van Voidform uptime.',
-    en: 'Shadow Priest is a DoT-based ranged DPS that builds Insanity for Voidform. Revolves around keeping three DoTs active and maximizing Voidform uptime.',
-    da: 'Shadow Priest er en DoT-baseret ranged DPS, der opbygger Insanity til Voidform. Drejer sig om at holde tre DoTs aktive og maksimere Voidform-oppetid.',
+    en: 'Shadow Priest is a DoT-based ranged DPS that builds Insanity for Voidform. Revolves around keeping three DoTs active and maximizing Voidform uptime.'
   },
   pros: {
     nl: ['Uitstekende sustained schade via DoTs', 'Sterke AoE via Psychic Link en Devouring Plague', 'Goede utility (Mass Dispel, Vampiric Embrace)', 'Zeer hoge plafond voor gevorderde spelers'],
-    en: ['Excellent sustained damage via DoTs', 'Strong AoE via Psychic Link and Devouring Plague', 'Good utility (Mass Dispel, Vampiric Embrace)', 'Very high ceiling for advanced players'],
-    da: ['Fremragende vedvarende skade via DoTs', 'Stærk AoE via Psychic Link og Devouring Plague', 'God utility (Mass Dispel, Vampiric Embrace)', 'Meget højt loft for avancerede spillere'],
+    en: ['Excellent sustained damage via DoTs', 'Strong AoE via Psychic Link and Devouring Plague', 'Good utility (Mass Dispel, Vampiric Embrace)', 'Very high ceiling for advanced players']
   },
   cons: {
     nl: ['Complex DoT management vereist oefening', 'Lage burst als DoTs net zijn opgezet', 'Kwetsbaar bij movement — DoTs tikken door maar casting stopt'],
-    en: ['Complex DoT management requires practice', 'Low burst when DoTs have just been set up', 'Vulnerable during movement — DoTs tick but casting stops'],
-    da: ['Kompleks DoT-styring kræver øvelse', 'Lav burst når DoTs netop er sat op', 'Sårbar under bevægelse — DoTs tikker, men casting stopper'],
+    en: ['Complex DoT management requires practice', 'Low burst when DoTs have just been set up', 'Vulnerable during movement — DoTs tick but casting stops']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_SHADOW_PRIEST = {
         'Voidform: activate as fast as possible when Insanity is full',
         'Never let Vampiric Touch or SW:Pain fall off',
       ],
-    },
-    da: {
-      opener: 'Vampiric Touch → Shadow Word: Pain → Devouring Plague → Mind Blast → Void Eruption (→ Voidform)',
-      single: 'Hold 3 DoTs aktive → Devouring Plague ved 50+ Insanity → Mind Blast på CD → Mind Flay fylder',
-      aoe:    'DoTs på alle mål via VT → Devouring Plague (Psychic Link = AoE) → Searing Nightmare 5+ mål',
-      rules: [
-        'Vampiric Touch og Shadow Word: Pain altid aktiv på målet',
-        'Devouring Plague ved 50+ Insanity — lad den aldrig capper',
-        'Mind Blast brug altid på cooldown',
-        'Voidform: aktivér så hurtigt som muligt når Insanity er fuldt',
-        'Lad aldrig Vampiric Touch eller SW:Pain falde af',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_SHADOW_PRIEST = {
         { spell: 'Searing Nightmare', why: '5+ targets: instant AoE DoT on all nearby enemies' },
         { spell: 'Mind Sear', why: 'Channeled AoE filler on large packs' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Voidform øger al din skade. Opbyg Insanity hurtigt og bliv i Voidform så længe som muligt!',
-      opener: [
-        { spell: 'Vampiric Touch', why: 'DoT #1 — åbner også Insanity-generering' },
-        { spell: 'Shadow Word: Pain', why: 'DoT #2 — instant cast' },
-        { spell: 'Devouring Plague', why: 'DoT #3 + stor direkte skade' },
-        { spell: 'Mind Blast', why: 'Stor Insanity-generator' },
-        { spell: 'Void Eruption', why: 'Aktivér Voidform når Insanity er fuldt' },
-      ],
-      single: [
-        { spell: 'Devouring Plague', why: 'Ved 50+ Insanity — altid prioritet' },
-        { spell: 'Mind Blast', why: 'Største Insanity-generator, altid på CD' },
-        { spell: 'Vampiric Touch', why: 'Forny når <5 sek tilbage' },
-        { spell: 'Shadow Word: Pain', why: 'Forny når udløbet' },
-        { spell: 'Mind Flay', why: 'Fylder når intet andet er tilgængeligt' },
-      ],
-      aoe: [
-        { spell: 'Vampiric Touch', why: 'På hvert mål — Psychic Link forbinder dem' },
-        { spell: 'Devouring Plague', why: 'Via Psychic Link: rammer alle forbundne mål' },
-        { spell: 'Searing Nightmare', why: '5+ mål: instant AoE DoT på alle nærliggende fjender' },
-        { spell: 'Mind Sear', why: 'Channeled AoE fylder på store grupper' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_SHADOW_PRIEST = {
         { rank:4, stat:'Mastery',         bars:2, note:'Increases shadow damage' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Haste er den vigtigste sekundære stat — flere DoT-ticks = mere Insanity = mere Voidform.',
-      list: [
-        { rank:1, stat:'Intellect',       bars:5, note:'Primær stat' },
-        { rank:2, stat:'Haste',           bars:5, note:'Flere DoT-ticks + hurtigere Insanity-opbygning' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Øger burst i Voidform' },
-        { rank:4, stat:'Mastery',         bars:2, note:'Øger shadow-skade' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_SHADOW_PRIEST = {
       { spell:'Power Infusion',      cd:'2 min',    effect:'Haste + damage boost 20 sec', when:'In Voidform for maximum effect' },
       { spell:'Silence',             cd:'45 sec',   effect:'Silence + interrupt 5 sec', when:'Dangerous caster in M+' },
       { spell:'Dispersion',          cd:'2 min',    effect:'90% damage reduction 6 sec', when:'Emergency defense during major mechanic' },
-    ],
-    da: [
-      { spell:'Void Eruption',       cd:'Insanity', effect:'Aktiverer Voidform — øger al skade', when:'Så snart Insanity er fuldt — vent aldrig' },
-      { spell:'Shadowfiend',         cd:'3 min',    effect:'Pet der genererer Insanity og gør skade', when:'På pull ved boss, sammen med Voidform' },
-      { spell:'Power Infusion',      cd:'2 min',    effect:'Haste + skade-boost i 20 sek', when:'I Voidform for maksimal effekt' },
-      { spell:'Silence',             cd:'45 sec',   effect:'Silence + interrupt i 5 sek', when:'Farlig caster i M+' },
-      { spell:'Dispersion',          cd:'2 min',    effect:'90% skadereduktion i 6 sek', when:'Nødsforsvar ved stor mekanik' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_SHADOW_PRIEST = {
       { spell:'Fade',               type:'Defensive', note:'Temporarily drops threat — also usable for some mechanics' },
       { spell:'Psychic Scream',     type:'CC',        note:'Fear up to 5 enemies for 8 sec' },
       { spell:'Leap of Faith',      type:'Rescue',    note:'Pull a group member to you — ideal when mechanic fails' },
-    ],
-    da: [
-      { spell:'Mass Dispel',        type:'Dispel',    note:'Fjerner alle Magic-buffs/debuffs fra gruppen — unikt for Priest' },
-      { spell:'Vampiric Embrace',   type:'Healing',   note:'Passiv gruppeheling baseret på din skade' },
-      { spell:'Fade',               type:'Defensiv',  note:'Slipper midlertidigt trussel — bruges også til visse mekanikker' },
-      { spell:'Psychic Scream',     type:'CC',        note:'Fear op til 5 fjender i 8 sek' },
-      { spell:'Leap of Faith',      type:'Redning',   note:'Træk et gruppemedlem til dig — ideelt når mekanik fejler' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_SHADOW_PRIEST = {
       { icon:'🔵', title:'Dispersion = emergency button', text:'Dispersion gives you 90% damage reduction — use it during major mechanics or when nearly dying, not as precaution.' },
       { icon:'🤲', title:'Leap of Faith', text:'Leap of Faith can save a teammate from danger. Communicate with your team when you\'re going to use it — it can be surprising!' },
       { icon:'💨', title:'Fade for mechanics', text:'Some mechanics target the player with highest threat. Fade can help you avoid specific debuffs or targeting mechanics.' },
-    ],
-    da: [
-      { icon:'🌑', title:'Lad aldrig DoTs falde af', text:'Hvis Vampiric Touch eller SW:Pain udløber mister du Insanity-generering. Forny ved <5 sek tilbage, lad dem aldrig falde af.' },
-      { icon:'⚡', title:'Psychic Link = gratis AoE', text:'Hvis alle mål har Vampiric Touch, rammer dine single-target-trylleformularer via Psychic Link også resten. Spred altid VT i M+-grupper.' },
-      { icon:'🔵', title:'Dispersion = nødknap', text:'Dispersion giver dig 90% skadereduktion — brug det ved store mekanikker eller når du næsten dør, ikke som forsigtighedsforanstaltning.' },
-      { icon:'🤲', title:'Leap of Faith', text:'Leap of Faith kan redde et holdmedlem fra fare. Kommunikér med dit hold, når du bruger det — det kan komme som en overraskelse!' },
-      { icon:'💨', title:'Fade til mekanikker', text:'Visse mekanikker retter sig mod spilleren med højest trussel. Fade kan hjælpe dig med at undgå specifikke debuffs eller målretningsmekanikker.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_SHADOW_PRIEST = {
       { name:'Shadowfiend + Power Infusion', code:'/cast Shadowfiend\n/cast Power Infusion', note:'Casts both on pull in Voidform — maximum burst window.' },
       { name:'Vampiric Touch on mouseover', code:'/cast [@mouseover,harm][] Vampiric Touch', note:'Quickly spread DoTs in M+ without switching targets.' },
       { name:'Leap of Faith rescue', code:'/cast [@mouseover] Leap of Faith', note:'Pull a group member to you by hovering over them.' },
-    ],
-    da: [
-      { name:'Shadowfiend + Power Infusion', code:'/cast Shadowfiend\n/cast Power Infusion', note:'Kaster begge ved pull i Voidform — maksimalt burst-vindue.' },
-      { name:'Vampiric Touch på mouseover', code:'/cast [@mouseover,harm][] Vampiric Touch', note:'Spred hurtigt DoTs i M+ uden at skifte mål.' },
-      { name:'Leap of Faith-redning', code:'/cast [@mouseover] Leap of Faith', note:'Træk et gruppemedlem til dig ved at holde musen over dem.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -292,22 +218,7 @@ const SPEC_SHADOW_PRIEST = {
       ],
       pet_tip: '💡 In Voidform Insanity drains automatically — your damage keeps it up. Leave Voidform as little as possible!',
       pets: [],
-    },
-    da: {
-      intro: 'Shadow bruger Insanity (0-100). Insanity opbygges via evner og dræner hurtigt, når du forlader Voidform. Mål: aktivér Voidform så hurtigt som muligt.',
-      generate: [
-        'Mind Blast — største Insanity-generator',
-        'Devouring Plague — genererer Insanity ved casting',
-        'Vampiric Touch-ticks genererer Insanity passivt',
-        'Shadowfiend — genererer stor mængde Insanity',
-      ],
-      spend: [
-        'Void Eruption (100 Insanity) — aktiverer Voidform',
-        'Devouring Plague (50 Insanity) — kraftigste DoT',
-      ],
-      pet_tip: '💡 I Voidform dræner Insanity automatisk — din skade holder det oppe. Forlad Voidform så lidt som muligt!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -324,14 +235,7 @@ const SPEC_SHADOW_PRIEST = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',     note:'Ask tank/healer for feast' },
       { type:'food',   name:'Royal Roast',    effect:'Solo food — high Intellect bonus.',           note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                       note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Potion of Recklessness',        effect:'Stor Intellect-boost i 25 sek.',              note:'Brug i Voidform for maksimal effekt' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
-      { type:'food',   name:'Royal Roast',    effect:'Solo-mad — høj Intellect-bonus.',             note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
-    ],
+    ]
   },
 };
 

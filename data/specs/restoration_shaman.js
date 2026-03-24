@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_RESTORATION_SHAMAN = {
   id:'restoration_shaman', icon:'💧', class:'Shaman',
-  spec:{nl:'Restoration',en:'Restoration',da:'Restoration'},
+  spec:{nl:'Restoration',en:'Restoration'},
   role:'heal', armor:'Mail',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#0070DE',
   summary:{
     nl:'Restoration Shaman healt via HoTs en krachtige Chain Heal bounces. Spiritwalker\'s Grace maakt casten tijdens movement mogelijk — uniek voor healers. Beste utility-healer met Wind Rush Totem en Bloodlust.',
-    en:'Restoration Shaman heals via HoTs and powerful Chain Heal bounces. Spiritwalker\'s Grace allows casting while moving — unique for healers. Best utility healer with Wind Rush Totem and Bloodlust.',
-    da:'Restoration Shaman healer via HoTs og kraftfulde Chain Heal-bounces. Spiritwalker\'s Grace muliggør casting under bevægelse — unikt for healere. Bedste utility-healer med Wind Rush Totem og Bloodlust.',
+    en:'Restoration Shaman heals via HoTs and powerful Chain Heal bounces. Spiritwalker\'s Grace allows casting while moving — unique for healers. Best utility healer with Wind Rush Totem and Bloodlust.'
   },
   pros:{
     nl:['Chain Heal = efficiëntste AoE heal in het spel','Spiritwalker\'s Grace = casten tijdens movement','Earthen Wall Totem = sterke groeps-CD','Bloodlust/Heroism bij de healer','Wind Rush Totem = beste movement CD in game'],
-    en:['Chain Heal = most efficient AoE heal in the game','Spiritwalker\'s Grace = cast while moving','Earthen Wall Totem = strong group CD','Bloodlust/Heroism from the healer','Wind Rush Totem = best movement CD in game'],
-    da:['Chain Heal = mest effektiv AoE-heal i spillet','Spiritwalker\'s Grace = cast under bevægelse','Earthen Wall Totem = stærk gruppe-CD','Bloodlust/Heroism fra healeren','Wind Rush Totem = bedste bevægelses-CD i spillet'],
+    en:['Chain Heal = most efficient AoE heal in the game','Spiritwalker\'s Grace = cast while moving','Earthen Wall Totem = strong group CD','Bloodlust/Heroism from the healer','Wind Rush Totem = best movement CD in game']
   },
   cons:{
     nl:['Chain Heal vereist goede groepspositionering','Minder sterk in pure single target','Riptide vereist constante aandacht','Mana intensief bij veel forced movement'],
-    en:['Chain Heal requires good group positioning','Weaker in pure single target','Riptide requires constant attention','Mana intensive with lots of forced movement'],
-    da:['Chain Heal kræver god gruppepositionering','Svagere i ren single target','Riptide kræver konstant opmærksomhed','Manaintensiv med meget tvungen bevægelse'],
+    en:['Chain Heal requires good group positioning','Weaker in pure single target','Riptide requires constant attention','Mana intensive with lots of forced movement']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_RESTORATION_SHAMAN = {
         'Earthen Wall Totem before predictable major group damage',
         'Spiritwalker\'s Grace proactively on movement mechanics — don\'t wait',
       ],
-    },
-    da:{
-      opener:'Riptide på tank → Healing Stream Totem → Earth Shield på tank → Chain Heal ved 3+ sårede',
-      single:'Riptide på CD → Healing Wave fylder → Healing Surge i nød → Overvåg Mana Tea',
-      aoe:'Spred Riptide → Chain Heal på mål med Riptide → Healing Rain-zone → Earthen Wall ved stor skade',
-      rules:[
-        'Riptide altid på CD — genererer Tidal Waves-proc (hurtigere Healing Wave/Surge)',
-        'Cast altid Chain Heal på mål MED Riptide — 25% bonushealing',
-        'Placer Healing Rain på statisk gruppe — gratis AoE HoT',
-        'Earthen Wall Totem inden forudsigelig stor gruppeskade',
-        'Spiritwalker\'s Grace proaktivt ved bevægelsesmekanikker — vent ikke',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_RESTORATION_SHAMAN = {
         {spell:'Earthen Wall Totem',why:'Absorb shield for whole group'},
         {spell:'Ascendance',why:'Emergency: Healing Wave → instant Chain Heal 15 sec'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Chain Heal hopper til de 3 nærmeste lav HP-mål. Aktiver det ALTID på et mål med Riptide — det giver 25% ekstra healing på alle 3 bounces!',
-      opener:[
-        {spell:'Earth Shield',why:'Passiv heal på tank — hold altid aktiv'},
-        {spell:'Riptide',why:'HoT + Tidal Waves-proc til hurtigere casts'},
-        {spell:'Healing Stream Totem',why:'Passiv AoE-heal — placer altid ved pull'},
-        {spell:'Chain Heal',why:'På mål med Riptide — hopper til 3 laveste HP'},
-        {spell:'Earthen Wall Totem',why:'Ved stor forudsigelig åbningsskade'},
-      ],
-      single:[
-        {spell:'Riptide',why:'På CD — HoT + Tidal Waves'},
-        {spell:'Healing Wave',why:'Effektiv fylder efter Tidal Waves-proc'},
-        {spell:'Healing Surge',why:'Nødheal — dyr, kun ved lav HP'},
-        {spell:'Healing Stream Totem',why:'Altid aktiv i statisk kamp'},
-        {spell:'Mana Tea',why:'Ved <80% mana — brug tidligt'},
-      ],
-      aoe:[
-        {spell:'Spred Riptide',why:'Flere mål = bedre Chain Heal-bounces'},
-        {spell:'Chain Heal',why:'På mål med Riptide — hopper automatisk'},
-        {spell:'Healing Rain',why:'AoE HoT-zone — placer på statisk gruppe'},
-        {spell:'Earthen Wall Totem',why:'Absorb-skjold til hele gruppe'},
-        {spell:'Ascendance',why:'Nød: Healing Wave → instant Chain Heal i 15 sek'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_RESTORATION_SHAMAN = {
         {rank:4,stat:'Critical Strike',bars:2,note:'Bigger heals'},
         {rank:5,stat:'Versatility',bars:2,note:'Extra healing + survival'},
       ],
-    },
-    da:{
-      tip:'Haste reducerer Chain Heal casttid — flere casts i travle øjeblikke. Mastery konverterer overhealing til et absorb-skjold på målet.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Haste',bars:4,note:'Hurtigere Chain Heal = mere healing per sekund'},
-        {rank:3,stat:'Mastery',bars:3,note:'Overhealing → absorb-skjold (Earthshield)'},
-        {rank:4,stat:'Critical Strike',bars:2,note:'Større heals'},
-        {rank:5,stat:'Versatility',bars:2,note:'Ekstra healing + overlevelse'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_RESTORATION_SHAMAN = {
       {spell:'Mana Tide Totem',cd:'3 min',effect:'Restores mana of the whole group',when:'During mana issues — use early'},
       {spell:'Spiritwalker\'s Grace',cd:'2 min',effect:'Cast while moving for 15 sec',when:'Proactively on movement mechanics — don\'t wait'},
       {spell:'Bloodlust/Heroism',cd:'5 min',effect:'+30% attack/cast speed for group',when:'Pull or boss execute — coordinate with group'},
-    ],
-    da:[
-      {spell:'Ascendance',cd:'3 min',effect:'Healing Wave bliver instant Chain Heal i 15 sek',when:'Massiv nødhealing — hele gruppe kritisk lav'},
-      {spell:'Earthen Wall Totem',cd:'1 min',effect:'Absorb-skjold for alle nærliggende gruppemedlemmer',when:'Forudsigelig stor gruppeskade — altid på CD'},
-      {spell:'Mana Tide Totem',cd:'3 min',effect:'Gendanner mana for hele gruppen',when:'Ved manaproblemer — brug tidligt'},
-      {spell:'Spiritwalker\'s Grace',cd:'2 min',effect:'Cast under bevægelse i 15 sek',when:'Proaktivt ved bevægelsesmekanikker — vent ikke'},
-      {spell:'Bloodlust/Heroism',cd:'5 min',effect:'+30% angrebs/casthastighed for gruppe',when:'Pull eller boss-execute — koordiner med gruppe'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_RESTORATION_SHAMAN = {
       {spell:'Purify Spirit',type:'Dispel',note:'Removes Magic and Curse debuffs'},
       {spell:'Capacitor Totem',type:'AoE Stun',note:'Stuns all enemies after 2 sec — powerful in M+'},
       {spell:'Bloodlust/Heroism',type:'Haste',note:'Group-wide haste boost — only Shaman has this as healer'},
-    ],
-    da:[
-      {spell:'Wind Rush Totem',type:'Hastighed',note:'+60% gruppefart i 5 sek — bedste bevægelses-CD i spillet'},
-      {spell:'Earthen Wall Totem',type:'Gruppe-CD',note:'Absorb-skjold til hele gruppe'},
-      {spell:'Purify Spirit',type:'Dispel',note:'Fjerner Magic og Curse-debuffs'},
-      {spell:'Capacitor Totem',type:'AoE Stun',note:'Stunner alle fjender efter 2 sek — kraftfuld i M+'},
-      {spell:'Bloodlust/Heroism',type:'Haste',note:'Gruppe-haste-boost — kun Shaman har dette som healer'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_RESTORATION_SHAMAN = {
       {icon:'🏔️',title:'Earthen Wall 1 sec before the hit',text:'Earthen Wall has a small activation delay. Place it 1-2 sec before the major AoE arrives. If you wait until damage is already incoming, you miss half the absorb.'},
       {icon:'💚',title:'Healing Wave after Tidal Waves proc',text:'Riptide gives you a Tidal Waves proc — Healing Wave or Surge becomes 30% faster. Use Healing Wave (not Surge) after proc for mana-efficient fast heals.'},
       {icon:'🩸',title:'Use Mana Tea early',text:'Mana Tea restores mana over 5 sec. Use it at ~80% mana, not at 20%. Using it early and regularly keeps you at a comfortable mana level throughout the fight.'},
-    ],
-    da:[
-      {icon:'💧',title:'Chain Heal = mål med Riptide',text:'Chain Heal gør 25% mere hvis det primære mål har Riptide. Dette er din kernregel: hold Riptide aktiv på spillere der tager mest skade, og cast altid Chain Heal på dem.'},
-      {icon:'🌊',title:'Aktiver Spiritwalker\'s Grace tidligt',text:'Næsten alle healer-trylleformularer kræver at stå stille. Spiritwalker\'s Grace giver dig 15 sekunder casting under bevægelse. Aktiver det FØR du skal bevæge dig — ikke efter du allerede er stoppet og paniker.'},
-      {icon:'🏔️',title:'Earthen Wall 1 sek inden slaget',text:'Earthen Wall har en lille aktiveringsförsinkelse. Placer det 1-2 sek inden den store AoE ankommer. Venter du til skaden allerede er undervejs, misser du halvdelen af absorbet.'},
-      {icon:'💚',title:'Healing Wave efter Tidal Waves-proc',text:'Riptide giver dig en Tidal Waves-proc — Healing Wave eller Surge bliver 30% hurtigere. Brug Healing Wave (ikke Surge) efter proc til manaeffektive hurtige heals.'},
-      {icon:'🩸',title:'Brug Mana Tea tidligt',text:'Mana Tea gendanner mana over 5 sek. Brug det ved ~80% mana, ikke ved 20%. Tidlig og regelmæssig brug holder dig på et komfortabelt mananiveau hele kampen.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_RESTORATION_SHAMAN = {
       {name:'Earthen Wall cursor',code:'/cast [@cursor] Earthen Wall Totem',note:'Places totem directly at cursor — quick placement before AoE.'},
       {name:'Riptide mouseover',code:'/cast [@mouseover,help][] Riptide',note:'HoT on group member without switching targets.'},
       {name:'Spiritwalker\'s Grace',code:'/cast Spiritwalker\'s Grace',note:'On movement mechanics — activate proactively.'},
-    ],
-    da:[
-      {name:'Earthen Wall cursor',code:'/cast [@cursor] Earthen Wall Totem',note:'Placerer totem direkte ved cursor — hurtig placering inden AoE.'},
-      {name:'Riptide mouseover',code:'/cast [@mouseover,help][] Riptide',note:'HoT på gruppemedlem uden at skifte mål.'},
-      {name:'Spiritwalker\'s Grace',code:'/cast Spiritwalker\'s Grace',note:'Ved bevægelsesmekanikker — aktiver proaktivt.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_RESTORATION_SHAMAN = {
       spend:['Healing Wave — cheap, always as filler','Healing Surge — expensive, emergencies only','Chain Heal — moderate mana, highest AoE throughput','Riptide — very cheap, always on CD'],
       pet_tip:'💡 Use Healing Wave instead of Healing Surge when you have time. Healing Surge costs 3x more mana for ~30% more healing — not worth it outside emergencies!',
       pets:[],
-    },
-    da:{
-      intro:'Restoration Shaman bruger Mana. Mana-styring er afgørende i længere kampe. Brug Healing Wave som standard fylder — Healing Surge kun i rigtige nødsituationer da den koster 3x mere.',
-      generate:['Passiv manaregenering','Mana Tide Totem (3 min) — gendanner mana for hele gruppe','Mana Tea — personlig managendopretning'],
-      spend:['Healing Wave — billig, altid som fylder','Healing Surge — dyr, kun nødsituationer','Chain Heal — moderat mana, højeste AoE throughput','Riptide — meget billig, altid på CD'],
-      pet_tip:'💡 Brug Healing Wave i stedet for Healing Surge når du har tid. Healing Surge koster 3x mere mana for ~30% mere healing — ikke værd det uden for nødsituationer!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_RESTORATION_SHAMAN = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina via group feast.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food backup.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat 1 hour.',note:'Always use'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost ved store healing-vinduer.',note:'Brug med Ascendance'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina via gruppefeast.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad backup.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat 1 time.',note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_RESTORATION_SHAMAN);

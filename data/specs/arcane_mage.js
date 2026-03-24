@@ -1,26 +1,23 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_ARCANE_MAGE = {
   id:'arcane_mage', icon:'🔵', class:'Mage',
-  spec:{nl:'Arcane',en:'Arcane',da:'Arcane'},
+  spec:{nl:'Arcane',en:'Arcane'},
   role:'dps', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana + Arcane Charges',
   patch:'1.0', color:'#69CCF0',
 
   summary:{
     nl:'Arcane Mage bouwt Arcane Charges op voor krachtige Arcane Blast en Arcane Missiles. Uniek: mana management is kernmechaniek — burn hard dan conserveren.',
-    en:'Arcane Mage builds Arcane Charges for powerful Arcane Blast and Arcane Missiles. Unique: mana management is the core mechanic — burn hard then conserve.',
-    da:'Arcane Mage opbygger Arcane Charges til kraftfulde Arcane Blast og Arcane Missiles. Unikt: mana-styring er kernemekanikken — brænd hårdt, derefter konserver.',
+    en:'Arcane Mage builds Arcane Charges for powerful Arcane Blast and Arcane Missiles. Unique: mana management is the core mechanic — burn hard then conserve.'
   },
   pros:{
     nl:['Hoogste single target burst in het spel','Eenvoudig te leren rotatie','Sterk tijdens burn phases','Uitstekende execute via Arcane Surge'],
-    en:['Highest single target burst in the game','Easy to learn rotation','Strong during burn phases','Excellent execute via Arcane Surge'],
-    da:['Højeste single target burst i spillet','Let at lære rotation','Stærk under burn-faser','Fremragende execute via Arcane Surge'],
+    en:['Highest single target burst in the game','Easy to learn rotation','Strong during burn phases','Excellent execute via Arcane Surge']
   },
   cons:{
     nl:['Lage schade tijdens conserve phase','Sterk afhankelijk van mana management','Minder sterk in AoE','Kwetsbaar bij movement — veel cast-spells'],
-    en:['Low damage during conserve phase','Heavily dependent on mana management','Weaker in AoE','Vulnerable during movement — many cast spells'],
-    da:['Lav skade under konserverfasen','Stærkt afhængig af mana-styring','Svagere i AoE','Sårbar under bevægelse — mange cast-trylleformularer'],
+    en:['Low damage during conserve phase','Heavily dependent on mana management','Weaker in AoE','Vulnerable during movement — many cast spells']
   },
 
   cheatsheet:{
@@ -47,19 +44,7 @@ const SPEC_ARCANE_MAGE = {
         'Use Arcane Missiles on Clearcasting proc — free and powerful',
         'Never go to 0 mana — conserve on time',
       ],
-    },
-    da:{
-      opener:'Opbyg Arcane Charges → Arcane Surge → Touch of the Magi → Arcane Barrage dump',
-      single:'Opbyg 4 Charges → Arcane Blast-spam → Barrage ved lav mana → konserver med Arcane Missiles',
-      aoe:'Arcane Explosion-spam ved 3+ mål → Arcane Barrage til cleave → Touch of the Magi på primært mål',
-      rules:[
-        'Altid på 4 Arcane Charges inden du gør stor skade',
-        'Arcane Surge + Touch of the Magi = burn-vindue — smid alt ind',
-        'Arcane Barrage fjerner alle Charges — kun ved konservering eller dump',
-        'Brug Arcane Missiles ved Clearcasting-proc — gratis og kraftfuld',
-        'Gå aldrig til 0 mana — konserver i tide',
-      ],
-    },
+    }
   },
 
   rotation:{
@@ -108,30 +93,7 @@ const SPEC_ARCANE_MAGE = {
         {spell:'Touch of the Magi',        why:'On main target — accumulates all your AoE damage'},
         {spell:'Arcane Surge',             why:'Burst window — also strong in AoE'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Arcane Surge nulstiller dine Arcane Charges til 4. Sørg for at Touch of the Magi er aktiv under dit Surge-vindue for maksimalt burst!',
-      opener:[
-        {spell:'Arcane Blast x3',          why:'Opbyg 3 Arcane Charges'},
-        {spell:'Touch of the Magi',        why:'Debuff der akkumulerer al Arcane-skade — altid inden Surge'},
-        {spell:'Arcane Surge',             why:'Stor burst-CD — nulstiller Charges til 4'},
-        {spell:'Arcane Blast x4',          why:'Maksimale Charges under Surge-vindue'},
-        {spell:'Arcane Barrage',           why:'Dump alle Charges ved slutningen af Surge'},
-      ],
-      single:[
-        {spell:'Arcane Blast',             why:'Hoved angreb — opbygger 1 Arcane Charge per cast'},
-        {spell:'Arcane Missiles',          why:'Ved Clearcasting-proc — altid prioritet, gratis'},
-        {spell:'Touch of the Magi',        why:'Altid på CD — øger burst-vindues skade'},
-        {spell:'Arcane Surge',             why:'På CD — stort burst, brug med Touch of the Magi'},
-        {spell:'Arcane Barrage',           why:'Ved 4 Charges + lav mana — nulstil til konservering'},
-      ],
-      aoe:[
-        {spell:'Arcane Explosion',         why:'AoE-angreb — opbygger også Charges ved 3+ mål'},
-        {spell:'Arcane Barrage',           why:'Cleaver til alle mål med aktive Charges'},
-        {spell:'Touch of the Magi',        why:'På primært mål — akkumulerer al din AoE-skade'},
-        {spell:'Arcane Surge',             why:'Burst-vindue — også stærk i AoE'},
-      ],
-    },
+    }
   },
 
   stats:{
@@ -154,17 +116,7 @@ const SPEC_ARCANE_MAGE = {
         {rank:4,stat:'Critical Strike',  bars:2,note:'Less valuable than for Fire'},
         {rank:5,stat:'Versatility',      bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Intellect er altid #1. Haste reducerer din cast-tid og GCD — essentiel for Arcane. Mastery øger direkte din Arcane-skade.',
-      list:[
-        {rank:1,stat:'Intellect',        bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',            bars:5,note:'Hurtigere casts = flere Charges = mere skade'},
-        {rank:3,stat:'Mastery',          bars:4,note:'Mastery: Savant øger direkte Arcane-skade'},
-        {rank:4,stat:'Critical Strike',  bars:2,note:'Mindre værdifuld end for Fire'},
-        {rank:5,stat:'Versatility',      bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
 
   cooldowns:{
@@ -181,14 +133,7 @@ const SPEC_ARCANE_MAGE = {
       {spell:'Evocation',           cd:'6 min',   effect:'Restores 100% mana in 6 sec — emergency mana',        when:'If mana threatens to run out outside burn phase'},
       {spell:'Presence of Mind',    cd:'1 min',   effect:'Next Arcane Blast is instant cast',                   when:'Opener or when you need to move'},
       {spell:'Time Warp',           cd:'5 min',   effect:'Group haste +30% for 40 sec',                        when:'On instruction from tank/raid leader'},
-    ],
-    da:[
-      {spell:'Arcane Surge',        cd:'1.5 min', effect:'Massivt skade-boost + nulstil Charges til 4',         when:'Kombiner altid med Touch of the Magi'},
-      {spell:'Touch of the Magi',   cd:'45 sec',  effect:'Debuff der akkumulerer 25% af al Arcane-skade',       when:'Placer altid inden Arcane Surge'},
-      {spell:'Evocation',           cd:'6 min',   effect:'Gendanner 100% mana på 6 sek — nødmana',              when:'Hvis mana truer med at løbe ud uden for burn-fase'},
-      {spell:'Presence of Mind',    cd:'1 min',   effect:'Næste Arcane Blast er instant cast',                  when:'Opener eller når du skal bevæge dig'},
-      {spell:'Time Warp',           cd:'5 min',   effect:'Gruppe-haste +30% i 40 sek',                         when:'På anvisning fra tank/raidleder'},
-    ],
+    ]
   },
 
   utility:{
@@ -207,15 +152,7 @@ const SPEC_ARCANE_MAGE = {
       {spell:'Frost Nova',          type:'CC',          note:'Freezes targets around you — escape or CC'},
       {spell:'Blink',               type:'Mobility',    note:'Teleport 20 yards forward — dodge mechanics'},
       {spell:'Invisibility',        type:'Defensive',   note:'Leave combat — aggro dump or emergency'},
-    ],
-    da:[
-      {spell:'Counterspell',        type:'Interrupt',   note:'Interrupt på 24 sek CD — schoollock i 8 sek'},
-      {spell:'Time Warp',           type:'Bloodlust',   note:'Gruppe-haste 30% — koordinér med gruppe'},
-      {spell:'Slow',                type:'Slow',        note:'60% bevægelses-slow — god til kiting i M+'},
-      {spell:'Frost Nova',          type:'CC',          note:'Fryser mål omkring dig — flugt eller CC'},
-      {spell:'Blink',               type:'Mobilitet',   note:'Teleportér 20 meter frem — undvig mekanikker'},
-      {spell:'Invisibility',        type:'Defensiv',    note:'Forlad kamp — aggro-dump eller nødsituation'},
-    ],
+    ]
   },
 
   tips:{
@@ -232,14 +169,7 @@ const SPEC_ARCANE_MAGE = {
       {icon:'⚡',title:'Clearcasting = free',         text:'Arcane Missiles proc (Clearcasting) is always free and high single target damage. Never use as filler — always use immediately on proc. Two charges are possible: don\'t waste them during burns.'},
       {icon:'🧊',title:'Frost Nova + Blink',          text:'Frost Nova freezes everything around you, then Blink away. Excellent escape combo in M+ when you have too much aggro or need to dodge a mechanic.'},
       {icon:'⏱️',title:'Coordinate Time Warp',       text:'Time Warp is your Bloodlust. Coordinate with the tank on when to use it. In M+ usually on the first or hardest boss.'},
-    ],
-    da:[
-      {icon:'🔵',title:'Brænd og konserver',         text:'Arcane har to tilstande: brænd (høj mana, høj skade) og konserver (lav mana, genopret mana). Brug Evocation eller Arcane Barrage til at skifte. Gå aldrig til 0 mana!'},
-      {icon:'🔮',title:'Touch of the Magi timing',   text:'Touch of the Magi akkumulerer 25% af al din Arcane-skade. Placer den altid på målet INDEN du bruger Arcane Surge — den eksploderer derefter med akkumuleret skade til sidst.'},
-      {icon:'⚡',title:'Clearcasting = gratis',       text:'Arcane Missiles-proc (Clearcasting) er altid gratis og høj single target-skade. Brug aldrig som fylder — brug altid straks ved proc. To charges er mulige: spild dem ikke under burns.'},
-      {icon:'🧊',title:'Frost Nova + Blink',          text:'Frost Nova fryser alt omkring dig, derefter Blink væk. Fremragende flugt-kombination i M+ når du har for meget aggro eller skal undvige en mekanik.'},
-      {icon:'⏱️',title:'Koordinér Time Warp',        text:'Time Warp er din Bloodlust. Koordinér med tanken om hvornår den bruges. I M+ normalt på den første eller sværeste boss.'},
-    ],
+    ]
   },
 
   macros:{
@@ -252,12 +182,7 @@ const SPEC_ARCANE_MAGE = {
       {name:'Counterspell (Focus Kick)', code:'#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note:'Kick on focus > mouseover > target. Essential in M+!'},
       {name:'Touch of the Magi + Surge', code:'/cast Touch of the Magi\n/cast Arcane Surge', note:'Burst opener in one button — Touch first then direct Surge.'},
       {name:'Presence of Mind + Blast',  code:'/cast Presence of Mind\n/cast Arcane Blast', note:'Instant Arcane Blast — useful during movement or as opener.'},
-    ],
-    da:[
-      {name:'Counterspell (Focus Kick)', code:'#showtooltip Counterspell\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counterspell', note:'Spark på focus > mouseover > mål. Essentiel i M+!'},
-      {name:'Touch of the Magi + Surge', code:'/cast Touch of the Magi\n/cast Arcane Surge', note:'Burst-opener på én knap — Touch først derefter direkte Surge.'},
-      {name:'Presence of Mind + Blast',  code:'/cast Presence of Mind\n/cast Arcane Blast', note:'Instant Arcane Blast — nyttigt under bevægelse eller som opener.'},
-    ],
+    ]
   },
 
   resource_info:{
@@ -292,23 +217,7 @@ const SPEC_ARCANE_MAGE = {
       ],
       pet_tip:'💡 Never go to 0 mana! If mana drops below 40%: Arcane Barrage to dump Charges, then conserve phase with Arcane Missiles and Arcane Orb.',
       pets:[],
-    },
-    da:{
-      intro:'Arcane Mage bruger Mana (0-100%) og Arcane Charges (0-4). Charges øger skaden og mana-omkostningerne for Arcane Blast og Missiles. Målet er at opbygge 4 Charges og derefter burste hårdt.',
-      generate:[
-        'Arcane Blast — opbygger 1 Charge, øger skade OG mana-omkostninger',
-        'Arcane Explosion — opbygger også Charges ved 3+ mål',
-        'Arcane Surge — nulstiller straks Charges til 4',
-        'Evocation — gendanner 100% mana på 6 sek channel',
-      ],
-      spend:[
-        'Arcane Barrage (4 Charges) — stort burst, fjerner alle Charges',
-        'Arcane Blast (4 Charges) — maksimal skade per cast',
-        'Arcane Missiles — gratis ved Clearcasting-proc',
-      ],
-      pet_tip:'💡 Gå aldrig til 0 mana! Hvis mana falder under 40%: Arcane Barrage for at dumpe Charges, derefter konserverfase med Arcane Missiles og Arcane Orb.',
-      pets:[],
-    },
+    }
   },
 
   consumables:{
@@ -325,14 +234,7 @@ const SPEC_ARCANE_MAGE = {
       {type:'food',  name:'Silvermoon Parade (Feast)', effect:'+Intellect and Stamina via group feast.',       note:'Ask for feast'},
       {type:'food',  name:'Royal Roast', effect:'Solo/raid feast backup.',                note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune', effect:'+Primary stat 1 hour.',                          note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Magisters', effect:'+Mastery 1 time. Midnight S1 BiS for Arcane.',  note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Recklessness',      effect:'Stor Intellect-boost i 25 sek.',                note:'Brug under Arcane Surge burst-vindue'},
-      {type:'food',  name:'Silvermoon Parade (Feast)', effect:'+Intellect og Stamina via gruppefeast.',        note:'Bed om feast'},
-      {type:'food',  name:'Royal Roast', effect:'Solo/raid feast backup.',                note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',  effect:'+Primær stat 1 time.',                         note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_ARCANE_MAGE);

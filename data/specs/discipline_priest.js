@@ -1,26 +1,23 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_DISCIPLINE_PRIEST = {
   id:'discipline_priest', icon:'⚪', class:'Priest',
-  spec:{nl:'Discipline',en:'Discipline',da:'Discipline'},
+  spec:{nl:'Discipline',en:'Discipline'},
   role:'heal', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#FFFFFF',
 
   summary:{
     nl:'Discipline Priest healt door schade te doen via Atonement. Elke schade spell genereert heals op spelers met Atonement debuff. Uniek en complex healerssysteem.',
-    en:'Discipline Priest heals by dealing damage via Atonement. Every damage spell generates heals on players with Atonement debuff. Unique and complex healer system.',
-    da:'Discipline Priest healer ved at gøre skade via Atonement. Hver skadetrylleformel genererer heals på spillere med Atonement-debuff. Unikt og komplekst healersystem.',
+    en:'Discipline Priest heals by dealing damage via Atonement. Every damage spell generates heals on players with Atonement debuff. Unique and complex healer system.'
   },
   pros:{
     nl:['Uniek schade-heals systeem (Atonement)','Uitstekende preventieve healing','Power Word: Barrier is sterkste groeps-CD','Sterke shields via Power Word: Shield','Rapture: massale shield burst in nood'],
-    en:['Unique damage-heals system (Atonement)','Excellent preventative healing','Power Word: Barrier is strongest group CD','Strong shields via Power Word: Shield','Rapture: massive shield burst in emergency'],
-    da:['Unikt skade-heals-system (Atonement)','Fremragende forebyggende healing','Power Word: Barrier er stærkeste gruppe-CD','Stærke skjolde via Power Word: Shield','Rapture: massivt shield-burst i nødsituation'],
+    en:['Unique damage-heals system (Atonement)','Excellent preventative healing','Power Word: Barrier is strongest group CD','Strong shields via Power Word: Shield','Rapture: massive shield burst in emergency']
   },
   cons:{
     nl:['Moeilijkste healer om te leren','Lage reactieve healing — slecht bij grote onverwachte damage','Atonement moet constant uitgedeeld worden','Zwak bij onverwachte healer checks'],
-    en:['Hardest healer to learn','Low reactive healing — poor at large unexpected damage','Atonement must be constantly distributed','Weak at unexpected healer checks'],
-    da:['Sværeste healer at lære','Lav reaktiv healing — dårlig ved stor uventet skade','Atonement skal konstant uddeles','Svag ved uventede healer-checks'],
+    en:['Hardest healer to learn','Low reactive healing — poor at large unexpected damage','Atonement must be constantly distributed','Weak at unexpected healer checks']
   },
 
   cheatsheet:{
@@ -47,19 +44,7 @@ const SPEC_DISCIPLINE_PRIEST = {
         'Shadowmend as reactive emergency heal — expensive but fast',
         'Never waste mana — Disc has no mana recovery tools',
       ],
-    },
-    da:{
-      opener:'Rapture → Power Word: Shield-spam på gruppe → Evangelism → Skadetrylleformularer for Atonement-heals',
-      single:'Uddel Atonement → Skadetrylleformularer (Penance, Mind Blast, Smite) → PW:S ved stor skade → Shadowmend nød',
-      aoe:'Stort skadevindue: Rapture → PW:S på alle → Evangelism → Penance + Mindblast-spam',
-      rules:[
-        'Atonement ALTID aktiv på alle gruppemedlemmer — ellers ingen heals fra skade',
-        'Penance er din stærkeste skade/heal-trylleformel — altid på CD',
-        'Power Word: Shield gratis via Rapture-talent — spam i nødsituation',
-        'Shadowmend som reaktiv nødheal — dyr men hurtig',
-        'Spild aldrig mana — Disc har ingen mana-gendannelsesredskaber',
-      ],
-    },
+    }
   },
 
   rotation:{
@@ -114,33 +99,7 @@ const SPEC_DISCIPLINE_PRIEST = {
         {spell:'Halo',                 why:'Large AoE heal + damage burst — use during big damage'},
         {spell:'Divine Star',          why:'AoE heal alternative — cheaper than Halo'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Atonement er kernen i Disc. Uden Atonement på dine gruppemedlemmer gør skade-spam intet for healing. Prioritet altid: uddel Atonement, derefter gør skade!',
-      opener:[
-        {spell:'Power Word: Fortitude', why:'Buff på gruppe inden pull (1 times cooldown)'},
-        {spell:'Rapture',              why:'CD der gør PW:Shield gratis — spam shields inden skade'},
-        {spell:'Power Word: Shield x5',why:'Uddel Atonement til alle gruppemedlemmer under Rapture'},
-        {spell:'Evangelism',           why:'Forlænger alle aktive Atonements med 6 sek — perfekt CD-kombination'},
-        {spell:'Penance',              why:'Stærkeste skade + healer alle med Atonement'},
-        {spell:'Mind Blast',           why:'Høj skade = store Atonement-heals'},
-      ],
-      single:[
-        {spell:'Power Word: Shield',   why:'Anvend Atonement + lille absorb'},
-        {spell:'Penance',              why:'Altid på CD — skade ELLER direkte heling ved nødsituation'},
-        {spell:'Mind Blast',           why:'På CD — høj skade = masser af Atonement-healing'},
-        {spell:'Smite',                why:'Fylder — billig, konstant Atonement-healing'},
-        {spell:'Shadowmend',           why:'Nødheling — straks stor men dyr i mana'},
-        {spell:'Power Word: Radiance', why:'Stor AoE Atonement-applicator til 5 mål'},
-      ],
-      aoe:[
-        {spell:'Power Word: Radiance', why:'Giver Atonement til 5 mål simultant — essentiel under AoE-skade'},
-        {spell:'Evangelism',           why:'På CD efter Radiance — forlænger alle Atonements'},
-        {spell:'Penance',              why:'Skade på boss healer alle med Atonement'},
-        {spell:'Halo',                 why:'Stor AoE-heling + skade-burst — brug ved stor skade'},
-        {spell:'Divine Star',          why:'AoE-helings-alternativ — billigere end Halo'},
-      ],
-    },
+    }
   },
 
   stats:{
@@ -163,17 +122,7 @@ const SPEC_DISCIPLINE_PRIEST = {
         {rank:4,stat:'Critical Strike',bars:2,note:'Less valuable than Haste/Mastery'},
         {rank:5,stat:'Versatility',    bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Intellect er altid #1. Haste er ekstremt vigtig for Disc — flere casts = flere Atonement-heals. Mastery styrker direkte Atonement-heals.',
-      list:[
-        {rank:1,stat:'Intellect',      bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',          bars:5,note:'Hurtigere casts = flere Atonement-heals per sekund'},
-        {rank:3,stat:'Mastery',        bars:4,note:'Mastery: Graceful Mending — øger Atonement-healing'},
-        {rank:4,stat:'Critical Strike',bars:2,note:'Mindre værdifuld end Haste/Mastery'},
-        {rank:5,stat:'Versatility',    bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
 
   cooldowns:{
@@ -190,14 +139,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       {spell:'Power Word: Barrier', cd:'3 min',   effect:'Large dome: 25% damage reduction + CC immunity',          when:'Biggest damage phase — strongest group CD in the game'},
       {spell:'Fade',                cd:'30 sec',  effect:'Reduces aggro + brief 20% damage reduction',              when:'When you have too much aggro or dodge a mechanic'},
       {spell:'Pain Suppression',    cd:'3 min',   effect:'40% damage reduction on 1 target 8 sec',                  when:'Tank or player in trouble during extreme burst'},
-    ],
-    da:[
-      {spell:'Rapture',             cd:'1.5 min', effect:'PW:Shield gratis i 8 sek — spam shields på hele gruppen', when:'Inden stor skadefase — kombiner altid med Evangelism'},
-      {spell:'Evangelism',          cd:'1.5 min', effect:'Forlænger alle Atonements med 6 sek',                     when:'Direkte efter Rapture PW:Shield-burst'},
-      {spell:'Power Word: Barrier', cd:'3 min',   effect:'Stor kuppel: 25% skadereduktion + CC-immunitet',          when:'Største skadefase — stærkeste gruppe-CD i spillet'},
-      {spell:'Fade',                cd:'30 sek',  effect:'Reducerer aggro + kort 20% skadereduktion',               when:'Når du har for meget aggro eller undviger en mekanik'},
-      {spell:'Pain Suppression',    cd:'3 min',   effect:'40% skadereduktion på 1 mål i 8 sek',                    when:'Tank eller spiller i nød ved ekstremt burst'},
-    ],
+    ]
   },
 
   utility:{
@@ -216,15 +158,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       {spell:'Mass Dispel',         type:'Dispel',      note:'AoE dispel in area — also breaks invulnerability'},
       {spell:'Shackle Undead',      type:'CC',          note:'Immobilizes 1 undead target — M+ dungeon relevant'},
       {spell:'Psychic Scream',      type:'CC',          note:'Fear 5 enemies 8 sec — breaks on damage'},
-    ],
-    da:[
-      {spell:'Leap of Faith',       type:'Redning',     note:'Træk gruppemedlem til dig — redder folk fra mekanikker'},
-      {spell:'Dispel Magic',        type:'Dispel',      note:'Fjerner 1 magisk effekt fra ven eller fjende'},
-      {spell:'Purify',              type:'Dispel',      note:'Fjerner sygdom og magi fra allieret'},
-      {spell:'Mass Dispel',         type:'Dispel',      note:'AoE-dispel i område — bryder også uovervindelighed'},
-      {spell:'Shackle Undead',      type:'CC',          note:'Immobiliserer 1 udødt mål — relevant i M+-dungeons'},
-      {spell:'Psychic Scream',      type:'CC',          note:'Fear 5 fjender i 8 sek — brydes ved skade'},
-    ],
+    ]
   },
 
   tips:{
@@ -241,14 +175,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       {icon:'💡',title:'Penance = Swiss Army knife', text:'Penance can both heal and deal damage. If someone is very low: cast Penance directly on that player for instant heal. In calmer phases: cast Penance on enemies for Atonement heals on everyone.'},
       {icon:'🛡️',title:'Power Word: Barrier timing', text:'PW:B is the strongest group CD in the game. Use it on the heaviest damage phase of the boss — communicate this with the tank. Never waste on trash.'},
       {icon:'💰',title:'Watch your mana',            text:'Disc has no Innervate or own mana recovery. If you run out of mana: you can\'t heal anymore. Always prefer cheap spells (Smite, PW:S) over expensive ones (Shadowmend, Radiance). Ask Druid for Innervate.'},
-    ],
-    da:[
-      {icon:'⚪',title:'Forstå Atonement',          text:'Atonement er en buff du placerer på spillere via Power Word: Shield eller Power Word: Radiance. Så længe de har Atonement, healer din skade på bossen dem. Uden Atonement = ingen heals. Dette er forskellen fra alle andre healere.'},
-      {icon:'🔄',title:'Rapture + Evangelism-kombination', text:'Dette er din kernekombination ved stor skade: brug Rapture (PW:S gratis i 8 sek) → shield hele gruppen → direkte Evangelism for at forlænge alle Atonements. Gør dette FØR skaden begynder!'},
-      {icon:'💡',title:'Penance = Schweizisk lommekniv', text:'Penance kan både heale og gøre skade. Hvis nogen er meget lav: cast Penance direkte på den spiller til instant heal. I roligere faser: cast Penance på fjender for Atonement-heals på alle.'},
-      {icon:'🛡️',title:'Power Word: Barrier-timing', text:'PW:B er den stærkeste gruppe-CD i spillet. Brug den på den tungeste skadefase hos bossen — kommunikér dette med tanken. Spild den aldrig på trash.'},
-      {icon:'💰',title:'Hold øje med mana',          text:'Disc har ingen Innervate eller egen mana-gendannelse. Hvis du løber tør for mana: kan du ikke heale mere. Foretræk altid billige trylleformularer (Smite, PW:S) frem for dyre (Shadowmend, Radiance). Bed Druid om Innervate.'},
-    ],
+    ]
   },
 
   macros:{
@@ -261,12 +188,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       {name:'Penance on focus/mouseover', code:'#showtooltip Penance\n/cast [@focus,help,nodead][@mouseover,help,nodead][@target] Penance', note:'Heal with Penance on focus or mouseover — without switching target.'},
       {name:'Pain Suppression (mouseover)', code:'#showtooltip Pain Suppression\n/cast [@mouseover,help,nodead][@target] Pain Suppression', note:'Quickly throw emergency CD on someone without switching target.'},
       {name:'Leap of Faith (mouseover)',  code:'#showtooltip Leap of Faith\n/cast [@mouseover,help,nodead][@target] Leap of Faith', note:'Quickly pull someone to you out of a mechanic.'},
-    ],
-    da:[
-      {name:'Penance på focus/mouseover', code:'#showtooltip Penance\n/cast [@focus,help,nodead][@mouseover,help,nodead][@target] Penance', note:'Heal med Penance på focus eller mouseover — uden at skifte mål.'},
-      {name:'Pain Suppression (mouseover)', code:'#showtooltip Pain Suppression\n/cast [@mouseover,help,nodead][@target] Pain Suppression', note:'Kast hurtigt nød-CD på nogen uden at skifte mål.'},
-      {name:'Leap of Faith (mouseover)',  code:'#showtooltip Leap of Faith\n/cast [@mouseover,help,nodead][@target] Leap of Faith', note:'Træk hurtigt nogen til dig ud af en mekanik.'},
-    ],
+    ]
   },
 
   resource_info:{
@@ -305,25 +227,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       ],
       pet_tip:'💡 Save mana for big damage windows. Never spam Shadowmend as filler — that\'s the fastest way to OOM (out of mana)!',
       pets:[],
-    },
-    da:{
-      intro:'Discipline Priest bruger kun Mana. Mana er din begrænsede ressource — når den er tom, kan du ikke heale mere. Disc har ingen egen mana-gendannelse og skal være sparsommelig.',
-      generate:[
-        'Mana regenererer passivt under kamp (langsomt)',
-        'Shadowfiend (talent) — pet der returnerer mana ved angreb',
-        'Innervate fra en Druid — bed altid om det!',
-        'Uden for kamp går mana hurtigt tilbage til 100%',
-      ],
-      spend:[
-        'Power Word: Shield — gennemsnitlige omkostninger, bruges hyppigt',
-        'Power Word: Radiance — dyr, men giver 5 Atonements på én gang',
-        'Shadowmend — dyr direkte heling, brug sparsomt',
-        'Penance — rimeligt billig for kraften',
-        'Smite — billigste skadetrylleformel, Atonement-fylder',
-      ],
-      pet_tip:'💡 Gem mana til store skade-vinduer. Spam aldrig Shadowmend som fylder — det er den hurtigste vej til OOM (ingen mana)!',
-      pets:[],
-    },
+    }
   },
 
   consumables:{
@@ -340,14 +244,7 @@ const SPEC_DISCIPLINE_PRIEST = {
       {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Intellect and Stamina via group feast.',          note:'Ask for feast'},
       {type:'food',  name:'Royal Roast',      effect:'Solo food — Intellect backup.',                   note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primary stat 1 hour.',                           note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Magisters',   effect:'Øger Intellect markant i 1 time.',                 note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Recklessness',          effect:'Stor Intellect-boost i 25 sek.',                  note:'På pull eller stor skadefase'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Intellect og Stamina via gruppefeast.',           note:'Bed om feast'},
-      {type:'food',  name:'Royal Roast',      effect:'Solo-mad — Intellect backup.',                    note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primær stat 1 time.',                            note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_DISCIPLINE_PRIEST);

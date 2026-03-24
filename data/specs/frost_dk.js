@@ -7,30 +7,27 @@ const SPEC_FROST_DK = {
   id: 'frost_dk',
   icon: '💀',
   class: 'Death Knight',
-  spec:  { nl: 'Frost', en: 'Frost', da: 'Frost' },
+  spec:  { nl: 'Frost', en: 'Frost'},
   role:  'melee',
   armor: 'Plate',
-  weapon: { nl: 'Twee eenhanders of één tweehandig wapen', en: 'Two one-handed or one two-handed weapon', da: 'To enhåndsvåben eller ét tohåndsvåben' },
+  weapon: { nl: 'Twee eenhanders of één tweehandig wapen', en: 'Two one-handed or one two-handed weapon'},
   resource: 'Runic Power (0–100) + Runes (6)',
   patch: '12.0.1',
   color: '#90caf9',
 
   summary: {
     nl: 'Zware melee DPS die ijs en dood combineert. Beheer 6 Runes en Runic Power tegelijk — klinkt complex maar is snel te leren. Uitstekende survivability dankzij plate armor en sterke defensieve cooldowns.',
-    en: 'Heavy melee DPS combining ice and death. Manage 6 Runes and Runic Power simultaneously — sounds complex but is quick to learn. Excellent survivability thanks to plate armor and strong defensive cooldowns.',
-    da: 'Tung melee DPS der kombinerer is og død. Håndter 6 Runes og Runic Power samtidigt — lyder komplekst men er hurtigt at lære. Fremragende overlevelsesevne takket være plate-rustning og stærke defensive cooldowns.',
+    en: 'Heavy melee DPS combining ice and death. Manage 6 Runes and Runic Power simultaneously — sounds complex but is quick to learn. Excellent survivability thanks to plate armor and strong defensive cooldowns.'
   },
 
   pros: {
     nl: ['Plate armor — uitstekende survivability', 'Sterke defensieve cooldowns (Icebound Fortitude, AMS)', 'Death Grip — unieke pull-mechanic', 'Pathfinder-snelheid — geen mount nodig in oude zones', 'Eenvoudiger dan het eruitziet — 2 resources maar logisch systeem'],
-    en: ['Plate armor — excellent survivability', 'Strong defensive cooldowns (Icebound Fortitude, AMS)', 'Death Grip — unique pull mechanic', 'Pathfinder speed — no mount needed in old zones', 'Simpler than it looks — 2 resources but logical system'],
-    da: ['Plate-rustning — fremragende overlevelsesevne', 'Stærke defensive cooldowns (Icebound Fortitude, AMS)', 'Death Grip — unik træk-mekanik', 'Pathfinder-hastighed — intet mount nødvendigt i gamle zoner', 'Enklere end det ser ud — 2 ressourcer men logisk system'],
+    en: ['Plate armor — excellent survivability', 'Strong defensive cooldowns (Icebound Fortitude, AMS)', 'Death Grip — unique pull mechanic', 'Pathfinder speed — no mount needed in old zones', 'Simpler than it looks — 2 resources but logical system']
   },
 
   cons: {
     nl: ['Melee — moet op de boss staan', 'Runic Power en Runes beiden beheren', 'Weinig CC (geen Polymorph)', 'Minder mobiel dan ranged specs', 'Geen self-heal buiten cooldowns'],
-    en: ['Melee — must stand on the boss', 'Managing both Runic Power and Runes', 'Little CC (no Polymorph)', 'Less mobile than ranged specs', 'No self-heal outside of cooldowns'],
-    da: ['Melee — skal stå på bossen', 'Håndtere både Runic Power og Runes', 'Lidt CC (ingen Polymorph)', 'Mindre mobil end ranged specs', 'Ingen self-heal uden for cooldowns'],
+    en: ['Melee — must stand on the boss', 'Managing both Runic Power and Runes', 'Little CC (no Polymorph)', 'Less mobile than ranged specs', 'No self-heal outside of cooldowns']
   },
 
   cheatsheet: {
@@ -61,21 +58,7 @@ const SPEC_FROST_DK = {
         'Howling Blast on AoE instead of Obliterate',
         'Always place Death and Decay on 2+ targets',
       ],
-    },
-    da: {
-      opener:   "Pillar of Frost → Obliterate → Obliterate → Frost Strike (60+ RP) → Howling Blast (Rime!) → Obliterate → fyldstof",
-      single:   "Pillar of Frost on CD → Obliterate (Killing Machine!) → Howling Blast (Rime!) → Frost Strike (60+ RP) → Obliterate",
-      aoe:      "Pillar of Frost → Howling Blast (Rime!) → Death and Decay → Remorseless Winter → Obliterate → Frost Strike",
-      rules: [
-        'Killing Machine proc = instant gratis Obliterate — ALTID',
-        'Rime proc = Howling Blast gratis + høj skade — ALTID',
-        'Cap aldrig Runic Power — brug ved 80+',
-        'Pillar of Frost on cooldown — størst burst',
-        'Lad altid Runes genoplade — løb aldrig helt tom',
-        'Howling Blast ved AoE i stedet for Obliterate',
-        'Placer altid Death and Decay ved 2+ mål',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -134,35 +117,7 @@ const SPEC_FROST_DK = {
         { prio: '5', spell: 'Frost Strike',         note: 'At 80+ RP — also important in AoE' },
         { prio: '6', spell: 'Obliterate',           note: 'Continue Rune spending' },
       ],
-    },
-    da: {
-      apex_tip: '💀 Ressourcer forklaret: 6 Runes (genoplades automatisk) → brug på Obliterate/Howling Blast → genererer Runic Power → brug via Frost Strike. Simpelt kredsløb!',
-      opener: [
-        { step: 1, spell: 'Pillar of Frost',    note: 'Størst burst cooldown — gå altid først' },
-        { step: 2, spell: 'Obliterate',          note: 'Primært angreb — bruger 2 Runes + genererer RP' },
-        { step: 3, spell: 'Obliterate',          note: 'Igen — byg RP op' },
-        { step: 4, spell: 'Frost Strike',        note: 'Ved 60+ Runic Power — brug RP' },
-        { step: 5, spell: 'Howling Blast (Rime)', note: 'Rime proc = gratis + høj skade — ALTID straks' },
-        { step: 6, spell: 'Obliterate',          note: 'Fortsæt rotation' },
-        { step: 7, spell: 'Remorseless Winter',  note: 'Hvis talented — on cooldown, AoE burst' },
-      ],
-      single: [
-        { prio: '1', spell: 'Killing Machine (Obliterate)', note: 'Proc! Instant gratis Obliterate — spild aldrig', importance: 'ALTID' },
-        { prio: '2', spell: 'Rime (Howling Blast)',         note: 'Proc! Gratis Howling Blast — spild aldrig',      importance: 'ALTID' },
-        { prio: '3', spell: 'Pillar of Frost',              note: 'On cooldown — øger al skade',                    importance: 'ALTID' },
-        { prio: '4', spell: 'Frost Strike',                 note: 'Ved 80+ Runic Power — lad den aldrig cap',       importance: 'HØJ' },
-        { prio: '5', spell: 'Obliterate',                   note: 'Hoved Rune-forbruger — genererer Runic Power',   importance: 'HØJ' },
-        { prio: '6', spell: 'Howling Blast',                note: 'Fyldstof uden Runes — trigger Rime proc',         importance: 'MIDDEL' },
-      ],
-      aoe: [
-        { prio: '1', spell: 'Pillar of Frost',     note: 'On cooldown — boost al AoE-skade' },
-        { prio: '2', spell: 'Death and Decay',      note: 'Placer altid ved 2+ mål — AoE-bonus' },
-        { prio: '3', spell: 'Howling Blast (Rime)', note: 'On proc — rammer alle fjender omkring målet' },
-        { prio: '4', spell: 'Remorseless Winter',   note: 'On cooldown — AoE burst + slow' },
-        { prio: '5', spell: 'Frost Strike',         note: 'Ved 80+ RP — også vigtigt ved AoE' },
-        { prio: '6', spell: 'Obliterate',           note: 'Fortsæt Rune-forbrug' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -185,17 +140,7 @@ const SPEC_FROST_DK = {
         { rank: '4', stat: 'Mastery',          bars: 3, note: 'Increases Frost and Shadow damage — good but less than Crit' },
         { rank: '5', stat: 'Versatility',      bars: 2, note: 'Flat % bonus — least valuable for Frost DK' },
       ],
-    },
-    da: {
-      tip: '💡 Strength er din primære stat. Frost DK vil have Crit til Killing Machine procs og Haste til hurtigere Rune-regenerering. Tag altid højeste ilvl!',
-      list: [
-        { rank: '1', stat: 'Strength',        bars: 5, note: 'Primær stat — vælg altid højeste ilvl' },
-        { rank: '2', stat: 'Critical Strike',  bars: 5, note: 'Mere Crit = flere Killing Machine procs = mere skade' },
-        { rank: '3', stat: 'Haste',            bars: 4, note: 'Fremskynder Rune-regenerering — flere Obliterates per minut' },
-        { rank: '4', stat: 'Mastery',          bars: 3, note: 'Øger Frost og Shadow-skade — godt men mindre end Crit' },
-        { rank: '5', stat: 'Versatility',      bars: 2, note: 'Flad % bonus — mindst værdifuld for Frost DK' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -216,16 +161,7 @@ const SPEC_FROST_DK = {
       { spell: 'Death Grip',            cd: '25 sec',  effect: 'Pulls enemy to you — instant',                   when: 'Interrupt at range or pull enemy to tank' },
       { spell: 'Path of Frost',         cd: '0',       effect: 'Walk on water — passive ability',                 when: 'Always active in the world — no CD' },
       { spell: 'Raise Dead',            cd: '2 min',   effect: 'Summon Ghoul — temporary minion that helps',     when: 'Extra DPS or quickly need a body' },
-    ],
-    da: [
-      { spell: 'Pillar of Frost',       cd: '1 min',   effect: 'Øger al Frost-skade + Strength',                 when: 'On cooldown — opener og rotation' },
-      { spell: 'Remorseless Winter',    cd: '20 sec',  effect: 'AoE zone — skade + slow omkring dig',            when: 'On cooldown + ved flere mål' },
-      { spell: 'Icebound Fortitude',    cd: '3 min',   effect: '30% skadereduktion — 8 sek',                     when: 'Stor mechanic eller tung indkommende skade' },
-      { spell: 'Anti-Magic Shell',      cd: '1 min',   effect: 'Blokerer magisk skade fuldstændigt — 5 sek',     when: 'Magisk AoE eller tung magic mechanic' },
-      { spell: 'Death Grip',            cd: '25 sec',  effect: 'Trækker fjende til dig — instant',               when: 'Afbryd på afstand eller træk fjende til tank' },
-      { spell: 'Path of Frost',         cd: '0',       effect: 'Gå på vand — passiv evne',                       when: 'Altid aktiv i verden — ingen CD' },
-      { spell: 'Raise Dead',            cd: '2 min',   effect: 'Fremkald Ghoul — midlertidig håndlanger',        when: 'Ekstra DPS eller hurtigt brug for en krop' },
-    ],
+    ]
   },
 
   utility: {
@@ -246,16 +182,7 @@ const SPEC_FROST_DK = {
       { spell: 'Death and Decay',    type: 'AoE Zone',   note: 'Places a zone that deals damage — always on packs' },
       { spell: 'Chains of Ice',      type: 'Slow',       note: 'Slow on 1 target — kiting tool' },
       { spell: 'Raise Dead',         type: 'Minion',     note: 'Summon Ghoul — extra DPS or useful helper' },
-    ],
-    da: [
-      { spell: 'Death Grip',         type: 'Træk',       note: 'Træk fjende til dig — unik og kraftfuld i M+' },
-      { spell: 'Mind Freeze',        type: 'Afbryd',     note: 'Dit spark — lav altid makro med Focus/Mouseover' },
-      { spell: 'Anti-Magic Shell',   type: 'Defensiv',   note: 'Blokerer magi — essentiel ved magic-tunge encounters' },
-      { spell: 'Icebound Fortitude', type: 'Defensiv',   note: '30% skadereduktion — brug ved store skade-toppe' },
-      { spell: 'Death and Decay',    type: 'AoE Zone',   note: 'Placerer en zone der gør skade — altid ved packs' },
-      { spell: 'Chains of Ice',      type: 'Slow',       note: 'Slow på 1 mål — kiting-værktøj' },
-      { spell: 'Raise Dead',         type: 'Håndlanger', note: 'Fremkald Ghoul — ekstra DPS eller nyttig hjælper' },
-    ],
+    ]
   },
 
   tips: {
@@ -278,17 +205,7 @@ const SPEC_FROST_DK = {
       { icon: '🛡️', title: 'Icebound Fortitude timing',      text: 'Use it before the big hit, not after. Learn the encounter and activate proactively. 30% reduction can be the difference.' },
       { icon: '☠️', title: 'Pillar of Frost timing',          text: 'Pillar of Frost is your burst cooldown. Always use on cooldown. Combine with Remorseless Winter for AoE burst.' },
       { icon: '🦶', title: 'Melee positioning',               text: 'Stand behind the boss — avoid cleave. Plate armor = you can take more hits than a clothie, but stay aware of positioning.' },
-    ],
-    da: [
-      { icon: '💀', title: 'Killing Machine = gratis skade',  text: 'Når Killing Machine procker: brug straks Obliterate. Det er en gratis forbedret Obliterate — lad den aldrig udløbe!' },
-      { icon: '❄️', title: 'Rime = gratis Howling Blast',     text: 'Rime proc = Howling Blast koster ingen Rune og gør ekstra skade. Brug altid straks — også ved single target.' },
-      { icon: '⚡', title: 'Forstå Rune-kredsløbet',          text: 'Obliterate bruger Runes → Runes genoplades → genererer Runic Power → Frost Strike bruger RP. Brug aldrig alle 6 Runes på én gang!' },
-      { icon: '🫴', title: 'Death Grip i M+',                  text: 'Death Grip er en af de mest nyttige evner i M+. Træk farlige castere til tanken, saml boss-tilføjelser, eller træk flygtende mobs tilbage.' },
-      { icon: '🔮', title: 'Anti-Magic Shell = gratis Runes',  text: 'AMS absorberer magisk skade OG genererer Runic Power. Brug den aktivt ved magic-tunge encounters — ikke kun defensivt!' },
-      { icon: '🛡️', title: 'Icebound Fortitude timing',       text: 'Brug den før det store slag, ikke efter. Lær encounteren og aktiver proaktivt. 30% reduktion kan være afgørende.' },
-      { icon: '☠️', title: 'Pillar of Frost timing',           text: 'Pillar of Frost er din burst cooldown. Brug altid on cooldown. Kombiner med Remorseless Winter til AoE burst.' },
-      { icon: '🦶', title: 'Melee positionering',              text: 'Stå bag bossen — undgå cleave. Plate-rustning = du kan tage mere end en clothie, men vær bevidst om positionering.' },
-    ],
+    ]
   },
 
   macros: {
@@ -305,14 +222,7 @@ const SPEC_FROST_DK = {
       { name: 'Pillar + Remorseless (burst)', code: '#showtooltip Pillar of Frost\n/cast Pillar of Frost\n/cast Remorseless Winter', note: 'Start burst window — activate both at the same time.' },
       { name: 'Chains of Ice (mouseover slow)', code: '#showtooltip Chains of Ice\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Chains of Ice', note: 'Slow on mouseover — kiting without switching target.' },
       { name: 'Anti-Magic Shell + Icebound combo', code: '#showtooltip Icebound Fortitude\n/cast Anti-Magic Shell\n/cast Icebound Fortitude', note: 'Maximum defense in one press — for major mechanics.' },
-    ],
-    da: [
-      { name: 'Mind Freeze (Focus Kick)', code: '#showtooltip Mind Freeze\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Mind Freeze', note: 'Afbryd på focus > mouseover > mål. ESSENTIEL!' },
-      { name: 'Death Grip (mouseover)', code: '#showtooltip Death Grip\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Death Grip', note: 'Træk fjende på mouseover — træk castere til tank.' },
-      { name: 'Pillar + Remorseless (burst)', code: '#showtooltip Pillar of Frost\n/cast Pillar of Frost\n/cast Remorseless Winter', note: 'Start burst window — aktiver begge på én gang.' },
-      { name: 'Chains of Ice (mouseover slow)', code: '#showtooltip Chains of Ice\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Chains of Ice', note: 'Slow på mouseover — kiting uden at skifte mål.' },
-      { name: 'Anti-Magic Shell + Icebound kombo', code: '#showtooltip Icebound Fortitude\n/cast Anti-Magic Shell\n/cast Icebound Fortitude', note: 'Maksimal forsvar på ét tryk — til store mechanics.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -353,26 +263,7 @@ const SPEC_FROST_DK = {
         { type: 'Ghoul 🧟',         bonus: 'Temporary minion — extra attacks',                use: 'Raise Dead — 2 min cooldown, always use on cooldown' },
         { type: 'Gargoyle 🦅',      bonus: 'Major DPS cooldown — shoots from the air',        use: 'On cooldown — combine with Pillar of Frost' },
       ],
-    },
-    da: {
-      intro: 'Frost DK har 2 ressourcer: 6 Runes (genoplades automatisk) + Runic Power (0–100). Brug Runes → tjen Runic Power → brug Runic Power. Cap aldrig nogen af dem!',
-      generate: [
-        { spell: 'Obliterate',    note: 'Bruger 2 Runes → genererer ~40 RP' },
-        { spell: 'Howling Blast', note: 'Bruger 1 Rune → genererer ~20 RP' },
-        { spell: 'Frost Strike',  note: 'Bruger 40 RP (forbruger, ikke generator)' },
-        { spell: 'AMS',           note: 'Genererer RP fra absorberet magisk skade' },
-      ],
-      spend: [
-        { spell: 'Frost Strike',        note: 'Hoved RP-forbruger — brug ved 80+ RP' },
-        { spell: 'Glacial Advance',     note: 'AoE RP-forbruger ved flere mål' },
-        { spell: "Frostwyrm's Fury",   note: 'Stor AoE cooldown — RP-omkostning' },
-      ],
-      pet_tip: 'Frost DK kan have en Gargoyle eller Army of the Dead via talent. Raise Dead er altid tilgængeligt til en midlertidig Ghoul. Din egentlige styrke ligger i Rune/RP management — ikke i håndlangere.',
-      pets: [
-        { type: 'Ghoul 🧟',         bonus: 'Midlertidig håndlanger — ekstra angreb',          use: 'Raise Dead — 2 min cooldown, brug altid on cooldown' },
-        { type: 'Gargoyle 🦅',      bonus: 'Stor DPS-cooldown — skyder fra luften',            use: 'On cooldown — kombiner med Pillar of Frost' },
-      ],
-    },
+    }
   },
 
   consumables: {
@@ -389,14 +280,7 @@ const SPEC_FROST_DK = {
       { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength and Stamina.', note:'Ask for feast' },
       { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
       { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
-    ],
-    da: [
-      { type:'flask', name:'Flask of the Shattered Sun', effect:'Øger Strength i 1 time.', note:'Altid aktiv' },
-      { type:'pot', name:'Potion of Recklessness', effect:'Strength-boost under burst.', note:'På pull eller Pillar of Frost' },
-      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Strength og Stamina.', note:'Bed om feast' },
-      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
-      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
-    ],
+    ]
   },
 };
 

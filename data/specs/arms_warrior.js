@@ -4,28 +4,25 @@ const SPEC_ARMS_WARRIOR = {
   id: 'arms_warrior',
   icon: '⚔️',
   class: 'Warrior',
-  spec:   { nl: 'Arms', en: 'Arms', da: 'Arms' },
+  spec:   { nl: 'Arms', en: 'Arms'},
   role:   'melee',
   armor:  'Plate',
-  weapon: { nl: 'Tweehandig zwaard/bijl/staf', en: 'Two-handed sword/axe/polearm', da: 'Tohånds sværd/økse/stav' },
+  weapon: { nl: 'Tweehandig zwaard/bijl/staf', en: 'Two-handed sword/axe/polearm'},
   resource: 'Rage',
   patch: '1.0',
   color: '#C79C6E',
 
   summary: {
     nl: 'Arms is een krachtige melee DPS spec die draait om Mortal Strike en het opbouwen van Colossus Smash windows. Sterk in zowel single target als cleave situaties.',
-    en: 'Arms is a powerful melee DPS spec revolving around Mortal Strike and building Colossus Smash windows. Strong in both single target and cleave situations.',
-    da: 'Arms er en kraftfuld melee DPS-spec, der drejer sig om Mortal Strike og at opbygge Colossus Smash-vinduer. Stærk i både single target og cleave-situationer.',
+    en: 'Arms is a powerful melee DPS spec revolving around Mortal Strike and building Colossus Smash windows. Strong in both single target and cleave situations.'
   },
   pros: {
     nl: ['Hoge burst schade in Colossus Smash venster', 'Uitstekende cleave met Sweeping Strikes', 'Goede execute fase (<20% HP)', 'Sterke utility (Rallying Cry, Commanding Shout)'],
-    en: ['High burst damage in Colossus Smash window', 'Excellent cleave with Sweeping Strikes', 'Strong execute phase (<20% HP)', 'Great utility (Rallying Cry, Commanding Shout)'],
-    da: ['Høj burst-skade i Colossus Smash-vinduet', 'Fremragende cleave med Sweeping Strikes', 'Stærk execute-fase (<20% HP)', 'God utility (Rallying Cry, Commanding Shout)'],
+    en: ['High burst damage in Colossus Smash window', 'Excellent cleave with Sweeping Strikes', 'Strong execute phase (<20% HP)', 'Great utility (Rallying Cry, Commanding Shout)']
   },
   cons: {
     nl: ['Rage-management kan tricky zijn', 'Minder sterk buiten Colossus Smash venster', 'Vrij immobiel vergeleken met andere melee'],
-    en: ['Rage management can be tricky', 'Weaker outside Colossus Smash window', 'Fairly immobile compared to other melee'],
-    da: ['Rage-styring kan være vanskelig', 'Svagere uden for Colossus Smash-vinduet', 'Ret ubevægelig sammenlignet med anden melee'],
+    en: ['Rage management can be tricky', 'Weaker outside Colossus Smash window', 'Fairly immobile compared to other melee']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_ARMS_WARRIOR = {
         'Slam only when Rage >70 and nothing else available',
         'Execute (<20% HP): priority over everything',
       ],
-    },
-    da: {
-      opener: 'Charge → Colossus Smash → Avatar → Mortal Strike → Overpower → Slam-spam',
-      single: 'Colossus Smash → Mortal Strike → Overpower → Slam (Rage-dump)',
-      aoe:    'Sweeping Strikes til → Bladestorm eller Cleave → Mortal Strike rammer alt',
-      rules: [
-        'Brug Mortal Strike, når den er tilgængelig',
-        'Opsaml aldrig Overpower — den har ingen cooldown ved proc',
-        'Colossus Smash-vindue = maksimal skade, dump alt',
-        'Slam kun når Rage >70 og intet andet er tilgængeligt',
-        'Execute (<20% HP): prioritet over alt',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -117,32 +102,7 @@ const SPEC_ARMS_WARRIOR = {
         { spell: 'Cleave', why: '3+ targets: replaces Slam as filler' },
         { spell: 'Whirlwind', why: '5+ targets: spam Whirlwind for maximum cleave' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Colossus Smash er dit skadevindue — gem procs og cooldowns til dette øjeblik!',
-      opener: [
-        { spell: 'Charge', why: 'Genererer Rage og positionerer dig' },
-        { spell: 'Colossus Smash', why: 'Åbner skadevinduet — armor debuff' },
-        { spell: 'Avatar', why: 'Stor cooldown, så meget som muligt i CS-vinduet' },
-        { spell: 'Mortal Strike', why: 'Højest prioriterede angreb' },
-        { spell: 'Overpower', why: 'Brug procs med det samme' },
-        { spell: 'Slam', why: 'Rage-dump når intet andet er tilgængeligt' },
-      ],
-      single: [
-        { spell: 'Colossus Smash', why: 'Hvert 20. sek — åbner skadevinduet' },
-        { spell: 'Mortal Strike', why: 'Højest prioritet, altid først i CS' },
-        { spell: 'Overpower', why: 'Brug straks ved proc, lad den aldrig udløbe' },
-        { spell: 'Slam', why: 'Rage-dump >70, fylder uden for procs' },
-        { spell: 'Execute <20%', why: 'Erstatter fuldstændigt Slam i execute-fasen' },
-      ],
-      aoe: [
-        { spell: 'Sweeping Strikes', why: 'Hvert swing rammer et 2. mål — altid til ved 2+ fjender' },
-        { spell: 'Bladestorm', why: 'Bedste AoE-cooldown, brug på store grupper' },
-        { spell: 'Mortal Strike', why: 'Rammer 2 mål via Sweeping Strikes' },
-        { spell: 'Cleave', why: '3+ mål: erstatter Slam som fylder' },
-        { spell: 'Whirlwind', why: '5+ mål: spam Whirlwind for maksimal cleave' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -165,17 +125,7 @@ const SPEC_ARMS_WARRIOR = {
         { rank:4, stat:'Mastery',     bars:3, note:'Increases Deep Wounds DoT damage' },
         { rank:5, stat:'Versatility', bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Sigt efter en god balance af Strength og Haste. Undgå Versatility som lav prioritet.',
-      list: [
-        { rank:1, stat:'Strength',    bars:5, note:'Primær stat — maksimer altid' },
-        { rank:2, stat:'Haste',       bars:4, note:'Sænker GCD og øger antallet af angreb' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Øger chance for Overpower-procs' },
-        { rank:4, stat:'Mastery',     bars:3, note:'Øger Deep Wounds DoT-skade' },
-        { rank:5, stat:'Versatility', bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -192,14 +142,7 @@ const SPEC_ARMS_WARRIOR = {
       { spell:'Bladestorm',     cd:'1 min',   effect:'Spin 6 sec, massive AoE damage', when:'AoE: large packs. ST: emergency filler' },
       { spell:'Rallying Cry',   cd:'3 min',   effect:'Temporary HP boost for entire group', when:'Big damage phase or when healer is struggling' },
       { spell:'Die by the Sword', cd:'3 min', effect:'75% parry chance for 8 sec', when:'Emergency defense during major mechanic' },
-    ],
-    da: [
-      { spell:'Avatar',         cd:'1.5 min', effect:'Stor Strength-boost + fjerner roots', when:'På pull sammen med Colossus Smash' },
-      { spell:'Colossus Smash', cd:'20 sec',  effect:'30% armor debuff — øget skadevindue', when:'Så hurtigt som muligt, spring aldrig over' },
-      { spell:'Bladestorm',     cd:'1 min',   effect:'Spin 6 sek, massiv AoE-skade', when:'AoE: store grupper. ST: nød-fylder' },
-      { spell:'Rallying Cry',   cd:'3 min',   effect:'Midlertidig HP-boost for hele gruppen', when:'Stor skadefase eller når healeren kæmper' },
-      { spell:'Die by the Sword', cd:'3 min', effect:'75% parry-chance i 8 sek', when:'Nødsforsvar under stor mekanik' },
-    ],
+    ]
   },
 
   utility: {
@@ -216,14 +159,7 @@ const SPEC_ARMS_WARRIOR = {
       { spell:'Intimidating Shout', type:'CC',      note:'Fear up to 5 enemies 8 sec — breaks on damage' },
       { spell:'Hamstring',        type:'Slow',      note:'50% slow on target' },
       { spell:'Storm Bolt',       type:'Stun',      note:'4 sec single target stun' },
-    ],
-    da: [
-      { spell:'Intervene',        type:'Defensiv', note:'Teleportér til allieret + absorber næste angreb' },
-      { spell:'Spell Reflection', type:'Defensiv', note:'Reflekter eller absorber 1 trylleformular — gruppevariant tilgængelig' },
-      { spell:'Intimidating Shout', type:'CC',     note:'Fear op til 5 fjender i 8 sek — brydes ved skade' },
-      { spell:'Hamstring',        type:'Slow',     note:'50% slow på mål' },
-      { spell:'Storm Bolt',       type:'Stun',     note:'4 sek single target stun' },
-    ],
+    ]
   },
 
   tips: {
@@ -240,14 +176,7 @@ const SPEC_ARMS_WARRIOR = {
       { icon:'🩸', title:'Execute phase', text:'Below 20% HP Execute becomes your spammable. Forget Slam entirely — Execute does so much more damage.' },
       { icon:'🏃', title:'Charge management', text:'Keep a Charge for when you need to dodge a mechanic and quickly return. Don\'t use every CD on cooldown.' },
       { icon:'🔴', title:'Don\'t waste Rage', text:'Use Slam to dump Rage, but don\'t wait too long. Full Rage = missed Rage = lost damage.' },
-    ],
-    da: [
-      { icon:'⚔', title:'Colossus Smash-timing', text:'Brug altid dine store cooldowns PÅ eller lige efter Colossus Smash. Skade-boosten er 30% ekstra — spild det ikke på auto attacks.' },
-      { icon:'💡', title:'Sweeping Strikes = gratis cleave', text:'Ved 2 mål: aktivér Sweeping Strikes før du kaster Mortal Strike. Du rammer effektivt 2 mål med én global.' },
-      { icon:'🩸', title:'Execute-fase', text:'Under 20% HP bliver Execute din spammable. Glem Slam helt — Execute gør langt mere skade.' },
-      { icon:'🏃', title:'Charge-styring', text:'Gem en Charge til når du skal undvige en mekanik og hurtigt komme tilbage. Brug ikke alle CD\'er på cooldown.' },
-      { icon:'🔴', title:'Spild ikke Rage', text:'Brug Slam til at dumpe Rage, men vent ikke for længe. Fuld Rage = misset Rage = tabt skade.' },
-    ],
+    ]
   },
 
   macros: {
@@ -260,12 +189,7 @@ const SPEC_ARMS_WARRIOR = {
       { name:'Colossus Smash + Avatar macro', code:'/cast Avatar\n/cast Colossus Smash', note:'Casts both simultaneously — maximize the damage window immediately.' },
       { name:'Charge to mouseover', code:'/cast [@mouseover,harm][] Charge', note:'Charge where your cursor is — handy in M+ for fast gap close.' },
       { name:'Spell Reflection', code:'/cast Spell Reflection\n/stopcasting', note:'Stops current cast and activates reflection immediately.' },
-    ],
-    da: [
-      { name:'Colossus Smash + Avatar-makro', code:'/cast Avatar\n/cast Colossus Smash', note:'Kaster begge på én gang — maksimer skadevinduet med det samme.' },
-      { name:'Charge til musepeger', code:'/cast [@mouseover,harm][] Charge', note:'Charge derhen din markør peger — praktisk i M+ til hurtig gap close.' },
-      { name:'Spell Reflection', code:'/cast Spell Reflection\n/stopcasting', note:'Stopper nuværende cast og aktiverer refleksion med det samme.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -300,23 +224,7 @@ const SPEC_ARMS_WARRIOR = {
       ],
       pet_tip: '⚠️ Never sit at 100 Rage — you waste the passive Rage generation from auto attacks!',
       pets: [],
-    },
-    da: {
-      intro: 'Arms bruger Rage som ressource. Rage opbygges via auto attacks, Charge og visse evner. Du har brug for Rage til Slam og Execute.',
-      generate: [
-        'Auto attacks genererer Rage passivt',
-        'Charge giver Rage straks ved ankomst',
-        'Overpower koster ingen Rage — gratis',
-        'Mortal Strike genererer en lille mængde Rage',
-      ],
-      spend: [
-        'Slam — koster 20 Rage, hoved-fylder',
-        'Execute (<20% HP) — koster 20-40 Rage, spammable',
-        'Cleave — koster 20 Rage, AoE-fylder',
-      ],
-      pet_tip: '⚠️ Sid aldrig på 100 Rage — du spilder den passive Rage-generering fra auto attacks!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -333,14 +241,7 @@ const SPEC_ARMS_WARRIOR = {
       { type:'food',   name:'Silvermoon Parade (Feast)',    effect:'+Strength and Stamina via group feast.',                                         note:'Ask tank or healer to place a feast' },
       { type:'food',   name:'Meat Lover\'s Delight',        effect:'Solo food — high Strength bonus as backup.',                                     note:'Always in your bags' },
       { type:'rune',   name:'Void-Touched Augment Rune',     effect:'+Primary stat for 1 hour. Stacks with flask and food.',                         note:'Free damage — always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Shattered Sun',   effect:'Øger Strength markant i 1 time. Forbliver aktiv efter død.',                    note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Potion of Recklessness',              effect:'Stor Strength-boost i 25 sek. Brug ved pull eller under Bloodlust.',             note:'Brug 2 per boss: pull + 20% HP' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',    effect:'+Strength og Stamina via gruppefeast.',                                          note:'Bed tank eller healer om at placere en feast' },
-      { type:'food',   name:'Meat Lover\'s Delight',        effect:'Solo-mad — høj Strength-bonus som backup.',                                      note:'Altid i din taske' },
-      { type:'rune',   name:'Void-Touched Augment Rune',     effect:'+Primær stat i 1 time. Stakker med flask og mad.',                               note:'Gratis skade — brug altid' },
-    ],
+    ]
   },
 };
 

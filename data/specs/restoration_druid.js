@@ -4,28 +4,25 @@ const SPEC_RESTORATION_DRUID = {
   id: 'restoration_druid',
   icon: '🌿',
   class: 'Druid',
-  spec:   { nl: 'Restoration', en: 'Restoration', da: 'Restoration' },
+  spec:   { nl: 'Restoration', en: 'Restoration'},
   role:   'heal',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand', da: 'Stav eller enhånds + offhand' },
+  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Mana',
   patch: '1.0',
   color: '#FF7C0A',
 
   summary: {
     nl: 'Restoration Druid is een HoT-gebaseerde healer die continue genezing verspreidt via meerdere heal-over-time spells. Sterk in lange fights en uitstekend in M+ door mobiliteit en Rebirth.',
-    en: 'Restoration Druid is a HoT-based healer that spreads continuous healing via multiple heal-over-time spells. Strong in long fights and excellent in M+ due to mobility and Rebirth.',
-    da: 'Restoration Druid er en HoT-baseret healer, der spreder kontinuerlig healing via flere heal-over-time-trylleformularer. Stærk i lange kampe og fremragende i M+ pga. mobilitet og Rebirth.',
+    en: 'Restoration Druid is a HoT-based healer that spreads continuous healing via multiple heal-over-time spells. Strong in long fights and excellent in M+ due to mobility and Rebirth.'
   },
   pros: {
     nl: ['Uitstekende sustained healing via HoTs', 'Hoge mobiliteit — HoTs tikken door tijdens movement', 'Rebirth voor in-combat rez', 'Goede mana efficiëntie', 'Sterk in M+ door Stampeding Roar'],
-    en: ['Excellent sustained healing via HoTs', 'High mobility — HoTs tick during movement', 'Rebirth for in-combat rez', 'Good mana efficiency', 'Strong in M+ due to Stampeding Roar'],
-    da: ['Fremragende vedvarende healing via HoTs', 'Høj mobilitet — HoTs tikker under bevægelse', 'Rebirth til in-combat genoplivning', 'God mana-effektivitet', 'Stærk i M+ pga. Stampeding Roar'],
+    en: ['Excellent sustained healing via HoTs', 'High mobility — HoTs tick during movement', 'Rebirth for in-combat rez', 'Good mana efficiency', 'Strong in M+ due to Stampeding Roar']
   },
   cons: {
     nl: ['Weinig burst healing — HoTs zijn traag', 'Swiftmend CD kan tekort schieten bij spikes', 'Minder sterk in korte fights'],
-    en: ['Little burst healing — HoTs are slow', 'Swiftmend CD can fall short during spikes', 'Weaker in short fights'],
-    da: ['Lidt burst-healing — HoTs er langsomme', 'Swiftmend CD kan komme til kort ved spikes', 'Svagere i korte kampe'],
+    en: ['Little burst healing — HoTs are slow', 'Swiftmend CD can fall short during spikes', 'Weaker in short fights']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_RESTORATION_DRUID = {
         'Swiftmend for instant burst heal — save for emergencies',
         'Innervate on yourself when low on mana',
       ],
-    },
-    da: {
-      opener: 'Rejuvenation på tank → Lifebloom på tank → Wild Growth ved gruppeskade → Placer Efflorescence',
-      single: 'Lifebloom på tank → Rejuvenation aktiv → Swiftmend ved spike → Regrowth i nødstilfælde',
-      aoe:    'Wild Growth → Rejuvenation på flere mål → Tranquility ved stor gruppeskade',
-      rules: [
-        'Lifebloom altid på tanken — lad den aldrig udløbe',
-        'Efflorescence altid placeret i gruppen',
-        'Wild Growth når 2+ personer er lavt på HP',
-        'Swiftmend til instant burst heal — gem til nødsituationer',
-        'Innervate på dig selv ved lav mana',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_RESTORATION_DRUID = {
         { spell: 'Tranquility', why: 'Biggest AoE cooldown — use during massive damage' },
         { spell: 'Flourish', why: 'Extends all active HoTs — use after Wild Growth' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Resto Druid er proaktiv — placer HoTs FØR skaden, ikke efter. Anticipér altid!',
-      opener: [
-        { spell: 'Rejuvenation på tank', why: 'Første HoT — altid på tanken før pull' },
-        { spell: 'Lifebloom på tank', why: 'Stærkeste HoT — lad aldrig udløbe på tanken' },
-        { spell: 'Placer Efflorescence', why: 'Gratis AoE-healing — altid i gruppen' },
-        { spell: 'Wild Growth', why: 'Ved første gruppeskade — mest effektiv' },
-      ],
-      single: [
-        { spell: 'Lifebloom', why: 'Altid på tank — forny ved <3 sek' },
-        { spell: 'Rejuvenation', why: 'På tank og lavt-HP spillere forebyggende' },
-        { spell: 'Swiftmend', why: 'Instant burst heal ved spike-skade' },
-        { spell: 'Regrowth', why: 'Nødheling ved kritisk lavt HP — stor øjeblikkelig effekt' },
-        { spell: 'Wrath (DPS)', why: 'Når alle er sunde — bidrag til skaden' },
-      ],
-      aoe: [
-        { spell: 'Wild Growth', why: 'Bedste AoE-heal — brug straks ved gruppeskade' },
-        { spell: 'Spred Rejuvenation', why: 'På alle sårede spillere' },
-        { spell: 'Efflorescence', why: 'Placer den midt i gruppen' },
-        { spell: 'Tranquility', why: 'Største AoE-cooldown — brug ved massiv skade' },
-        { spell: 'Flourish', why: 'Forlænger alle aktive HoTs — brug efter Wild Growth' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_RESTORATION_DRUID = {
         { rank:4, stat:'Versatility', bars:2, note:'Damage reduction + extra healing' },
         { rank:5, stat:'Critical Strike', bars:1, note:'Lowest priority for Resto' },
       ],
-    },
-    da: {
-      tip: 'Intellect er altid #1. Haste får HoTs til at tikke hurtigere — afgørende for Resto Druid.',
-      list: [
-        { rank:1, stat:'Intellect',   bars:5, note:'Primær stat — manapool + healingkraft' },
-        { rank:2, stat:'Haste',       bars:5, note:'HoTs tikker hurtigere — mere total healing' },
-        { rank:3, stat:'Mastery',     bars:3, note:'Øger HoT-healing (Mastery: Harmony)' },
-        { rank:4, stat:'Versatility', bars:2, note:'Skadereduktion + ekstra healing' },
-        { rank:5, stat:'Critical Strike', bars:1, note:'Lavest prioritet for Resto' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_RESTORATION_DRUID = {
       { spell:'Convoke the Spirits', cd:'2 min', effect:'12 random heals in 4 sec', when:'Emergency or extra burst healing' },
       { spell:'Nature\'s Swiftness', cd:'1 min', effect:'Next heal is instant + 300% stronger', when:'Emergency — someone nearly dead' },
       { spell:'Innervate',     cd:'3 min',  effect:'Free mana 10 sec', when:'At low mana — use on yourself or healer partner' },
-    ],
-    da: [
-      { spell:'Tranquility',   cd:'3 min',  effect:'Channeled AoE-heal i 8 sek — massiv gruppeheling', when:'Massiv gruppeskade — gem til dette' },
-      { spell:'Flourish',      cd:'1.5 min', effect:'Forlænger alle aktive HoTs med 8 sek', when:'Straks efter Wild Growth for maksimal effekt' },
-      { spell:'Convoke the Spirits', cd:'2 min', effect:'12 tilfældige heals i 4 sek', when:'Nødsituation eller ekstra burst-healing' },
-      { spell:'Nature\'s Swiftness', cd:'1 min', effect:'Næste heal er instant + 300% stærkere', when:'Nødsituation — nogen næsten død' },
-      { spell:'Innervate',     cd:'3 min',  effect:'Gratis mana i 10 sek', when:'Ved lav mana — brug på dig selv eller healer-partner' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_RESTORATION_DRUID = {
       { spell:'Remove Corruption', type:'Dispel',   note:'Removes Curses and Poisons from group members' },
       { spell:'Typhoon',          type:'Knockback',  note:'Emergency option for interrupt or creating distance' },
       { spell:'Innervate',        type:'Mana',      note:'Give to yourself or other healer during mana issues' },
-    ],
-    da: [
-      { spell:'Rebirth',          type:'Genoplivning', note:'In-combat genoplivning — som healer er du den primære bruger' },
-      { spell:'Stampeding Roar',  type:'Gruppe',    note:'60% hastighedsboost gruppe — ideelt ved mekanik-udfald' },
-      { spell:'Remove Corruption', type:'Dispel',   note:'Fjerner Curses og Poisons fra gruppemedlemmer' },
-      { spell:'Typhoon',          type:'Knockback',  note:'Nødsmulighed til interrupt eller afstandsskabelse' },
-      { spell:'Innervate',        type:'Mana',      note:'Giv til dig selv eller anden healer ved manaproblem' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_RESTORATION_DRUID = {
       { icon:'🌸', title:'Never forget Efflorescence', text:'Efflorescence costs almost no mana and heals everyone standing in it. Always placed, always reposition when the group moves.' },
       { icon:'⚡', title:'Nature\'s Swiftness for emergency', text:'When someone is nearly dead: Nature\'s Swiftness → Regrowth. That\'s an instant 300% strong direct heal. Use it fast!' },
       { icon:'🔄', title:'Flourish after Wild Growth', text:'Wild Growth → immediately Flourish. Flourish extends all HoTs by 8 sec, including the fresh Wild Growth. Perfect combination.' },
-    ],
-    da: [
-      { icon:'🌿', title:'Placer HoTs forebyggende', text:'Resto Druid healer bedst, når du placerer HoTs FØR skaden. Slå fight-mekanikker op på forhånd — vid hvornår skaden kommer.' },
-      { icon:'💧', title:'Mana-styring', text:'Rejuvenation er dyr. I rolige øjeblikke bruges Wrath (DPS) og mana spares. Brug Innervate, så snart du går under 70% mana.' },
-      { icon:'🌸', title:'Glem aldrig Efflorescence', text:'Efflorescence koster næsten ingen mana og healer alle, der står i den. Altid placeret, altid genpositioner når gruppen bevæger sig.' },
-      { icon:'⚡', title:'Nature\'s Swiftness til nød', text:'Når nogen næsten dør: Nature\'s Swiftness → Regrowth. Det er en instant 300% stærk direkte heal. Brug det hurtigt!' },
-      { icon:'🔄', title:'Flourish efter Wild Growth', text:'Wild Growth → straks Flourish. Flourish forlænger alle HoTs med 8 sek, inklusive den friske Wild Growth. Perfekt kombination.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_RESTORATION_DRUID = {
       { name:'Nature\'s Swiftness + Regrowth', code:'/cast Nature\'s Swiftness\n/cast Regrowth', note:'Emergency heal combo — instant 300% strong Regrowth on a critical HP player.' },
       { name:'Wild Growth + Flourish', code:'/cast Wild Growth\n/cast Flourish', note:'AoE heal combo — immediately extends Wild Growth for maximum HoT duration.' },
       { name:'Rebirth on mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat rez without switching targets.' },
-    ],
-    da: [
-      { name:'Nature\'s Swiftness + Regrowth', code:'/cast Nature\'s Swiftness\n/cast Regrowth', note:'Nødheal-kombination — instant 300% stærk Regrowth på en kritisk HP-spiller.' },
-      { name:'Wild Growth + Flourish', code:'/cast Wild Growth\n/cast Flourish', note:'AoE-heal-kombination — forlænger straks Wild Growth for maksimal HoT-varighed.' },
-      { name:'Rebirth på mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat genoplivning uden at skifte mål.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -296,24 +222,7 @@ const SPEC_RESTORATION_DRUID = {
       ],
       pet_tip: '💡 If mana is low: stop spamming Rejuvenation, use only Lifebloom + Swiftmend + Efflorescence until you can use Innervate!',
       pets: [],
-    },
-    da: {
-      intro: 'Restoration bruger Mana som ressource. Mana er begrænset — manastyring er afgørende i lange kampe. Brug Innervate og effektive trylleformularer til at spare mana.',
-      generate: [
-        'Mana regenererer passivt (langsomt under kamp)',
-        'Innervate — 10 sek gratis mana — brug tidligt',
-        'Potion of Recklessness — managenopretning i nødsituation',
-        'Spam af Wrath som DPS koster mindre mana end healing',
-      ],
-      spend: [
-        'Rejuvenation — dyr men stærk HoT',
-        'Wild Growth — dyr men bedste AoE-heal',
-        'Regrowth — dyreste trylleformel, kun i nødsituation',
-        'Tranquility — channel, koster mana men massiv effekt',
-      ],
-      pet_tip: '💡 Hvis mana er lav: stop med at spamme Rejuvenation, brug kun Lifebloom + Swiftmend + Efflorescence indtil du kan bruge Innervate!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -330,14 +239,7 @@ const SPEC_RESTORATION_DRUID = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect and Stamina via group feast.',       note:'Ask tank for feast' },
       { type:'food',   name:'Royal Roast',    effect:'Solo food — high Intellect bonus.',             note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                         note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Magisters',  effect:'Øger Intellect (= mana + healingkraft) i 1 time.', note:'Altid aktiv som healer' },
-      { type:'pot',    name:'Potion of Recklessness',        effect:'Intellect-boost + managenopretning i ét.',      note:'Brug ved lav mana eller burst-healing-øjeblik' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Intellect og Stamina via gruppefeast.',        note:'Bed tanken om feast' },
-      { type:'food',   name:'Royal Roast',    effect:'Solo-mad — høj Intellect-bonus.',               note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                          note:'Brug altid' },
-    ],
+    ]
   },
 };
 

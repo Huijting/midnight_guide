@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_PRESERVATION_EVOKER = {
   id:'preservation_evoker', icon:'🌊', class:'Evoker',
-  spec:{nl:'Preservation',en:'Preservation',da:'Preservation'},
+  spec:{nl:'Preservation',en:'Preservation'},
   role:'heal', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon',da:'Tohåndsvåben'},
+  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{
     nl:'Preservation Evoker healt via tijdmagie — spells kunnen teruggespoeld worden met Rewind. Uniek: Echo laat spells twee keer healen. Hover geeft mobiliteit tijdens casten. Sterke groeps-CD met Stasis.',
-    en:'Preservation Evoker heals via time magic — spells can be rewound with Rewind. Unique: Echo makes spells heal twice. Hover gives mobility while casting. Strong group CD with Stasis.',
-    da:'Preservation Evoker healer via tidsmagi — trylleformularer kan spoles tilbage med Rewind. Unikt: Echo får trylleformularer til at hele to gange. Hover giver mobilitet under casting. Stærk gruppe-CD med Stasis.',
+    en:'Preservation Evoker heals via time magic — spells can be rewound with Rewind. Unique: Echo makes spells heal twice. Hover gives mobility while casting. Strong group CD with Stasis.'
   },
   pros:{
     nl:['Echo = elke heal doet twee keer','Rewind = unieke tijdterugspoeling voor tank','Hover = bewegen tijdens casten','Stasis = krachtige groeps-CD','Rescue = Red groepslid uit mechanic'],
-    en:['Echo = every heal happens twice','Rewind = unique time rewind for tank','Hover = move while casting','Stasis = powerful group CD','Rescue = save group member from mechanic'],
-    da:['Echo = enhver heal sker to gange','Rewind = unik tidstilbagerulning for tank','Hover = bevæg dig under casting','Stasis = kraftfuld gruppe-CD','Rescue = red gruppemedlem fra mekanik'],
+    en:['Echo = every heal happens twice','Rewind = unique time rewind for tank','Hover = move while casting','Stasis = powerful group CD','Rescue = save group member from mechanic']
   },
   cons:{
     nl:['Kort bereik (25 yards)','Echo management vergt aandacht','Alleen speelbaar als Dracthyr','Minder sterk in puur single target healing'],
-    en:['Short range (25 yards)','Echo management requires attention','Only playable as Dracthyr','Weaker in pure single target healing'],
-    da:['Kort rækkevidde (25 yards)','Echo-styring kræver opmærksomhed','Kan kun spilles som Dracthyr','Svagere i ren single target-healing'],
+    en:['Short range (25 yards)','Echo management requires attention','Only playable as Dracthyr','Weaker in pure single target healing']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_PRESERVATION_EVOKER = {
         'Save Stasis for large predictable group damage',
         'Never let Essence reach 0 — always keep something for emergency',
       ],
-    },
-    da:{
-      opener:'Echo på tank → Emerald Blossom → Spiritbloom → Living Flame fylder',
-      single:'Echo på tank → Reversion HoT → Living Flame fylder → Verdant Embrace i nødsituation',
-      aoe:'Spred Echo → Emerald Blossom AoE → Dream Breath (opladning) → Stasis ved stor skade',
-      rules:[
-        'Echo altid på tanken — enhver heal sker da to gange',
-        'Gem Rewind til når tanken næsten dør — tidstilbagerulning',
-        'Hover proaktivt ved bevægelsesmekanikker',
-        'Gem Stasis til stor forudsigelig gruppeskade',
-        'Lad aldrig Essence nå 0 — hold altid noget til nødsituationer',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_PRESERVATION_EVOKER = {
         {spell:'Spiritbloom',why:'Large single target boost'},
         {spell:'Stasis',why:'Store heals for major burst'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Echo får din næste heal til at virke to gange på samme mål. Sæt ALTID Echo på tanken inden healing — hvert cast (Reversion, Verdant Embrace, Emerald Blossom) går da dobbelt!',
-      opener:[
-        {spell:'Echo',why:'Tank: næste heal gør 2x'},
-        {spell:'Reversion',why:'HoT på tank — fordoblet via Echo'},
-        {spell:'Emerald Blossom',why:'AoE HoT-zone til gruppe'},
-        {spell:'Spiritbloom',why:'Stor single target-heal'},
-        {spell:'Living Flame',why:'Manaeffektiv fylder'},
-      ],
-      single:[
-        {spell:'Echo',why:'Altid på tank inden heals'},
-        {spell:'Reversion',why:'HoT på CD — effektivt'},
-        {spell:'Living Flame',why:'Billig fylder'},
-        {spell:'Verdant Embrace',why:'Nødheal — stor + instant'},
-        {spell:'Rewind',why:'Tank næsten død — tidstilbagerulning'},
-      ],
-      aoe:[
-        {spell:'Spred Echo',why:'Flere mål = flere dobbelte heals'},
-        {spell:'Emerald Blossom',why:'AoE HoT — altid på gruppe'},
-        {spell:'Dream Breath',why:'Empower-kanal — AoE-heal'},
-        {spell:'Spiritbloom',why:'Stor single target-boost'},
-        {spell:'Stasis',why:'Gem heals til stor udladning'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_PRESERVATION_EVOKER = {
         {rank:4,stat:'Versatility',bars:2,note:'Extra healing + survival'},
         {rank:5,stat:'Critical Strike',bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Intellect er primær. Mastery øger healing på lav HP-mål — perfekt til tankhealing. Haste forkorter casttider.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Mastery',bars:4,note:'Mere healing på lav HP-mål'},
-        {rank:3,stat:'Haste',bars:4,note:'Hurtigere casts + kortere Reversion CD'},
-        {rank:4,stat:'Versatility',bars:2,note:'Ekstra healing + overlevelse'},
-        {rank:5,stat:'Critical Strike',bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_PRESERVATION_EVOKER = {
       {spell:'Dream Breath',cd:'25 sec',effect:'Empower AoE heal channel',when:'Group damage — always charge'},
       {spell:'Spiritbloom',cd:'30 sec',effect:'Empower large single target or AoE heal',when:'Tank emergency or group healing'},
       {spell:'Tip the Scales',cd:'2 min',effect:'Next Empower spell is instant max rank',when:'Emergency — Fire Breath or Dream Breath instant'},
-    ],
-    da:[
-      {spell:'Rewind',cd:'4 min',effect:'Spoler tanken tilbage til deres HP for 5 sekunder siden',when:'Tank næsten død — unik tidsmagisk CD'},
-      {spell:'Stasis',cd:'1.5 min',effect:'Gem næste 3 heals og aktivér dem som burst',when:'Stor forudsigelig gruppeskade'},
-      {spell:'Dream Breath',cd:'25 sec',effect:'Empower AoE-heal-kanal',when:'Gruppeskade — oplad altid'},
-      {spell:'Spiritbloom',cd:'30 sec',effect:'Empower stor single target eller AoE-heal',when:'Tanknød eller gruppehealing'},
-      {spell:'Tip the Scales',cd:'2 min',effect:'Næste Empower-trylleformular er instant maks rank',when:'Nødsituation — Fire Breath eller Dream Breath instant'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_PRESERVATION_EVOKER = {
       {spell:'Rewind',type:'Tank CD',note:'Time rewind — tank back to old HP'},
       {spell:'Hover',type:'Mobility',note:'Move while casting'},
       {spell:'Tail Swipe',type:'Knockback',note:'AoE knockback all enemies'},
-    ],
-    da:[
-      {spell:'Rescue',type:'Redning',note:'Bær gruppemedlem væk fra mekanik — unikt!'},
-      {spell:'Zephyr',type:'Gruppe-CD',note:'10% skadereduktion for gruppe i 8 sek'},
-      {spell:'Rewind',type:'Tank-CD',note:'Tidstilbagerulning — tank tilbage til gammelt HP'},
-      {spell:'Hover',type:'Mobilitet',note:'Bevæg dig under casting'},
-      {spell:'Tail Swipe',type:'Knockback',note:'AoE knockback alle fjender'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_PRESERVATION_EVOKER = {
       {icon:'💾',title:'Stasis = stored heals',text:'Stasis stores the next 3 heals and fires them simultaneously upon activation. Cast before a major AoE: Emerald Blossom → Dream Breath → Spiritbloom in Stasis, then activate all three at the worst moment.'},
       {icon:'🐉',title:'Hover = proactive',text:'Hover lets you move while casting. Activate it before you need to avoid a mechanic — then you just keep casting while running.'},
       {icon:'🤲',title:'Rescue = M+ tool',text:'Rescue picks up a player and teleports them to safety. In M+ this is priceless — players standing in fire, walking in a pool, or missing a mechanic. Always keep Rescue available.'},
-    ],
-    da:[
-      {icon:'🌊',title:'Echo = dobbelte heals',text:'Echo er Preservation\'s kernemekanik. Enhver heal på et Echo-mål sker to gange — for den samme mana. Hold Echo næsten altid aktiv på tanken.'},
-      {icon:'⏪',title:'Rewind = tidsmaskine',text:'Rewind spoler tanken tilbage til deres HP for 5 sekunder siden. Hvis tanken netop har taget et stort træf: Rewind. Det er den eneste trylleformular i spillet der bogstaveligt talt fortryder skade.'},
-      {icon:'💾',title:'Stasis = gemte heals',text:'Stasis gemmer de næste 3 heals og fyrer dem af samtidigt ved aktivering. Cast inden en stor AoE: Emerald Blossom → Dream Breath → Spiritbloom i Stasis, aktiver derefter alle tre på det værste øjeblik.'},
-      {icon:'🐉',title:'Hover = proaktivt',text:'Hover lader dig bevæge dig under casting. Aktivér det inden du skal undgå en mekanik — da caster du bare videre mens du løber.'},
-      {icon:'🤲',title:'Rescue = M+-redskab',text:'Rescue samler en spiller op og teleporterer dem til sikkerhed. I M+ er dette uvurderligt — spillere der står i ild, går i en pool eller misser en mekanik. Hold altid Rescue tilgængeligt.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_PRESERVATION_EVOKER = {
       {name:'Rewind on tank',code:'/cast [@focus] Rewind',note:'Time rewind on focus (tank) — fastest reaction.'},
       {name:'Rescue on mouseover',code:'/cast [@mouseover] Rescue',note:'Save group member quickly without switching targets.'},
       {name:'Echo on tank',code:'/cast [@focus] Echo',note:'Echo always on tank — bind to clear button.'},
-    ],
-    da:[
-      {name:'Rewind på tank',code:'/cast [@focus] Rewind',note:'Tidstilbagerulning på focus (tank) — hurtigste reaktion.'},
-      {name:'Rescue på mouseover',code:'/cast [@mouseover] Rescue',note:'Red gruppemedlem hurtigt uden at skifte mål.'},
-      {name:'Echo på tank',code:'/cast [@focus] Echo',note:'Echo altid på tank — bind til tydelig knap.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_PRESERVATION_EVOKER = {
       spend:['Emerald Blossom (3 Essence) — AoE HoT','Verdant Embrace (2 Essence) — instant emergency heal'],
       pet_tip:'💡 Never let Essence sit at max — cast Emerald Blossom when at 5+. Preventive healing is better than reactive!',
       pets:[],
-    },
-    da:{
-      intro:'Preservation bruger Mana og Essence. Mana til Living Flame fylder. Essence (0-6) til Emerald Blossom og andre Essence-trylleformularer. Essence regenererer automatisk.',
-      generate:['Passiv Essence-regenerering','Living Flame fylder genererer ingen Essence — er manabaseret'],
-      spend:['Emerald Blossom (3 Essence) — AoE HoT','Verdant Embrace (2 Essence) — instant nødheal'],
-      pet_tip:'💡 Lad aldrig Essence sidde på maks — cast Emerald Blossom når du er på 5+. Forebyggende healing er bedre end reaktiv!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_PRESERVATION_EVOKER = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost ved store healingvinduer.',note:'Brug med Stasis'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_PRESERVATION_EVOKER);

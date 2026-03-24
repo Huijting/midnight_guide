@@ -4,28 +4,25 @@ const SPEC_HAVOC_DH = {
   id: 'havoc_dh',
   icon: '😈',
   class: 'Demon Hunter',
-  spec:   { nl: 'Havoc', en: 'Havoc', da: 'Havoc' },
+  spec:   { nl: 'Havoc', en: 'Havoc'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee winglessen (Warglaives)', en: 'Two Warglaives', da: 'To Warglaives' },
+  weapon: { nl: 'Twee winglessen (Warglaives)', en: 'Two Warglaives'},
   resource: 'Fury',
   patch: '1.0',
   color: '#A330C9',
 
   summary: {
     nl: 'Havoc Demon Hunter is een razendsnelle melee DPS met hoge mobiliteit en krachtige burst. Draait om Eye Beam als grote cooldown en Blur voor defensie.',
-    en: 'Havoc Demon Hunter is a blazing-fast melee DPS with high mobility and powerful burst. Revolves around Eye Beam as major cooldown and Blur for defense.',
-    da: 'Havoc Demon Hunter er en lynhurtig melee DPS med høj mobilitet og kraftfuld burst. Drejer sig om Eye Beam som stor cooldown og Blur til forsvar.',
+    en: 'Havoc Demon Hunter is a blazing-fast melee DPS with high mobility and powerful burst. Revolves around Eye Beam as major cooldown and Blur for defense.'
   },
   pros: {
     nl: ['Extreem hoge mobiliteit — Fel Rush, Vengeful Retreat, Double Jump', 'Sterke burst schade', 'Goede overleving met Blur', 'Eenvoudige rotatie om te leren'],
-    en: ['Extremely high mobility — Fel Rush, Vengeful Retreat, Double Jump', 'Strong burst damage', 'Good survivability with Blur', 'Simple rotation to learn'],
-    da: ['Ekstremt høj mobilitet — Fel Rush, Vengeful Retreat, Double Jump', 'Stærk burst-skade', 'God overlevelse med Blur', 'Simpel rotation at lære'],
+    en: ['Extremely high mobility — Fel Rush, Vengeful Retreat, Double Jump', 'Strong burst damage', 'Good survivability with Blur', 'Simple rotation to learn']
   },
   cons: {
     nl: ['Fury management is kritisch', 'Kwetsbaar als Blur op cooldown is', 'Minder sterke sustained schade buiten burst'],
-    en: ['Fury management is critical', 'Vulnerable when Blur is on cooldown', 'Weaker sustained damage outside burst'],
-    da: ['Fury-styring er kritisk', 'Sårbar når Blur er på cooldown', 'Svagere vedvarende skade uden for burst'],
+    en: ['Fury management is critical', 'Vulnerable when Blur is on cooldown', 'Weaker sustained damage outside burst']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_HAVOC_DH = {
         'Activate Blur immediately during major mechanic or low HP',
         'Metamorphosis for boss pull or large AoE packs',
       ],
-    },
-    da: {
-      opener: 'Metamorphosis → Eye Beam → Blade Dance → Chaos Strike-spam → Glaive Tempest',
-      single: 'Eye Beam (CD) → Blade Dance (CD) → Chaos Strike (Fury-dump) → Demons Bite (Fury-gen)',
-      aoe:    'Metamorphosis → Eye Beam → Blade Dance → Glaive Tempest → Chaos Strike cleave',
-      rules: [
-        'Eye Beam brug altid, når tilgængeligt — den største skadeknap',
-        'Blade Dance har prioritet over Chaos Strike',
-        'Demons Bite til at generere Fury, når intet proc\'er',
-        'Aktivér Blur straks ved stor mekanik eller lav HP',
-        'Metamorphosis til boss-pull eller store AoE-grupper',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -115,31 +100,7 @@ const SPEC_HAVOC_DH = {
         { spell: 'Glaive Tempest', why: '2 sec AoE burst around you' },
         { spell: 'Chaos Strike', why: 'Cleave on nearby targets via talent' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Eye Beam + Metamorphosis = dine burst-vinduer. Alt drejer sig om at maksimere skaden i disse vinduer!',
-      opener: [
-        { spell: 'Metamorphosis', why: 'Stor cooldown — øger al skade' },
-        { spell: 'Eye Beam', why: 'Største skadeknap, altid i Meta-vinduet' },
-        { spell: 'Blade Dance', why: 'AoE + single target cleave' },
-        { spell: 'Chaos Strike', why: 'Fury-dump, chance for refund' },
-        { spell: 'Glaive Tempest', why: 'AoE-cooldown, stærk på flere mål' },
-      ],
-      single: [
-        { spell: 'Eye Beam', why: 'Hvert 30. sek — brug altid straks' },
-        { spell: 'Blade Dance', why: 'Hvert 9. sek — højere prioritet end Chaos Strike' },
-        { spell: 'Chaos Strike', why: 'Fury-dump, chance for at få gratis Fury tilbage' },
-        { spell: 'Immolation Aura', why: 'Passiv Fury-generering + lille skade' },
-        { spell: 'Demons Bite', why: 'Fury-generator når intet andet er tilgængeligt' },
-      ],
-      aoe: [
-        { spell: 'Metamorphosis', why: 'Øger al AoE-skade' },
-        { spell: 'Eye Beam', why: 'Channeled AoE — rammer alt i linjen' },
-        { spell: 'Blade Dance', why: 'Rammer alle nærliggende fjender' },
-        { spell: 'Glaive Tempest', why: '2 sek AoE-burst omkring dig' },
-        { spell: 'Chaos Strike', why: 'Cleave på nærliggende mål via talent' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -162,17 +123,7 @@ const SPEC_HAVOC_DH = {
         { rank:4, stat:'Versatility',     bars:2, note:'Extra damage AND survivability' },
         { rank:5, stat:'Mastery',         bars:2, note:'Increases Chaos damage' },
       ],
-    },
-    da: {
-      tip: 'Agility er din primære stat. Haste reducerer Eye Beam-cooldown — meget værdifuldt.',
-      list: [
-        { rank:1, stat:'Agility',         bars:5, note:'Primær stat — maksimer altid' },
-        { rank:2, stat:'Haste',           bars:4, note:'Reducerer Eye Beam og Blade Dance CD' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Øger burst-skadevinduer' },
-        { rank:4, stat:'Versatility',     bars:2, note:'Ekstra skade OG overlevelse' },
-        { rank:5, stat:'Mastery',         bars:2, note:'Øger Chaos-skade' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -189,14 +140,7 @@ const SPEC_HAVOC_DH = {
       { spell:'Blade Dance',      cd:'9 sec',  effect:'Quick series of attacks, hits everything around you', when:'Always immediately when available' },
       { spell:'Blur',             cd:'1 min',  effect:'50% dodge chance 10 sec', when:'Major mechanic or at low HP' },
       { spell:'Glaive Tempest',   cd:'25 sec', effect:'2 sec AoE glaive storm', when:'AoE packs, use just before Eye Beam' },
-    ],
-    da: [
-      { spell:'Metamorphosis',    cd:'3 min',  effect:'Transformer — stor skade + HP-boost', when:'På pull ved boss eller stor M+-gruppe' },
-      { spell:'Eye Beam',         cd:'30 sec', effect:'Channeled chaos-laser AoE', when:'Så hurtigt som muligt, spring aldrig over' },
-      { spell:'Blade Dance',      cd:'9 sec',  effect:'Hurtig serie af angreb, rammer alt omkring dig', when:'Altid straks når tilgængeligt' },
-      { spell:'Blur',             cd:'1 min',  effect:'50% dodge-chance i 10 sek', when:'Stor mekanik eller ved lav HP' },
-      { spell:'Glaive Tempest',   cd:'25 sec', effect:'2 sek AoE glaive-storm', when:'AoE-grupper, brug lige før Eye Beam' },
-    ],
+    ]
   },
 
   utility: {
@@ -213,14 +157,7 @@ const SPEC_HAVOC_DH = {
       { spell:'Fel Rush',      type:'Mobility',  note:'Dash 15m forward — also use as burst damage' },
       { spell:'Spectral Sight', type:'Utility',  note:'See through walls — handy for stealthed mobs' },
       { spell:'Consume Magic', type:'Dispel',    note:'Remove 1 buff from enemy' },
-    ],
-    da: [
-      { spell:'Imprison',      type:'CC',        note:'Immobilisér ikke-boss fjende i 60 sek' },
-      { spell:'Chaos Nova',    type:'AoE Stun',  note:'Stun alle nærliggende fjender i 2 sek' },
-      { spell:'Fel Rush',      type:'Mobilitet', note:'Dash 15m fremad — brug også som burst-skade' },
-      { spell:'Spectral Sight', type:'Utility',  note:'Se gennem vægge — praktisk til stealthede fjender' },
-      { spell:'Consume Magic', type:'Dispel',    note:'Fjern 1 buff fra fjende' },
-    ],
+    ]
   },
 
   tips: {
@@ -237,14 +174,7 @@ const SPEC_HAVOC_DH = {
       { icon:'💨', title:'Fel Rush as damage', text:'Fel Rush is not just mobility — it also deals damage. In M+ you can use it to dive into a pack and deal damage at the same time.' },
       { icon:'🛡️', title:'Blur = emergency button', text:'Blur is your strongest defensive cooldown. Activate it during major mechanics or low HP, not when it\'s "maybe useful".' },
       { icon:'⚡', title:'Imprison in M+', text:'Imprison can temporarily remove a mob from the fight — ideal for dangerous casters you want to briefly silence.' },
-    ],
-    da: [
-      { icon:'😈', title:'Metamorphosis ved pull', text:'Brug altid Metamorphosis ved det første pull af en boss — den 3 min cooldown passer perfekt til de fleste M+-ruter.' },
-      { icon:'👁️', title:'Hold aldrig Eye Beam', text:'Eye Beam har en 30 sek CD — brug det, så snart det er tilgængeligt. Der er ingen grund til at vente.' },
-      { icon:'💨', title:'Fel Rush som skade', text:'Fel Rush er ikke kun mobilitet — det gør også skade. I M+ kan du bruge det til at dykke ned i en gruppe og gøre skade på samme tid.' },
-      { icon:'🛡️', title:'Blur = nødknap', text:'Blur er din stærkeste defensive cooldown. Aktivér den ved store mekanikker eller lav HP, ikke når det "måske er nyttigt".' },
-      { icon:'⚡', title:'Imprison i M+', text:'Imprison kan midlertidigt fjerne en fjende fra kampen — ideel til farlige castere, du vil stilne kortvarigt.' },
-    ],
+    ]
   },
 
   macros: {
@@ -257,12 +187,7 @@ const SPEC_HAVOC_DH = {
       { name:'Metamorphosis + Eye Beam', code:'/cast Metamorphosis\n/cast Eye Beam', note:'Casts Meta and Eye Beam in one GCD — maximum burst window.' },
       { name:'Fel Rush to cursor', code:'/cast [@cursor] Fel Rush', note:'Dash directly to your cursor — no manual aiming needed.' },
       { name:'Imprison on mouseover', code:'/cast [@mouseover,harm][] Imprison', note:'CC a mob by hovering over it without switching targets.' },
-    ],
-    da: [
-      { name:'Metamorphosis + Eye Beam', code:'/cast Metamorphosis\n/cast Eye Beam', note:'Kaster Meta og Eye Beam i én GCD — maksimalt burst-vindue.' },
-      { name:'Fel Rush til markør', code:'/cast [@cursor] Fel Rush', note:'Dash direkte til din markør — ingen manuel sigte nødvendig.' },
-      { name:'Imprison på mouseover', code:'/cast [@mouseover,harm][] Imprison', note:'CC en fjende ved at holde musen over den uden at skifte mål.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -299,24 +224,7 @@ const SPEC_HAVOC_DH = {
       ],
       pet_tip: '💡 Chaos Strike refund: 40% chance all Fury returns — this makes Fury management less strict than other specs!',
       pets: [],
-    },
-    da: {
-      intro: 'Havoc bruger Fury som ressource (0-120). Fury genereres hurtigt via evner og auto attacks. Du bruger Fury på Chaos Strike og Blade Dance.',
-      generate: [
-        'Demons Bite — primær Fury-generator, hurtig og billig',
-        'Immolation Aura — passiv Fury-generering per tick',
-        'Fel Rush — lille mængde Fury',
-        'Auto attacks genererer en lille mængde',
-        'Chaos Strike — 40% chance for at refunde al din Fury!',
-      ],
-      spend: [
-        'Chaos Strike — koster 40 Fury, hoved Fury-dump',
-        'Blade Dance — koster 35 Fury, højere prioritet end Chaos Strike',
-        'Eye Beam — koster ingen Fury, men genererer det',
-      ],
-      pet_tip: '💡 Chaos Strike-refund: 40% chance for at al Fury vender tilbage — dette gør Fury-styring mindre streng end andre specs!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -333,14 +241,7 @@ const SPEC_HAVOC_DH = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',      note:'Ask tank/healer for feast' },
       { type:'food',   name:'Royal Roast',          effect:'Solo food — high Agility bonus.',            note:'Backup if no feast available' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour, stacks with rest.',   note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility markant i 1 time.',              note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Potion of Recklessness',             effect:'Stor Agility-boost 25 sek ved pull/BL.',     note:'2 per boss: pull + Metamorphosis' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',       note:'Bed tank/healer om feast' },
-      { type:'food',   name:'Royal Roast',          effect:'Solo-mad — høj Agility-bonus.',              note:'Backup hvis ingen feast tilgængelig' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time, stakker med resten.',  note:'Brug altid' },
-    ],
+    ]
   },
 };
 

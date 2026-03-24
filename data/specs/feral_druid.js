@@ -4,28 +4,25 @@ const SPEC_FERAL_DRUID = {
   id: 'feral_druid',
   icon: '🐆',
   class: 'Druid',
-  spec:   { nl: 'Feral', en: 'Feral', da: 'Feral' },
+  spec:   { nl: 'Feral', en: 'Feral'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand (transformeert naar klauw)', en: 'Staff or one-hand + offhand (transforms to claw)', da: 'Stav eller enhånds + offhand (transformerer til klo)' },
+  weapon: { nl: 'Staf of eenhandig + offhand (transformeert naar klauw)', en: 'Staff or one-hand + offhand (transforms to claw)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FF7C0A',
 
   summary: {
     nl: 'Feral Druid is een behendig katachtige melee DPS die Energy besteedt voor Combo Points, en CPs gebruikt voor finishers. Draait om Rip en Rake DoTs en Ferocious Bite als finisher.',
-    en: 'Feral Druid is an agile cat-form melee DPS that spends Energy for Combo Points and uses CPs for finishers. Revolves around Rip and Rake DoTs and Ferocious Bite as finisher.',
-    da: 'Feral Druid er en smidig katte-form melee DPS, der bruger Energy til Combo Points og CP\'er til finishers. Drejer sig om Rip og Rake DoTs og Ferocious Bite som finisher.',
+    en: 'Feral Druid is an agile cat-form melee DPS that spends Energy for Combo Points and uses CPs for finishers. Revolves around Rip and Rake DoTs and Ferocious Bite as finisher.'
   },
   pros: {
     nl: ['Uitstekende sustained DoT schade', 'Hoge mobiliteit in katform', 'Goede execute schade (Ferocious Bite)', 'Kan in nood uitstappen voor utility'],
-    en: ['Excellent sustained DoT damage', 'High mobility in cat form', 'Good execute damage (Ferocious Bite)', 'Can step out for utility in emergencies'],
-    da: ['Fremragende vedvarende DoT-skade', 'Høj mobilitet i katteform', 'God execute-skade (Ferocious Bite)', 'Kan træde ud for utility i nødsituationer'],
+    en: ['Excellent sustained DoT damage', 'High mobility in cat form', 'Good execute damage (Ferocious Bite)', 'Can step out for utility in emergencies']
   },
   cons: {
     nl: ['Zeer complex DoT management', 'Energy pooling vereist discipline', 'Weinig burst schade buiten cooldowns', 'Hoog apm (actions per minute)'],
-    en: ['Very complex DoT management', 'Energy pooling requires discipline', 'Little burst damage outside cooldowns', 'High apm (actions per minute)'],
-    da: ['Meget kompleks DoT-styring', 'Energy-pooling kræver disciplin', 'Lidt burst-skade uden for cooldowns', 'Høj APM (actions per minute)'],
+    en: ['Very complex DoT management', 'Energy pooling requires discipline', 'Little burst damage outside cooldowns', 'High apm (actions per minute)']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_FERAL_DRUID = {
         'Bloodtalons: build proc for major finishers',
         'Primal Wrath at 3+ targets — spreads Rip to all of them',
       ],
-    },
-    da: {
-      opener: 'Rake → Shred x2 → Rip (4+ CPs) → Thrash → Tiger\'s Fury → Shred-spam → Ferocious Bite',
-      single: 'Rake aktiv → Rip aktiv → Shred til CPs → Ferocious Bite ved 5 CPs og 50+ Energy',
-      aoe:    'Thrash → Swipe-spam → Rip på hovedmål → Primal Wrath (5 CPs) til multi-Rip',
-      rules: [
-        'Rake og Rip altid aktive — lad dem aldrig falde af',
-        'Ferocious Bite kun ved 5 combo points OG 50+ Energy',
-        'Tiger\'s Fury ved lav Energy — vent aldrig på Energy-cap',
-        'Bloodtalons: opbyg proc til store finishers',
-        'Primal Wrath ved 3+ mål — spreder Rip til dem alle',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_FERAL_DRUID = {
         { spell: 'Primal Wrath', why: '5 CPs: spreads Rip to all targets' },
         { spell: 'Rip on main target', why: 'Strongest DoT, always active on main target' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Feral er en af de mest komplekse specs. Fokuser først på altid at holde DoTs aktive — resten følger naturligt!',
-      opener: [
-        { spell: 'Rake', why: 'Påfør DoT — genererer også 1 CP' },
-        { spell: 'Shred x2-3', why: 'Opbyg CPs til første Rip' },
-        { spell: 'Rip', why: 'Vigtigste DoT — altid ved 4+ CPs' },
-        { spell: 'Tiger\'s Fury', why: 'Energy-burst + skade-boost' },
-        { spell: 'Ferocious Bite', why: 'Ved 5 CPs og 50+ Energy' },
-      ],
-      single: [
-        { spell: 'Rake-fornyelse', why: '<5 sek tilbage — forny altid' },
-        { spell: 'Rip-fornyelse', why: '<5 sek tilbage — lad aldrig udløbe' },
-        { spell: 'Shred', why: 'Hoved angreb — opbygger CPs' },
-        { spell: 'Ferocious Bite', why: '5 CPs + 50+ Energy — vent altid på begge' },
-        { spell: 'Tiger\'s Fury', why: 'Ved <40 Energy — vent aldrig' },
-      ],
-      aoe: [
-        { spell: 'Thrash', why: 'AoE DoT på alle mål omkring dig' },
-        { spell: 'Swipe', why: 'AoE-angreb — erstatter Shred ved 3+ mål' },
-        { spell: 'Primal Wrath', why: '5 CPs: spreder Rip til alle mål' },
-        { spell: 'Rip på hovedmål', why: 'Stærkeste DoT, altid aktiv på hovedmål' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_FERAL_DRUID = {
         { rank:4, stat:'Mastery',         bars:3, note:'Increases DoT damage (Mastery: Razor Claws)' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Agility er din primære stat. Haste reducerer Energy-regenereringstiden — afgørende for Feral.',
-      list: [
-        { rank:1, stat:'Agility',         bars:5, note:'Primær stat' },
-        { rank:2, stat:'Haste',           bars:5, note:'Hurtigere Energy-regen = flere angreb' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Øger finisher-skade markant' },
-        { rank:4, stat:'Mastery',         bars:3, note:'Øger DoT-skade (Mastery: Razor Claws)' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_FERAL_DRUID = {
       { spell:'Incarnation: King of the Jungle', cd:'3 min', effect:'Enhanced Berserk — extra damage boost', when:'Replaces Berserk when talent taken' },
       { spell:'Feral Frenzy',   cd:'45 sec',  effect:'5 quick attacks + full combo points', when:'AoE packs or ST burst window' },
       { spell:'Survival Instincts', cd:'3 min', effect:'50% damage reduction 6 sec', when:'Emergency defense' },
-    ],
-    da: [
-      { spell:'Berserk',        cd:'3 min',   effect:'Halver alle Energy-omkostninger i 15 sek + ekstra angreb', when:'På pull ved boss eller stor M+-gruppe' },
-      { spell:'Tiger\'s Fury',  cd:'30 sec',  effect:'Energy-genopretning + skade-boost i 10 sek', when:'Ved <40 Energy — vent aldrig' },
-      { spell:'Incarnation: King of the Jungle', cd:'3 min', effect:'Forbedret Berserk — ekstra skade-boost', when:'Erstatter Berserk, når talentet er taget' },
-      { spell:'Feral Frenzy',   cd:'45 sec',  effect:'5 hurtige angreb + fulde combo points', when:'AoE-grupper eller ST burst-vindue' },
-      { spell:'Survival Instincts', cd:'3 min', effect:'50% skadereduktion i 6 sek', when:'Nødsforsvar' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_FERAL_DRUID = {
       { spell:'Soothe',       type:'Dispel',    note:'Removes Enrage effect from enemy' },
       { spell:'Stampeding Roar', type:'Group',  note:'Group-wide 60% speed boost 8 sec' },
       { spell:'Hibernate',    type:'CC',        note:'Sleep Beast/Dragonkin 40 sec — breaks on damage' },
-    ],
-    da: [
-      { spell:'Rebirth',      type:'Genoplivning', note:'In-combat genoplivning — unikt for Druid' },
-      { spell:'Typhoon',      type:'Knockback',  note:'Knockback i katteform — god interrupt' },
-      { spell:'Soothe',       type:'Dispel',    note:'Fjerner Enrage-effekt fra fjende' },
-      { spell:'Stampeding Roar', type:'Gruppe', note:'Gruppe-wide 60% hastighedsboost i 8 sek' },
-      { spell:'Hibernate',    type:'CC',        note:'Sæt Beast/Dragonkin i søvn i 40 sek — brydes ved skade' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_FERAL_DRUID = {
       { icon:'🍖', title:'Ferocious Bite timing', text:'Use Ferocious Bite ONLY when Rip and Rake are active AND have more than 5 sec. Otherwise refreshing is always better.' },
       { icon:'🌿', title:'Stepping out for utility', text:'In emergencies you can leave cat form for Rebirth, Innervate or a heal. It costs your CPs but can save the run.' },
       { icon:'🎯', title:'Stampeding Roar in M+', text:'Stampeding Roar gives the group a speed boost — ideal between trash packs or during mechanic run-outs. Communicate when you\'re using it.' },
-    ],
-    da: [
-      { icon:'🐆', title:'Lad aldrig DoTs falde af', text:'Rip og Rake er dit brød og smør. Hvis de falder af mister du massiv skade. Brug en weakaura eller timer-addon til at følge dem.' },
-      { icon:'⚡', title:'Lad aldrig Energy capper', text:'Hvis din Energy er på 100 mister du skade. Brug Tiger\'s Fury tidligt eller spam et ekstra Shred for at dumpe Energy.' },
-      { icon:'🍖', title:'Ferocious Bite-timing', text:'Brug Ferocious Bite KUN når Rip og Rake er aktive OG har mere end 5 sek. Ellers er fornyelse altid bedre.' },
-      { icon:'🌿', title:'Trin ud for utility', text:'I nødsituationer kan du forlade katteform for Rebirth, Innervate eller en heling. Det koster dine CPs, men kan redde kørslen.' },
-      { icon:'🎯', title:'Stampeding Roar i M+', text:'Stampeding Roar giver gruppen et hastighedsboost — ideelt mellem trash-grupper eller ved mekanik-udfald. Kommunikér, hvornår du bruger det.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_FERAL_DRUID = {
       { name:'Berserk + Tiger\'s Fury', code:'/cast Berserk\n/cast Tiger\'s Fury', note:'Maximum burst opener — Energy immediately full and costs halved.' },
       { name:'Rebirth on mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat rez without switching targets.' },
       { name:'Stampeding Roar', code:'/cast Stampeding Roar', note:'One button for the group boost — keep it simple.' },
-    ],
-    da: [
-      { name:'Berserk + Tiger\'s Fury', code:'/cast Berserk\n/cast Tiger\'s Fury', note:'Maksimalt burst-opener — Energy straks fuld og omkostninger halveret.' },
-      { name:'Rebirth på mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat genoplivning uden at skifte mål.' },
-      { name:'Stampeding Roar', code:'/cast Stampeding Roar', note:'Én knap til gruppe-boosten — hold det simpelt.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_FERAL_DRUID = {
       ],
       pet_tip: '⚠️ Use Ferocious Bite only when Rip and Rake are already active with 5+ sec remaining — otherwise always refresh!',
       pets: [],
-    },
-    da: {
-      intro: 'Feral bruger to ressourcer: Energy (0-100, regenererer automatisk) til angreb og Combo Points (0-5) til finishers.',
-      generate: [
-        'Shred — 1 CP per træf',
-        'Rake — 1 CP + DoT',
-        'Thrash — 1 CP (AoE)',
-        'Feral Frenzy — direkte 5 CPs i én evne',
-      ],
-      spend: [
-        'Ferocious Bite (5 CPs + 50 Energy) — single target finisher',
-        'Rip (4-5 CPs) — stærkeste DoT, altid prioritet',
-        'Primal Wrath (5 CPs) — spreder Rip til alle mål',
-      ],
-      pet_tip: '⚠️ Brug Ferocious Bite kun når Rip og Rake allerede er aktive med 5+ sek tilbage — ellers forny altid!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_FERAL_DRUID = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',     note:'Ask tank/healer for feast' },
       { type:'food',   name:'Royal Roast',          effect:'Solo food — high Agility bonus.',           note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                     note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility markant i 1 time.',             note:'Altid aktiv i M+ og raid' },
-      { type:'pot',    name:'Potion of Recklessness',             effect:'Stor Agility-boost 25 sek ved pull/BL.',    note:'2 per boss: pull + Berserk-vindue' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',      note:'Bed tank/healer om feast' },
-      { type:'food',   name:'Royal Roast',          effect:'Solo-mad — høj Agility-bonus.',             note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                      note:'Brug altid' },
-    ],
+    ]
   },
 };
 

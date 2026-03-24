@@ -4,28 +4,25 @@ const SPEC_OUTLAW_ROGUE = {
   id: 'outlaw_rogue',
   icon: '🏴‍☠️',
   class: 'Rogue',
-  spec:   { nl: 'Outlaw', en: 'Outlaw', da: 'Outlaw' },
+  spec:   { nl: 'Outlaw', en: 'Outlaw'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Eénhandig zwaard/pistool + offhand dolk', en: 'One-hand sword/pistol + offhand dagger', da: 'Enhånds sværd/pistol + offhand dolk' },
+  weapon: { nl: 'Eénhandig zwaard/pistool + offhand dolk', en: 'One-hand sword/pistol + offhand dagger'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',
 
   summary: {
     nl: 'Outlaw Rogue is de swashbucklende piraat van WoW. Roll the Bones geeft random buffs — soms geweldig, soms herspelen. Uitstekende AoE burst en hoge mobiliteit.',
-    en: 'Outlaw Rogue is the swashbuckling pirate of WoW. Roll the Bones gives random buffs — sometimes great, sometimes reroll. Excellent AoE burst and high mobility.',
-    da: 'Outlaw Rogue er WoW\'s sværdkæmpende pirat. Roll the Bones giver tilfældige buffs — nogle gange fremragende, nogle gange genkast. Fremragende AoE-burst og høj mobilitet.',
+    en: 'Outlaw Rogue is the swashbuckling pirate of WoW. Roll the Bones gives random buffs — sometimes great, sometimes reroll. Excellent AoE burst and high mobility.'
   },
   pros: {
     nl: ['Uitstekende AoE burst via Blade Flurry', 'Hoge mobiliteit — Sprint + Grappling Hook', 'Eenvoudig leren, moeilijk meisteren', 'Shroud of Concealment voor M+ skips'],
-    en: ['Excellent AoE burst via Blade Flurry', 'High mobility — Sprint + Grappling Hook', 'Easy to learn, hard to master', 'Shroud of Concealment for M+ skips'],
-    da: ['Fremragende AoE-burst via Blade Flurry', 'Høj mobilitet — Sprint + Grappling Hook', 'Let at lære, svær at mestre', 'Shroud of Concealment til M+-spring'],
+    en: ['Excellent AoE burst via Blade Flurry', 'High mobility — Sprint + Grappling Hook', 'Easy to learn, hard to master', 'Shroud of Concealment for M+ skips']
   },
   cons: {
     nl: ['Roll the Bones RNG kan frustreren', 'Minder sterk op pure single target', 'Middelmatige sustained schade buiten burst'],
-    en: ['Roll the Bones RNG can be frustrating', 'Weaker on pure single target', 'Mediocre sustained damage outside burst'],
-    da: ['Roll the Bones RNG kan frustrere', 'Svagere på ren single target', 'Middelmådig vedvarende skade uden for burst'],
+    en: ['Roll the Bones RNG can be frustrating', 'Weaker on pure single target', 'Mediocre sustained damage outside burst']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_OUTLAW_ROGUE = {
         'Between the Eyes always at 5 CPs',
         'Ambush always from Stealth/Shadow Dance',
       ],
-    },
-    da: {
-      opener: 'Ambush (Stealth) → Roll the Bones → Slice and Dice → Sinister Strike-spam → Between the Eyes',
-      single: 'Roll the Bones aktiv → Slice and Dice aktiv → Sinister Strike → Between the Eyes (5 CPs)',
-      aoe:    'Blade Flurry til → Sinister Strike-spam → Between the Eyes (rammer alle via Flurry)',
-      rules: [
-        'Roll the Bones altid aktiv — genkast ved 1 buff',
-        'Slice and Dice altid aktiv — Energy-regen-buff',
-        'Blade Flurry til ved 2+ mål',
-        'Between the Eyes altid ved 5 CPs',
-        'Ambush altid fra Stealth/Shadow Dance',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_OUTLAW_ROGUE = {
         { spell: 'Between the Eyes', why: 'Via Flurry massive AoE burst' },
         { spell: 'Ambush', why: 'Shadow Dance for free stealth during AoE' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Roll the Bones bedste buffs: Broadside, True Bearing, Ruthless Precision. Med 2+ af disse tre: BEHOLD. Med 1 eller dårlige buffs: genkast!',
-      opener: [
-        { spell: 'Ambush (Stealth)', why: 'Gratis 2 ekstra CPs — åbn altid fra stealth' },
-        { spell: 'Roll the Bones', why: 'Tilfældige buffs — genkast ved dårlig udfald' },
-        { spell: 'Slice and Dice', why: 'Energy-buff — hold altid aktiv' },
-        { spell: 'Sinister Strike', why: 'Hoved CP-generator' },
-        { spell: 'Between the Eyes', why: '5 CPs — stærk ST finisher' },
-      ],
-      single: [
-        { spell: 'Sinister Strike', why: 'Hoved angreb — nogle gange dobbelt træf (Opportunity)' },
-        { spell: 'Between the Eyes', why: '5 CPs — stærkeste finisher' },
-        { spell: 'Slice and Dice', why: 'Forny når udløbet — Energy-buff' },
-        { spell: 'Roll the Bones', why: 'Forny ved 1 eller dårlige buffs' },
-        { spell: 'Ambush', why: 'Fra Shadow Dance stealth-vindue' },
-      ],
-      aoe: [
-        { spell: 'Blade Flurry', why: 'Aktiver ved 2+ mål — cleave alle træf' },
-        { spell: 'Sinister Strike', why: 'Via Flurry rammer alle mål omkring dig' },
-        { spell: 'Between the Eyes', why: 'Via Flurry massiv AoE-burst' },
-        { spell: 'Ambush', why: 'Shadow Dance til gratis stealth under AoE' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_OUTLAW_ROGUE = {
         { rank:4, stat:'Versatility',     bars:2, note:'Damage reduction + small damage boost' },
         { rank:5, stat:'Mastery',         bars:1, note:'Lowest priority for Outlaw' },
       ],
-    },
-    da: {
-      tip: 'Haste er den bedste stat for Outlaw — mere Energy = flere Sinister Strikes = flere CPs.',
-      list: [
-        { rank:1, stat:'Agility',         bars:5, note:'Primær stat' },
-        { rank:2, stat:'Haste',           bars:5, note:'Mere Energy-regen = flere angreb' },
-        { rank:3, stat:'Critical Strike', bars:3, note:'Øger Sinister Strike og finisher-skade' },
-        { rank:4, stat:'Versatility',     bars:2, note:'Skadereduktion + lille skade-boost' },
-        { rank:5, stat:'Mastery',         bars:1, note:'Lavest prioritet for Outlaw' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_OUTLAW_ROGUE = {
       { spell:'Shadow Dance',     cd:'1 min',  effect:'3 sec stealth — Ambush allowed', when:'Extra Ambush outside stealth for burst' },
       { spell:'Killing Spree',    cd:'2 min',  effect:'Quickly teleports to multiple targets and attacks', when:'AoE burst or execute phase' },
       { spell:'Cloak of Shadows', cd:'1 min',  effect:'Removes all magical debuffs', when:'Emergency defensive option' },
-    ],
-    da: [
-      { spell:'Adrenaline Rush',  cd:'3 min',  effect:'100% mere Energy-regen i 20 sek + ekstra CPs', when:'På pull — stor burst-opener' },
-      { spell:'Blade Flurry',     cd:'-',      effect:'Toggle: alle angreb cleaver til 1 ekstra mål', when:'Aktiver ved 2+ mål' },
-      { spell:'Shadow Dance',     cd:'1 min',  effect:'3 sek stealth — Ambush tilladt', when:'Ekstra Ambush uden for stealth til burst' },
-      { spell:'Killing Spree',    cd:'2 min',  effect:'Teleporterer hurtigt til flere mål og angriber', when:'AoE-burst eller execute-fase' },
-      { spell:'Cloak of Shadows', cd:'1 min',  effect:'Fjerner alle magiske debuffs', when:'Nødsmulighed defensivt' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_OUTLAW_ROGUE = {
       { spell:'Blind',                 type:'CC',         note:'1 min disables — breaks on damage' },
       { spell:'Grappling Hook',        type:'Mobility',   note:'Shoot yourself to location — unique mobility' },
       { spell:'Sprint',                type:'Speed',      note:'70% speed boost 8 sec — 1 min CD' },
-    ],
-    da: [
-      { spell:'Shroud of Concealment', type:'Stealth',   note:'Gruppe-stealth i 15 sek — M+-spring' },
-      { spell:'Kick',                  type:'Interrupt',  note:'Hurtig interrupt 15 sek CD' },
-      { spell:'Blind',                 type:'CC',         note:'1 min deaktivering — brydes ved skade' },
-      { spell:'Grappling Hook',        type:'Mobilitet',  note:'Skyd dig selv til placering — unik mobilitet' },
-      { spell:'Sprint',                type:'Hastighed',  note:'70% hastighedsboost i 8 sek — 1 min CD' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_OUTLAW_ROGUE = {
       { icon:'🪝', title:'Grappling Hook = M+ asset', text:'Grappling Hook is unique to Outlaw. In M+ use it to quickly reach the next pack or dodge mechanics. Train your usage of it!' },
       { icon:'🏴‍☠️', title:'Adrenaline Rush opener', text:'Adrenaline Rush directly on pull for 100% Energy regen. This makes your first 20 sec enormously powerful. Pool Energy before Rush for maximum effect.' },
       { icon:'👁️', title:'Smart Shadow Dance usage', text:'Shadow Dance gives you 3 sec stealth for a free Ambush (2 extra CPs). Use it during burst windows, not only as a defensive escape.' },
-    ],
-    da: [
-      { icon:'🎲', title:'Roll the Bones strategi', text:'Broadside, True Bearing og Ruthless Precision er de bedste buffs. Med 2 af disse tre holder du altid. Med kun 1 buff genkaster du til du slår bedre.' },
-      { icon:'⚡', title:'Blade Flurry til/fra', text:'Blade Flurry koster Energy når den er til. Sluk den på rene ST-kampe. Tænd den ved 2+ mål — den cleaver automatisk alt.' },
-      { icon:'🪝', title:'Grappling Hook = M+-aktiv', text:'Grappling Hook er unikt for Outlaw. I M+ bruger du det til hurtigt at nå næste gruppe eller undvige mekanikker. Træn din brug af det!' },
-      { icon:'🏴‍☠️', title:'Adrenaline Rush opener', text:'Adrenaline Rush direkte på pull til 100% Energy-regen. Dette gør dine første 20 sek enormt kraftfulde. Pool Energy inden Rush for maksimal effekt.' },
-      { icon:'👁️', title:'Smart Shadow Dance brug', text:'Shadow Dance giver dig 3 sek stealth til en gratis Ambush (2 ekstra CPs). Brug det under burst-vinduer, ikke kun som defensivt flugt.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_OUTLAW_ROGUE = {
       { name:'Adrenaline Rush opener', code:'/cast Adrenaline Rush\n/cast Roll the Bones', note:'Pull opener — Energy boost + immediately roll buffs.' },
       { name:'Shadow Dance + Ambush', code:'/cast Shadow Dance\n/cast Ambush', note:'Instant stealth Ambush for free CPs during fight.' },
       { name:'Shroud group', code:'/cast Shroud of Concealment', note:'Group stealth for M+ skips.' },
-    ],
-    da: [
-      { name:'Adrenaline Rush opener', code:'/cast Adrenaline Rush\n/cast Roll the Bones', note:'Pull opener — Energy-boost + straks kast buffs.' },
-      { name:'Shadow Dance + Ambush', code:'/cast Shadow Dance\n/cast Ambush', note:'Instant stealth Ambush til gratis CPs under kamp.' },
-      { name:'Shroud gruppe', code:'/cast Shroud of Concealment', note:'Gruppe-stealth til M+-spring.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_OUTLAW_ROGUE = {
       ],
       pet_tip: '💡 Slice and Dice always active — it gives you free Energy regen. Never let it expire!',
       pets: [],
-    },
-    da: {
-      intro: 'Outlaw bruger Energy (0-100) og Combo Points (0-5). Energy regenererer hurtigt, især under Adrenaline Rush.',
-      generate: [
-        'Sinister Strike — 1 CP (nogle gange 2 via Opportunity proc)',
-        'Ambush — 2 ekstra CPs (fra stealth/Shadow Dance)',
-        'Adrenaline Rush — fordobler Energy-regenerering i 20 sek',
-        'Pistol Shot — 1 CP via Opportunity proc',
-      ],
-      spend: [
-        'Between the Eyes (5 CPs) — stærkeste finisher, stunner mål',
-        'Slice and Dice (5 CPs) — Energy-regen-buff, altid aktiv',
-        'Roll the Bones (1 CP) — tilfældige buffs, genkast strategisk',
-      ],
-      pet_tip: '💡 Slice and Dice altid aktiv — det giver dig gratis Energy-regen. Lad den aldrig udløbe!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_OUTLAW_ROGUE = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',     note:'Ask for feast' },
       { type:'food',   name:'Royal Roast',          effect:'Solo food backup.',                         note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                     note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility i 1 time.',                     note:'Altid aktiv' },
-      { type:'pot',    name:'Potion of Recklessness',             effect:'Agility-boost — brug med Adrenaline Rush',  note:'På pull for maksimal effekt' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',      note:'Bed om feast' },
-      { type:'food',   name:'Royal Roast',          effect:'Solo-mad backup.',                          note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                      note:'Brug altid' },
-    ],
+    ]
   },
 };
 

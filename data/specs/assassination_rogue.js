@@ -4,28 +4,25 @@ const SPEC_ASSASSINATION_ROGUE = {
   id: 'assassination_rogue',
   icon: '🗡️',
   class: 'Rogue',
-  spec:   { nl: 'Assassination', en: 'Assassination', da: 'Assassination' },
+  spec:   { nl: 'Assassination', en: 'Assassination'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)', da: 'To dolke (dual wield)' },
+  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',
 
   summary: {
     nl: 'Assassination Rogue is de meester van giften en DoTs. Verg vijanden langzaam met Rupture en Garrote terwijl gifstapels oplopen. Uitstekende sustained multi-target schade.',
-    en: 'Assassination Rogue is the master of poisons and DoTs. Bleed enemies slowly with Rupture and Garrote while poison stacks build up. Excellent sustained multi-target damage.',
-    da: 'Assassination Rogue er mester i gifte og DoTs. Blød fjender langsomt med Rupture og Garrote mens giftstakker opbygges. Fremragende vedvarende multi-target skade.',
+    en: 'Assassination Rogue is the master of poisons and DoTs. Bleed enemies slowly with Rupture and Garrote while poison stacks build up. Excellent sustained multi-target damage.'
   },
   pros: {
     nl: ['Uitstekende sustained schade via DoTs', 'Sterk op meerdere targets (Crimson Tempest)', 'Goede survivability via Crimson Vial', 'Stealth utility voor skips in M+'],
-    en: ['Excellent sustained damage via DoTs', 'Strong on multiple targets (Crimson Tempest)', 'Good survivability via Crimson Vial', 'Stealth utility for skips in M+'],
-    da: ['Fremragende vedvarende skade via DoTs', 'Stærk på flere mål (Crimson Tempest)', 'God overlevelse via Crimson Vial', 'Stealth utility til spring i M+'],
+    en: ['Excellent sustained damage via DoTs', 'Strong on multiple targets (Crimson Tempest)', 'Good survivability via Crimson Vial', 'Stealth utility for skips in M+']
   },
   cons: {
     nl: ['Complex DoT management', 'Lage burst zonder Vendetta', 'Energy management vereist disciplin'],
-    en: ['Complex DoT management', 'Low burst without Vendetta', 'Energy management requires discipline'],
-    da: ['Kompleks DoT-styring', 'Lav burst uden Vendetta', 'Energy-styring kræver disciplin'],
+    en: ['Complex DoT management', 'Low burst without Vendetta', 'Energy management requires discipline']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_ASSASSINATION_ROGUE = {
         'Crimson Tempest at 3+ targets as Rupture replacement',
         'Mutilate only when both daggers have Deadly Poison',
       ],
-    },
-    da: {
-      opener: '(Stealth) Garrote → Mutilate x2 → Rupture (4+ CPs) → Vendetta → Envenom-spam',
-      single: 'Garrote + Rupture aktive → Mutilate til CPs → Envenom (5 CPs) → Vendetta på CD',
-      aoe:    'Garrote på mål → Crimson Tempest (5 CPs, 3+ mål) → Fan of Knives-spam',
-      rules: [
-        'Garrote og Rupture altid aktive — lad dem aldrig udløbe',
-        'Envenom ved 5 CPs og Rupture aktiv',
-        'Vendetta altid på cooldown — forstærker alt',
-        'Crimson Tempest ved 3+ mål som Rupture-erstatning',
-        'Mutilate kun når begge dolke har Deadly Poison',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -113,30 +98,7 @@ const SPEC_ASSASSINATION_ROGUE = {
         { spell: 'Garrote on targets', why: 'Extra bleed on high HP targets' },
         { spell: 'Envenom', why: 'Always at 5 CPs — even in AoE' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Envenom-buff (efter Envenom-brug) øger Gift-skade. Hold altid buff\'en aktiv for maksimal gift-skade!',
-      opener: [
-        { spell: 'Garrote (Stealth)', why: 'Stærkeste Bleed opener — ekstra skade fra stealth' },
-        { spell: 'Mutilate x2', why: 'Opbyg hurtigt CPs' },
-        { spell: 'Rupture', why: 'Bleed DoT — kerne indkomstkilde' },
-        { spell: 'Vendetta', why: 'Øger al skade straks' },
-        { spell: 'Envenom', why: '5 CPs — gift-burst + Envenom-buff' },
-      ],
-      single: [
-        { spell: 'Garrote', why: 'Forny når <5 sek — helst i stealth' },
-        { spell: 'Rupture', why: 'Forny når <5 sek — lad aldrig udløbe' },
-        { spell: 'Mutilate', why: 'Hoved CP-generator med 2 Deadly Poison-dolke' },
-        { spell: 'Envenom', why: '5 CPs — holder Envenom-buff aktiv' },
-        { spell: 'Vendetta', why: 'Altid på CD' },
-      ],
-      aoe: [
-        { spell: 'Fan of Knives', why: 'AoE CP-generator — rammer alt omkring dig' },
-        { spell: 'Crimson Tempest', why: '3+ mål: AoE Rupture — spreder blødning' },
-        { spell: 'Garrote på mål', why: 'Ekstra bleed på høj HP mål' },
-        { spell: 'Envenom', why: 'Altid ved 5 CPs — selv i AoE' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -159,17 +121,7 @@ const SPEC_ASSASSINATION_ROGUE = {
         { rank:4, stat:'Mastery',         bars:3, note:'Increases Poison and Bleed damage' },
         { rank:5, stat:'Versatility',     bars:1, note:'Lowest priority' },
       ],
-    },
-    da: {
-      tip: 'Haste og Crit er begge stærke. Haste = mere Energy-regen, Crit = større Envenom og Mutilate-træf.',
-      list: [
-        { rank:1, stat:'Agility',         bars:5, note:'Primær stat' },
-        { rank:2, stat:'Critical Strike', bars:4, note:'Øger Envenom og Mutilate markant' },
-        { rank:3, stat:'Haste',           bars:4, note:'Mere Energy-regen = flere angreb' },
-        { rank:4, stat:'Mastery',         bars:3, note:'Øger Gift og Bleed-skade' },
-        { rank:5, stat:'Versatility',     bars:1, note:'Lavest prioritet' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -186,14 +138,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       { spell:'Indiscriminate Carnage', cd:'45 sec', effect:'Garrote and Rupture explode for AoE damage', when:'AoE pulls of 3+ targets' },
       { spell:'Crimson Vial',   cd:'30 sec', effect:'Heals for % HP over 4 sec', when:'Personal survival cooldown' },
       { spell:'Vanish',         cd:'2 min',  effect:'Back into stealth — Garrote reset + Shadow Dance', when:'Garrote refresh from stealth or Subterfuge reset' },
-    ],
-    da: [
-      { spell:'Vendetta',       cd:'2 min',  effect:'+30% skade på mål i 20 sek', when:'På pull eller stor gruppe — altid på CD' },
-      { spell:'Deathmark',      cd:'1.5 min', effect:'Fordobler al DoT-skade i 15 sek', when:'Med Garrote og Rupture aktive' },
-      { spell:'Indiscriminate Carnage', cd:'45 sec', effect:'Garrote og Rupture eksploderer til AoE-skade', when:'AoE-pulls på 3+ mål' },
-      { spell:'Crimson Vial',   cd:'30 sec', effect:'Healer for % HP over 4 sek', when:'Personlig overlevelsescooldown' },
-      { spell:'Vanish',         cd:'2 min',  effect:'Tilbage i stealth — Garrote reset + Shadow Dance', when:'Garrote-fornyelse fra stealth eller Subterfuge-reset' },
-    ],
+    ]
   },
 
   utility: {
@@ -210,14 +155,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       { spell:'Blind',                 type:'CC',     note:'Disables enemy 1 min — breaks on damage' },
       { spell:'Sap',                   type:'CC',     note:'Sleep humanoid/beast from stealth' },
       { spell:'Cloak of Shadows',      type:'Defensive', note:'Removes all magical debuffs — 1 min CD' },
-    ],
-    da: [
-      { spell:'Shroud of Concealment', type:'Stealth', note:'Gruppe-stealth i 15 sek — til M+-spring' },
-      { spell:'Kick',                  type:'Interrupt', note:'Hurtig melee interrupt 15 sek CD' },
-      { spell:'Blind',                 type:'CC',     note:'Deaktiverer fjende i 1 min — brydes ved skade' },
-      { spell:'Sap',                   type:'CC',     note:'Sæt humanoid/beast i søvn fra stealth' },
-      { spell:'Cloak of Shadows',      type:'Defensiv', note:'Fjerner alle magiske debuffs — 1 min CD' },
-    ],
+    ]
   },
 
   tips: {
@@ -234,14 +172,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       { icon:'👥', title:'Shroud in M+', text:'Shroud of Concealment is the most valuable Rogue utility in M+. Plan with your team which trash packs to skip — this can save minutes.' },
       { icon:'🎯', title:'Vendetta + Deathmark combo', text:'Vendetta then immediately Deathmark. Both active = all your DoTs deal double damage with +30% bonus. This is your maximum burst window.' },
       { icon:'⚡', title:'Kick is sacred', text:'Rogue has one of the shortest interrupt CDs. You are the primary interrupter in the group — know the casts and interrupt them proactively.' },
-    ],
-    da: [
-      { icon:'🗡️', title:'Stealth er din styrke', text:'Vanish nulstiller din Garrote med ekstra skade. Brug ikke Vanish kun defensivt — brug det også offensivt til at placere en forstærket Garrote.' },
-      { icon:'☠️', title:'DoTs = alt', text:'Garrote og Rupture er dit brød og smør. Hvis en af dem ikke er aktiv, gør du 30-40% mindre skade. Brug altid en timer-addon.' },
-      { icon:'👥', title:'Shroud i M+', text:'Shroud of Concealment er den mest værdifulde Rogue utility i M+. Planlæg med dit hold, hvilke trash-grupper I vil springe over — dette kan spare minutter.' },
-      { icon:'🎯', title:'Vendetta + Deathmark kombination', text:'Vendetta derefter straks Deathmark. Begge aktive = alle dine DoTs gør dobbelt skade med +30% bonus. Dette er dit maksimale burst-vindue.' },
-      { icon:'⚡', title:'Kick er helligt', text:'Rogue har en af de korteste interrupt-CDs. Du er den primære interrupter i gruppen — kend castene og interrupt dem proaktivt.' },
-    ],
+    ]
   },
 
   macros: {
@@ -254,12 +185,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       { name:'Vendetta + Deathmark', code:'/cast Vendetta\n/cast Deathmark', note:'Maximum burst opener — both damage CDs simultaneously.' },
       { name:'Vanish + Garrote', code:'/cast Vanish\n/cast Garrote', note:'Immediately Garrote after Vanish for empowered stealth Garrote.' },
       { name:'Shroud group', code:'/cast Shroud of Concealment', note:'One button for group stealth — communicate in advance.' },
-    ],
-    da: [
-      { name:'Vendetta + Deathmark', code:'/cast Vendetta\n/cast Deathmark', note:'Maksimalt burst-opener — begge skade-CDs på én gang.' },
-      { name:'Vanish + Garrote', code:'/cast Vanish\n/cast Garrote', note:'Straks Garrote efter Vanish til forstærket stealth Garrote.' },
-      { name:'Shroud gruppe', code:'/cast Shroud of Concealment', note:'Én knap til gruppe-stealth — kommunikér på forhånd.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -294,23 +220,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       ],
       pet_tip: '⚠️ Never use Envenom when Rupture or Garrote is about to expire — refreshing always has priority!',
       pets: [],
-    },
-    da: {
-      intro: 'Assassination bruger Energy (0-100) til angreb og Combo Points (0-5) til finishers. Energy regenererer automatisk.',
-      generate: [
-        'Mutilate — 2 CPs per brug',
-        'Fan of Knives — 1 CP per træf (AoE)',
-        'Garrote — 1 CP + DoT',
-        'Ambush (stealth) — 2 ekstra CPs',
-      ],
-      spend: [
-        'Envenom (5 CPs) — single target finisher, holder Envenom-buff aktiv',
-        'Rupture (4-5 CPs) — stærkeste bleed DoT',
-        'Crimson Tempest (5 CPs) — AoE Rupture ved 3+ mål',
-      ],
-      pet_tip: '⚠️ Brug aldrig Envenom når Rupture eller Garrote er ved at udløbe — fornyelse har altid prioritet!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_ASSASSINATION_ROGUE = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',     note:'Ask for feast' },
       { type:'food',   name:'Royal Roast',          effect:'Solo food backup.',                         note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                     note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility i 1 time.',                     note:'Altid aktiv' },
-      { type:'pot',    name:'Potion of Recklessness',             effect:'Stor Agility-boost i 25 sek.',              note:'Brug under Vendetta + Deathmark-vindue' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',      note:'Bed om feast' },
-      { type:'food',   name:'Royal Roast',          effect:'Solo-mad backup.',                          note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                      note:'Brug altid' },
-    ],
+    ]
   },
 };
 

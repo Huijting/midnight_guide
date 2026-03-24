@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_HOLY_PRIEST = {
   id:'holy_priest', icon:'🌟', class:'Priest',
-  spec:{nl:'Holy',en:'Holy',da:'Holy'},
+  spec:{nl:'Holy',en:'Holy'},
   role:'heal', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand',da:'Stav eller enhånds + offhand'},
+  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#FFFFFF',
   summary:{
     nl:'Holy Priest is de traditionele reactieve healer. Directe heals, krachtige HoTs en de beste AoE healing in het spel via Prayer of Healing en Circle of Healing. Eenvoudiger dan Discipline.',
-    en:'Holy Priest is the traditional reactive healer. Direct heals, powerful HoTs and the best AoE healing in the game via Prayer of Healing and Circle of Healing. Simpler than Discipline.',
-    da:'Holy Priest er den traditionelle reaktive healer. Direkte heals, kraftfulde HoTs og den bedste AoE-healing i spillet via Prayer of Healing og Circle of Healing. Enklere end Discipline.',
+    en:'Holy Priest is the traditional reactive healer. Direct heals, powerful HoTs and the best AoE healing in the game via Prayer of Healing and Circle of Healing. Simpler than Discipline.'
   },
   pros:{
     nl:['Beste AoE healing throughput in het spel','Eenvoudiger te leren dan Discipline','Divine Hymn = sterkste AoE heal CD','Uitstekende HoT via Renew','Serendipity procs voor snellere heals'],
-    en:['Best AoE healing throughput in the game','Easier to learn than Discipline','Divine Hymn = strongest AoE heal CD','Excellent HoT via Renew','Serendipity procs for faster heals'],
-    da:['Bedste AoE-healing throughput i spillet','Lettere at lære end Discipline','Divine Hymn = stærkeste AoE-heal CD','Fremragende HoT via Renew','Serendipity-procs til hurtigere heals'],
+    en:['Best AoE healing throughput in the game','Easier to learn than Discipline','Divine Hymn = strongest AoE heal CD','Excellent HoT via Renew','Serendipity procs for faster heals']
   },
   cons:{
     nl:['Minder preventieve healing dan Discipline','Geen absorb mechanic (Disc heeft PW:S)','Minder damage output dan Disc','Minder sterk bij zware movement fights'],
-    en:['Less preventative healing than Discipline','No absorb mechanic (Disc has PW:S)','Less damage output than Disc','Weaker in heavy movement fights'],
-    da:['Mindre forebyggende healing end Discipline','Ingen absorb-mekanik (Disc har PW:S)','Mindre skadeoutput end Disc','Svagere i kampe med meget bevægelse'],
+    en:['Less preventative healing than Discipline','No absorb mechanic (Disc has PW:S)','Less damage output than Disc','Weaker in heavy movement fights']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_HOLY_PRIEST = {
         'Keep Renew active on tank and low HP players',
         'Save Divine Hymn for real emergencies — don\'t use too early',
       ],
-    },
-    da:{
-      opener:'Renew på tank → Holy Word: Serenity på tank → Flash Heal → Circle of Healing ved gruppeskade',
-      single:'Heal/Flash Heal fylder → Holy Word: Serenity på CD → Renew på lav HP-mål → Prayer of Mending altid aktiv',
-      aoe:'Circle of Healing på CD → Prayer of Healing → Holy Word: Sanctify → Divine Hymn ved stor gruppeskade',
-      rules:[
-        'Prayer of Mending altid aktiv — bouncer automatisk',
-        'Circle of Healing altid på CD ved 3+ sårede spillere',
-        'Holy Word-trylleformularer altid på CD — ingen manaomkostning + kraftfuld',
-        'Hold Renew aktiv på tank og lav HP-spillere',
-        'Gem Divine Hymn til rigtige nødsituationer — brug ikke for tidligt',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_HOLY_PRIEST = {
         {spell:'Divine Hymn',why:'Biggest AoE heal in the game'},
         {spell:'Apotheosis',why:'+100% Holy Word effectiveness 25 sec'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Prayer of Mending hopper automatisk til det næste gruppemedlem når det healer nogen. Hold den altid aktiv — det er gratis healing der virker af sig selv!',
-      opener:[
-        {spell:'Renew',why:'HoT på tank til passiv healing'},
-        {spell:'Prayer of Mending',why:'Altid aktiv — hopper til lav HP-mål'},
-        {spell:'Holy Word: Serenity',why:'Stor instant heal på CD — gratis'},
-        {spell:'Flash Heal',why:'Hurtig heal hvis tank er lav'},
-        {spell:'Circle of Healing',why:'Ved gruppeskade — AoE-heal på CD'},
-      ],
-      single:[
-        {spell:'Prayer of Mending',why:'Hold altid aktiv — stærk HoT'},
-        {spell:'Holy Word: Serenity',why:'På CD — bedste single target-heal'},
-        {spell:'Heal',why:'Effektiv fylder — lav mana'},
-        {spell:'Renew',why:'HoT på spillere der tager skade'},
-        {spell:'Flash Heal',why:'Hurtig nødheal — høje manaomkostninger'},
-      ],
-      aoe:[
-        {spell:'Circle of Healing',why:'AoE-heal på CD — altid'},
-        {spell:'Prayer of Healing',why:'AoE-heal til hele gruppen'},
-        {spell:'Holy Word: Sanctify',why:'AoE HoT-zone på CD'},
-        {spell:'Divine Hymn',why:'Største AoE-heal i spillet'},
-        {spell:'Apotheosis',why:'+100% Holy Word-effektivitet i 25 sek'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_HOLY_PRIEST = {
         {rank:4,stat:'Mastery',bars:3,note:'Increases heals on low HP players'},
         {rank:5,stat:'Versatility',bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Haste lader Holy Word-trylleformularer genoplade hurtigere og gør Flash Heal hurtigere. Critical Strike forstærker dine heals via Holys mastery-effekt.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Haste',bars:4,note:'Holy Word-trylleformularer klar hurtigere'},
-        {rank:3,stat:'Critical Strike',bars:3,note:'Større heals + Inspiration-proc'},
-        {rank:4,stat:'Mastery',bars:3,note:'Øger heals på lav HP-spillere'},
-        {rank:5,stat:'Versatility',bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_HOLY_PRIEST = {
       {spell:'Guardian Spirit',cd:'3 min',effect:'Cheat death for 1 player 10 sec',when:'Player about to die — ultimate emergency'},
       {spell:'Apotheosis',cd:'2 min',effect:'Holy Word spells cost no mana + doubled effect',when:'Large AoE healing window — with Divine Hymn'},
       {spell:'Circle of Healing',cd:'10 sec',effect:'Instant AoE heal on 5 players around target',when:'Always on CD during group damage'},
-    ],
-    da:[
-      {spell:'Divine Hymn',cd:'3 min',effect:'Channeled — healer alle gruppemedlemmer over 8 sek',when:'Største AoE-heal CD — ved massiv gruppeskade'},
-      {spell:'Holy Word: Salvation',cd:'4 min',effect:'AoE-heal + PW:S på alle',when:'Alternativ gruppe-CD til vedvarende healing'},
-      {spell:'Guardian Spirit',cd:'3 min',effect:'Cheat death for 1 spiller i 10 sek',when:'Spiller ved at dø — ultimativ nødsituation'},
-      {spell:'Apotheosis',cd:'2 min',effect:'Holy Word-trylleformularer koster ingen mana + fordoblet effekt',when:'Stort AoE-healingvindue — med Divine Hymn'},
-      {spell:'Circle of Healing',cd:'10 sek',effect:'Instant AoE-heal på 5 spillere omkring mål',when:'Altid på CD ved gruppeskade'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_HOLY_PRIEST = {
       {spell:'Purify',type:'Dispel',note:'Removes Magic and Disease'},
       {spell:'Leap of Faith',type:'Position',note:'Pull party member to you — very useful'},
       {spell:'Mass Dispel',type:'AoE Dispel',note:'Removes magic from multiple targets simultaneously'},
-    ],
-    da:[
-      {spell:'Guardian Spirit',type:'Nød',note:'Cheat death — red en spiller fra sikker død'},
-      {spell:'Divine Hymn',type:'Gruppe-CD',note:'Bedste AoE-heal i spillet'},
-      {spell:'Purify',type:'Dispel',note:'Fjerner Magic og Disease'},
-      {spell:'Leap of Faith',type:'Position',note:'Træk gruppemedlem til dig — meget nyttigt'},
-      {spell:'Mass Dispel',type:'AoE Dispel',note:'Fjerner magi fra flere mål simultant'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_HOLY_PRIEST = {
       {icon:'👻',title:'Guardian Spirit = cheat death',text:'Guardian Spirit gives a player 10 seconds of cheat death. If they die during those 10 seconds they get healed to 50% HP. Use it when you\'re CERTAIN someone will die.'},
       {icon:'🎵',title:'Divine Hymn timing',text:'Divine Hymn channels for 8 sec. Use it during large predictable AoE — not as a reaction. Communicate: "Hymn!" so your healer buddy knows what\'s coming.'},
       {icon:'🙏',title:'Leap of Faith for mechanics',text:'Leap of Faith pulls someone to you. In M+ use it when a DPS has a mechanic (slime, debuff zone) and you want to reposition them quickly. Ask permission in Discord.'},
-    ],
-    da:[
-      {icon:'🌟',title:'Prayer of Mending altid aktiv',text:'PoM hopper automatisk til det næste gruppemedlem når det aktiveres. Kast det altid på tanken — det hopper af sig selv til dem der tager skade. Glem aldrig at forny.'},
-      {icon:'💛',title:'Holy Word-trylleformularer er gratis',text:'Holy Word: Serenity og Sanctify koster ingen mana og er kraftfulde. Brug dem ALTID på cooldown — der er ingen grund til at gemme dem.'},
-      {icon:'👻',title:'Guardian Spirit = cheat death',text:'Guardian Spirit giver en spiller 10 sekunders cheat death. Hvis de dør i løbet af de 10 sekunder heales de til 50% HP. Brug det når du er SIKKER på at nogen vil dø.'},
-      {icon:'🎵',title:'Divine Hymn-timing',text:'Divine Hymn channeler i 8 sek. Brug det ved stor forudsigelig AoE — ikke som reaktion. Kommunikér: "Hymn!" så din healer-kammerat ved hvad der kommer.'},
-      {icon:'🙏',title:'Leap of Faith til mekanikker',text:'Leap of Faith trækker nogen til dig. I M+ brug det når en DPS har en mekanik (slim, debuff-zone) og du hurtigt vil ompositionere dem. Bed om tilladelse i Discord.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_HOLY_PRIEST = {
       {name:'Guardian Spirit mouseover',code:'/cast [@mouseover] Guardian Spirit',note:'Cheat death on group member without switching targets.'},
       {name:'Divine Hymn',code:'/cast Divine Hymn',note:'Biggest AoE heal — always on one button.'},
       {name:'Leap of Faith rescue',code:'/cast [@mouseover] Leap of Faith',note:'Pull party member to you on mechanic.'},
-    ],
-    da:[
-      {name:'Guardian Spirit mouseover',code:'/cast [@mouseover] Guardian Spirit',note:'Cheat death på gruppemedlem uden at skifte mål.'},
-      {name:'Divine Hymn',code:'/cast Divine Hymn',note:'Største AoE-heal — altid på én knap.'},
-      {name:'Leap of Faith redning',code:'/cast [@mouseover] Leap of Faith',note:'Træk gruppemedlem til dig ved mekanik.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_HOLY_PRIEST = {
       spend:['Flash Heal — most expensive spell, only in emergencies','Heal — efficient filler','Prayer of Healing — AoE but expensive','Circle of Healing — cheap AoE'],
       pet_tip:'💡 Use Heal in calm moments, Flash Heal in emergencies. Heal costs 3x less mana for comparable output!',
       pets:[],
-    },
-    da:{
-      intro:'Holy Priest bruger Mana. Mana-styring er mindre streng end Disc — Holy har flere effektive trylleformularer. Brug Heal (ikke Flash Heal) som fylder til manaeffektivitet.',
-      generate:['Passiv manaregenering','Shadowfiend — managendopretning','Symbol of Hope — gruppe-managendopretning'],
-      spend:['Flash Heal — dyreste trylleformel, kun i nødsituationer','Heal — effektiv fylder','Prayer of Healing — AoE men dyr','Circle of Healing — billig AoE'],
-      pet_tip:'💡 Brug Heal i rolige øjeblikke, Flash Heal i nødsituationer. Heal koster 3x mindre mana for sammenlignelig output!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_HOLY_PRIEST = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina via group feast.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food backup.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat 1 hour.',note:'Always use'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost under Divine Hymn-vindue.',note:'Brug ved stor gruppeskade'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina via gruppefeast.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad backup.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat 1 time.',note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_HOLY_PRIEST);

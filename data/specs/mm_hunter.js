@@ -7,30 +7,27 @@ const SPEC_MM_HUNTER = {
   id: 'mm_hunter',
   icon: '🎯',
   class: 'Hunter',
-  spec:  { nl: 'Marksmanship', en: 'Marksmanship', da: 'Marksmanship' },
+  spec:  { nl: 'Marksmanship', en: 'Marksmanship'},
   role:  'dps',
   armor: 'Mail',
-  weapon: { nl: 'Boog / Gun / Crossbow', en: 'Bow / Gun / Crossbow', da: 'Bue / Pistol / Armbryst' },
+  weapon: { nl: 'Boog / Gun / Crossbow', en: 'Bow / Gun / Crossbow'},
   resource: 'Focus (0–120)',
   patch: '12.0.1',
   color: '#4fc3f7',
 
   summary: {
     nl: 'Hoge single-target en burst-schade vanuit veilige afstand. MM speelt zonder vaste pet — meer zelfstandig maar minder CC. Perfecte keuze als je hoge pieken in je schade wil zien.',
-    en: 'High single-target and burst damage from a safe range. MM plays without a permanent pet — more self-reliant but less CC. Perfect choice if you want to see big damage spikes.',
-    da: 'Høj single-target og burst-skade fra sikker afstand. MM spiller uden fast kæledyr — mere selvstændig men mindre CC. Perfekt valg hvis du vil se store skade-toppe.',
+    en: 'High single-target and burst damage from a safe range. MM plays without a permanent pet — more self-reliant but less CC. Perfect choice if you want to see big damage spikes.'
   },
 
   pros: {
     nl: ['Hoogste burst-schade van alle Hunter specs', 'Geen pet nodig — minder micro-management', 'Sterke cooldowns (Trueshot)', 'Uitstekende single-target én cleave', 'Windrunner fantasy — snelle, elegante rotatie'],
-    en: ['Highest burst damage of all Hunter specs', 'No pet needed — less micro-management', 'Strong cooldowns (Trueshot)', 'Excellent single-target and cleave', 'Windrunner fantasy — fast, elegant rotation'],
-    da: ['Højest burst-skade af alle Hunter specs', 'Intet kæledyr nødvendigt — mindre mikrostyring', 'Stærke cooldowns (Trueshot)', 'Fremragende single-target og cleave', 'Windrunner-fantasy — hurtig, elegant rotation'],
+    en: ['Highest burst damage of all Hunter specs', 'No pet needed — less micro-management', 'Strong cooldowns (Trueshot)', 'Excellent single-target and cleave', 'Windrunner fantasy — fast, elegant rotation']
   },
 
   cons: {
     nl: ['Minder mobiel dan BM — sommige spells vereisen stilstand', 'Kwetsbaarder zonder pet-tank', 'Minder CC-opties dan BM', 'Hogere skill cap om optimaal te spelen', 'Tricky Focus management'],
-    en: ['Less mobile than BM — some spells require standing still', 'More vulnerable without a pet tank', 'Fewer CC options than BM', 'Higher skill cap to play optimally', 'Tricky Focus management'],
-    da: ['Mindre mobil end BM — nogle spells kræver stilstand', 'Mere sårbar uden kæledyr-tank', 'Færre CC-muligheder end BM', 'Højere skill cap for optimal spil', 'Tricky Focus management'],
+    en: ['Less mobile than BM — some spells require standing still', 'More vulnerable without a pet tank', 'Fewer CC options than BM', 'Higher skill cap to play optimally', 'Tricky Focus management']
   },
 
   cheatsheet: {
@@ -61,21 +58,7 @@ const SPEC_MM_HUNTER = {
         'Steady Shot = Focus generation, not damage',
         'Multishot spreads Aimed Shot damage on AoE',
       ],
-    },
-    da: {
-      opener:   "Hunter's Mark → Trueshot → Aimed Shot (x2) → Rapid Fire → Arcane Shot → Aimed Shot (x2 Precise Shots) → Multishot",
-      single:   "Trueshot on CD → Aimed Shot (Precise Shots) → Rapid Fire → Arcane Shot (fyldstof) → Steady Shot (Focus)",
-      aoe:      "Trueshot → Rapid Fire → Multishot → Arcane Shot (cleave) → Aimed Shot (AoE spread)",
-      rules: [
-        'Kast aldrig Aimed Shot uden Precise Shots proc',
-        'Rapid Fire altid direkte før eller efter Aimed Shot',
-        'Trueshot on cooldown — gem den aldrig',
-        "Hunter's Mark altid aktiv",
-        'Sid aldrig på 0 Focus',
-        'Steady Shot = Focus-generering, ikke skade',
-        'Multishot spreder Aimed Shot-skade ved AoE',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -130,33 +113,7 @@ const SPEC_MM_HUNTER = {
         { prio: '4', spell: 'Aimed Shot',  note: 'Damage spreads via Multishot' },
         { prio: '5', spell: 'Arcane Shot', note: 'Single target filler' },
       ],
-    },
-    da: {
-      apex_tip: '🎯 Precise Shots: Efter hver Aimed Shot får du 2 gratis Arcane Shots eller Multishots. Brug dem ALTID — spild dem aldrig!',
-      opener: [
-        { step: 1, spell: "Hunter's Mark",  note: 'Hold altid aktiv' },
-        { step: 2, spell: 'Trueshot',       note: 'Burst cooldown — øger Aimed Shot-skade enormt' },
-        { step: 3, spell: 'Aimed Shot',     note: 'Kast 2x under Trueshot' },
-        { step: 4, spell: 'Rapid Fire',     note: 'Kanal — kast direkte efter Aimed Shot' },
-        { step: 5, spell: 'Arcane Shot',    note: 'Brug Precise Shots procs' },
-        { step: 6, spell: 'Aimed Shot',     note: '2 mere med Precise Shots procs' },
-        { step: 7, spell: 'Multishot',      note: 'Ved 2+ mål: erstat Arcane Shot med Multishot' },
-      ],
-      single: [
-        { prio: '1', spell: 'Trueshot',      note: 'On cooldown — største DPS-forøger',                importance: 'ALTID' },
-        { prio: '2', spell: 'Rapid Fire',    note: 'On cooldown — kombiner med Aimed Shot',            importance: 'ALTID' },
-        { prio: '3', spell: 'Aimed Shot',    note: 'Kun med Precise Shots proc — ellers for langsom',  importance: 'ALTID' },
-        { prio: '4', spell: 'Arcane Shot',   note: 'Brug Precise Shots procs — 2 gratis skud',         importance: 'HØJ' },
-        { prio: '5', spell: 'Steady Shot',   note: 'Fyldstof — genererer Focus når intet andet er op', importance: 'FYLD' },
-      ],
-      aoe: [
-        { prio: '1', spell: 'Trueshot',    note: 'On cooldown — alle Aimed Shots rammer flere mål' },
-        { prio: '2', spell: 'Rapid Fire',  note: 'On cooldown' },
-        { prio: '3', spell: 'Multishot',   note: 'Erstatter Arcane Shot ved 2+ mål — spreder Aimed Shot' },
-        { prio: '4', spell: 'Aimed Shot',  note: 'Skade spredes via Multishot' },
-        { prio: '5', spell: 'Arcane Shot', note: 'Single target fyldstof' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -179,17 +136,7 @@ const SPEC_MM_HUNTER = {
         { rank: '4', stat: 'Mastery',         bars: 3, note: 'Increases Aimed Shot and Arcane Shot damage' },
         { rank: '5', stat: 'Versatility',     bars: 2, note: 'Flat % bonus — least valuable for MM' },
       ],
-    },
-    da: {
-      tip: '💡 MM har mere gavn af Crit end BM. Haste reducerer Aimed Shot cast-tid — meget værdifuldt. Agility prioritet = tag altid højeste ilvl.',
-      list: [
-        { rank: '1', stat: 'Agility',        bars: 5, note: 'Primær stat — vælg altid højeste item level' },
-        { rank: '2', stat: 'Critical Strike', bars: 5, note: 'Øger Aimed Shot og Rapid Fire-skade enormt' },
-        { rank: '3', stat: 'Haste',           bars: 4, note: 'Reducerer Aimed Shot cast-tid — flere skud per minut' },
-        { rank: '4', stat: 'Mastery',         bars: 3, note: 'Øger Aimed Shot og Arcane Shot-skade' },
-        { rank: '5', stat: 'Versatility',     bars: 2, note: 'Flad % bonus — mindst værdifuld for MM' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -210,16 +157,7 @@ const SPEC_MM_HUNTER = {
       { spell: 'Feign Death',          cd: '30 sec',  effect: 'Aggro dump — removes you from attack list',            when: 'Aggro problem or wipe situation' },
       { spell: 'Intimidation',         cd: '1 min',   effect: '5 sec stun on target',                                 when: 'Interrupt or emergency stop of cast' },
       { spell: 'Misdirection',         cd: '30 sec',  effect: 'Sends your threat to tank',                            when: 'On pulls or aggro problem' },
-    ],
-    da: [
-      { spell: 'Trueshot',             cd: '2 min',   effect: 'Øger Aimed Shot-skade + reducerer cooldowns',          when: 'On cooldown — gem aldrig' },
-      { spell: 'Rapid Fire',           cd: '20 sec',  effect: 'Kanal: høj skade på kort tid',                        when: 'On cooldown — kombiner med Aimed Shot' },
-      { spell: 'Exhilaration',         cd: '1.5 min', effect: 'Øjeblikkelig 30% HP heal til dig selv',               when: 'Under ~60% HP' },
-      { spell: 'Aspect of the Turtle', cd: '3 min',   effect: '100% immun i 8 sek — stop med at angribe!',           when: 'Absolut nødsituation eller tung mechanic' },
-      { spell: 'Feign Death',          cd: '30 sec',  effect: 'Aggro-dump — fjerner dig fra angrebslisten',          when: 'Aggro-problem eller wipe-situation' },
-      { spell: 'Intimidation',         cd: '1 min',   effect: '5 sek bedøvelse på mål',                              when: 'Afbryd eller nødstop af cast' },
-      { spell: 'Misdirection',         cd: '30 sec',  effect: 'Sender din trussel til tank',                         when: 'Ved pulls eller aggro-problem' },
-    ],
+    ]
   },
 
   utility: {
@@ -240,16 +178,7 @@ const SPEC_MM_HUNTER = {
       { spell: "Hunter's Mark",         type: 'Debuff',    note: 'Increases damage — always keep active' },
       { spell: 'Misdirection',          type: 'Threat',    note: 'Gives threat to tank — use on pulls' },
       { spell: 'Disengage',             type: 'Mobility',  note: 'Leap backwards — create distance' },
-    ],
-    da: [
-      { spell: 'Counter Shot',          type: 'Afbryd',    note: 'Dit spark — lav altid makro med Focus/Mouseover' },
-      { spell: 'Intimidation',          type: 'Bedøv',     note: '5 sek bedøvelse — til ikke-afbrydbare casts' },
-      { spell: 'Freezing Trap',         type: 'CC',        note: '60 sek frys på ét mål — guld i M+' },
-      { spell: 'Tar Trap',              type: 'Slow',      note: 'Sinker fjender — til kiting' },
-      { spell: "Hunter's Mark",         type: 'Debuff',    note: 'Øger skade — hold altid aktiv' },
-      { spell: 'Misdirection',          type: 'Trussel',   note: 'Giver trussel til tank — brug ved pulls' },
-      { spell: 'Disengage',             type: 'Mobilitet', note: 'Spring baglæns — skab afstand' },
-    ],
+    ]
   },
 
   tips: {
@@ -272,17 +201,7 @@ const SPEC_MM_HUNTER = {
       { icon: '📏', title: 'Distance is survival',            text: 'MM has no pet tank. Always maintain maximum distance and actively use Disengage + Cheetah.' },
       { icon: '🦵', title: 'Counter Shot timing',             text: 'Do not wait until the cast is almost done — interrupt early. Make a Focus Kick macro for reliable kicks.' },
       { icon: '🎭', title: 'Feign Death = panic button',      text: 'Removes you from the aggro list. Some boss mechanics ignore it — test first!' },
-    ],
-    da: [
-      { icon: '🎯', title: 'Precise Shots = gratis skade',   text: 'Efter hver Aimed Shot har du 2 gratis Arcane Shots eller Multishots. Brug dem altid — lad dem aldrig udløbe.' },
-      { icon: '⚡', title: 'Rapid Fire + Aimed Shot combo',   text: 'Kast Rapid Fire direkte efter Aimed Shot eller omvendt. Begge skalerer med hinanden — dette er dit største skade-vindue.' },
-      { icon: '💥', title: 'Trueshot timing',                 text: 'Brug altid Trueshot on cooldown. Under Trueshot: så mange Aimed Shots som muligt. Gem den aldrig til "bedre øjeblikke".' },
-      { icon: '🐢', title: 'Stå stille ved Aimed Shot',      text: 'Aimed Shot kræver stilstand. Planlæg din position før trækket starter. Brug Disengage til hurtig omplacering.' },
-      { icon: '❄',  title: 'Freezing Trap = skip-værktøj',  text: 'I M+: Freezing Trap er guld til skips og CC. Koordiner med tanken om hvem der CC\'er hvad.' },
-      { icon: '📏', title: 'Afstand er overlevelse',          text: 'MM har ingen kæledyr-tank. Oprethold altid maksimal afstand og brug Disengage + Cheetah aktivt.' },
-      { icon: '🦵', title: 'Counter Shot timing',             text: 'Vent ikke til castet næsten er færdigt — afbryd tidligt. Lav en Focus Kick-makro for pålidelige sparks.' },
-      { icon: '🎭', title: 'Feign Death = panikknap',         text: 'Fjerner dig fra aggro-listen. Nogle boss-mechanics ignorerer det — test først!' },
-    ],
+    ]
   },
 
   macros: {
@@ -299,14 +218,7 @@ const SPEC_MM_HUNTER = {
       { name: 'Trueshot + Rapid Fire', code: '#showtooltip Trueshot\n/cast Trueshot\n/cast Rapid Fire', note: 'Burst opener — always activate together.' },
       { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'CC without switching target.' },
       { name: 'Misdirection (to tank)', code: '#showtooltip Misdirection\n/cast [@focus,help,nodead][@mouseover,help,nodead][@pet] Misdirection', note: 'Set focus to tank = always ready for big pulls.' },
-    ],
-    da: [
-      { name: 'Counter Shot (Focus Kick)', code: '#showtooltip Counter Shot\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Counter Shot', note: 'Spark på focus > mouseover > mål. Essentiel i M+!' },
-      { name: 'Aimed Shot + Rapid Fire', code: '#showtooltip Aimed Shot\n/cast Aimed Shot\n/cast Rapid Fire', note: 'Kombinerer begge i én makro — bemærk GCD timing!' },
-      { name: 'Trueshot + Rapid Fire', code: '#showtooltip Trueshot\n/cast Trueshot\n/cast Rapid Fire', note: 'Burst opener — aktiver altid sammen.' },
-      { name: 'Freezing Trap (mouseover)', code: '#showtooltip Freezing Trap\n/cast [@mouseover,harm,nodead][@target,harm,nodead] Freezing Trap', note: 'CC uden at skifte mål.' },
-      { name: 'Misdirection (til tank)', code: '#showtooltip Misdirection\n/cast [@focus,help,nodead][@mouseover,help,nodead][@pet] Misdirection', note: 'Sæt focus til tank = altid klar til store pulls.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -345,25 +257,7 @@ const SPEC_MM_HUNTER = {
         { type: 'No pet 🎯',     bonus: 'Lone Wolf bonus — extra damage without pet',      use: 'Standard for MM — recommended' },
         { type: 'Ferocity 🟢',   bonus: 'Leech — extra survivability',                     use: 'If you want extra survival or need a pet to tank' },
       ],
-    },
-    da: {
-      intro: 'Focus (0–120) fungerer anderledes end BM — MM genererer mindre Focus passivt. Steady Shot er din Focus-generator når du løber tør.',
-      generate: [
-        { spell: 'Auto-angreb',   note: '+2 Focus per angreb (passiv)' },
-        { spell: 'Steady Shot',   note: 'Hoved-generator — brug som fyldstof' },
-        { spell: 'Trueshot',      note: 'Reducerer midlertidigt Focus-omkostning for Aimed Shot' },
-      ],
-      spend: [
-        { spell: 'Aimed Shot',    note: 'Høj Focus-omkostning — kun med Precise Shots!' },
-        { spell: 'Arcane Shot',   note: 'Moderat omkostning — brug Precise Shots procs' },
-        { spell: 'Multishot',     note: 'AoE Focus-dump' },
-      ],
-      pet_tip: 'MM spiller uden fast kæledyr. Du kan have Lone Wolf-bonussen aktiv (talent). Ingen Frenzy-stakke — Focus management er din største udfordring.',
-      pets: [
-        { type: 'Intet kæledyr 🎯', bonus: 'Lone Wolf-bonus — ekstra skade uden kæledyr', use: 'Standard for MM — anbefalet' },
-        { type: 'Ferocity 🟢',      bonus: 'Leech — ekstra overlevelsesevne',              use: 'Hvis du vil have ekstra overlevelse eller kæledyr til tank' },
-      ],
-    },
+    }
   },
 
   consumables: {
@@ -380,14 +274,7 @@ const SPEC_MM_HUNTER = {
       { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility and Stamina.', note:'Ask for feast' },
       { type:'food', name:'Royal Roast', effect:'Solo food.', note:'Backup' },
       { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primary stat.', note:'Always' },
-    ],
-    da: [
-      { type:'flask', name:'Flask of the Blood Knights', effect:'Øger Agility i 1 time.', note:'Altid aktiv' },
-      { type:'pot', name:'Potion of Recklessness', effect:'Agility-boost under burst.', note:'På pull eller Trueshot' },
-      { type:'food', name:'Silvermoon Parade (Feast)', effect:'+Agility og Stamina.', note:'Bed om feast' },
-      { type:'food', name:'Royal Roast', effect:'Solo-mad.', note:'Backup' },
-      { type:'rune', name:'Void-Touched Augment Rune', effect:'+Primær stat.', note:'Altid' },
-    ],
+    ]
   },
 };
 

@@ -4,28 +4,25 @@ const SPEC_GUARDIAN_DRUID = {
   id: 'guardian_druid',
   icon: '🐻',
   class: 'Druid',
-  spec:   { nl: 'Guardian', en: 'Guardian', da: 'Guardian' },
+  spec:   { nl: 'Guardian', en: 'Guardian'},
   role:   'tank',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand (beervorm)', en: 'Staff or one-hand + offhand (bear form)', da: 'Stav eller enhånds + offhand (bjørneform)' },
+  weapon: { nl: 'Staf of eenhandig + offhand (beervorm)', en: 'Staff or one-hand + offhand (bear form)'},
   resource: 'Rage',
   patch: '1.0',
   color: '#FF7C0A',
 
   summary: {
     nl: 'Guardian Druid is een veelzijdige tank in beervorm met hoge armor en uitstekende zelfheling via Frenzied Regeneration. Draait om Ironfur voor armor en Mangle voor Rage.',
-    en: 'Guardian Druid is a versatile tank in bear form with high armor and excellent self-healing via Frenzied Regeneration. Revolves around Ironfur for armor and Mangle for Rage.',
-    da: 'Guardian Druid er en alsidig tank i bjørneform med høj armor og fremragende selvheling via Frenzied Regeneration. Drejer sig om Ironfur til armor og Mangle til Rage.',
+    en: 'Guardian Druid is a versatile tank in bear form with high armor and excellent self-healing via Frenzied Regeneration. Revolves around Ironfur for armor and Mangle for Rage.'
   },
   pros: {
     nl: ['Uitstekende zelfheling', 'Hoge armor via Ironfur', 'Goede AoE threat via Thrash', 'Rebirth voor in-combat rez', 'Sterk in M+ door mobiliteit'],
-    en: ['Excellent self-healing', 'High armor via Ironfur', 'Good AoE threat via Thrash', 'Rebirth for in-combat rez', 'Strong in M+ due to mobility'],
-    da: ['Fremragende selvheling', 'Høj armor via Ironfur', 'God AoE-trussel via Thrash', 'Rebirth til in-combat genoplivning', 'Stærk i M+ pga. mobilitet'],
+    en: ['Excellent self-healing', 'High armor via Ironfur', 'Good AoE threat via Thrash', 'Rebirth for in-combat rez', 'Strong in M+ due to mobility']
   },
   cons: {
     nl: ['Minder sterk tegen magische schade', 'Ironfur vereist actief Rage management', 'Minder cooldowns dan andere tanks'],
-    en: ['Weaker against magic damage', 'Ironfur requires active Rage management', 'Fewer cooldowns than other tanks'],
-    da: ['Svagere mod magisk skade', 'Ironfur kræver aktiv Rage-styring', 'Færre cooldowns end andre tanks'],
+    en: ['Weaker against magic damage', 'Ironfur requires active Rage management', 'Fewer cooldowns than other tanks']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_GUARDIAN_DRUID = {
         'Frenzied Regeneration at <50% HP — not earlier',
         'Barkskin during major mechanic — no Rage needed',
       ],
-    },
-    da: {
-      opener: 'Thrash → Mangle → Ironfur → Maul (Rage dump) → forny Thrash',
-      single: 'Mangle (altid på CD) → hold Thrash aktiv → Ironfur ved 35+ Rage → Maul dump',
-      aoe:    'Thrash → Swipe-spam → Mangle → hold Ironfur aktiv',
-      rules: [
-        'Ironfur altid aktiv — koster Rage men giver armor',
-        'Mangle altid på cooldown — hoved Rage-generator',
-        'Thrash altid aktiv — DoT + AoE-trussel',
-        'Frenzied Regeneration ved <50% HP — ikke tidligere',
-        'Barkskin ved stor mekanik — ingen Rage nødvendig',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -111,29 +96,7 @@ const SPEC_GUARDIAN_DRUID = {
         { spell: 'Mangle', why: 'Always on CD even during AoE' },
         { spell: 'Ironfur', why: 'Always active — also in trash pulls' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Ironfur er din vigtigste defensive knap. Hold den altid aktiv — udløber = stor sårbarhed!',
-      opener: [
-        { spell: 'Thrash', why: 'AoE-trussel straks fra starten' },
-        { spell: 'Mangle', why: 'Rage-generator + skade' },
-        { spell: 'Ironfur', why: 'Armor-buff — hold altid aktiv' },
-        { spell: 'Swipe/Maul', why: 'Ekstra trussel eller Rage-dump' },
-      ],
-      single: [
-        { spell: 'Mangle', why: 'Altid på CD — hoved Rage-generator' },
-        { spell: 'Thrash', why: 'Forny når <3 sek tilbage' },
-        { spell: 'Ironfur', why: 'Ved 35+ Rage — hold altid aktiv' },
-        { spell: 'Maul', why: 'Rage-dump når >80 Rage' },
-        { spell: 'Frenzied Regeneration', why: '<50% HP — selvheling' },
-      ],
-      aoe: [
-        { spell: 'Thrash', why: 'AoE DoT + trussel på alle mål' },
-        { spell: 'Swipe', why: 'AoE-angreb — hoved trussel-bygger på fjender' },
-        { spell: 'Mangle', why: 'Altid på CD selv under AoE' },
-        { spell: 'Ironfur', why: 'Altid aktiv — også i trash-pulls' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -156,17 +119,7 @@ const SPEC_GUARDIAN_DRUID = {
         { rank:4, stat:'Haste',       bars:3, note:'Shorter cooldowns, more Rage' },
         { rank:5, stat:'Mastery',     bars:2, note:'Increases bonus armor from Ironfur' },
       ],
-    },
-    da: {
-      tip: 'Som tank er Stamina din vigtigste stat. Fokuser videre på Haste og Versatility for bedre tanking.',
-      list: [
-        { rank:1, stat:'Stamina',     bars:5, note:'Primær tanking-stat — mere HP = mere buffer' },
-        { rank:2, stat:'Agility',     bars:4, note:'Øger armor og angrebsskade' },
-        { rank:3, stat:'Versatility', bars:3, note:'Skadereduktion + ekstra skade' },
-        { rank:4, stat:'Haste',       bars:3, note:'Kortere cooldowns, mere Rage' },
-        { rank:5, stat:'Mastery',     bars:2, note:'Øger bonusarmor fra Ironfur' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -183,14 +136,7 @@ const SPEC_GUARDIAN_DRUID = {
       { spell:'Frenzied Regeneration',  cd:'36 sec',  effect:'Heals for % max HP', when:'<50% HP — not too early, not too late' },
       { spell:'Incarnation: Guardian',  cd:'3 min',   effect:'Enhanced bear form — extra armor + damage', when:'Largest pulls or boss opener' },
       { spell:'Bristling Fur',          cd:'1 min',   effect:'Generates Rage based on damage taken', when:'During major damage phases' },
-    ],
-    da: [
-      { spell:'Barkskin',               cd:'1 min',   effect:'20% skadereduktion i 12 sek', when:'Stor mekanik eller spike-skade' },
-      { spell:'Survival Instincts',     cd:'3 min',   effect:'50% skadereduktion i 6 sek', when:'Nødsituation — hp næsten tomt' },
-      { spell:'Frenzied Regeneration',  cd:'36 sec',  effect:'Healer for % max HP', when:'<50% HP — ikke for tidligt, ikke for sent' },
-      { spell:'Incarnation: Guardian',  cd:'3 min',   effect:'Forbedret bjørneform — ekstra armor + skade', when:'Største pulls eller boss-opener' },
-      { spell:'Bristling Fur',          cd:'1 min',   effect:'Genererer Rage baseret på modtaget skade', when:'Under store skadefaser' },
-    ],
+    ]
   },
 
   utility: {
@@ -207,14 +153,7 @@ const SPEC_GUARDIAN_DRUID = {
       { spell:'Typhoon',          type:'Knockback',  note:'Knockback + interrupt — ideal for grouping mobs' },
       { spell:'Ursol\'s Vortex',  type:'AoE Root',  note:'Pulls mobs together and roots them' },
       { spell:'Skull Bash',       type:'Interrupt', note:'Fast melee interrupt on 15 sec CD' },
-    ],
-    da: [
-      { spell:'Rebirth',          type:'Genoplivning', note:'In-combat genoplivning — som tank kan du sikkert bruge dette' },
-      { spell:'Stampeding Roar',  type:'Gruppe',    note:'60% hastighedsboost for gruppe i 8 sek — ideelt i M+' },
-      { spell:'Typhoon',          type:'Knockback',  note:'Knockback + interrupt — ideelt til at samle fjender' },
-      { spell:'Ursol\'s Vortex',  type:'AoE Root',  note:'Trækker fjender sammen og rodfæster dem' },
-      { spell:'Skull Bash',       type:'Interrupt', note:'Hurtig melee interrupt på 15 sek CD' },
-    ],
+    ]
   },
 
   tips: {
@@ -231,14 +170,7 @@ const SPEC_GUARDIAN_DRUID = {
       { icon:'🌪️', title:'Typhoon for positioning', text:'Typhoon in M+ is not just an interrupt — use it to push mobs toward the tank or knock them away from the healer.' },
       { icon:'🏃', title:'Stampeding Roar always ready', text:'As Guardian you are the logical user of Stampeding Roar. Use it between pulls for faster clear or during mechanic run-outs.' },
       { icon:'💚', title:'Rebirth = major asset', text:'As tank you can use Rebirth while holding mobs. If the healer dies: immediately Rebirth — that saves a lot of time.' },
-    ],
-    da: [
-      { icon:'🐻', title:'Lad aldrig Ironfur udløbe', text:'Ironfur er din armor-buff — udløber betyder, at næste auto-angreb rammer dig meget hårdere. Hold den altid aktiv, selv mellem pulls.' },
-      { icon:'💉', title:'Frenzied Regen-timing', text:'Brug Frenzied Regeneration ved <50% HP for maksimal heling. For tidlig brug spilder CD\'en. For sent = død.' },
-      { icon:'🌪️', title:'Typhoon til positionering', text:'Typhoon i M+ er ikke kun interrupt — brug det til at skubbe fjender mod tanken eller væk fra healeren.' },
-      { icon:'🏃', title:'Stampeding Roar altid klar', text:'Som Guardian er du den logiske bruger af Stampeding Roar. Brug det mellem pulls for hurtigere clear eller ved mekanik-udfald.' },
-      { icon:'💚', title:'Rebirth = stort aktiv', text:'Som tank kan du bruge Rebirth mens du holder fjender. Hvis healeren dør: straks Rebirth — det sparer meget tid.' },
-    ],
+    ]
   },
 
   macros: {
@@ -251,12 +183,7 @@ const SPEC_GUARDIAN_DRUID = {
       { name:'Incarnation + Barkskin', code:'/cast Incarnation: Guardian of Ursoc\n/cast Barkskin', note:'Maximum tanking cooldown opener — extra armor AND damage reduction.' },
       { name:'Rebirth on mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat rez without switching targets — crucial as tank.' },
       { name:'Frenzied Regen emergency', code:'/cast Frenzied Regeneration\n/use Healthstone', note:'Activate both healing options immediately at low HP.' },
-    ],
-    da: [
-      { name:'Incarnation + Barkskin', code:'/cast Incarnation: Guardian of Ursoc\n/cast Barkskin', note:'Maksimalt tanking cooldown opener — ekstra armor OG skadereduktion.' },
-      { name:'Rebirth på mouseover', code:'/cast [@mouseover] Rebirth', note:'In-combat genoplivning uden at skifte mål — afgørende som tank.' },
-      { name:'Frenzied Regen nødknap', code:'/cast Frenzied Regeneration\n/use Healthstone', note:'Aktivér begge helingsmuligheder straks ved lav HP.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -293,24 +220,7 @@ const SPEC_GUARDIAN_DRUID = {
       ],
       pet_tip: '⚠️ Ironfur always has priority over Maul — armor is always more important than extra damage as a tank!',
       pets: [],
-    },
-    da: {
-      intro: 'Guardian bruger Rage (0-100). Rage genereres via angreb og modtaget skade. Du bruger Rage på Ironfur (armor) og Maul (skade-dump).',
-      generate: [
-        'Mangle — største Rage-generator, altid på CD',
-        'Thrash — Rage ved træf',
-        'Auto attacks — lille passiv Rage',
-        'Modtaget skade — passiv Rage-generering',
-        'Bristling Fur — ekstra Rage under tung skade',
-      ],
-      spend: [
-        'Ironfur (40 Rage) — bonus armor-buff, altid prioritet',
-        'Maul (40 Rage) — skade-dump når Ironfur allerede er aktiv',
-        'Frenzied Regeneration (10 Rage) — selvheling',
-      ],
-      pet_tip: '⚠️ Ironfur har altid prioritet over Maul — armor er altid vigtigere end ekstra skade som tank!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -327,14 +237,7 @@ const SPEC_GUARDIAN_DRUID = {
       { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',      note:'Stamina is crucial as tank' },
       { type:'food',   name:'Royal Roast',            effect:'Solo tank food — high Stamina bonus.',       note:'Backup if no feast' },
       { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                      note:'Always use' },
-    ],
-    da: [
-      { type:'flask',  name:'Flask of the Blood Knights',  effect:'Øger Agility (også armor) i 1 time.',         note:'Altid aktiv som tank' },
-      { type:'pot',    name:'Potion of Recklessness',   effect:'Primær stat-boost til overlevelse.',          note:'Brug ved største pull eller boss-opener' },
-      { type:'food',   name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',        note:'Stamina er afgørende som tank' },
-      { type:'food',   name:'Royal Roast',            effect:'Solo tank-mad — høj Stamina-bonus.',          note:'Backup hvis ingen feast' },
-      { type:'rune',   name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                        note:'Brug altid' },
-    ],
+    ]
   },
 };
 

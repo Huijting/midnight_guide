@@ -8,41 +8,36 @@ DUNGEONS.push({
   id:   'voidspire',
   type: 'raid',
   name: 'The Voidspire',
-  zone: { nl: 'Voidstorm', en: 'Voidstorm', da: 'Voidstorm' },
+  zone: { nl: 'Voidstorm', en: 'Voidstorm'},
   time: null,
-  level: { nl: 'Seizoen 1 Raid — Normal/Heroic/Mythic', en: 'Season 1 Raid — Normal/Heroic/Mythic', da: 'Sæson 1 Raid — Normal/Heroic/Mythic' },
+  level: { nl: 'Seizoen 1 Raid — Normal/Heroic/Mythic', en: 'Season 1 Raid — Normal/Heroic/Mythic'},
   bosses_short: ['Imperator Averzian', 'Vorasius', 'Fallen-King Salhadaar', 'Vaelgor & Ezzorak', 'Lightblinded Vanguard', 'Crown of the Cosmos'],
 
   lore: {
     nl: 'Hoog boven de Voidstorm torent de Voidspire als een speer van duisternis. Xal\'atath heeft haar Devouring Host verzameld om de laatste verdediging van het Licht te doorbreken. Alleria Windrunner en de Champions of Azeroth voeren een wanhopige aanval uit op de spits — voordat alles verloren is.',
-    en: 'High above the Voidstorm the Voidspire looms like a spear of darkness. Xal\'atath has gathered her Devouring Host to break the last defenses of the Light. Alleria Windrunner and the Champions of Azeroth launch a desperate assault on the summit — before all is lost.',
-    da: 'Højt over Voidstorm truer Voidspire som et mørkets spyd. Xal\'atath har samlet sin Devouring Host for at bryde Lysets sidste forsvar. Alleria Windrunner og Azeroth\'s Champions lancerer et desperat angreb mod toppen — inden alt er tabt.',
+    en: 'High above the Voidstorm the Voidspire looms like a spear of darkness. Xal\'atath has gathered her Devouring Host to break the last defenses of the Light. Alleria Windrunner and the Champions of Azeroth launch a desperate assault on the summit — before all is lost.'
   },
 
   tips: [
     {
-      title: { nl: '📍 Ingang', en: '📍 Entrance', da: '📍 Indgang' },
+      title: { nl: '📍 Ingang', en: '📍 Entrance'},
       text:  { nl: '/way #2405 45.5 64.4 — midden in de Voidstorm zone. Zoek de buitenste platform aan de basis van de spits.',
-               en: '/way #2405 45.5 64.4 — center of the Voidstorm zone. Find the outer platform at the base of the spire.',
-               da: '/way #2405 45.5 64.4 — midten af Voidstorm-zonen. Find den ydre platform ved foden af spyret.' },
+               en: '/way #2405 45.5 64.4 — center of the Voidstorm zone. Find the outer platform at the base of the spire.'},
     },
     {
-      title: { nl: '⚠️ Kernthema: positionering boven DPS', en: '⚠️ Core theme: positioning over DPS', da: '⚠️ Kernema: positionering over DPS' },
+      title: { nl: '⚠️ Kernthema: positionering boven DPS', en: '⚠️ Core theme: positioning over DPS'},
       text:  { nl: 'Je DPS\'t je niet door de Voidspire heen. Foute positionering veroorzaakt meer wipes dan te lage schade. Ken je plek, ken je taak.',
-               en: 'You cannot DPS your way through the Voidspire. Incorrect positioning causes more wipes than low damage. Know your spot, know your assignment.',
-               da: 'Du kan ikke DPS dig igennem Voidspire. Forkert positionering giver flere wipes end lav skade. Kend din plads, kend din opgave.' },
+               en: 'You cannot DPS your way through the Voidspire. Incorrect positioning causes more wipes than low damage. Know your spot, know your assignment.'},
     },
     {
-      title: { nl: '🏆 Tier tokens', en: '🏆 Tier tokens', da: '🏆 Tier tokens' },
+      title: { nl: '🏆 Tier tokens', en: '🏆 Tier tokens'},
       text:  { nl: 'Tier 35 tokens vallen van bosses 2 (Vorasius), 3 (Salhadaar), 4 (Vaelgor & Ezzorak) en 5 (Lightblinded Vanguard). Boss 6 dropt GEEN tier token.',
-               en: 'Tier 35 tokens drop from bosses 2 (Vorasius), 3 (Salhadaar), 4 (Vaelgor & Ezzorak) and 5 (Lightblinded Vanguard). Boss 6 does NOT drop a tier token.',
-               da: 'Tier 35-tokens falder fra bosser 2 (Vorasius), 3 (Salhadaar), 4 (Vaelgor & Ezzorak) og 5 (Lightblinded Vanguard). Boss 6 dropper IKKE tier-token.' },
+               en: 'Tier 35 tokens drop from bosses 2 (Vorasius), 3 (Salhadaar), 4 (Vaelgor & Ezzorak) and 5 (Lightblinded Vanguard). Boss 6 does NOT drop a tier token.'},
     },
     {
-      title: { nl: '🎮 Vleugels (LFR)', en: '🎮 Wings (LFR)', da: '🎮 Vinger (LFR)' },
+      title: { nl: '🎮 Vleugels (LFR)', en: '🎮 Wings (LFR)'},
       text:  { nl: 'Vleugel 1 (17 mrt): Averzian + Vorasius. Vleugel 2 (24 mrt): Salhadaar + Vaelgor & Ezzorak. Vleugel 3 (31 mrt): Lightblinded Vanguard + Crown of the Cosmos.',
-               en: 'Wing 1 (Mar 17): Averzian + Vorasius. Wing 2 (Mar 24): Salhadaar + Vaelgor & Ezzorak. Wing 3 (Mar 31): Lightblinded Vanguard + Crown of the Cosmos.',
-               da: 'Vinge 1 (17. mar): Averzian + Vorasius. Vinge 2 (24. mar): Salhadaar + Vaelgor & Ezzorak. Vinge 3 (31. mar): Lightblinded Vanguard + Crown of the Cosmos.' },
+               en: 'Wing 1 (Mar 17): Averzian + Vorasius. Wing 2 (Mar 24): Salhadaar + Vaelgor & Ezzorak. Wing 3 (Mar 31): Lightblinded Vanguard + Crown of the Cosmos.'},
     },
   ],
 
@@ -53,8 +48,7 @@ DUNGEONS.push({
       name: 'Imperator Averzian',
       desc: {
         nl: 'Bochttic-tac-toe: de arena is een 3×3 grid. Elke cyclus spawnen 3 Abyssal Voidshapers in verschillende vakken. Als hun Gathering Darkness-cast volledig gaat: vak geclaimd. Drie aangrenzende vakken op een rij = March of the Endless = directe wipe. Je kunt 2 van de 3 per cyclus stoppen via Umbral Collapse soaks.',
-        en: 'Cosmic tic-tac-toe: the arena is a 3×3 grid. Each cycle 3 Abyssal Voidshapers spawn in different zones. If their Gathering Darkness cast completes: zone claimed. Three adjacent claimed zones in a row = March of the Endless = instant wipe. You can stop 2 of the 3 per cycle via Umbral Collapse soaks.',
-        da: 'Kosmisk tic-tac-toe: arenaen er et 3×3 gitter. Hver cyklus spawner 3 Abyssal Voidshapers i forskellige felter. Hvis deres Gathering Darkness-cast fuldføres: felt er clamet. Tre tilstødende felter på rad = March of the Endless = øjeblikkelig wipe. Du kan stoppe 2 af 3 per cyklus via Umbral Collapse soaks.',
+        en: 'Cosmic tic-tac-toe: the arena is a 3×3 grid. Each cycle 3 Abyssal Voidshapers spawn in different zones. If their Gathering Darkness cast completes: zone claimed. Three adjacent claimed zones in a row = March of the Endless = instant wipe. You can stop 2 of the 3 per cycle via Umbral Collapse soaks.'
       },
       tank: {
         nl: [
@@ -68,13 +62,7 @@ DUNGEONS.push({
           '<strong>Positioning</strong> — Keep Averzian away from claimed zones (his damage and pressure increase near Void areas). Position stably at the center of the grid.',
           '<strong>Dark Tears</strong> — Do not let adds from claimed zones reach Averzian. Off-tank picks them up as soon as they spawn.',
           '<strong>Protect melee DPS</strong> — Face the boss so the melee cluster does not land in soak zones that force DPS to move.',
-        ],
-        da: [
-          '<strong>Blackening Wounds</strong> — Staplende tank-debuff. Swap tidligt — vent ikke til stacks bliver dødelige.',
-          '<strong>Positionering</strong> — Hold Averzian væk fra claimede felter (hans skade og pres stiger nær Void-zoner). Positionér stabilt i midten af gitteret.',
-          '<strong>Dark Tears</strong> — Lad ikke adds fra claimede felter nå Averzian. Off-tank tager dem op så snart de spawner.',
-          '<strong>Beskyt melee DPS</strong> — Vend bossen så melee-klyngen ikke havner i soak-zoner der tvinger DPS til at bevæge sig.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -88,13 +76,7 @@ DUNGEONS.push({
           '<strong>Umbral Collapse soaks</strong> — Soak groups take spike damage. Pre-heal soakers just before the cast. Prepare multiple spot heals per cycle.',
           '<strong>Tanks spike unpredictably</strong> — When Averzian stands next to a Void zone he deals extra damage to the tank. Anticipate this proactively.',
           '<strong>Mythic: coordinated dispels</strong> — Do not dispel reactively — overlapping dispels cause simultaneous raid damage that breaks grid control.',
-        ],
-        da: [
-          '<strong>Dark Upheaval</strong> — Konstant raid-skade der stiger jo mere gitteret fyldes. Hold alle over 70%.',
-          '<strong>Umbral Collapse soaks</strong> — Soak-grupper tager spike-skade. Pre-heal soakers lige inden castet. Forbered flere spot-heals per cyklus.',
-          '<strong>Tanks spiked uforudsigeligt</strong> — Når Averzian står ved siden af en Void-zone giver han ekstra skade til tanken. Forudse dette proaktivt.',
-          '<strong>Mythic: koordinerede dispels</strong> — Dispel ikke reaktivt — overlappende dispels giver simultan raid-skade der bryder gitterkontrol.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -110,14 +92,7 @@ DUNGEONS.push({
           '<strong>Shadowguard Stalwarts</strong> — Kill fast after spawn. They buff nearby enemies if they live too long.',
           '<strong>Never sacrifice the center zone</strong> — Give up corners when needed, but the center zone being claimed is almost always fatal (too many diagonals).',
           '<strong>Cooldowns</strong> — Use offensive cooldowns on the boss after successful soak cycles. Do not save until the grid is too full.',
-        ],
-        da: [
-          '<strong>Umbral Collapse</strong> — Du er ansvarlig for soaks. Pre-assigned grupper af 3. Hold dig til callout — improviser ikke.',
-          '<strong>Abyssal Voidshaper prioritet</strong> — Afbryd Gathering Darkness ALTID. Hvis det caster: felt er clamet. Focus Voidshapers frem for bossen i down-phases.',
-          '<strong>Shadowguard Stalwarts</strong> — Dræb hurtigt efter spawn. De buffer nærliggende fjender hvis de lever for længe.',
-          '<strong>Ofre aldrig centerfeltet</strong> — Giv hjørner op om nødvendigt, men center-feltet claimet er næsten altid fatalt (for mange diagonaler).',
-          '<strong>Cooldowns</strong> — Brug offensive cooldowns på bossen efter succesfulde soak-cykler. Gem dem ikke til gitteret er for fyldt.',
-        ],
+        ]
       },
     },
     // ── BOSS 2 ────────────────────────────────────────────────
@@ -126,8 +101,7 @@ DUNGEONS.push({
       name: 'Vorasius',
       desc: {
         nl: 'Stationaire boss in het midden — een massale gear/throughput check. Kernmechanic: Vorasius maakt kristallen muren met Crystalline Eruption. Als de muren niet neer zijn voor Void Breath: geen veilige plek, directe wipe. Om muren te breken: kite Blistercreep-adds ernaar toe en burst ze bij de muur.',
-        en: 'Stationary boss in the center — a massive gear/throughput check. Core mechanic: Vorasius creates crystal walls with Crystalline Eruption. If walls are not down before Void Breath: no safe lane, instant wipe. To break walls: kite Blistercreep adds into them and burst them at the wall.',
-        da: 'Stationær boss i midten — en massiv gear/throughput-tjek. Kernemekanik: Vorasius skaber krystalvægge med Crystalline Eruption. Hvis væggene ikke er nede inden Void Breath: ingen sikker bane, øjeblikkelig wipe. For at bryde vægge: kite Blistercreep-adds mod dem og burst dem ved væggen.',
+        en: 'Stationary boss in the center — a massive gear/throughput check. Core mechanic: Vorasius creates crystal walls with Crystalline Eruption. If walls are not down before Void Breath: no safe lane, instant wipe. To break walls: kite Blistercreep adds into them and burst them at the wall.'
       },
       tank: {
         nl: [
@@ -141,13 +115,7 @@ DUNGEONS.push({
           '<strong>Crystaline Eruption</strong> — Heavy slam spawns walls. Keep the boss in a stable position so wall placement is predictable.',
           '<strong>Colossal Throw</strong> — Boss hits the tank and creates walls on either side. Position walls on opposite sides for predictable kite routes.',
           '<strong>Taunt swap</strong> — Primordial Roar stacks a debuff. Swap after each heavy hit before stacks get too high.',
-        ],
-        da: [
-          '<strong>Smashing Frenzy</strong> — Frontal angreb på tanken. Glippe det = raid-eksplosion. Tank altid foran bossen så frontalen lander på dig.',
-          '<strong>Crystaline Eruption</strong> — Tungt slag spawner vægge. Hold bossen et stabilt sted så vægplacering er forudsigelig.',
-          '<strong>Colossal Throw</strong> — Boss rammer tanken og skaber vægge på begge sider. Positionér vægge på modsatte sider for forudsigelige kite-ruter.',
-          '<strong>Taunt swap</strong> — Primordial Roar stabler en debuff. Swap efter hvert tungt slag inden stacks bliver for høje.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -161,13 +129,7 @@ DUNGEONS.push({
           '<strong>Smashing Frenzy miss</strong> — If the tank misses the frontal, a raid explosion follows. Keep a major raid cooldown ready as backup.',
           '<strong>Blistercreep timing</strong> — Adds explode at the wall. Short burst damage on the raid. Prepare spot heals for the kite players.',
           '<strong>Void Breath</strong> — If walls are down before the cast: zero damage in the safe lane. If not: the whole raid dies. This is the moment where all you can do is position correctly.',
-        ],
-        da: [
-          '<strong>Primordial Roar</strong> — Konstant raid-skade der eskalerer igennem hele kampen. Roter cooldowns — dette er en udholdenhedstest.',
-          '<strong>Smashing Frenzy misser</strong> — Hvis tanken misser frontalen følger en raid-eksplosion. Hold en stor raid-cooldown klar som backup.',
-          '<strong>Blistercreep timing</strong> — Adds eksploderer ved væggen. Kort burst-skade på raiden. Forbered spot-heals til kite-spillerne.',
-          '<strong>Void Breath</strong> — Hvis væggene er nede inden castet: nul skade i den sikre bane. Hvis ikke: hele raiden dør. Dette er øjeblikket hvor alt du kan gøre er at positionere korrekt.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -181,13 +143,7 @@ DUNGEONS.push({
           '<strong>Vorasius stands still</strong> — No movement required on the boss. Use heavy single-target cooldowns — no excuses for low uptime.',
           '<strong>Void Breath lane</strong> — Position before the cast in the lane that is FREE of walls. Outside the lane = death.',
           '<strong>Primordial Roar stacks</strong> — The fight has a soft enrage after 3 Roar cycles. Efficient wall breaks = shorter fight = less damage.',
-        ],
-        da: [
-          '<strong>Blistercreep kite</strong> — 2 udpegede kite-spillere holder Blistercreeps i live længe nok til at positionere dem ved væggen, derefter burst.',
-          '<strong>Vorasius står stille</strong> — Ingen bevægelse krævet på bossen. Brug tunge single-target cooldowns — ingen undskyldninger for lav uptime.',
-          '<strong>Void Breath bane</strong> — Positionér inden castet i den bane der er FRI for vægge. Uden for banen = død.',
-          '<strong>Primordial Roar stacks</strong> — Kampen har en blød enrage efter 3 Roar-cykler. Effektive vægbrud = kortere kamp = mindre skade.',
-        ],
+        ]
       },
     },
     // ── BOSS 3 ────────────────────────────────────────────────
@@ -196,8 +152,7 @@ DUNGEONS.push({
       name: 'Fallen-King Salhadaar',
       desc: {
         nl: 'Void Orb management: twee Concentrated Void-orbs spawnen en bewegen langzaam richting Salhadaar. Als een orb hem bereikt: Void Infusion = directe raidwipe. Orbs vernietigen geeft Galactic Miasma (raidDoT) — stagger de kills om overlapping te vermijden. Bij 100 energie: Cosmic Unraveling = burst-venster met draaiende void-beams.',
-        en: 'Void Orb management: two Concentrated Void orbs spawn and slowly drift toward Salhadaar. If an orb reaches him: Void Infusion = instant raid wipe. Destroying orbs applies Galactic Miasma (raid DoT) — stagger kills to avoid overlapping. At 100 energy: Cosmic Unraveling = burst window with spinning void beams.',
-        da: 'Void Orb-management: to Concentrated Void-orbs spawner og bevæger sig langsomt mod Salhadaar. Hvis en orb når ham: Void Infusion = øjeblikkelig raid-wipe. Ødelæggelse af orbs giver Galactic Miasma (raid-DoT) — stagger kills for at undgå overlap. Ved 100 energi: Cosmic Unraveling = burst-vindue med roterende void-beams.',
+        en: 'Void Orb management: two Concentrated Void orbs spawn and slowly drift toward Salhadaar. If an orb reaches him: Void Infusion = instant raid wipe. Destroying orbs applies Galactic Miasma (raid DoT) — stagger kills to avoid overlapping. At 100 energy: Cosmic Unraveling = burst window with spinning void beams.'
       },
       tank: {
         nl: [
@@ -211,13 +166,7 @@ DUNGEONS.push({
           '<strong>Despotic Command</strong> — Heavy tank buster. Major defensive here.',
           '<strong>Galactic Miasma</strong> — DoT on the entire raid after each orb kill. Killing two orbs fast in a row = double DoT. Coordinate timing with DPS.',
           '<strong>Cosmic Unraveling (100 energy)</strong> — Salhadaar takes increased damage and fires spinning beams. Tank stable in the center — do not move unless necessary.',
-        ],
-        da: [
-          '<strong>Shattering Twilight</strong> — Tank skaber spike-mønstre rundt om sig selv. Træd VÆRD fra raiden og fra orb-baner — blokerer ellers soak-positioner og sikre zoner under Cosmic Unraveling.',
-          '<strong>Despotic Command</strong> — Tung tankbuster. Stor defensive her.',
-          '<strong>Galactic Miasma</strong> — DoT på hele raiden efter hvert orb-kill. At dræbe to orbs hurtigt i træk = dobbelt DoT. Koordinér timing med DPS.',
-          '<strong>Cosmic Unraveling (100 energi)</strong> — Salhadaar tager øget skade og affyrer roterende beams. Tank stabilt i midten — bevæg dig ikke medmindre nødvendigt.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -231,13 +180,7 @@ DUNGEONS.push({
           '<strong>Dark Radiation</strong> — Stacking debuff on the raid later in the fight. Healing demand escalates. Save cooldowns for the end phase.',
           '<strong>Cosmic Unraveling burn</strong> — Everyone takes damage from spinning beams unless they position correctly. Major raid cooldown here — this is the heaviest healing window.',
           '<strong>Final stretch</strong> — Orbs spawn faster, stacks build faster. Final Cosmic Unraveling often needs a major raid cooldown to survive.',
-        ],
-        da: [
-          '<strong>Galactic Miasma</strong> — Raid-bred DoT efter hvert orb-kill. Største healing-øjeblik efter dobbelt orb-kill. Gem en raid-cooldown til dette.',
-          '<strong>Dark Radiation</strong> — Staplende debuff på raiden senere i kampen. Healing-efterspørgsel eskalerer. Gem cooldowns til slutfasen.',
-          '<strong>Cosmic Unraveling burn</strong> — Alle tager skade fra roterende beams medmindre de positionerer korrekt. Stor raid-cooldown her — dette er det tungeste heal-vindue.',
-          '<strong>Slutspurt</strong> — Orbs spawner hurtigere, stacks bygges hurtigere. Sidste Cosmic Unraveling kræver ofte en stor raid-cooldown for at overleve.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -253,14 +196,7 @@ DUNGEONS.push({
           '<strong>Cosmic Unraveling (100 energy)</strong> — Salhadaar takes increased damage. USE ALL offensive cooldowns here. This is the kill window.',
           '<strong>Spinning beams during Unraveling</strong> — On Heroic you can loosely stack with raid cooldown active. Dodge the beams as much as possible.',
           '<strong>Toy!</strong> — Salhadaar drops the Hearthstone: Cosmic Ritual Stone toy. Weekly farm target.',
-        ],
-        da: [
-          '<strong>Orb-rotation</strong> — 2 DPS tildelt per orb. Burn hurtigt inden det når bossen. Stagger kills: mindst 8 sekunder mellem begge orb-kills for at lade Galactic Miasma udløbe.',
-          '<strong>Fractured Image adds</strong> — Afbryd eller crowd control straks ved spawn. Lad dem ikke snowballe.',
-          '<strong>Cosmic Unraveling (100 energi)</strong> — Salhadaar tager øget skade. BRUG ALLE offensive cooldowns her. Dette er kill-vinduet.',
-          '<strong>Roterende beams under Unraveling</strong> — På Heroic kan du løst stacke med raid-cooldown aktiv. Undgå beams så meget som muligt.',
-          '<strong>Toy!</strong> — Salhadaar dropper Hearthstone: Cosmic Ritual Stone toy. Ugentligt farm-mål.',
-        ],
+        ]
       },
     },
     // ── BOSS 4 ────────────────────────────────────────────────
@@ -269,8 +205,7 @@ DUNGEONS.push({
       name: 'Vaelgor & Ezzorak',
       desc: {
         nl: 'Duoboss: twee draken die samen moeten sterven (maximaal 10% HP verschil, anders enrage). Fases: grond en lucht wisselen. Tussenfase: Midnight Flames — iedereen MOET in de Radiant Barrier van de NPC-bondgenoot staan, anders dodelijke schade. Gloom orbs: soak in groepen van 5 en wissel af (Diminish debuff 1 min).',
-        en: 'Dual boss: two dragons that must die together (max 10% HP difference, otherwise enrage). Phases: alternate between ground and air. Intermission: Midnight Flames — everyone MUST stand in the Radiant Barrier from the allied NPC, otherwise fatal damage. Gloom orbs: soak in groups of 5 and alternate (Diminish debuff 1 min).',
-        da: 'Dobbeltboss: to drager der skal dø sammen (maks 10% HP-forskel, ellers enrage). Faser: skifter mellem jord og luft. Mellemfase: Midnight Flames — alle SKAL stå i Radiant Barrier fra allieret NPC, ellers dødelig skade. Gloom orbs: soak i grupper af 5 og skiftes (Diminish debuff 1 min).',
+        en: 'Dual boss: two dragons that must die together (max 10% HP difference, otherwise enrage). Phases: alternate between ground and air. Intermission: Midnight Flames — everyone MUST stand in the Radiant Barrier from the allied NPC, otherwise fatal damage. Gloom orbs: soak in groups of 5 and alternate (Diminish debuff 1 min).'
       },
       tank: {
         nl: [
@@ -284,13 +219,7 @@ DUNGEONS.push({
           '<strong>Rakfang</strong> — Heavy tank buster from Vaelgor + immediate Impale (cone tail attack with bleed + stun). Never stand behind Vaelgor, never in front of Ezzorak.',
           '<strong>Midnight Flames intermission</strong> — Drop both dragons and move to the Radiant Barrier. In the barrier in time = survival. Too late = death.',
           '<strong>Voidorbs (Ezzorak)</strong> — Ezzorak fires a large orb that leaves a permanent puddle at the edge. Position so puddles fall to the sides.',
-        ],
-        da: [
-          '<strong>HP-paritet</strong> — Hold begge drager inden for 10% HP af hinanden. Udpeg en DPS-caller der råber hvornår der skal skiftes.',
-          '<strong>Rakfang</strong> — Tung tankbuster fra Vaelgor + øjeblikkelig Impale (kegle-haleangreb med bleed + stun). Stå aldrig bag Vaelgor, aldrig foran Ezzorak.',
-          '<strong>Midnight Flames mellemfase</strong> — Slip begge drager og bevæg dig til Radiant Barrier. I barrieren til tiden = overlevelse. For sent = død.',
-          '<strong>Voidorbs (Ezzorak)</strong> — Ezzorak affyrer en stor orb der efterlader en permanent pøl ved kanten. Positionér så pøler falder til siderne.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -304,13 +233,7 @@ DUNGEONS.push({
           '<strong>Gloom soak</strong> — Soak groups take spike damage. Prepare spot heals for each soak group.',
           '<strong>Midnight Flames</strong> — Outside the barrier = instant death. If someone misses it: nothing to heal.',
           '<strong>HP parity emergency</strong> — If a dragon falls behind and DPS needs to quickly switch: short but heavy damage spike on that dragon. Pre-heal the raid.',
-        ],
-        da: [
-          '<strong>Nullbeam + Rakfang</strong> — Altid sammen: stor tank-spike + healing-absorb på tanken. Prioritér tank-healing her.',
-          '<strong>Gloom soak</strong> — Soak-grupper tager spike-skade. Forbered spot-heals til hver soak-gruppe.',
-          '<strong>Midnight Flames</strong> — Uden for barrieren = øjeblikkelig død. Hvis nogen misser den: intet at heale.',
-          '<strong>HP-paritet nødsituation</strong> — Hvis en drage halter bagud og DPS hurtigt skal skifte: kort men tung skade-spike på den drage. Pre-heal raiden.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -326,14 +249,7 @@ DUNGEONS.push({
           '<strong>Gloom orbs soak</strong> — Soak in groups of 5. Diminish debuff = 1 min cooldown on soaking. Alternate groups. Soaking twice with Diminish = massive damage.',
           '<strong>Midnight Flames</strong> — Drop both dragons. Move to the Radiant Barrier. Deadline is STRICT. This is a positioning check, not a DPS check.',
           '<strong>Enrage = wipe</strong> — If a dragon outlives the other by more than 10% HP, it enrages. Everything after that is a straight walk to the graveyard.',
-        ],
-        da: [
-          '<strong>HP-paritet</strong> — Udpeg en caller. Maks 10% forskel. Skift fokus når calleren råber — meters er irrelevante her.',
-          '<strong>Voidorbs (Ezzorak)</strong> — Spawner en orb ved Nullbeam. Permanent pøl ved kanten — skub dem mod siderne. Afbryd Voidbolt fra orbsene.',
-          '<strong>Gloom orbs soak</strong> — Soak i grupper af 5. Diminish debuff = 1 min cooldown på soaking. Skiftes med grupper. Soake to gange med Diminish = massiv skade.',
-          '<strong>Midnight Flames</strong> — Slip begge drager. Bevæg dig til Radiant Barrier. Deadline er STRENG. Dette er en positioneringstjek, ikke en DPS-tjek.',
-          '<strong>Enrage = wipe</strong> — Hvis en drage overlever den anden med mere end 10% HP, enrager den. Alt derefter er en direkte gåtur til kirkegården.',
-        ],
+        ]
       },
     },
     // ── BOSS 5 ────────────────────────────────────────────────
@@ -342,8 +258,7 @@ DUNGEONS.push({
       name: 'Lightblinded Vanguard',
       desc: {
         nl: 'Council-gevecht: drie paladin-achtige bosses tegelijk. Elke boss heeft unieke dreiging en ze versterken elkaar als ze tegelijk vol energie zijn. Sacred Shield blokkeert interrupts en moet doorbroken worden. Tyr\'s Wrath geeft verhoogde schade + verminderde healing. Judgment gevolgd door zware follow-up hits op de tank.',
-        en: 'Council fight: three paladin-type bosses simultaneously. Each has unique pressure and they empower each other when all are at full energy simultaneously. Sacred Shield blocks interrupts and must be broken. Tyr\'s Wrath gives increased damage + reduced healing. Judgment followed by heavy follow-up hits on the tank.',
-        da: 'Rådslagskamp: tre paladin-lignende bosser på én gang. Hver har unik trussel og de styrker hinanden når alle er ved fuld energi simultant. Sacred Shield blokerer interrupts og skal brydes. Tyr\'s Wrath giver øget skade + reduceret healing. Judgment efterfulgt af tunge follow-up-hits på tanken.',
+        en: 'Council fight: three paladin-type bosses simultaneously. Each has unique pressure and they empower each other when all are at full energy simultaneously. Sacred Shield blocks interrupts and must be broken. Tyr\'s Wrath gives increased damage + reduced healing. Judgment followed by heavy follow-up hits on the tank.'
       },
       tank: {
         nl: [
@@ -357,13 +272,7 @@ DUNGEONS.push({
           '<strong>Break Sacred Shield</strong> — While the shield is active the boss cannot be interrupted. Break it immediately so interrupt rotations can continue.',
           '<strong>All three stacked</strong> — Keep bosses stacked for DPS AoE cleave. Position them so none stand behind the tank.',
           '<strong>Overcharge timing</strong> — When all three reach full energy simultaneously: massive ability overlap. Save major defensives for this moment.',
-        ],
-        da: [
-          '<strong>Judgment</strong> — Kraftfuldt magisk hit på tanken efterfulgt af en serie melee-slag. Stor defensive ved Judgment.',
-          '<strong>Bryd Sacred Shield</strong> — Mens skjoldet er aktivt kan bossen ikke afbrydes. Bryd det straks så interrupt-rotationer kan fortsætte.',
-          '<strong>Alle tre stackede</strong> — Hold bosser stackede til DPS AoE-cleave. Positionér dem så ingen står bag tanken.',
-          '<strong>Overcharge-timing</strong> — Når alle tre er ved fuld energi simultant: massivt overlap af evner. Gem store defensives til dette øjeblik.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -377,13 +286,7 @@ DUNGEONS.push({
           '<strong>Holy Conflagration</strong> — Large AoE burst. Raid cooldown for this.',
           '<strong>Aura management</strong> — Each boss has an aura effect dealing damage to nearby players. Keep raid health stable and anticipate overlap.',
           '<strong>Sacred Shield</strong> — No interrupts while the shield is up. DPS breaks it fast? Minimal disruption. DPS breaks it slow? Greater healing pressure.',
-        ],
-        da: [
-          '<strong>Tyr\'s Wrath</strong> — Øget skade på ramte spillere + healing-reduktion på tanken. Spot-heal tanken. Kan purges på Mythic.',
-          '<strong>Holy Conflagration</strong> — Stor AoE burst. Raid-cooldown til dette.',
-          '<strong>Aura-management</strong> — Hver boss har en aura-effekt der giver skade til nærliggende spillere. Hold raidets sundhed stabil og forudse overlaps.',
-          '<strong>Sacred Shield</strong> — Ingen interrupts mens skjoldet er oppe. DPS bryder det hurtigt? Minimal forstyrrelse. DPS bryder det langsomt? Større healing-pres.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -399,14 +302,7 @@ DUNGEONS.push({
           '<strong>Tyr\'s Wrath</strong> — Can be purged (Shamans/Priests/Hunters). Always purge immediately when it appears.',
           '<strong>Lightblinded forces</strong> — Each boss has unique auras dealing damage on overlap. Keep distance from overlapping zones.',
           '<strong>Offensive cooldowns</strong> — Use them on the boss with the highest HP percentage. Do not waste them on a boss nearly dead.',
-        ],
-        da: [
-          '<strong>Sacred Shield = interrupt-dræber</strong> — Bryd skjoldet straks. Prioritet over alt. Interrupts er ubrugelige mens skjoldet er aktivt.',
-          '<strong>Mål-skift</strong> — Tildel en kill-rækkefølge per cyklus. Forsøm aldrig noget mål — de styrker hinanden ved fuld energi.',
-          '<strong>Tyr\'s Wrath</strong> — Kan purges (Shamans/Priests/Hunters). Purge altid straks når det dukker op.',
-          '<strong>Lysblindede kræfter</strong> — Hver boss har unikke auraer der giver skade ved overlap. Hold afstand fra overlappende zoner.',
-          '<strong>Offensive cooldowns</strong> — Brug dem på bossen med den højeste HP-procent. Spild dem ikke på en boss der næsten er død.',
-        ],
+        ]
       },
     },
     // ── BOSS 6 (FINAL) ────────────────────────────────────────
@@ -415,8 +311,7 @@ DUNGEONS.push({
       name: 'Crown of the Cosmos',
       desc: {
         nl: 'Eindbaas: Alleria Windrunner — meerfasig gevecht met zwaartekrachtinstortingen, kosmische anomalieën en hoge burn-fasen. Elke fase combineert mechanismen van eerdere bosses. Mythic: sequentiële kick-volgorde (alleen groen gemarkeerde targets zijn interruptbaar) — één gemiste kick cascadeert naar een onvermijdelijke wipe.',
-        en: 'Final boss: Alleria Windrunner — multi-stage fight with gravity collapses, cosmic anomalies, and high-intensity burn phases. Each phase combines mechanics from earlier bosses. Mythic: sequential kick order (only green-bar targets are interruptible) — one missed kick cascades into unavoidable wipe.',
-        da: 'Slutboss: Alleria Windrunner — flerfase-kamp med tyngdekraftkollapser, kosmiske anomalier og højintensive burn-faser. Hver fase kombinerer mekanikker fra tidligere bosser. Mythic: sekventiel kick-rækkefølge (kun grønt markerede mål kan afbrydes) — én misset kick kaskaderer til uundgåelig wipe.',
+        en: 'Final boss: Alleria Windrunner — multi-stage fight with gravity collapses, cosmic anomalies, and high-intensity burn phases. Each phase combines mechanics from earlier bosses. Mythic: sequential kick order (only green-bar targets are interruptible) — one missed kick cascades into unavoidable wipe.'
       },
       tank: {
         nl: [
@@ -430,13 +325,7 @@ DUNGEONS.push({
           '<strong>Gravity Collapse</strong> — Everyone is pulled toward the center. Tank keeps boss stable in the center. Use movement abilities to maintain position.',
           '<strong>Cosmic anomalies</strong> — Spawn around the arena. Keep the boss away from active anomaly zones — his damage increases near them.',
           '<strong>Burn phases</strong> — Alleria takes increased damage. Save defensives for the lead-up period before the burn — this is when damage peaks.',
-        ],
-        da: [
-          '<strong>Void Rend</strong> — Tung tankbuster + shadow DoT. Stor defensive her. Taunt swap så snart DoT\'en begynder at stable.',
-          '<strong>Gravity Collapse</strong> — Alle trækkes mod centrum. Tank holder bossen stabilt i midten. Brug bevægelsesevner til at opretholde position.',
-          '<strong>Kosmiske anomalier</strong> — Spawner rundt om arenaen. Hold bossen væk fra aktive anomali-zoner — hans skade stiger i nærheden.',
-          '<strong>Burn-faser</strong> — Alleria tager øget skade. Gem defensives til perioden inden burn — det er her skaden topper.',
-        ],
+        ]
       },
       heal: {
         nl: [
@@ -450,13 +339,7 @@ DUNGEONS.push({
           '<strong>Gravity Collapse</strong> — Pulls everyone toward the center — position your burst heals for the landing.',
           '<strong>Cosmic anomaly damage</strong> — Everyone who touches an anomaly takes damage. Steady healing — no moment of rest.',
           '<strong>Final phase</strong> — Gravity Collapse + anomaly spawns SIMULTANEOUSLY. This is the hardest healing window. Save your biggest cooldown for here.',
-        ],
-        da: [
-          '<strong>Astral Surge</strong> — Tung raidbredsskade. Gem en stor raidcooldown til hver Astral Surge.',
-          '<strong>Gravity Collapse</strong> — Trækker alle mod centrum — positionér dine burst-heals til landingen.',
-          '<strong>Kosmiske anomali-skade</strong> — Alle der rører en anomali tager skade. Stabil healing — intet øjeblik af hvile.',
-          '<strong>Slutfase</strong> — Gravity Collapse + anomali-spawns SIMULTANT. Dette er det sværeste heal-vindue. Gem din største cooldown til her.',
-        ],
+        ]
       },
       dps: {
         nl: [
@@ -472,14 +355,7 @@ DUNGEONS.push({
           '<strong>Cosmic anomalies</strong> — Do not touch. Touching = debuff or damage. Kite them away from the boss position.',
           '<strong>Burn phases</strong> — Alleria takes increased damage in burn phases. USE ALL offensive cooldowns here. Save nothing after the last burn.',
           '<strong>Mythic: green kicks</strong> — Only the green-bar target is interruptible. Tight coordination. One wrong kick = wipe. One missed kick = wipe.',
-        ],
-        da: [
-          '<strong>Alleria\'s Gaze</strong> — Markerer 3 spillere til en dødelig kegle. Tildel soak-grupper og spred dem. Ingen soaker to gange per cyklus.',
-          '<strong>Gravity Collapse</strong> — Alle trækkes mod centrum. Brug bevægelsesevner så snart trækket begynder. Genopret position hurtigt.',
-          '<strong>Kosmiske anomalier</strong> — Rør dem ikke. Rørsel = debuff eller skade. Kite dem væk fra bossens position.',
-          '<strong>Burn-faser</strong> — Alleria tager øget skade i burn-faser. BRUG ALLE offensive cooldowns her. Gem intet efter den sidste burn.',
-          '<strong>Mythic: grønne kicks</strong> — Kun det grønt markerede mål kan afbrydes. Stram koordinering. Ét forkert kick = wipe. Ét misset kick = wipe.',
-        ],
+        ]
       },
     },
   ],
@@ -489,59 +365,52 @@ DUNGEONS.push({
     pulls: [
       {
         type: 'trash',
-        label: { nl: 'Buitenste verdediging (trash)', en: 'Outer defenses (trash)', da: 'Ydre forsvar (trash)' },
-        area:  { nl: 'Basis van de Voidspire', en: 'Base of the Voidspire', da: 'Foden af Voidspire' },
+        label: { nl: 'Buitenste verdediging (trash)', en: 'Outer defenses (trash)'},
+        area:  { nl: 'Basis van de Voidspire', en: 'Base of the Voidspire'},
         desc:  { nl: 'Void Sentinels en Shadow Cohorts. Interrupt Void Pulse altijd. Dood Shadowguard Stalwarts snel — ze geven een buff aan omliggende vijanden. Niet te veel tegelijk pullen.',
-                 en: 'Void Sentinels and Shadow Cohorts. Always interrupt Void Pulse. Kill Shadowguard Stalwarts fast — they buff nearby enemies. Do not overpull.',
-                 da: 'Void Sentinels og Shadow Cohorts. Afbryd altid Void Pulse. Dræb Shadowguard Stalwarts hurtigt — de buffer nærliggende fjender. Overtræk ikke.' },
+                 en: 'Void Sentinels and Shadow Cohorts. Always interrupt Void Pulse. Kill Shadowguard Stalwarts fast — they buff nearby enemies. Do not overpull.'},
       },
       {
         type: 'boss',
-        label: { nl: '1. Imperator Averzian', en: '1. Imperator Averzian', da: '1. Imperator Averzian' },
-        area:  { nl: 'Eerste kamer', en: 'First chamber', da: 'Første kammer' },
+        label: { nl: '1. Imperator Averzian', en: '1. Imperator Averzian'},
+        area:  { nl: 'Eerste kamer', en: 'First chamber'},
         desc:  { nl: 'Tic-tac-toe grid. Soak Umbral Collapse. Interrupt Gathering Darkness. Nooit het centervak opofferen.',
-                 en: 'Tic-tac-toe grid. Soak Umbral Collapse. Interrupt Gathering Darkness. Never sacrifice the center zone.',
-                 da: 'Tic-tac-toe gitter. Soak Umbral Collapse. Afbryd Gathering Darkness. Ofre aldrig centerfeltet.' },
+                 en: 'Tic-tac-toe grid. Soak Umbral Collapse. Interrupt Gathering Darkness. Never sacrifice the center zone.'},
       },
       {
         type: 'boss',
-        label: { nl: '2. Vorasius', en: '2. Vorasius', da: '2. Vorasius' },
-        area:  { nl: 'Centrale zaal', en: 'Central hall', da: 'Central hal' },
+        label: { nl: '2. Vorasius', en: '2. Vorasius'},
+        area:  { nl: 'Centrale zaal', en: 'Central hall'},
         desc:  { nl: 'Muren breken met Blistercreep-kite voor Void Breath. Smashing Frenzy altijd op de tank laten landen.',
-                 en: 'Break walls with Blistercreep kite before Void Breath. Always let Smashing Frenzy land on the tank.',
-                 da: 'Bryd vægge med Blistercreep-kite inden Void Breath. Lad altid Smashing Frenzy lande på tanken.' },
+                 en: 'Break walls with Blistercreep kite before Void Breath. Always let Smashing Frenzy land on the tank.'},
       },
       {
         type: 'boss',
-        label: { nl: '🔥 3. Fallen-King Salhadaar', en: '🔥 3. Fallen-King Salhadaar', da: '🔥 3. Fallen-King Salhadaar' },
-        area:  { nl: 'Riftlabs kamer', en: 'Riftlabs chamber', da: 'Riftlabs-kammer' },
+        label: { nl: '🔥 3. Fallen-King Salhadaar', en: '🔥 3. Fallen-King Salhadaar'},
+        area:  { nl: 'Riftlabs kamer', en: 'Riftlabs chamber'},
         desc:  { nl: 'Void Orbs: stagger kills (8 sec apart). Cosmic Unraveling = alle cooldowns. Shattering Twilight: tank uit de raidbaan bewegen. 🔥 BLOODLUST hier.',
-                 en: 'Void Orbs: stagger kills (8 sec apart). Cosmic Unraveling = all cooldowns. Shattering Twilight: move tank out of raid lane. 🔥 BLOODLUST here.',
-                 da: 'Void Orbs: stagger kills (8 sek fra hinanden). Cosmic Unraveling = alle cooldowns. Shattering Twilight: flyt tank ud af raid-bane. 🔥 BLOODLUST her.' },
+                 en: 'Void Orbs: stagger kills (8 sec apart). Cosmic Unraveling = all cooldowns. Shattering Twilight: move tank out of raid lane. 🔥 BLOODLUST here.'},
       },
       {
         type: 'boss',
-        label: { nl: '4. Vaelgor & Ezzorak', en: '4. Vaelgor & Ezzorak', da: '4. Vaelgor & Ezzorak' },
-        area:  { nl: 'Drakenkamer', en: 'Dragon chamber', da: 'Drakekammer' },
+        label: { nl: '4. Vaelgor & Ezzorak', en: '4. Vaelgor & Ezzorak'},
+        area:  { nl: 'Drakenkamer', en: 'Dragon chamber'},
         desc:  { nl: 'HP-pariteit max 10%. Midnight Flames: iedereen in Radiant Barrier. Gloom orbs: groepen van 5, wissel af.',
-                 en: 'HP parity max 10%. Midnight Flames: everyone in Radiant Barrier. Gloom orbs: groups of 5, alternate.',
-                 da: 'HP-paritet maks 10%. Midnight Flames: alle i Radiant Barrier. Gloom orbs: grupper af 5, skiftes.' },
+                 en: 'HP parity max 10%. Midnight Flames: everyone in Radiant Barrier. Gloom orbs: groups of 5, alternate.'},
       },
       {
         type: 'boss',
-        label: { nl: '5. Lightblinded Vanguard', en: '5. Lightblinded Vanguard', da: '5. Lightblinded Vanguard' },
-        area:  { nl: 'Heiligdomkamer', en: 'Sanctum chamber', da: 'Helligdomskammer' },
+        label: { nl: '5. Lightblinded Vanguard', en: '5. Lightblinded Vanguard'},
+        area:  { nl: 'Heiligdomkamer', en: 'Sanctum chamber'},
         desc:  { nl: 'Raad-gevecht. Sacred Shield = break direct. Target-swaps. Bewaar grote defensives voor Overcharge-overlap.',
-                 en: 'Council fight. Sacred Shield = break immediately. Target swaps. Save major defensives for Overcharge overlap.',
-                 da: 'Rådslagskamp. Sacred Shield = bryd straks. Mål-skift. Gem store defensives til Overcharge-overlap.' },
+                 en: 'Council fight. Sacred Shield = break immediately. Target swaps. Save major defensives for Overcharge overlap.'},
       },
       {
         type: 'boss',
-        label: { nl: '🔥 6. Crown of the Cosmos — Alleria Windrunner', en: '🔥 6. Crown of the Cosmos — Alleria Windrunner', da: '🔥 6. Crown of the Cosmos — Alleria Windrunner' },
-        area:  { nl: 'Top van de Voidspire', en: 'Summit of the Voidspire', da: 'Toppen af Voidspire' },
+        label: { nl: '🔥 6. Crown of the Cosmos — Alleria Windrunner', en: '🔥 6. Crown of the Cosmos — Alleria Windrunner'},
+        area:  { nl: 'Top van de Voidspire', en: 'Summit of the Voidspire'},
         desc:  { nl: 'Eindbaas. Meerfasig. Gravity Collapse + anomalieën. Bewaar je grootste raidcooldown voor de finale fase. 🔥 BLOODLUST in burn-fase.',
-                 en: 'Final boss. Multi-stage. Gravity Collapse + anomalies. Save your biggest raid cooldown for the final phase. 🔥 BLOODLUST in burn phase.',
-                 da: 'Slutboss. Flerfaset. Gravity Collapse + anomalier. Gem din største raidcooldown til slutfasen. 🔥 BLOODLUST i burn-fase.' },
+                 en: 'Final boss. Multi-stage. Gravity Collapse + anomalies. Save your biggest raid cooldown for the final phase. 🔥 BLOODLUST in burn phase.'},
       },
     ],
   },

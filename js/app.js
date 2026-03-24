@@ -7,99 +7,99 @@ const VERSION_DATE = "2026-03-20";
 // SPEC SELECTOR
 // ═══════════════════════════════════════════════════════════════
 const CLASSES = [
-  { id:'deathknight', icon:'💀', name:{nl:'Death Knight', en:'Death Knight', da:'Death Knight'},
+  { id:'deathknight', icon:'💀', name:{nl:'Death Knight', en:'Death Knight'},
     specs:[
-      {id:'blood',  name:{nl:'Blood',  en:'Blood',  da:'Blood'},  role:'tank'},
-      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'},
-      {id:'unholy', name:{nl:'Unholy', en:'Unholy', da:'Unholy'}, role:'dps'}
+      {id:'blood',  name:{nl:'Blood',  en:'Blood'},  role:'tank'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost'},  role:'dps'},
+      {id:'unholy', name:{nl:'Unholy', en:'Unholy'}, role:'dps'}
     ]},
-  { id:'demonhunter', icon:'😈', name:{nl:'Demon Hunter', en:'Demon Hunter', da:'Demon Hunter'},
+  { id:'demonhunter', icon:'😈', name:{nl:'Demon Hunter', en:'Demon Hunter'},
     specs:[
-      {id:'havoc',    name:{nl:'Havoc',    en:'Havoc',    da:'Havoc'},    role:'dps'},
-      {id:'vengeance',name:{nl:'Vengeance',en:'Vengeance',da:'Vengeance'},role:'tank'},
-      {id:'devourer', name:{nl:'Devourer', en:'Devourer', da:'Devourer'}, role:'dps'}
+      {id:'havoc',    name:{nl:'Havoc',    en:'Havoc'},    role:'dps'},
+      {id:'vengeance',name:{nl:'Vengeance',en:'Vengeance'},role:'tank'},
+      {id:'devourer', name:{nl:'Devourer', en:'Devourer'}, role:'dps'}
     ]},
-  { id:'druid', icon:'🐾', name:{nl:'Druid', en:'Druid', da:'Druid'},
+  { id:'druid', icon:'🐾', name:{nl:'Druid', en:'Druid'},
     specs:[
-      {id:'balance',     name:{nl:'Balance',     en:'Balance',     da:'Balance'},     role:'dps'},
-      {id:'feral',       name:{nl:'Feral',        en:'Feral',       da:'Feral'},       role:'dps'},
-      {id:'guardian',    name:{nl:'Guardian',     en:'Guardian',    da:'Guardian'},    role:'tank'},
-      {id:'restoration', name:{nl:'Restauratie',  en:'Restoration', da:'Restauration'},role:'heal'}
+      {id:'balance',     name:{nl:'Balance',     en:'Balance'},     role:'dps'},
+      {id:'feral',       name:{nl:'Feral',        en:'Feral'},       role:'dps'},
+      {id:'guardian',    name:{nl:'Guardian',     en:'Guardian'},    role:'tank'},
+      {id:'restoration', name:{nl:'Restauratie',  en:'Restoration'},role:'heal'}
     ]},
-  { id:'evoker', icon:'🐉', name:{nl:'Evoker', en:'Evoker', da:'Evoker'},
+  { id:'evoker', icon:'🐉', name:{nl:'Evoker', en:'Evoker'},
     specs:[
-      {id:'augmentation', name:{nl:'Augmentation', en:'Augmentation', da:'Augmentation'}, role:'dps'},
-      {id:'devastation',  name:{nl:'Devastation',  en:'Devastation',  da:'Devastation'},  role:'dps'},
-      {id:'preservation', name:{nl:'Preservation', en:'Preservation', da:'Preservation'}, role:'heal'}
+      {id:'augmentation', name:{nl:'Augmentation', en:'Augmentation'}, role:'dps'},
+      {id:'devastation',  name:{nl:'Devastation',  en:'Devastation'},  role:'dps'},
+      {id:'preservation', name:{nl:'Preservation', en:'Preservation'}, role:'heal'}
     ]},
-  { id:'hunter', icon:'🏹', name:{nl:'Hunter', en:'Hunter', da:'Jæger'},
+  { id:'hunter', icon:'🏹', name:{nl:'Hunter', en:'Hunter'},
     specs:[
-      {id:'beastmastery',  name:{nl:'Beast Mastery',  en:'Beast Mastery',  da:'Beast Mastery'},  role:'dps'},
-      {id:'marksmanship',  name:{nl:'Marksmanship',   en:'Marksmanship',   da:'Marksmanship'},   role:'dps'},
-      {id:'survival',      name:{nl:'Survival',        en:'Survival',       da:'Survival'},       role:'dps'}
+      {id:'beastmastery',  name:{nl:'Beast Mastery',  en:'Beast Mastery'},  role:'dps'},
+      {id:'marksmanship',  name:{nl:'Marksmanship',   en:'Marksmanship'},   role:'dps'},
+      {id:'survival',      name:{nl:'Survival',        en:'Survival'},       role:'dps'}
     ]},
-  { id:'mage', icon:'🔮', name:{nl:'Mage', en:'Mage', da:'Magiker'},
+  { id:'mage', icon:'🔮', name:{nl:'Mage', en:'Mage'},
     specs:[
-      {id:'arcane', name:{nl:'Arcane', en:'Arcane', da:'Arcane'}, role:'dps'},
-      {id:'fire',   name:{nl:'Fire',   en:'Fire',   da:'Fire'},   role:'dps'},
-      {id:'frost',  name:{nl:'Frost',  en:'Frost',  da:'Frost'},  role:'dps'}
+      {id:'arcane', name:{nl:'Arcane', en:'Arcane'}, role:'dps'},
+      {id:'fire',   name:{nl:'Fire',   en:'Fire'},   role:'dps'},
+      {id:'frost',  name:{nl:'Frost',  en:'Frost'},  role:'dps'}
     ]},
-  { id:'monk', icon:'☯️', name:{nl:'Monk', en:'Monk', da:'Munk'},
+  { id:'monk', icon:'☯️', name:{nl:'Monk', en:'Monk'},
     specs:[
-      {id:'brewmaster',  name:{nl:'Brewmaster',  en:'Brewmaster',  da:'Brewmaster'},  role:'tank'},
-      {id:'mistweaver',  name:{nl:'Mistweaver',  en:'Mistweaver',  da:'Mistweaver'},  role:'heal'},
-      {id:'windwalker',  name:{nl:'Windwalker',  en:'Windwalker',  da:'Windwalker'},  role:'dps'}
+      {id:'brewmaster',  name:{nl:'Brewmaster',  en:'Brewmaster'},  role:'tank'},
+      {id:'mistweaver',  name:{nl:'Mistweaver',  en:'Mistweaver'},  role:'heal'},
+      {id:'windwalker',  name:{nl:'Windwalker',  en:'Windwalker'},  role:'dps'}
     ]},
-  { id:'paladin', icon:'⚔️', name:{nl:'Paladin', en:'Paladin', da:'Paladin'},
+  { id:'paladin', icon:'⚔️', name:{nl:'Paladin', en:'Paladin'},
     specs:[
-      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
-      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'},
-      {id:'retribution',name:{nl:'Retribution',en:'Retribution',da:'Retribution'},role:'dps'}
+      {id:'holy',       name:{nl:'Holy',       en:'Holy'},       role:'heal'},
+      {id:'protection', name:{nl:'Protection', en:'Protection'}, role:'tank'},
+      {id:'retribution',name:{nl:'Retribution',en:'Retribution'},role:'dps'}
     ]},
-  { id:'priest', icon:'✨', name:{nl:'Priest', en:'Priest', da:'Præst'},
+  { id:'priest', icon:'✨', name:{nl:'Priest', en:'Priest'},
     specs:[
-      {id:'discipline', name:{nl:'Discipline', en:'Discipline', da:'Discipline'}, role:'heal'},
-      {id:'holy',       name:{nl:'Holy',       en:'Holy',       da:'Holy'},       role:'heal'},
-      {id:'shadow',     name:{nl:'Shadow',     en:'Shadow',     da:'Shadow'},     role:'dps'}
+      {id:'discipline', name:{nl:'Discipline', en:'Discipline'}, role:'heal'},
+      {id:'holy',       name:{nl:'Holy',       en:'Holy'},       role:'heal'},
+      {id:'shadow',     name:{nl:'Shadow',     en:'Shadow'},     role:'dps'}
     ]},
-  { id:'rogue', icon:'🗡️', name:{nl:'Rogue', en:'Rogue', da:'Skurk'},
+  { id:'rogue', icon:'🗡️', name:{nl:'Rogue', en:'Rogue'},
     specs:[
-      {id:'assassination',name:{nl:'Assassination',en:'Assassination',da:'Assassination'},role:'dps'},
-      {id:'outlaw',       name:{nl:'Outlaw',       en:'Outlaw',       da:'Outlaw'},       role:'dps'},
-      {id:'subtlety',     name:{nl:'Subtlety',     en:'Subtlety',     da:'Subtlety'},     role:'dps'}
+      {id:'assassination',name:{nl:'Assassination',en:'Assassination'},role:'dps'},
+      {id:'outlaw',       name:{nl:'Outlaw',       en:'Outlaw'},       role:'dps'},
+      {id:'subtlety',     name:{nl:'Subtlety',     en:'Subtlety'},     role:'dps'}
     ]},
-  { id:'shaman', icon:'⚡', name:{nl:'Shaman', en:'Shaman', da:'Shaman'},
+  { id:'shaman', icon:'⚡', name:{nl:'Shaman', en:'Shaman'},
     specs:[
-      {id:'elemental',   name:{nl:'Elemental',   en:'Elemental',   da:'Elemental'},   role:'dps'},
-      {id:'enhancement', name:{nl:'Enhancement', en:'Enhancement', da:'Enhancement'}, role:'dps'},
-      {id:'restoration', name:{nl:'Restoration', en:'Restoration', da:'Restoration'}, role:'heal'}
+      {id:'elemental',   name:{nl:'Elemental',   en:'Elemental'},   role:'dps'},
+      {id:'enhancement', name:{nl:'Enhancement', en:'Enhancement'}, role:'dps'},
+      {id:'restoration', name:{nl:'Restoration', en:'Restoration'}, role:'heal'}
     ]},
-  { id:'warlock', icon:'🔥', name:{nl:'Warlock', en:'Warlock', da:'Troldmand'},
+  { id:'warlock', icon:'🔥', name:{nl:'Warlock', en:'Warlock'},
     specs:[
-      {id:'affliction',  name:{nl:'Affliction',  en:'Affliction',  da:'Affliction'},  role:'dps'},
-      {id:'demonology',  name:{nl:'Demonology',  en:'Demonology',  da:'Demonology'},  role:'dps'},
-      {id:'destruction', name:{nl:'Destruction', en:'Destruction', da:'Destruction'}, role:'dps'}
+      {id:'affliction',  name:{nl:'Affliction',  en:'Affliction'},  role:'dps'},
+      {id:'demonology',  name:{nl:'Demonology',  en:'Demonology'},  role:'dps'},
+      {id:'destruction', name:{nl:'Destruction', en:'Destruction'}, role:'dps'}
     ]},
-  { id:'warrior', icon:'🛡️', name:{nl:'Warrior', en:'Warrior', da:'Kriger'},
+  { id:'warrior', icon:'🛡️', name:{nl:'Warrior', en:'Warrior'},
     specs:[
-      {id:'arms',       name:{nl:'Arms',       en:'Arms',       da:'Arms'},       role:'dps'},
-      {id:'fury',       name:{nl:'Fury',       en:'Fury',       da:'Fury'},       role:'dps'},
-      {id:'protection', name:{nl:'Protection', en:'Protection', da:'Protection'}, role:'tank'}
+      {id:'arms',       name:{nl:'Arms',       en:'Arms'},       role:'dps'},
+      {id:'fury',       name:{nl:'Fury',       en:'Fury'},       role:'dps'},
+      {id:'protection', name:{nl:'Protection', en:'Protection'}, role:'tank'}
     ]}
 ];
 
 // Lust ability per class+spec combo
 const LUST_ABILITY = {
-  'shaman-elemental':    {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
-  'shaman-enhancement':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
-  'shaman-restoration':  {nl:'Bloodlust',          en:'Bloodlust',          da:'Bloodlust'},
-  'mage-arcane':         {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
-  'mage-fire':           {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
-  'mage-frost':          {nl:'Time Warp',          en:'Time Warp',          da:'Time Warp'},
-  'hunter-beastmastery': {nl:'Primal Rage',        en:'Primal Rage',        da:'Primal Rage'},
-  'evoker-augmentation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
-  'evoker-devastation':  {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'},
-  'evoker-preservation': {nl:'Fury of the Aspects',en:'Fury of the Aspects',da:'Fury of the Aspects'}
+  'shaman-elemental':    {nl:'Bloodlust',          en:'Bloodlust'},
+  'shaman-enhancement':  {nl:'Bloodlust',          en:'Bloodlust'},
+  'shaman-restoration':  {nl:'Bloodlust',          en:'Bloodlust'},
+  'mage-arcane':         {nl:'Time Warp',          en:'Time Warp'},
+  'mage-fire':           {nl:'Time Warp',          en:'Time Warp'},
+  'mage-frost':          {nl:'Time Warp',          en:'Time Warp'},
+  'hunter-beastmastery': {nl:'Primal Rage',        en:'Primal Rage'},
+  'evoker-augmentation': {nl:'Fury of the Aspects',en:'Fury of the Aspects'},
+  'evoker-devastation':  {nl:'Fury of the Aspects',en:'Fury of the Aspects'},
+  'evoker-preservation': {nl:'Fury of the Aspects',en:'Fury of the Aspects'}
 };
 
 // Get lust name for current spec
@@ -119,9 +119,7 @@ function replaceLust(text) {
 // Spec UI strings per language
 const SPEC_UI = {
   nl: { btn_no_spec:'Kies spec', btn_spec:'Spec: ', title:'Kies jouw spec', subtitle:'We passen spellnamen aan op jouw klasse', reset:'Spec wissen', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
-  en: { btn_no_spec:'Choose spec', btn_spec:'Spec: ', title:'Choose your spec', subtitle:"We'll adjust spell names to match your class", reset:'Clear spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' },
-  da: { btn_no_spec:'Vælg spec', btn_spec:'Spec: ', title:'Vælg din spec', subtitle:'Vi tilpasser stavningsnavne til din klasse', reset:'Ryd spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' }
-};
+  en: { btn_no_spec:'Choose spec', btn_spec:'Spec: ', title:'Choose your spec', subtitle:"We'll adjust spell names to match your class", reset:'Clear spec', role_tank:'Tank', role_heal:'Healer', role_dps:'DPS' }};
 
 let currentSpec = null;
 try {
@@ -215,13 +213,7 @@ const FOOTER = {
     season: "WoW: Midnight — Season 1",
     disclaimer: "This guide is a fan project and is not affiliated with Blizzard Entertainment. World of Warcraft and all related names are trademarks of Blizzard Entertainment, Inc. Dungeon information is based on Icy Veins, Wowhead, Method and personal experience — always subject to change after patches.",
     sources: "Sources:"
-  },
-  da: {
-    season: "WoW: Midnight — Sæson 1",
-    disclaimer: "Denne guide er et fan-projekt og er ikke tilknyttet Blizzard Entertainment. World of Warcraft og alle relaterede navne er varemærker tilhørende Blizzard Entertainment, Inc. Dungeon-information er baseret på Icy Veins, Wowhead, Method og egne erfaringer — altid underlagt ændringer efter patches.",
-    sources: "Kilder:"
-  }
-};
+  }};
 
 function updateFooter() {
   const vEl = document.getElementById('footer-version-nr');
@@ -373,75 +365,7 @@ const UI = {
     feedback_gh: "🐙 Open GitHub issue",
     about_title:  "⚔ About this app",
     route_notice: "⚠️ No ideal route available yet. Know a good one? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Submit a GitHub Issue →</a>",
-  },
-  da: {
-    season_sub:   "FANGEHULER — SÆSON 1",
-    eyebrow:      "World of Warcraft: Midnight — Sæson 1",
-    guide:        "Guide",
-    hero_sub:     "Vælg din dungeon — bosser, roller og ruteplanlægger",
-    s1_section:   "⚔ Sæson 1 Mythic+",
-    norm_section: "📖 Kun Normal",
-    badge_mplus:  "⚔ SÆSON 1 M+",
-    badge_normal: "📖 KUN NORMAL",
-    badge_raid:   "🏰 RAID",
-    lbl_raid:     "🏰 Raids",
-    lbl_glossary: "📖 Ordbog",
-    glossary_title:"Ordbog",
-    glossary_sub:  "WoW-begreber forklaret for begyndere",
-    glossary_intro:"Klik på et begreb for at se forklaringen. Gyldne ord i dungeon-tips kan også klikkes!",
-    tldr_label: "TL;DR",
-    tab_overview: "Oversigt",
-    tab_bosses:   "Bosser",
-    tab_route:    "Ruteplanlægger",
-    boss_label:   "BOSS",
-    lbl_zone:     "ZONE",
-    lbl_type:     "TYPE",
-    lbl_unlock:   "LÅS OP",
-    lbl_bosses:   "ANTAL BOSSER",
-    type_mplus:   "⚔ Mythic+ Sæson 1",
-    type_normal:  "📖 Kun Normal",
-    lust_moment:  "Tidspunkt",
-    lust_explain: "Forklaring",
-    lust_title:   "🔥 Bloodlust / Heroism-timing",
-    route_sum:    "Sammenfatning",
-    route_diag:   "Rutediagram — Pull-rækkefølge",
-    kg_section:   "Interaktive ruter — Keystone.guru",
-    kg_text:      "Se og importer detaljerede M+-ruter på Keystone.guru. Brug <strong>MDT (Mythic Dungeon Tools)</strong> addon i spillet til at importere ruter.",
-    kg_btn:       "🗺 Åbn ruter på Keystone.guru →",
-    vr_legend_trash: "Trash pull",
-    vr_legend_boss:  "Boss",
-    vr_legend_event: "Event/Buff",
-    vr_legend_lust:  "Bloodlust",
-    vr_label_trash:  "TRASH",
-    vr_label_boss:   "BOSS",
-    vr_label_event:  "EVENT",
-    vr_label_lust:   "LUST",
-    norm_note:    "Ingen Keystone.guru-rute nødvendig — denne dungeon er ikke i M+-rotationen. Pull-rækkefølgen ovenfor er tilstrækkelig.",
-    trash_title:  "🐉 Vigtige Trash Mobs",
-    tag_int:      "Interrupt",
-    tag_avoid:    "Undgå",
-    tag_purge:    "Purge/Dispel",
-    tag_stop:     "CC/Stop",
-    tag_tank:     "Tank",
-    back:         "← Tilbage",
-    theme_light:  "☀️",
-    theme_dark:   "🌙",
-    ib_title:     "<strong>Installer som app:</strong>",
-    ib_android:   "<strong>Android</strong> — Chrome → menu (⋮) → \"Føj til startskærm\"",
-    ib_ios:       "<strong>iPhone</strong> — Safari → del (□↑) → \"Føj til hjemmeskærm\"",
-    about_btn:    "📖 Om denne app",
-    help_btn:     "❓ Vejledning",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Hjem", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Erhverv", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Ugentlig", tab_affixes: "<i class=\"fas fa-bolt\" style=\"margin-right:4px\"></i> Affixes", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Ordbog",
-    feedback_btn: "💬 Feedback",
-    feedback_title: "💬 Konstruktiv kritik",
-    feedback_sub: "Noget galt? Mangler info? Fortæl os det — vi forbedrer guiden sammen.",
-    feedback_ph: "F.eks. Inscription-tier er forkert, eller boss X mangler en mechanic...",
-    feedback_send: "📨 Send via mail",
-    feedback_gh: "🐙 Åbn GitHub issue",
-    about_title:  "⚔ Om denne app",
-    route_notice: "⚠️ Ingen ideel rute tilgængelig endnu. Kender du en god rute? <a href=\"https://github.com/Huijting/midnight_guide/issues/new\" target=\"_blank\" class=\"route-notice-link\">Indsend et GitHub Issue →</a>",
-  }
-};
+  }};
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER
@@ -450,14 +374,14 @@ let lang = localStorage.getItem('lang') || 'nl';
 function t(obj) { return (typeof obj === 'string') ? obj : (obj[lang] || obj.en || ''); }
 
 // ═══════════════════════════════════════════════════════════════
-// DUNGEON DATA  (all localised text fields: {nl,en,da})
+// DUNGEON DATA  (all localised text fields: {nl,en})
 // ═══════════════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════════════
 // HOE EEN NIEUWE DUNGEON TOEVOEGEN (voor Claude of jezelf):
 //
 // 1. Kopieer een bestaand dungeon-blok van { id:... } tot de sluitende },
 // 2. Plak het onder het laatste blok in de array (vóór de sluitende ])
-// 3. Pas alle velden aan — elke tekst heeft {nl:"...",en:"...",da:"..."}
+// 3. Pas alle velden aan — elke tekst heeft {nl:"...",en:"..."}
 // 4. type: "mplus"  → verschijnt in Seizoen M+ sectie
 //    type: "normal" → verschijnt in Alleen Normal sectie
 // 5. Voor een nieuw seizoen: voeg type:"mplus_s2" toe en voeg in renderHome()
@@ -466,7 +390,7 @@ function t(obj) { return (typeof obj === 'string') ? obj : (obj[lang] || obj.en 
 //
 // NIEUW SEIZOEN CHECKLIST:
 //   - Nieuwe dungeons toevoegen met juist type
-//   - UI.nl/en/da: season_sub aanpassen ("SEIZOEN 2" etc.)
+//   - UI.nl/en aanpassen ("SEIZOEN 2" etc.)
 //   - renderHome() uitbreiden met nieuwe sectie indien gewenst
 // ═══════════════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════════════
@@ -500,10 +424,12 @@ let currentDungeon = null;
 // LANGUAGE
 // ═══════════════════════════════════════════════════════════════
 function setLang(l) {
+  if (l === 'da') l = 'en';
   lang = l;
   localStorage.setItem('lang', l);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+  const lb = document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`);
+  if (lb) lb.classList.add('active');
   applyUIStrings();
   updateFooter();
   updateSpecBtn();
@@ -519,7 +445,7 @@ function setLang(l) {
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
   if (document.getElementById('search-overlay').classList.contains('open')) {
     const inp = document.getElementById('search-input');
-    const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' };
+    const ph = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'};
     inp.placeholder = ph[l] || ph.nl;
     doSearch(inp.value);
   }
@@ -558,7 +484,7 @@ function applyUIStrings() {
   if(document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
   if(document.body.classList.contains('mode-delves')) buildDelvesScreen();
   const searchPh = document.getElementById('header-search-placeholder');
-  if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...', da:'Søg dungeon, spec, profession...' }[lang] || 'Search...';
+  if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'}[lang] || 'Search...';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -591,26 +517,13 @@ function updateLandingStrings() {
       w_title:'Weekly', w_desc:'Weekly reset overview, World Bosses and affixes', w_count:'Every week',
       p_title:'Professions', p_desc:'KP guides, crafting orders and trainer locations', p_count:'13 professions',
       s_title:'Specs', s_desc:'Rotations, stats, macros and consumables', s_count:'38 specs',
-    },
-    da: {
-      title: 'Midnight Guide',
-      subtitle: 'Din WoW: Midnight-guide',
-      news: '💎 <strong>v1.1</strong> — Klik på Delve-navn for tip. Fuld guide til komplet walkthrough!',
-      tip: '<strong>Tip:</strong> Installér denne app på din PC via 📲-knappen øverst til højre, eller installér-ikonet i adresselinjen — virker også offline!',
-      credits: 'Lavet af Inchy & Gemma · WoW: Midnight · Uofficiel',
-      d_title:'Dungeons', d_desc:'Boss-taktikker, M+-ruter og tips per dungeon', d_count:'8 dungeons',
-      r_title:'Raids', r_desc:'Boss-mekanikker, faser og rolle-taktikker', r_count:'3 raids',
-      v_title:'Delves', v_desc:'Alle Delves med /way, loot-tabel og nøgle-info', v_count:'12 Delves',
-      w_title:'Ugentlig', w_desc:'Ugentlig reset-oversigt, verdensbosser og affixer', w_count:'Hver uge',
-      p_title:'Erhverv', p_desc:'KP-guider, craft-ordrer og trænerlokationer', p_count:'13 erhverv',
-      s_title:'Specs', s_desc:'Rotationer, stats, makroer og forbrugsvarer', s_count:'38 specs',
-    },
+    }
   };
   const L = LANDING[lang] || LANDING.nl;
   const s = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
   const h = (id, val) => { const el = document.getElementById(id); if(el) el.innerHTML = val; };
   const logoEl = document.getElementById('landing-logo');
-  if (logoEl) logoEl.src = `assets/midnight-logo-${lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl'}.png`;
+  if (logoEl) logoEl.src = `assets/midnight-logo-${lang === 'en' ? 'en' : 'nl'}.png`;
   h('landing-news', L.news);
   h('landing-tip-text', L.tip);
   s('landing-credits', L.credits);
@@ -872,7 +785,7 @@ function renderDetail(d) {
   const floorMapSVG  = FLOOR_MAPS[d.id] || '';
   const routeScreenshot = ROUTE_SCREENSHOTS[d.id] || '';
   const floorScreenshots = FLOOR_SCREENSHOTS[d.id] || null;
-  const floorMapTitle = {nl:'🗺 Looproute', en:'🗺 Route Map', da:'🗺 Rutekort'}[lang] || '🗺 Looproute';
+  const floorMapTitle = {nl:'🗺 Looproute', en:'🗺 Route Map'}[lang] || '🗺 Looproute';
 
   // Build map section HTML
   let mapSectionHtml = '';
@@ -970,6 +883,10 @@ function switchTab(name, event) {
 if (localStorage.getItem('lang')) {
   lang = localStorage.getItem('lang');
 }
+if (lang === 'da') {
+  lang = 'en';
+  localStorage.setItem('lang', 'en');
+}
 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
 const activeLangBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
 if (activeLangBtn) activeLangBtn.classList.add('active');
@@ -1023,9 +940,7 @@ let currentProf = null;
 
 const PROF_UI = {
   nl:{hero_title:'Professies — Midnight',hero_sub:'Kies een professie om de gids te openen',gathering:'Verzamelen',crafting:'Produceren',secondary:'Secundair',tier_label:'Tier',gold_label:'💰 Goud',use_label:'🛠 Nut',back:'← Terug',trainer_head:'Trainer — Waar te vinden',spec_head:'Specialisaties',item_head:'Wat maak je?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Bronnen:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Gids', tab_kpbronnen:'🗺️ KP'},
-  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'🛠 Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Sources:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP'},
-  da:{hero_title:'Professioner — Midnight',hero_sub:'Vælg en profession for at åbne guiden',gathering:'Indsamling',crafting:'Produktion',secondary:'Sekundær',tier_label:'Tier',gold_label:'💰 Guld',use_label:'🛠 Nytte',back:'← Tilbage',trainer_head:'Træner — Hvor finder du',spec_head:'Specialiseringer',item_head:'Hvad laver du?',orders_head:'Craft-ordrer',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Kilder:', tab_trainer:'📍 Træner', tab_specs:'⚙️ Specs', tab_items:'🎒 Genstande', tab_orders:'📜 Ordrer', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP'}
-};
+  en:{hero_title:'Professions — Midnight',hero_sub:'Choose a profession to open the guide',gathering:'Gathering',crafting:'Crafting',secondary:'Secondary',tier_label:'Tier',gold_label:'💰 Gold',use_label:'🛠 Utility',back:'← Back',trainer_head:'Trainer — Where to find',spec_head:'Specializations',item_head:'What do you make?',orders_head:'Crafting Orders',method_btn:'📖 Method.gg',wowp_btn:'📖 WoW-Professions',source_label:'Sources:', tab_trainer:'📍 Trainer', tab_specs:'⚙️ Specs', tab_items:'🎒 Items', tab_orders:'📜 Orders', tab_kp:'🧭 KP Guide', tab_kpbronnen:'🗺️ KP'}};
 
 function pT(obj){if(!obj)return '';return obj[lang]||obj.nl||obj.en||'';}
 function pStars(n,max=5){return '★'.repeat(n)+'☆'.repeat(max-n);}
@@ -1052,8 +967,8 @@ function buildRaidScreen(){
       id: 'dreamrift',
       icon: '🌀',
       name: 'The Dreamrift',
-      zone: { nl:'Harandar — Rift of Aln', en:'Harandar — Rift of Aln', da:'Harandar — Rift of Aln' },
-      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026', da:'Åbner 17. marts 2026' },
+      zone: { nl:'Harandar — Rift of Aln', en:'Harandar — Rift of Aln'},
+      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026'},
       bosses: ['Chimaerus, the Undreamt God'],
       available: true,
     },
@@ -1061,8 +976,8 @@ function buildRaidScreen(){
       id: 'voidspire',
       icon: '🔮',
       name: 'The Voidspire',
-      zone: { nl:'Voidstorm', en:'Voidstorm', da:'Voidstorm' },
-      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026', da:'Åbner 17. marts 2026' },
+      zone: { nl:'Voidstorm', en:'Voidstorm'},
+      opens: { nl:'Opent 17 maart 2026', en:'Opens March 17, 2026'},
       bosses: ['Imperator Averzian','Vorasius','Fallen-King Salhadaar','Vaelgor & Ezzorak','Lightblinded Vanguard','Crown of the Cosmos'],
       available: true,
     },
@@ -1070,8 +985,8 @@ function buildRaidScreen(){
       id: 'marchqueldanas',
       icon: '🌅',
       name: "March on Quel'Danas",
-      zone: { nl:"Isle of Quel'Danas", en:"Isle of Quel'Danas", da:"Isle of Quel'Danas" },
-      opens: { nl:'Opent 31 maart 2026', en:'Opens March 31, 2026', da:'Åbner 31. marts 2026' },
+      zone: { nl:"Isle of Quel'Danas", en:"Isle of Quel'Danas"},
+      opens: { nl:'Opent 31 maart 2026', en:'Opens March 31, 2026'},
       bosses: ["Belo'ren, Child of Al'ar", "Midnight Falls (L'ura)"],
       available: true,
     },
@@ -1082,7 +997,7 @@ function buildRaidScreen(){
         <div class="card-accent" style="background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div>
         <div class="card-body">
           <span class="card-badge badge-raid" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.3)">
-            ${r.available ? (lang==='nl'?'BESCHIKBAAR':lang==='da'?'TILGÆNGELIG':'AVAILABLE') : (lang==='nl'?'BINNENKORT':lang==='da'?'SNART':'SOON')}
+            ${r.available ? (lang==='nl'?'BESCHIKBAAR':'AVAILABLE') : (lang==='nl'?'BINNENKORT':'SOON')}
           </span>
           <div class="card-name" style="display:flex; align-items:center; gap:8px; margin-top: 4px;">
             <span>${r.icon}</span> ${r.name}
@@ -1109,11 +1024,7 @@ const DELVES_UI = {
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
-    full_guide_btn:'Full Guide', back_btn:'← Back' },
-  da: { delves_title:'Alle Midnight Delves', delves_sub:'Oversigt over alle Delves i Midnight Sæson 1 med /way for at komme derhen.', delves_click_hint:'Klik på Delve-navnet for korte tip.', delve_name:'Delve', zone_way:'Zone / område', key_info_title:'Nøgle-info', loot_title:'Loot-tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopier /way',
-    bountiful_alt:'Bountiful Delves — Shift+J for at åbne in-game',
-    detail_gimmick:'Hovedopgave', detail_danger:'Største fare', detail_tip:'Tip', wowhead:'→ Wowhead',
-    full_guide_btn:'Fuld guide', back_btn:'← Tilbage' },
+    full_guide_btn:'Full Guide', back_btn:'← Back' }
 };
 
 function buildDelvesScreen() {
@@ -1129,7 +1040,7 @@ function buildDelvesScreen() {
   let html = '';
 
   // Bountiful — afbeelding per taal (Shift+J instructie)
-  const bountifulImg = `assets/delves/bountiful-delves-${lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl'}.png`;
+  const bountifulImg = `assets/delves/bountiful-delves-${lang === 'en' ? 'en' : 'nl'}.png`;
   html += `<div class="delves-bountiful-banner">
     <img src="${bountifulImg}" alt="${ui.bountiful_alt}" class="delves-bountiful-img" loading="lazy">
   </div>`;
@@ -1253,7 +1164,7 @@ function copyDelvesWay(way) {
   if (!way) return;
   navigator.clipboard.writeText(way).then(() => {
     const toast = document.getElementById('toast-notification');
-    const msg = (lang === 'en' ? 'Copied!' : lang === 'da' ? 'Kopieret!' : 'Gekopieerd!');
+    const msg = (lang === 'en' ? 'Copied!' : 'Gekopieerd!');
     if (toast) { toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => { toast.style.opacity = '0'; }, 1500); }
   });
 }
@@ -1534,7 +1445,7 @@ function showProf(id){
   if (guideTabBtn) {
     if (typeof PROF_GUIDE_DATA !== 'undefined' && PROF_GUIDE_DATA[id]) {
       guideTabBtn.style.display = '';
-      const guideTabLabels = { nl: '📖 Gids & KP', en: '📖 Guide & KP', da: '📖 Guide & KP' };
+      const guideTabLabels = { nl: '📖 Gids & KP', en: '📖 Guide & KP'};
       guideTabBtn.innerHTML = guideTabLabels[lang] || guideTabLabels.nl;
       renderProfGuide(id);
     } else {
@@ -1625,16 +1536,12 @@ function renderKpGids(p) {
   const data = (typeof KP_DATA !== 'undefined') ? KP_DATA[p.id] : null;
   const u = {
     nl: { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom — recepten via trainer en de wereld.' },
-    en: { trees:'🌳 Specialization Trees', builds:'Choose your playstyle:', skill:'skill', tip:'💡 Tip', no_kp:'No KP tree — recipes via trainer and the world.' },
-    da: { trees:'🌳 Specialiseringstræer', builds:'Vælg din spillestil:', skill:'færdighed', tip:'💡 Tip', no_kp:'Ingen KP-træ — opskrifter via træner og verden.' }
-  }[lang_] || { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom.' };
+    en: { trees:'🌳 Specialization Trees', builds:'Choose your playstyle:', skill:'skill', tip:'💡 Tip', no_kp:'No KP tree — recipes via trainer and the world.' }}[lang_] || { trees:'🌳 Specialisatiebomen', builds:'Kies je speelstijl:', skill:'skill', tip:'💡 Tip', no_kp:'Geen KP-boom.' };
 
   if (!data) {
     const kpHeaderEmpty = {
       nl: 'Deel 3: Kennispunten (KP) & Specialisaties',
-      en: 'Part 3: Knowledge Points (KP) & Specs',
-      da: 'Del 3: Videnpoint (KP) & Specs'
-    }[lang_] || 'Deel 3: Kennispunten (KP)';
+      en: 'Part 3: Knowledge Points (KP) & Specs'}[lang_] || 'Deel 3: Kennispunten (KP)';
     el.innerHTML = `<div class="pdet-section">
       <h3 style="font-family: \'Cinzel\', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpHeaderEmpty}</h3>
       <div class="kp-intro-box">${u.no_kp}</div>
@@ -1650,9 +1557,7 @@ function renderKpGids(p) {
   
     const kpHeader = {
       nl: 'Deel 3: Kennispunten (KP) & Specialisaties',
-      en: 'Part 3: Knowledge Points (KP) & Specs',
-      da: 'Del 3: Videnpoint (KP) & Specs'
-    }[lang_] || 'Deel 3: Kennispunten (KP)';
+      en: 'Part 3: Knowledge Points (KP) & Specs'}[lang_] || 'Deel 3: Kennispunten (KP)';
     
     html += `<h3 style="font-family: \'Cinzel\', serif; color: var(--gold2); margin-top: 32px; margin-bottom: 16px; font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; text-align: center;">${kpHeader}</h3>`;
 
@@ -1769,9 +1674,7 @@ function renderKpSources(p) {
 
     const charTip = {
       nl: '💡 Tip: Voeg je characters toe met de + knop om per character bij te houden welke schatten je al hebt gevonden!',
-      en: '💡 Tip: Add your characters with the + button to track which treasures you have already found per character!',
-      da: '💡 Tip: Tilføj dine karakterer med + knappen for at holde styr på, hvilke skatte du allerede har fundet pr. karakter!'
-    }[lang] || '💡 Tip: Voeg je characters toe met de + knop om per character bij te houden welke schatten je al hebt gevonden!';
+      en: '💡 Tip: Add your characters with the + button to track which treasures you have already found per character!'}[lang] || '💡 Tip: Voeg je characters toe met de + knop om per character bij te houden welke schatten je al hebt gevonden!';
 
     treasuresHtml = `
       <div class="kp-section">
@@ -1897,9 +1800,7 @@ function renderKpSources(p) {
 
   const kpBronnenHeader = {
     nl: 'Deel 4: KP Schatten & Bronnen',
-    en: 'Part 4: KP Treasures & Sources',
-    da: 'Del 4: KP Skatte & Kilder'
-  }[lang] || 'Deel 4: KP Schatten & Bronnen';
+    en: 'Part 4: KP Treasures & Sources'}[lang] || 'Deel 4: KP Schatten & Bronnen';
 
   const headerHtml = `
     <div style="text-align: center; margin: 32px 0; opacity: 0.5;"><span style="color: var(--gold); font-size: 24px;">✧ ✧ ✧</span></div>
@@ -2040,9 +1941,7 @@ function addKpChar() {
   
   const msgs = {
     nl: { max: "Je kunt maximaal 25 characters toevoegen.", prompt: "Voer de naam van je character in:", exists: "Dit character bestaat al." },
-    en: { max: "You can add up to 25 characters.", prompt: "Enter the name of your character:", exists: "This character already exists." },
-    da: { max: "Du kan tilføje op til 25 karakterer.", prompt: "Indtast navnet på din karakter:", exists: "Denne karakter findes allerede." }
-  };
+    en: { max: "You can add up to 25 characters.", prompt: "Enter the name of your character:", exists: "This character already exists." }};
   const m = msgs[lang] || msgs.nl;
 
   if (saved.length >= 25) {
@@ -2072,9 +1971,7 @@ function deleteKpChar() {
   
   const msgs = {
     nl: { min: "Je moet minimaal één character overhouden.", confirm: "Weet je zeker dat je '{char}' wilt verwijderen?" },
-    en: { min: "You must keep at least one character.", confirm: "Are you sure you want to delete '{char}'?" },
-    da: { min: "Du skal beholde mindst én karakter.", confirm: "Er du sikker på, at du vil slette '{char}'?" }
-  };
+    en: { min: "You must keep at least one character.", confirm: "Are you sure you want to delete '{char}'?" }};
   const m = msgs[lang] || msgs.nl;
 
   if (saved.length <= 1) {
@@ -2143,12 +2040,7 @@ const PREY_UI = {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
     weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — click for details', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table',
     summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty'
-  },
-  da: {
-    title:'Prey Systemet', gettingStarted:'Kom i gang', weeklyChecklist:'Ugentlig strategi', rewards:'Belønninger', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik for at kopiere',
-    weeklyHunt1:'Ugentlig jagt #1', weeklyHunt2:'Ugentlig jagt #2', resetWeekly:'Nulstil ugentlig', targetsLabel:'Prey-mål', targetsHint:'Sorteret efter zone — klik for detaljer', location:'Placering', fullGuide:'Fuld guide', lootTable:'Loot-tabel',
-    summaryLabel:'Oversigt', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Sværhedsgrad'
-  },
+  }
 };
 
 function getPreyWeeklyKey() {
@@ -2188,7 +2080,7 @@ function renderPreyGuide() {
 
   if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
 
-  const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
+  const l = lang === 'en' ? 'en' : 'nl';
   const loop = data.loop[l] || data.loop.en;
   const rewd = data.rewards[l] || data.rewards.en;
   const diffNorm = data.difficulties.normal[l];
@@ -2283,7 +2175,7 @@ function openPreyDetail(id) {
   const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
   const t = targets.find(x => x.id === id);
   if (!t) return;
-  const l = lang === 'da' ? 'da' : lang === 'en' ? 'en' : 'nl';
+  const l = lang === 'en' ? 'en' : 'nl';
   const u = PREY_UI[lang] || PREY_UI.nl;
   const name = (t.name && t.name[l]) || t.name?.en || t.id;
   const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';

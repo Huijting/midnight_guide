@@ -4,152 +4,128 @@
       "id": "mordril_shadowfell",
       "name": {
         "en": "Mordril Shadowfell",
-        "nl": "Mordril Shadowfell",
-        "da": "Mordril Shadowfell"
+        "nl": "Mordril Shadowfell"
       },
       "zone": {
         "en": "Eversong Woods",
-        "nl": "Eversong Woods",
-        "da": "Eversong Woods"
+        "nl": "Eversong Woods"
       },
       "theme": "A Different Kind of Void",
       "mainAbilities": {
         "en": "Void magic, Shadow damage. Danger to himself and others. Interrupt Void casts.",
-        "nl": "Void-magie, Schaduwschade. Gevaarlijk voor zichzelf en anderen. Onderbreek Void-casts.",
-        "da": "Void-magi, Shadow-skade. Farlig for sig selv og andre. Afbryd Void-casts."
+        "nl": "Void-magie, Schaduwschade. Gevaarlijk voor zichzelf en anderen. Onderbreek Void-casts."
       }
     },
     {
       "id": "deliah_gloomsong",
       "name": {
         "en": "Deliah Gloomsong",
-        "nl": "Deliah Gloomsong",
-        "da": "Deliah Gloomsong"
+        "nl": "Deliah Gloomsong"
       },
       "zone": {
         "en": "Eversong Woods",
-        "nl": "Eversong Woods",
-        "da": "Eversong Woods"
+        "nl": "Eversong Woods"
       },
       "theme": "A Different Kind of Void",
       "mainAbilities": {
         "en": "Former prodigy turned Void wielder. Shadow DoT and channeled spells. Interrupt and dispel.",
-        "nl": "Ex-prodigy Void-gebruiker. Shadow DoT en channeled spells. Onderbreek en dispel.",
-        "da": "Tidligere prodigy Void-bruger. Shadow DoT og channeled spells. Afbryd og dispel."
+        "nl": "Ex-prodigy Void-gebruiker. Shadow DoT en channeled spells. Onderbreek en dispel."
       }
     },
     {
       "id": "praetor_singularis",
       "name": {
         "en": "Praetor Singularis",
-        "nl": "Praetor Singularis",
-        "da": "Praetor Singularis"
+        "nl": "Praetor Singularis"
       },
       "zone": {
         "en": "Voidstorm",
-        "nl": "Voidstorm",
-        "da": "Voidstorm"
+        "nl": "Voidstorm"
       },
       "theme": "Outsmarting the Schemers",
       "mainAbilities": {
         "en": "Void schemer. Arcane and Shadow combos. Dodge ground effects, interrupt key casts.",
-        "nl": "Void-strategist. Arcane en Shadow-combo's. Ontwijk grond-effecten, onderbreek key casts.",
-        "da": "Void-strateg. Arcane og Shadow-komboer. Undgå gulveffekter, afbryd vigtige casts."
+        "nl": "Void-strategist. Arcane en Shadow-combo's. Ontwijk grond-effecten, onderbreek key casts."
       }
     },
     {
       "id": "consul_nebulor",
       "name": {
         "en": "Consul Nebulor",
-        "nl": "Consul Nebulor",
-        "da": "Consul Nebulor"
+        "nl": "Consul Nebulor"
       },
       "zone": {
         "en": "Voidstorm",
-        "nl": "Voidstorm",
-        "da": "Voidstorm"
+        "nl": "Voidstorm"
       },
       "theme": "Outsmarting the Schemers",
       "mainAbilities": {
         "en": "Void consul. Summons and Void zones. Kill adds quickly, avoid frontal cone.",
-        "nl": "Void-consul. Summons en Void-zones. Dood adds snel, vermijd frontale kegel.",
-        "da": "Void-konsul. Summons og Void-zoner. Dræb adds hurtigt, undgå frontal kegle."
+        "nl": "Void-consul. Summons en Void-zones. Dood adds snel, vermijd frontale kegel."
       }
     },
     {
       "id": "executor_kaenius",
       "name": {
         "en": "Executor Kaenius",
-        "nl": "Executor Kaenius",
-        "da": "Executor Kaenius"
+        "nl": "Executor Kaenius"
       },
       "zone": {
         "en": "Voidstorm",
-        "nl": "Voidstorm",
-        "da": "Voidstorm"
+        "nl": "Voidstorm"
       },
       "theme": "Dominating the Void",
       "mainAbilities": {
         "en": "Void executor. Heavy Shadow burst, Void pools. Move out of bad, use defensives on execute.",
-        "nl": "Void-executor. Zware Shadow burst, Void-pools. Stap uit de bad, defensives op execute.",
-        "da": "Void-executor. Tung Shadow burst, Void-pytter. Gå ud af bad, defensives på execute."
+        "nl": "Void-executor. Zware Shadow burst, Void-pools. Stap uit de bad, defensives op execute."
       }
     },
     {
       "id": "imperator_enigmalia",
       "name": {
         "en": "Imperator Enigmalia",
-        "nl": "Imperator Enigmalia",
-        "da": "Imperator Enigmalia"
+        "nl": "Imperator Enigmalia"
       },
       "zone": {
         "en": "Voidstorm",
-        "nl": "Voidstorm",
-        "da": "Voidstorm"
+        "nl": "Voidstorm"
       },
       "theme": "Dominating the Void",
       "mainAbilities": {
         "en": "Void imperator. AOE Void damage, stuns. Spread for mechanics, interrupt Void Bolt.",
-        "nl": "Void-imperator. AOE Void-schade, stuns. Spreid voor mechanics, onderbreek Void Bolt.",
-        "da": "Void-imperator. AOE Void-skade, stuns. Spred for mekanikker, afbryd Void Bolt."
+        "nl": "Void-imperator. AOE Void-schade, stuns. Spreid voor mechanics, onderbreek Void Bolt."
       }
     },
     {
       "id": "talon_of_janalaii",
       "name": {
         "en": "The Talon of Jan'alaii",
-        "nl": "De Klauw van Jan'alaii",
-        "da": "Jan'alaiis Klo"
+        "nl": "De Klauw van Jan'alaii"
       },
       "zone": {
         "en": "Zul'Aman",
-        "nl": "Zul'Aman",
-        "da": "Zul'Aman"
+        "nl": "Zul'Aman"
       },
       "theme": "Sadistic Shamans",
       "mainAbilities": {
         "en": "Amani shaman. Lightning, Hex, totems. Interrupt Hex, destroy totems, avoid ground AoE.",
-        "nl": "Amani-sjamaan. Bliksem, Hex, totems. Onderbreek Hex, vernietig totems, ontwijk grond-AoE.",
-        "da": "Amani-shaman. Lynge, Hex, totems. Afbryd Hex, ødelæg totems, undgå gulv-AoE."
+        "nl": "Amani-sjamaan. Bliksem, Hex, totems. Onderbreek Hex, vernietig totems, ontwijk grond-AoE."
       }
     },
     {
       "id": "wing_of_akilzon",
       "name": {
         "en": "The Wing of Akil'zon",
-        "nl": "De Vleugel van Akil'zon",
-        "da": "Akil'zons Vinge"
+        "nl": "De Vleugel van Akil'zon"
       },
       "zone": {
         "en": "Zul'Aman",
-        "nl": "Zul'Aman",
-        "da": "Zul'Aman"
+        "nl": "Zul'Aman"
       },
       "theme": "Sadistic Shamans",
       "mainAbilities": {
         "en": "Amani shaman. Storm and wind abilities. Dodge swirls, interrupt Storm Bolt, dispel curses.",
-        "nl": "Amani-sjamaan. Storm en wind-abilities. Ontwijk draaiingen, onderbreek Storm Bolt, dispel vloeken.",
-        "da": "Amani-shaman. Storm og vind-evner. Undgå hvirvler, afbryd Storm Bolt, dispel forbandelser."
+        "nl": "Amani-sjamaan. Storm en wind-abilities. Ontwijk draaiingen, onderbreek Storm Bolt, dispel vloeken."
       }
     }
   ]

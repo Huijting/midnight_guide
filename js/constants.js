@@ -1,9 +1,7 @@
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {
   nl: { title:'🗺 Route op Keystone.guru', hint:'Tik buiten het venster of druk op Sluiten', close:'✕ Sluiten', btn_label:'Bekijk M+ route op Keystone.guru', btn_sub:'Opent Keystone.guru in een nieuw tabblad' },
-  en: { title:'🗺 Route on Keystone.guru', hint:'Tap outside or press Close', close:'✕ Close', btn_label:'View M+ route on Keystone.guru', btn_sub:'Opens Keystone.guru in a new tab' },
-  da: { title:'🗺 Rute på Keystone.guru', hint:'Tryk uden for vinduet eller tryk Luk', close:'✕ Luk', btn_label:'Se M+ rute på Keystone.guru', btn_sub:'Åbner Keystone.guru i en ny fane' }
-};
+  en: { title:'🗺 Route on Keystone.guru', hint:'Tap outside or press Close', close:'✕ Close', btn_label:'View M+ route on Keystone.guru', btn_sub:'Opens Keystone.guru in a new tab' }};
 
 // ── Alle professions samenvoegen ──
 const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHING,ENCHANTING,ENGINEERING,INSCRIPTION,JEWELCRAFTING,TAILORING,COOKING,FISHING];
@@ -108,57 +106,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Use your 'Concentration' smartly! It allows you to craft items at a higher quality than you normally could. It slowly recharges every day."
-    },
-    "da": {
-      "title": "Den Ultimative Læderbearbejdningsguide!",
-      "intro": "Bliv en mester i læderbearbejdning! Denne guide forklarer alt, fra dit allerførste sting til at nå level 100.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Skinning)",
-              "text": "Du får brug for masser af dyreskind. Lær derfor <strong>Skinning</strong> som dit andet erhverv! Udstyr en <em>Skinning Knife</em> i dit profession-slot. Bekæmp udyr som ulve og bjørne, og flå dem for materialer!"
-            },
-            {
-              "title": "Find Træneren",
-              "text": "Gå til hovedstaden og tal med en vagt. Spørg efter <strong>Leatherworking Trainer</strong>. Lær det grundlæggende her, og køb lidt <em>Thread</em> (tråd) hos sælgeren ved siden af."
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold godt øje med farverne på dine opskrifter for at stige hurtigt i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point. Lav altid Orange eller Gul!"
-            },
-            {
-              "title": "'First Craft' Bonussen",
-              "text": "Laver du en genstand for allerførste gang? Så får du et <strong>Knowledge Point</strong> (Videnspoint)! Prøv at lave mindst én af hver opskrift. Det vil hjælpe dig meget senere med din specialisering."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simpel Start",
-              "text": "Åbn din formularbog ('P') og begynd at lave simple armbånd. Bliv ved med at lave disse, så længe farven er Orange eller Gul!"
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "På level 25 kan du vælge en <strong>Specialisering</strong>. Er du i tvivl om, hvad du skal vælge? Så tjek <strong>'KP Guide'</strong> fanen ovenfor! Der har vi kortlagt de bedste ruter til dig. Fra nu af skal du lave præcis én af hver ny opskrift. På den måde scorer du First Craft-bonusserne og flyver gennem banerne."
-            },
-            {
-              "title": "Level 50 - 75: Erhvervsudstyr & PvP",
-              "text": "Normalt udstyr giver ikke point længere (de er grå). Lav nu udstyr til andre erhverv (som tasker) eller PvP-udstyr. Dette koster flere materialer, så tag ud og flå en masse monstre!"
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Nu bliver det svært! Du kan kun stige i level ved at lave episk (lilla) udstyr. Du skal bruge specielle 'Sparks' til dette. Fordi du ikke selv har nok af dem, skal du bruge <strong>Crafting Orders</strong>-bordet. Her betaler andre spillere dig guld for at lave udstyr til dem med DERES Sparks. Sådan når du level 100!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Brug din 'Concentration' (Koncentration) klogt! Det giver dig mulighed for at lave genstande af højere kvalitet, end du normalt kan. Det genoplades langsomt hver dag."
-    }
-  },
+    }},
   "alchemy": {
     "nl": {
       "title": "De Ultieme Alchemy Gids!",
@@ -249,53 +197,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: As an Alchemist, Phials (buff potions) last twice as long for you! This saves you a lot of gold when running dungeons."
-    },
-    "da": {
-      "title": "Den Ultimative Alkymi Guide!",
-      "intro": "Bliv en mester-alkymist! Bryg kraftfulde eliksirer og forvandl simple materialer til guld.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Herbalism)",
-              "text": "Du har brug for masser af urter. Lær <strong>Herbalism</strong> (Urtesamling) som dit andet erhverv! Så kan du selv plukke alle de blomster, du har brug for."
-            },
-            {
-              "title": "Find Træneren",
-              "text": "Spørg en vagt i hovedstaden efter <strong>Alchemy Trainer</strong>. Køb nogle <em>Crystal Vials</em> (flasker) hos sælgeren ved siden af, dem skal du bruge til hver eliksir!"
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simple Eliksirer",
-              "text": "Begynd med at lave simple healing potions (helbredende eliksirer). Dette er den nemmeste måde at få dine første levels på."
-            },
-            {
-              "title": "Level 25 - 50: Eksperimentering!",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guide fanen!). Nu skal du 'Eksperimentere' med urter for at opdage nye opskrifter. Nogle gange mislykkes det og eksploderer (så må du vente lidt), men når det lykkes, lærer du nye ting!"
-            },
-            {
-              "title": "Level 50 - 75: Flasks & Phials",
-              "text": "Lav nu de stærkere eliksirer (Phials), der varer længe. Sørg for at lave én af hver ny opskrift for at få First Craft bonussen!"
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "For at nå level 100 skal du lave episke Cauldrons (store gryder til raid-grupper) eller meget sjældne eliksirer via <strong>Crafting Orders</strong> systemet."
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Som Alkymist varer Phials (buff-eliksirer) dobbelt så længe for dig! Det sparer dig for meget guld, når du spiller dungeons."
-    }
-  },
+    }},
   "blacksmithing": {
     "nl": {
       "title": "De Ultieme Blacksmithing Gids!",
@@ -386,53 +288,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Blacksmiths can make special stones to temporarily buff weapons (Weapon Stones). Make these for yourself and sell them on the Auction House!"
-    },
-    "da": {
-      "title": "Den Ultimative Smede Guide!",
-      "intro": "Bliv en mester-smed! Smed de stærkeste våben og tungeste rustninger (Plate) i spillet.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Mining)",
-              "text": "Du har brug for masser af malm (ore). Lær <strong>Mining</strong> (Minedrift) som dit andet erhverv! Udstyr en <em>Blacksmith Hammer</em> og led efter sten ude i verden."
-            },
-            {
-              "title": "Træneren & Ambolten",
-              "text": "Find <strong>Blacksmithing Trainer</strong> i byen. Bemærk: du kan kun lave ting, når du står ved siden af en <strong>Anvil</strong> (Ambolt)!"
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simpel Smedning",
-              "text": "Begynd med at smelte malm og lave simple metaldele (som Core Alloy). Bliv ved med dette, så længe det er Orange eller Gul."
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "Vælg din <strong>Specialisering</strong> (Våben eller Rustning? Tjek KP Guiden!). Fra nu af skal du lave præcis én af hver ny opskrift for at få First Craft Videnspoint."
-            },
-            {
-              "title": "Level 50 - 75: Erhvervsudstyr & PvP",
-              "text": "Lav nu værktøj til andre erhverv (som hamre og hakker) eller PvP-udstyr. Dette koster meget metal, så tag ud og min en masse!"
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Nu kan du kun stige i level ved at lave episke (lilla) våben eller rustninger med 'Sparks'. Brug <strong>Crafting Orders</strong>-bordet: lad andre spillere betale dig for at smede deres episke sværd!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Smede kan lave specielle sten, der midlertidigt forstærker våben (Weapon Stones). Lav disse til dig selv og sælg dem på Auktionshuset!"
-    }
-  },
+    }},
   "enchanting": {
     "nl": {
       "title": "De Ultieme Enchanting Gids!",
@@ -523,53 +379,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Always sell your enchants on an 'Enchanting Vellum' via the Auction House. This is one of the best ways to make gold in WoW!"
-    },
-    "da": {
-      "title": "Den Ultimative Enchanting Guide!",
-      "intro": "Bliv en mester-fortryller! Nedbryd magiske genstande og brug støvet til at gøre dit eget udstyr superstærkt.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Tailoring)",
-              "text": "Enchanting (Fortryllelse) kræver ikke et samle-erhverv! Du får materialer ved at nedbryde gammelt udstyr (Disenchanting). <strong>Tailoring</strong> (Skrædderi) er en god kombi, fordi du nemt kan lave tøj bare for at nedbryde det til magisk støv!"
-            },
-            {
-              "title": "Træneren & Runed Copper Rod",
-              "text": "Find <strong>Enchanting Trainer</strong>. Sørg for, at du altid har en <em>Runed Copper Rod</em> (eller bedre) i din taske, dette er din magiske tryllestav til fortryllelser."
-            },
-            {
-              "title": "Disenchanting (Nedbrydning)",
-              "text": "Brug din 'Disenchant' formular på grønt, blåt eller lilla udstyr, du ikke længere har brug for. Du får Dust (Støv), Shards (Skår) og Crystals (Krystaller) fra dem!"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simple Fortryllelser",
-              "text": "Begynd med at lave simple fortryllelser til ringe eller brystplader. Brug dit eget udstyr til at øve dig på!"
-            },
-            {
-              "title": "Level 25 - 50: Vellum & First Crafts",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guiden!). Køb <em>Enchanting Vellum</em> (pergament) hos sælgeren. Du kan placere fortryllelser på disse og sælge dem på Auktionshuset! Lav præcis én af hver for at få Videnspoint."
-            },
-            {
-              "title": "Level 50 - 75: Våben Fortryllelser",
-              "text": "Nu skal du lave de dyre, seje våben-fortryllelser. Disse giver dit våben en glød og gør dig meget stærkere. Nedbryd masser af blåt og lilla udstyr for at få de rigtige krystaller."
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Til de sidste levels skal du lave de allerbedste episke fortryllelser. Brug <strong>Crafting Orders</strong>-bordet, så andre spillere betaler dig for at give deres våben den ultimative fortryllelse!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Sælg altid dine fortryllelser på et 'Enchanting Vellum' via Auktionshuset. Dette er en af de bedste måder at tjene guld på i WoW!"
-    }
-  },
+    }},
   "engineering": {
     "nl": {
       "title": "De Ultieme Engineering Gids!",
@@ -660,53 +470,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Engineering is the most fun profession in WoW! You can make a 'Loot-A-Rang' to loot enemies from a distance, and wormhole generators to teleport anywhere!"
-    },
-    "da": {
-      "title": "Den Ultimative Engineering Guide!",
-      "intro": "Bliv en gal opfinder! Lav bomber, gadgets, robot-kæledyr og de sejeste briller (Goggles) i WoW.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Mining)",
-              "text": "Opfindere har brug for meget metal. Lær <strong>Mining</strong> (Minedrift) som dit andet erhverv! Du har også ofte brug for en <em>Arclight Spanner</em> og en <em>Gyromatic Micro-Adjustor</em> i din taske."
-            },
-            {
-              "title": "Find Træneren",
-              "text": "Find <strong>Engineering Trainer</strong>. Bemærk: Ingeniører laver ofte ting, som KUN de selv kan bruge (som specielle briller og teleportere)."
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Møtrikker og Bolte",
-              "text": "Begynd med at lave basisdele som Handful of Copper Bolts og simple sprængstoffer. Gem delene, du får brug for dem senere!"
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guiden!). Fra nu af skal du lave præcis én af hver ny opskrift for at få First Craft Videnspoint. Lav dine første seje gadgets!"
-            },
-            {
-              "title": "Level 50 - 75: Erhvervsudstyr & Tinkers",
-              "text": "Lav værktøj til andre erhverv og 'Tinkers' (specielle moduler, du kan klikke ind i din rustning for ekstra kræfter, som usynlighed eller et skjold)."
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Lav episke (lilla) Goggles (briller) og skydevåben. Brug <strong>Crafting Orders</strong>-bordet: lad andre spillere betale dig for at lave deres episke Engineering udstyr!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Engineering er det sjoveste erhverv i WoW! Du kan lave en 'Loot-A-Rang' til at plyndre fjender på afstand, og ormehuls-generatorer til at teleportere overalt!"
-    }
-  },
+    }},
   "inscription": {
     "nl": {
       "title": "De Ultieme Inscription Gids!",
@@ -797,53 +561,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: 'Missives' are always worth a lot of money on the Auction House, because everyone needs them to give their gear the perfect stats (like Haste or Crit)!"
-    },
-    "da": {
-      "title": "Den Ultimative Inscription Guide!",
-      "intro": "Bliv en magisk skriver! Lav kraftfulde stave, tryllebøger og kort, der gør dig stærkere.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Herbalism)",
-              "text": "Du har brug for masser af planter til at lave blæk. Lær <strong>Herbalism</strong> (Urtesamling) som dit andet erhverv! Sørg også for altid at have et <em>Virtuoso Inking Set</em> og blankt pergament med dig."
-            },
-            {
-              "title": "Milling (Knusning)",
-              "text": "Du bruger 'Milling' formularen til at knuse dine plukkede blomster til pigmenter. Du laver blæk af disse pigmenter, og med det blæk skriver du magiske formularer!"
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Blæk og Pergament",
-              "text": "Begynd med at knuse blomster og lave dine første krukker med blæk. Lav derefter simple 'Missives' (breve, der bestemmer, hvilke stats en genstand får)."
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guiden!). Fra nu af skal du lave præcis én af hver ny opskrift for at få First Craft Videnspoint."
-            },
-            {
-              "title": "Level 50 - 75: Darkmoon Cards",
-              "text": "Lav magiske Tarotkort (Darkmoon Cards). Hvis du samler et helt sæt, kan du bytte det til en superstærk pyntegenstand (Trinket)!"
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Lav episke (lilla) stave og Vantus Runes (som hjælper raid-grupper mod svære bosser). Brug <strong>Crafting Orders</strong>-bordet!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: 'Missives' er altid mange penge værd på Auktionshuset, fordi alle har brug for dem for at give deres udstyr de perfekte stats (som Haste eller Crit)!"
-    }
-  },
+    }},
   "jewelcrafting": {
     "nl": {
       "title": "De Ultieme Jewelcrafting Gids!",
@@ -934,53 +652,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Everyone needs gems for their gear. Cutting the most popular stones (like Haste or Mastery) is a great way to get rich!"
-    },
-    "da": {
-      "title": "Den Ultimative Jewelcrafting Guide!",
-      "intro": "Bliv en mester-juveler! Slib sjældne ædelstene og lav de smukkeste ringe og halskæder.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Mining)",
-              "text": "Juvelerer får deres ædelstene fra rå malm. Lær <strong>Mining</strong> (Minedrift) som dit andet erhverv! Sørg for altid at have et <em>Jeweler's Toolset</em> i din taske."
-            },
-            {
-              "title": "Prospecting (Gennemsøgning)",
-              "text": "Ligesom Inscription knuser blomster, bruger du 'Prospecting' til at knuse rå malm. Smukke, rå ædelstene vil springe ud af dette!"
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simpel Slibning",
-              "text": "Begynd med at gennemsøge malm og slibe simple, grønne ædelstene. Du kan sætte disse i din rustning for ekstra stats."
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guiden!). Fra nu af skal du lave præcis én af hver ny opskrift for at få First Craft Videnspoint."
-            },
-            {
-              "title": "Level 50 - 75: Ringe og Halskæder",
-              "text": "Nu skal du lave rigtige smykker! Lav blå ringe og halskæder. Dette koster lidt mere materiale, så bliv ved med at mine."
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Lav episke (lilla) ringe, halskæder og de allerbedste diamanter. Brug <strong>Crafting Orders</strong>-bordet: lad andre spillere betale dig for at lave deres episke smykker!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Alle har brug for ædelstene til deres udstyr. At slibe de mest populære sten (som Haste eller Mastery) er en fantastisk måde at blive rig på!"
-    }
-  },
+    }},
   "tailoring": {
     "nl": {
       "title": "De Ultieme Tailoring Gids!",
@@ -1071,53 +743,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: As a Tailor, you find more cloth from monsters than other players. So go do lots of dungeons or defeat monsters to get rich in cloth!"
-    },
-    "da": {
-      "title": "Den Ultimative Skrædder Guide!",
-      "intro": "Bliv en mester-skrædder! Sy magiske kapper, flyvende tæpper og de største tasker i WoW.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Ingen Samler Nødvendig!",
-              "text": "Skrædderi er unikt: du har <strong>ikke</strong> brug for et samle-erhverv! Stof (Cloth) falder bare fra menneskelignende monstre (Humanoids), du besejrer. Enchanting er et godt andet valg."
-            },
-            {
-              "title": "Træneren & Tråd",
-              "text": "Find <strong>Tailoring Trainer</strong>. Sørg for, at du altid køber nok <em>Thread</em> (tråd) hos sælgeren ved siden af, for det skal du bruge til hvert stykke tøj."
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simpel Syning",
-              "text": "Begynd med at væve løse stykker stof til hele ruller (Bolts of Cloth). Lav derefter simple armbånd eller bælter."
-            },
-            {
-              "title": "Level 25 - 50: Alt Én Gang!",
-              "text": "Vælg din <strong>Specialisering</strong> (tjek KP Guiden!). Fra nu af skal du lave præcis én af hver ny opskrift for at få First Craft Videnspoint."
-            },
-            {
-              "title": "Level 50 - 75: Tasker & PvP",
-              "text": "Alle har brug for tasker for mere plads! Lav tasker og sælg dem på Auktionshuset. Lav også blåt PvP-tøj."
-            },
-            {
-              "title": "Level 75 - 100: Mesterfasen",
-              "text": "Lav episke (lilla) kapper til Mages, Warlocks og Priests. Brug <strong>Crafting Orders</strong>-bordet: lad andre spillere betale dig for at sy deres episke tøj!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Som Skrædder finder du mere stof fra monstre end andre spillere. Så tag ud og lav en masse dungeons eller besejr monstre for at blive rig på stof!"
-    }
-  },
+    }},
   "skinning": {
     "nl": {
       "title": "De Ultieme Skinning Gids!",
@@ -1200,49 +826,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Do you see dead beasts lying around that another player has already looted? You can still skin them! Free leather without fighting!"
-    },
-    "da": {
-      "title": "Den Ultimative Skinning Guide!",
-      "intro": "Bliv en mester-jæger! Saml læder og skæl fra besejrede udyr for at sælge eller bruge selv.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Leatherworking)",
-              "text": "Fordi du samler meget læder, er <strong>Leatherworking</strong> det perfekte andet erhverv. På den måde kan du lave sej rustning direkte fra dit eget læder!"
-            },
-            {
-              "title": "Dit Værktøj",
-              "text": "Sørg for at købe en <em>Skinning Knife</em> (flåkniv) hos en sælger og udstyr den i dit specielle erhvervs-slot (tryk på 'P' og træk den ind)."
-            },
-            {
-              "title": "Hvordan virker det?",
-              "text": "Bekæmp et udyr (som en ulv eller bjørn). Plyndr først alle de ting, udyret har. Derefter vil din mus glimte, når du holder den over: højreklik for at flå!"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Bare Flå!",
-              "text": "Gå udenfor og bekæmp hvert udyr, du ser. Hvert udyr, du flår, giver dig et point. Dette går super hurtigt!"
-            },
-            {
-              "title": "Level 25 - 50: Specialisering",
-              "text": "På level 25 kan du vælge en <strong>Specialisering</strong> (tjek KP Guiden!). Vælg for eksempel, om du vil blive bedre til at samle læder eller skæl."
-            },
-            {
-              "title": "Level 50 - 100: Sjældne Udyr",
-              "text": "Når du kommer højere op, vil nemme udyr ikke give point længere. Du skal nu lede efter stærkere, sjældnere udyr eller Elite monstre for at få de sidste levels."
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Ser du døde udyr ligge rundt omkring, som en anden spiller allerede har plyndret? Du kan stadig flå dem! Gratis læder uden at kæmpe!"
-    }
-  },
+    }},
   "mining": {
     "nl": {
       "title": "De Ultieme Mining Gids!",
@@ -1325,49 +909,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: If you choose the right specialization, you can mine ores WITHOUT dismounting your flying mount. This saves a huge amount of time!"
-    },
-    "da": {
-      "title": "Den Ultimative Mining Guide!",
-      "intro": "Bliv en mester-minearbejder! Hak værdifulde malme og ædelstene fra stenene i verden.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Blacksmithing/Engineering/Jewelcrafting)",
-              "text": "Mining (Minedrift) giver metal. Dette kombineres perfekt med erhverv, der har brug for metal, som <strong>Blacksmithing</strong>, <strong>Engineering</strong> eller <strong>Jewelcrafting</strong>!"
-            },
-            {
-              "title": "Dit Værktøj & Sporing",
-              "text": "Køb en <em>Mining Pick</em> (hakke) og udstyr den. Klik på det lille kikkertikon ved dit minimap og slå 'Track Minerals' til. Nu vil du se gule prikker på kortet, hvor der er sten!"
-            },
-            {
-              "title": "Hvordan virker det?",
-              "text": "Gå hen til en sten (ore node) i verden og højreklik på den for at mine. Du får malm og nogle gange sjældne ædelstene!"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Bare Hak!",
-              "text": "Hak hver sten, du støder på. I begyndelsen giver hver sten dig et level op."
-            },
-            {
-              "title": "Level 25 - 50: Specialisering",
-              "text": "På level 25 kan du vælge en <strong>Specialisering</strong> (tjek KP Guiden!). Vil du finde mere malm, eller vil du lære at mine sten, mens du sidder på dit ridedyr?"
-            },
-            {
-              "title": "Level 50 - 100: Sjældne Sten",
-              "text": "Normale sten vil ikke give point længere senere hen. Du skal lede efter specielle sten (som Camouflaged eller Webbed ore) eller meget sjældne malme som Bismuth og Ironclaw for at nå level 100."
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Hvis du vælger den rigtige specialisering, kan du mine malme UDEN at stige af dit flyvende ridedyr. Dette sparer enormt meget tid!"
-    }
-  },
+    }},
   "herbalism": {
     "nl": {
       "title": "De Ultieme Herbalism Gids!",
@@ -1450,49 +992,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Sometimes you find special seeds while picking. You can plant these in special dirt (Rich Soil) to instantly grow a rare plant!"
-    },
-    "da": {
-      "title": "Den Ultimative Herbalism Guide!",
-      "intro": "Bliv en mester-urtesamler! Pluk de smukkeste og farligste blomster i verden.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Den perfekte duo (Alchemy/Inscription)",
-              "text": "Planter er nødvendige til eliksirer og blæk. Kombiner Herbalism (Urtesamling) med <strong>Alchemy</strong> eller <strong>Inscription</strong>!"
-            },
-            {
-              "title": "Dit Værktøj & Sporing",
-              "text": "Køb en <em>Herbalist's Spade</em> (spade) og udstyr den. Klik på kikkertikonet ved dit minimap og slå 'Track Herbs' til. Nu vil du se gule prikker på kortet, hvor der er blomster!"
-            },
-            {
-              "title": "Hvordan virker det?",
-              "text": "Gå hen til en plante i verden og højreklik på den for at plukke den. Nogle gange får du også magiske frø!"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Bare Pluk!",
-              "text": "Pluk hver blomst, du ser. Mycobloom er den mest almindelige blomst og perfekt at starte med."
-            },
-            {
-              "title": "Level 25 - 50: Specialisering",
-              "text": "På level 25 kan du vælge en <strong>Specialisering</strong> (tjek KP Guiden!). Vil du lære at plukke blomster uden at stige af dit ridedyr?"
-            },
-            {
-              "title": "Level 50 - 100: Muterede Planter",
-              "text": "Normale blomster vil ikke give point længere senere hen. Led efter specielle, muterede planter (som Irradiated eller Crystallized urter) for at få de sidste levels."
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Nogle gange finder du specielle frø, mens du plukker. Du kan plante disse i speciel jord (Rich Soil) for øjeblikkeligt at dyrke en sjælden plante!"
-    }
-  },
+    }},
   "cooking": {
     "nl": {
       "title": "De Ultieme Cooking Gids!",
@@ -1575,49 +1075,7 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Always eat a meal before entering a difficult dungeon or raid. The 'Well Fed' buff gives you extra stats making you much stronger!"
-    },
-    "da": {
-      "title": "Den Ultimative Madlavningsguide!",
-      "intro": "Bliv en mesterkok! Lav lækre måltider, der gør dig og dine venner stærkere.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Et Sekundært Erhverv",
-              "text": "Madlavning er et <strong>Sekundært Erhverv</strong>. Det betyder, at ALLE kan lære det, ved siden af dine to hovederhverv! Det kombineres perfekt med <em>Fishing</em> (Fiskeri)."
-            },
-            {
-              "title": "Træneren & Lejrbålet",
-              "text": "Find <strong>Cooking Trainer</strong>. For at lave mad har du brug for ild. Du kan stå ved siden af et komfur i byen, eller selv lave et <em>Basic Campfire</em> (lejrbål) ude i naturen!"
-            },
-            {
-              "title": "Opskrifternes Farver",
-              "text": "Hold øje med farverne for at stige i level:<br>🟠 <strong>Orange:</strong> Altid +1 point!<br>🟡 <strong>Gul:</strong> Normalt et point.<br>🟢 <strong>Grøn:</strong> Nogle gange et point.<br>⚪ <strong>Grå:</strong> Ingen point."
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 25: Simple Snacks",
-              "text": "Begynd med at stege stykker af kød, du får fra udyr (som ulve). Dette er meget nemt og billigt."
-            },
-            {
-              "title": "Level 25 - 50: Fiskeretter",
-              "text": "Nu har du brug for fisk! Gå selv ud og fisk, eller køb fisk på Auktionshuset for at lave bedre måltider."
-            },
-            {
-              "title": "Level 50 - 100: Festmåltider (Feasts)",
-              "text": "Til de sidste levels laver du enorme 'Feasts'. Dette er store borde fulde af mad, som hele din raid-gruppe kan spise af. De koster mange ingredienser, men alle vil takke dig!"
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Spis altid et måltid, før du går ind i en svær dungeon eller et raid. 'Well Fed' buffen giver dig ekstra stats, der gør dig meget stærkere!"
-    }
-  },
+    }},
   "fishing": {
     "nl": {
       "title": "De Ultieme Fishing Gids!",
@@ -1692,43 +1150,5 @@ const PROF_GUIDE_DATA = {
         }
       ],
       "tip": "Golden Tip: Turn up the sound of your game a bit when fishing. You can then fish with your eyes closed and just click as soon as you hear the 'splash'!"
-    },
-    "da": {
-      "title": "Den Ultimative Fiske Guide!",
-      "intro": "Bliv en mester-fisker! Slap af ved vandet og fang de sjældneste fisk i Azeroth.",
-      "sections": [
-        {
-          "sectionTitle": "Del 1: Det Grundlæggende",
-          "steps": [
-            {
-              "title": "Et Sekundært Erhverv",
-              "text": "Fiskeri er et <strong>Sekundært Erhverv</strong>. ALLE kan lære det! Det er den perfekte måde at samle ingredienser til <em>Cooking</em> (Madlavning)."
-            },
-            {
-              "title": "Din Fiskestang",
-              "text": "Find <strong>Fishing Trainer</strong>. Køb en <em>Fishing Pole</em> (fiskestang) og udstyr den i dit erhvervs-slot. Find et dejligt stykke vand!"
-            },
-            {
-              "title": "Hvordan virker det?",
-              "text": "Brug din 'Fishing' formular. Du kaster en prop i vandet. Vent tålmodigt... Så snart proppen bevæger sig, og du hører et 'plask', skal du klikke hurtigt på den for at hive fisken ind!"
-            }
-          ]
-        },
-        {
-          "sectionTitle": "Del 2: Vejen til Level 100",
-          "steps": [
-            {
-              "title": "Level 1 - 50: Tålmodighed er en dyd",
-              "text": "Fiskeri er meget simpelt: du skal bare fiske! Hver gang du fanger noget, har du en chance for at få et point. Jo højere dit level er, jo flere fisk skal du fange for 1 point."
-            },
-            {
-              "title": "Level 50 - 100: Fiskestimer (Pools)",
-              "text": "Ser du cirkler i vandet med fisk i? Det er 'Pools'. Kast din prop præcis derind! Her er du garanteret at fange sjældne fisk, der er meget guld værd på Auktionshuset."
-            }
-          ]
-        }
-      ],
-      "tip": "Gyldent Tip: Skru lidt op for lyden i dit spil, når du fisker. Så kan du fiske med lukkede øjne og bare klikke, så snart du hører 'plasket'!"
-    }
-  }
+    }}
 };

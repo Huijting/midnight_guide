@@ -4,28 +4,25 @@ const SPEC_DEVOURER_DH = {
   id: 'devourer_dh',
   icon: '🦋',
   class: 'Demon Hunter',
-  spec: { nl: 'Devourer', en: 'Devourer', da: 'Devourer' },
+  spec: { nl: 'Devourer', en: 'Devourer'},
   role: 'ranged',
   armor: 'Leather',
-  weapon: { nl: 'Warglaives (ranged focus)', en: 'Warglaives (ranged focus)', da: 'Warglaives (ranged fokus)' },
+  weapon: { nl: 'Warglaives (ranged focus)', en: 'Warglaives (ranged focus)'},
   resource: 'Fury + Soul Fragments',
   patch: '1.0',
   color: '#6B21A8',
 
   summary: {
     nl: 'Devourer Demon Hunter is een mid-range caster DPS die Cosmic schade doet via void-empowered spells. Speelt op 25m afstand met Void Metamorphosis als kernmechaniek.',
-    en: 'Devourer Demon Hunter is a mid-range caster DPS dealing Cosmic damage through void-empowered spells. Plays at 25-yard range with Void Metamorphosis as core mechanic.',
-    da: 'Devourer Demon Hunter er en mid-range caster DPS der gør Cosmic-skade via void-empowered spells. Spiller på 25m afstand med Void Metamorphosis som kernenmekanik.',
+    en: 'Devourer Demon Hunter is a mid-range caster DPS dealing Cosmic damage through void-empowered spells. Plays at 25-yard range with Void Metamorphosis as core mechanic.'
   },
   pros: {
     nl: ['Semi-ranged — veilige afstand tot mechanics', 'Void Metamorphosis = krachtige burst vensters', 'Goede AoE via Hurl Glaive + Fel Barrage', 'Blur + Demonic Resilience voor defensie'],
-    en: ['Semi-ranged — safe distance from mechanics', 'Void Metamorphosis = powerful burst windows', 'Good AoE via Hurl Glaive + Fel Barrage', 'Blur + Demonic Resilience for defense'],
-    da: ['Semi-ranged — sikker afstand til mekanikker', 'Void Metamorphosis = kraftfulde burst-vinduer', 'God AoE via Hurl Glaive + Fel Barrage', 'Blur + Demonic Resilience til forsvar'],
+    en: ['Semi-ranged — safe distance from mechanics', 'Void Metamorphosis = powerful burst windows', 'Good AoE via Hurl Glaive + Fel Barrage', 'Blur + Demonic Resilience for defense']
   },
   cons: {
     nl: ['Resource management (Fury + Souls) is complex', 'Void Meta timing cruciaal', 'Minder burst dan Havoc buiten Meta'],
-    en: ['Resource management (Fury + Souls) is complex', 'Void Meta timing crucial', 'Less burst than Havoc outside Meta'],
-    da: ['Ressourcestyring (Fury + Souls) er kompleks', 'Void Meta-timing afgørende', 'Mindre burst end Havoc uden for Meta'],
+    en: ['Resource management (Fury + Souls) is complex', 'Void Meta timing crucial', 'Less burst than Havoc outside Meta']
   },
 
   cheatsheet: {
@@ -52,19 +49,7 @@ const SPEC_DEVOURER_DH = {
         'Hurl Glaive + Fel Barrage for ranged AoE burst',
         'Blur during major mechanics — two charges with Demonic Resilience',
       ],
-    },
-    da: {
-      opener: 'Soul Immolation → Consume → Reap → Void Metamorphosis → Collapsing Star-spam → Void Ray',
-      single: 'Void Ray (Fury-dump) → Reap (Souls) → Consume (fyldstof) → Void Metamorphosis på Souls',
-      aoe: 'Void Metamorphosis → Collapsing Star → Hurl Glaive → Fel Barrage → Void Ray',
-      rules: [
-        'Saml Soul Fragments til Void Metamorphosis',
-        'Void Ray som Fury-dump — spild aldrig Fury',
-        'Collapsing Star i Void Meta — stiger per cast',
-        'Hurl Glaive + Fel Barrage til ranged AoE burst',
-        'Blur ved store mekanikker — to charges med Demonic Resilience',
-      ],
-    },
+    }
   },
 
   rotation: {
@@ -115,31 +100,7 @@ const SPEC_DEVOURER_DH = {
         { spell: 'Fel Barrage', why: 'Ranged AoE burst on cluster' },
         { spell: 'Void Ray', why: 'Fury dump with cleave' },
       ],
-    },
-    da: {
-      apex_tip: '💡 Void Metamorphosis = dit burst-vindue. Saml Souls, transformer, og spam Collapsing Star!',
-      opener: [
-        { spell: 'Soul Immolation', why: 'Øger Soul + Fury-generering' },
-        { spell: 'Consume', why: 'Fyldstof — genererer Souls og Fury' },
-        { spell: 'Reap', why: 'Samler Soul Fragments' },
-        { spell: 'Void Metamorphosis', why: 'Transformer — kerne burst-vindue' },
-        { spell: 'Collapsing Star', why: 'Finisher i Meta — stiger per cast' },
-      ],
-      single: [
-        { spell: 'Void Ray', why: 'Primær Fury-dump — brug altid' },
-        { spell: 'Reap', why: 'Soul Fragments til næste Void Meta' },
-        { spell: 'Consume', why: 'Fyldstof — Souls + Fury-generering' },
-        { spell: 'Void Metamorphosis', why: 'Ved 50 Souls (eller 35 med talents)' },
-        { spell: 'Collapsing Star', why: 'I Void Meta — maksimal skade' },
-      ],
-      aoe: [
-        { spell: 'Void Metamorphosis', why: 'Øger al AoE-skade' },
-        { spell: 'Collapsing Star', why: 'Stærk i Meta på flere mål' },
-        { spell: 'Hurl Glaive', why: 'Ranged AoE — altid i rækkevidde' },
-        { spell: 'Fel Barrage', why: 'Ranged AoE burst på klynge' },
-        { spell: 'Void Ray', why: 'Fury-dump med cleave' },
-      ],
-    },
+    }
   },
 
   stats: {
@@ -162,17 +123,7 @@ const SPEC_DEVOURER_DH = {
         { rank: 4, stat: 'Versatility', bars: 2, note: 'Extra damage AND survivability' },
         { rank: 5, stat: 'Mastery', bars: 2, note: 'Increases Cosmic damage' },
       ],
-    },
-    da: {
-      tip: 'Intellect er din primære stat. Haste reducerer cast-tider og øger Soul-generering.',
-      list: [
-        { rank: 1, stat: 'Intellect', bars: 5, note: 'Primær stat — maksimer altid' },
-        { rank: 2, stat: 'Haste', bars: 4, note: 'Hurtigere casts + flere Souls' },
-        { rank: 3, stat: 'Critical Strike', bars: 3, note: 'Øger burst i Void Meta' },
-        { rank: 4, stat: 'Versatility', bars: 2, note: 'Ekstra skade OG overlevelse' },
-        { rank: 5, stat: 'Mastery', bars: 2, note: 'Øger Cosmic-skade' },
-      ],
-    },
+    }
   },
 
   cooldowns: {
@@ -189,14 +140,7 @@ const SPEC_DEVOURER_DH = {
       { spell: 'Fel Barrage', cd: '~30 sec', effect: 'Ranged AoE channel', when: 'On adds cluster with Hurl Glaive' },
       { spell: 'Blur', cd: '1 min', effect: '50% dodge, 2 charges', when: 'Major mechanic — Demonic Resilience' },
       { spell: 'Disrupt', cd: '15 sec', effect: 'Interrupt', when: 'On important casts — semi-ranged always in range' },
-    ],
-    da: [
-      { spell: 'Void Metamorphosis', cd: 'Souls', effect: 'Transformer — Cosmic burst', when: 'Ved 50 Souls (35 med build)' },
-      { spell: 'Hurl Glaive', cd: 'kort', effect: 'Ranged AoE glaive', when: 'På adds-klynge til burst' },
-      { spell: 'Fel Barrage', cd: '~30 sek', effect: 'Ranged AoE channel', when: 'På adds-klynge med Hurl Glaive' },
-      { spell: 'Blur', cd: '1 min', effect: '50% dodge, 2 charges', when: 'Stor mekanik — Demonic Resilience' },
-      { spell: 'Disrupt', cd: '15 sek', effect: 'Interrupt', when: 'På vigtige casts — semi-ranged altid i rækkevidde' },
-    ],
+    ]
   },
 
   tips: {
@@ -211,13 +155,7 @@ const SPEC_DEVOURER_DH = {
       { icon: '💜', title: 'Void Meta timing', text: 'Collect Souls to 50 (or 35) before transforming. Use Meta on boss pull or large M+ pack for maximum Collapsing Star ramp.' },
       { icon: '⚔️', title: 'Hurl Glaive + Fel Barrage', text: 'Combo these two on adds clusters for ranged AoE burst. Ideal in M+ where you can stay safely at range.' },
       { icon: '🛡️', title: 'Blur = two charges', text: 'With Demonic Resilience you have two Blur charges. Use them during major mechanics — you are more vulnerable than Vengeance.' },
-    ],
-    da: [
-      { icon: '🦋', title: 'Semi-ranged = sikker', text: 'Devourer spiller på 25m. Du er altid i rækkevidde til Disrupt på vigtige casts, men uden for melee-range af mange mekanikker.' },
-      { icon: '💜', title: 'Void Meta-timing', text: 'Saml Souls til 50 (eller 35) før du transformerer. Brug Meta ved boss-pull eller stor M+-gruppe til maksimal Collapsing Star-stigning.' },
-      { icon: '⚔️', title: 'Hurl Glaive + Fel Barrage', text: 'Kombiner disse to på adds-klynger til ranged AoE burst. Ideelt i M+ hvor du kan blive sikkert på afstand.' },
-      { icon: '🛡️', title: 'Blur = to charges', text: 'Med Demonic Resilience har du to Blur-charges. Brug dem ved store mekanikker — du er mere sårbar end Vengeance.' },
-    ],
+    ]
   },
 
   macros: {
@@ -230,12 +168,7 @@ const SPEC_DEVOURER_DH = {
       { name: 'Void Meta + Collapsing Star', code: '/cast Void Metamorphosis\n/cast Collapsing Star', note: 'Meta + first Star in one GCD.' },
       { name: 'Hurl Glaive at cursor', code: '/cast [@cursor] Hurl Glaive', note: 'Ranged AoE at cursor position.' },
       { name: 'Disrupt on focus', code: '/cast [@focus,harm][] Disrupt', note: 'Interrupt focus target — semi-ranged always in range.' },
-    ],
-    da: [
-      { name: 'Void Meta + Collapsing Star', code: '/cast Void Metamorphosis\n/cast Collapsing Star', note: 'Meta + første Star i én GCD.' },
-      { name: 'Hurl Glaive ved markør', code: '/cast [@cursor] Hurl Glaive', note: 'Ranged AoE ved markørposition.' },
-      { name: 'Disrupt på fokus', code: '/cast [@focus,harm][] Disrupt', note: 'Interrupt fokusmål — semi-ranged altid i rækkevidde.' },
-    ],
+    ]
   },
 
   resource_info: {
@@ -266,21 +199,7 @@ const SPEC_DEVOURER_DH = {
       ],
       pet_tip: '💡 Void Metamorphosis ends when Fury depletes. Optimize your rotation for longer Meta windows!',
       pets: [],
-    },
-    da: {
-      intro: 'Devourer bruger Fury (0-120) og Soul Fragments. Fury til Void Ray; Souls til Void Metamorphosis.',
-      generate: [
-        { spell: 'Consume', note: 'Fyldstof — genererer Souls og Fury' },
-        { spell: 'Reap', note: 'Samler Soul Fragments fra mål' },
-        { spell: 'Soul Immolation', note: 'Øger Soul + Fury-generering' },
-      ],
-      spend: [
-        { spell: 'Void Ray', note: 'Primær Fury-dump' },
-        { spell: 'Collapsing Star', note: 'I Void Meta — stiger per cast' },
-      ],
-      pet_tip: '💡 Void Metamorphosis slutter når Fury er tom. Optimaliser din rotation til længere Meta-vinduer!',
-      pets: [],
-    },
+    }
   },
 
   consumables: {
@@ -297,14 +216,7 @@ const SPEC_DEVOURER_DH = {
       { type: 'food', name: 'Silvermoon Parade (Feast)', effect: '+Intellect and Stamina via group feast.', note: 'Ask for feast' },
       { type: 'food', name: 'Royal Roast', effect: 'Solo food — high Intellect bonus.', note: 'Backup if no feast' },
       { type: 'rune', name: 'Void-Touched Augment Rune', effect: '+Primary stat 1 hour.', note: 'Always use' },
-    ],
-    da: [
-      { type: 'flask', name: 'Flask of the Magisters', effect: 'Øger Intellect markant i 1 time.', note: 'Altid aktiv i M+ og raid' },
-      { type: 'pot', name: 'Potion of Recklessness', effect: 'Stor Intellect-boost 25 sek ved pull.', note: 'Ved Void Meta-vindue' },
-      { type: 'food', name: 'Silvermoon Parade (Feast)', effect: '+Intellect og Stamina via gruppefeast.', note: 'Bed om feast' },
-      { type: 'food', name: 'Royal Roast', effect: 'Solo-mad — høj Intellect-bonus.', note: 'Backup hvis ingen feast' },
-      { type: 'rune', name: 'Void-Touched Augment Rune', effect: '+Primær stat 1 time.', note: 'Brug altid' },
-    ],
+    ]
   },
 };
 

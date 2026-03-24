@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_PROTECTION_WARRIOR = {
   id:'protection_warrior', icon:'🛡️', class:'Warrior',
-  spec:{nl:'Protection',en:'Protection',da:'Protection'},
+  spec:{nl:'Protection',en:'Protection'},
   role:'tank', armor:'Plate',
-  weapon:{nl:'Eénhandig wapen + schild',en:'One-hand weapon + shield',da:'Enhåndsvåben + skjold'},
+  weapon:{nl:'Eénhandig wapen + schild',en:'One-hand weapon + shield'},
   resource:'Rage',
   patch:'1.0', color:'#C69B3A',
   summary:{
     nl:'Protection Warrior is de actieve tank — genereert Rage via aanvallen en schade ontvangen. Gebruikt Ignore Pain als absorb shield en heeft sterke AoE threat via Thunder Clap en Shockwave.',
-    en:'Protection Warrior is the active tank — generates Rage via attacks and taking damage. Uses Ignore Pain as absorb shield and has strong AoE threat via Thunder Clap and Shockwave.',
-    da:'Protection Warrior er den aktive tank — genererer Rage via angreb og at tage skade. Bruger Ignore Pain som absorb-skjold og har stærk AoE-trussel via Thunder Clap og Shockwave.',
+    en:'Protection Warrior is the active tank — generates Rage via attacks and taking damage. Uses Ignore Pain as absorb shield and has strong AoE threat via Thunder Clap and Shockwave.'
   },
   pros:{
     nl:['Uitstekende AoE threat via Thunder Clap','Hoge Rage generatie — ook via schade ontvangen','Sterk burst damage voor een tank','Pummel = betrouwbare korte interrupt (15 sec)','Shockwave = sterke AoE stun voor de groep'],
-    en:['Excellent AoE threat via Thunder Clap','High Rage generation — also via taking damage','Strong burst damage for a tank','Pummel = reliable short interrupt (15 sec)','Shockwave = strong AoE stun for the group'],
-    da:['Fremragende AoE-trussel via Thunder Clap','Høj Rage-generering — også via at tage skade','Stærk burst-skade til en tank','Pummel = pålidelig kort interrupt (15 sek)','Shockwave = stærk AoE-stun for gruppen'],
+    en:['Excellent AoE threat via Thunder Clap','High Rage generation — also via taking damage','Strong burst damage for a tank','Pummel = reliable short interrupt (15 sec)','Shockwave = strong AoE stun for the group']
   },
   cons:{
     nl:['Minder defensieve CDs dan Blood DK of Brewmaster','Rage management vereist aandacht','Kwetsbaar voor magic schade','Ignore Pain heeft Rage kosten — kan snel door Rage heen gaan'],
-    en:['Fewer defensive CDs than Blood DK or Brewmaster','Rage management requires attention','Vulnerable to magic damage','Ignore Pain has Rage cost — can burn through Rage quickly'],
-    da:['Færre defensive CDs end Blood DK eller Brewmaster','Rage-styring kræver opmærksomhed','Sårbar over for magisk skade','Ignore Pain har Rage-omkostninger — kan brænde Rage hurtigt igennem'],
+    en:['Fewer defensive CDs than Blood DK or Brewmaster','Rage management requires attention','Vulnerable to magic damage','Ignore Pain has Rage cost — can burn through Rage quickly']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_PROTECTION_WARRIOR = {
         'Spam Ignore Pain when Rage is high — always keep active',
         'Save Shockwave for dangerous casters or large packs',
       ],
-    },
-    da:{
-      opener:'Charge → Thunder Clap → Shield Slam → Avatar → Revenge → Ignore Pain-spam',
-      single:'Shield Slam på CD → Revenge ved proc → Thunder Clap på CD → Ignore Pain når Rage høj',
-      aoe:'Thunder Clap → Shockwave på store grupper → Revenge-spam → hold Ignore Pain oppe',
-      rules:[
-        'Shield Slam altid højeste prioritet — genererer mest Rage',
-        'Brug altid Revenge straks ved proc — gratis og kraftfuld',
-        'Hold Thunder Clap på CD — AoE-trussel og Rage',
-        'Spam Ignore Pain når Rage er høj — hold altid aktivt',
-        'Gem Shockwave til farlige castere eller store grupper',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -111,33 +96,7 @@ const SPEC_PROTECTION_WARRIOR = {
         {spell:'Shield Slam',         why:'Stays priority even in AoE'},
         {spell:'Ignore Pain',         why:'Rage dump — always keep active in AoE too'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Ignore Pain er dit primære forsvar — et absorb-skjold der skal holdes aktivt. Spam det så snart du har nok Rage. Men gem altid nok Rage til Shield Slam!',
-      opener:[
-        {spell:'Charge',              why:'Genererer Rage og positionerer dig — altid som opener'},
-        {spell:'Thunder Clap',        why:'Øjeblikkelig AoE-trussel på alle fjender omkring dig'},
-        {spell:'Shield Slam',         why:'Hoved angreb — genererer mest Rage'},
-        {spell:'Avatar',              why:'Stor cooldown — booster Rage-generering og skade'},
-        {spell:'Shockwave',           why:'AoE-stun ved store grupper — sikkerhed for gruppen'},
-        {spell:'Ignore Pain',         why:'Brug Rage på absorb-skjold — hold altid aktivt'},
-      ],
-      single:[
-        {spell:'Shield Slam',         why:'Altid højeste prioritet — mest Rage-generering'},
-        {spell:'Revenge',             why:'Straks ved proc — gratis, ekstra skade og Rage'},
-        {spell:'Thunder Clap',        why:'På CD — hold Rage-generering og trussel oppe'},
-        {spell:'Ignore Pain',         why:'Rage-dump — hold altid aktivt som absorb-skjold'},
-        {spell:'Devastate',           why:'Fylder når intet andet er tilgængeligt'},
-        {spell:'Avatar',              why:'På CD — Rage-boost og øget skade'},
-      ],
-      aoe:[
-        {spell:'Thunder Clap',        why:'Rammer alle fjender — hoved AoE-trussels-spell'},
-        {spell:'Shockwave',           why:'Stunner alle fjender foran dig — låser grupper ned'},
-        {spell:'Revenge',             why:'Ved proc: rammer flere mål via cleave'},
-        {spell:'Shield Slam',         why:'Forbliver prioritet selv i AoE'},
-        {spell:'Ignore Pain',         why:'Rage-dump — hold altid aktivt i AoE også'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -159,17 +118,7 @@ const SPEC_PROTECTION_WARRIOR = {
         {rank:4,stat:'Critical Strike',bars:2,note:'Triggers Revenge procs more often'},
         {rank:5,stat:'Mastery',        bars:2,note:'Mastery: Critical Block — increases block chance'},
       ],
-    },
-    da:{
-      tip:'Strength er altid #1. Haste sænker GCD og øger angrebshastighed — mere Rage. Versatility giver både skade og skadereduktion — dobbelt værdifuld som tank.',
-      list:[
-        {rank:1,stat:'Strength',       bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',          bars:4,note:'Hurtigere angreb = mere Rage-generering'},
-        {rank:3,stat:'Versatility',    bars:4,note:'Skade + skadereduktion — meget værdifuld som tank'},
-        {rank:4,stat:'Critical Strike',bars:2,note:'Udløser Revenge-procs oftere'},
-        {rank:5,stat:'Mastery',        bars:2,note:'Mastery: Critical Block — øger block-chance'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -185,14 +134,7 @@ const SPEC_PROTECTION_WARRIOR = {
       {spell:'Last Stand',          cd:'3 min',   effect:'+30% max HP temporarily + heals for that amount',        when:'When HP drops fast and healer falls behind'},
       {spell:'Spell Reflection',    cd:'25 sec',  effect:'Reflects or absorbs 1 spell — group variant available',  when:'At known magic mechanic — proactively'},
       {spell:'Rallying Cry',        cd:'3 min',   effect:'Temporary HP boost for entire group',                    when:'Large group damage phase'},
-    ],
-    da:[
-      {spell:'Avatar',              cd:'1.5 min', effect:'Rage-boost + skade-boost + fjerner roots i 20 sek',      when:'På pull og ved hver boss-fase'},
-      {spell:'Shield Wall',         cd:'4 min',   effect:'40% skadereduktion i 8 sek — stærkeste defensive CD',    when:'Største mekanik eller nødsituation'},
-      {spell:'Last Stand',          cd:'3 min',   effect:'+30% maks HP midlertidigt + healer for det beløb',       when:'Når HP falder hurtigt og healeren halter efter'},
-      {spell:'Spell Reflection',    cd:'25 sek',  effect:'Reflekterer eller absorberer 1 spell — gruppevariant tilgængelig', when:'Ved kendt magic-mekanik — proaktivt'},
-      {spell:'Rallying Cry',        cd:'3 min',   effect:'Midlertidig HP-boost for hele gruppen',                  when:'Stor gruppeskade-fase'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -210,15 +152,7 @@ const SPEC_PROTECTION_WARRIOR = {
       {spell:'Intervene',          type:'Rescue',    note:'Teleport to ally + absorb next attack on them'},
       {spell:'Intimidating Shout', type:'CC',        note:'Fear up to 5 enemies 8 sec — breaks on damage'},
       {spell:'Hamstring',          type:'Slow',      note:'50% movement slow — kiting and position control'},
-    ],
-    da:[
-      {spell:'Pummel',             type:'Interrupt', note:'Interrupt på 15 sek CD — hurtig og pålidelig'},
-      {spell:'Shockwave',          type:'Stun',      note:'Konisk AoE-stun i 4 sek — alle fjender foran dig'},
-      {spell:'Spell Reflection',   type:'Defensiv',  note:'Reflekter spell tilbage eller absorber — gruppevariant tilgængelig'},
-      {spell:'Intervene',          type:'Redning',   note:'Teleportér til allieret + absorber næste angreb på dem'},
-      {spell:'Intimidating Shout', type:'CC',        note:'Fear op til 5 fjender i 8 sek — brydes ved skade'},
-      {spell:'Hamstring',          type:'Slow',      note:'50% bevægelses-slow — kiting og positionskontrol'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -234,14 +168,7 @@ const SPEC_PROTECTION_WARRIOR = {
       {icon:'🌀',title:'Shockwave = group savior',   text:'Shockwave stuns everything in a cone in front of you. In M+: save it for dangerous casters or when the healer is overwhelmed. It\'s one of the best group protection CDs of all tanks.'},
       {icon:'💪',title:'Avatar + Shield Slam combo', text:'Avatar significantly increases your Rage generation. Use it alongside as many Shield Slams as possible — this is your burst window as a tank. Good for both damage and Ignore Pain spam.'},
       {icon:'📣',title:'Rallying Cry on time',       text:'Rallying Cry temporarily gives the whole group more HP. Use it BEFORE a large damage phase begins, not when people are already dying. Communicate with the healer when you\'re using it.'},
-    ],
-    da:[
-      {icon:'🛡️',title:'Ignore Pain er dit liv',    text:'Ignore Pain absorberer en stor del af din indkommende skade. Brug det så snart du har 40+ Rage — vent ikke. Men sørg også for at du aldrig sidder på 0 Rage fordi du så ikke kan bruge Shield Slam mere.'},
-      {icon:'⚡',title:'Gå aldrig glip af Revenge-procs', text:'Revenge har ingen cooldown ved proc og er gratis. Så snart du ser den lyse op: brug den straks. Den genererer også Rage tilbage, så det er altid en gevinst.'},
-      {icon:'🌀',title:'Shockwave = gruppefrelser',  text:'Shockwave stunner alt i en kegle foran dig. I M+: gem det til farlige castere eller når healeren er overbelastet. Det er en af de bedste gruppebeskyttende CDs af alle tanks.'},
-      {icon:'💪',title:'Avatar + Shield Slam-kombination', text:'Avatar øger din Rage-generering markant. Brug det sammen med så mange Shield Slams som muligt — dette er dit burst-vindue som tank. Godt til både skade og Ignore Pain-spam.'},
-      {icon:'📣',title:'Rallying Cry i tide',        text:'Rallying Cry giver midlertidigt hele gruppen mere HP. Brug det FØR en stor skadefase begynder, ikke når folk allerede er ved at dø. Kommunikér med healeren om hvornår du bruger det.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -253,12 +180,7 @@ const SPEC_PROTECTION_WARRIOR = {
       {name:'Pummel (Focus Kick)',  code:'#showtooltip Pummel\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Pummel', note:'Kick on focus > mouseover > target. Essential as tank!'},
       {name:'Shockwave',            code:'#showtooltip Shockwave\n/cast Shockwave', note:'Position yourself well before use — hits everything in a cone in front of you.'},
       {name:'Avatar + Shield Slam', code:'/cast Avatar\n/cast Shield Slam', note:'Burst combo in one button — maximum Rage boost immediately.'},
-    ],
-    da:[
-      {name:'Pummel (Focus Kick)',  code:'#showtooltip Pummel\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Pummel', note:'Spark på focus > mouseover > mål. Essentiel som tank!'},
-      {name:'Shockwave',            code:'#showtooltip Shockwave\n/cast Shockwave', note:'Positionér dig godt inden brug — rammer alt i en kegle foran dig.'},
-      {name:'Avatar + Shield Slam', code:'/cast Avatar\n/cast Shield Slam', note:'Burst-kombination på én knap — maksimal Rage-boost straks.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -296,25 +218,7 @@ const SPEC_PROTECTION_WARRIOR = {
       ],
       pet_tip:'⚠️ Never sit at 100 Rage — you waste Rage generation from auto attacks. Spam Ignore Pain to dump Rage, but always keep 40 Rage for an emergency Ignore Pain!',
       pets:[],
-    },
-    da:{
-      intro:'Protection Warrior bruger Rage (0-100). Rage opbygges via angreb, at tage skade og visse evner. Du bruger Rage på Ignore Pain (din overlevelse) og lejlighedsvis andre trylleformularer.',
-      generate:[
-        'Auto attacks genererer Rage passivt',
-        'At tage skade genererer Rage — mere skade = mere Rage',
-        'Charge giver direkte Rage ved ankomst',
-        'Shield Slam genererer masser af Rage ved træf',
-        'Thunder Clap genererer lille mængde Rage',
-        'Avatar øger midlertidigt Rage-generering',
-      ],
-      spend:[
-        'Ignore Pain — koster 40 Rage, stort absorb-skjold',
-        'Shield Slam — forbruger ikke Rage men genererer det',
-        'Revenge — gratis ved proc, lille Rage-gendannelse',
-      ],
-      pet_tip:'⚠️ Sid aldrig på 100 Rage — du spilder Rage-generering fra auto attacks. Spam Ignore Pain for at dumpe Rage, men gem altid 40 Rage til en nød-Ignore Pain!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -330,14 +234,7 @@ const SPEC_PROTECTION_WARRIOR = {
       {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Strength and Stamina via group feast.',      note:'Ask for feast'},
       {type:'food',  name:'Hearty Feast backup',           effect:'Solo food — Strength + Stamina backup.',    note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primary stat 1 hour.',                      note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Shattered Sun',    effect:'Øger Strength markant i 1 time.',             note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Withering Vitality',  effect:'Stor HP-genoprettelse og midlertidig HP-boost.', note:'På pull eller under stor skadefase'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',     effect:'+Strength og Stamina via gruppefeast.',      note:'Bed om feast'},
-      {type:'food',  name:'Hearty Feast backup',           effect:'Solo-mad — Strength + Stamina backup.',     note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',      effect:'+Primær stat 1 time.',                        note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_PROTECTION_WARRIOR);

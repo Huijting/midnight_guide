@@ -1,25 +1,22 @@
 ﻿if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_AUGMENTATION_EVOKER = {
   id:'augmentation_evoker', icon:'🟤', class:'Evoker',
-  spec:{nl:'Augmentation',en:'Augmentation',da:'Augmentation'},
+  spec:{nl:'Augmentation',en:'Augmentation'},
   role:'dps', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon',da:'Tohåndsvåben'},
+  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{
     nl:'Augmentation is de enige Support DPS spec in het spel. Je doet zelf relatief weinig schade — maar je versterkt de twee sterkste DPS in de groep met Ebon Might voor massieve schade-boost. Je waarde staat niet op de meters.',
-    en:'Augmentation is the only Support DPS spec in the game. You do relatively little damage yourself — but you empower the two strongest DPS in the group with Ebon Might for massive damage boost. Your value doesn\'t show on the meters.',
-    da:'Augmentation er den eneste Support DPS-spec i spillet. Du gør relativt lidt skade selv — men du styrker de to stærkeste DPS i gruppen med Ebon Might for massivt skadeboost. Din værdi vises ikke på meters.',
+    en:'Augmentation is the only Support DPS spec in the game. You do relatively little damage yourself — but you empower the two strongest DPS in the group with Ebon Might for massive damage boost. Your value doesn\'t show on the meters.'
   },
   pros:{
     nl:['Verhoogt groep-DPS meer dan elke andere spec','Ebon Might = massieve schade multiplier op 2 spelers','Unieke utility: Rescue, Zephyr, Blistering Scales','Hover = bewegen tijdens casten','Speelt uniek — totaal anders dan elke andere spec'],
-    en:['Increases group DPS more than any other spec','Ebon Might = massive damage multiplier on 2 players','Unique utility: Rescue, Zephyr, Blistering Scales','Hover = moving while casting','Plays uniquely — totally different from any other spec'],
-    da:['Øger gruppe-DPS mere end nogen anden spec','Ebon Might = massivt skademultiplikator på 2 spillere','Unik utility: Rescue, Zephyr, Blistering Scales','Hover = bevæge sig under casting','Spiller unikt — totalt anderledes end nogen anden spec'],
+    en:['Increases group DPS more than any other spec','Ebon Might = massive damage multiplier on 2 players','Unique utility: Rescue, Zephyr, Blistering Scales','Hover = moving while casting','Plays uniquely — totally different from any other spec']
   },
   cons:{
     nl:['Eigen schade lijkt laag op meters (misleidend)','Acceptatie probleem: sommige groepen begrijpen je waarde niet','Kort bereik (25 yards)','Alleen speelbaar als Dracthyr','Vereist goede kennis van groepscompositie'],
-    en:['Own damage looks low on meters (misleading)','Acceptance problem: some groups don\'t understand your value','Short range (25 yards)','Only playable as Dracthyr','Requires good knowledge of group composition'],
-    da:['Egen skade ser lav ud på meters (vildledende)','Acceptanceproblemer: nogle grupper forstår ikke din værdi','Kort rækkevidde (25 yards)','Kan kun spilles som Dracthyr','Kræver god viden om gruppekomposition'],
+    en:['Own damage looks low on meters (misleading)','Acceptance problem: some groups don\'t understand your value','Short range (25 yards)','Only playable as Dracthyr','Requires good knowledge of group composition']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_AUGMENTATION_EVOKER = {
         'Upheaval always on CD — your best personal damage',
         'Your meters look low — that\'s normal and correct',
       ],
-    },
-    da:{
-      opener:'Ebon Might (på 2 stærkeste DPS) → Prescience → Breath of Eons → Upheaval → Eruption-spam',
-      single:'Hold Ebon Might aktiv → Prescience → Upheaval på CD → Eruption fylder → Hover ved bevægelse',
-      aoe:'Ebon Might på DPS → Breath of Eons AoE → Upheaval → Eruption-spam på gruppe',
-      rules:[
-        'Ebon Might ALTID aktiv på de 2 højeste DPS — dette er din #1 opgave',
-        'Prescience på den stærkeste angriber til ekstra crit-chance',
-        'Synkronisér Breath of Eons med gruppe-DPS-cooldowns',
-        'Upheaval altid på CD — din bedste personlige skade',
-        'Dine meters ser lave ud — det er normalt og korrekt',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -107,31 +92,7 @@ const SPEC_AUGMENTATION_EVOKER = {
         {spell:'Eruption',why:'AoE Essence dump'},
         {spell:'Prescience',why:'On melee DPS for extra cleave'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Ebon Might øger skaden fra 2 gruppemedlemmer med 15-20% i 10 sekunder. Dette er dit eneste mål: hold det altid aktivt på de 2 stærkeste DPS. Din egen skade er sekundær — den gruppeskade du tilføjer er enorm.',
-      opener:[
-        {spell:'Ebon Might',why:'På 2 stærkeste DPS — din kerne-CD'},
-        {spell:'Prescience',why:'Giver stærkeste angriber ekstra crit-chance'},
-        {spell:'Breath of Eons',why:'AoE + forstærker Ebon Might-skade'},
-        {spell:'Upheaval',why:'Jordangreb — bedste personlige CD'},
-        {spell:'Eruption',why:'Essence-dump fylder'},
-      ],
-      single:[
-        {spell:'Ebon Might',why:'Altid aktiv — forny inden udløb'},
-        {spell:'Prescience',why:'På stærkeste angriber på CD'},
-        {spell:'Upheaval',why:'Altid på CD — bedste personlige skade'},
-        {spell:'Eruption',why:'Essence-dump fylder'},
-        {spell:'Living Flame',why:'Manafylder mellem Essence-trylleformularer'},
-      ],
-      aoe:[
-        {spell:'Ebon Might',why:'AoE-værdi — al DPS gør mere skade'},
-        {spell:'Breath of Eons',why:'AoE burst + Ebon Might-forstærker'},
-        {spell:'Upheaval',why:'AoE jordangreb på CD'},
-        {spell:'Eruption',why:'AoE Essence-dump'},
-        {spell:'Prescience',why:'På melee DPS til ekstra cleave'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -153,17 +114,7 @@ const SPEC_AUGMENTATION_EVOKER = {
         {rank:4,stat:'Critical Strike',bars:2,note:'Extra damage via procs'},
         {rank:5,stat:'Versatility',bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Mastery øger Ebon Might-bonus — langt den bedste sekundære stat. Haste forkorter CD\'en for Ebon Might.',
-      list:[
-        {rank:1,stat:'Intellect',bars:5,note:'Primær stat'},
-        {rank:2,stat:'Mastery',bars:5,note:'Øger Ebon Might-bonus — langt bedst'},
-        {rank:3,stat:'Haste',bars:3,note:'Kortere Ebon Might CD'},
-        {rank:4,stat:'Critical Strike',bars:2,note:'Ekstra skade via procs'},
-        {rank:5,stat:'Versatility',bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -179,14 +130,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       {spell:'Upheaval',cd:'40 sec',effect:'Powerful earth attack',when:'Always on CD — best personal damage'},
       {spell:'Prescience',cd:'12 sec',effect:'Amplifies next attack of target',when:'Always on the strongest attacker'},
       {spell:'Blistering Scales',cd:'1 min',effect:'Tank gets +20% armor and reflects damage',when:'Major tank damage — unique tank buff'},
-    ],
-    da:[
-      {spell:'Ebon Might',cd:'30 sec',effect:'+15-20% skade på 2 gruppemedlemmer i 10 sek',when:'Altid på CD på de 2 højeste DPS — din kerne!'},
-      {spell:'Breath of Eons',cd:'2 min',effect:'AoE + forstærker Ebon Might-multiplikation',when:'Synkroniseret med gruppe-DPS-cooldowns'},
-      {spell:'Upheaval',cd:'40 sec',effect:'Kraftfuldt jordangreb',when:'Altid på CD — bedste personlige skade'},
-      {spell:'Prescience',cd:'12 sec',effect:'Forstærker næste angreb fra mål',when:'Altid på den stærkeste angriber'},
-      {spell:'Blistering Scales',cd:'1 min',effect:'Tank får +20% armor og reflekterer skade',when:'Stor tankskade — unik tankbuff'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -202,14 +146,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       {spell:'Blistering Scales',type:'Tank buff',note:'Tank reflects damage + armor boost'},
       {spell:'Hover',type:'Mobility',note:'Move while casting'},
       {spell:'Tail Swipe',type:'Knockback',note:'AoE knockback'},
-    ],
-    da:[
-      {spell:'Rescue',type:'Redning',note:'Bær gruppemedlem væk fra mekanik'},
-      {spell:'Zephyr',type:'Gruppe-CD',note:'10% skadereduktion for gruppe i 8 sek'},
-      {spell:'Blistering Scales',type:'Tankbuff',note:'Tank reflekterer skade + armor-boost'},
-      {spell:'Hover',type:'Mobilitet',note:'Bevæg dig under casting'},
-      {spell:'Tail Swipe',type:'Knockback',note:'AoE knockback'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -225,14 +162,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       {icon:'🔄',title:'Never let Ebon Might expire',text:'Ebon Might has 30 sec CD and lasts 10 sec. Renewing before it expires is crucial — one second without Ebon Might is lost damage for your entire group.'},
       {icon:'🐉',title:'Breath of Eons = group burst',text:'Breath of Eons is most powerful when the group uses their cooldowns simultaneously. Ask your DPS to sync their burst with your Breath of Eons for maximum combined damage.'},
       {icon:'🛡️',title:'Blistering Scales = unique tank buff',text:'Blistering Scales gives the tank +20% armor AND makes them reflect damage. Use it on the tank during large pulls or boss mechanics — unique to Augmentation.'},
-    ],
-    da:[
-      {icon:'🟤',title:'Dine meters lyver',text:'Augmentation gør bevidst lidt personlig skade — din værdi ligger i den skade du tilføjer til andre spillere via Ebon Might. I en god gruppe tilføjer du 10-15% gruppe-DPS. Det vises ikke på din egen meter.'},
-      {icon:'👥',title:'Kend din gruppe',text:'Ebon Might skal være på de 2 spillere der gør mest skade. I M+ er det ofte melee DPS + den stærkeste caster. Tjek DPS-meters efter den første gruppe og juster dine mål.'},
-      {icon:'🔄',title:'Lad aldrig Ebon Might udløbe',text:'Ebon Might har 30 sek CD og varer 10 sek. At forny inden det udløber er afgørende — ét sekund uden Ebon Might er tabt skade for hele din gruppe.'},
-      {icon:'🐉',title:'Breath of Eons = gruppe-burst',text:'Breath of Eons er stærkest når gruppen bruger sine cooldowns samtidigt. Bed din DPS om at synkronisere deres burst med dit Breath of Eons for maksimal kombineret skade.'},
-      {icon:'🛡️',title:'Blistering Scales = unik tankbuff',text:'Blistering Scales giver tanken +20% armor OG lader dem reflektere skade. Brug det på tanken under store pulls eller boss-mekanikker — unikt for Augmentation.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -244,12 +174,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       {name:'Ebon Might on focus',code:'/cast [@focus] Ebon Might',note:'Always on strongest DPS (focus) — quick refresh.'},
       {name:'Prescience on mouseover',code:'/cast [@mouseover] Prescience',note:'Quickly on strongest attacker.'},
       {name:'Rescue on mouseover',code:'/cast [@mouseover] Rescue',note:'Save group member quickly.'},
-    ],
-    da:[
-      {name:'Ebon Might på focus',code:'/cast [@focus] Ebon Might',note:'Altid på stærkeste DPS (focus) — hurtig genopfriskning.'},
-      {name:'Prescience på mouseover',code:'/cast [@mouseover] Prescience',note:'Hurtigt på stærkeste angriber.'},
-      {name:'Rescue på mouseover',code:'/cast [@mouseover] Rescue',note:'Red gruppemedlem hurtigt.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -265,14 +190,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       spend:['Eruption (3 Essence) — AoE damage dump','Upheaval — no Essence, separate CD'],
       pet_tip:'💡 Essence management is less critical for Augmentation than for other Evokers — focus on Ebon Might uptime. That\'s your real resource!',
       pets:[],
-    },
-    da:{
-      intro:'Augmentation bruger Mana og Essence. Din Essence bruges primært til Eruption (skade-dump). Ebon Might koster ingen Essence — det er på en separat CD.',
-      generate:['Passiv Essence-regenerering','Living Flame fylder — manabaseret'],
-      spend:['Eruption (3 Essence) — AoE skade-dump','Upheaval — ingen Essence, separat CD'],
-      pet_tip:'💡 Essence-styring er mindre kritisk for Augmentation end for andre Evokers — fokus på Ebon Might-oppetid. Det er din rigtige ressource!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -288,14 +206,7 @@ const SPEC_AUGMENTATION_EVOKER = {
       {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect and Stamina.',note:'Ask for feast'},
       {type:'food',name:'Royal Roast',effect:'Solo food.',note:'Backup'},
       {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primary stat.',note:'Always'},
-    ],
-    da:[
-      {type:'flask',name:'Flask of the Magisters',effect:'Øger Intellect i 1 time.',note:'Altid aktiv'},
-      {type:'pot',name:'Potion of Recklessness',effect:'Intellect-boost under Breath of Eons-vindue.',note:'På pull'},
-      {type:'food',name:'Silvermoon Parade (Feast)',effect:'+Intellect og Stamina.',note:'Bed om feast'},
-      {type:'food',name:'Royal Roast',effect:'Solo-mad.',note:'Backup'},
-      {type:'rune',name:'Void-Touched Augment Rune',effect:'+Primær stat.',note:'Altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_AUGMENTATION_EVOKER);

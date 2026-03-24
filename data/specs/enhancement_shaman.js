@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_ENHANCEMENT_SHAMAN = {
   id:'enhancement_shaman', icon:'⚡', class:'Shaman',
-  spec:{nl:'Enhancement',en:'Enhancement',da:'Enhancement'},
+  spec:{nl:'Enhancement',en:'Enhancement'},
   role:'melee', armor:'Mail',
-  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)',da:'To enhåndsvåben (dual wield)'},
+  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)'},
   resource:'Mana + Maelstrom Weapon',
   patch:'1.0', color:'#0070DE',
   summary:{
     nl:'Enhancement Shaman is een melee DPS vol elementaire kracht. Combineert Maelstrom Weapon procs met instant Lightning Bolt en Chain Lightning voor sterke burst.',
-    en:'Enhancement Shaman is a melee DPS full of elemental power. Combines Maelstrom Weapon procs with instant Lightning Bolt and Chain Lightning for strong burst.',
-    da:'Enhancement Shaman er en melee DPS fuld af elementær kraft. Kombinerer Maelstrom Weapon-procs med instant Lightning Bolt og Chain Lightning til stærk burst.',
+    en:'Enhancement Shaman is a melee DPS full of elemental power. Combines Maelstrom Weapon procs with instant Lightning Bolt and Chain Lightning for strong burst.'
   },
   pros:{
     nl:['Unieke melee/caster hybride playstyle','Uitstekende AoE burst via Chain Lightning','Sterke Bloodlust bijdrage','Goede utility (totems, kortste interrupt CD)','Sterk in korte burst windows'],
-    en:['Unique melee/caster hybrid playstyle','Excellent AoE burst via Chain Lightning','Strong Bloodlust contribution','Good utility (totems, shortest interrupt CD)','Strong in short burst windows'],
-    da:['Unik melee/caster-hybrid spillestil','Fremragende AoE-burst via Chain Lightning','Stærkt Bloodlust-bidrag','God utility (totems, korteste interrupt-CD)','Stærk i korte burst-vinduer'],
+    en:['Unique melee/caster hybrid playstyle','Excellent AoE burst via Chain Lightning','Strong Bloodlust contribution','Good utility (totems, shortest interrupt CD)','Strong in short burst windows']
   },
   cons:{
     nl:['RNG-afhankelijk (Maelstrom Weapon procs)','Relatief korte range als melee','Complex door meerdere proc-types tegelijk','Kwetsbaar bij forced movement'],
-    en:['RNG-dependent (Maelstrom Weapon procs)','Relatively short range as melee','Complex due to multiple simultaneous proc types','Vulnerable during forced movement'],
-    da:['RNG-afhængig (Maelstrom Weapon-procs)','Relativt kort rækkevidde som melee','Kompleks pga. flere samtidige proc-typer','Sårbar under tvungen bevægelse'],
+    en:['RNG-dependent (Maelstrom Weapon procs)','Relatively short range as melee','Complex due to multiple simultaneous proc types','Vulnerable during forced movement']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
         'Crash Lightning at 3+ targets — gives all melee attacks cleave',
         'Wind Shear = shortest interrupt in the game (12 sec) — use proactively',
       ],
-    },
-    da:{
-      opener:'Flame Shock → Stormstrike → Sundering → Lava Lash → Feral Spirit → 10 stacks Chain Lightning',
-      single:'Stormstrike-prioritet → hold Flame Shock oppe → Lava Lash på CD → Frost Shock → 10 stacks = instant Lightning Bolt',
-      aoe:'Crash Lightning → Chain Lightning (10 stacks) → Lava Lash-spam → Sundering på store grupper',
-      rules:[
-        'Stormstrike altid som højeste prioritet — kernen i din rotation',
-        'Hold altid Flame Shock oppe — styrker Lava Lash massivt',
-        'Maelstrom Weapon 10 stacks = instant Chain Lightning (AoE) eller Lightning Bolt (ST)',
-        'Crash Lightning ved 3+ mål — giver alle melee-angreb cleave',
-        'Wind Shear = korteste interrupt i spillet (12 sek) — brug proaktivt',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -111,33 +96,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
         {spell:'Stormstrike',          why:'Stays priority even in AoE'},
         {spell:'Sundering',            why:'Large AoE burst + knockback on large packs'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Maelstrom Weapon er din kernemekkanik. Opbyg 10 stacks via melee-angreb og brug derefter instant Chain Lightning (AoE) eller Lightning Bolt (ST). Spild aldrig stacks!',
-      opener:[
-        {spell:'Flame Shock',          why:'Placer DoT — styrker Lava Lash direkte'},
-        {spell:'Stormstrike',          why:'Hoved angreb — opbygger Maelstrom Weapon-stacks hurtigt'},
-        {spell:'Sundering',            why:'Opener-burst + knockback på store grupper'},
-        {spell:'Lava Lash',            why:'På CD, massivt kraftfuld med aktiv Flame Shock'},
-        {spell:'Feral Spirit',         why:'Stor cooldown — ulveånder styrker dine angreb'},
-        {spell:'Chain Lightning (10)', why:'Ved 10 Maelstrom-stacks — instant AoE-burst'},
-      ],
-      single:[
-        {spell:'Stormstrike',          why:'Altid højeste prioritet — opbygger Maelstrom hurtigt'},
-        {spell:'Flame Shock',          why:'Hold oppe — skade + styrker Lava Lash'},
-        {spell:'Lava Lash',            why:'På CD — ekstra kraftfuld med aktiv Flame Shock'},
-        {spell:'Frost Shock',          why:'Fylder på CD når Stormstrike ikke er tilgængeligt'},
-        {spell:'Lightning Bolt (10)',  why:'Instant cast ved 10 Maelstrom-stacks — ST-burst'},
-        {spell:'Doom Winds',           why:'På CD — lader Stormstrike generere ekstra Maelstrom'},
-      ],
-      aoe:[
-        {spell:'Crash Lightning',      why:'Giver alle melee-angreb cleave — altid først ved 3+'},
-        {spell:'Chain Lightning (10)', why:'Instant ved 10 stacks — bedste AoE-skade'},
-        {spell:'Lava Lash',            why:'Spreder Flame Shock til andre mål'},
-        {spell:'Stormstrike',          why:'Forbliver prioritet selv i AoE'},
-        {spell:'Sundering',            why:'Stor AoE-burst + knockback på store grupper'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -159,17 +118,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
         {rank:4,stat:'Mastery',        bars:3,note:'Mastery: Enhanced Elements — increases elemental damage'},
         {rank:5,stat:'Versatility',    bars:1,note:'Lowest priority'},
       ],
-    },
-    da:{
-      tip:'Agility er altid #1. Haste sænker GCD og øger melee-swings — flere swings = flere Maelstrom Weapon-procs. Critical Strike udløser også ekstra procs.',
-      list:[
-        {rank:1,stat:'Agility',        bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',          bars:5,note:'Flere swings = flere Maelstrom-procs = flere instant-trylleformularer'},
-        {rank:3,stat:'Critical Strike',bars:3,note:'Udløser Maelstrom-procs, øger burst-skade'},
-        {rank:4,stat:'Mastery',        bars:3,note:'Mastery: Enhanced Elements — øger elementær skade'},
-        {rank:5,stat:'Versatility',    bars:1,note:'Lavest prioritet'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -183,13 +132,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       {spell:'Ascendance',        cd:'3 min',   effect:'Windlord form — Windstrike replaces Stormstrike, faster burst', when:'On pull or biggest burst window'},
       {spell:'Doom Winds',        cd:'1 min',   effect:'Stormstrike generates extra Maelstrom stacks for 8 sec',     when:'On CD — combine with Feral Spirit'},
       {spell:'Bloodlust/Heroism', cd:'5 min',   effect:'Group haste +30% for 40 sec',                               when:'On instruction from tank — you have the button'},
-    ],
-    da:[
-      {spell:'Feral Spirit',      cd:'1.5 min', effect:'2 ulveånder der angriber med dig + giver ekstra Maelstrom',  when:'På pull og ved hver stor gruppe eller boss-fase'},
-      {spell:'Ascendance',        cd:'3 min',   effect:'Windlord-form — Windstrike erstatter Stormstrike, hurtigere burst', when:'På pull eller største burst-vindue'},
-      {spell:'Doom Winds',        cd:'1 min',   effect:'Stormstrike genererer ekstra Maelstrom-stacks i 8 sek',      when:'På CD — kombiner med Feral Spirit'},
-      {spell:'Bloodlust/Heroism', cd:'5 min',   effect:'Gruppe-haste +30% i 40 sek',                                when:'På anvisning fra tank — du har knappen'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -207,15 +150,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       {spell:'Earthbind Totem',    type:'Slow',      note:'50% slow in large AoE area around totem'},
       {spell:'Purge',              type:'Dispel',    note:'Removes 1 magic buff from enemy — essential in M+'},
       {spell:'Ancestral Guidance', type:'Heal',      note:'Converts 40% of your damage into AoE heals for 10 sec'},
-    ],
-    da:[
-      {spell:'Wind Shear',         type:'Interrupt', note:'Interrupt på 12 sek CD — korteste interrupt-cooldown i spillet'},
-      {spell:'Bloodlust/Heroism',  type:'Bloodlust', note:'Gruppe-haste +30% — koordinér med gruppe'},
-      {spell:'Capacitor Totem',    type:'Stun',      note:'Totem eksploderer efter 2 sek → stunner alle fjender i nærheden'},
-      {spell:'Earthbind Totem',    type:'Slow',      note:'50% slow i stort AoE-område omkring totem'},
-      {spell:'Purge',              type:'Dispel',    note:'Fjerner 1 magisk buff fra fjende — essentiel i M+'},
-      {spell:'Ancestral Guidance', type:'Heal',      note:'Konverterer 40% af din skade til AoE-heals i 10 sek'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -231,14 +166,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       {icon:'🔥',title:'Flame Shock always active',  text:'Flame Shock is crucial: it deals its own DoT damage, doubles Lava Lash damage, and gives extra Maelstrom procs. Lava Lash spreads Flame Shock to extra targets — massive in AoE.'},
       {icon:'🌊',title:'Crash Lightning in AoE',     text:'At 3+ targets always Crash Lightning first. This gives your melee attacks a cleave effect. Then combine with Chain Lightning at 10 stacks for the biggest AoE burst.'},
       {icon:'🩺',title:'Emergency healer with Ancestral Guidance', text:'When the healer is struggling: cast Ancestral Guidance. This converts 40% of all your damage into group AoE heals. Strong in M+ where you need to help the healer after a large pack.'},
-    ],
-    da:[
-      {icon:'⚡',title:'Maelstrom Weapon-timing',    text:'Brug dine 10 stacks STRAKS når de er fulde. I AoE: altid Chain Lightning (bouncer til alle mål). Single target: Lightning Bolt. Lad dem aldrig udløbe — det er tabte instant casts.'},
-      {icon:'🐺',title:'Feral Spirit + Doom Winds',  text:'Dette er din stærkeste burst-kombination. Brug Doom Winds og derefter straks Feral Spirit — ulveånderne genererer sammen med Doom Winds en massiv mængde Maelstrom-stacks. Brug dem altid sammen.'},
-      {icon:'🔥',title:'Flame Shock altid aktiv',    text:'Flame Shock er afgørende: den gør sin egen DoT-skade, fordobler Lava Lash-skade og giver ekstra Maelstrom-procs. Lava Lash spreder Flame Shock til ekstra mål — massivt i AoE.'},
-      {icon:'🌊',title:'Crash Lightning i AoE',      text:'Ved 3+ mål altid Crash Lightning først. Dette giver dine melee-angreb en cleave-effekt. Kombiner derefter med Chain Lightning ved 10 stacks for det største AoE-burst.'},
-      {icon:'🩺',title:'Nødheal med Ancestral Guidance', text:'Når healeren kæmper: cast Ancestral Guidance. Dette konverterer 40% af al din skade til gruppe-AoE-heals. Stærkt i M+ hvor du skal hjælpe healeren efter en stor gruppe.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -250,12 +178,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       {name:'Wind Shear (Focus Kick)', code:'#showtooltip Wind Shear\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Wind Shear', note:'Kick on focus > mouseover > target. Shortest CD in the game!'},
       {name:'Capacitor Totem placement', code:'#showtooltip Capacitor Totem\n/cast [@cursor] Capacitor Totem', note:'Places totem directly at cursor position — no confirmation click needed.'},
       {name:'Feral Spirit + Doom Winds', code:'/cast Doom Winds\n/cast Feral Spirit', note:'Burst combo in one button — always use together for max Maelstrom generation.'},
-    ],
-    da:[
-      {name:'Wind Shear (Focus Kick)', code:'#showtooltip Wind Shear\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Wind Shear', note:'Spark på focus > mouseover > mål. Korteste CD i spillet!'},
-      {name:'Capacitor Totem-placering', code:'#showtooltip Capacitor Totem\n/cast [@cursor] Capacitor Totem', note:'Placerer totem direkte ved markørposition — ingen bekræftelsesklik nødvendigt.'},
-      {name:'Feral Spirit + Doom Winds', code:'/cast Doom Winds\n/cast Feral Spirit', note:'Burst-kombination på én knap — brug altid sammen for maks Maelstrom-generering.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -289,23 +212,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       ],
       pet_tip:'💡 Maelstrom Weapon stacks do NOT expire — but you miss damage if you don\'t use them. At 10 stacks: always immediately cast Chain Lightning (AoE) or Lightning Bolt (ST)!',
       pets:[],
-    },
-    da:{
-      intro:'Enhancement Shaman bruger Mana til utility-trylleformularer og Maelstrom Weapon-stacks (0-10) som proc-ressource. Maelstrom Weapon opbygges via melee-angreb og giver dig instant-cast Lightning-trylleformularer.',
-      generate:[
-        'Melee-angreb — genererer Maelstrom Weapon-stacks passivt',
-        'Stormstrike — genererer ekstra Maelstrom-stacks ved træf',
-        'Feral Spirit-ulveånder — genererer også Maelstrom-stacks',
-        'Doom Winds — lader Stormstrike generere ekstra stacks',
-      ],
-      spend:[
-        'Lightning Bolt (10 stacks) — instant ST-burst, forbruger alle stacks',
-        'Chain Lightning (10 stacks) — instant AoE-burst, forbruger alle stacks',
-        'Healing Surge (stacks) — nødselv-heling, koster Maelstrom-stacks',
-      ],
-      pet_tip:'💡 Maelstrom Weapon-stacks udløber IKKE — men du mister skade hvis du ikke bruger dem. Ved 10 stacks: cast altid straks Chain Lightning (AoE) eller Lightning Bolt (ST)!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -321,14 +228,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
       {type:'food',  name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',         note:'Ask for feast'},
       {type:'food',  name:'Meat and Potatoes',           effect:'Solo food — Agility backup.',                  note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                        note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Blood Knights', effect:'Øger Agility markant i 1 time.',                 note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Recklessness',             effect:'Stor Agility-boost i 25 sek.',                  note:'På pull eller burst-vindue'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',          note:'Bed om feast'},
-      {type:'food',  name:'Meat and Potatoes',           effect:'Solo-mad — Agility backup.',                   note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                          note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_ENHANCEMENT_SHAMAN);

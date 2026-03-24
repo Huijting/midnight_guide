@@ -1,25 +1,22 @@
 if (typeof ALL_SPECS === 'undefined') window.ALL_SPECS = [];
 const SPEC_VENGEANCE_DH = {
   id:'vengeance_dh', icon:'🔱', class:'Demon Hunter',
-  spec:{nl:'Vengeance',en:'Vengeance',da:'Vengeance'},
+  spec:{nl:'Vengeance',en:'Vengeance'},
   role:'tank', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)',da:'To enhåndsvåben (dual wield)'},
+  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)'},
   resource:'Fury + Pain',
   patch:'1.0', color:'#A330C9',
   summary:{
     nl:'Vengeance Demon Hunter is de meest mobiele tank. Sigil of Flame en Spirit Bomb voor AoE threat. Uitzonderlijk hoge mobiliteit via Fel Rush en Metamorphosis.',
-    en:'Vengeance Demon Hunter is the most mobile tank. Sigil of Flame and Spirit Bomb for AoE threat. Exceptionally high mobility via Fel Rush and Metamorphosis.',
-    da:'Vengeance Demon Hunter er den mest mobile tank. Sigil of Flame og Spirit Bomb til AoE-trussel. Usædvanligt høj mobilitet via Fel Rush og Metamorphosis.',
+    en:'Vengeance Demon Hunter is the most mobile tank. Sigil of Flame and Spirit Bomb for AoE threat. Exceptionally high mobility via Fel Rush and Metamorphosis.'
   },
   pros:{
     nl:['Beste mobiliteit van alle tanks','Uitstekende AoE threat via Sigil of Flame','Hoge self-healing via Soul Fragments','Disrupt = betrouwbare interrupt (15 sec)','Metamorphosis = enorme HP boost als nood-CD'],
-    en:['Best mobility of all tanks','Excellent AoE threat via Sigil of Flame','High self-healing via Soul Fragments','Disrupt = reliable interrupt (15 sec)','Metamorphosis = massive HP boost as emergency CD'],
-    da:['Bedste mobilitet af alle tanks','Fremragende AoE-trussel via Sigil of Flame','Høj selvheling via Soul Fragments','Disrupt = pålidelig interrupt (15 sek)','Metamorphosis = massivt HP-boost som nød-CD'],
+    en:['Best mobility of all tanks','Excellent AoE threat via Sigil of Flame','High self-healing via Soul Fragments','Disrupt = reliable interrupt (15 sec)','Metamorphosis = massive HP boost as emergency CD']
   },
   cons:{
     nl:['Lagere raw damage reduction dan plate tanks','Soul Fragment management is complex','Minder sterk in single target mitigation','Kwetsbaar voor magic burst zonder goede timing'],
-    en:['Lower raw damage reduction than plate tanks','Soul Fragment management is complex','Weaker in single target mitigation','Vulnerable to magic burst without good timing'],
-    da:['Lavere rå skadereduktion end plate-tanks','Soul Fragment-styring er kompleks','Svagere i single target-afbødning','Sårbar over for magic-burst uden god timing'],
+    en:['Lower raw damage reduction than plate tanks','Soul Fragment management is complex','Weaker in single target mitigation','Vulnerable to magic burst without good timing']
   },
   cheatsheet:{
     nl:{
@@ -45,19 +42,7 @@ const SPEC_VENGEANCE_DH = {
         'Spirit Bomb at 4+ Soul Fragments for maximum AoE heal and damage',
         'Save Metamorphosis as emergency CD or large pull opener',
       ],
-    },
-    da:{
-      opener:'Sigil of Flame → Immolation Aura → Fracture → Spirit Bomb → Fel Devastation → Soul Cleave',
-      single:'Immolation Aura på CD → Fracture (generer Soul Fragments) → Spirit Bomb ved 4+ Frags → Soul Cleave nødsituation',
-      aoe:'Sigil of Flame → Immolation Aura → Fracture-spam → Spirit Bomb ved 4+ Fragments → Fel Devastation',
-      rules:[
-        'Gem altid Soul Fragments til Spirit Bomb (4+ stykker)',
-        'Hold Immolation Aura på CD — passiv skade og trussel',
-        'Foretræk Fracture frem for Soul Cleave — mere Fragments-generering',
-        'Spirit Bomb ved 4+ Soul Fragments for maksimal AoE-heling og skade',
-        'Gem Metamorphosis som nød-CD eller stor pull-opener',
-      ],
-    },
+    }
   },
   rotation:{
     nl:{
@@ -111,33 +96,7 @@ const SPEC_VENGEANCE_DH = {
         {spell:'Spirit Bomb',         why:'At 4+ Fragments — AoE heal and burst damage'},
         {spell:'Fel Devastation',     why:'AoE channel on large packs — heal + damage'},
       ],
-    },
-    da:{
-      apex_tip:'💡 Soul Fragments er dit overlevelsessystem. Hvert Fragment du absorberer healer dig. Spirit Bomb forbruger alle Fragments simultant for et massivt AoE-heal + skade-burst — vent altid på 4+!',
-      opener:[
-        {spell:'Sigil of Flame',      why:'AoE-DoT og trussel på alle fjender i område'},
-        {spell:'Immolation Aura',     why:'Passiv AoE-skade og trussel — hold altid aktiv'},
-        {spell:'Fracture',            why:'Genererer 2 Soul Fragments — hurtigt mod Spirit Bomb'},
-        {spell:'Spirit Bomb',         why:'Burst ved 4+ Fragments — AoE-heling + skade simultant'},
-        {spell:'Fel Devastation',     why:'Stor cooldown — AoE-channel-skade + selvheling'},
-        {spell:'Soul Cleave',         why:'Nødheling eller ekstra Fragment-forbrug'},
-      ],
-      single:[
-        {spell:'Immolation Aura',     why:'På CD — hold passiv skade og trussel oppe'},
-        {spell:'Fracture',            why:'Altid over Soul Cleave — genererer 2 Fragments'},
-        {spell:'Spirit Bomb',         why:'Ved 4+ Soul Fragments — kombineret heling og skade'},
-        {spell:'Sigil of Flame',      why:'På CD — DoT-skade og AoE-trussel'},
-        {spell:'Soul Cleave',         why:'Nødheling når Fragment-styring er utilstrækkelig'},
-        {spell:'Metamorphosis',       why:'På CD eller gemt som stor nød-CD'},
-      ],
-      aoe:[
-        {spell:'Sigil of Flame',      why:'Placer på gruppe — AoE-DoT på alt'},
-        {spell:'Immolation Aura',     why:'Altid aktiv — rammer alle fjender omkring dig'},
-        {spell:'Fracture',            why:'Spam for hurtig Fragment-opbygning'},
-        {spell:'Spirit Bomb',         why:'Ved 4+ Fragments — AoE-heling og burst-skade'},
-        {spell:'Fel Devastation',     why:'AoE-channel på store grupper — heling + skade'},
-      ],
-    },
+    }
   },
   stats:{
     nl:{
@@ -159,17 +118,7 @@ const SPEC_VENGEANCE_DH = {
         {rank:4,stat:'Mastery',        bars:2,note:'Mastery: Fel Blood — increases Soul Fragment healing'},
         {rank:5,stat:'Critical Strike',bars:1,note:'Lowest priority as tank'},
       ],
-    },
-    da:{
-      tip:'Agility er altid #1. Haste sænker GCD og fremskynder Sigil-cooldowns. Versatility giver skadereduktion — ekstra værdifuld som tank. Mastery øger Soul Fragment-heling.',
-      list:[
-        {rank:1,stat:'Agility',        bars:5,note:'Primær stat — tag altid højeste ilvl'},
-        {rank:2,stat:'Haste',          bars:4,note:'Hurtigere CDs + lavere GCD — flere Fracture-muligheder'},
-        {rank:3,stat:'Versatility',    bars:4,note:'Skade + skadereduktion — dobbelt værdifuld som tank'},
-        {rank:4,stat:'Mastery',        bars:2,note:'Mastery: Fel Blood — øger Soul Fragment-heling'},
-        {rank:5,stat:'Critical Strike',bars:1,note:'Lavest prioritet som tank'},
-      ],
-    },
+    }
   },
   cooldowns:{
     nl:[
@@ -185,14 +134,7 @@ const SPEC_VENGEANCE_DH = {
       {spell:'Fiery Brand',         cd:'1 min',   effect:'Brands target — 40% damage reduction from branded target', when:'On biggest damage dealer or boss melee'},
       {spell:'Sigil of Silence',    cd:'1 min',   effect:'AoE silence in area 5 sec after delay',                 when:'With groups of many casters — proactively'},
       {spell:'Demon Spikes',        cd:'20 sec',  effect:'Temporarily increases armor and dodge — physical mitigation', when:'During large physical attacks — keep on CD'},
-    ],
-    da:[
-      {spell:'Metamorphosis',       cd:'3 min',   effect:'+50% maks HP midlertidigt + transformerer til Demon-form', when:'På pull til store grupper eller som nød HP-buffer'},
-      {spell:'Fel Devastation',     cd:'1 min',   effect:'Channel 2 sek — AoE-skade + selvheling',                when:'På CD — både trussel og overlevelse'},
-      {spell:'Fiery Brand',         cd:'1 min',   effect:'Brandmærker mål — 40% skadereduktion fra brandmærket mål', when:'På største skade-dealer eller boss melee'},
-      {spell:'Sigil of Silence',    cd:'1 min',   effect:'AoE-silence i område 5 sek efter forsinkelse',          when:'Ved grupper med mange castere — proaktivt'},
-      {spell:'Demon Spikes',        cd:'20 sek',  effect:'Øger midlertidigt rustning og dodge — fysisk afbødning', when:'Under store fysiske angreb — hold på CD'},
-    ],
+    ]
   },
   utility:{
     nl:[
@@ -210,15 +152,7 @@ const SPEC_VENGEANCE_DH = {
       {spell:'Imprison',           type:'CC',        note:'Immobilizes enemy 1 min — breaks on damage'},
       {spell:'Chaos Nova',         type:'Stun',      note:'AoE stun around you 5 sec'},
       {spell:'Spectral Sight',     type:'Util',      note:'Sees through walls and camouflage — occasionally useful in M+'},
-    ],
-    da:[
-      {spell:'Disrupt',            type:'Interrupt', note:'Interrupt på 15 sek CD — pålidelig og hurtig'},
-      {spell:'Sigil of Misery',    type:'CC',        note:'AoE-disorient i område efter 2 sek forsinkelse — brydes ved skade'},
-      {spell:'Sigil of Silence',   type:'Silence',   note:'AoE-silence i område — stopper alle magic-casts'},
-      {spell:'Imprison',           type:'CC',        note:'Immobiliserer fjende i 1 min — brydes ved skade'},
-      {spell:'Chaos Nova',         type:'Stun',      note:'AoE-stun omkring dig i 5 sek'},
-      {spell:'Spectral Sight',     type:'Util',      note:'Ser igennem vægge og camouflage — lejlighedsvis nyttigt i M+'},
-    ],
+    ]
   },
   tips:{
     nl:[
@@ -234,14 +168,7 @@ const SPEC_VENGEANCE_DH = {
       {icon:'⚡',title:'Demon Spikes = physical mitigation', text:'Demon Spikes is your primary physical defensive. Use it proactively before big attacks — not reactively. It has a 20 sec CD and can build 2 charges. Always keep 1 charge as an emergency option.'},
       {icon:'🌀',title:'Sigil timing',              text:'Sigils have a 2-second delay. You need to place them where enemies WILL be, not where they are now. In M+: use Sigil of Flame immediately when reaching a pack — it goes off when the fights start.'},
       {icon:'🦋',title:'Using mobility',            text:'Vengeance has Fel Rush and Vengeful Retreat for excellent mobility. Use this to quickly reposition, dodge mechanics, or quickly return to a pack after a pull. This is your biggest advantage over other tanks.'},
-    ],
-    da:[
-      {icon:'💎',title:'Soul Fragment-system',      text:'Soul Fragments spawner via Fracture og andre evner. Hvert Fragment healer dig når du går igennem det. Spirit Bomb forbruger alle aktive Fragments simultant for massiv AoE-heling + skade. Vent altid på 4+ inden du bruger Spirit Bomb.'},
-      {icon:'🔥',title:'Fiery Brand-rotation',      text:'Fiery Brand reducerer skaden gjort af det brandmærkede mål med 40%. Placer altid på den største skade-dealer eller bossen. I M+: ideel til en farlig mob der auto-angriber hårdt.'},
-      {icon:'⚡',title:'Demon Spikes = fysisk afbødning', text:'Demon Spikes er din primære fysiske defensive. Brug den proaktivt inden store angreb — ikke reaktivt. Den har 20 sek CD og kan opbygge 2 charges. Gem altid 1 charge som nødmulighed.'},
-      {icon:'🌀',title:'Sigil-timing',              text:'Sigils har en 2 sekunders forsinkelse. Du skal placere dem hvor fjender VIL være, ikke hvor de er nu. I M+: brug Sigil of Flame straks når du når en gruppe — den udløses når kampene begynder.'},
-      {icon:'🦋',title:'Brug mobilitet',            text:'Vengeance har Fel Rush og Vengeful Retreat til fremragende mobilitet. Brug dette til hurtigt at repositionere, undvige mekanikker eller hurtigt vende tilbage til en gruppe efter et pull. Dette er din største fordel frem for andre tanks.'},
-    ],
+    ]
   },
   macros:{
     nl:[
@@ -253,12 +180,7 @@ const SPEC_VENGEANCE_DH = {
       {name:'Disrupt (Focus Kick)', code:'#showtooltip Disrupt\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Disrupt', note:'Kick on focus > mouseover > target. Essential as tank!'},
       {name:'Sigil of Flame at cursor', code:'#showtooltip Sigil of Flame\n/cast [@cursor] Sigil of Flame', note:'Places Sigil directly at cursor position — no confirmation click needed.'},
       {name:'Metamorphosis opener',  code:'#showtooltip Metamorphosis\n/cast Metamorphosis', note:'Always throw on pull for large pack for the +50% HP buffer.'},
-    ],
-    da:[
-      {name:'Disrupt (Focus Kick)', code:'#showtooltip Disrupt\n/cast [@focus,harm,nodead][@mouseover,harm,nodead][@target,harm,nodead] Disrupt', note:'Spark på focus > mouseover > mål. Essentiel som tank!'},
-      {name:'Sigil of Flame ved markør', code:'#showtooltip Sigil of Flame\n/cast [@cursor] Sigil of Flame', note:'Placerer Sigil direkte ved markørposition — ingen bekræftelsesklik nødvendigt.'},
-      {name:'Metamorphosis-opener',  code:'#showtooltip Metamorphosis\n/cast Metamorphosis', note:'Kast altid ved pull til stor gruppe for +50% HP-buffer.'},
-    ],
+    ]
   },
   resource_info:{
     nl:{
@@ -292,23 +214,7 @@ const SPEC_VENGEANCE_DH = {
       ],
       pet_tip:'💡 Soul Fragments are FREE heals — always walk through them when nearby. Save them for Spirit Bomb (4+). Never Soul Cleave when you have 4+ Fragments — those are wasted Spirit Bomb heals!',
       pets:[],
-    },
-    da:{
-      intro:'Vengeance DH bruger Pain (0-100) som primær ressource og Soul Fragments som overlevelsesressource. Pain opbygges via angreb og bruges på Soul Cleave eller Spirit Bomb.',
-      generate:[
-        'Immolation Aura — genererer Pain passivt under channel',
-        'Fracture — genererer Pain og spawner 2 Soul Fragments',
-        'Shear — alternativ til Fracture, genererer færre Fragments',
-        'Melee-angreb — lille mængde Pain passivt',
-      ],
-      spend:[
-        'Soul Cleave — koster 30 Pain, instant heling + AoE',
-        'Spirit Bomb — koster 30 Pain, forbruger alle Soul Fragments til massivt AoE-burst',
-        'Fel Devastation — koster 50 Pain, 2 sek channel til stor heling og skade',
-      ],
-      pet_tip:'💡 Soul Fragments er GRATIS heals — gå altid igennem dem når de er i nærheden. Gem dem til Spirit Bomb (4+). Soul Cleave aldrig når du har 4+ Fragments — det er spildte Spirit Bomb-heals!',
-      pets:[],
-    },
+    }
   },
   consumables:{
     nl:[
@@ -324,14 +230,7 @@ const SPEC_VENGEANCE_DH = {
       {type:'food',  name:'Silvermoon Parade (Feast)',   effect:'+Agility and Stamina via group feast.',      note:'Ask for feast'},
       {type:'food',  name:'Royal Roast',          effect:'Solo food — Agility + Stamina backup.',    note:'Backup if no feast'},
       {type:'rune',  name:'Void-Touched Augment Rune',    effect:'+Primary stat 1 hour.',                     note:'Always use'},
-    ],
-    da:[
-      {type:'flask', name:'Flask of the Blood Knights',  effect:'Øger Agility markant i 1 time.',             note:'Altid aktiv'},
-      {type:'pot',   name:'Potion of Withering Vitality', effect:'Stor HP-genoprettelse og midlertidig HP-boost.', note:'På pull eller ved stor skade-spike'},
-      {type:'food',  name:'Silvermoon Parade (Feast)',   effect:'+Agility og Stamina via gruppefeast.',      note:'Bed om feast'},
-      {type:'food',  name:'Royal Roast',          effect:'Solo-mad — Agility + Stamina backup.',     note:'Backup hvis ingen feast'},
-      {type:'rune',  name:'Void-Touched Augment Rune',    effect:'+Primær stat 1 time.',                       note:'Brug altid'},
-    ],
+    ]
   },
 };
 ALL_SPECS.push(SPEC_VENGEANCE_DH);
