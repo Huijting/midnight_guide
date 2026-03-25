@@ -211,7 +211,9 @@
   .header-search-placeholder{font-size:14px;color:var(--muted);flex:1}
   .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
   .header-tabs-wrap{padding:0 20px 10px;border-top:1px solid var(--border);margin-top:-1px;max-width:var(--content-max);margin-left:auto;margin-right:auto;display:flex;align-items:center;min-height:48px;transition:border-color .3s ease,background-color .3s ease}
-  .header-pill-wrap{display:flex;justify-content:center;padding:0 12px 12px;margin:0 auto;max-width:var(--content-max);width:100%;box-sizing:border-box;position:relative;z-index:2}
+  .header-pill-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 12px 12px;margin:0 auto;max-width:var(--content-max);width:100%;box-sizing:border-box;position:relative;z-index:2}
+  .header-sync-badge{display:block;width:100%;max-width:var(--content-max);text-align:center;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg,rgba(212,175,55,.14),rgba(100,160,255,.1));border:1px solid rgba(212,175,55,.32);color:var(--gold2);box-sizing:border-box}
+  body.light .header-sync-badge{background:linear-gradient(90deg,rgba(180,140,40,.12),rgba(80,140,220,.08));border-color:rgba(140,110,30,.28)}
   .header-search-compact{flex:1;min-width:120px;max-width:min(280px,100%);padding:8px 12px;border-radius:12px}
   @media(min-width:769px){.header-inner-main{flex-wrap:nowrap;align-items:center}}
   .site-header-v2{border-bottom:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.35)}
@@ -1584,6 +1586,35 @@
   .spec-tabs::-webkit-scrollbar{display:none}
   .spec-tab-btn{white-space:nowrap;padding:8px 11px;font-size:11px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s}
   .spec-tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+  .spec-detail[data-spec-class] .spec-tab-btn.active{color:var(--spec-accent);border-bottom-color:var(--spec-accent)}
+  .spec-overview-chunk{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .spec-overview-chunk:last-of-type{border-bottom:none}
+  .spec-overview-chunk-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px;color:var(--gold)}
+  .spec-detail[data-spec-class] .spec-overview-chunk-title{color:var(--spec-accent)}
+  .spec-overview-chunk-body .spec-section-title:first-child{margin-top:0}
+  .spec-overview-empty{font-size:13px;color:var(--muted);line-height:1.55;margin:8px 0}
+  .spec-copy-name-btn{font-size:10px;font-weight:700;padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--panel);color:var(--text);cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s,box-shadow .2s}
+  .spec-copy-name-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .spec-detail[data-spec-class] .spec-copy-name-btn:hover{border-color:var(--spec-accent);color:var(--spec-accent);box-shadow:0 0 10px color-mix(in srgb,var(--spec-accent) 22%,transparent)}
+  .cons-name-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+  .cons-name-row .cons-name{margin-bottom:0;flex:1;min-width:0}
+  .cons-ready-reset-label{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--panel);cursor:pointer;font-size:13px;font-weight:600;color:var(--text);line-height:1.45}
+  .cons-ready-reset-input{width:20px;height:20px;min-width:20px;margin-top:2px;flex-shrink:0;cursor:pointer}
+  .bis-verified-wrap{margin-top:4px}
+  .bis-verified-title-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin:0 0 6px}
+  .bis-verified-main-title{margin:0;font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gold2);flex:1;min-width:0}
+  .bis-verified-reset-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(100,180,255,.12));border:1px solid rgba(212,175,55,.35);color:var(--gold2);white-space:nowrap}
+  body.light .bis-verified-reset-badge{background:linear-gradient(135deg,rgba(180,140,40,.15),rgba(80,140,220,.1));border-color:rgba(140,110,30,.25)}
+  .spec-detail[data-spec-class] .bis-verified-main-title{color:var(--spec-accent)}
+  .bis-verified-ilvl-note{margin:0 0 12px;font-size:12px;color:var(--muted);line-height:1.45}
+  .bis-verified-table-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.22)}
+  .bis-verified-table{width:100%;border-collapse:collapse;font-size:12px;min-width:520px}
+  .bis-verified-table th{padding:10px 8px;text-align:left;font-size:10px;font-weight:800;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:rgba(255,255,255,.04)}
+  .bis-verified-table td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+  .bis-verified-table tr:last-child td{border-bottom:none}
+  .bis-verified-actions{white-space:nowrap}
+  .bis-item-name-plain{color:var(--muted);font-style:normal}
+  body.light .bis-verified-table-scroll{background:rgba(255,255,255,.55)}
   .spec-detail[data-spec-class="deathknight"]{--spec-accent:var(--class-deathknight)}
   .spec-detail[data-spec-class="demonhunter"]{--spec-accent:var(--class-demonhunter)}
   .spec-detail[data-spec-class="druid"]{--spec-accent:var(--class-druid)}
@@ -1716,6 +1747,10 @@
   .wh-link-spell:hover{color:#99ddff !important}
   .wh-link-item{color:#a335ee !important}
   .wh-link-item:hover{color:#c366ff !important}
+  /* Mythic / epic BiS & Wowhead item links — override power.js recolor */
+  .bis-table a,
+  .bis-verified-table a,
+  .wowhead-tooltip-link{color:#a335ee !important;text-shadow:0 0 5px rgba(163,53,238,.3);font-weight:700}
   .bis-name-cell .wh-link{text-decoration:none}
   .bis-name-cell .wh-link:hover{text-decoration:underline}
   .bis-check-cell{width:36px;text-align:center}
@@ -2268,15 +2303,15 @@ h1, h2, h3, h4, h5, h6, .card-name, .header-title, #pwa-modal-title, .boss-name 
 
 h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-0.5px;color:var(--gold);margin:0}
   .dash-widget-title.font-display,.header-logo.font-display,.dashboard-tagline{font-family:var(--font-display),Georgia,serif!important}
-  /* Wowhead Tooltip Link Styling - heldere kleur voor leesbaarheid op donkere achtergrond */
-  a[href*="wowhead.com"] {
+  /* Wowhead links — cyan, behalve Mythic BiS / consumables (`.bis-wowhead-track` in index + wrapItem) */
+  a[href*="wowhead.com"]:not(.bis-wowhead-track) {
     color: #00ccff !important;
     text-decoration: none !important;
     font-weight: 700;
     transition: filter 0.2s, color 0.2s;
     text-shadow: 0 0 8px rgba(0, 204, 255, 0.35);
   }
-  a[href*="wowhead.com"]:hover {
+  a[href*="wowhead.com"]:not(.bis-wowhead-track):hover {
     color: #66ddff !important;
     filter: brightness(1.2);
     text-decoration: underline !important;

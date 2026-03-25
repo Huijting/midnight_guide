@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '2.7.8';
+const APP_VERSION = '3.2.7';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
@@ -111,6 +111,8 @@ const PRECACHE = [
   '/data/specs/unholy_dk.js',
   '/data/specs/vengeance_dh.js',
   '/data/specs/windwalker_monk.js',
+  '/data/specs/universal_bis_attach.js',
+  '/data/midnight_bis_item_ids.js',
 ];
 
 /**

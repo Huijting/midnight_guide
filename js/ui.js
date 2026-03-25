@@ -469,11 +469,15 @@ const SPELL_IDS = {
   "Zephyr": 374227,
 };
 
-// Wowhead item IDs voor consumables — Midnight S1 (voeg IDs toe wanneer Wowhead beschikbaar is; null = zoeklink)
+// Wowhead item IDs — consumables & BiS display names (v3.2.7 tooltip sync)
 const ITEM_IDS = {
-  "Flask of the Sunwell": null,
-  "Void-Tinged Adrenaline": null,
-  "Eversong Spiced Ribs": null,
+  "Flask of the Sunwell": 241327,
+  "Void-Tinged Adrenaline": 241292,
+  "Eversong Spiced Ribs": 242295,
+  "Royal Roast": 242275,
+  "Candied Amber": 242305,
+  "Voidglass Spire": 237730,
+  "Staff of the Sun-King": 237730,
   "Sun-Drenched Sharpening Stone": null,
   "Eternal Augment Rune": null,
   "Flask of Tempered Mastery": 212278,
@@ -1517,32 +1521,42 @@ window.addEventListener('beforeinstallprompt', e => {
 
 // ── SPECS ────────────────────────────────────────────────────────
 const SPEC_TAB_UI = {
-  nl: { grid_sub:'Kies een spec voor rotatie, stats, cooldowns en tips.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotatie','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macro\'s','🎯 Resource','🧪 Consumables & BiS'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
+  nl: { grid_sub:'Kies een spec — Overview, rotatie, Consumables & BiS, en macro\'s.', back:'← Alle specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['📋 Overview','🔄 Rotatie','🧪 Consumables & BiS','🖱️ Macro\'s'],
+        tab_ids:['overview','rotation','consumables','macros'],
         pros:'✅ Sterk', cons:'❌ Zwak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Waarom', imp:'Belang',
         generate:'Focus genereren', spend:'Focus uitgeven', pets:'Pet types',
-        macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Opmerking',
-        cons_copy_list:'Kopieer boodschappenlijst', cons_copied:'Gekopieerd!',
-        cons_verified_effect_flask:'Primair stat', cons_verified_effect_pot:'Burst hoofdstat', cons_verified_effect_food:'Critical Strike & Mastery — beste voor DPS', cons_verified_effect_weapon:'', cons_verified_effect_augment:'',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Wapen', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS-lijst wordt nog toegevoegd. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> of <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> voor actuele BiS.',
-        bis_verified_pending:'BiS-uitrustingslijsten worden driemaal gecontroleerd tegen de live server loottabellen. Geverifieerde gegevens worden toegevoegd na de reset.',
+        macro_copy:'Klik op de code om te kopiëren', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_weapon:'Wapen', cons_note:'Opmerking',
+        cons_copy_list:'Kopieer boodschappenlijst', cons_copied:'Gekopieerd!', copy_name:'Kopieer naam',
+        cons_verified_effect_flask:'Flask (zie spec)', cons_verified_effect_pot:'Burst hoofdstat', cons_verified_effect_food:'Food (zie spec)', cons_verified_effect_weapon:'Wapenversterker',
+        cons_verified_effect_flask_str:'+Haste — Flask of the Blood Knights (Sin\'dorei)', cons_verified_effect_flask_agi:'+Critical Strike — Flask of the Shattered Sun', cons_verified_effect_flask_int:'+Mastery — Flask of the Magisters',
+        cons_verified_effect_food_str:'Primair stat + stamina — Royal Roast', cons_verified_effect_food_agi:'Critical Strike + Haste — Eversong Spiced Ribs (Hearthflame Supper)', cons_verified_effect_food_int:'Mastery + Versatility — Candied Amber (Silvermoon Standard)',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', bis_slot:'Slot', bis_item:'Item', bis_name:'Item', bis_ilvl:'iLvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Bron', bis_type:'Type',         bis_completion:'', bis_ilvl_band:'Mythic track: iLvl 289',
+        bis_verified_reset_badge:'Geverifieerd voor reset: 25 maart 2026',
+        overview_sec_cheat:'⚡ Cheat sheet', overview_sec_stats:'📊 Stats-prioriteit', overview_sec_cd:'💀 Cooldowns', overview_sec_tips:'💡 Tips', overview_sec_resource:'🎯 Resource',
+        overview_empty:'Geen extra overview-blokken voor deze spec — gebruik Rotatie of Consumables & BiS.',
+        ready_for_reset:'Klaar voor reset (consumables ingeslagen)', ready_for_reset_saved:'Opgeslagen',
         pick_tab_hint:'Kies een tab hierboven — inhoud opent pas als je erop klikt.',
       },
-  en: { grid_sub:'Choose a spec for rotation, stats, cooldowns and tips.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
-        tabs:['⚡ Cheat Sheet','🔄 Rotation','📊 Stats','💀 Cooldowns','💡 Tips','🖱️ Macros','🎯 Resource','🧪 Consumables & BiS'],
-        tab_ids:['cheatsheet','rotation','stats','cooldowns','tips','macros','resource','consumables'],
+  en: { grid_sub:'Choose a spec — Overview, rotation, Consumables & BiS, and macros.', back:'← All specs', role_dps:'Ranged DPS', role_melee:'Melee DPS', role_tank:'Tank', role_heal:'Healer',
+        tabs:['📋 Overview','🔄 Rotation','🧪 Consumables & BiS','🖱️ Macros'],
+        tab_ids:['overview','rotation','consumables','macros'],
         pros:'✅ Strong', cons:'❌ Weak',
         opener:'Opener', single:'Single Target', aoe:'AoE / Mythic+',
         prio:'#', spell:'Spell', why:'Why', imp:'Priority',
         generate:'Generate Focus', spend:'Spend Focus', pets:'Pet types',
-        macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_rune:'Augment Rune', cons_note:'Note',
-        cons_copy_list:'Copy shopping list', cons_copied:'Copied!',
-        cons_verified_effect_flask:'Primary stat', cons_verified_effect_pot:'Burst main stat', cons_verified_effect_food:'Critical Strike & Mastery — best for DPS', cons_verified_effect_weapon:'', cons_verified_effect_augment:'',
-        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', cons_weapon:'Weapon', bis_slot:'Slot', bis_item:'Item', bis_name:'Name', bis_ilvl:'ILvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type', bis_completion:'', bis_fallback:'BiS list coming soon. Check <a href="https://www.wowhead.com/guide/classes" target="_blank" class="wh-link">Wowhead</a> or <a href="https://www.icy-veins.com/wow" target="_blank" class="wh-link">Icy Veins</a> for current BiS.',
-        bis_verified_pending:'BiS Gear lists are being triple-checked against the live server loot tables. Verified data will be added after the reset.',
+        macro_copy:'Click the code to copy', cons_flask:'Flask', cons_pot:'Potion', cons_food:'Food', cons_weapon:'Weapon', cons_note:'Note',
+        cons_copy_list:'Copy shopping list', cons_copied:'Copied!', copy_name:'Copy name',
+        cons_verified_effect_flask:'Flask (see spec)', cons_verified_effect_pot:'Burst main stat', cons_verified_effect_food:'Food (see spec)', cons_verified_effect_weapon:'Weapon enhancer',
+        cons_verified_effect_flask_str:'+Haste — Flask of the Blood Knights (Sin\'dorei)', cons_verified_effect_flask_agi:'+Critical Strike — Flask of the Shattered Sun', cons_verified_effect_flask_int:'+Mastery — Flask of the Magisters',
+        cons_verified_effect_food_str:'Primary stat + stamina — Royal Roast', cons_verified_effect_food_agi:'Critical Strike + Haste — Eversong Spiced Ribs (Hearthflame Supper)', cons_verified_effect_food_int:'Mastery + versatility — Candied Amber (Silvermoon Standard)',
+        cons_bis_sub1:'Consumables', cons_bis_sub2:'BiS Gear', bis_slot:'Slot', bis_item:'Item', bis_name:'Item', bis_ilvl:'iLvl', bis_req:'Req.', bis_versions:'Versions', bis_side:'Side', bis_source:'Source', bis_type:'Type',         bis_completion:'', bis_ilvl_band:'Mythic Track: iLvl 289',
+        bis_verified_reset_badge:'Verified for Reset: March 25, 2026',
+        overview_sec_cheat:'⚡ Cheat sheet', overview_sec_stats:'📊 Stat priority', overview_sec_cd:'💀 Cooldowns', overview_sec_tips:'💡 Tips', overview_sec_resource:'🎯 Resource',
+        overview_empty:'No extra overview sections for this spec — use Rotation or Consumables & BiS.',
+        ready_for_reset:'Ready for reset (consumables stocked)', ready_for_reset_saved:'Saved',
         pick_tab_hint:'Choose a tab above — content opens only after you tap it.',
       }
 };
@@ -1552,9 +1566,196 @@ const MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES = {
   flask: 'Flask of the Sunwell',
   potion: 'Void-Tinged Adrenaline',
   food: 'Eversong Spiced Ribs',
-  weapon: 'Sun-Drenched Sharpening Stone',
-  augment: 'Eternal Augment Rune',
 };
+
+function getMidnightPrimaryStatBucket(spec) {
+  if (!spec || !spec.id) return 'int';
+  const M = typeof MIDNIGHT_SPEC_PRIMARY_STAT !== 'undefined' ? MIDNIGHT_SPEC_PRIMARY_STAT : {};
+  return M[spec.id] || 'int';
+}
+
+function getMidnightConsumableRows(ui, spec) {
+  const bucket = getMidnightPrimaryStatBucket(spec);
+  const PROFILES = typeof MIDNIGHT_CONSUMABLE_PROFILES !== 'undefined' ? MIDNIGHT_CONSUMABLE_PROFILES : null;
+  if (PROFILES && PROFILES[bucket]) {
+    const P = PROFILES[bucket];
+    const fk = 'cons_verified_effect_flask_' + bucket;
+    const fd = 'cons_verified_effect_food_' + bucket;
+    return [
+      { type: 'flask', name: P.flask.name, itemId: P.flask.id, wowheadExtra: P.flask.wowheadExtra, effect: ui[fk] || ui.cons_verified_effect_flask },
+      { type: 'pot', name: P.potion.name, itemId: P.potion.id, wowheadExtra: P.potion.wowheadExtra, effect: ui.cons_verified_effect_pot },
+      { type: 'food', name: P.food.name, itemId: P.food.id, wowheadExtra: P.food.wowheadExtra, effect: ui[fd] || ui.cons_verified_effect_food },
+    ];
+  }
+  const V = typeof MIDNIGHT_V31_CONSUMABLES !== 'undefined' ? MIDNIGHT_V31_CONSUMABLES : null;
+  if (V && V.flask && V.potion && V.food) {
+    return [
+      { type: 'flask', name: V.flask.name, itemId: V.flask.id, wowheadExtra: V.flask.wowheadExtra, effect: ui.cons_verified_effect_flask },
+      { type: 'pot', name: V.potion.name, itemId: V.potion.id, wowheadExtra: V.potion.wowheadExtra, effect: ui.cons_verified_effect_pot },
+      { type: 'food', name: V.food.name, itemId: V.food.id, wowheadExtra: V.food.wowheadExtra, effect: ui.cons_verified_effect_food },
+    ];
+  }
+  const n = MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES;
+  return [
+    { type: 'flask', name: n.flask, itemId: null, effect: ui.cons_verified_effect_flask },
+    { type: 'pot', name: n.potion, itemId: null, effect: ui.cons_verified_effect_pot },
+    { type: 'food', name: n.food, itemId: null, effect: ui.cons_verified_effect_food },
+  ];
+}
+
+const INTEL_DPS_SPEC_IDS = new Set([
+  'arcane_mage', 'fire_mage', 'frost_mage',
+  'affliction_warlock', 'demonology_warlock', 'destruction_warlock',
+  'shadow_priest',
+  'balance_druid',
+  'elemental_shaman',
+  'devastation_evoker', 'augmentation_evoker',
+]);
+
+const MIDNIGHT_CONS_READY_STORAGE_KEY = 'midnight_s1_cons_ready_v320';
+
+/** Role-based stat priority (Midnight S1 v2.9.x); overrides per-spec stats blocks in UI. */
+function buildUniversalStatPriorityForSpec(s) {
+  const l = lang === 'en' ? 'en' : 'nl';
+  const S = (en, nl) => (l === 'en' ? en : nl);
+  const role = s.role;
+  const c = s.class;
+  const row = (rank, stat, bars, note) => ({ rank: String(rank), stat, bars, note: note || '' });
+
+  if (role === 'tank' && ['Druid', 'Monk', 'Demon Hunter'].includes(c)) {
+    return {
+      list: [
+        row(1, S('Agility / Stamina', 'Behendigheid / Stamina'), 5, ''),
+        row(2, S('Haste', 'Haste'), 4, ''),
+        row(3, S('Mastery', 'Mastery'), 3, ''),
+      ],
+      tip: '',
+    };
+  }
+  if (role === 'tank') {
+    return {
+      list: [
+        row(1, S('Strength / Stamina', 'Kracht / Stamina'), 5, ''),
+        row(2, S('Haste', 'Haste'), 4, ''),
+        row(3, S('Mastery', 'Mastery'), 3, ''),
+      ],
+      tip: '',
+    };
+  }
+  if (role === 'heal' || (role === 'dps' && INTEL_DPS_SPEC_IDS.has(s.id))) {
+    return {
+      list: [
+        row(1, S('Intellect', 'Intellect'), 5, ''),
+        row(2, S('Mastery', 'Mastery'), 4, ''),
+        row(3, S('Haste', 'Haste'), 3, ''),
+      ],
+      tip: '',
+    };
+  }
+  if (role === 'dps' && ['Warrior', 'Paladin', 'Death Knight'].includes(c)) {
+    return {
+      list: [
+        row(1, S('Strength', 'Strength'), 5, ''),
+        row(2, S('Haste', 'Haste'), 4, ''),
+        row(3, S('Critical Strike', 'Critical Strike'), 3, ''),
+      ],
+      tip: '',
+    };
+  }
+  if (role === 'dps') {
+    return {
+      list: [
+        row(1, S('Agility', 'Agility'), 5, ''),
+        row(2, S('Haste', 'Haste'), 4, ''),
+        row(3, S('Critical Strike', 'Critical Strike'), 3, ''),
+      ],
+      tip: '',
+    };
+  }
+  return { list: [row(1, S('Item level', 'Item level'), 5, '')], tip: '' };
+}
+
+function getMidnightConsReady(specId) {
+  if (!specId) return false;
+  try {
+    const o = JSON.parse(localStorage.getItem(MIDNIGHT_CONS_READY_STORAGE_KEY) || '{}');
+    return !!o[specId];
+  } catch (_) { return false; }
+}
+
+function setMidnightConsReady(specId, checked) {
+  if (!specId) return;
+  try {
+    const o = JSON.parse(localStorage.getItem(MIDNIGHT_CONS_READY_STORAGE_KEY) || '{}');
+    o[specId] = !!checked;
+    localStorage.setItem(MIDNIGHT_CONS_READY_STORAGE_KEY, JSON.stringify(o));
+  } catch (_) {}
+}
+
+window.onMidnightConsReadyToggle = function (el) {
+  if (!el || !el.getAttribute) return;
+  setMidnightConsReady(el.getAttribute('data-spec-id'), !!el.checked);
+};
+
+window.copySpecItemName = function (name) {
+  if (name == null || name === '') return;
+  const t = String(name);
+  const run = () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t);
+    } catch (_) {}
+    return Promise.reject();
+  };
+  run().catch(() => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (_) {}
+  });
+};
+
+function renderSpecBisGearTable(ui, spec) {
+  const l = lang === 'en' ? 'en' : 'nl';
+  const copyLbl = ui.copy_name || 'Copy name';
+  const badge = ui.bis_verified_reset_badge || '';
+  const gear = spec && Array.isArray(spec.bisGear) ? spec.bisGear : [];
+  const rows = gear.map(r => {
+    const slot = (r.slot && (r.slot[l] || r.slot.en)) || '';
+    const src = (r.source && (r.source[l] || r.source.en)) || '';
+    const nm = r.name;
+    return `<tr>
+      <td class="bis-verified-slot">${slot}</td>
+      <td class="bis-verified-item"><span class="bis-verified-name">${wrapItem(nm, r.itemId, r.wowheadExtra)}</span></td>
+      <td class="bis-verified-ilvl">${r.ilvl || '289'}</td>
+      <td class="bis-verified-src">${src}</td>
+      <td class="bis-verified-actions"><button type="button" class="spec-copy-name-btn" onclick="copySpecItemName(${JSON.stringify(nm)})">${copyLbl}</button></td>
+    </tr>`;
+  }).join('');
+  setTimeout(function () {
+    try {
+      if (window.$WowheadPower && $WowheadPower.refreshLinks) $WowheadPower.refreshLinks();
+    } catch (_) {}
+  }, 0);
+  return `<div class="bis-verified-wrap">
+    <div class="bis-verified-title-row">
+      <h3 class="bis-verified-main-title">${ui.cons_bis_sub2}</h3>
+      ${badge ? `<span class="bis-verified-reset-badge">${badge}</span>` : ''}
+    </div>
+    <p class="bis-verified-ilvl-note">${ui.bis_ilvl_band}</p>
+    <div class="bis-verified-table-scroll">
+      <table class="bis-verified-table">
+        <thead><tr><th>${ui.bis_slot}</th><th>${ui.bis_name}</th><th>${ui.bis_ilvl}</th><th>${ui.bis_source}</th><th aria-label="${copyLbl}"></th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
 
 // currentSpec al gedeclareerd in app.js — globaal
 
@@ -1763,8 +1964,11 @@ function switchConsBisSubTab(sub) {
 
 function refreshWowheadTooltips() {
   try {
-    if (typeof $WowheadPower !== 'undefined' && $WowheadPower.refreshLinks) $WowheadPower.refreshLinks();
-    else if (typeof WH !== 'undefined' && WH.Tooltip && WH.Tooltip.refresh) WH.Tooltip.refresh();
+    if (window.$WowheadPower && $WowheadPower.refreshLinks) {
+      $WowheadPower.refreshLinks();
+    } else if (typeof WH !== 'undefined' && WH.Tooltip && WH.Tooltip.refresh) {
+      WH.Tooltip.refresh();
+    }
   } catch (_) {}
 }
 
@@ -1800,29 +2004,6 @@ function onBisCheckChange(ev) {
   if (specId && slot) setBisChecked(specId, slot, cb.checked);
 }
 
-/** Glass-style BiS table shell with verified placeholder text only (no fake rows). */
-function renderBisPlaceholderGlass(ui) {
-  const msg = (ui && ui.bis_verified_pending) ? String(ui.bis_verified_pending) : '';
-  return `<div class="bis-glass-shell">
-    <div class="bis-glass-inner">
-      <table class="bis-glass-table">
-        <thead>
-          <tr>
-            <th>${ui.bis_slot}</th>
-            <th>${ui.bis_name}</th>
-            <th>${ui.bis_ilvl}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="bis-glass-placeholder-row">
-            <td colspan="3"><p class="bis-glass-placeholder-text">${msg.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</p></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>`;
-}
-
 function renderBisTable(bisData, specId, ui) {
   const rows = bisData.map((r) => {
     const ilvl = r.ilvl ?? 289;
@@ -1836,7 +2017,8 @@ function renderBisTable(bisData, specId, ui) {
     const checked = getBisChecked(specId, r.slot);
     const slotEsc = (r.slot||'').replace(/"/g,'&quot;');
     const itemUrl = r.id ? `https://www.wowhead.com/item=${r.id}?ilvl=${ilvl}` : `https://www.wowhead.com/search?q=${encodeURIComponent((r.name||'').replace(/\s*\(.*?\)/g,'').trim())}`;
-    const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : `<a href="${itemUrl}" class="wh-link" data-wh-rename="false" target="_blank" style="color:${color}">${r.name}</a>`;
+    const whAttr = r.id ? ` data-wowhead="item=${r.id}"` : '';
+    const itemCell = (r.name==='—'||!r.name) ? '<span style="color:var(--muted)">—</span>' : `<a href="${itemUrl}" class="wh-link" data-wh-rename="false"${whAttr} target="_blank" rel="noopener" style="color:${color}">${r.name}</a>`;
     const versionIcons = versions.map(v => {
       const label = VERSION_LABELS[v]||v;
       const vIlvl = VERSION_ILVL[v] ?? 272;
@@ -1938,22 +2120,59 @@ function wowIcon(type, id, opts) {
   const base = 'https://wow.zamimg.com/images/wow/icons/';
   const iconName = (typeof WOW_ICON_NAMES !== 'undefined' && WOW_ICON_NAMES && WOW_ICON_NAMES[type] && WOW_ICON_NAMES[type][id]) ? WOW_ICON_NAMES[type][id] : 'inv_misc_questionmark';
   const url = type === 'item' ? `https://www.wowhead.com/item=${id}` : `https://www.wowhead.com/spell=${id}`;
-  return `<a href="${url}" class="wow-icon-link wh-link ${cls}" data-wh-rename="false" target="_blank"><img class="wow-icon wow-icon-${type}" src="${base}${size}/${iconName}.jpg" alt="" loading="lazy" width="36" height="36"></a>`;
+  const whItem = type === 'item' ? ` data-wowhead="item=${id}"` : '';
+  return `<a href="${url}" class="wow-icon-link wh-link ${cls}" data-wh-rename="false"${whItem} target="_blank" rel="noopener"><img class="wow-icon wow-icon-${type}" src="${base}${size}/${iconName}.jpg" alt="" loading="lazy" width="36" height="36"></a>`;
 }
 
-function wrapItem(itemName) {
-  if (!itemName) return '';
+function wrapItem(itemName, itemIdOpt, wowheadExtra) {
+  if (itemName == null) return '';
   const name = String(itemName).trim();
-  let url = '';
-  if (typeof ITEM_IDS !== 'undefined' && ITEM_IDS[name] != null) {
-    url = `https://www.wowhead.com/item=${ITEM_IDS[name]}?ilvl=289`;
-  } else {
-    url = `https://www.wowhead.com/search?q=${encodeURIComponent(name.replace(/\s*\(.*?\)/g, '').trim())}`;
+  if (!name) return '';
+  if (name === '—' || name === '–' || name === '-') {
+    return `<span class="bis-item-name-plain">${name.replace(/</g, '&lt;')}</span>`;
   }
-  return `<a href="${url}" class="wh-link wh-link-item" data-wh-rename="false" target="_blank">${name}</a>`;
+  let id = null;
+  if (itemIdOpt != null && itemIdOpt !== '' && !Number.isNaN(Number(itemIdOpt))) {
+    id = Number(itemIdOpt);
+  }
+  if ((id == null || Number.isNaN(id)) && typeof ITEM_IDS !== 'undefined' && ITEM_IDS[name] != null) {
+    id = ITEM_IDS[name];
+  }
+  const safe = name.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  if (id != null && !Number.isNaN(id)) {
+    let whVal = `item=${id}`;
+    if (wowheadExtra && typeof wowheadExtra === 'string' && wowheadExtra.trim()) {
+      const ex = wowheadExtra.trim();
+      whVal += ex.startsWith('&') ? ex : `&${ex}`;
+    }
+    let href = `https://www.wowhead.com/item=${id}`;
+    if (wowheadExtra && typeof wowheadExtra === 'string' && wowheadExtra.trim()) {
+      const q = wowheadExtra.trim().replace(/^&+/, '');
+      if (q) href += (href.indexOf('?') === -1 ? '?' : '&') + q;
+    }
+    return `<a href="${href}" class="wh-link wh-link-item wowhead-tooltip-link bis-wowhead-track" data-wh-rename="false" data-wowhead="${whVal}" target="_blank" rel="noopener">${safe}</a>`;
+  }
+  const url = `https://www.wowhead.com/search?q=${encodeURIComponent(name.replace(/\s*\(.*?\)/g, '').trim())}`;
+  return `<a href="${url}" class="wh-link wh-link-item" data-wh-rename="false" target="_blank" rel="noopener">${safe}</a>`;
 }
 
-function renderSpecTab(s, tid, ui) {
+function renderSpecTab(s, tid, ui, fromOverview) {
+  if (!fromOverview && tid === 'overview') {
+    const subs = [
+      ['cheatsheet', ui.overview_sec_cheat],
+      ['stats', ui.overview_sec_stats],
+      ['cooldowns', ui.overview_sec_cd],
+      ['tips', ui.overview_sec_tips],
+      ['resource', ui.overview_sec_resource],
+    ];
+    const parts = [];
+    for (const [id, title] of subs) {
+      const inner = renderSpecTab(s, id, ui, true);
+      if (!inner || inner.includes('Binnenkort beschikbaar') || /coming soon/i.test(inner)) continue;
+      parts.push(`<section class="spec-overview-chunk" aria-labelledby="so-${id}"><h3 class="spec-overview-chunk-title" id="so-${id}">${title}</h3><div class="spec-overview-chunk-body">${inner}</div></section>`);
+    }
+    return parts.length ? parts.join('') : `<p class="spec-overview-empty">${ui.overview_empty || ''}</p>`;
+  }
   // Haal data op voor huidige taal, val terug op NL als taal leeg/stub is
   function hasContent(d) {
     if (!d) return false;
@@ -1964,8 +2183,11 @@ function renderSpecTab(s, tid, ui) {
   // 'resource' tab data zit in spec.resource_info, niet spec.resource
   const dataKey = tid === 'resource' ? 'resource_info' : tid;
   const rawD = s[dataKey] ? s[dataKey][lang] : null;
-  const d = hasContent(rawD) ? rawD : (s[dataKey] ? s[dataKey].nl : null);
-  if (tid !== 'consumables' && !d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
+  let d = hasContent(rawD) ? rawD : (s[dataKey] ? s[dataKey].nl : null);
+  if (tid === 'stats') {
+    d = buildUniversalStatPriorityForSpec(s);
+  }
+  if (tid !== 'consumables' && tid !== 'stats' && !d) return '<p style="color:var(--muted);font-size:13px;padding:8px">Binnenkort beschikbaar.</p>';
 
   if (tid === 'cheatsheet') {
     const rules = (d.rules||[]).map(r=>`<div class="cheat-rule">${r}</div>`).join('');
@@ -2018,18 +2240,17 @@ function renderSpecTab(s, tid, ui) {
   }
 
   if (tid === 'consumables') {
-    const n = MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES;
-    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food, weapon: ui.cons_weapon, augment: ui.cons_rune };
-    const rows = [
-      { type: 'flask', name: n.flask, effect: ui.cons_verified_effect_flask },
-      { type: 'pot', name: n.potion, effect: ui.cons_verified_effect_pot },
-      { type: 'food', name: n.food, effect: ui.cons_verified_effect_food },
-      { type: 'weapon', name: n.weapon, effect: ui.cons_verified_effect_weapon },
-      { type: 'augment', name: n.augment, effect: ui.cons_verified_effect_augment },
-    ];
+    const typeLabel = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food };
+    const copyLbl = ui.copy_name || 'Copy name';
+    const rows = getMidnightConsumableRows(ui, s);
+    const specIdEsc = String(s.id || '').replace(/"/g, '&quot;');
+    const readyChecked = getMidnightConsReady(s.id) ? ' checked' : '';
     const consCards = rows.map(c => `<div class="cons-card cons-card--verified">
       <div class="cons-type cons-type--verified">${typeLabel[c.type] || c.type}</div>
-      <div class="cons-name">${wrapItem(c.name)}</div>
+      <div class="cons-name-row">
+        <div class="cons-name">${wrapItem(c.name, c.itemId, c.wowheadExtra)}</div>
+        <button type="button" class="spec-copy-name-btn" onclick="copySpecItemName(${JSON.stringify(c.name)})">${copyLbl}</button>
+      </div>
       ${c.effect ? `<div class="cons-effect">${c.effect}</div>` : ''}
     </div>`).join('');
     const consHtml = `<div class="cons-verified-wrap">
@@ -2038,8 +2259,12 @@ function renderSpecTab(s, tid, ui) {
         <button type="button" class="cons-copy-btn" id="spec-cons-copy-btn" onclick="copySpecConsumablesList()">${ui.cons_copy_list}</button>
       </div>
       ${consCards}
+      <label class="cons-ready-reset-label">
+        <input type="checkbox" class="cons-ready-reset-input" data-spec-id="${specIdEsc}"${readyChecked} onchange="onMidnightConsReadyToggle(this)">
+        <span class="cons-ready-reset-text">${ui.ready_for_reset}</span>
+      </label>
     </div>`;
-    const bisHtml = renderBisPlaceholderGlass(ui);
+    const bisHtml = renderSpecBisGearTable(ui, s);
     return `<div class="cons-bis-wrapper cons-bis-wrapper--verified">
       <div class="cons-bis-subtabs">
         <button type="button" class="cons-bis-subbtn cons-bis-subbtn--spec active" onclick="switchConsBisSubTab('cons')">${ui.cons_bis_sub1}</button>
@@ -2128,18 +2353,17 @@ function copyMacro(el) {
 
 function buildVerifiedConsumablesCopyText() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
-  const n = MIDNIGHT_S1_VERIFIED_CONSUMABLE_NAMES;
   const line = (label, name, effect) => {
     const extra = effect ? ` (${effect})` : '';
     return `${label}: ${name}${extra}`;
   };
-  return [
-    line(ui.cons_flask, n.flask, ui.cons_verified_effect_flask),
-    line(ui.cons_pot, n.potion, ui.cons_verified_effect_pot),
-    line(ui.cons_food, n.food, ui.cons_verified_effect_food),
-    line(ui.cons_weapon, n.weapon, ui.cons_verified_effect_weapon),
-    line(ui.cons_rune, n.augment, ui.cons_verified_effect_augment),
-  ].join('\n');
+  let spec = null;
+  try {
+    spec = typeof currentSpec !== 'undefined' ? currentSpec : null;
+  } catch (_) {}
+  const rows = getMidnightConsumableRows(ui, spec);
+  const lbl = { flask: ui.cons_flask, pot: ui.cons_pot, food: ui.cons_food };
+  return rows.map(r => line(lbl[r.type] || r.type, r.name, r.effect)).join('\n');
 }
 
 function copySpecConsumablesList() {
@@ -2353,5 +2577,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=2.7.8').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.2.7').catch(() => {});
 }

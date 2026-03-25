@@ -330,6 +330,7 @@ const UI = {
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
     tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
+    nav_sync_badge: "GLOBAL DATA SYNC — RESET 25 MAART",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -422,6 +423,7 @@ const UI = {
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
     tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
+    nav_sync_badge: "GLOBAL DATA SYNC: MARCH 25 RESET",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -555,6 +557,8 @@ function applyUIStrings() {
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl = document.getElementById('tab-lbl-glossary');
   if (_glbl) _glbl.innerHTML = u.tab_glossary || u.lbl_glossary || (lang === 'en' ? '📖 Glossary' : '📖 Woordenlijst');
+  const _syncBadge = document.getElementById('header-sync-badge');
+  if (_syncBadge) _syncBadge.textContent = u.nav_sync_badge || '';
   t('detail-tldr-label', u.tldr_label);
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
