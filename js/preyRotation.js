@@ -100,14 +100,24 @@
     return shuffled.slice(0, ACTIVE_PREY_COUNT);
   }
 
-  function getActivePreyTargetsForRotation(now) {
-    var idSet = {};
-    var ids = getActivePreyTargetIdsForToday(now);
-    for (var i = 0; i < ids.length; i++) idSet[ids[i]] = true;
+  /** Map id list (e.g. from prey-today.json) to targets in that order. */
+  function getActivePreyTargetsOrdered(ids) {
+    if (!ids || !ids.length) return [];
+    var map = {};
     var list = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
-    var out = list.filter(function (t) {
-      return t && idSet[t.id];
-    });
+    for (var i = 0; i < list.length; i++) {
+      if (list[i] && list[i].id) map[list[i].id] = list[i];
+    }
+    var out = [];
+    for (var j = 0; j < ids.length; j++) {
+      if (map[ids[j]]) out.push(map[ids[j]]);
+    }
+    return out;
+  }
+
+  function getActivePreyTargetsForRotation(now) {
+    var ids = getActivePreyTargetIdsForToday(now);
+    var out = getActivePreyTargetsOrdered(ids);
     out.sort(function (a, b) {
       return (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || '');
     });
@@ -141,6 +151,7 @@
   window.getActivePreyTargetsForRotation = function (n) {
     return getActivePreyTargetsForRotation(n || new Date());
   };
+  window.getActivePreyTargetsOrdered = getActivePreyTargetsOrdered;
   window.getNextPreyResetUtcMs = getNextPreyResetUtcMs;
   window.getMsUntilNextPreyResetCET = function (n) {
     return getMsUntilNextPreyResetCET(n || new Date());

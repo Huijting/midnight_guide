@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '3.6.0';
+const APP_VERSION = '3.6.1';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
@@ -19,6 +19,7 @@ const PRECACHE = [
   '/data/help.js',
   '/data/affixes.js',
   '/data/bountiful-today.json',
+  '/data/prey-today.json',
   '/data/dungeons.json',
   '/data/delves.js',
   '/data/raids.json',
@@ -153,9 +154,9 @@ self.addEventListener('activate', event => {
 });
 
 // Fetch: cache-first, netwerk als fallback
-// bountiful-today.json altijd van netwerk (dagelijks vernieuwd)
+// bountiful-today.json / prey-today.json altijd van netwerk (dagelijks vernieuwd)
 self.addEventListener('fetch', event => {
-  if (event.request.url.includes('bountiful-today.json')) {
+  if (event.request.url.includes('bountiful-today.json') || event.request.url.includes('prey-today.json')) {
     event.respondWith(fetch(event.request));
     return;
   }

@@ -511,7 +511,7 @@ function setLang(l) {
   if (devBanner && devBanner.classList.contains('open') && typeof renderBanner === 'function') renderBanner();
   if (document.body.classList.contains('mode-professions')) updateProfLang();
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
-  if (document.body.classList.contains('mode-prey')) renderPreyGuide();
+  if (document.body.classList.contains('mode-prey')) void renderPreyGuide();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   if (document.body.classList.contains('mode-raids') && typeof renderRaidList === 'function') renderRaidList();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
@@ -1409,6 +1409,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     if (typeof loadDungeonsGridMeta === 'function') await loadDungeonsGridMeta();
     if (typeof loadRaidsGridMeta === 'function') await loadRaidsGridMeta();
+    if (typeof fetchPreyToday === 'function') void fetchPreyToday();
     applyUIStrings();
     applySavedTheme();
     updateFooter();
@@ -2221,7 +2222,7 @@ function setMode(mode){
   if(mode==='home'){
     updateLandingStrings();
   } else if(mode==='prey'){
-    document.getElementById('home-screen').style.display = 'none'; document.getElementById('detail-screen').style.display = 'none'; renderPreyGuide();
+    document.getElementById('home-screen').style.display = 'none'; document.getElementById('detail-screen').style.display = 'none'; void renderPreyGuide();
   } else if(mode==='weekly'){
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
@@ -2930,6 +2931,10 @@ const PREY_UI = {
     title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
     weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Actieve prooi (vandaag)', targetsHint:'12 contracten per EU-dag (reset 07:00 Europe/Berlin) — zelfde set voor iedereen. Gesorteerd op zone; tik voor details.', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel', craftingMaterials:'🛠️ Crafting Materialen',
     nextResetLabel:'Volgende reset', nextResetZone:'07:00 Europe/Berlin',
+    preyTodayWowhead:'Actieve prooi uit Wowhead Today in WoW.',
+    preyTodayJson:'EU-lijst geladen (prey-today.json, dagelijks bijgewerkt).',
+    preyTodayJsonComputed:' Server-computed (zelfde seed als offline) — Wowhead heeft nog geen Prey-widget.',
+    preyTodayFallback:'prey-today.json niet geladen — berekende set in je browser.',
     summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid',
     spotlightTitle:'🎯 Doelwit van de dag', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Prey iLvl',
     preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · wereldbaas/apex ${P.worldBoss}`,
@@ -2944,6 +2949,10 @@ const PREY_UI = {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
     weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Active prey (today)', targetsHint:'12 contracts per EU day (reset 07:00 Europe/Berlin) — same set for everyone. Sorted by zone; tap for details.', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table', craftingMaterials:'🛠️ Crafting materials',
     nextResetLabel:'Next reset', nextResetZone:'07:00 Europe/Berlin',
+    preyTodayWowhead:'Active prey list from Wowhead Today in WoW.',
+    preyTodayJson:'Loaded EU list (prey-today.json, refreshed daily).',
+    preyTodayJsonComputed:' Server-computed (same seed as offline) — no Wowhead Prey widget yet.',
+    preyTodayFallback:'Could not load prey-today.json — computed set in your browser.',
     summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
     spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
     preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · world boss/apex ${P.worldBoss}`,
@@ -2957,6 +2966,75 @@ const PREY_UI = {
 };
 
 const MIDNIGHT_PREY_STORAGE_KEY = 'midnight_prey_progress';
+const ACTIVE_PREY_TODAY_COUNT = 12;
+let preyTodayFetchPromise = null;
+let preyTodayFetchResult = { ok: false, fromJson: false, ids: [], source: '', error: null };
+
+function resetPreyTodayFetchCache() {
+  preyTodayFetchPromise = null;
+  preyTodayFetchResult = { ok: false, fromJson: false, ids: [], source: '', error: null };
+}
+
+function validatePreyTodayTargets(arr) {
+  const tg = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  const valid = new Set(tg.map(t => t && t.id).filter(Boolean));
+  if (!Array.isArray(arr) || arr.length !== ACTIVE_PREY_TODAY_COUNT) return null;
+  const seen = new Set();
+  const out = [];
+  for (const id of arr) {
+    if (typeof id !== 'string' || !valid.has(id) || seen.has(id)) return null;
+    seen.add(id);
+    out.push(id);
+  }
+  return out;
+}
+
+async function fetchPreyToday() {
+  if (preyTodayFetchPromise) return preyTodayFetchPromise;
+  preyTodayFetchPromise = (async () => {
+    try {
+      const res = await fetch('data/prey-today.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(String(res.status));
+      const raw = await res.json();
+      const ids = validatePreyTodayTargets(raw.targets);
+      if (!ids) throw new Error('invalid prey-today targets');
+      preyTodayFetchResult = {
+        ok: true,
+        fromJson: true,
+        ids,
+        source: typeof raw.source === 'string' ? raw.source : 'json',
+        error: null,
+      };
+    } catch (e) {
+      const fb = typeof getActivePreyTargetIdsForToday === 'function' ? getActivePreyTargetIdsForToday() : [];
+      preyTodayFetchResult = {
+        ok: fb.length === ACTIVE_PREY_TODAY_COUNT,
+        fromJson: false,
+        ids: fb,
+        source: 'computed',
+        error: e && e.message ? e.message : String(e),
+      };
+    }
+    return preyTodayFetchResult;
+  })();
+  return preyTodayFetchPromise;
+}
+
+function getFinalActivePreyTargetIds() {
+  if (preyTodayFetchResult.ids && preyTodayFetchResult.ids.length === ACTIVE_PREY_TODAY_COUNT) {
+    return preyTodayFetchResult.ids.slice();
+  }
+  return typeof getActivePreyTargetIdsForToday === 'function' ? getActivePreyTargetIdsForToday() : [];
+}
+
+function getFinalActivePreyTargets() {
+  const ids = getFinalActivePreyTargetIds();
+  let arr = typeof getActivePreyTargetsOrdered === 'function' ? getActivePreyTargetsOrdered(ids) : [];
+  if (arr.length !== ids.length) return [];
+  if (preyTodayFetchResult.fromJson) return arr;
+  return arr.slice().sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''));
+}
+
 let _preyResetCountdownTimer = null;
 
 function stopPreyResetCountdown() {
@@ -3048,21 +3126,19 @@ function preyWeeklyToggle(id) {
   const state = preyWeeklyLoadState();
   state[id] = !state[id];
   preyWeeklySaveState(state);
-  renderPreyGuide();
+  void renderPreyGuide();
   if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
 function preyWeeklyReset() {
   try { localStorage.removeItem(getPreyWeeklyKey()); } catch (e) {}
   try { localStorage.removeItem(MIDNIGHT_PREY_STORAGE_KEY); } catch (e) {}
-  renderPreyGuide();
+  void renderPreyGuide();
   if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
 function getPreyWeeklyKillProgress() {
-  const targets = typeof getActivePreyTargetsForRotation === 'function'
-    ? getActivePreyTargetsForRotation()
-    : (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []);
+  const targets = getFinalActivePreyTargets();
   const total = targets.length;
   const killed = getPreyKilledMapRaw();
   const done = targets.filter(t => killed[t.id]).length;
@@ -3077,9 +3153,7 @@ function getPreyWeeklyBarSlot() {
 }
 
 function getPreySpotlightTarget() {
-  const targets = typeof getActivePreyTargetsForRotation === 'function'
-    ? getActivePreyTargetsForRotation()
-    : (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []);
+  const targets = getFinalActivePreyTargets();
   if (!targets.length) return null;
   const key = typeof getPreyRotationDayKey === 'function' ? getPreyRotationDayKey() : (typeof getWeeklyKey === 'function' ? getWeeklyKey() : '0');
   let h = 0;
@@ -3166,11 +3240,11 @@ function preyTargetKilledToggle(id, inputEl) {
   if (inputEl && typeof inputEl.checked === 'boolean') map[id] = inputEl.checked;
   else map[id] = !map[id];
   setPreyKilledMap(map);
-  renderPreyGuide();
+  void renderPreyGuide();
   if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
-function renderPreyGuide() {
+async function renderPreyGuide() {
   const container = document.getElementById('prey-content');
   if (!container) return;
 
@@ -3183,11 +3257,14 @@ function renderPreyGuide() {
 
   if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
 
-  const targetsSorted = typeof getActivePreyTargetsForRotation === 'function'
-    ? getActivePreyTargetsForRotation()
-    : (typeof PREY_TARGETS !== 'undefined'
-      ? [...PREY_TARGETS].sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''))
-      : []);
+  const preyDay = typeof getPreyRotationDayKey === 'function' ? getPreyRotationDayKey() : '';
+  if (typeof window !== 'undefined') {
+    if (window.__midnightPreyDayKey && window.__midnightPreyDayKey !== preyDay) resetPreyTodayFetchCache();
+    window.__midnightPreyDayKey = preyDay;
+  }
+  await fetchPreyToday();
+
+  const targetsSorted = getFinalActivePreyTargets();
 
   const l = lang === 'en' ? 'en' : 'nl';
   const loop = data.loop[l] || data.loop.en;
@@ -3203,6 +3280,16 @@ function renderPreyGuide() {
   const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
 
   let html = '';
+
+  const pr = preyTodayFetchResult;
+  if (pr.fromJson && pr.source === 'wowhead') {
+    html += `<div class="prey-section prey-today-banner"><p class="prey-today-status prey-today-status--ok">✨ ${ui.preyTodayWowhead}</p></div>`;
+  } else if (pr.fromJson) {
+    const sub = pr.source === 'computed' ? ` <span class="prey-today-status-sub">${ui.preyTodayJsonComputed}</span>` : '';
+    html += `<div class="prey-section prey-today-banner"><p class="prey-today-status prey-today-status--ok">📡 ${ui.preyTodayJson}${sub}</p></div>`;
+  } else {
+    html += `<div class="prey-section prey-today-banner"><p class="prey-today-status prey-today-status--warn">⚠️ ${ui.preyTodayFallback}</p></div>`;
+  }
 
   const preyState = preyWeeklyLoadState();
   const killedMap = getPreyKilledMapRaw();
