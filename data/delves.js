@@ -84,12 +84,15 @@ const DELVES_DATA = {
 
   // Bountiful Delves — 4 per dag, dagelijkse rotatie (EU reset 07:00 UTC / 08:00 CET)
   // Bron: "There has always been 4 Bountiful delves a day" (Blizzard forums)
-  // Schema: 7 dagen (week), elke dag 4 delve IDs. Dag-index = WoW EU-dag (07:00 UTC), zie getWowEuScheduleWeekday() in app.js.
-  // Live EU-lijst: data/bountiful-today.json (Wowhead TIW EU-blok). Deze tabel is alleen fallback offline / als JSON ontbreekt.
-  // Staat het niet gelijk met in-game? Pas bountifulScheduleOffset aan (bijv. 1 of -1) of corrigeer de rijen hieronder.
+  // Schema: index 0 = woensdag (EU WoW-dag), 1 = donderdag, … 6 = dinsdag — zie getWowEuScheduleWeekday() in app.js.
+  // Live EU: data/bountiful-today.json (Wowhead TIW, 2e EU-blok). Fallback hieronder alleen bij offline / ontbrekende JSON.
+  // Rij 0 is afgestemd op EU JSON (snapshot). Rijen 1–6: oud rooster, niet opnieuw tegen EU ingame gecontroleerd — geen
+  // betrouwbare publieke 7-dagentabel gevonden (Wowhead/Icy/NextTier tonen alleen “vandaag”). Bij afwijking: offset of rijen
+  // handmatig bijwerken na in-game check, of 7 dagen lang fetch-output archiveren om de cyclus te reconstrueren.
   bountifulScheduleOffset: 0,
   bountifulSchedule: [
-    ['shadow_enclave', 'collegiate_calamity', 'twilight_crypts', 'grudge_pit'],
+    // wo — EU, gelijk aan bountiful-today.json (EU TIW)
+    ['collegiate_calamity', 'sunkiller_sanctum', 'grudge_pit', 'atalaman'],
     ['parhelion_plaza', 'the_darkway', 'atalaman', 'gulf_of_memory'],
     ['sunkiller_sanctum', 'shadowguard_point', 'torments_rise', 'shadow_enclave'],
     ['collegiate_calamity', 'parhelion_plaza', 'twilight_crypts', 'gulf_of_memory'],
