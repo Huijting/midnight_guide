@@ -1628,7 +1628,7 @@ function startDelveDailyCountdown() {
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen',
-    bountiful_json_ok:'Vandaag Bountiful (live data)',
+    bountiful_json_ok:'Vandaag Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
     bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
     bountiful_daily_btn:'DAG. BOUNTIFUL',
@@ -1653,7 +1653,7 @@ const DELVES_UI = {
     full_guide_btn:'Volledige gids', back_btn:'← Terug' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
-    bountiful_json_ok:'Today’s Bountiful (live data)',
+    bountiful_json_ok:'Today’s Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
     bountiful_no_ids:'Bountiful: no list available. Check back later or update `data/bountiful-today.json`.',
     bountiful_daily_btn:'DAILY BOUNTIFUL',
@@ -1681,12 +1681,21 @@ const DELVES_UI = {
 let bountifulFetchPromise = null;
 let bountifulFetchResult = { ok: false, fromJson: false, ids: [], error: null };
 
+/** Weekday 0–6 (Sun–Sat) of the current WoW EU calendar day (reset 07:00 UTC), same boundary as getWowDailyDateKeyUtc(). */
+function getWowEuScheduleWeekday() {
+  const key = getWowDailyDateKeyUtc();
+  const parts = key.split('-').map(Number);
+  const y = parts[0];
+  const mo = parts[1] - 1;
+  const da = parts[2];
+  return new Date(Date.UTC(y, mo, da)).getUTCDay();
+}
+
 function getBountifulScheduleFallbackIds() {
   const sched = typeof DELVES_DATA !== 'undefined' && DELVES_DATA.bountifulSchedule;
   if (!sched || !sched.length) return [];
   const offset = Number(DELVES_DATA.bountifulScheduleOffset) || 0;
-  const now = new Date();
-  const dowUtc = now.getUTCDay();
+  const dowUtc = getWowEuScheduleWeekday();
   const dayIx = (dowUtc + 4) % 7;
   const row = sched[(dayIx + offset + 700) % 7];
   return Array.isArray(row) ? row.slice(0, 4) : [];

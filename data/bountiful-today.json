@@ -1,11 +1,12 @@
 {
-  "fetched": "2026-03-24T08:00:00.000Z",
-  "reset": "2026-03-19",
+  "fetched": "2026-03-25T15:00:00.000Z",
+  "reset": "2026-03-25",
+  "region": "EU",
   "delves": [
-    "shadow_enclave",
     "collegiate_calamity",
-    "twilight_crypts",
-    "grudge_pit"
+    "sunkiller_sanctum",
+    "grudge_pit",
+    "atalaman"
   ],
-  "note": "Written by scripts/fetch-bountiful-delves.js or manually. EU day boundary: Wednesday 07:00 UTC. Must be exactly 4 valid delve ids from data/delves.js."
+  "note": "EU Bountiful from Wowhead TIW (2nd mn-bountiful-delves block). WoW day = 07:00 UTC boundary. Updated by scripts/fetch-bountiful-delves.js (GitHub Actions 07:00 UTC)."
 }

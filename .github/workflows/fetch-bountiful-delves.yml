@@ -26,6 +26,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "chore: update Bountiful Delves from Wowhead"
+            git commit -m "chore: update EU Bountiful Delves from Wowhead TIW"
             git push
           fi

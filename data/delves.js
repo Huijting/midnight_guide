@@ -84,7 +84,8 @@ const DELVES_DATA = {
 
   // Bountiful Delves — 4 per dag, dagelijkse rotatie (EU reset 07:00 UTC / 08:00 CET)
   // Bron: "There has always been 4 Bountiful delves a day" (Blizzard forums)
-  // Schema: 7 dagen (week), elke dag 4 delve IDs. Dag = (getWowDayIndex() + bountifulScheduleOffset) % 7
+  // Schema: 7 dagen (week), elke dag 4 delve IDs. Dag-index = WoW EU-dag (07:00 UTC), zie getWowEuScheduleWeekday() in app.js.
+  // Live EU-lijst: data/bountiful-today.json (Wowhead TIW EU-blok). Deze tabel is alleen fallback offline / als JSON ontbreekt.
   // Staat het niet gelijk met in-game? Pas bountifulScheduleOffset aan (bijv. 1 of -1) of corrigeer de rijen hieronder.
   bountifulScheduleOffset: 0,
   bountifulSchedule: [
