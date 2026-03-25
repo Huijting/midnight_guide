@@ -1627,7 +1627,6 @@ function startDelveDailyCountdown() {
 
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
-    bountiful_alt:'Bountiful Delves — Shift+J om in-game te openen',
     bountiful_json_ok:'Vandaag Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
     bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
@@ -1652,7 +1651,6 @@ const DELVES_UI = {
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
     full_guide_btn:'Volledige gids', back_btn:'← Terug' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
-    bountiful_alt:'Bountiful Delves — Shift+J to open in-game',
     bountiful_json_ok:'Today’s Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
     bountiful_no_ids:'Bountiful: no list available. Check back later or update `data/bountiful-today.json`.',
@@ -1849,8 +1847,6 @@ async function buildDelvesScreen() {
 
   let html = '';
 
-  // Bountiful — afbeelding per taal (Shift+J instructie)
-  const bountifulImg = `assets/delves/bountiful-delves-${lang === 'en' ? 'en' : 'nl'}.png`;
   let statusNote = '';
   if (bountifulIds.length === 4) {
     statusNote = bountifulFetchResult.fromJson
@@ -1860,7 +1856,6 @@ async function buildDelvesScreen() {
     statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_no_ids}</p>`;
   }
   html += `<div class="delves-bountiful-banner">
-    <img src="${bountifulImg}" alt="${ui.bountiful_alt}" class="delves-bountiful-img" loading="lazy">
     ${statusNote}
     <p class="delves-daily-keys-summary" id="delves-daily-keys-summary">${ui.bountiful_keys_today.replace('{n}', String(dailyList.length))}</p>
     <p class="delves-daily-countdown" id="delves-daily-countdown" aria-live="polite"></p>
