@@ -1,5 +1,5 @@
 /**
- * Midnight S1 — universal 16-slot bisGear per spec (v3.2.7). Fresh array + row objects per spec.
+ * Midnight S1 — universal 16-slot bisGear per spec (v3.2.8). Fresh array + row objects per spec.
  * Depends on data/midnight_bis_item_ids.js.
  */
 (function attachUniversalBisGear() {

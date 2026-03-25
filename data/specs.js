@@ -1,5 +1,5 @@
 /**
- * data/specs.js — Midnight Guide spec metadata (v3.2.7).
+ * data/specs.js — Midnight Guide spec metadata (v3.2.8).
  * Primary-stat bucket per combat spec for consumable routing (Thalassian flask + food picks).
  * Loaded before midnight_bis_item_ids.js / ui.js (see index.html).
  */

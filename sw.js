@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '3.2.7';
+const APP_VERSION = '3.2.8';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [

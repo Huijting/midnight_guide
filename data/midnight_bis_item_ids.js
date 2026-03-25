@@ -1,5 +1,5 @@
 /**
- * Midnight S1 BiS v3.2.7 — Wowhead item IDs (Season 1 / Voidspire–era range).
+ * Midnight S1 BiS v3.2.8 — Wowhead item IDs (Season 1 / Voidspire–era range).
  *
  * Tier (4 slots): Method.gg Mythic tier Wowhead bonus 13335:12806 + ilvl hint.
  * Non-tier raid/M+: MIDNIGHT_RAID_WOWHEAD_BONUS (7359:1472:1507) + ilvl hint.

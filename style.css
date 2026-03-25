@@ -92,9 +92,6 @@
     --route-bg: var(--deep);
     --void-glow: 0 0 10px rgba(90, 74, 120, 0.15);
   }
-  body.light {
-    background-image: radial-gradient(ellipse 100% 65% at 50% -10%, rgba(200, 190, 235, 0.45) 0%, transparent 58%);
-  }
 
   /* Light mode — fix hardcoded “dark UI” surfaces & contrast */
   body.light .spec-hero {
@@ -212,8 +209,9 @@
   .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
   .header-tabs-wrap{padding:0 20px 10px;border-top:1px solid var(--border);margin-top:-1px;max-width:var(--content-max);margin-left:auto;margin-right:auto;display:flex;align-items:center;min-height:48px;transition:border-color .3s ease,background-color .3s ease}
   .header-pill-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 12px 12px;margin:0 auto;max-width:var(--content-max);width:100%;box-sizing:border-box;position:relative;z-index:2}
-  .header-sync-badge{display:block;width:100%;max-width:var(--content-max);text-align:center;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg,rgba(212,175,55,.14),rgba(100,160,255,.1));border:1px solid rgba(212,175,55,.32);color:var(--gold2);box-sizing:border-box}
-  body.light .header-sync-badge{background:linear-gradient(90deg,rgba(180,140,40,.12),rgba(80,140,220,.08));border-color:rgba(140,110,30,.28)}
+  /* Dark default: zelfde “nacht”-UI als header/panel — geen lichte strook */
+  .header-sync-badge{display:block;width:100%;max-width:var(--content-max);text-align:center;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:8px;box-sizing:border-box;background:rgba(10,9,14,.92);border:1px solid rgba(201,162,39,.22);color:var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  body.light .header-sync-badge{background:linear-gradient(90deg,rgba(180,140,40,.16),rgba(80,140,220,.1));border-color:rgba(140,110,30,.32);color:var(--gold2);box-shadow:none}
   .header-search-compact{flex:1;min-width:120px;max-width:min(280px,100%);padding:8px 12px;border-radius:12px}
   @media(min-width:769px){.header-inner-main{flex-wrap:nowrap;align-items:center}}
   .site-header-v2{border-bottom:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.35)}
@@ -1895,11 +1893,11 @@
   .immersive-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--grid-gap-immersive)}
   @media(max-width:480px){.immersive-card-grid{grid-template-columns:1fr;gap:var(--grid-gap-immersive)}}
   .delves-card-grid{margin-top:4px}
-  .delves-vault-card{position:relative;border-radius:var(--immersive-card-radius);border:1px solid rgba(0,210,255,.35);background:rgba(4,12,22,.75);cursor:pointer;overflow:hidden;transition:transform .2s,box-shadow .25s,border-color .2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(0,210,255,.12)}
+  .delves-vault-card{position:relative;border-radius:var(--immersive-card-radius);border:1px solid rgba(0,210,255,.35);background:rgba(2,8,14,.9);cursor:pointer;overflow:hidden;transition:transform .2s,box-shadow .25s,border-color .2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(0,210,255,.1)}
   .delves-vault-card:hover{border-color:rgba(0,210,255,.65);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 24px rgba(0,210,255,.15)}
   .delves-vault-card--bountiful{border-color:rgba(240,180,41,.55);animation:delve-vault-bountiful-pulse 2.6s ease-in-out infinite}
   @keyframes delve-vault-bountiful-pulse{0%,100%{border-color:rgba(240,180,41,.45);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.2),0 0 18px rgba(0,210,255,.1)}50%{border-color:rgba(255,210,120,.95);box-shadow:0 8px 36px rgba(0,0,0,.45),0 0 0 2px rgba(240,180,41,.75),0 0 36px rgba(240,180,41,.45),0 0 28px rgba(0,210,255,.22)}}
-  .delves-vault-card-bg{position:absolute;inset:0;pointer-events:none;opacity:.3;background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(0,210,255,.08) 12px,rgba(0,210,255,.08) 13px),linear-gradient(165deg,rgba(0,35,48,.95) 0%,rgba(5,8,14,.94) 40%,rgba(8,12,22,.92) 100%),radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,210,255,.35),transparent 55%)}
+  .delves-vault-card-bg{position:absolute;inset:0;pointer-events:none;opacity:.28;background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(0,210,255,.06) 12px,rgba(0,210,255,.06) 13px),linear-gradient(165deg,rgba(0,28,40,.96) 0%,rgba(4,6,12,.95) 45%,rgba(6,10,18,.93) 100%),radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,210,255,.22),transparent 58%)}
   .delves-vault-card-inner{position:relative;z-index:2;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
   .delves-vault-card-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:28px}
   .delves-bountiful-pill{font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(139,92,246,.35),rgba(240,180,41,.25));border:1px solid rgba(240,180,41,.45);color:#fef3c7}
@@ -1914,9 +1912,30 @@
   .delves-way-copy-btn:hover{background:linear-gradient(180deg,rgba(0,210,255,.35),rgba(0,140,180,.28));border-color:rgba(0,210,255,.85)}
   .delves-way-copy-btn:active{transform:scale(.98)}
   .delve-card-actions{margin-top:4px}
-  body.light .delves-vault-card{background:rgba(255,255,255,.92);border-color:rgba(14,165,233,.35)}
+  body.light .delves-vault-card{background:rgba(255,255,255,.94);border-color:rgba(14,165,233,.38);box-shadow:0 8px 28px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.9)}
   body.light .delves-vault-name{color:#0c4a6e;text-shadow:none}
   body.light .delves-vault-subband{color:rgba(12,74,110,.65)}
+  body.light .delves-vault-theme .delves-section-title{color:#0369a1;text-shadow:none}
+  body.light .delves-vault-theme .delves-bountiful-banner{background:linear-gradient(180deg,rgba(224,242,254,.92),rgba(248,250,252,.88));border-color:rgba(14,165,233,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 4px 20px rgba(0,0,0,.05)}
+  body.light .delves-vault-card-bg{opacity:.35;background:linear-gradient(165deg,rgba(224,242,254,.55) 0%,rgba(241,245,249,.35) 100%),radial-gradient(ellipse 90% 55% at 50% 0%,rgba(14,165,233,.2),transparent 60%)}
+  body.light .delves-vault-zone{color:rgba(12,74,110,.78)}
+  body.light .delves-vault-badge{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.32);color:#0e7490}
+  body.light .delves-vault-badge-tier{color:#0c4a6e;border-color:rgba(14,165,233,.4);background:rgba(224,242,254,.6)}
+  body.light .delves-vault-badge-reward{color:#854d0e;border-color:rgba(180,140,40,.4);background:rgba(254,243,199,.5)}
+  body.light .delves-way-copy-btn{border-color:rgba(14,165,233,.45);background:linear-gradient(180deg,rgba(224,242,254,.98),rgba(186,230,253,.55));color:#0c4a6e;box-shadow:0 4px 14px rgba(0,0,0,.07)}
+  body.light .delves-way-copy-btn:hover{border-color:rgba(14,165,233,.65);background:linear-gradient(180deg,rgba(186,230,253,.95),rgba(125,211,252,.55))}
+  body.light .delves-bountiful-pill{color:#422006;border-color:rgba(180,140,40,.45);background:linear-gradient(90deg,rgba(167,139,246,.22),rgba(250,204,21,.18))}
+  body.light .delves-key-info{background:linear-gradient(135deg,rgba(224,242,254,.95),rgba(219,234,254,.88));border-color:rgba(14,165,233,.38)}
+  body.light .delves-key-info-content strong{color:#1d4ed8}
+  body.light .delves-bountiful-daily-btn{color:#5b21b6;border-color:rgba(124,58,237,.38);background:rgba(237,233,254,.95);box-shadow:none}
+  body.light .delves-bountiful-daily-btn:hover{background:rgba(221,214,254,.95)}
+  body.light .delves-bountiful-vault-btn{background:rgba(250,204,21,.14);border-color:rgba(180,140,40,.4)}
+  body.light .delves-bountiful-status-ok{color:#15803d}
+  body.light .delves-bountiful-status-warn{color:#b45309}
+  body.light .delves-daily-countdown{color:var(--gold)}
+  body.light .delves-bountiful-roles-note{background:rgba(0,0,0,.03);border-color:var(--border);color:var(--muted)}
+  body.light .delves-list-table-wrap{border-color:rgba(14,165,233,.25);background:var(--panel)}
+  body.light .delves-list-table th{background:rgba(14,165,233,.1);color:#0369a1;border-bottom-color:rgba(14,165,233,.22)}
   .delves-section-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;margin-top:24px}
   .delves-section-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
   .delves-section-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px}
@@ -2158,15 +2177,26 @@
   --void-glow-strong: 0 0 20px rgba(157, 114, 255, 0.7), 0 0 40px rgba(80, 48, 160, 0.5);
 }
 
-  body {
-  background-color: #0a090d;
-  background-image: radial-gradient(ellipse 120% 85% at 50% -18%, rgba(26, 15, 46, 0.92) 0%, transparent 56%),
-    radial-gradient(ellipse 75% 50% at 100% 100%, rgba(26, 15, 46, 0.45) 0%, transparent 50%),
-    var(--bg-texture),
-    var(--bg-texture-fine);
-  background-attachment: fixed;
-  min-height: 100vh;
-}
+  /* Alleen donker thema: eerdere body{ background: var(--bg) } geldt voor beide; deze laag mag licht thema niet overschrijven */
+  body:not(.light) {
+    background-color: #0a090d;
+    background-image: radial-gradient(ellipse 120% 85% at 50% -18%, rgba(26, 15, 46, 0.92) 0%, transparent 56%),
+      radial-gradient(ellipse 75% 50% at 100% 100%, rgba(26, 15, 46, 0.45) 0%, transparent 50%),
+      var(--bg-texture),
+      var(--bg-texture-fine);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  body.light {
+    background-color: var(--bg);
+    background-image: radial-gradient(ellipse 100% 60% at 50% -8%, rgba(200, 195, 235, 0.42) 0%, transparent 55%),
+      radial-gradient(ellipse 72% 48% at 100% 100%, rgba(210, 220, 240, 0.35) 0%, transparent 52%),
+      var(--bg-texture),
+      var(--bg-texture-fine);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
 
 /* 2. Clean panels — no ornamental clutter */
 .dungeon-card:not(.dungeon-card--immersive), .prof-card, .weekly-progress, .weekly-cat-header, .vr-card, .role-panel, .boss-card, 

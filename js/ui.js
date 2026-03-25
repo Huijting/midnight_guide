@@ -469,7 +469,7 @@ const SPELL_IDS = {
   "Zephyr": 374227,
 };
 
-// Wowhead item IDs — consumables & BiS display names (v3.2.7 tooltip sync)
+// Wowhead item IDs — consumables & BiS display names (v3.2.8 tooltip sync)
 const ITEM_IDS = {
   "Flask of the Sunwell": 241327,
   "Void-Tinged Adrenaline": 241292,
@@ -2577,5 +2577,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.2.7').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.2.8').catch(() => {});
 }
