@@ -2937,14 +2937,6 @@ const PREY_UI = {
   }
 };
 
-(function mergePreyMapUi() {
-  if (typeof PREY_MAP_UI === 'undefined') return;
-  ['nl', 'en'].forEach(l => {
-    const src = PREY_MAP_UI[l] || PREY_MAP_UI.nl;
-    if (src && PREY_UI[l]) Object.assign(PREY_UI[l], src);
-  });
-})();
-
 const MIDNIGHT_PREY_STORAGE_KEY = 'midnight_prey_progress';
 
 function getPreyWeeklyKey() {
@@ -3065,29 +3057,6 @@ function preyMediaUrl(path) {
   }
 }
 
-function syncPreyTacticalMapBackground() {
-  const outer = document.getElementById('prey-map-container');
-  const stage = document.getElementById('prey-map-stage');
-  if (outer) {
-    outer.style.backgroundColor = '#0a090d';
-  }
-  if (!stage) return;
-  const ver = typeof APP_VERSION !== 'undefined' ? String(APP_VERSION) : '';
-  /* Official Prey tactical map only — never image_6.png or other filenames */
-  const path = ver
-    ? `assets/images/maps/silvermoon-map.png?v=${encodeURIComponent(ver)}`
-    : 'assets/images/maps/silvermoon-map.png';
-  const u = preyMediaUrl(path);
-  stage.style.backgroundImage = u ? `url(${JSON.stringify(u)})` : '';
-  stage.style.backgroundSize = 'contain';
-  stage.style.backgroundRepeat = 'no-repeat';
-  stage.style.backgroundPosition = 'center';
-}
-
-function preyEscHtml(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
 /** Zone-themed poster art URL (local assets); optional `bountyArt` on target overrides. */
 function getPreyCardBgUrl(t) {
   const withVer = rel => {
@@ -3118,32 +3087,6 @@ function preyEscImgSrc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
-function renderPreyMapPins(sortedTargets, killedMap, ui, l) {
-  const pinsRoot = document.getElementById('prey-map-pins');
-  if (!pinsRoot) return;
-  if (!sortedTargets.length) {
-    pinsRoot.innerHTML = '';
-    return;
-  }
-  const escAttr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-  pinsRoot.innerHTML = sortedTargets.map(t => {
-    const mp = t.mapPin || { left: 50, top: 50 };
-    const name = (t.name && t.name[l]) || t.name?.en || t.id;
-    const killed = !!killedMap[t.id];
-    const aria = typeof ui.mapPinAria === 'function' ? ui.mapPinAria(name) : `Scroll to ${name}`;
-    const pinState = killed ? 'prey-map-pin--killed' : 'prey-map-pin--active';
-    const iconClass = killed ? 'fa-solid fa-circle-check' : 'fa-solid fa-crosshairs';
-    const tipHtml = preyEscHtml(name);
-    return `<button type="button" class="prey-map-pin ${pinState}" style="left:${mp.left}%;top:${mp.top}%" aria-label="${escAttr(aria)}" data-prey-target="${t.id}" onclick="preyScrollToTargetCard('${t.id}')"><span class="prey-map-pin__glyph" aria-hidden="true"><i class="${iconClass}"></i></span><span class="prey-map-pin__tip">${tipHtml}</span></button>`;
-  }).join('');
-}
-
-function preyScrollToTargetCard(id) {
-  const el = document.getElementById('prey-card-' + id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-window.preyScrollToTargetCard = preyScrollToTargetCard;
-
 function preyRewardTypeLine(t, l) {
   if (t.rewardType && (t.rewardType[l] || t.rewardType.en)) return t.rewardType[l] || t.rewardType.en;
   const lo = t.loot || {};
@@ -3168,11 +3111,6 @@ function renderPreyGuide() {
 
   const data = typeof PREY_DATA !== 'undefined' ? PREY_DATA : null;
   const ui = PREY_UI[lang] || PREY_UI.nl;
-
-  const mMaintTitle = document.getElementById('prey-map-maintenance-title');
-  const mMaintText = document.getElementById('prey-map-maintenance-text');
-  if (mMaintTitle) mMaintTitle.textContent = ui.maintenanceTitle || '';
-  if (mMaintText) mMaintText.textContent = ui.maintenanceText || '';
 
   document.getElementById('prey-title').textContent = ui.title;
   const introEl = document.getElementById('prey-intro');
@@ -3204,6 +3142,58 @@ function renderPreyGuide() {
   const pk = getPreyWeeklyKillProgress();
   const spot = getPreySpotlightTarget();
 
+  // ——— Bounty posters (primary) ———
+  if (targetsSorted.length > 0) {
+    html += `<div class="prey-section prey-bounty-board-section">
+      <h3 class="prey-section-title">${ui.targetsLabel}</h3>
+      <p class="prey-targets-hint">${ui.targetsHint || 'Sorted by zone — click for details'}</p>
+      <div class="prey-target-cards immersive-card-grid">`;
+    targetsSorted.forEach(t => {
+      const name = (t.name && t.name[l]) || t.name?.en || t.id || '—';
+      const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
+      const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
+      const pctD = Math.round(dr / 5 * 100);
+      const killed = !!killedMap[t.id];
+      const skulls = preySkullsStringHtml(dr);
+      const rewardLn = preyRewardTypeLine(t, l);
+      const lo = t.loot || {};
+      const mnIv = lo.nightmare != null ? String(lo.nightmare) : '—';
+      const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
+      const wayAttr = wayStr.replace(/"/g, '&quot;');
+      const wayBtn = wayStr
+        ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--bounty-primary" onclick="event.stopPropagation();copyWay(this)" data-way="${wayAttr}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>`
+        : '';
+      const bgSrc = preyEscImgSrc(getPreyCardBgUrl(t));
+      html += `<div id="prey-card-${t.id}" class="prey-target-card-wrap">
+        <div class="prey-bounty-card${killed ? ' prey-target-done' : ''}" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
+          <div class="prey-bounty-card__art" aria-hidden="true"><img class="prey-bounty-card__art-img" src="${bgSrc}" alt="" width="400" height="260" decoding="async" loading="lazy"></div>
+          <div class="prey-bounty-card__glass">
+            <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
+            <div class="prey-target-card-name">${name}</div>
+            <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
+            <div class="prey-bounty-reward-line">${rewardLn}</div>
+            <div class="prey-bounty-nightmare-ilvl">${ui.nightmare} · ${ui.ilvl} ${mnIv}+</div>
+            <div class="prey-target-card-zone">${zoneName}</div>
+            <div class="prey-target-card-meter">
+              <span class="prey-card-meter-lbl">${ui.dangerMeter}</span>
+              <div class="prey-danger-track"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
+              <span class="prey-card-threat">${dr}/5</span>
+            </div>
+          </div>
+          ${wayBtn}
+        </div>
+        <label class="prey-killed-label prey-killed-label--tactical"><input type="checkbox" ${killed ? 'checked' : ''} onchange="preyTargetKilledToggle('${t.id}',this)"> ${ui.killedLabel}</label>
+      </div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  html += `<div class="prey-section prey-targets-progress-section">
+    <h3 class="prey-section-title">${ui.targetsProgress}</h3>
+    <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${ui.ilvlScale}: ${I.world}–${I.mythic}+</span></p>
+    <div class="prey-danger-track prey-danger-track-global"><div class="prey-danger-fill prey-danger-fill-global" style="width:${pk.total ? Math.round(pk.done / pk.total * 100) : 0}%"></div></div>
+  </div>`;
+
   if (spot) {
     const sn = (spot.name && spot.name[l]) || spot.name?.en || spot.id;
     const sz = (spot.zone && spot.zone[l]) || spot.zone?.en || '—';
@@ -3212,6 +3202,8 @@ function renderPreyGuide() {
     const pctD = Math.round(dr / 5 * 100);
     const skulls = preySkullsStringHtml(dr);
     const rewardLn = preyRewardTypeLine(spot, l);
+    const sLo = spot.loot || {};
+    const sMn = sLo.nightmare != null ? String(sLo.nightmare) : '—';
     html += `<div class="prey-spotlight prey-spotlight--bounty">
       <div class="prey-spotlight-badge">${ui.spotlightTitle}</div>
       <div class="prey-spotlight-inner">
@@ -3220,6 +3212,7 @@ function renderPreyGuide() {
           <div class="prey-spotlight-name">${sn}</div>
           <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
           <div class="prey-bounty-reward-line">${rewardLn}</div>
+          <div class="prey-bounty-nightmare-ilvl">${ui.nightmare} · ${ui.ilvl} ${sMn}+</div>
           <div class="prey-spotlight-loc">${sloc}</div>
           <div class="prey-spotlight-meter-wrap" aria-hidden="true"><span class="prey-spotlight-meter-label">${ui.dangerMeter}</span>
             <div class="prey-danger-track prey-danger-track-lg"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
@@ -3230,12 +3223,6 @@ function renderPreyGuide() {
       </div>
     </div>`;
   }
-
-  html += `<div class="prey-section prey-targets-progress-section">
-    <h3 class="prey-section-title">${ui.targetsProgress}</h3>
-    <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${ui.ilvlScale}: ${I.world}–${I.mythic}+</span></p>
-    <div class="prey-danger-track prey-danger-track-global"><div class="prey-danger-fill prey-danger-fill-global" style="width:${pk.total ? Math.round(pk.done / pk.total * 100) : 0}%"></div></div>
-  </div>`;
 
   // ——— Weekly Checklist ———
   const hunt1 = !!preyState.hunt1;
@@ -3291,59 +3278,7 @@ function renderPreyGuide() {
     </ul>
   </div>`;
 
-  // ——— Prey Targets (cards, sorted by zone) ———
-  if (targetsSorted.length > 0) {
-    html += `<div class="prey-section">
-      <h3 class="prey-section-title">${ui.targetsLabel}</h3>
-      <p class="prey-targets-hint">${ui.targetsHint || 'Sorted by zone — click for details'}</p>
-      <div class="prey-target-cards immersive-card-grid">`;
-    targetsSorted.forEach(t => {
-      const name = (t.name && t.name[l]) || t.name?.en || t.id || '—';
-      const zoneName = (t.zone && t.zone[l]) || t.zone?.en || '—';
-      const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
-      const pctD = Math.round(dr / 5 * 100);
-      const killed = !!killedMap[t.id];
-      const skulls = preySkullsStringHtml(dr);
-      const rewardLn = preyRewardTypeLine(t, l);
-      const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
-      const wayAttr = wayStr.replace(/"/g, '&quot;');
-      const wayBtn = wayStr
-        ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--bounty-primary" onclick="event.stopPropagation();copyWay(this)" data-way="${wayAttr}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>`
-        : '';
-      const bgSrc = preyEscImgSrc(getPreyCardBgUrl(t));
-      html += `<div id="prey-card-${t.id}" class="prey-target-card-wrap">
-        <div class="prey-bounty-card${killed ? ' prey-target-done' : ''}" onclick="openPreyDetail('${t.id}')" role="button" tabindex="0">
-          <div class="prey-bounty-card__art" aria-hidden="true"><img class="prey-bounty-card__art-img" src="${bgSrc}" alt="" width="400" height="260" decoding="async" loading="lazy"></div>
-          <div class="prey-bounty-card__glass">
-            <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
-            <div class="prey-target-card-name">${name}</div>
-            <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
-            <div class="prey-bounty-reward-line">${rewardLn}</div>
-            <div class="prey-target-card-zone">${zoneName}</div>
-            <div class="prey-target-card-meter">
-              <span class="prey-card-meter-lbl">${ui.dangerMeter}</span>
-              <div class="prey-danger-track"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
-              <span class="prey-card-threat">${dr}/5</span>
-            </div>
-          </div>
-          ${wayBtn}
-        </div>
-        <label class="prey-killed-label prey-killed-label--tactical"><input type="checkbox" ${killed ? 'checked' : ''} onchange="preyTargetKilledToggle('${t.id}',this)"> ${ui.killedLabel}</label>
-      </div>`;
-    });
-    html += `</div></div>`;
-  }
-
   container.innerHTML = html;
-
-  const mapSec = document.getElementById('prey-map-section');
-  const mapHeading = document.getElementById('prey-map-heading');
-  const mapSubEl = document.getElementById('prey-map-sub');
-  if (mapSec) mapSec.style.display = targetsSorted.length ? '' : 'none';
-  if (mapHeading) mapHeading.textContent = targetsSorted.length ? (ui.mapTitle || '') : '';
-  if (mapSubEl) mapSubEl.textContent = targetsSorted.length ? (ui.mapSub || '') : '';
-  renderPreyMapPins(targetsSorted, killedMap, ui, l);
-  syncPreyTacticalMapBackground();
 }
 
 function openPreyDetail(id) {

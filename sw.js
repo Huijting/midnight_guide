@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '2.8.0';
+const APP_VERSION = '2.7.8';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
@@ -25,7 +25,6 @@ const PRECACHE = [
   '/images/raids/rift-of-aln-bg.svg',
   '/images/raids/voidspire-bg.svg',
   '/images/raids/march-queldanas-bg.svg',
-  '/assets/images/maps/silvermoon-map.png',
   '/data/preyData.js',
   '/data/preyTargets.js',
   '/images/dungeons/windrunner-spire-bg.svg',

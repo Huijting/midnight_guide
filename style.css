@@ -1962,74 +1962,7 @@
 
   /* ── PREY SCREEN ── */
   #prey-screen{display:none}
-  .prey-map-section{margin-bottom:26px}
-  .prey-map-heading{font-size:clamp(16px,3.5vw,19px);font-weight:800;color:var(--gold);text-align:center;margin:0 0 6px;line-height:1.25}
-  .prey-map-sub{font-size:12px;color:var(--muted);text-align:center;margin:0 0 14px;line-height:1.45;max-width:36em;margin-left:auto;margin-right:auto}
-  .prey-map-container{
-    position:relative;width:100%;display:flex;align-items:center;justify-content:center;
-    padding:12px;background-color:#0a090d;border-radius:var(--immersive-card-radius);
-    border:1px solid rgba(138,43,226,.35);overflow:hidden;
-    box-shadow:inset 0 0 50px rgba(0,0,0,.55),0 8px 28px rgba(0,0,0,.35);
-  }
-  body.light .prey-map-container{border-color:rgba(138,43,226,.28);box-shadow:inset 0 0 40px rgba(255,255,255,.12),0 6px 20px rgba(0,0,0,.08)}
-  /* Block + width:100% — NOT inline-block (shrink-to-fit + child 100% = collapsed width/height) */
-  .prey-map-wrap{position:relative;width:100%;max-width:100%;display:block}
-  .prey-map-maintenance{
-    position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;
-    padding:16px;pointer-events:auto;
-    background:linear-gradient(180deg,rgba(10,9,13,.94) 0%,rgba(10,9,13,.82) 50%,rgba(10,9,13,.65) 100%);
-    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  }
-  .prey-map-maintenance__panel{
-    max-width:min(100%,26rem);text-align:center;padding:14px 18px 16px;
-    background:rgba(18,12,28,.82);border:1px solid rgba(201,162,39,.42);border-radius:14px;
-    box-shadow:0 12px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
-  }
-  .prey-map-maintenance__title{
-    display:block;font-size:clamp(15px,3.5vw,18px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--gold);margin-bottom:10px;text-shadow:0 0 20px rgba(201,162,39,.35);
-  }
-  .prey-map-maintenance__text{
-    margin:0;font-size:13px;line-height:1.55;color:var(--text);font-weight:600;
-  }
-  body.light .prey-map-maintenance{background:linear-gradient(180deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.72) 100%)}
-  body.light .prey-map-maintenance__panel{background:rgba(255,255,255,.94);border-color:rgba(138,43,226,.3)}
-  body.light .prey-map-maintenance__text{color:#1a1520}
-  /* Stage matches silvermoon-map.png 2020×1348; width from parent so aspect-ratio yields real height */
-  .prey-map-stage{
-    position:relative;width:100%;max-width:min(100%,calc(min(52vh,440px)*(2020/1348)));
-    aspect-ratio:2020/1348;max-height:min(52vh,440px);min-height:200px;margin:0 auto;
-    background-color:#0a090d;background-repeat:no-repeat;background-position:center;background-size:contain;
-  }
-  .prey-map-pins{position:absolute;inset:0;pointer-events:none;z-index:1}
-  .prey-map-pins .prey-map-pin{pointer-events:auto}
-  @keyframes prey-pin-pulse{
-    0%,100%{filter:drop-shadow(0 0 2px #C41E3A) drop-shadow(0 0 8px rgba(196,30,58,.5))}
-    50%{filter:drop-shadow(0 0 6px #C41E3A) drop-shadow(0 0 16px rgba(196,30,58,.85))}
-  }
-  .prey-map-pin{
-    position:absolute;left:0;top:0;padding:0;margin:0;border:none;background:transparent;cursor:pointer;
-    transform:translate(-50%,-50%);line-height:1;color:#C41E3A;
-    transition:transform .18s ease,filter .2s ease;
-  }
-  .prey-map-pin:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
-  .prey-map-pin__glyph{
-    display:flex;align-items:center;justify-content:center;font-size:clamp(17px,3.8vw,24px);line-height:1;
-  }
-  .prey-map-pin--active .prey-map-pin__glyph{color:#C41E3A;animation:prey-pin-pulse 1.5s ease-in-out infinite}
-  .prey-map-pin--killed .prey-map-pin__glyph{color:#22c55e;animation:none;filter:drop-shadow(0 0 6px rgba(34,197,94,.65))}
-  .prey-map-pin:hover,.prey-map-pin:focus-visible{transform:translate(-50%,-50%) scale(1.12)}
-  .prey-map-pin__tip{
-    position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
-    padding:7px 12px;font-size:12px;font-weight:800;color:var(--text);letter-spacing:.02em;
-    white-space:nowrap;pointer-events:none;z-index:5;opacity:0;visibility:hidden;
-    transition:opacity .22s ease,visibility .22s ease;
-    background:rgba(10,8,16,.78);border:1px solid rgba(201,162,39,.38);border-radius:12px;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    box-shadow:0 10px 28px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
-  }
-  body.light .prey-map-pin__tip{background:rgba(255,255,255,.88);border-color:rgba(138,43,226,.28);color:#12141a;box-shadow:0 8px 24px rgba(0,0,0,.12)}
-  .prey-map-pin:hover .prey-map-pin__tip,.prey-map-pin:focus-visible .prey-map-pin__tip{opacity:1;visibility:visible}
+  .prey-bounty-board-section{margin-top:4px}
   .prey-screen-shell{width:100%;max-width:var(--content-max);margin:0 auto;padding:20px 24px 48px}
   .prey-guide-panel{
     padding:20px;border-radius:var(--immersive-card-radius);margin-top:10px;color:var(--text);
@@ -2087,6 +2020,8 @@
   .prey-skull--on.prey-skull--high{opacity:1;filter:drop-shadow(0 0 10px rgba(239,68,68,.9))}
   .prey-skull--off{opacity:.22;filter:grayscale(1)}
   .prey-bounty-reward-line{font-size:12px;font-weight:700;color:#e9d5ff;border-left:3px solid var(--prey-void-purple);padding-left:10px;margin:6px 0;line-height:1.4}
+  .prey-bounty-nightmare-ilvl{font-size:12px;font-weight:800;color:#fca5a5;letter-spacing:.02em;margin:2px 0 6px;padding-left:10px;line-height:1.35;border-left:3px solid rgba(220,38,38,.45)}
+  body.light .prey-bounty-nightmare-ilvl{color:#b91c1c;border-left-color:rgba(185,28,28,.4)}
   .prey-spotlight-badge{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
   .prey-spotlight-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
   .prey-spotlight-name{font-size:20px;font-weight:800;color:var(--gold);line-height:1.2}
