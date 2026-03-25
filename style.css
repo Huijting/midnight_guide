@@ -2074,6 +2074,14 @@
   .prey-skull--off{opacity:.22;filter:grayscale(1)}
   .prey-bounty-reward-line{font-size:12px;font-weight:700;color:#e9d5ff;border-left:3px solid var(--prey-void-purple);padding-left:10px;margin:6px 0;line-height:1.4}
   .prey-bounty-nightmare-ilvl{font-size:12px;font-weight:800;color:#fca5a5;letter-spacing:.02em;margin:2px 0 6px;padding-left:10px;line-height:1.35;border-left:3px solid rgba(220,38,38,.45)}
+  .prey-bounty-ilvl-split{white-space:normal;word-break:break-word}
+  .prey-reset-countdown{text-align:center;font-size:13px;font-weight:700;color:#a335ee;text-shadow:0 0 10px rgba(163,53,238,.55);margin:-4px 0 14px;letter-spacing:.02em}
+  body.light .prey-reset-countdown{color:#7c3aed;text-shadow:0 0 8px rgba(124,58,237,.35)}
+  .prey-bounty-reward-line.prey-reward-epic{color:#a335ee !important;text-shadow:0 0 8px rgba(163,53,238,.45);border-left-color:rgba(163,53,238,.55) !important}
+  body.light .prey-bounty-reward-line.prey-reward-epic{color:#7c3aed !important;text-shadow:0 0 6px rgba(124,58,237,.3)}
+  #prey-detail-modal .prey-crafting-li .wh-link-item.bis-wowhead-track,
+  #prey-detail-modal .prey-craft-link.prey-reward-wowhead-link{color:#a335ee !important;text-shadow:0 0 8px rgba(163,53,238,.4);font-weight:800;background:none;border:none;cursor:pointer;font:inherit;text-align:left;padding:0;text-decoration:underline;text-underline-offset:2px}
+  body.light #prey-detail-modal .prey-craft-link.prey-reward-wowhead-link{color:#7c3aed !important}
   body.light .prey-bounty-nightmare-ilvl{color:#b91c1c;border-left-color:rgba(185,28,28,.4)}
   .prey-spotlight-badge{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
   .prey-spotlight-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}

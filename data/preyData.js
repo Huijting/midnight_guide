@@ -41,16 +41,16 @@ const PREY_DATA = {
   // Difficulties & Affixes
   difficulties: {
     normal: {
-      en: { name: 'Normal', desc: 'Basic intro, rewards Adventurer / world-track gear (~226+ ilvl, Midnight S1).', unlock: 'Default from first unlock.' },
-      nl: { name: 'Normal', desc: 'Basis intro, Adventurer/world-track gear (~226+ iLvl, Midnight S1).', unlock: 'Standaard na unlock.' }
+      en: { name: 'Normal', desc: 'Contract loot iLvl 220 (Icy Veins Prey table, Midnight S1). Great Vault World can be higher.', unlock: 'Default from first unlock.' },
+      nl: { name: 'Normal', desc: 'Contract-loot iLvl 220 (Icy Veins Prey-tabel, Midnight S1). Great Vault World kan hoger zijn.', unlock: 'Standaard na unlock.' }
     },
     hard: {
-      en: { name: 'Hard', desc: 'Unlocked after your first Normal hunt. Adds "Torments" (zone-wide debuffs). Rewards Veteran / Hero track gear (~233–259+ ilvl, Midnight S1).', unlock: 'After 1 Normal hunt.' },
-      nl: { name: 'Hard', desc: 'Ontgrendeld na je eerste Normal hunt. Voegt "Torments" toe. Beloningen Veteran/Hero-track (~233–259+ iLvl, Midnight S1).', unlock: 'Na 1 Normal hunt.' }
+      en: { name: 'Hard', desc: 'Unlocked after your first Normal hunt. Adds "Torments" (zone-wide debuffs). Heroic-tier contract loot iLvl 233 (Icy Veins).', unlock: 'After 1 Normal hunt.' },
+      nl: { name: 'Hard', desc: 'Na je eerste Normal hunt. Voegt "Torments" toe. Heroic-contract-loot iLvl 233 (Icy Veins).', unlock: 'Na 1 Normal hunt.' }
     },
     nightmare: {
-      en: { name: 'Nightmare', desc: 'New in Season 1. Solo only. Adds deadly affixes. Rewards Champion Gear.', unlock: 'Solo only.' },
-      nl: { name: 'Nightmare', desc: 'Nieuw in Seizoen 1. Alleen solo. Voegt dodelijke affixes toe. Beloningen Champion Gear.', unlock: 'Alleen solo.' }
+      en: { name: 'Nightmare', desc: 'Solo only. Deadly affixes. Contract loot iLvl 246; Great Vault Hero track up to 259 (Icy Veins).', unlock: 'Solo only.' },
+      nl: { name: 'Nightmare', desc: 'Alleen solo. Dodelijke affixes. Contract-loot iLvl 246; Great Vault Hero-track tot 259 (Icy Veins).', unlock: 'Alleen solo.' }
     },
   },
 
@@ -69,22 +69,24 @@ const PREY_DATA = {
   // Rewards section
   rewards: {
     en: {
-      adventurer: 'Adventurer gear (Normal)',
-      veteran: 'Veteran / Hero track — from ~233 ilvl upward on Hard (Midnight S1)',
-      champion: 'Champion track — ~246+ toward ~272 on Nightmare',
-      weeklyTip: 'The first 2 Hunts per week give the best gear rewards (Veteran/Champion track).',
+      adventurer: 'Normal contracts — iLvl 220 (Icy Veins)',
+      veteran: 'Hard (Heroic) — iLvl 233 with Torments',
+      champion: 'Nightmare — iLvl 246; weekly world boss / apex Mythic track 289',
+      weeklyTip: 'The first 2 Hunts per week give the best gear rewards.',
       greatVault: 'Prey contributes to the Great Vault <strong>World</strong> category.',
       anguishFills: 'fills your bar',
       dawncrestsUpgrade: 'upgrade gear',
+      worldBossNote: '<strong>World boss / apex predator</strong> (weekly, not a Hunt contract): iLvl 289 (Mythic track).',
     },
     nl: {
-      adventurer: 'Adventurer gear (Normal)',
-      veteran: 'Veteran/Hero-track — vanaf ~233 iLvl op Hard (Midnight S1)',
-      champion: 'Champion-track — ~246+ richting ~272 op Nightmare',
-      weeklyTip: 'De eerste 2 Hunts per week geven de beste gear beloningen (Veteran/Champion track).',
+      adventurer: 'Normal contracten — iLvl 220 (Icy Veins)',
+      veteran: 'Hard (Heroic) — iLvl 233 met Torments',
+      champion: 'Nightmare — iLvl 246; wekelijkse wereld­baas / apex Mythic-track 289',
+      weeklyTip: 'De eerste 2 Hunts per week geven de beste gear-beloningen.',
       greatVault: 'Prey telt mee voor de Great Vault <strong>World</strong> categorie.',
       anguishFills: 'vult je balk',
       dawncrestsUpgrade: 'upgraden gear',
+      worldBossNote: '<strong>Wereld­baas / apex predator</strong> (wekelijks, geen Hunt-contract): iLvl 289 (Mythic-track).',
     }
   },
 

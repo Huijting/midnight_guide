@@ -1,5 +1,5 @@
 /** App display + cache bump — keep `sw.js` APP_VERSION in sync (service worker cannot import this file). */
-const APP_VERSION = '3.2.8';
+const APP_VERSION = '3.6.0';
 
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {
@@ -8,6 +8,15 @@ const KG_STRINGS = {
 
 /** Midnight Season 1 item-level anchors (Delves / Great Vault / tracks). veteran–mythic align with 259-scale (LFR 233 → Mythic 272). */
 const ILVL_MIDNIGHT = { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
+
+/** Prey Hunt contracts — Icy Veins S1 Prey table (loot iLvl; GV bands differ). World boss / apex Mythic track 289 (not contracts). */
+const PREY_ILVL = {
+  normal: 220,
+  hard: 233,
+  nightmare: 246,
+  /** Weekly world boss / apex predator (not a Hunt contract) */
+  worldBoss: 289,
+};
 
 // ── Alle professions samenvoegen ──
 const ALL_PROFS = [SKINNING,LEATHERWORKING,MINING,HERBALISM,ALCHEMY,BLACKSMITHING,ENCHANTING,ENGINEERING,INSCRIPTION,JEWELCRAFTING,TAILORING,COOKING,FISHING];

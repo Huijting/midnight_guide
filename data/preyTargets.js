@@ -1,5 +1,5 @@
-// Prey Targets — WoW: Midnight Season 1 (12 contracts)
-// difficulty_rating 1–5 = solo threat (Danger Meter). Loot ~ILVL_MIDNIGHT band (see js/constants.js).
+// Prey Targets — WoW: Midnight Season 1 (14 contracts, v3.6.0)
+// difficulty_rating 1–5 = solo threat (Danger Meter). Contract loot verified Icy Veins (Prey table): Normal 220 / Heroic (Hard) 233 / Nightmare 246 — see PREY_ILVL in js/constants.js. World boss / apex Mythic track 289 (not contracts).
 // In-game contract “Nexus-Edge Hadim” (Zul’Aman entrance) = dataset id wing_of_akilzon (cards + detail modal).
 // Label cross-ref (community names → ids): Quel'Danas / Sunwell / Isle skirmisher → void_touched + abyssal + imperator; Silvermoon Traitor → silvermoon_stalker;
 // The Stalker → deliah; Void Treant → mordril; Scourge → twilight; Voidstorm trio → praetor / consul / executor; ZA pair → talon + wing (Hadim).
@@ -36,8 +36,37 @@ const PREY_TARGETS = [
       en: '<h4>Before the fight</h4><p>Fill your Anguish bar by doing World Quests and killing rares in Eversong Woods.</p><h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Interrupt. <strong>Shadow Pool:</strong> Move out. <strong>Void Surge:</strong> Defensive or interrupt.</p>',
       nl: '<h4>Voor het gevecht</h4><p>Vul Anguish met World Quests en rares in Eversong.</p><h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Onderbreek. <strong>Shadow Pool:</strong> Stap uit. <strong>Void Surge:</strong> Defensive of interrupt.</p>'
     },
-    loot: { normal: 182, hard: 197, nightmare: 212 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '⚔️ Weapon & gear', nl: '⚔️ Wapen & gear' }
+  },
+  {
+    id: 'neydra_the_starving',
+    crafting_drops: [],
+    name: { en: 'Neydra the Starving', nl: 'Neydra the Starving' },
+    zone: { en: 'Eversong Woods / Ghostlands', nl: 'Eversong Woods / Ghostlands' },
+    location: { en: 'Eversong–Ghostlands border', nl: 'Grens Eversong–Ghostlands' },
+    zoneOrder: 1,
+    difficulty_rating: 3,
+    coords: { en: '/way #2393 52.4 78.2 Eversong–Ghostlands border', nl: '/way #2393 52.4 78.2 Eversong–Ghostlands grens' },
+    pro_tip: {
+      tank: { en: 'Face Neydra away from the group; save a big cooldown for her enrage-style hunger frenzy.', nl: 'Draai Neydra weg van de groep; bewaar grote CD voor honger-frenzy.' },
+      heal: { en: 'Heavy bleed or DoT windows — dispel fast and pump after each leap.', nl: 'Zware bleed/DoT-fasen — snel dispellen en healen na elke sprong.' },
+      dps: { en: 'Kick soul drain or channel casts; kill hungering whelps before they reach her.', nl: 'Kick soul drain of channels; dood hongerige whelps vóór ze haar bereiken.' }
+    },
+    summary: {
+      en: ['Interrupt drain channels.', 'Kill small adds before they empower the boss.', 'Dodge leap and frontal breath.'],
+      nl: ['Onderbreek drain-channels.', 'Dood kleine adds vóór empower.', 'Ontwijk sprong en frontale adem.']
+    },
+    abilities: {
+      en: 'Hunger frenzy, leaps, add waves.',
+      nl: 'Honger-frenzy, sprongen, add-golven.'
+    },
+    fullGuide: {
+      en: '<h4>Boss mechanics</h4><p><strong>Hunger Frenzy:</strong> Defensive or CC. <strong>Leap:</strong> Move from landing circle. <strong>Whelps:</strong> Priority kill.</p>',
+      nl: '<h4>Boss-mechanieken</h4><p><strong>Hunger Frenzy:</strong> Defensive of CC. <strong>Leap:</strong> Uit landingscirkel. <strong>Whelps:</strong> Prio doden.</p>'
+    },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
+    rewardType: { en: '🎁 Gear', nl: '🎁 Gear' }
   },
   {
     id: 'deliah_gloomsong',
@@ -65,7 +94,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Shadow Mend:</strong> Interrupt. <strong>Gloomfire:</strong> Dispel. <strong>Void Rift:</strong> Dodge.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Shadow Mend:</strong> Onderbreek. <strong>Gloomfire:</strong> Dispel. <strong>Void Rift:</strong> Ontwijk.</p>'
     },
-    loot: { normal: 182, hard: 197, nightmare: 212 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '💍 Trinket & accessories', nl: '💍 Trinket & accessoires' }
   },
   {
@@ -94,7 +123,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Hex:</strong> Interrupt. <strong>Lightning Totem:</strong> Kill fast. <strong>Chain Lightning:</strong> Dodge.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Hex:</strong> Onderbreek. <strong>Lightning Totem:</strong> Snel dood. <strong>Chain Lightning:</strong> Ontwijk.</p>'
     },
-    loot: { normal: 184, hard: 199, nightmare: 215 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '⚔️ Weapon', nl: '⚔️ Wapen' }
   },
   {
@@ -123,7 +152,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Storm Bolt:</strong> Interrupt. <strong>Cyclone:</strong> Dodge. <strong>Windfury Curse:</strong> Dispel.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Storm Bolt:</strong> Onderbreek. <strong>Cyclone:</strong> Ontwijk. <strong>Windfury Curse:</strong> Dispel.</p>'
     },
-    loot: { normal: 246, hard: 259, nightmare: 272 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '🪶 Off-hand & gear', nl: '🪶 Schildhand & gear' }
   },
   {
@@ -151,7 +180,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Eruption:</strong> Sidestep. <strong>Arcane Cascade:</strong> Interrupt. <strong>Void Minion:</strong> Kill first.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Eruption:</strong> Opzij. <strong>Arcane Cascade:</strong> Onderbreek. <strong>Void Minion:</strong> Eerst dood.</p>'
     },
-    loot: { normal: 186, hard: 202, nightmare: 218 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '🛠️ Crafting mats + gear', nl: '🛠️ Craft-mats + gear' },
     crafting_drops: [
       {
@@ -187,7 +216,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Dark Summoning:</strong> Kill Emissary. <strong>Void Cone:</strong> Not in front. <strong>Discordant Hymn:</strong> Move.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Dark Summoning:</strong> Dood Emissary. <strong>Void Cone:</strong> Niet ervoor. <strong>Discordant Hymn:</strong> Bewegen.</p>'
     },
-    loot: { normal: 186, hard: 202, nightmare: 218 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '🛡️ Armor & gear', nl: '🛡️ Harnas & gear' }
   },
   {
@@ -216,7 +245,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Interrupt. <strong>Crushing Rift:</strong> Dodge. <strong>Execute:</strong> Defensive under 30%.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Onderbreek. <strong>Crushing Rift:</strong> Ontwijk. <strong>Execute:</strong> Defensive onder 30%.</p>'
     },
-    loot: { normal: 188, hard: 204, nightmare: 220 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '⚔️ Weapon', nl: '⚔️ Wapen' }
   },
   {
@@ -245,7 +274,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Void Bolt:</strong> Always interrupt. <strong>Umbral Rage:</strong> Move out. <strong>Dark Communion:</strong> Kill add.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Void Bolt:</strong> Altijd kick. <strong>Umbral Rage:</strong> Eruit. <strong>Dark Communion:</strong> Dood add.</p>'
     },
-    loot: { normal: 189, hard: 205, nightmare: 222 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '💍 Trinket & rings', nl: '💍 Trinket & ringen' }
   },
   {
@@ -273,7 +302,7 @@ const PREY_TARGETS = [
       en: '<h4>Before the fight</h4><p>Fill Anguish on the Isle; expect longer ambush paths near the Sunwell gate.</p><h4>Boss mechanics</h4><p><strong>Phoenix:</strong> Kill or shield breaks slowly. <strong>Pyroblast:</strong> Kick. <strong>Arcane Burst:</strong> Spread.</p>',
       nl: '<h4>Voor het gevecht</h4><p>Vul Anguish op het eiland; langere hinderlagen bij Sunwell-poort.</p><h4>Boss-mechanieken</h4><p><strong>Phoenix:</strong> Dood of shield breekt traag. <strong>Pyroblast:</strong> Kick. <strong>Arcane Burst:</strong> Spreiden.</p>'
     },
-    loot: { normal: 189, hard: 206, nightmare: 226 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '⚔️ Weapon & caster gear', nl: '⚔️ Wapen & caster-gear' },
     crafting_drops: [
       {
@@ -315,7 +344,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Shadow Pounce:</strong> Dodge telegraph. <strong>Rending Strike:</strong> Mitigate or kite. <strong>Vanish:</strong> AoE reveal.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Shadow Pounce:</strong> Ontwijk. <strong>Rending Strike:</strong> Mitigatie of kiten. <strong>Vanish:</strong> AoE reveal.</p>'
     },
-    loot: { normal: 183, hard: 198, nightmare: 213 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '🥾 Leather & mail gear', nl: '🥾 Leder- & mail-gear' }
   },
   {
@@ -350,7 +379,7 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Abyssal Crusher:</strong> Kill. <strong>Tidal Surge:</strong> Line dodge. <strong>Command Shield:</strong> Break with damage.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Abyssal Crusher:</strong> Dood. <strong>Tidal Surge:</strong> Lijn ontwijken. <strong>Command Shield:</strong> Schade.</p>'
     },
-    loot: { normal: 187, hard: 203, nightmare: 219 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '💍 Trinket & JC mats', nl: '💍 Trinket & JC-mats' }
   },
   {
@@ -379,7 +408,43 @@ const PREY_TARGETS = [
       en: '<h4>Boss mechanics</h4><p><strong>Twilight Rift:</strong> Stand in and DPS or kick channel. <strong>Tether:</strong> Break LOS or kill add.</p>',
       nl: '<h4>Boss-mechanieken</h4><p><strong>Twilight Rift:</strong> Erin en DPS of kick channel. <strong>Tether:</strong> LOS of add dood.</p>'
     },
-    loot: { normal: 181, hard: 196, nightmare: 211 },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '🎁 Gear & rings', nl: '🎁 Gear & ringen' }
+  },
+  {
+    id: 'senior_tinker_oszwold',
+    crafting_drops: [
+      {
+        label: { en: 'Engineering salvage & gizmo parts', nl: 'Techniek-sloop & gadget-onderdelen' },
+        profession: { en: 'Engineering', nl: 'Techniek' },
+        used_for: { en: 'Midnight Engineering crafts & upgrades', nl: 'Midnight Techniek-crafts & upgrades' }
+      }
+    ],
+    name: { en: 'Senior Tinker Oszwold', nl: 'Senior Tinker Oszwold' },
+    zone: { en: 'Silvermoon City', nl: 'Silvermoon City' },
+    location: { en: 'Silvermoon Bazaar (workshop)', nl: 'Silvermoon Bazaar (werkplaats)' },
+    zoneOrder: 1,
+    difficulty_rating: 2,
+    coords: { en: '/way #2393 42.8 31.4 Silvermoon City', nl: '/way #2393 42.8 31.4 Silvermoon City' },
+    pro_tip: {
+      tank: { en: 'Watch for frontal cone wrench slams; pick up loose adds before they buff the boss.', nl: 'Let op frontale moersleutel-slams; pak losse adds vóór ze de boss buffen.' },
+      heal: { en: 'Heavy AoE when he deploys turrets — spread slightly, then stack for shield phase.', nl: 'Zware AoE bij turrets — licht spreiden, daarna stacken bij shield-fase.' },
+      dps: { en: 'Kick Overclock cast; burn turrets before he reabsorbs them for a damage shield.', nl: 'Kick Overclock; brand turrets vóór hij ze terugzuigt voor een schild.' }
+    },
+    summary: {
+      en: ['Destroy deployable turrets quickly.', 'Interrupt Overclock channels.', 'Avoid grease patches on the floor.'],
+      nl: ['Vernietig turrets snel.', 'Onderbreek Overclock.', 'Vermijd vetvlekken op de grond.']
+    },
+    abilities: {
+      en: 'Deployable turrets, Overclock channel, cone attacks.',
+      nl: 'Turrets, Overclock-channel, kegel-aanvallen.'
+    },
+    fullGuide: {
+      en: '<h4>Boss mechanics</h4><p><strong>Overclock:</strong> Interrupt. <strong>Turret Deploy:</strong> Kill adds before reabsorb. <strong>Grease Patch:</strong> Slow — route around.</p>',
+      nl: '<h4>Boss-mechanieken</h4><p><strong>Overclock:</strong> Onderbreek. <strong>Turret Deploy:</strong> Dood adds vóór reabsorb. <strong>Grease Patch:</strong> Traag — route eromheen.</p>'
+    },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
+    rewardType: { en: '⚙️ Engineering parts & gear', nl: '⚙️ Techniek-onderdelen & gear' }
   }
 ];
+

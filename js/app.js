@@ -2202,6 +2202,7 @@ function applyTooltips(container){
 
 
 function setMode(mode){
+  if (mode !== 'prey') stopPreyResetCountdown();
   document.body.className=document.body.className.replace(/\bmode-\S+/g,'').trim()+' mode-'+mode;
   document.body.classList.remove('detail-open','nav-menu-open');
   document.getElementById('mode-tab-home')?.classList.toggle('active',mode==='home');
@@ -2927,25 +2928,68 @@ renderKpSources = function(p) {
 const PREY_UI = {
   nl: {
     title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
-    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Prey Doelwitten', targetsHint:'Gesorteerd op zone — tik voor details; vink af als je dit week gedood hebt', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel', craftingMaterials:'🛠️ Crafting Materialen',
+    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Actieve prooi (vandaag)', targetsHint:'12 contracten per EU-dag (reset 07:00 Europe/Berlin) — zelfde set voor iedereen. Gesorteerd op zone; tik voor details.', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel', craftingMaterials:'🛠️ Crafting Materialen',
+    nextResetLabel:'Volgende reset', nextResetZone:'07:00 Europe/Berlin',
     summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid',
-    spotlightTitle:'🎯 Doelwit van de week', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Midnight S1 schaal',
+    spotlightTitle:'🎯 Doelwit van de dag', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Prey iLvl',
+    preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · wereldbaas/apex ${P.worldBoss}`,
     copyWayCta:'Kopieer /way', wantedLabel:'Gezocht',
-    lootFootnote: I => `Wereld ~${I.world}+ · schaalt richting ~${I.mythic}+ op zwaarste kills.`,
+    lootFootnote: () => {
+      const p = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
+      return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey-tabel, Midnight S1). Wereldbaas/apex (geen Hunt-contract): ${p.worldBoss}.`;
+    },
     roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol',
   },
   en: {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
-    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Prey Targets', targetsHint:'Sorted by zone — tap for details; check off when killed this week', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table', craftingMaterials:'🛠️ Crafting materials',
+    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Active prey (today)', targetsHint:'12 contracts per EU day (reset 07:00 Europe/Berlin) — same set for everyone. Sorted by zone; tap for details.', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table', craftingMaterials:'🛠️ Crafting materials',
+    nextResetLabel:'Next reset', nextResetZone:'07:00 Europe/Berlin',
     summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
-    spotlightTitle:'🎯 Target of the Week', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Midnight S1 scale',
+    spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
+    preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · world boss/apex ${P.worldBoss}`,
     copyWayCta:'Copy /way', wantedLabel:'WANTED',
-    lootFootnote: I => `World ~${I.world}+ · scales toward ~${I.mythic}+ on hardest clears.`,
+    lootFootnote: () => {
+      const p = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
+      return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World boss / apex (not a Hunt contract): ${p.worldBoss}.`;
+    },
     roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Role tactics',
   }
 };
 
 const MIDNIGHT_PREY_STORAGE_KEY = 'midnight_prey_progress';
+let _preyResetCountdownTimer = null;
+
+function stopPreyResetCountdown() {
+  if (_preyResetCountdownTimer) {
+    clearInterval(_preyResetCountdownTimer);
+    _preyResetCountdownTimer = null;
+  }
+}
+
+function updatePreyResetCountdownEl() {
+  const el = document.getElementById('prey-reset-countdown');
+  if (!el) return;
+  if (!document.body.classList.contains('mode-prey')) {
+    el.textContent = '';
+    return;
+  }
+  const u = typeof PREY_UI !== 'undefined' ? (PREY_UI[typeof lang !== 'undefined' ? lang : 'nl'] || PREY_UI.nl) : {};
+  const ms = typeof getMsUntilNextPreyResetCET === 'function' ? getMsUntilNextPreyResetCET() : 0;
+  const sec = Math.max(0, Math.ceil(ms / 1000));
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  const lbl = u.nextResetLabel || 'Next reset';
+  const zn = u.nextResetZone || '07:00 Europe/Berlin';
+  const hs = (typeof lang !== 'undefined' && lang === 'en') ? 'h' : 'u';
+  el.textContent = `${lbl} (${zn}): ${h}${hs} ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
+}
+
+function schedulePreyResetCountdown() {
+  stopPreyResetCountdown();
+  updatePreyResetCountdownEl();
+  _preyResetCountdownTimer = setInterval(updatePreyResetCountdownEl, 1000);
+}
 
 function getPreyWeeklyKey() {
   return 'prey_weekly_' + (typeof getWeeklyKey === 'function' ? getWeeklyKey() : 'default');
@@ -3016,7 +3060,9 @@ function preyWeeklyReset() {
 }
 
 function getPreyWeeklyKillProgress() {
-  const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  const targets = typeof getActivePreyTargetsForRotation === 'function'
+    ? getActivePreyTargetsForRotation()
+    : (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []);
   const total = targets.length;
   const killed = getPreyKilledMapRaw();
   const done = targets.filter(t => killed[t.id]).length;
@@ -3031,9 +3077,11 @@ function getPreyWeeklyBarSlot() {
 }
 
 function getPreySpotlightTarget() {
-  const targets = typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : [];
+  const targets = typeof getActivePreyTargetsForRotation === 'function'
+    ? getActivePreyTargetsForRotation()
+    : (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []);
   if (!targets.length) return null;
-  const key = typeof getWeeklyKey === 'function' ? getWeeklyKey() : '0';
+  const key = typeof getPreyRotationDayKey === 'function' ? getPreyRotationDayKey() : (typeof getWeeklyKey === 'function' ? getWeeklyKey() : '0');
   let h = 0;
   for (let i = 0; i < key.length; i++) h = Math.imul(31, h) + key.charCodeAt(i);
   const idx = Math.abs(h) % targets.length;
@@ -3095,13 +3143,22 @@ function preyEscImgSrc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+function preyDefaultLoot() {
+  const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246 };
+  return { normal: P.normal, hard: P.hard, nightmare: P.nightmare };
+}
+
+/** Bounty cards: Normal N+ · Nightmare M+ (per-target loot; defaults from PREY_ILVL). */
+function preyIlvlSplitLabel(lo, ui) {
+  const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, nightmare: 246 };
+  const n = lo && lo.normal != null ? lo.normal : P.normal;
+  const nm = lo && lo.nightmare != null ? lo.nightmare : P.nightmare;
+  return `${ui.normal}: ${n}+ · ${ui.nightmare}: ${nm}+`;
+}
+
 function preyRewardTypeLine(t, l) {
   if (t.rewardType && (t.rewardType[l] || t.rewardType.en)) return t.rewardType[l] || t.rewardType.en;
-  const lo = t.loot || {};
-  const mn = lo.normal;
-  const mx = lo.nightmare;
-  const band = (mn != null && mx != null) ? ` · ilvl ${mn}–${mx}` : '';
-  return (l === 'en' ? '🎁 Gear' : '🎁 Gear') + band;
+  return l === 'en' ? '🎁 Gear' : '🎁 Gear';
 }
 
 function preyTargetKilledToggle(id, inputEl) {
@@ -3126,9 +3183,11 @@ function renderPreyGuide() {
 
   if (!data) { container.innerHTML = '<p style="color:var(--muted)">Loading Prey data…</p>'; return; }
 
-  const targetsSorted = typeof PREY_TARGETS !== 'undefined'
-    ? [...PREY_TARGETS].sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''))
-    : [];
+  const targetsSorted = typeof getActivePreyTargetsForRotation === 'function'
+    ? getActivePreyTargetsForRotation()
+    : (typeof PREY_TARGETS !== 'undefined'
+      ? [...PREY_TARGETS].sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''))
+      : []);
 
   const l = lang === 'en' ? 'en' : 'nl';
   const loop = data.loop[l] || data.loop.en;
@@ -3141,7 +3200,7 @@ function renderPreyGuide() {
   const way = data.unlock.way;
   const tipCopy = ui.tooltipCopy;
   const tt = data.tooltips;
-  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
+  const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
 
   let html = '';
 
@@ -3165,7 +3224,7 @@ function renderPreyGuide() {
       const skulls = preySkullsStringHtml(dr);
       const rewardLn = preyRewardTypeLine(t, l);
       const lo = t.loot || {};
-      const mnIv = lo.nightmare != null ? String(lo.nightmare) : '—';
+      const ilvlSplit = preyIlvlSplitLabel(lo, ui);
       const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
       const wayAttr = wayStr.replace(/"/g, '&quot;');
       const wayBtn = wayStr
@@ -3179,8 +3238,8 @@ function renderPreyGuide() {
             <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
             <div class="prey-target-card-name">${name}</div>
             <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
-            <div class="prey-bounty-reward-line">${rewardLn}</div>
-            <div class="prey-bounty-nightmare-ilvl">${ui.nightmare} · ${ui.ilvl} ${mnIv}+</div>
+            <div class="prey-bounty-reward-line prey-reward-epic">${rewardLn}</div>
+            <div class="prey-bounty-nightmare-ilvl prey-bounty-ilvl-split">${ilvlSplit}</div>
             <div class="prey-target-card-zone">${zoneName}</div>
             <div class="prey-target-card-meter">
               <span class="prey-card-meter-lbl">${ui.dangerMeter}</span>
@@ -3198,7 +3257,7 @@ function renderPreyGuide() {
 
   html += `<div class="prey-section prey-targets-progress-section">
     <h3 class="prey-section-title">${ui.targetsProgress}</h3>
-    <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${ui.ilvlScale}: ${I.world}–${I.mythic}+</span></p>
+    <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${typeof ui.preyProgressIlvlLine === 'function' ? ui.preyProgressIlvlLine(P) : ''}</span></p>
     <div class="prey-danger-track prey-danger-track-global"><div class="prey-danger-fill prey-danger-fill-global" style="width:${pk.total ? Math.round(pk.done / pk.total * 100) : 0}%"></div></div>
   </div>`;
 
@@ -3211,7 +3270,7 @@ function renderPreyGuide() {
     const skulls = preySkullsStringHtml(dr);
     const rewardLn = preyRewardTypeLine(spot, l);
     const sLo = spot.loot || {};
-    const sMn = sLo.nightmare != null ? String(sLo.nightmare) : '—';
+    const spotIlvl = preyIlvlSplitLabel(sLo, ui);
     html += `<div class="prey-spotlight prey-spotlight--bounty">
       <div class="prey-spotlight-badge">${ui.spotlightTitle}</div>
       <div class="prey-spotlight-inner">
@@ -3219,8 +3278,8 @@ function renderPreyGuide() {
           <div class="prey-bounty-wanted-tag">${ui.wantedLabel}</div>
           <div class="prey-spotlight-name">${sn}</div>
           <div class="prey-bounty-skulls" aria-label="${ui.threatLabel} ${dr}/5">${skulls}</div>
-          <div class="prey-bounty-reward-line">${rewardLn}</div>
-          <div class="prey-bounty-nightmare-ilvl">${ui.nightmare} · ${ui.ilvl} ${sMn}+</div>
+          <div class="prey-bounty-reward-line prey-reward-epic">${rewardLn}</div>
+          <div class="prey-bounty-nightmare-ilvl prey-bounty-ilvl-split">${spotIlvl}</div>
           <div class="prey-spotlight-loc">${sloc}</div>
           <div class="prey-spotlight-meter-wrap" aria-hidden="true"><span class="prey-spotlight-meter-label">${ui.dangerMeter}</span>
             <div class="prey-danger-track prey-danger-track-lg"><div class="prey-danger-fill prey-danger-fill-${dr}" style="width:${pctD}%"></div></div>
@@ -3274,10 +3333,11 @@ function renderPreyGuide() {
       <div class="prey-diff-card diff-nightmare"><span class="prey-diff-badge">🔴 Nightmare</span><p>${diffNight.desc}</p></div>
     </div>
     <div class="prey-rewards-list">
-      <p>${rewd.adventurer} <span class="prey-ilvl-pill">~${I.world}+</span></p>
+      <p>${rewd.adventurer}</p>
       <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain[l] || tt.veteran_track.explain.en}">Veteran Track</span>: ${rewd.veteran}</p>
       <p><span class="prey-tooltip-term" title="${tt.champion_track.explain[l] || tt.champion_track.explain.en}">Champion Track</span>: ${rewd.champion}</p>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain[l] || tt.anguish.explain.en}">Anguish</span> ${rewd.anguishFills}. <span class="prey-tooltip-term" title="${tt.dawncrests.explain[l] || tt.dawncrests.explain.en}">Dawncrests</span> ${rewd.dawncrestsUpgrade}. <strong>Anchor iLvl:</strong> World ${I.world} · Hero ${I.hero} · Champion ${I.champion} · Hero raid ${I.hero_raid} · Mythic ${I.mythic}</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">${rewd.worldBossNote || ''}</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px"><span class="prey-tooltip-term" title="${tt.anguish.explain[l] || tt.anguish.explain.en}">Anguish</span> ${rewd.anguishFills}. <span class="prey-tooltip-term" title="${tt.dawncrests.explain[l] || tt.dawncrests.explain.en}">Dawncrests</span> ${rewd.dawncrestsUpgrade}. <strong>BiS (Mythic / AMR):</strong> iLvl 289. <strong>${ui.ilvlScale} (Icy Veins):</strong> Normal ${P.normal} · Hard ${P.hard} · Nightmare ${P.nightmare}.</p>
     </div>
     <h4 class="prey-affix-heading">${ui.nightmareAffixes}</h4>
     <ul class="prey-affix-list">
@@ -3287,6 +3347,7 @@ function renderPreyGuide() {
   </div>`;
 
   container.innerHTML = html;
+  schedulePreyResetCountdown();
 }
 
 function openPreyDetail(id) {
@@ -3301,8 +3362,7 @@ function openPreyDetail(id) {
   const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
   const summary = t.summary && (t.summary[l] || t.summary.en) ? (t.summary[l] || t.summary.en) : [];
   const fullGuide = t.fullGuide && (t.fullGuide[l] || t.fullGuide.en) ? (t.fullGuide[l] || t.fullGuide.en) : '';
-  const loot = t.loot || { normal: 182, hard: 197, nightmare: 212 };
-  const I = typeof ILVL_MIDNIGHT !== 'undefined' ? ILVL_MIDNIGHT : { world: 226, veteran: 233, champion: 246, hero: 259, hero_raid: 272, mythic: 272 };
+  const loot = t.loot || preyDefaultLoot();
   const preyKilledMap = getPreyKilledMapRaw();
   const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
   const pctD = Math.round(dr / 5 * 100);
@@ -3335,7 +3395,12 @@ function openPreyDetail(id) {
         ? `Used by ${prof}: ${use}.`
         : `Wordt gebruikt door ${prof}: ${use}.`;
       const safeLabel = String(label).replace(/</g, '&lt;');
-      return `<li><button type="button" class="prey-craft-link" title="${escAttr(tip)}">${safeLabel}</button></li>`;
+      const iid = d.itemId != null && d.itemId !== '' ? Number(d.itemId) : null;
+      if (iid != null && !Number.isNaN(iid) && typeof wrapItem === 'function') {
+        const link = wrapItem(label, iid, d.wowheadExtra);
+        return `<li class="prey-crafting-li" title="${escAttr(tip)}">${link}</li>`;
+      }
+      return `<li><button type="button" class="prey-craft-link prey-reward-wowhead-link" title="${escAttr(tip)}">${safeLabel}</button></li>`;
     }).filter(Boolean).join('');
     if (!items) return '';
     return `<h4 class="prey-detail-subtitle prey-crafting-heading">${u.craftingMaterials}</h4><ul class="prey-crafting-list">${items}</ul>`;
@@ -3363,7 +3428,7 @@ function openPreyDetail(id) {
     <h4 class="prey-detail-subtitle">${u.lootTable}</h4>
     <table class="prey-detail-loot-table"><thead><tr><th>${u.difficulty || 'Difficulty'}</th><th>${u.ilvl}</th></tr></thead><tbody>${lootRows}</tbody></table>
     ${craftingBlock}
-    <p class="prey-loot-footnote"><strong>${u.ilvlScale}:</strong> ${typeof u.lootFootnote === 'function' ? u.lootFootnote(I) : ''}</p>`;
+    <p class="prey-loot-footnote"><strong>${u.ilvlScale}:</strong> ${typeof u.lootFootnote === 'function' ? u.lootFootnote() : ''}</p>`;
   document.getElementById('prey-detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
