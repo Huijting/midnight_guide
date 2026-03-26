@@ -3222,12 +3222,13 @@ function preyDefaultLoot() {
   return { normal: P.normal, hard: P.hard, nightmare: P.nightmare };
 }
 
-/** Bounty cards: Normal N+ · Nightmare M+ (per-target loot; defaults from PREY_ILVL). */
+/** Bounty cards: Normal / Hard (Heroic) / Nightmare iLvl+ — Icy Veins Prey table; per-target loot overrides. */
 function preyIlvlSplitLabel(lo, ui) {
-  const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, nightmare: 246 };
+  const P = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246 };
   const n = lo && lo.normal != null ? lo.normal : P.normal;
+  const h = lo && lo.hard != null ? lo.hard : P.hard;
   const nm = lo && lo.nightmare != null ? lo.nightmare : P.nightmare;
-  return `${ui.normal}: ${n}+ · ${ui.nightmare}: ${nm}+`;
+  return `${ui.normal}: ${n}+ · ${ui.hard}: ${h}+ · ${ui.nightmare}: ${nm}+`;
 }
 
 function preyRewardTypeLine(t, l) {
