@@ -61,29 +61,72 @@ function parseBountifulDelvesFromChunk(htmlChunk) {
   return ids;
 }
 
+/** All positions of the TIW widget id (Wowhead may emit US + EU blocks). */
+function findBountifulMarkerIndices(html) {
+  const out = [];
+  let pos = 0;
+  while (true) {
+    const i = html.indexOf(BOUNTIFUL_ID_MARKER, pos);
+    if (i === -1) break;
+    out.push(i);
+    pos = i + BOUNTIFUL_ID_MARKER.length;
+  }
+  return out;
+}
+
+/**
+ * Wowhead embeds the four rotation lines in JSON *immediately before* `"id":"mn-bountiful-delves"`.
+ * The segment *after* the marker is often unrelated (PvP brawl, etc.). The old "2nd block = EU" slice
+ * no longer contains Midnight delves — scan a window *before* each marker instead; prefer the last
+ * marker that yields 4 mapped ids (EU slot when both blocks are complete).
+ */
+function parseBountifulDelvesFromMarkerWindows(html) {
+  const markers = findBountifulMarkerIndices(html);
+  if (markers.length === 0) return [];
+
+  const windowSizes = [4500, 8000, 12000];
+  for (const win of windowSizes) {
+    for (let mi = markers.length - 1; mi >= 0; mi--) {
+      const start = Math.max(0, markers[mi] - win);
+      const slice = html.slice(start, markers[mi]);
+      const ids = parseBountifulDelvesFromChunk(slice);
+      if (ids.length === 4) return ids;
+    }
+  }
+  return [];
+}
+
+/** Legacy: segment after 2nd marker (kept as last-resort only). */
 function extractEuBountifulChunk(html) {
   const parts = html.split(BOUNTIFUL_ID_MARKER);
-  // [ preamble, ...after US block, ...after EU block ] — EU is the segment that starts after the 2nd marker
   let seg = '';
   if (parts.length >= 3) {
     seg = parts[2];
   } else if (parts.length === 2) {
-    console.warn('Wowhead: only one mn-bountiful-delves block; using it (may be US).');
+    console.warn('Wowhead: only one mn-bountiful-delves block; using tail (may be wrong).');
     seg = parts[1];
   } else {
     return '';
   }
-  // Only the lines array for this widget (avoids matching other "Zone: Name" TIW rows in the same region)
   const linesStart = seg.indexOf('"lines":[');
   if (linesStart === -1) return seg.slice(0, 12000);
   return seg.slice(linesStart, linesStart + 10000);
 }
 
 function parseBountifulDelves(html) {
-  const chunk = extractEuBountifulChunk(html);
-  if (!chunk) return [];
+  let ids = parseBountifulDelvesFromMarkerWindows(html);
+  let chunk = '';
 
-  let ids = parseBountifulDelvesFromChunk(chunk);
+  if (ids.length === 4) {
+    return ids;
+  }
+
+  chunk = extractEuBountifulChunk(html);
+  if (chunk) {
+    ids = parseBountifulDelvesFromChunk(chunk);
+  }
+
+  if (ids.length === 4) return ids;
 
   if (ids.length < 4) {
     const bountifulIdx = html.indexOf('Bountiful Delves');
@@ -122,7 +165,9 @@ function parseBountifulDelves(html) {
       if (ids.length >= 4) break;
       const escaped = name.replace(/'/g, "&#39;");
       const id = nameToId[name];
-      if (id && !seen.has(id) && (chunk.includes(name) || chunk.includes(escaped))) {
+      const inHtml = html.includes(name) || html.includes(escaped);
+      const inChunk = chunk && (chunk.includes(name) || chunk.includes(escaped));
+      if (id && !seen.has(id) && (inHtml || inChunk)) {
         seen.add(id);
         ids.push(id);
       }
@@ -170,7 +215,7 @@ async function main() {
     reset: wowDayYmd,
     region: 'EU',
     delves: ids,
-    note: 'EU Bountiful from Wowhead TIW (2nd mn-bountiful-delves block). WoW day = 07:00 UTC boundary. Fallback in app: delves.js bountifulSchedule + same day boundary.',
+    note: 'EU Bountiful from Wowhead TIW: JSON lines immediately *before* each "mn-bountiful-delves" id (last block with 4 mapped delves wins). WoW day = 07:00 UTC. Fallback in app: delves.js bountifulSchedule.',
   };
   fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
   console.log('Wrote', outPath, ':', ids.join(', '));
