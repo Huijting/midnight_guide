@@ -10,7 +10,7 @@ const THE_BLINDING_VALE = {
     {title:{nl:"Zichtbaarheid",en:"Visibility"},
      text:{nl:"Heldere witte visuals — pas schermhelderheid aan. Vaardigheden zijn moeilijk te zien.",en:"Very bright white visuals — adjust screen brightness. Abilities can be hard to see."}},
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way Harandar 26.4 78.1 — Lightbloom Roots-quest",en:"/way Harandar 26.4 78.1 — Lightbloom Roots quest"}}
+     text:{nl:"/way #2413 26.4 78.1 — Lightbloom Roots-quest",en:"/way #2413 26.4 78.1 — Lightbloom Roots quest"}}
   ],
   bosses:[
     {name:"Meittik",num:1,

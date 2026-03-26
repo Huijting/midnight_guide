@@ -7,16 +7,16 @@
   "source": "computed",
   "targets": [
     "senior_tinker_oszwold",
-    "twilight_riftstalker",
+    "grothoz_the_burning_shadow",
     "mordril_shadowfell",
     "executor_kaenius",
     "neydra_the_starving",
     "consul_nebulor",
     "deliah_gloomsong",
-    "abyssal_commander",
+    "nexus_edge_hadim",
     "praetor_singularis",
     "wing_of_akilzon",
-    "silvermoon_stalker",
+    "ranger_swiftglade",
     "talon_of_janalaii"
   ],
   "note": "Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey."

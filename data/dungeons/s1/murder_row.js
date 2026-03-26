@@ -8,7 +8,7 @@ const MURDER_ROW = {
     en:"The darkened streets of Murder Row conceal an illegal fel-smuggling operation preying on the fears of Silvermoon's citizens. A rogue warlord claims to protect her people — the profit is merely a pleasant bonus."},
   tips:[
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way 57.0, 61.0 — zuidelijk Silvermoon City.",en:"/way 57.0, 61.0 — southern Silvermoon City."}},
+     text:{nl:"/way #2393 57.0 61.0 — zuidelijk Silvermoon City.",en:"/way #2393 57.0 61.0 — southern Silvermoon City."}},
     {title:{nl:"Interrupt-heavy dungeon",en:"Interrupt-heavy dungeon"},
      text:{nl:"Wijs interruptrotaties toe op casters vóór elke pull.",en:"Assign interrupt rotations on casters before every pull."}}
   ],

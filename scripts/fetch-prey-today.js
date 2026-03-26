@@ -99,7 +99,7 @@ function parsePreyPoolIdsFromTargetsFile() {
 
 /** Wowhead quest/NPC url -> optional app id (extend when TIW exposes Prey). */
 const WOWHEAD_PREY_NAME_TO_ID = {
-  // Example: 'Senior Tinker Oszwold': 'senior_tinker_oszwold',
+  // Example: 'Senior Tinker Ozwold': 'senior_tinker_oszwold',
 };
 
 /**

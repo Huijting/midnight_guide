@@ -8,10 +8,10 @@ const BLACKSMITHING = {
     en:'Blacksmithing is a <em>crafting profession</em> where you forge metal into weapons and armor. Specifically: you make <strong>plate armor</strong> for Warriors and Death Knights, <strong>weapons</strong> for all classes, and <strong>profession tools</strong> for other crafting professions. Blacksmithing is the oldest and most iconic crafting profession in WoW — it is the smith who makes the sword the paladin uses to survive the raid.<br><br>New in Midnight: <strong>Void-Forging</strong> (imbue weapons with void powers for special effects), <strong>Resonance Tempering</strong> (progressively improve your items through an upgrade system), and crafting <strong>profession tools for all 13 professions</strong> — a market only Blacksmiths can serve.'},
   goldrating:4, userating:4,
   trainer:{
-    name:'Benmarrin',
+    name:'Bemarrin',
     loc:{
-      nl:'Trainer Grommash Ironforge staat in de <strong>Craftsmen\'s Quarter</strong> van Silvermoon City, naast de grote smidse. Je hoort hem al van ver — het hameren op het aambeeld stopt nooit. Hij is de grootste en luidste NPC in het hele kwartier.',
-      en:'Trainer Grommash Ironforge is in the <strong>Craftsmen\'s Quarter</strong> of Silvermoon City, next to the large forge. You can hear him from far away — the hammering on the anvil never stops. He is the largest and loudest NPC in the entire district.'},
+      nl:'Trainer <strong>Bemarrin</strong> is de smidskunst-trainer in <strong>Farstriders\' Square</strong>, Silvermoon City — bij de smidse en het aambeeld (officiële Midnight NPC-naam).',
+      en:'Trainer <strong>Bemarrin</strong> is the Blacksmithing trainer in <strong>Farstriders\' Square</strong>, Silvermoon City — at the forge and anvil (official in-game NPC name).'},
     way:'/way #2393 43.74 51.86',
     note:{
       nl:'💡 <strong>Combineer met Mining:</strong> Blacksmithing verbruikt enorme hoeveelheden Void-Iron Ore en staven. Als je Mining ook hebt, heb je nooit materiaalkosten. Zonder Mining ben je continu afhankelijk van het AH voor grondstoffen — dat kan tot 60-70% van je winstmarge opeten. De combinatie BS+Mining is even winstgevend als Alchemy+Herbalism.',

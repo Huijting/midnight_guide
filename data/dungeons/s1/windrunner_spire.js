@@ -8,7 +8,7 @@ const WINDRUNNER_SPIRE = {
     en:"The former Windrunner family home now mirrors the fractured bond between Alleria, Sylvanas, and Vereesa. Grief and rage have given rise to restless spirits that cannot find peace."},
   tips:[
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way 35.5, 78.8 — Eversong Woods, vlak bij de klifrand.",en:"/way 35.5, 78.8 — Eversong Woods, near the cliff edge."}},
+     text:{nl:"/way #2395 35.5 78.8 — Eversong Woods, vlak bij de klifrand.",en:"/way #2395 35.5 78.8 — Eversong Woods, near the cliff edge."}},
     {title:{nl:"Trash: Phantasmal Mystic",en:"Trash: Phantasmal Mystic"},
      text:{nl:"Onderbreek Chain Lightning altijd; gebruik defensives vóór elke Flame Nova.",en:"Always interrupt Chain Lightning; use defensives before every Flame Nova."}}
   ],

@@ -1,8 +1,8 @@
 // Prey System — WoW: Midnight
-// Verified mechanics: Icy Veins, Wowhead, NextTier
+// Mechanics: Icy Veins Prey System / Prey Rewards guides. Unlock NPC: Wowhead (e.g. npc=258221 Astalor Bloodsworn / Magister Astalor Bloodsworn Silvermoon).
 
 const PREY_DATA = {
-  // Unlock — Magister Astalor Bloodsworn, Murder Row
+  // Unlock — Magister Astalor Bloodsworn, Murder Row (Wowhead + Icy Veins)
   unlock: {
     level: 90,
     npc: 'Magister Astalor Bloodsworn',

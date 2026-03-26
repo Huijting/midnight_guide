@@ -10,8 +10,8 @@ const ALCHEMY = {
   trainer:{
     name:'Camberon',
     loc:{
-      nl:'Trainer Elaryn Brightcoil staat in het <strong>Sunwell Alchemy Lab</strong> — een speciaal gebouw in het zuiden van Silvermoon City, te herkennen aan de kleurrijke rookpluimen en de geur van brouwsels. Het lab ligt naast de Mage Quarter.',
-      en:'Trainer Elaryn Brightcoil is in the <strong>Sunwell Alchemy Lab</strong> — a special building in the south of Silvermoon City, recognizable by the colorful smoke plumes and the smell of brews. The lab is next to the Mage Quarter.'},
+      nl:'Trainer <strong>Camberon</strong> staat in het <strong>Sunwell Alchemy Lab</strong> in het zuiden van Silvermoon City — te herkennen aan rookpluimen en brouwsels (officiële NPC-naam).',
+      en:'Trainer <strong>Camberon</strong> is in the <strong>Sunwell Alchemy Lab</strong> in the south of Silvermoon City — recognizable by smoke plumes and brews (official in-game NPC name).'},
     way:'/way #2393 46.98 52.07',
     note:{
       nl:'💡 <strong>Alchemist\'s Stone:</strong> Als Alchemist kun je een speciaal trinket maken — de Alchemist\'s Stone — die jou persoonlijk de effect van potions versterkt. Dit is een gratis stat-boost die alleen jij kunt dragen. Combineer met de <em>Mixology</em> passiefvaardigheid (geeft jou als Alchemist automatisch een extra boost op alle flasks) voor het sterkste character dat mogelijk is voor een Alchemist.',

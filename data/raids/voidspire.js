@@ -21,8 +21,8 @@ DUNGEONS.push({
   tips: [
     {
       title: { nl: '📍 Ingang', en: '📍 Entrance'},
-      text:  { nl: '/way Voidstorm 45.5 64.4 — midden in de Voidstorm zone. Zoek de buitenste platform aan de basis van de spits.',
-               en: '/way Voidstorm 45.5 64.4 — center of the Voidstorm zone. Find the outer platform at the base of the spire.'},
+      text:  { nl: '/way #2405 45.5 64.4 — midden in de Voidstorm zone. Zoek de buitenste platform aan de basis van de spits.',
+               en: '/way #2405 45.5 64.4 — center of the Voidstorm zone. Find the outer platform at the base of the spire.'},
     },
     {
       title: { nl: '⚠️ Kernthema: positionering boven DPS', en: '⚠️ Core theme: positioning over DPS'},

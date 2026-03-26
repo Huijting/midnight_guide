@@ -782,15 +782,15 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Verzamel 20.000 punten in de Abundance caves. 3 minuten per run, doneer regelmatig aan Dundun. Beloning: 1.000 Amani Tribe rep + cache.',
           en:'Collect 20,000 points in the Abundance caves. 3 minutes per run, donate regularly to Dundun. Reward: 1,000 Amani Tribe rep + cache.'},
     where:'📍 Eerst ontgrendelen: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman. Dan wekelijks bij cave-ingang. | First unlock: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman.',
-    way:"/way Zul'Aman 47.2 62.1 Chel the Chip (unlock Abundance)", tags:['rep','currency'] },
+    way:"/way #2437 47.2 62.1 Chel the Chip (unlock Abundance)", tags:['rep','currency'] },
 
   { id:'w_haranir', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
     name:{nl:'Legends of the Haranir (weekly)',en:'Legends of the Haranir (weekly)'},
     desc:{nl:'Kies een Harati relikwie en voltooi het scenario. Beloning: Avid Learner\&#39;s Supply Pack + housing decor. Keuze is Warband-wide!',
           en:'Choose a Harati relic and complete the scenario. Reward: Avid Learner\&#39;s Supply Pack + housing decor. Choice is Warband-wide!'},
-    where:'📍 Zurashar Kassameh — Reliquary, The Den, Harandar.',
-    way:'/way Harandar 54.2 53.0 Zurashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
+    where:'📍 Zur\'ashar Kassameh — Reliquary, The Den, Harandar. (Wowhead NPC spelling.)',
+    way:'/way #2413 54.2 53.0 Zur\'ashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
 
   { id:'w_soiree', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
@@ -806,7 +806,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Verdedig Stormarion Citadel — elke 30 min 3 golven vijanden. Geen voorquest nodig. Geeft cache + Great Vault World-voortgang.',
           en:'Defend Stormarion Citadel — 3 waves every 30 min. No pre-quest needed. Rewards cache + Great Vault World progress.'},
     where:'📍 Voidstorm — Stormarion Citadel.',
-    way:'/way Voidstorm 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
+    way:'/way #2405 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
 
   { id:'w_prey', diff:'medium', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
@@ -862,7 +862,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'6 bazen in Voidstorm. Geeft gear, rep en Great Vault Raid-voortgang. LFR beschikbaar na week 1.',
           en:'6 bosses in Voidstorm. Gives gear, rep and Great Vault Raid progress. LFR available after week 1.'},
     where:'📍 Voidspire — Voidstorm. Via Dungeon Finder of directe ingang.',
-    way:'/way Voidstorm 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
+    way:'/way #2405 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
   { id:'w_raid2', diff:'medium', diff:'medium', dmfOnly:false,
     cat:{nl:'🏰 Raid',en:'🏰 Raid'},
     name:{nl:'Dreamrift (LFR/Normal/Heroic)',en:'Dreamrift (LFR/Normal/Heroic)'},
@@ -882,15 +882,15 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Via Abundance weekly en Zul-Aman activiteiten. Renown 9 geeft Champion-level necklace (~246 iLvl-band).',
           en:'Via Abundance weekly and Zul-Aman activities. Renown 9 gives Champion-level necklace (~246 ilvl band).'},
     where:'📍 Via Abundance event in Zul-Aman.',
-    way:"/way Zul'Aman 47.2 62.1 Amani-Zar Village (Abundance/Amani hub)", tags:['rep'] },
+    way:"/way #2437 47.2 62.1 Amani-Zar Village (Abundance/Amani hub)", tags:['rep'] },
 
   { id:'w_craft_orders', dmfOnly:false,
     cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders'},
     name:{nl:'Patron Crafting Orders verwerken',en:'Process Patron Crafting Orders'},
     desc:{nl:'Voornaamste bron van wekelijkse KP. Verwerk publieke orders voor gold en profession XP.',
           en:'Main source of weekly KP. Process public orders for gold and profession XP.'},
-    where:'📍 Mar-nah — The Bazaar, Silvermoon City.',
-    way:'/way #2393 46.2 53.8 Mar-nah (Crafting Orders)', tags:['crafting','currency'] },
+    where:'📍 Mar\'nah — The Bazaar, Silvermoon City. (Wowhead NPC spelling.)',
+    way:'/way #2393 46.2 53.8 Mar\'nah (Crafting Orders)', tags:['crafting','currency'] },
   { id:'w_craft_weekly', dmfOnly:false,
     cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders'},
     name:{nl:'Weekly Crafting Quest',en:'Weekly Crafting Quest'},
@@ -912,7 +912,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Mini-games en quests geven +2 skill en +3 KP per profession. Vergeet de WHEE!-buff niet voor +10% XP/rep. Alleen actief eerste week van de maand.',
           en:'Mini-games and quests give +2 skill and +3 KP per profession. Don\&#39;t forget the WHEE! buff for +10% XP/rep. Only active first week of month.'},
     where:'📍 Portal: Elwynn Forest (bij Goldshire, Alliance) of Mulgore (bij Thunder Bluff, Horde).',
-    way:'/way Elwynn Forest 41.1 83.0 Darkmoon Faire portal (Alliance)', tags:['currency','crafting'] },
+    way:'/way #37 41.1 83.0 Darkmoon Faire portal (Alliance)', tags:['currency','crafting'] },
 
   // ── Renown Champion Gear (eenmalig per character, maar weekly controleren) ──
   { id:'w_renown_helm', dmfOnly:false,
@@ -929,7 +929,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Necklace (iLvl 246) via Amani Tribe Renown 9.',
           en:'Collect Champion Necklace (iLvl 246) at Amani Tribe Renown 9.'},
     where:'Amani Tribe vendor — Amani-Zar Village, Zul-Aman.',
-    way:"/way Zul'Aman 47.2 62.1 Amani Tribe vendor", tags:['gear','rep'] },
+    way:"/way #2437 47.2 62.1 Amani Tribe vendor", tags:['gear','rep'] },
 
   { id:'w_renown_waist', dmfOnly:false,
     cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
@@ -937,7 +937,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Belt (iLvl 246) via Haranir Renown 8.',
           en:'Collect Champion Belt (iLvl 246) at Haranir Renown 8.'},
     where:'Haranir vendor — The Den, Harandar.',
-    way:'/way Harandar 54.2 53.0 The Den, Harandar', tags:['gear','rep'] },
+    way:'/way #2413 54.2 53.0 The Den, Harandar', tags:['gear','rep'] },
 
   { id:'w_renown_trinket', dmfOnly:false,
     cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
@@ -945,7 +945,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Trinket (iLvl 246) via Singularity Renown 7.',
           en:'Collect Champion Trinket (iLvl 246) at Singularity Renown 7.'},
     where:'Singularity vendor — Stormarion Citadel, Voidstorm.',
-    way:'/way Voidstorm 26.4 67.6 Singularity vendor', tags:['gear','rep'] },
+    way:'/way #2405 26.4 67.6 Singularity vendor', tags:['gear','rep'] },
 
   // ── Sparks of Radiance ──
   { id:'w_spark_liadrin', dmfOnly:false,
@@ -2640,5 +2640,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.7').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.9').catch(() => {});
 }

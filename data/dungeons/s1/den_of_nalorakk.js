@@ -8,7 +8,7 @@ const DEN_OF_NALORAKK = {
     en:"Wounded by Zul'jin and Malacrass, the Bear-Loa Nalorakk retreated into slumber. Endure his three trials to earn his blessing for the battle against the Void."},
   tips:[
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way Zul'Aman 29.7 84.9",en:"/way Zul'Aman 29.7 84.9"}},
+     text:{nl:"/way #2437 29.7 84.9",en:"/way #2437 29.7 84.9"}},
     {title:{nl:"Loa-zegen",en:"Loa Blessing"},
      text:{nl:"Voltooiing verdient Nalorakk's zegen — helpt het Loa Blessings-systeem te ontgrendelen.",en:"Completion earns Nalorakk's blessing — helps unlock the Loa Blessings system."}}
   ],

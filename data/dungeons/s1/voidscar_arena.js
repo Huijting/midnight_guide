@@ -8,7 +8,7 @@ const VOIDSCAR_ARENA = {
     en:"The Voidscar Arena forces fighters from across Azeroth into the arena for the amusement of the d'mani. Overseer Charonus has gathered adversaries who must fight against their will."},
   tips:[
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way 51.4, 18.5 — Voidstorm, Slayer's Rise.",en:"/way 51.4, 18.5 — Voidstorm, Slayer's Rise."}},
+     text:{nl:"/way #2444 51.4 18.5 — Slayer's Rise (Voidstorm).",en:"/way #2444 51.4 18.5 — Slayer's Rise (Voidstorm)."}},
     {title:{nl:"Arena-indeling",en:"Arena layout"},
      text:{nl:"Gladiator-stijl — drie bazen spawnen opeenvolgend. Herpositioneer tussen elk gevecht.",en:"Gladiator style — three bosses spawn sequentially. Reposition between each fight."}}
   ],

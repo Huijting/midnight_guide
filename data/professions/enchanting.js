@@ -10,8 +10,8 @@ const ENCHANTING = {
   trainer:{
     name:'Dolothos',
     loc:{
-      nl:'Trainer Aelindra Spellweave staat in de <strong>Arcane Sanctum</strong> van Silvermoon City — de magische toren in het noordoosten van de stad. Ze is omringd door zwevende runen en gloeiende kristallen. Je kunt haar vinden op de tweede verdieping.',
-      en:'Trainer Aelindra Spellweave is in the <strong>Arcane Sanctum</strong> of Silvermoon City — the magical tower in the northeast of the city. She is surrounded by floating runes and glowing crystals. Find her on the second floor.'},
+      nl:'Trainer <strong>Dolothos</strong> staat in het <strong>Arcane Sanctum</strong> van Silvermoon City — de magische toren in het noordoosten (officiële NPC-naam).',
+      en:'Trainer <strong>Dolothos</strong> is in the <strong>Arcane Sanctum</strong> of Silvermoon City — the magical tower in the northeast (official in-game NPC name).'},
     way:'/way #2393 47.91 53.90',
     note:{
       nl:'💡 <strong>Disenchanting — je eigen grondstoffenbron:</strong> Als Enchanter kun je elk stuk gear in je tassen vernietigen (disenchanten) voor Arcane Dust, Lesser Eternals of Greater Eternals. Dit betekent dat elke dungeon-run die je doet én elk stuk gear dat je niet gebruikt direct omgezet kan worden in enchanting-materialen. Je koopt nooit grondstoffen op het AH.',

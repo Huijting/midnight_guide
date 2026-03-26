@@ -10,8 +10,8 @@ const INSCRIPTION = {
   trainer:{
     name:'Zantasia',
     loc:{
-      nl:'Trainer Velos Inkhand staat in de <strong>Library of Silvermoon</strong> — de grote bibliotheek aan de hoofdstraat van Silvermoon City. Hij zit achter een bureau vol perkamentrol en inkpotten.',
-      en:'Trainer Velos Inkhand is in the <strong>Library of Silvermoon</strong> — the large library on the main street of Silvermoon City. He sits behind a desk full of scrolls and ink pots.'},
+      nl:'Trainer <strong>Zantasia</strong> staat in de <strong>Library of Silvermoon</strong> aan de hoofdstraat van Silvermoon City (officiële NPC-naam).',
+      en:'Trainer <strong>Zantasia</strong> is in the <strong>Library of Silvermoon</strong> on the main street of Silvermoon City (official in-game NPC name).'},
     way:'/way #2393 46.81 51.73',
     note:{
       nl:'💡 <strong>Combineer met Herbalism:</strong> Inscription verbruikt enorme hoeveelheden kruiden voor inkt. Met Herbalism plukt je je eigen grondstoffen — anders ben je afhankelijk van het AH voor constant kruid-inkopen, wat je winstmarge flink aantast.',

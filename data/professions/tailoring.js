@@ -10,8 +10,8 @@ const TAILORING = {
   trainer:{
     name:'Galana',
     loc:{
-      nl:'Trainer Silindra Moonweave is te vinden in het <strong>Weaver\'s District</strong> van Silvermoon City — een rustige buurt vol ateliers en etalages vol zijden stoffen. Ze staat bij een groot weefgetouw naast de fontein.',
-      en:'Trainer Silindra Moonweave is found in the <strong>Weaver\'s District</strong> of Silvermoon City — a quiet neighborhood full of workshops and shop windows filled with silk fabrics. She stands by a large loom next to the fountain.'},
+      nl:'Trainer <strong>Galana</strong> is te vinden in het <strong>Weaver\'s District</strong> van Silvermoon City — ateliers met stoffen en weefgetouwen (officiële NPC-naam).',
+      en:'Trainer <strong>Galana</strong> is in the <strong>Weaver\'s District</strong> of Silvermoon City — workshops with fabrics and looms (official in-game NPC name).'},
     way:'/way #2393 48.14 54.08',
     note:{
       nl:'💡 <strong>Geen gathering-partner nodig:</strong> Dit maakt Tailoring bijzonder. Stof valt van geslagen vijanden en is altijd beschikbaar op het AH voor relatief lage prijzen. Je tweede profession-slot kun je invullen met iets heel anders — Enchanting voor synergieën, of Inscription voor extra diversificatie.',
