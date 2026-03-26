@@ -1661,7 +1661,9 @@ const DELVES_UI = {
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Rol-tip:',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
-    full_guide_btn:'Volledige gids', back_btn:'← Terug' },
+    full_guide_btn:'Volledige gids', back_btn:'← Terug',
+    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is uitgelicht — de delve waarmee verkeerde korte tips zijn vervangen door Method.gg-bronnen. Zie <strong>Over deze app</strong> voor de changelog.',
+    delves_spotlight_badge:'Spotlight' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_json_ok:'Today’s Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
@@ -1685,7 +1687,9 @@ const DELVES_UI = {
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Role tip:',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
-    full_guide_btn:'Full Guide', back_btn:'← Back' }
+    full_guide_btn:'Full Guide', back_btn:'← Back',
+    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is highlighted — the delve whose wrong quick tips were replaced with Method.gg-sourced text. Open <strong>About this app</strong> for the changelog.',
+    delves_spotlight_badge:'Spotlight' }
 };
 
 let bountifulFetchPromise = null;
@@ -1879,8 +1883,10 @@ async function buildDelvesScreen() {
     <h3 class="delves-section-title">${ui.delves_title}</h3>
     <p class="delves-section-sub">${ui.delves_sub}</p>
     <p class="delves-section-hint">💡 ${ui.delves_click_hint}</p>
+    <p class="delves-spotlight-callout" role="note">${ui.delves_spotlight_callout || ''}</p>
     <div class="delves-card-grid immersive-card-grid">`;
   delves.forEach(d => {
+    const isSpotlight = !!d.spotlight;
     const isBountiful = bountifulSet.has(d.id);
     const chest = isBountiful
       ? `<span class="delves-bountiful-chest" aria-hidden="true"><span class="delves-chest-icon">📦</span><span class="delves-glimmer" aria-hidden="true"></span></span>`
@@ -1898,11 +1904,15 @@ async function buildDelvesScreen() {
     const wayBtn = d.way
       ? `<button type="button" class="delves-way-copy-btn" onclick="event.stopPropagation();copyDelvesWay(this.getAttribute('data-way'))" data-way="${wayEsc}" title="${ui.copy_way}">📋 ${ui.copy_way}</button>`
       : '';
-    html += `<div class="delves-vault-card${isBountiful ? ' delves-vault-card--bountiful' : ''}" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0">
+    const cardClasses = ['delves-vault-card'];
+    if (isBountiful) cardClasses.push('delves-vault-card--bountiful');
+    if (isSpotlight) cardClasses.push('delves-vault-card--spotlight');
+    html += `<div class="${cardClasses.join(' ')}" onclick="openDelveDetail('${d.id}')" role="button" tabindex="0" ${isSpotlight ? 'aria-label="' + escapeTitleAttr(d.name + ' — ' + (ui.delves_spotlight_badge || 'Spotlight')) + '"' : ''}>
       <div class="delves-vault-card-bg" aria-hidden="true"></div>
       <div class="delves-vault-card-inner">
         <div class="delves-vault-card-head">
           ${chest}
+          ${isSpotlight ? `<span class="delves-spotlight-pill">${ui.delves_spotlight_badge || 'Spotlight'}</span>` : ''}
           ${isBountiful ? `<span class="delves-bountiful-pill">✨ ${ui.delves_bountiful_badge}</span>` : ''}
         </div>
         <h4 class="delves-vault-name">${d.name}</h4>

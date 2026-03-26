@@ -502,17 +502,49 @@ const ITEM_IDS = {
   "Ironclaw Whetstone": 226423,
 };
 
+/** Short in-app changelog (above README in About). Uses global `lang` and `APP_VERSION` from constants.js. */
+function getAppChangelogHtml() {
+  const v = typeof APP_VERSION !== 'undefined' ? String(APP_VERSION) : '';
+  if (lang === 'en') {
+    return `<div class="about-changelog" role="region" aria-label="App changelog">
+      <div class="about-changelog-title">📋 App changelog</div>
+      <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
+      <ul class="about-changelog-ul">
+        <li><strong>v3.6.12</strong> — Delves tab: <em>The Darkway</em> has a <strong>Spotlight</strong> card and callout (example of tips verified with Method.gg). This changelog block sits above the README.</li>
+        <li><strong>v3.6.11</strong> — All Midnight delve quick tips and full guides were audited against Method.gg / Icy Veins (Mar 2026).</li>
+      </ul>
+      <p class="about-changelog-foot">Guides are not official Blizzard text; always confirm tricky mechanics in-game.</p>
+      <hr class="about-changelog-sep" aria-hidden="true">
+    </div>`;
+  }
+  return `<div class="about-changelog" role="region" aria-label="App-changelog">
+    <div class="about-changelog-title">📋 App-changelog</div>
+    <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
+    <ul class="about-changelog-ul">
+      <li><strong>v3.6.12</strong> — Delves-tab: <em>The Darkway</em> heeft een <strong>Spotlight</strong>-kaart + toelichting (voorbeeld van tips geverifieerd met Method.gg). Dit changelog-blok staat boven de README.</li>
+      <li><strong>v3.6.11</strong> — Alle Midnight delve-kaarten doorgelicht tegen Method.gg / Icy Veins (mrt 2026).</li>
+    </ul>
+    <p class="about-changelog-foot">Gidsen zijn geen officiële Blizzard-tekst; check twijfelachtige mechanics altijd in-game.</p>
+    <hr class="about-changelog-sep" aria-hidden="true">
+  </div>`;
+}
+
 function renderAboutContent() {
   const el = document.getElementById('about-content');
-  el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Laden...</div>';
+  const loadingNl = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Laden...</div>';
+  const loadingEn = '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">⏳ Loading...</div>';
+  el.innerHTML = (lang === 'en' ? loadingEn : loadingNl);
 
   let readmeFile = 'README.md';
     if (lang === 'en') readmeFile = 'README_en.md';
     fetch(readmeFile)
     .then(r => r.ok ? r.text() : Promise.reject(r.status))
-    .then(md => { el.innerHTML = mdToHtml(md); })
+    .then(md => { el.innerHTML = getAppChangelogHtml() + mdToHtml(md); })
     .catch(() => {
-      el.innerHTML = '<div style="padding:24px;color:var(--muted);font-size:13px">⚠️ README kon niet worden geladen.<br><a href=\"https://github.com/Huijting/midnight_guide\" target=\"_blank\" style=\"color:var(--gold)\">Open op GitHub →</a></div>';
+      const fallback = lang === 'en'
+        ? '<div style="padding:24px;color:var(--muted);font-size:13px">⚠️ README could not be loaded.<br><a href="https://github.com/Huijting/midnight_guide" target="_blank" style="color:var(--gold)">Open on GitHub →</a></div>'
+        : '<div style="padding:24px;color:var(--muted);font-size:13px">⚠️ README kon niet worden geladen.<br><a href="https://github.com/Huijting/midnight_guide" target="_blank" style="color:var(--gold)">Open op GitHub →</a></div>';
+      el.innerHTML = getAppChangelogHtml() + fallback;
     });
 }
 
@@ -2640,5 +2672,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.9').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.12').catch(() => {});
 }
