@@ -1,6 +1,6 @@
 {
-  "fetched": "2026-03-25T15:00:00.000Z",
-  "reset": "2026-03-25",
+  "fetched": "2026-03-26T08:04:57.007Z",
+  "reset": "2026-03-26",
   "region": "EU",
   "delves": [
     "collegiate_calamity",
@@ -8,5 +8,5 @@
     "grudge_pit",
     "atalaman"
   ],
-  "note": "EU Bountiful from Wowhead TIW: parser reads JSON *before* each mn-bountiful-delves id (prefers last block with 4 delves). WoW day = 07:00 UTC. scripts/fetch-bountiful-delves.js + GitHub Actions 07:00 UTC."
+  "note": "EU Bountiful from Wowhead TIW: JSON lines immediately *before* each \"mn-bountiful-delves\" id (last block with 4 mapped delves wins). WoW day = 07:00 UTC. Fallback in app: delves.js bountifulSchedule."
 }
