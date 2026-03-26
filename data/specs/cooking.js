@@ -1,4 +1,4 @@
-﻿// COOKING DATA — v2.3
+// COOKING DATA — v2.3
 const COOKING = {
   id:'cooking', icon:'🍳', cat:'secondary', accent:'#e67e22',
   name:{nl:'Cooking',en:'Cooking'},

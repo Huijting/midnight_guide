@@ -1,4 +1,4 @@
-﻿// ALCHEMY DATA — v2.3
+// ALCHEMY DATA — v2.3
 const ALCHEMY = {
   id:'alchemy', icon:'⚗', cat:'crafting', accent:'#7a4caf',
   name:{nl:'Alchemy',en:'Alchemy'},

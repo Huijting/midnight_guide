@@ -1,3 +1,14 @@
+// Als ui.js uit cache nog oud is (zonder escape-helpers), voorkom ReferenceError die Prey/Delves/Weekly/Prof leeg laat.
+(function () {
+  if (typeof escapeDataWayAttr === 'function' && typeof escapeHtmlText === 'function') return;
+  window.escapeDataWayAttr = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  };
+  window.escapeHtmlText = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
+})();
+
 // ═══════════════════════════════════════════════════════════════
 // SPEC SELECTOR
 // ═══════════════════════════════════════════════════════════════
@@ -1883,7 +1894,7 @@ async function buildDelvesScreen() {
       <button type="button" class="delves-bountiful-vault-btn${weeklyChecked ? ' is-done' : ''}" onclick="event.stopPropagation();toggleBountifulDelveForWeekly('${d.id}')" title="${ui.bountiful_vault_title.replace(/"/g, '&quot;')}">${weeklyChecked ? '✓ ' : ''}${ui.bountiful_vault_btn}</button>
     </div>`
       : '';
-    const wayEsc = d.way ? d.way.replace(/"/g, '&quot;') : '';
+    const wayEsc = d.way ? escapeDataWayAttr(d.way) : '';
     const wayBtn = d.way
       ? `<button type="button" class="delves-way-copy-btn" onclick="event.stopPropagation();copyDelvesWay(this.getAttribute('data-way'))" data-way="${wayEsc}" title="${ui.copy_way}">📋 ${ui.copy_way}</button>`
       : '';
@@ -2006,11 +2017,22 @@ function closeDelveDetail() {
 
 function copyDelvesWay(way) {
   if (!way) return;
-  navigator.clipboard.writeText(way).then(() => {
-    const toast = document.getElementById('toast-notification');
+  const toast = document.getElementById('toast-notification');
+  const toastOk = () => {
     const msg = (lang === 'en' ? 'Copied!' : 'Gekopieerd!');
     if (toast) { toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => { toast.style.opacity = '0'; }, 1500); }
-  });
+  };
+  const toastFail = () => {
+    const msg = (lang === 'en' ? 'Copy failed — select and copy manually' : 'Kopiëren mislukt — kopieer handmatig');
+    if (toast) { toast.textContent = msg; toast.style.opacity = '1'; setTimeout(() => { toast.style.opacity = '0'; }, 2200); }
+  };
+  if (typeof copyWayTextToClipboard === 'function') {
+    copyWayTextToClipboard(String(way), toastOk, toastFail);
+  } else if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(String(way)).then(toastOk).catch(toastFail);
+  } else {
+    toastFail();
+  }
 }
 
 /** Affixes are shown on each M+ dungeon Overview; standalone tab removed. */
@@ -2348,30 +2370,36 @@ function showProf(id){
   document.getElementById('pdet-ratings').innerHTML=
     `<div><div class="pdet-rating-label">${ui.gold_label}</div><div class="pdet-stars">${pStars(p.goldrating)}</div></div>
      <div><div class="pdet-rating-label">${ui.use_label}</div><div class="pdet-stars">${pStars(p.userating)}</div></div>`;
+  const tr = p.trainer;
+  const trainerWayHtml = tr && tr.way
+    ? `<div class="trainer-way" onclick="copyWay(this)" data-way="${escapeDataWayAttr(tr.way)}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${escapeHtmlText(tr.way)}</div>`
+    : '';
   document.getElementById('ptab-trainer').innerHTML=
     `<div class="pdet-section"><h3>${ui.trainer_head}</h3>
-       <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${p.trainer.name}</div>
-       <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(p.trainer.loc)}</div>
-       <div class="trainer-way" onclick="copyWay(this)" data-way="${p.trainer.way}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${p.trainer.way}</div>
-       ${p.trainer.note?`<div class="trainer-note">${pT(p.trainer.note)}</div>`:''}
+       ${tr ? `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">${tr.name}</div>
+       <div style="font-size:13px;color:var(--muted);line-height:1.7">${pT(tr.loc)}</div>
+       ${trainerWayHtml}
+       ${tr.note ? `<div class="trainer-note">${pT(tr.note)}</div>` : ''}` : '<p style="color:var(--muted);font-size:13px">—</p>'}
      </div>
      ${p.method_url||p.wowp_url?`<div class="prof-links"><span class="prof-source-label">${ui.source_label}</span>
        ${p.method_url?`<a class="prof-link-btn" href="${p.method_url}" target="_blank">${ui.method_btn}</a>`:''}
        ${p.wowp_url?`<a class="prof-link-btn" href="${p.wowp_url}" target="_blank">${ui.wowp_btn}</a>`:''}
        <a class="prof-link-btn" href="https://overgear.com/guides/wow/midnight-best-profession/" target="_blank">📊 Overgear Tier</a>
      </div>`:''}`;
+  const specList = Array.isArray(p.specs) ? p.specs : [];
   document.getElementById('ptab-specs').innerHTML=
     `<div class="pdet-section"><h3>${ui.spec_head}</h3>
-       ${p.specs.map(s=>`<div class="spec-block">
+       ${specList.map(s=>`<div class="spec-block">
          <div class="spec-title">${pT(s.title)}</div>
          <div class="spec-desc">${pT(s.desc)}</div>
          ${s.points?`<div class="spec-points">${pT(s.points)}</div>`:''}
        </div>`).join('')}
      </div>`;
+  const itemList = Array.isArray(p.items) ? p.items : [];
   document.getElementById('ptab-items').innerHTML=
     `<div class="pdet-section"><h3>${ui.item_head}</h3>
        <div class="item-grid">
-         ${p.items.map(it=>`<div class="item-card">
+         ${itemList.map(it=>`<div class="item-card">
            <div class="item-icon">${it.icon}</div>
            <div class="item-name">${pT(it.name)}</div>
            <div class="item-desc">${typeof wrapItem === 'function' ? processItemLinksInHtml(pT(it.desc)) : pT(it.desc)}</div>
@@ -2393,7 +2421,8 @@ function showProf(id){
     if (guideBtn && guideBtn.style.display !== 'none') {
       switchProfTab(guideBtn, 'ptab-guide');
     } else {
-      switchProfTab(document.querySelector('.pdet-tab:not([style*="display: none"])'), 'ptab-trainer');
+      const trainTab = document.querySelector('.pdet-tab[onclick*="ptab-trainer"]');
+      switchProfTab(trainTab, 'ptab-trainer');
     }
 
   window.scrollTo(0,0);
@@ -2538,7 +2567,7 @@ function renderKpSources(p) {
           <td class="kp-item-name">${t.name}</td>
           <td class="kp-zone">${t.zone}</td>
           <td class="kp-way">
-            ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${t.way}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${t.way}</span>` : '<span class="kp-no-way">—</span>'}
+            ${t.way ? `<span class="kp-way-code" onclick="copyWay(this)" data-way="${escapeDataWayAttr(t.way)}" title="${(typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI[lang]) ? WEEKLY_UI[lang].copy_tip : 'Klik om te kopiëren'}">📋 ${escapeHtmlText(t.way)}</span>` : '<span class="kp-no-way">—</span>'}
           </td>
           ${t.note ? `<td class="kp-note" title="${t.note}">💡</td>` : '<td></td>'}
         </tr>
@@ -3314,7 +3343,7 @@ async function renderPreyGuide() {
       const lo = t.loot || {};
       const ilvlSplit = preyIlvlSplitLabel(lo, ui);
       const wayStr = (t.coords && t.coords[l]) || t.coords?.en || '';
-      const wayAttr = wayStr.replace(/"/g, '&quot;');
+      const wayAttr = escapeDataWayAttr(wayStr);
       const wayBtn = wayStr
         ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--bounty-primary" onclick="event.stopPropagation();copyWay(this)" data-way="${wayAttr}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>`
         : '';
@@ -3402,7 +3431,7 @@ async function renderPreyGuide() {
     <div class="prey-card">
       <p><strong>${u.unlockLabel[l] || u.unlockLabel.en}</strong> ${u.reachSpeak[l] || u.reachSpeak.en} <strong>${u.npc}</strong> in ${u.zone}.</p>
       <p>${u.completeQuest[l] || u.completeQuest.en} <em>"${u.questlineEnd}"</em> ${u.toUnlock[l] || u.toUnlock.en}</p>
-      <button type="button" class="prey-way-copy-btn prey-way-copy-btn--block" onclick="copyWay(this)" data-way="${way.replace(/"/g,'&quot;')}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>
+      <button type="button" class="prey-way-copy-btn prey-way-copy-btn--block" onclick="copyWay(this)" data-way="${escapeDataWayAttr(way)}" title="${tipCopy}">📋 ${ui.copyWayCta}</button>
     </div>
     <div class="prey-card">
       <h4 class="prey-step-label">${data.gameplayLoopLabel[l] || data.gameplayLoopLabel.en}</h4>
@@ -3495,7 +3524,7 @@ function openPreyDetail(id) {
   })();
 
   document.getElementById('prey-detail-title').textContent = name;
-  const wayHtml = wayStr ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--block prey-way-copy-btn--detail" onclick="copyWay(this)" data-way="${wayStr.replace(/"/g,'&quot;')}" title="${u.tooltipCopy}">📋 ${u.copyWayCta}</button><div class="prey-way-raw mono">${wayStr}</div>` : '';
+  const wayHtml = wayStr ? `<button type="button" class="prey-way-copy-btn prey-way-copy-btn--block prey-way-copy-btn--detail" onclick="copyWay(this)" data-way="${escapeDataWayAttr(wayStr)}" title="${u.tooltipCopy}">📋 ${u.copyWayCta}</button><div class="prey-way-raw mono">${escapeHtmlText(wayStr)}</div>` : '';
   document.getElementById('prey-detail-content').innerHTML = `
     <div class="prey-detail-zone"><strong>${u.location}:</strong> ${zoneName}${locStr ? ` — <em>${locStr.replace(/</g, '&lt;')}</em>` : ''}</div>
     ${wayHtml}

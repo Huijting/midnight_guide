@@ -1,4 +1,5 @@
 // WoW Midnight — Season 1 dungeon data
+// TomTom: uiMapID 16215 = Isle of Quel'Danas (retail; Wowhead zone id) — avoids ambiguous zone name matches.
 const MAGISTERS_TERRACE = {
   id:"magisters", name:"Magisters' Terrace", zone:"Isle of Quel'Danas", type:"mplus",
   bosses_short:["Arcanotron Custos","Seranel Sunlash","Gemellus","Degentrius"],
@@ -10,7 +11,7 @@ const MAGISTERS_TERRACE = {
     {title:{nl:"📜 Arcane Tome-buff — NOOIT OVERSLAAN",en:"📜 Arcane Tome buff — NEVER SKIP"},
      text:{nl:"Direct na de eerste trashgroep: klik op de Arcane Tome in de bibliotheek. Geeft +5% Haste voor 30 min, overleeft de dood.",en:"Right after the first trash group: click the Arcane Tome in the library. Grants +5% Haste for 30 min, persists through death."}},
     {title:{nl:"Ingangcoördinaten",en:"Entrance coordinates"},
-     text:{nl:"/way 35.2, 78.4 — Isle of Quel'Danas.",en:"/way 35.2, 78.4 — Isle of Quel'Danas."}}
+     text:{nl:"/way #16215 35.2 78.4",en:"/way #16215 35.2 78.4"}}
   ],
   bosses:[
     {name:"Arcanotron Custos",num:1,

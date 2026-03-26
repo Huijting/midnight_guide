@@ -1,4 +1,4 @@
-﻿// ENCHANTING DATA — v2.3
+// ENCHANTING DATA — v2.3
 const ENCHANTING = {
   id:'enchanting', icon:'✨', cat:'crafting', accent:'#9b59b6',
   name:{nl:'Enchanting',en:'Enchanting'},

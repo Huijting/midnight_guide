@@ -1,4 +1,4 @@
-﻿// JEWELCRAFTING DATA — v2.3
+// JEWELCRAFTING DATA — v2.3
 const JEWELCRAFTING = {
   id:'jewelcrafting', icon:'💎', cat:'crafting', accent:'#1abc9c',
   name:{nl:'Jewelcrafting',en:'Jewelcrafting'},

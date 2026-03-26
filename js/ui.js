@@ -782,7 +782,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Verzamel 20.000 punten in de Abundance caves. 3 minuten per run, doneer regelmatig aan Dundun. Beloning: 1.000 Amani Tribe rep + cache.',
           en:'Collect 20,000 points in the Abundance caves. 3 minutes per run, donate regularly to Dundun. Reward: 1,000 Amani Tribe rep + cache.'},
     where:'📍 Eerst ontgrendelen: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman. Dan wekelijks bij cave-ingang. | First unlock: Chel the Chip — Amani-Zar Village, Zul\&#39;Aman.',
-    way:'/way #2437 47.2 62.1 Chel the Chip (unlock Abundance)', tags:['rep','currency'] },
+    way:"/way Zul'Aman 47.2 62.1 Chel the Chip (unlock Abundance)", tags:['rep','currency'] },
 
   { id:'w_haranir', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
@@ -790,7 +790,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Kies een Harati relikwie en voltooi het scenario. Beloning: Avid Learner\&#39;s Supply Pack + housing decor. Keuze is Warband-wide!',
           en:'Choose a Harati relic and complete the scenario. Reward: Avid Learner\&#39;s Supply Pack + housing decor. Choice is Warband-wide!'},
     where:'📍 Zurashar Kassameh — Reliquary, The Den, Harandar.',
-    way:'/way #2413 54.2 53.0 Zurashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
+    way:'/way Harandar 54.2 53.0 Zurashar Kassameh (Lost Legends quest)', tags:['rep','currency'] },
 
   { id:'w_soiree', diff:'easy', dmfOnly:false,
     cat:{nl:'🌿 Zone Events',en:'🌿 Zone Events'},
@@ -806,7 +806,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Verdedig Stormarion Citadel — elke 30 min 3 golven vijanden. Geen voorquest nodig. Geeft cache + Great Vault World-voortgang.',
           en:'Defend Stormarion Citadel — 3 waves every 30 min. No pre-quest needed. Rewards cache + Great Vault World progress.'},
     where:'📍 Voidstorm — Stormarion Citadel.',
-    way:'/way #2405 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
+    way:'/way Voidstorm 26.4 67.6 Stormarion Assault', tags:['rep','currency'] },
 
   { id:'w_prey', diff:'medium', dmfOnly:false,
     cat:{nl:'🎯 Prey Hunts',en:'🎯 Prey Hunts'},
@@ -862,7 +862,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'6 bazen in Voidstorm. Geeft gear, rep en Great Vault Raid-voortgang. LFR beschikbaar na week 1.',
           en:'6 bosses in Voidstorm. Gives gear, rep and Great Vault Raid progress. LFR available after week 1.'},
     where:'📍 Voidspire — Voidstorm. Via Dungeon Finder of directe ingang.',
-    way:'/way #2405 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
+    way:'/way Voidstorm 45.4 64.0 Voidspire (ingang)', tags:['gear','rep'] },
   { id:'w_raid2', diff:'medium', diff:'medium', dmfOnly:false,
     cat:{nl:'🏰 Raid',en:'🏰 Raid'},
     name:{nl:'Dreamrift (LFR/Normal/Heroic)',en:'Dreamrift (LFR/Normal/Heroic)'},
@@ -882,7 +882,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Via Abundance weekly en Zul-Aman activiteiten. Renown 9 geeft Champion-level necklace (~246 iLvl-band).',
           en:'Via Abundance weekly and Zul-Aman activities. Renown 9 gives Champion-level necklace (~246 ilvl band).'},
     where:'📍 Via Abundance event in Zul-Aman.',
-    way:'/way #2437 47.2 62.1 Amani-Zar Village (Abundance/Amani hub)', tags:['rep'] },
+    way:"/way Zul'Aman 47.2 62.1 Amani-Zar Village (Abundance/Amani hub)", tags:['rep'] },
 
   { id:'w_craft_orders', dmfOnly:false,
     cat:{nl:'🔨 Crafting Orders',en:'🔨 Crafting Orders'},
@@ -929,7 +929,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Necklace (iLvl 246) via Amani Tribe Renown 9.',
           en:'Collect Champion Necklace (iLvl 246) at Amani Tribe Renown 9.'},
     where:'Amani Tribe vendor — Amani-Zar Village, Zul-Aman.',
-    way:'/way #2437 47.2 62.1 Amani Tribe vendor', tags:['gear','rep'] },
+    way:"/way Zul'Aman 47.2 62.1 Amani Tribe vendor", tags:['gear','rep'] },
 
   { id:'w_renown_waist', dmfOnly:false,
     cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
@@ -937,7 +937,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Belt (iLvl 246) via Haranir Renown 8.',
           en:'Collect Champion Belt (iLvl 246) at Haranir Renown 8.'},
     where:'Haranir vendor — The Den, Harandar.',
-    way:'/way #2413 54.2 53.0 The Den, Harandar', tags:['gear','rep'] },
+    way:'/way Harandar 54.2 53.0 The Den, Harandar', tags:['gear','rep'] },
 
   { id:'w_renown_trinket', dmfOnly:false,
     cat:{nl:'🏅 Renown Rewards',en:'🏅 Renown Rewards'},
@@ -945,7 +945,7 @@ const WEEKLY_ITEMS = [
     desc:{nl:'Haal de Champion Trinket (iLvl 246) via Singularity Renown 7.',
           en:'Collect Champion Trinket (iLvl 246) at Singularity Renown 7.'},
     where:'Singularity vendor — Stormarion Citadel, Voidstorm.',
-    way:'/way #2405 26.4 67.6 Singularity vendor', tags:['gear','rep'] },
+    way:'/way Voidstorm 26.4 67.6 Singularity vendor', tags:['gear','rep'] },
 
   // ── Sparks of Radiance ──
   { id:'w_spark_liadrin', dmfOnly:false,
@@ -1263,18 +1263,81 @@ function searchKeyNav(e) {
   items[searchFocusIdx]?.scrollIntoView({ block:'nearest' });
 }
 
+/** Safe inside double-quoted HTML attributes (e.g. data-way). getAttribute returns the decoded /way string. */
+function escapeDataWayAttr(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;');
+}
+
+/** Visible /way text in templates (must match clipboard). */
+function escapeHtmlText(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function copyWayTextToClipboard(text, done, fail) {
+  const t = String(text);
+  function tryExecCommandCopy() {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.width = '1px';
+      ta.style.height = '1px';
+      ta.style.opacity = '0';
+      ta.style.pointerEvents = 'none';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, t.length);
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (_) {
+      return false;
+    }
+  }
+  if (tryExecCommandCopy()) {
+    done();
+    return;
+  }
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    navigator.clipboard.writeText(t).then(done).catch(() => {
+      if (tryExecCommandCopy()) done();
+      else if (typeof fail === 'function') fail();
+    });
+    return;
+  }
+  if (typeof fail === 'function') fail();
+}
+
 function copyWay(el) {
-  const way = el.dataset.way;
-  if (way == null || way === '') return;
-  const wui = WEEKLY_UI[lang] || WEEKLY_UI.nl;
+  if (!el || typeof el.getAttribute !== 'function') return;
+  let way = el.getAttribute('data-way');
+  if (way === null || way === '') {
+    way = el.dataset && el.dataset.way != null ? String(el.dataset.way) : '';
+  }
+  if (!way) return;
+  const wui = (typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI) ? (WEEKLY_UI[lang] || WEEKLY_UI.nl) : { copied: 'Gekopieerd!' };
   const origHTML = el.innerHTML;
-  navigator.clipboard.writeText(way).then(() => {
-    el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
-    setTimeout(() => el.innerHTML = origHTML, 2000);
-  }).catch(() => {
-    el.innerHTML = '⚠️';
-    setTimeout(() => el.innerHTML = origHTML, 2000);
-  });
+  copyWayTextToClipboard(
+    way,
+    () => {
+      el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
+      setTimeout(() => { el.innerHTML = origHTML; }, 2000);
+    },
+    () => {
+      el.innerHTML = '⚠️';
+      setTimeout(() => { el.innerHTML = origHTML; }, 2000);
+    }
+  );
 }
 
 function weeklyUpdateProgress(state) {
@@ -1406,7 +1469,7 @@ function buildWeeklyList() {
           <div class="weekly-item-name">${iname} ${diffLabel}</div>
           <div class="weekly-item-desc">${idesc}</div>
           ${item.where ? `<div class="weekly-item-where">${item.where}</div>` : ''}
-          ${item.way ? `<div class="weekly-item-way" onclick="event.stopPropagation();copyWay(this)" data-way="${item.way}" title="${(WEEKLY_UI[lang]||WEEKLY_UI.nl).copy_tip}">📋 ${item.way}</div>` : ''}
+          ${item.way ? `<div class="weekly-item-way" onclick="event.stopPropagation();copyWay(this)" data-way="${escapeDataWayAttr(item.way)}" title="${(WEEKLY_UI[lang]||WEEKLY_UI.nl).copy_tip}">📋 ${escapeHtmlText(item.way)}</div>` : ''}
           <div class="weekly-item-tags">${tags}</div>
         </div>
       </div>`;
@@ -2577,5 +2640,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.1').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.7').catch(() => {});
 }

@@ -1,4 +1,4 @@
-﻿// TAILORING DATA — v2.3
+// TAILORING DATA — v2.3
 const TAILORING = {
   id:'tailoring', icon:'🧵', cat:'crafting', accent:'#e91e63',
   name:{nl:'Tailoring',en:'Tailoring'},

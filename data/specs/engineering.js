@@ -1,4 +1,4 @@
-﻿// ENGINEERING DATA — v2.3
+// ENGINEERING DATA — v2.3
 const ENGINEERING = {
   id:'engineering', icon:'⚙', cat:'crafting', accent:'#b8860b',
   name:{nl:'Engineering',en:'Engineering'},

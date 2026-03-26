@@ -3,7 +3,7 @@
 // In-game contract “Nexus-Edge Hadim” (Zul’Aman entrance) = dataset id wing_of_akilzon (cards + detail modal).
 // Label cross-ref (community names → ids): Quel'Danas / Sunwell / Isle skirmisher → void_touched + abyssal + imperator; Silvermoon Traitor → silvermoon_stalker;
 // The Stalker → deliah; Void Treant → mordril; Scourge → twilight; Voidstorm trio → praetor / consul / executor; ZA pair → talon + wing (Hadim).
-// coords: TomTom /way lines (community-sourced). Prey ambushes are not always fixed spawns — confirm each line in-game after patches.
+// coords: TomTom /way lines. Silvermoon (#2393) / Eversong (#2395) use uiMapId — zone names like “Silvermoon City” trigger TomTom “multiple matches”. Other zones may use names. Community-sourced — confirm after patches.
 // Unlock NPC (authoritative in guides): Astalor ~ /way #2393 55.0 63.4 — see data/preyData.js (Wowhead/Icy Veins style sources when available).
 // rewardType: optional { en, nl } line for bounty cards (e.g. weapon / trinket); else UI falls back to gear + ilvl band.
 // crafting_drops: optional drops shown in Prey detail modal (profession + used_for tooltips).
@@ -18,7 +18,7 @@ const PREY_TARGETS = [
     location: { en: 'North Eversong — Void Scar trail', nl: 'Noord-Eversong — Void Scar-pad' },
     zoneOrder: 1,
     difficulty_rating: 2,
-    coords: { en: '/way #2395 45 50 Eversong Woods', nl: '/way #2395 45 50 Eversong Woods' },
+    coords: { en: '/way #2395 45 50', nl: '/way #2395 45 50' },
     pro_tip: {
       tank: { en: 'Stack mitigation before named Void bursts; LoS only if it does not drop melee uptime.', nl: 'Stapel mitigatie vóór Void-bursts; LoS alleen als je melee-uptime niet verliest.' },
       heal: { en: 'Pre-HoT before ambush; dispel magic debuffs before the next kick window.', nl: 'Pre-HoT vóór hinderlaag; dispel magic debuffs vóór de volgende kick.' },
@@ -76,7 +76,7 @@ const PREY_TARGETS = [
     location: { en: 'East Eversong — Gloomsong rise', nl: 'Oost-Eversong — Gloomsong-heuvel' },
     zoneOrder: 1,
     difficulty_rating: 2,
-    coords: { en: '/way #2395 55 62 Eversong Woods', nl: '/way #2395 55 62 Eversong Woods' },
+    coords: { en: '/way #2395 55 62', nl: '/way #2395 55 62' },
     pro_tip: {
       tank: { en: 'Track her self-heal casts — assign your own interrupt if no DPS is nearby.', nl: 'Volg haar self-heal casts — kick zelf als er geen DPS is.' },
       heal: { en: 'CC fear/charm if present; keep yourself topped before heavy DoT ramps.', nl: 'CC fear/charm indien aanwezig; jezelf vol vóór zware DoT-ramp.' },
@@ -105,7 +105,7 @@ const PREY_TARGETS = [
     location: { en: "Zul'Aman — Amani overlook", nl: "Zul'Aman — Amani-uitkijk" },
     zoneOrder: 2,
     difficulty_rating: 3,
-    coords: { en: "/way #2437 50 60 Zul'Aman", nl: "/way #2437 50 60 Zul'Aman" },
+    coords: { en: "/way Zul'Aman 50 60", nl: "/way Zul'Aman 50 60" },
     pro_tip: {
       tank: { en: 'Hard Hits: use active mitigation for heavy melee combos after Hex fails.', nl: 'Harde klappen: active mitigation na mislukte Hex.' },
       heal: { en: 'Stun or root adds during Hex windows; don\'t stand in lightning for self-preservation.', nl: 'Stun/root adds tijdens Hex; niet in bliksem staan.' },
@@ -134,7 +134,7 @@ const PREY_TARGETS = [
     location: { en: "Zul'Aman entrance — Hadim (Nightmare bounty)", nl: "Zul'Aman-ingang — Hadim (Nightmare-premie)" },
     zoneOrder: 2,
     difficulty_rating: 3,
-    coords: { en: "/way #2437 55 75 Zul'Aman", nl: "/way #2437 55 75 Zul'Aman" },
+    coords: { en: "/way Zul'Aman 55 75", nl: "/way Zul'Aman 55 75" },
     pro_tip: {
       tank: { en: 'Face boss away during Storm Bolt windows; save DR for wind-burst combos.', nl: 'Boss wegdraaien bij Storm Bolt; DR voor wind-combo\'s.' },
       heal: { en: 'Curse dispel on cooldown priority; use knockbacks to create space from melee adds.', nl: 'Curse dispel prio; knockbacks voor ruimte van adds.' },
@@ -162,7 +162,7 @@ const PREY_TARGETS = [
     location: { en: 'Voidstorm — Singular Spire approach', nl: 'Voidstorm — Singular Spire-nadering' },
     zoneOrder: 3,
     difficulty_rating: 4,
-    coords: { en: '/way #2405 40 55 Voidstorm', nl: '/way #2405 40 55 Voidstorm' },
+    coords: { en: '/way Voidstorm 40 55', nl: '/way Voidstorm 40 55' },
     pro_tip: {
       tank: { en: 'Pick up Void Minions instantly; big mitigation for Arcane Cascade overlaps.', nl: 'Void Minions direct pakken; mitigatie bij Arcane Cascade overlap.' },
       heal: { en: 'CC stray adds while kiting; barrier during double-cast windows.', nl: 'CC losse adds bij kiten; barrière bij dubbele casts.' },
@@ -198,7 +198,7 @@ const PREY_TARGETS = [
     location: { en: 'Voidstorm — Nebulor terrace', nl: 'Voidstorm — Nebulor-terras' },
     zoneOrder: 3,
     difficulty_rating: 4,
-    coords: { en: '/way #2405 48 62 Voidstorm', nl: '/way #2405 48 62 Voidstorm' },
+    coords: { en: '/way Voidstorm 48 62', nl: '/way Voidstorm 48 62' },
     pro_tip: {
       tank: { en: 'Sidestep frontal Void Cone; taunt swap if Emissary fixates healer.', nl: 'Void Cone opzij; taunt swap als Emissary healer fixeert.' },
       heal: { en: 'Root/slow Emissary; self-heal aggressively during Discordant Hymn.', nl: 'Root/slow Emissary; zelf healen tijdens Discordant Hymn.' },
@@ -227,7 +227,7 @@ const PREY_TARGETS = [
     location: { en: 'Voidstorm — Execution grounds', nl: 'Voidstorm — Executieplein' },
     zoneOrder: 3,
     difficulty_rating: 4,
-    coords: { en: '/way #2405 52 48 Voidstorm', nl: '/way #2405 52 48 Voidstorm' },
+    coords: { en: '/way Voidstorm 52 48', nl: '/way Voidstorm 52 48' },
     pro_tip: {
       tank: { en: 'Execute phase (under 30% HP): chain defensives; never tank Void pools.', nl: 'Execute-fase (onder 30% HP): keten defensives; nooit in Void-pools.' },
       heal: { en: 'External on tank during Crushing Rift; fade/kite if fixated.', nl: 'External op tank bij Crushing Rift; fade/kiten bij fixate.' },
@@ -256,7 +256,7 @@ const PREY_TARGETS = [
     location: { en: 'Voidstorm — Enigmalia throne approach', nl: 'Voidstorm — Enigmalia-troon' },
     zoneOrder: 3,
     difficulty_rating: 5,
-    coords: { en: '/way #2405 45 70 Voidstorm', nl: '/way #2405 45 70 Voidstorm' },
+    coords: { en: '/way Voidstorm 45 70', nl: '/way Voidstorm 45 70' },
     pro_tip: {
       tank: { en: 'Umbral Rage: move raid/yourself out; save last stand for double Void Bolt overlaps.', nl: 'Umbral Rage: eruit; last stand bij dubbele Void Bolt.' },
       heal: { en: 'Mass dispel / spot heal on Dark Communion target; CC immune adds if possible.', nl: 'Mass dispel / spot heal op Dark Communion; CC op adds indien mogelijk.' },
@@ -284,7 +284,7 @@ const PREY_TARGETS = [
     location: { en: 'Sunwell approach — void-corrupted rise', nl: 'Sunwell-nadering — void-besmete richel' },
     zoneOrder: 4,
     difficulty_rating: 5,
-    coords: { en: '/way #2404 47 25 Isle of Quel\'Danas', nl: '/way #2404 47 25 Isle of Quel\'Danas' },
+    coords: { en: "/way #16215 47 25", nl: "/way #16215 47 25" },
     pro_tip: {
       tank: { en: 'Phoenix add phases: pick up sparks immediately; rotate CDs for Arcane Shock “hard hits”.', nl: 'Phoenix-fase: sparks direct pakken; CDs voor Arcane Shock-hard hits.' },
       heal: { en: 'Massive fire ticks: ramp heals before Pyroblast finishes; Grip/CC phoenixes if mechanics allow.', nl: 'Fire ticks: ramp vóór Pyroblast; Grip/CC op phoenixen indien mogelijk.' },
@@ -361,7 +361,7 @@ const PREY_TARGETS = [
     location: { en: 'Shattered abyssal beachhead', nl: 'Gespleten abyssale strandkop' },
     zoneOrder: 3,
     difficulty_rating: 4,
-    coords: { en: '/way #2405 62 22 Voidstorm coast', nl: '/way #2405 62 22 Voidstorm-kust' },
+    coords: { en: '/way Voidstorm 62 22 Voidstorm coast', nl: '/way Voidstorm 62 22 Voidstorm-kust' },
     pro_tip: {
       tank: { en: 'Tidal slam = frontal block or sidestep; pick up abyssal crushers before they reach the commander.', nl: 'Tidal slam = frontal blok of opzij; crushers vóór ze commander bereiken.' },
       heal: { en: 'Stack for shared soak only when UI says so; otherwise spread for abyssal barrage.', nl: 'Stack-soak alleen bij UI-call; anders spreiden voor barrage.' },
@@ -390,7 +390,7 @@ const PREY_TARGETS = [
     location: { en: 'Dead Scar twilight tear', nl: 'Dead Scar scheur' },
     zoneOrder: 2,
     difficulty_rating: 2,
-    coords: { en: '/way #2396 35 68 Ghostlands', nl: '/way #2396 35 68 Ghostlands' },
+    coords: { en: '/way Ghostlands 35 68', nl: '/way Ghostlands 35 68' },
     pro_tip: {
       tank: { en: 'Rift pulsing damage: stand in golden quest zone if one spawns for damage reduction.', nl: 'Rift-puls: gouden questzone indien aanwezig voor DR.' },
       heal: { en: 'Dispel Twilight Corruption; use knockbacks to interrupt rift channel if class allows.', nl: 'Dispel Twilight Corruption; knockback om rift-channel te breken.' },
@@ -425,7 +425,7 @@ const PREY_TARGETS = [
     location: { en: 'Silvermoon Bazaar (workshop)', nl: 'Silvermoon Bazaar (werkplaats)' },
     zoneOrder: 1,
     difficulty_rating: 2,
-    coords: { en: '/way #2393 42.8 31.4 Silvermoon City', nl: '/way #2393 42.8 31.4 Silvermoon City' },
+    coords: { en: '/way #2393 42.8 31.4', nl: '/way #2393 42.8 31.4' },
     pro_tip: {
       tank: { en: 'Watch for frontal cone wrench slams; pick up loose adds before they buff the boss.', nl: 'Let op frontale moersleutel-slams; pak losse adds vóór ze de boss buffen.' },
       heal: { en: 'Heavy AoE when he deploys turrets — spread slightly, then stack for shield phase.', nl: 'Zware AoE bij turrets — licht spreiden, daarna stacken bij shield-fase.' },

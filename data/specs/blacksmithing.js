@@ -1,4 +1,4 @@
-﻿// BLACKSMITHING DATA — v2.3
+// BLACKSMITHING DATA — v2.3
 const BLACKSMITHING = {
   id:'blacksmithing', icon:'⚒', cat:'crafting', accent:'#7a7a7a',
   name:{nl:'Blacksmithing',en:'Blacksmithing'},
