@@ -28,6 +28,7 @@ const DELVE_MAP = {
 };
 
 const BOUNTIFUL_ID_MARKER = '"id":"mn-bountiful-delves"';
+const TODAY_IN_WOW_SCRIPT_RE = /id="data\.wow\.todayInWow">([\s\S]*?)<\/script>/;
 
 async function fetchWowhead() {
   const res = await fetch('https://www.wowhead.com/', {
@@ -40,6 +41,85 @@ async function fetchWowhead() {
 /**
  * Parse "Zone: Delve Name" pairs from the EU TIW JSON chunk (first ~8k after the block is enough).
  */
+function normalizeZoneDelveName(s) {
+  return String(s)
+    .trim()
+    .replace(/&#39;/g, "'")
+    .replace(/\u2019/g, "'");
+}
+
+function mapZoneDelvePairToId(zone, delve, seen, ids) {
+  const z = normalizeZoneDelveName(zone);
+  const d = normalizeZoneDelveName(delve);
+  const key = `${z}:${d}`;
+  const id = DELVE_MAP[key];
+  if (id && !seen.has(id)) {
+    seen.add(id);
+    ids.push(id);
+  }
+}
+
+function linesFromBountifulWidget(widget) {
+  const c = widget && widget.content;
+  const lines = c && Array.isArray(c.lines) ? c.lines : [];
+  return lines;
+}
+
+/** Prefer structured JSON: only objects under top-level regionId EU (avoids US / other TIW lines). */
+function parseEuBountifulFromTodayInWowJson(html) {
+  const m = html.match(TODAY_IN_WOW_SCRIPT_RE);
+  if (!m) return [];
+
+  let data;
+  try {
+    data = JSON.parse(m[1].trim());
+  } catch (_) {
+    return [];
+  }
+
+  if (!Array.isArray(data)) return [];
+
+  const euRoots = data.filter((x) => x && x.regionId === 'EU');
+  if (euRoots.length === 0) return [];
+
+  function findMnBountifulDelves(node) {
+    if (!node || typeof node !== 'object') return null;
+    if (node.id === 'mn-bountiful-delves') return node;
+    if (Array.isArray(node)) {
+      for (const x of node) {
+        const f = findMnBountifulDelves(x);
+        if (f) return f;
+      }
+      return null;
+    }
+    for (const v of Object.values(node)) {
+      const f = findMnBountifulDelves(v);
+      if (f) return f;
+    }
+    return null;
+  }
+
+  for (const root of euRoots) {
+    const widget = findMnBountifulDelves(root);
+    if (!widget) continue;
+    const ids = [];
+    const seen = new Set();
+    for (const line of linesFromBountifulWidget(widget)) {
+      if (!line || typeof line.name !== 'string') continue;
+      const name = normalizeZoneDelveName(line.name);
+      const ci = name.indexOf(':');
+      if (ci === -1) continue;
+      const zone = name.slice(0, ci);
+      const delve = name.slice(ci + 1);
+      mapZoneDelvePairToId(zone, delve, seen, ids);
+      if (ids.length >= 4) break;
+    }
+    if (ids.length === 4) return ids;
+  }
+
+  return [];
+}
+
 function parseBountifulDelvesFromChunk(htmlChunk) {
   const ids = [];
   const seen = new Set();
@@ -47,15 +127,8 @@ function parseBountifulDelvesFromChunk(htmlChunk) {
   const zoneDelveRe = /"name":"([^"]+):\s*([^"]+)"/g;
   let m;
   while ((m = zoneDelveRe.exec(htmlChunk)) !== null) {
-    const zone = m[1].trim().replace(/&#39;/g, "'");
-    const delve = m[2].trim().replace(/&#39;/g, "'");
-    const key = `${zone}:${delve}`;
-    const id = DELVE_MAP[key];
-    if (id && !seen.has(id)) {
-      seen.add(id);
-      ids.push(id);
-      if (ids.length >= 4) break;
-    }
+    mapZoneDelvePairToId(m[1], m[2], seen, ids);
+    if (ids.length >= 4) break;
   }
 
   return ids;
@@ -114,8 +187,14 @@ function extractEuBountifulChunk(html) {
 }
 
 function parseBountifulDelves(html) {
-  let ids = parseBountifulDelvesFromMarkerWindows(html);
+  let ids = parseEuBountifulFromTodayInWowJson(html);
   let chunk = '';
+
+  if (ids.length === 4) {
+    return ids;
+  }
+
+  ids = parseBountifulDelvesFromMarkerWindows(html);
 
   if (ids.length === 4) {
     return ids;
@@ -215,7 +294,7 @@ async function main() {
     reset: wowDayYmd,
     region: 'EU',
     delves: ids,
-    note: 'EU Bountiful from Wowhead TIW: JSON lines immediately *before* each "mn-bountiful-delves" id (last block with 4 mapped delves wins). WoW day = 07:00 UTC. Fallback in app: delves.js bountifulSchedule.',
+    note: 'EU Bountiful from Wowhead TIW: script#data.wow.todayInWow JSON, regionId EU, widget id mn-bountiful-delves → content.lines. WoW day = 07:00 UTC. Fallback: marker-window scrape then delves.js bountifulSchedule.',
   };
   fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
   console.log('Wrote', outPath, ':', ids.join(', '));
