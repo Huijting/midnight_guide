@@ -7,13 +7,13 @@ const SPEC_GUARDIAN_DRUID = {
   spec:   { nl: 'Guardian', en: 'Guardian'},
   role:   'tank',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand (beervorm)', en: 'Staff or one-hand + offhand (bear form)'},
+  weapon: { nl: 'Staff or one-hand + offhand (bear form)', en: 'Staff or one-hand + offhand (bear form)'},
   resource: 'Rage',
   patch: '1.0',
   color: '#FF7C0A',
 
   summary: {
-    nl: 'Guardian Druid is een veelzijdige tank in beervorm met hoge armor en uitstekende zelfheling via Frenzied Regeneration. Draait om Ironfur voor armor en Mangle voor Rage.',
+    nl: 'Guardian Druid is een veelzijdige tank in bear form met hoge Armor en uitstekende zelfheling via Frenzied Regeneration. Draait om Ironfur voor Armor en Mangle voor Rage.',
     en: 'Guardian Druid is a versatile tank in bear form with high armor and excellent self-healing via Frenzied Regeneration. Revolves around Ironfur for armor and Mangle for Rage.'
   },
   pros: {
@@ -127,7 +127,7 @@ const SPEC_GUARDIAN_DRUID = {
       { spell:'Barkskin',               cd:'1 min',   effect:'20% schade reductie 12 sec', when:'Grote mechanic of spike schade' },
       { spell:'Survival Instincts',     cd:'3 min',   effect:'50% schade reductie 6 sec', when:'Noodsituatie — lever bijna leeg' },
       { spell:'Frenzied Regeneration',  cd:'36 sec',  effect:'Geneest voor % max HP', when:'<50% HP — niet eerder, niet te laat' },
-      { spell:'Incarnation: Guardian',  cd:'3 min',   effect:'Verbeterde beervorm — extra armor + schade', when:'Grootste pulls of baas opener' },
+      { spell:'Incarnation: Guardian',  cd:'3 min',   effect:'Verbeterde bear form — extra Armor + damage', when:'Grootste pulls of boss opener' },
       { spell:'Bristling Fur',          cd:'1 min',   effect:'Genereert Rage op basis van ontvangen schade', when:'Tijdens grote schade fases' },
     ],
     en: [

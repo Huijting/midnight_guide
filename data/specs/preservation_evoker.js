@@ -3,7 +3,7 @@ const SPEC_PRESERVATION_EVOKER = {
   id:'preservation_evoker', icon:'🌊', class:'Evoker',
   spec:{nl:'Preservation',en:'Preservation'},
   role:'heal', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
+  weapon:{nl:'Two-hand weapon',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{

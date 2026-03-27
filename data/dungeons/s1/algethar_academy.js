@@ -31,17 +31,17 @@ const ALGETHAR_ACADEMY = {
      dps:{nl:["Overwhelming Power stacks: max 2 veilig. Bij 3 stacks = Arcane Rift verschijnt — enorm AoE + meer stacks. Beheers je greed.","Astral Breath (100 energie) = dodge de adem door zijwaarts te bewegen.","Energy Bomb op jou: loop weg van de groep en gebruik een defensive.","Arcane Rifts niet aanraken — Uncontrolled Energy orbs zijn extra stacks."],en:["Overwhelming Power stacks: max 2 safe. At 3 stacks = Arcane Rift spawns — massive AoE + more stacks. Control your greed.","Astral Breath (100 energy) = dodge the breath by moving sideways.","Energy Bomb on you: move away from the group and use a defensive.","Don't touch Arcane Rifts — Uncontrolled Energy orbs mean extra stacks."]}}
   ],
   route:{
-    summary:{nl:"Drie vleugels: Botanica (links), Kwadrant (midden), Hoofdleeraarskamer (rechts). Eindbaas Echo of Doragosa.",en:"Three wings: Botanica (left), Quad (center), Headteacher's Enclave (right). Final boss Echo of Doragosa."},
+    summary:{nl:"Drie vleugels: Botanica (links), Kwadrant (midden), Hoofdleeraarskamer (rechts). Final boss Echo of Doragosa.",en:"Three wings: Botanica (left), Quad (center), Headteacher's Enclave (right). Final boss Echo of Doragosa."},
     pulls:[
       {type:"trash",label:"The Botanica",area:"The Botanica",desc:{nl:"Start links, pak de trash richting Overgrown Ancient.",en:"Start left, collect trash toward Overgrown Ancient."},lust:false},
       {type:"boss",label:"Overgrown Ancient",area:"The Botanica",desc:{nl:"Interrupt Lashing Roots.",en:"Interrupt Lashing Roots."},lust:false},
       {type:"trash",label:"The Quad",area:"The Quad",desc:{nl:"Midden — pas op voor patrollerende packs.",en:"Middle section — watch patrolling packs."},lust:false},
       {type:"boss",label:"Crawth",area:"The Quad",desc:{nl:"Ruinous Winds: pak ballen, score goals.",en:"Ruinous Winds: pick up balls, score goals."},lust:false},
       {type:"boss",label:"Vexamus",area:"The Headteacher's Enclave",desc:{nl:"Arcane Orbs NIET absorberen.",en:"Do NOT absorb Arcane Orbs."},lust:false},
-      {type:"trash",label:"Headteacher's Enclave",area:"The Headteacher's Enclave",desc:{nl:"Rechts — open de deur naar eindbaas.",en:"Right — open the door to the final boss."},lust:false},
-      {type:"boss",label:"Echo of Doragosa",area:"The Headteacher's Enclave",desc:{nl:"Eindbaas. Interrupt Expunge. Lust hier.",en:"Final boss. Interrupt Expunge. Lust here."},lust:true}
+      {type:"trash",label:"Headteacher's Enclave",area:"The Headteacher's Enclave",desc:{nl:"Rechts — open de deur naar final boss.",en:"Right — open the door to the final boss."},lust:false},
+      {type:"boss",label:"Echo of Doragosa",area:"The Headteacher's Enclave",desc:{nl:"Final boss. Interrupt Expunge. Lust hier.",en:"Final boss. Interrupt Expunge. Lust here."},lust:true}
     ],
-    lust:[{moment:"Echo of Doragosa",uitleg:{nl:"Direct bij de pull — eindbaas.",en:"Immediately on pull — final boss."}}],
+    lust:[{moment:"Echo of Doragosa",uitleg:{nl:"Direct bij de pull — final boss.",en:"Immediately on pull — final boss."}}],
     trash:[
       {mob:"Vile Lasher",tags:["tank","avoid"],tip:{nl:"CC-immuun. Vile Bite: bleed stacks op tank — defensive of bleed cleanse. Detonation Seeds: swirly onder elke speler — dodge.",en:"CC-immune. Vile Bite: bleed stacks on tank — defensive or bleed cleanse. Detonation Seeds: swirly under every player — dodge."}},
       {mob:"Aggravated Skitterfly",tags:["purge","tank"],tip:{nl:"Agitation: enrage buff op de mob — sooth. Darting Sting op random speler.",en:"Agitation: enrage buff on the mob — sooth. Darting Sting on random player."}},
@@ -59,22 +59,22 @@ const ALGETHAR_ACADEMY = {
         note: { nl: "Botanica trash: Detonation Seeds onder iedereen — spreiden. Vile Bite stacks op tank.", en: "Botanica trash: Detonation Seeds under everyone — spread. Vile Bite stacks on tank." },
         interrupts: { nl: "Geen harde must-kick in minimale pull — dodge Detonation Seeds. Met extra casters: Arcane Bolt / Surge.", en: "No mandatory kick in a minimal pull — dodge Seeds. With extra casters: Arcane Bolt / Surge." } },
       { pullRef: 1, danger: 5, mobs: ["Overgrown Ancient"],
-        note: { nl: "Baas 1: Lashing Roots onderbreken (Icy Veins-route).", en: "Boss 1: interrupt Lashing Roots (standard M+ route)." },
-        interrupts: { nl: "Lashing Roots — absolute #1 op deze baas.", en: "Lashing Roots — absolute #1 on this boss." } },
+        note: { nl: "Boss 1: Lashing Roots onderbreken (Icy Veins-route).", en: "Boss 1: interrupt Lashing Roots (standard M+ route)." },
+        interrupts: { nl: "Lashing Roots — absolute #1 op deze boss.", en: "Lashing Roots — absolute #1 on this boss." } },
       { pullRef: 2, danger: 4, mobs: ["Guardian Sentry", "Alpha Eagle"],
         note: { nl: "The Quad: Storm Slash tankbuster; Raging Screech = zware AoE (Icy Veins trash). Patrouilles niet chainen.", en: "The Quad: Storm Slash tank buster; Raging Screech is heavy AoE. Don't chain patrols." },
         interrupts: { nl: "Raging Screech (Eagle) > Arcane Bolt (Invoker) in de pack.", en: "Raging Screech (Eagle) > Arcane Bolt (Invoker) in the pack." } },
       { pullRef: 3, danger: 5, mobs: ["Crawth"],
-        note: { nl: "Baas 2: Ruinous Winds — ballen en goals (arena-mechanic).", en: "Boss 2: Ruinous Winds — balls and goals mechanic." },
+        note: { nl: "Boss 2: Ruinous Winds — ballen en goals (arena-mechanic).", en: "Boss 2: Ruinous Winds — balls and goals mechanic." },
         interrupts: { nl: "Geen vaste kick-meta — volg arena-mechanics.", en: "No standard kick meta — follow arena mechanics." } },
       { pullRef: 4, danger: 5, mobs: ["Vexamus"],
-        note: { nl: "Baas 3: absorbeer geen Arcane Orbs; interrupt overige boss-casts volgens route.", en: "Boss 3: do not absorb Arcane Orbs; interrupt other boss casts per your route." },
+        note: { nl: "Boss 3: absorbeer geen Arcane Orbs; interrupt overige boss-casts volgens route.", en: "Boss 3: do not absorb Arcane Orbs; interrupt other boss casts per your route." },
         interrupts: { nl: "Boss-specifieke casts (Arcane/Light) — roteer kicks na orb-regels.", en: "Boss arcane casts — rotate kicks after respecting orb rules." } },
       { pullRef: 5, danger: 4, mobs: ["Algeth'ar Echoknight", "Spectral Invoker"],
         note: { nl: "Headteacher's Enclave: Arcane Smash = raid defensive; Echoknight is prioriteit-target.", en: "Headteacher's Enclave: Arcane Smash = raid defensive; Echoknight is priority." },
         interrupts: { nl: "Arcane Bolt (Invoker) > Corrupted Manafiend Surge als die mee in de pull zit.", en: "Arcane Bolt (Invoker) > Corrupted Manafiend Surge if pulled." } },
       { pullRef: 6, danger: 5, mobs: ["Echo of Doragosa"],
-        note: { nl: "Eindbaas: Interrupt Expunge; Overwhelming Power stacks beheersen (Icy Veins).", en: "Final boss: interrupt Expunge; manage Overwhelming Power stacks (Icy Veins)." },
+        note: { nl: "Final boss: Interrupt Expunge; Overwhelming Power stacks beheersen (Icy Veins).", en: "Final boss: interrupt Expunge; manage Overwhelming Power stacks (Icy Veins)." },
         interrupts: { nl: "Expunge — hoogste prioriteit; daarna Arcane-spells volgens roster.", en: "Expunge — top priority; then arcane casts per roster." } }
     ]
   }

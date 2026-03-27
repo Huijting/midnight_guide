@@ -3,7 +3,7 @@ const SPEC_PROTECTION_WARRIOR = {
   id:'protection_warrior', icon:'🛡️', class:'Warrior',
   spec:{nl:'Protection',en:'Protection'},
   role:'tank', armor:'Plate',
-  weapon:{nl:'Eénhandig wapen + schild',en:'One-hand weapon + shield'},
+  weapon:{nl:'One-hand weapon + shield',en:'One-hand weapon + shield'},
   resource:'Rage',
   patch:'1.0', color:'#C69B3A',
   summary:{

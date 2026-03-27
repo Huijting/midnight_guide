@@ -12,7 +12,7 @@ const SPEC_BM_HUNTER = {
   spec:  { nl: 'Beast Mastery', en: 'Beast Mastery'},
   role:  'dps',
   armor: 'Mail',
-  weapon: { nl: 'Boog / Gun / Crossbow', en: 'Bow / Gun / Crossbow'},
+  weapon: { nl: 'Bow / Gun / Crossbow', en: 'Bow / Gun / Crossbow'},
   resource: 'Focus (0–120)',
   patch: '12.0.1',
   color: '#e88c2a',

@@ -17,36 +17,36 @@ const MAISARA_CAVERNS = {
   bosses:[
     {name:"Muro'jin & Nekraxx",num:1,
      desc:{nl:"Vilebranch-jager met zijn herboren adelaar. DUO-BAAS — dood ze tegelijk, anders krijgt de overlevende een gevaarlijke buff.",en:"A Vilebranch tracker with his reanimated eagle. DUAL BOSS — kill them simultaneously, otherwise the survivor gains a dangerous buff."},
-     tank:{nl:["Houd beide bazen bij elkaar voor AoE maar vermijd gelijktijdige frontale aanvallen.","Defensives bij Muro'jin's zware melee-combo's."],en:["Keep both bosses together for AoE but avoid overlapping their frontal attacks.","Use defensives during Muro'jin's heavy melee combos."]},
-     heal:{nl:["Nekraxx duikt op willekeurige spelers — spot heal na elke duikaanval.","Twee bazen tegelijk = constante groepsdruk — mana zorgvuldig beheren."],en:["Nekraxx dive-bombs random players — spot heal after every dive attack.","Two bosses simultaneously = constant group pressure — manage mana carefully."]},
-     dps:{nl:["INTERRUPTROTATIE VERPLICHT — geen enkele Vilebranch-cast mag doorgaan.","Beide bazen gelijkmatig aanvallen — survivor buff is gevaarlijk.","Nekraxx-duikaanvallen laten grondeffecten achter — nooit blijven staan."],en:["INTERRUPT ROTATION REQUIRED — no Vilebranch cast should ever go through.","Attack both bosses evenly — the survivor buff is dangerous.","Nekraxx dive attacks leave ground effects — never stand in them."]}},
+     tank:{nl:["Houd both bosses bij elkaar voor AoE maar vermijd gelijktijdige frontale aanvallen.","Defensives bij Muro'jin's zware melee-combo's."],en:["Keep both bosses together for AoE but avoid overlapping their frontal attacks.","Use defensives during Muro'jin's heavy melee combos."]},
+     heal:{nl:["Nekraxx duikt op willekeurige spelers — spot heal na elke duikaanval.","Two bosses tegelijk = constante groepsdruk — mana zorgvuldig beheren."],en:["Nekraxx dive-bombs random players — spot heal after every dive attack.","Two bosses simultaneously = constant group pressure — manage mana carefully."]},
+     dps:{nl:["INTERRUPTROTATIE VERPLICHT — geen enkele Vilebranch-cast mag doorgaan.","Both bosses gelijkmatig aanvallen — survivor buff is gevaarlijk.","Nekraxx-duikaanvallen laten grondeffecten achter — nooit blijven staan."],en:["INTERRUPT ROTATION REQUIRED — no Vilebranch cast should ever go through.","Attack both bosses evenly — the survivor buff is dangerous.","Nekraxx dive attacks leave ground effects — never stand in them."]}},
     {name:"Vordaza",num:2,
      desc:{nl:"Necromantische meesteres van zielen. Wrest Phantoms: laat geesten tegen elkaar botsen (niet aanvallen!). Necrotic Convergence: interrupt + doorbreek het schild direct. Drain Soul = zware tankschade.",en:"Necromantic master of souls. Wrest Phantoms: guide spirits to collide with each other (do not attack!). Necrotic Convergence: interrupt + break the shield immediately. Drain Soul = heavy tank damage."},
      tank:{nl:["Drain Soul = zware schade + healing absorb op de tank — grote defensive.","Necrotic Convergence: Deathshroud-schild verschijnt + escalerende AoE — interrupt haar, doorbreek het schild.","Dodge Coalesced Death op de grond."],en:["Drain Soul = heavy damage + healing absorb on the tank — major defensive.","Necrotic Convergence: Deathshroud shield appears + escalating AoE — interrupt her, break the shield.","Dodge Coalesced Death on the ground."]},
      heal:{nl:["Withering Miasma = constante raid-schade het hele gevecht.","Necrotic Convergence: grote cooldown + interrupt zo snel mogelijk. Schild niet doorbreken = wipe.","Drain Soul op tank = healing absorb — prioriteer de tank."],en:["Withering Miasma = constant raid damage throughout the fight.","Necrotic Convergence: major cooldown + interrupt as fast as possible. Not breaking shield = wipe.","Drain Soul on tank = healing absorb — prioritize the tank."]},
      dps:{nl:["Wrest Phantoms: Unstable Phantoms najagen spelers — NIET aanvallen (99% schade-reductie). Leid ze NAAR ELKAAR zodat ze botsen. Max 2 Lingering Dread stacks.","Necrotic Convergence: interrupt + doorbreek schild direct. Niet doen = wipe.","Dodge Coalesced Death. Offensive cooldowns bewaren voor Necrotic Convergence."],en:["Wrest Phantoms: Unstable Phantoms chase players — do NOT attack (99% damage reduction). Guide them TOWARD EACH OTHER to collide. Max 2 Lingering Dread stacks.","Necrotic Convergence: interrupt + break shield immediately. Failing = wipe.","Dodge Coalesced Death. Save offensive cooldowns for Necrotic Convergence."]}},
     {name:"Rak'tul, Vessel of Souls",num:3,
-     desc:{nl:"Eindbaas — construct gevuld met gestolen zielen. Meest interrupt-intensieve baas van Seizoen 1.",en:"Final boss — a construct filled with stolen souls. The most interrupt-intensive boss of Season 1."},
+     desc:{nl:"Final boss — construct gevuld met gestolen zielen. Meest interrupt-interrupt-intensive boss van Seizoen 1.",en:"Final boss — a construct filled with stolen souls. The most interrupt-intensive boss of Season 1."},
      tank:{nl:["Taunt swap bij stapelende debuff-stacks.","Positioneer in het midden zodat de groep ruimte heeft om te bewegen."],en:["Taunt swap on stacking debuffs.","Position in the center so the group has room to move."]},
      heal:{nl:["Aanhoudende AoE-zielschade — constante groepshealing vereist.","Grote cooldown voor hoge-energie-burst-fasen.","Dispel zielencorruptie direct — stacks groeien snel."],en:["Persistent AoE soul damage — constant group healing required.","Major cooldown for high-energy burst phases.","Dispel soul corruption immediately — stacks grow fast."]},
-     dps:{nl:["Onderbreek ALLE castbare vaardigheden — absolute hoogste prioriteit.","Focus ziel-fragment-adds — ze voeden de baas als ze blijven leven.","Persoonlijke defensives proactief inzetten."],en:["Interrupt ALL castable abilities — absolute top priority.","Focus soul fragment adds — they empower the boss if left alive.","Use personal defensives proactively."]}}
+     dps:{nl:["Onderbreek ALLE castbare vaardigheden — absolute hoogste prioriteit.","Focus ziel-fragment-adds — ze voeden de boss als ze blijven leven.","Persoonlijke defensives proactief inzetten."],en:["Interrupt ALL castable abilities — absolute top priority.","Focus soul fragment adds — they empower the boss if left alive.","Use personal defensives proactively."]}}
   ],
   route:{
     summary:{nl:"Start rechts voor de Cooking Pot-buff. 8 Prisoners bevrijden. Lust: pull 1, pull 8, Vessel fase 2.",en:"Start right for the Cooking Pot buff. Free 8 Prisoners. Lust: pull 1, pull 8, Vessel phase 2."},
     lust:[
       {moment:"Pull 1 — 🔥 BLOODLUST",uitleg:{nl:"Eerste grote pull rechts van de ingang",en:"First large pull right of the entrance"}},
-      {moment:"Pull 8 — 🔥 BLOODLUST",uitleg:{nl:"Grote pull vlak voor eindbaas",en:"Large pull just before the final boss"}},
-      {moment:"Vessel of Souls fase 2 — 🔥",uitleg:{nl:"Tweede fase eindbaas",en:"Final boss phase 2"}}
+      {moment:"Pull 8 — 🔥 BLOODLUST",uitleg:{nl:"Grote pull vlak voor final boss",en:"Large pull just before the final boss"}},
+      {moment:"Vessel of Souls fase 2 — 🔥",uitleg:{nl:"Tweede fase final boss",en:"Final boss phase 2"}}
     ],
     pulls:[
       {label:{nl:"Start — Ga RECHTS",en:"Start — Go RIGHT"},desc:{nl:"Cooking Pot in rechterhuis — altijd oppakken.",en:"Cooking Pot in right house — always grab it."}},
       {label:{nl:"Pull 1 — 🔥 BLOODLUST",en:"Pull 1 — 🔥 BLOODLUST"},desc:{nl:"Eerste grote trashgroep rechts. Lust hier.",en:"First large trash group on the right. Lust here."}},
       {label:{nl:"Pull 2–3 + Prisoners (rechts)",en:"Pull 2–3 + Prisoners (right)"},desc:{nl:"Trash ruimen + Prisoners bevrijden rechts.",en:"Clear trash + free Prisoners on the right side."}},
       {label:{nl:"Pull 4–5 + Prisoners (links)",en:"Pull 4–5 + Prisoners (left)"},desc:{nl:"Herhaal aan de linkerzijde. Vermijd Freezing Traps.",en:"Repeat on the left side. Avoid Freezing Traps."}},
-      {label:{nl:"Baas 1 — Muro'jin & Nekraxx",en:"Boss 1 — Muro'jin & Nekraxx"},desc:{nl:"Beide bazen gelijkmatig doden. Nekraxx-duiken ontwijken.",en:"Kill both bosses evenly. Dodge Nekraxx dive attacks."}},
-      {label:{nl:"Baas 2 — Vordaza + Rak'tul",en:"Boss 2 — Vordaza + Rak'tul"},desc:{nl:"Vordaza snel doden. Grote cooldown voor Rak'tul.",en:"Kill Vordaza fast. Major cooldown for Rak'tul."}},
-      {label:{nl:"Pull 8 — 🔥 BLOODLUST",en:"Pull 8 — 🔥 BLOODLUST"},desc:{nl:"Grote trashpull voor eindbaas. Lust hier.",en:"Large trash pull before the final boss. Lust here."}},
-      {label:{nl:"Baas 3 — Vessel of Souls 🔥",en:"Boss 3 — Vessel of Souls 🔥"},desc:{nl:"Alle interrupts. Adds direct doden. Lust in fase 2.",en:"All interrupts. Kill adds immediately. Lust in phase 2."}}
+      {label:{nl:"Boss 1 — Muro'jin & Nekraxx",en:"Boss 1 — Muro'jin & Nekraxx"},desc:{nl:"Both bosses gelijkmatig doden. Nekraxx-duiken ontwijken.",en:"Kill both bosses evenly. Dodge Nekraxx dive attacks."}},
+      {label:{nl:"Boss 2 — Vordaza + Rak'tul",en:"Boss 2 — Vordaza + Rak'tul"},desc:{nl:"Vordaza snel doden. Grote cooldown voor Rak'tul.",en:"Kill Vordaza fast. Major cooldown for Rak'tul."}},
+      {label:{nl:"Pull 8 — 🔥 BLOODLUST",en:"Pull 8 — 🔥 BLOODLUST"},desc:{nl:"Grote trashpull voor final boss. Lust hier.",en:"Large trash pull before the final boss. Lust here."}},
+      {label:{nl:"Boss 3 — Vessel of Souls 🔥",en:"Boss 3 — Vessel of Souls 🔥"},desc:{nl:"Alle interrupts. Adds direct doden. Lust in fase 2.",en:"All interrupts. Kill adds immediately. Lust in phase 2."}}
     ],
     trash:[
       {mob:"Frenzied Berserker",tags:["tank","purge"],tip:{nl:"Blood Frenzy: enrage op de mob — sooth. Regeneratin': passieve healing, healing reduction is effectief.",en:"Blood Frenzy: enrage on the mob — sooth. Regeneratin': passive healing, healing reduction is effective."}},
@@ -76,16 +76,16 @@ const MAISARA_CAVERNS = {
         note: { nl: "Links: Grim Ward één voor één breken; Reanimated Warrior op 0 HP CC'en (Icy Veins).", en: "Left: break Grim Ward one at a time; CC Reanimated Warrior at 0 HP." },
         interrupts: { nl: "Geen vaste kick — CC timing op Reanimation belangrijker.", en: "No fixed kick — CC timing on Reanimation matters more." } },
       { pullRef: 4, danger: 5, mobs: ["Muro'jin & Nekraxx"],
-        note: { nl: "Baas 1 duo: beide gelijk dood; Nekraxx dive doden.", en: "Boss 1 duo: even burn; dodge Nekraxx dives." },
+        note: { nl: "Boss 1 duo: beide gelijk dood; Nekraxx dive doden.", en: "Boss 1 duo: even burn; dodge Nekraxx dives." },
         interrupts: { nl: "Boss-casts roteren — duo-mechanic voorrang.", en: "Rotate boss casts — duo mechanics first." } },
       { pullRef: 5, danger: 5, mobs: ["Vordaza", "Rak'tul"],
-        note: { nl: "Baas 2: Vordaza snel; daarna Rak'tul — zware tankdamage (dungeon-tips).", en: "Boss 2: burn Vordaza; then Rak'tul — heavy tank damage." },
+        note: { nl: "Boss 2: Vordaza snel; daarna Rak'tul — zware tankdamage (dungeon-tips).", en: "Boss 2: burn Vordaza; then Rak'tul — heavy tank damage." },
         interrupts: { nl: "Rak'tul/interrupt-intensief — volg boss-timers.", en: "Rak'tul is interrupt-heavy — follow boss timers." } },
       { pullRef: 6, danger: 5, mobs: ["Hollow Soulrender", "Rokh'zal"],
-        note: { nl: "Grote pull voor eindbaas + lust: Rokh'zal Ritual Sacrifice MOET interrupt (wipe als door). Shadowfrost Blast.", en: "Big pre-final pull + lust: MUST interrupt Rokh'zal Ritual Sacrifice. Shadowfrost Blast." },
+        note: { nl: "Grote pull voor final boss + lust: Rokh'zal Ritual Sacrifice MOET interrupt (wipe als door). Shadowfrost Blast.", en: "Big pre-final pull + lust: MUST interrupt Rokh'zal Ritual Sacrifice. Shadowfrost Blast." },
         interrupts: { nl: "Ritual Sacrifice (Rokh'zal) > Invoke Shadow > Shadowfrost Blast (Soulrender).", en: "Ritual Sacrifice (Rokh'zal) > Invoke Shadow > Shadowfrost Blast (Soulrender)." } },
       { pullRef: 7, danger: 5, mobs: ["Rak'tul, Vessel of Souls"],
-        note: { nl: "Eindbaas: hoogste interrupt-druk S1 — alle castbare skills + fragment-adds (dungeon/Icy Veins).", en: "Final boss: very high interrupt load — all cast abilities + fragment adds." },
+        note: { nl: "Final boss: hoogste interrupt-druk S1 — alle castbare skills + fragment-adds (dungeon/Icy Veins).", en: "Final boss: very high interrupt load — all cast abilities + fragment adds." },
         interrupts: { nl: "Alle onderbreekbare boss-casts — vaste kick-ROTA verplicht.", en: "Every interruptible boss cast — mandatory kick rotation." } }
     ]
   }

@@ -3,7 +3,7 @@ const SPEC_UNHOLY_DK = {
   id:'unholy_dk', icon:'☠️', class:'Death Knight',
   spec:{nl:'Unholy',en:'Unholy'},
   role:'dps', armor:'Plate',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
+  weapon:{nl:'Two-hand weapon',en:'Two-hand weapon'},
   resource:'Runes + Runic Power',
   patch:'1.0', color:'#33937F',
   summary:{

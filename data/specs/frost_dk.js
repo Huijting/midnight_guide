@@ -10,7 +10,7 @@ const SPEC_FROST_DK = {
   spec:  { nl: 'Frost', en: 'Frost'},
   role:  'melee',
   armor: 'Plate',
-  weapon: { nl: 'Twee eenhanders of één tweehandig wapen', en: 'Two one-handed or one two-handed weapon'},
+  weapon: { nl: 'Two one-handed or one two-handed weapon', en: 'Two one-handed or one two-handed weapon'},
   resource: 'Runic Power (0–100) + Runes (6)',
   patch: '12.0.1',
   color: '#90caf9',

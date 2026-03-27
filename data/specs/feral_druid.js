@@ -7,7 +7,7 @@ const SPEC_FERAL_DRUID = {
   spec:   { nl: 'Feral', en: 'Feral'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand (transformeert naar klauw)', en: 'Staff or one-hand + offhand (transforms to claw)'},
+  weapon: { nl: 'Staff or one-hand + offhand (transforms to claw)', en: 'Staff or one-hand + offhand (transforms to claw)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FF7C0A',

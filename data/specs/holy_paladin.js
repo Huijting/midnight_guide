@@ -3,7 +3,7 @@ const SPEC_HOLY_PALADIN = {
   id:'holy_paladin', icon:'✨', class:'Paladin',
   spec:{nl:'Holy',en:'Holy'},
   role:'heal', armor:'Plate',
-  weapon:{nl:'Eénhandig wapen + schild of tweehandig',en:'One-hand + shield or two-hand'},
+  weapon:{nl:'One-hand + shield or two-hand',en:'One-hand + shield or two-hand'},
   resource:'Mana + Holy Power',
   patch:'1.0', color:'#F48CBA',
   summary:{nl:'Holy Paladin is een plate-dragende healer die Holy Power opbouwt voor Eternal Flame of Light of Dawn. Uniek: kan ook melee aanvallen voor extra healing via Infusion of Light.',en:'Holy Paladin is a plate-wearing healer that builds Holy Power for Eternal Flame or Light of Dawn. Unique: can also melee attack for extra healing via Infusion of Light.'},

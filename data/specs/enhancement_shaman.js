@@ -3,7 +3,7 @@ const SPEC_ENHANCEMENT_SHAMAN = {
   id:'enhancement_shaman', icon:'⚡', class:'Shaman',
   spec:{nl:'Enhancement',en:'Enhancement'},
   role:'melee', armor:'Mail',
-  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)'},
+  weapon:{nl:'Two one-handed weapons (dual wield)',en:'Two one-handed weapons (dual wield)'},
   resource:'Mana + Maelstrom Weapon',
   patch:'1.0', color:'#0070DE',
   summary:{

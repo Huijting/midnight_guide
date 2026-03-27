@@ -3,7 +3,7 @@ const SPEC_DISCIPLINE_PRIEST = {
   id:'discipline_priest', icon:'⚪', class:'Priest',
   spec:{nl:'Discipline',en:'Discipline'},
   role:'heal', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
+  weapon:{nl:'Staff or one-hand + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#FFFFFF',
 

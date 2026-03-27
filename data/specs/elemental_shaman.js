@@ -7,7 +7,7 @@ const SPEC_ELEMENTAL_SHAMAN = {
   spec:   { nl: 'Elemental', en: 'Elemental'},
   role:   'dps',
   armor:  'Mail',
-  weapon: { nl: 'Eenhandig of tweehandig + offhand', en: 'One-handed or two-handed + offhand'},
+  weapon: { nl: 'One-handed or two-handed + offhand', en: 'One-handed or two-handed + offhand'},
   resource: 'Maelstrom',
   patch: '1.0',
   color: '#0070DE',

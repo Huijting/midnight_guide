@@ -7,13 +7,13 @@ const SPEC_ASSASSINATION_ROGUE = {
   spec:   { nl: 'Assassination', en: 'Assassination'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)'},
+  weapon: { nl: 'Two daggers (dual wield)', en: 'Two daggers (dual wield)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',
 
   summary: {
-    nl: 'Assassination Rogue is de meester van giften en DoTs. Verg vijanden langzaam met Rupture en Garrote terwijl gifstapels oplopen. Uitstekende sustained multi-target schade.',
+    nl: 'Assassination Rogue is de meester van Poisons en DoTs. Slijt vijanden langzaam met Rupture en Garrote terwijl poison stacks oplopen. Uitstekende sustained multi-target damage.',
     en: 'Assassination Rogue is the master of poisons and DoTs. Bleed enemies slowly with Rupture and Garrote while poison stacks build up. Excellent sustained multi-target damage.'
   },
   pros: {
@@ -21,7 +21,7 @@ const SPEC_ASSASSINATION_ROGUE = {
     en: ['Excellent sustained damage via DoTs', 'Strong on multiple targets (Crimson Tempest)', 'Good survivability via Crimson Vial', 'Stealth utility for skips in M+']
   },
   cons: {
-    nl: ['Complex DoT management', 'Lage burst zonder Vendetta', 'Energy management vereist disciplin'],
+    nl: ['Complex DoT management', 'Lage burst zonder Vendetta', 'Energy management vereist discipline'],
     en: ['Complex DoT management', 'Low burst without Vendetta', 'Energy management requires discipline']
   },
 
@@ -35,7 +35,7 @@ const SPEC_ASSASSINATION_ROGUE = {
         'Envenom bij 5 CPs en Rupture actief',
         'Vendetta altijd op cooldown — verhoogt alles',
         'Crimson Tempest bij 3+ targets als Rupture vervanging',
-        'Mutilate alleen als beidedolken Deadly Poison hebben',
+        'Mutilate alleen als beide dolken Deadly Poison hebben',
       ],
     },
     en: {

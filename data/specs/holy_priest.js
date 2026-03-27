@@ -3,7 +3,7 @@ const SPEC_HOLY_PRIEST = {
   id:'holy_priest', icon:'🌟', class:'Priest',
   spec:{nl:'Holy',en:'Holy'},
   role:'heal', armor:'Cloth',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
+  weapon:{nl:'Staff or one-hand + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#FFFFFF',
   summary:{

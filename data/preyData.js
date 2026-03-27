@@ -14,12 +14,12 @@ const PREY_DATA = {
     completeQuest: { en: 'Complete the intro questline ending with', nl: 'Voltooi de intro-questlijn die eindigt met'},
     toUnlock: { en: 'to unlock the Hunt Table.', nl: 'om de Hunt Table te ontgrendelen.'},
   },
-  gameplayLoopLabel: { en: 'Gameplay loop', nl: 'Spelloop'},
+  gameplayLoopLabel: { en: 'Gameplay loop', nl: 'Gameplay loop'},
 
   // i18n intro strings
   intro: {
     en: "Hunt the powerful NPCs across Silvermoon's outskirts.",
-    nl: "Jaag op sterke vijanden rondom Silvermoon."
+    nl: "Jaag op sterke NPCs aan de rand van Silvermoon."
   },
 
   // Gameplay loop steps
@@ -31,10 +31,10 @@ const PREY_DATA = {
       { step: 'The Final Hunt', text: 'Once the bar is 100%, use the Charged Anguish Crystal on your UI to reveal the boss\'s lair for a final 1v1 duel.' },
     ],
     nl: [
-      { step: 'Contract kiezen', text: 'Kies een doelwit bij de Hunt Table in Astalors Sanctum.' },
-      { step: 'Anguish verzamelen', text: 'Vul de voortgangsbalk in de zone door World Quests te doen, Rares te doden of Schatten te vinden.' },
-      { step: 'Hinderlaag-fase', text: 'Het doelwit valt je willekeurig aan. Vecht tot het terugtrekt (meestal bij 50% HP).' },
-      { step: 'De finale jacht', text: 'Bij 100% balk: gebruik de Charged Anguish Crystal in je UI om de boss-locatie te onthullen voor een 1v1 duel.' },
+      { step: 'Select Contract', text: 'Kies een target bij de Hunt Table in Astalor\'s Sanctum.' },
+      { step: 'Gather Anguish', text: 'Vul de progress bar in de zone met World Quests, Rares doden of Treasures vinden.' },
+      { step: 'Ambush Phase', text: 'Het target valt je willekeurig aan. Vecht tot het terugtrekt (meestal bij 50% HP).' },
+      { step: 'The Final Hunt', text: 'Bij 100% bar: gebruik de Charged Anguish Crystal in je UI om de boss lair te onthullen voor een 1v1 duel.' },
     ]
   },
 
@@ -42,15 +42,15 @@ const PREY_DATA = {
   difficulties: {
     normal: {
       en: { name: 'Normal', desc: 'Contract loot iLvl 220 (Icy Veins Prey table, Midnight S1). Great Vault World can be higher.', unlock: 'Default from first unlock.' },
-      nl: { name: 'Normal', desc: 'Contract-loot iLvl 220 (Icy Veins Prey-tabel, Midnight S1). Great Vault World kan hoger zijn.', unlock: 'Standaard na unlock.' }
+      nl: { name: 'Normal', desc: 'Contract loot iLvl 220 (Icy Veins Prey table, Midnight S1). Great Vault World kan hoger zijn.', unlock: 'Standaard na unlock.' }
     },
     hard: {
       en: { name: 'Hard', desc: 'Unlocked after your first Normal hunt. Adds "Torments" (zone-wide debuffs). Heroic-tier contract loot iLvl 233 (Icy Veins).', unlock: 'After 1 Normal hunt.' },
-      nl: { name: 'Hard', desc: 'Na je eerste Normal hunt. Voegt "Torments" toe. Heroic-contract-loot iLvl 233 (Icy Veins).', unlock: 'Na 1 Normal hunt.' }
+      nl: { name: 'Hard', desc: 'Na je eerste Normal Hunt. Voegt Torments toe. Heroic contract loot iLvl 233 (Icy Veins).', unlock: 'Na 1 Normal Hunt.' }
     },
     nightmare: {
       en: { name: 'Nightmare', desc: 'Solo only. Deadly affixes. Contract loot iLvl 246; Great Vault Hero track up to 259 (Icy Veins).', unlock: 'Solo only.' },
-      nl: { name: 'Nightmare', desc: 'Alleen solo. Dodelijke affixes. Contract-loot iLvl 246; Great Vault Hero-track tot 259 (Icy Veins).', unlock: 'Alleen solo.' }
+      nl: { name: 'Nightmare', desc: 'Alleen solo. Dodelijke affixes. Contract loot iLvl 246; Great Vault Hero track tot 259 (Icy Veins).', unlock: 'Alleen solo.' }
     },
   },
 
@@ -79,24 +79,24 @@ const PREY_DATA = {
       worldBossNote: '<strong>World boss / apex predator</strong> (weekly, not a Hunt contract): iLvl 289 (Mythic track).',
     },
     nl: {
-      adventurer: 'Normal contracten — iLvl 220 (Icy Veins)',
+      adventurer: 'Normal contracts — iLvl 220 (Icy Veins)',
       veteran: 'Hard (Heroic) — iLvl 233 met Torments',
-      champion: 'Nightmare — iLvl 246; wekelijkse wereld­baas / apex Mythic-track 289',
-      weeklyTip: 'De eerste 2 Hunts per week geven de beste gear-beloningen.',
-      greatVault: 'Prey telt mee voor de Great Vault <strong>World</strong> categorie.',
-      anguishFills: 'vult je balk',
-      dawncrestsUpgrade: 'upgraden gear',
-      worldBossNote: '<strong>Wereld­baas / apex predator</strong> (wekelijks, geen Hunt-contract): iLvl 289 (Mythic-track).',
+      champion: 'Nightmare — iLvl 246; weekly World Boss / apex Mythic track 289',
+      weeklyTip: 'De eerste 2 Hunts per week geven de beste gear rewards.',
+      greatVault: 'Prey telt mee voor de Great Vault <strong>World</strong> category.',
+      anguishFills: 'vult je bar',
+      dawncrestsUpgrade: 'upgrade gear',
+      worldBossNote: '<strong>World Boss / apex predator</strong> (weekly, geen Hunt contract): iLvl 289 (Mythic track).',
     }
   },
 
   // Tooltips — technical terms kept in English, explanations translated
   tooltips: {
-    anguish: { term: 'Anguish', explain: { en: 'Progress currency gathered in the zone. Fills your bar toward the Final Hunt.', nl: 'Voortgangsvaluta in de zone. Vult je balk richting de Final Hunt.'} },
-    dawncrests: { term: 'Dawncrests', explain: { en: 'Upgrade crests used to improve gear (part of the upgrade system).', nl: 'Upgrade-crests om gear te verbeteren (deel van het upgradesysteem).'} },
-    veteran_track: { term: 'Veteran Track', explain: { en: 'Mid-tier gear that upgrades with Veteran Crests.', nl: 'Mid-tier gear dat upgradet met Veteran Crests.'} },
-    champion_track: { term: 'Champion Track', explain: { en: 'Top-tier gear that upgrades with Champion Crests.', nl: 'Top-tier gear dat upgradet met Champion Crests.'} },
-    charged_anguish_crystal: { term: 'Charged Anguish Crystal', explain: { en: 'UI item used at 100% bar to reveal the boss lair location.', nl: 'UI-item bij 100% balk om de boss-locatie te onthullen.'} },
+    anguish: { term: 'Anguish', explain: { en: 'Progress currency gathered in the zone. Fills your bar toward the Final Hunt.', nl: 'Progress currency in de zone. Vult je bar richting de Final Hunt.'} },
+    dawncrests: { term: 'Dawncrests', explain: { en: 'Upgrade crests used to improve gear (part of the upgrade system).', nl: 'Upgrade crests om gear te verbeteren (deel van het upgrade system).'} },
+    veteran_track: { term: 'Veteran Track', explain: { en: 'Mid-tier gear that upgrades with Veteran Crests.', nl: 'Mid-tier gear — upgrade met Veteran Crests.'} },
+    champion_track: { term: 'Champion Track', explain: { en: 'Top-tier gear that upgrades with Champion Crests.', nl: 'Top-tier gear — upgrade met Champion Crests.'} },
+    charged_anguish_crystal: { term: 'Charged Anguish Crystal', explain: { en: 'UI item used at 100% bar to reveal the boss lair location.', nl: 'UI item bij 100% bar om de boss lair te onthullen.'} },
   },
 
   // Prey targets are in data/preyTargets.js (PREY_TARGETS)

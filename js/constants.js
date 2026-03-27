@@ -318,7 +318,7 @@ const PROF_GUIDE_DATA = {
             },
             {
               "title": "De Trainer & Runed Copper Rod",
-              "text": "Zoek de <strong>Enchanting Trainer</strong>. Zorg dat je altijd een <em>Runed Copper Rod</em> (of beter) in je tas hebt, dit is je magische toverstaf om mee te betoveren."
+              "text": "Zoek de <strong>Enchanting Trainer</strong>. Zorg dat je altijd een <em>Runed Copper Rod</em> (of beter) in je tas hebt — je tool voor Disenchant en Enchant."
             },
             {
               "title": "Disenchanting (Afbreken)",
@@ -525,7 +525,7 @@ const PROF_GUIDE_DATA = {
             },
             {
               "title": "Level 75 - 100: De Meesterfase",
-              "text": "Maak epische (paarse) toverstaven en Vantus Runes (die raid-groepen helpen tegen moeilijke bazen). Gebruik de <strong>Crafting Orders</strong> tafel!"
+              "text": "Maak epische (paarse) toverstaven en Vantus Runes (die raid-groepen helpen tegen moeilijke bosses). Gebruik de <strong>Crafting Orders</strong> tafel!"
             }
           ]
         }

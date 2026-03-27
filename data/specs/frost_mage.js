@@ -10,7 +10,7 @@ const SPEC_FROST_MAGE = {
   spec:  { nl: 'Frost', en: 'Frost'},
   role:  'dps',
   armor: 'Cloth',
-  weapon: { nl: 'Staf / Toverstaf + boek', en: 'Staff / Wand + offhand'},
+  weapon: { nl: 'Staff / Wand + offhand', en: 'Staff / Wand + offhand'},
   resource: 'Mana',
   patch: '12.0.1',
   color: '#90caf9',

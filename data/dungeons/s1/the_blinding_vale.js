@@ -22,26 +22,26 @@ const THE_BLINDING_VALE = {
      desc:{nl:"Vroeger roofdier van Harandar volledig bezeten door de Lightbloom.",en:"A former apex predator of Harandar fully possessed by the Lightbloom."},
      tank:{nl:["Ikuzz springt op zijn doelwit — defensive bij elke grote sprong.","Afgewend houden — beet/klauw-aanvallen cleaven."],en:["Ikuzz leaps onto his target — use a defensive on every major leap.","Keep him faced away — bite/claw attacks cleave."]},
      heal:{nl:["Burst fysieke + lichtschade — piekerig, niet constant.","Feeding Frenzy-modus: grote cooldown inzetten."],en:["Burst physical + light damage — spikey, not constant.","Feeding Frenzy mode: deploy a major cooldown."]},
-     dps:{nl:["Gemarkeerde speler kite — anderen blijven op de baas.","Onderbreek lichtenergie-absorbeervaardigheden.","Snel weg na markering om groepssplash te vermijden."],en:["Marked player kites — others stay on the boss.","Interrupt light energy absorption abilities.","Move away quickly after being marked to avoid group splash."]}},
+     dps:{nl:["Gemarkeerde speler kite — anderen blijven op de boss.","Onderbreek light energy absorption abilities.","Snel weg na markering om groepssplash te vermijden."],en:["Marked player kites — others stay on the boss.","Interrupt light energy absorption abilities.","Move away quickly after being marked to avoid group splash."]}},
     {name:"Lightwarden Ruia",num:3,
      desc:{nl:"Bewaker van het heiligdom. Haar wards reflecteren schade terug op melee-aanvallers.",en:"Guardian of the inner sanctum. Her protective wards reflect damage back at melee attackers."},
      tank:{nl:["Stralingseffecten stapelen — defensives afwisselen.","Wards onderbreken of vernietigen voor ze actief worden."],en:["Radiation effects stack — alternate defensives.","Interrupt or destroy wards before they become active."]},
      heal:{nl:["Stralingsontlading = hele groep geraakt — AoE-heal gereed.","Spelers in wards ontvangen gereflecteerde schade — waarschuw ze."],en:["Radiation discharge hits the entire group — have an AoE heal ready.","Players standing in wards receive reflected damage — warn them."]},
-     dps:{nl:["Vernietig wards snel — ze reduceren je schade significant.","Empowerment-casts onderbreken.","Melee: controleer altijd of er een ward onder de baas staat."],en:["Destroy wards quickly — they significantly reduce your damage output.","Interrupt empowerment casts.","Melee: always check for a ward under the boss."]}},
+     dps:{nl:["Vernietig wards snel — ze reduceren je schade significant.","Empowerment-casts onderbreken.","Melee: controleer altijd of er een ward onder de boss staat."],en:["Destroy wards quickly — they significantly reduce your damage output.","Interrupt empowerment casts.","Melee: always check for a ward under the boss."]}},
     {name:"Ziekket",num:4,
-     desc:{nl:"Eindbaas — apex Lightbloom-roofdier dat licht en void combineert in een gecorrumpeerde hybride vorm.",en:"Final boss — an apex Lightbloom predator combining light and void in a corrupted hybrid form."},
+     desc:{nl:"Final boss — apex Lightbloom-roofdier dat licht en void combineert in een gecorrumpeerde hybride vorm.",en:"Final boss — an apex Lightbloom predator combining light and void in a corrupted hybrid form."},
      tank:{nl:["Wisselt licht-burst en void-shroud-fasen — juiste defensive per fase kiezen.","Rand van de kamer voor bewegingsruimte."],en:["Alternates between light burst and void shroud phases — choose the right defensive per phase.","Stay at the edge of the room for movement space."]},
      heal:{nl:["Lichtfase: burst AoE — grote cooldown hier.","Void-fase: aanhoudende schade op tank — zware spot healing.","Beheer beide fasen — verspil je cooldowns niet bij lichtfase."],en:["Light phase: burst AoE — major cooldown here.","Void phase: sustained tank damage — heavy spot healing required.","Manage both phases — do not waste your cooldowns in the light phase."]},
      dps:{nl:["Lichtfase: stack voor AoE-cleave.","Void-fase: spreid voor void-splash.","Beste DPS-moment: overgang tussen fasen."],en:["Light phase: stack for AoE cleave.","Void phase: spread to avoid void splash.","Best DPS moment: transitions between phases."]}}
   ],
   route:{
-    summary:{nl:"Lineaire route door Harandar. Geen M+-versie. Lust op eindbaas Ziekket bij de void-fase.",en:"Linear route through Harandar. No M+ version. Lust on final boss Ziekket at the void phase."},
+    summary:{nl:"Lineaire route door Harandar. Geen M+-versie. Lust op final boss Ziekket bij de void-fase.",en:"Linear route through Harandar. No M+ version. Lust on final boss Ziekket at the void phase."},
     lust:[{moment:"Boss 4 — Ziekket 🔥",uitleg:{nl:"Gebruik Bloodlust bij de overgang naar de void-fase",en:"Use Bloodlust at the transition into the void phase"}}],
     pulls:[
-      {label:{nl:"Baas 1 — Meittik",en:"Boss 1 — Meittik"},desc:{nl:"Één Rutaani tegelijk. Lichtplassen vermijden.",en:"One Rutaani at a time. Avoid light puddles."}},
-      {label:{nl:"Baas 2 — Ikuzz",en:"Boss 2 — Ikuzz"},desc:{nl:"Kite als gemarkeerd. Absorbeer-interrupts uitvoeren.",en:"Kite when marked. Execute absorption interrupts."}},
-      {label:{nl:"Baas 3 — Lightwarden Ruia",en:"Boss 3 — Lightwarden Ruia"},desc:{nl:"Wards vernietigen voor reflectieschade.",en:"Destroy wards before reflected damage."}},
-      {label:{nl:"Baas 4 — Ziekket 🔥",en:"Boss 4 — Ziekket 🔥"},desc:{nl:"Lust in void-fase. Stack licht, spreid void.",en:"Lust in void phase. Stack light, spread void."}}
+      {label:{nl:"Boss 1 — Meittik",en:"Boss 1 — Meittik"},desc:{nl:"Één Rutaani tegelijk. Lichtplassen vermijden.",en:"One Rutaani at a time. Avoid light puddles."}},
+      {label:{nl:"Boss 2 — Ikuzz",en:"Boss 2 — Ikuzz"},desc:{nl:"Kite als gemarkeerd. Absorbeer-interrupts uitvoeren.",en:"Kite when marked. Execute absorption interrupts."}},
+      {label:{nl:"Boss 3 — Lightwarden Ruia",en:"Boss 3 — Lightwarden Ruia"},desc:{nl:"Wards vernietigen voor reflectieschade.",en:"Destroy wards before reflected damage."}},
+      {label:{nl:"Boss 4 — Ziekket 🔥",en:"Boss 4 — Ziekket 🔥"},desc:{nl:"Lust in void-fase. Stack licht, spreid void.",en:"Lust in void phase. Stack light, spread void."}}
     ],
     trash:[
       {mob:"Lightbloom Tender",tags:["int","purge"],tip:{nl:"Radiant Heal: interrupt of purge de buff op andere mobs. Healer mob — altijd eerst doden.",en:"Radiant Heal: interrupt or purge the buff on other mobs. Healer mob — always kill first."}},

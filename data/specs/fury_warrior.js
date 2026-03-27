@@ -7,7 +7,7 @@ const SPEC_FURY_WARRIOR = {
   spec:   { nl: 'Fury', en: 'Fury'},
   role:   'melee',
   armor:  'Plate',
-  weapon: { nl: 'Twee eenhandige wapens', en: 'Two one-handed weapons'},
+  weapon: { nl: 'Two one-hand weapons', en: 'Two one-handed weapons'},
   resource: 'Rage',
   patch: '1.0',
   color: '#C79C6E',

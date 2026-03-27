@@ -7,7 +7,7 @@ const SPEC_SUBTLETY_ROGUE = {
   spec:   { nl: 'Subtlety', en: 'Subtlety'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee dolken (dual wield)', en: 'Two daggers (dual wield)'},
+  weapon: { nl: 'Two daggers (dual wield)', en: 'Two daggers (dual wield)'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',

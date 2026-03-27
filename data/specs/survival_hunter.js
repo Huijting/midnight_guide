@@ -3,7 +3,7 @@ const SPEC_SURVIVAL_HUNTER = {
   id:'survival_hunter', icon:'🪤', class:'Hunter',
   spec:{nl:'Survival',en:'Survival'},
   role:'melee', armor:'Mail',
-  weapon:{nl:'Speer of twee eenhandige wapens',en:'Polearm or two one-hand weapons'},
+  weapon:{nl:'Polearm or two one-hand weapons',en:'Polearm or two one-hand weapons'},
   resource:'Focus',
   patch:'1.0', color:'#ABD473',
   summary:{nl:'Survival Hunter is de enige melee Hunter spec. Gebruikt bommen, vallen en een lans in combinatie met een pet. Draait om Wildfire Bomb en Coordinated Assault burst.',en:'Survival Hunter is the only melee Hunter spec. Uses bombs, traps and a lance combined with a pet. Revolves around Wildfire Bomb and Coordinated Assault burst.'},

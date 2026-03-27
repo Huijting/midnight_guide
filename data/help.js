@@ -13,10 +13,10 @@ const HELP_CONTENT = {
     tab_masterclass: 'Masterclass',
     masterclass_tabs_aria: 'Masterclass — kies rol',
     tab_community: 'Community-termen',
-    masterclass_intro: 'Korte strategie per rol — gebruik samen met de dungeon-pagina (per baas) en de Woordenlijst. Boss-specifieke mechanics staan bij elke baas; dit zijn algemene principes.',
-    sources_note: 'Seizoen 1 dungeon- en baasbeschrijvingen in deze app zijn waar mogelijk gecontroleerd tegen Icy Veins, Wowhead en Method.gg — zie ook de bronnen onderaan de Tank-gids (M+).',
+    masterclass_intro: 'Korte strategie per rol — gebruik samen met de dungeon-pagina (per boss) en de Woordenlijst. Boss-specifieke mechanics staan bij elke boss; dit zijn algemene principes.',
+    sources_note: 'Seizoen 1 dungeon- en bossbeschrijvingen in deze app zijn waar mogelijk gecontroleerd tegen Icy Veins, Wowhead en Method.gg — zie ook de bronnen onderaan de Tank-gids (M+).',
     sections: [
-      { icon:'⚔',  title:'Dungeons',         text:`Kies een dungeon uit de lijst. Per baas zie je drie rolkaarten: 🛡 Tank, 💊 Healer, ⚔ DPS. Tik op een icoon om die tips te tonen — gekleurde randen benadrukken tankbusters (blauw), dispel/groepsschade (groen/paars) en kicks/prioriteit (rood).\n\nRoute en trash: gebruik het tabblad Routeplanner — Kaart & route en (M+) Tank-gids met LoS, percent en interrupt-prio.` },
+      { icon:'⚔',  title:'Dungeons',         text:`Kies een dungeon uit de lijst. Per boss zie je drie rolkaarten: 🛡 Tank, 💊 Healer, ⚔ DPS. Tik op een icoon om die tips te tonen — gekleurde randen benadrukken tankbusters (blauw), dispel/groepsschade (groen/paars) en kicks/prioriteit (rood).\n\nRoute en trash: gebruik het tabblad Routeplanner — Kaart & route en (M+) Tank-gids met LoS, percent en interrupt-prio.` },
       { icon:'🔨', title:'Professies',        text:`Kies een professie. Je ziet tabbladen voor Trainer, Specs, Items, Orders, 📋 KP Gids en 🗺️ KP Bronnen. De KP Gids legt uit hoe je je specialisatiepunten het beste besteedt.` },
       { icon:'🏰', title:'Raids', text:`Season 1 heeft 3 raids: The Dreamrift (1 boss — opent 17 mrt), The Voidspire (6 bosses — opent 17 mrt) en March on Quel'Danas (2 bosses — opent 31 mrt). De Voidspire en Dreamrift zijn nu volledig uitgewerkt met boss-tactieken per rol. March on Quel'Danas bevat het omni-tier token (Chiming Void Curio) en de Ashes of Belo'ren phoenixmount op Mythic.` },
       { icon:'📅', title:'Weekly Checklist',  text:`Alles wat je elke week kunt doen. Tik op een taak om hem af te vinken. Weet je niet waar je moet beginnen? Tik op ⚡ Wat doe ik eerst? — dan zie je de 3 makkelijkste open taken. De lijst reset elke woensdag automatisch.\n\n📦 Bountiful Delves: dagelijks max. 4 sleutels en Great Vault-vakjes (1/4–4/4) zijn account-breed — elke rol deelt dezelfde voortgang. Markeer ze op de 💎 Delves-tab (zelfde vakjes als hier waar van toepassing).` },
@@ -32,7 +32,7 @@ const HELP_CONTENT = {
     masterclass: {
       tank: {
         title: '🛡️ Tank',
-        body: `**Route & positionering** — Houd de routekaart en Tank-gids naast elkaar: trek casters met **LoS**, plan **percent/count** zodat je niet te weinig of te veel trash doet, en gebruik **snap-points** waar de route dat aangeeft voor strakke packs.\n\n**Tank Busters** — Grote baas- of add-stomps (blauw gemarkeerd in tips): plan **active mitigation** of een sterke defensive vóór de cast; communiceer met je healer.\n\n**LoS & pulls** — Breek zicht om ranged naar jou te laten bewegen; let op dat de groep niet onverwacht in frontals staat.\n\n**Percent / Count** — Vul de dungeon-meter gecontroleerd; bij twijfel vergelijk met de trash-tabel onder Route.`
+        body: `**Route & positionering** — Houd de routekaart en Tank-gids naast elkaar: trek casters met **LoS**, plan **percent/count** zodat je niet te weinig of te veel trash doet, en gebruik **snap-points** waar de route dat aangeeft voor strakke packs.\n\n**Tank Busters** — Grote boss- of add-stomps (blauw gemarkeerd in tips): plan **active mitigation** of een sterke defensive vóór de cast; communiceer met je healer.\n\n**LoS & pulls** — Breek zicht om ranged naar jou te laten bewegen; let op dat de groep niet onverwacht in frontals staat.\n\n**Percent / Count** — Vul de dungeon-meter gecontroleerd; bij twijfel vergelijk met de trash-tabel onder Route.`
       },
       heal: {
         title: '💊 Healer',
@@ -40,7 +40,7 @@ const HELP_CONTENT = {
       },
       dps: {
         title: '⚔️ DPS',
-        body: `**Burst windows** — Bloodlust en boss-kwetsbaarheid (zie tips): align cooldowns; verspil geen grote CDs vlak vóór movement of immune-fasen.\n\n**Kick rotation** — Rode accenten in tips: vaste interrupt-rotatie op gevaarlijke casts; mis je een kick op een wipe-mechanic, spreek het direct af.\n\n**Mechanics > parse** — Adds, shields en soak-vakjes gaan voor damage op de baas tenzij de tactiek anders zegt; dood eerst wat de groep doodmaakt.`
+        body: `**Burst windows** — Bloodlust en boss-kwetsbaarheid (zie tips): align cooldowns; verspil geen grote CDs vlak vóór movement of immune-fasen.\n\n**Kick rotation** — Rode accenten in tips: vaste interrupt-rotatie op gevaarlijke casts; mis je een kick op een wipe-mechanic, spreek het direct af.\n\n**Mechanics > parse** — Adds, shields en soak-vakjes gaan voor damage op de boss tenzij de tactiek anders zegt; dood eerst wat de groep doodmaakt.`
       }
     },
     community_title: '📚 Community-termen (Woordenlijst)',

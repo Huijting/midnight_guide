@@ -3,7 +3,7 @@ const SPEC_PROTECTION_PALADIN = {
   id:'protection_paladin', icon:'🛡️', class:'Paladin',
   spec:{nl:'Protection',en:'Protection'},
   role:'tank', armor:'Plate',
-  weapon:{nl:'Eénhandig wapen + schild',en:'One-hand weapon + shield'},
+  weapon:{nl:'One-hand weapon + shield',en:'One-hand weapon + shield'},
   resource:'Mana + Holy Power',
   patch:'1.0', color:'#F48CBA',
   summary:{nl:'Protection Paladin is de sterkste plate-tank. Bouwt Holy Power op voor Shield of the Righteous — een krachtig absorb shield. Uitstekende cooldowns en party utility.',en:'Protection Paladin is the strongest plate tank. Builds Holy Power for Shield of the Righteous — a powerful absorb shield. Excellent cooldowns and party utility.'},

@@ -3,7 +3,7 @@ const SPEC_WINDWALKER_MONK = {
   id:'windwalker_monk', icon:'🌪️', class:'Monk',
   spec:{nl:'Windwalker',en:'Windwalker'},
   role:'melee', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens',en:'Two one-hand weapons'},
+  weapon:{nl:'Two one-hand weapons',en:'Two one-hand weapons'},
   resource:'Energy + Chi',
   patch:'1.0', color:'#00FF98',
   summary:{
@@ -153,7 +153,7 @@ const SPEC_WINDWALKER_MONK = {
       {icon:'🌪️',title:'Storm, Earth and Fire = burst kern',text:'SEF splitst jou in 3 kopieën die alle aanvallen dupliceren. Activeer het altijd samen met Strike of the Windlord en Fists of Fury — dan doet elke geest ook die aanvallen. Nooit los gebruiken.'},
       {icon:'🥊',title:'Fists of Fury nooit onderbreken',text:'Fists of Fury is een 4-seconden kanaal en doet enorme schade. Zorg dat je veilig staat voor je het gebruikt — bewegen annuleert het. Plan het dus voor mechanics.'},
       {icon:'⚡',title:'Chi niet laten overvloeien',text:'Je maximum Chi is 5. Tiger Palm genereert Chi — stop ermee als je al 4 hebt. Overflowing Chi is verloren schade. Dump altijd eerst via Blackout Kick.'},
-      {icon:'🌀',title:'Transcendence voor mechanics',text:'Zet je Transcendence Spirit altijd op een veilige plek buiten de baas. Bij een mechanic die je moet vermijden: teleporteer terug naar Spirit. Gratis escape zonder DPS verlies.'},
+      {icon:'🌀',title:'Transcendence voor mechanics',text:'Zet je Transcendence Spirit altijd op een veilige plek buiten de boss. Bij een mechanic die je moet vermijden: teleporteer terug naar Spirit. Gratis escape zonder DPS verlies.'},
       {icon:'🎯',title:'Touch of Death = execute',text:'Touch of Death doet enorme schade onder 15% HP van de boss. Bewaar het voor execute fase — het is je grootste single-hit aanval en heeft slechts 2 min CD.'},
     ],
     en:[

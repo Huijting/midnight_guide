@@ -7,7 +7,7 @@ const SPEC_ARMS_WARRIOR = {
   spec:   { nl: 'Arms', en: 'Arms'},
   role:   'melee',
   armor:  'Plate',
-  weapon: { nl: 'Tweehandig zwaard/bijl/staf', en: 'Two-handed sword/axe/polearm'},
+  weapon: { nl: 'Two-handed sword/axe/polearm', en: 'Two-handed sword/axe/polearm'},
   resource: 'Rage',
   patch: '1.0',
   color: '#C79C6E',

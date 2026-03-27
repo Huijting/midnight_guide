@@ -3,7 +3,7 @@ const SPEC_BLOOD_DK = {
   id:'blood_dk', icon:'🩸', class:'Death Knight',
   spec:{nl:'Blood',en:'Blood'},
   role:'tank', armor:'Plate',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
+  weapon:{nl:'Two-hand weapon',en:'Two-hand weapon'},
   resource:'Runes + Runic Power',
   patch:'1.0', color:'#C41E3A',
 

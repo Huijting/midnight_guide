@@ -7,7 +7,7 @@ const SPEC_AFFLICTION_WARLOCK = {
   spec:   { nl: 'Affliction', en: 'Affliction'},
   role:   'dps',
   armor:  'Cloth',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
+  weapon: { nl: 'Staff or one-hand + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Soul Shards',
   patch: '1.0',
   color: '#8788EE',

@@ -262,7 +262,7 @@ const UI = {
     season_sub:   "DUNGEONS — SEIZOEN 1",
     eyebrow:      "World of Warcraft: Midnight — Seizoen 1",
     guide:        "Gids",
-    hero_sub:     "Kies je dungeon — bazen, rollen & routeplanner",
+    hero_sub:     "Kies je dungeon — bosses, rollen & routeplanner",
     s1_section:   "⚔ Seizoen 1 Mythic+",
     norm_section: "📖 Alleen Normal",
     badge_mplus:  "⚔ SEIZOEN 1 M+",
@@ -277,15 +277,15 @@ const UI = {
     glossary_section_tank:"🛡️ Tank Termen",
     tldr_label: "🎯 Sneloverzicht",
     tab_overview: "Overzicht",
-    tab_bosses:   "Bazen",
+    tab_bosses:   "Bosses",
     tab_route:    "Routeplanner",
-    boss_label:   "BAAS",
+    boss_label:   "BOSS",
     lbl_zone:     "ZONE",
     lbl_type:     "TYPE",
     lbl_unlock:   "ONTGRENDEL",
-    lbl_bosses:   "AANTAL BAZEN",
+    lbl_bosses:   "BOSSES",
     overview_affix_title: "Actuele affixes (deze week)",
-    overview_affix_boss_title: "Affix-tips voor bazen",
+    overview_affix_boss_title: "Affix-tips voor bosses",
     tab_route_map: "Kaart & route",
     tab_route_tank: "Tank-gids",
     role_card_tank: "Tank",
@@ -298,7 +298,7 @@ const UI = {
     danger_low: "Laag",
     danger_med: "Middel",
     danger_high: "Hoog",
-    danger_boss: "Baas",
+    danger_boss: "Boss",
     danger_lethal: "Lethaal",
     danger_n1: "Gevaar 1/5",
     danger_n2: "Gevaar 2/5",
@@ -318,11 +318,11 @@ const UI = {
     kg_text:      "Bekijk en importeer uitgebreide M+-routes op Keystone.guru. Gebruik de <strong>MDT (Mythic Dungeon Tools)</strong> addon in-game om routes te importeren.",
     kg_btn:       "🗺 Open routes op Keystone.guru →",
     vr_legend_trash: "Trash pull",
-    vr_legend_boss:  "Baas",
+    vr_legend_boss:  "Boss",
     vr_legend_event: "Event/Buff",
     vr_legend_lust:  "Bloodlust",
     vr_label_trash:  "TRASH",
-    vr_label_boss:   "BAAS",
+    vr_label_boss:   "BOSS",
     vr_label_event:  "EVENT",
     vr_label_lust:   "LUST",
     norm_note:    "Geen Keystone.guru route nodig — deze dungeon zit niet in de M+ rotatie. Bovenstaande pull-volgorde is voldoende.",
@@ -345,7 +345,7 @@ const UI = {
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
-    feedback_ph: "Bijv: de tier van Inscription klopt niet, of baas X mist een mechanic...",
+    feedback_ph: "Bijv: de tier van Inscription klopt niet, of boss X mist een mechanic...",
     feedback_send: "📨 Verstuur via mail",
     feedback_gh: "🐙 Open GitHub issue",
     about_title:  "⚔ Over deze app",
@@ -719,7 +719,7 @@ function updateLandingStrings() {
       dash_kicker_dungeons: 'Mythic+ · Actuele affixes',
       dash_kicker_delves: 'Daily Bountiful',
       dash_kicker_weekly: 'Woensdag reset (EU)',
-      dash_kicker_prey: 'Huidig doelwit',
+      dash_kicker_prey: 'Current target',
       dashboard_tagline: 'Midnight · Seizoen 1',
       w_cta: 'Checklist',
     },
@@ -967,7 +967,7 @@ function goHome() {
 const FLOOR_MAP_LEGEND = `<div class="fp-legend">
   <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Ingang</div>
   <div class="fp-leg"><div class="fp-dot" style="background:#60b8ff"></div>Trash</div>
-  <div class="fp-leg"><div class="fp-dot" style="background:#ffd040"></div>Baas</div>
+  <div class="fp-leg"><div class="fp-dot" style="background:#ffd040"></div>Boss</div>
   <div class="fp-leg"><div class="fp-dot" style="background:#ff6622"></div>🔥 Lust</div>
   <div class="fp-leg"><div class="fp-dot" style="background:#40c870"></div>Event/Buff</div>
   <div class="fp-leg fp-line-demo"><svg width="26" height="10"><line x1="0" y1="5" x2="18" y2="5" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round"/><polygon points="18,2 26,5 18,8" fill="#e8c840"/></svg>Route</div>
@@ -1638,7 +1638,7 @@ function startDelveDailyCountdown() {
 }
 
 const DELVES_UI = {
-  nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Gebied', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
+  nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_json_ok:'Vandaag Bountiful EU (live data)',
     bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
     bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
@@ -2967,20 +2967,20 @@ renderKpSources = function(p) {
 // ============================================================
 const PREY_UI = {
   nl: {
-    title:'Het Prey Systeem', gettingStarted:'Aan de slag', weeklyChecklist:'Wekelijkse Strategie', rewards:'Beloningen', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
-    weeklyHunt1:'Wekelijkse Jacht #1', weeklyHunt2:'Wekelijkse Jacht #2', resetWeekly:'Reset wekelijks', targetsLabel:'Actieve prooi (vandaag)', targetsHint:'12 contracten per EU-dag (reset 07:00 Europe/Berlin) — zelfde set voor iedereen. Gesorteerd op zone; tik voor details.', location:'Locatie', fullGuide:'Volledige gids', lootTable:'Loot-tabel', craftingMaterials:'🛠️ Crafting Materialen',
+    title:'Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Klik om te kopiëren',
+    weeklyHunt1:'Weekly Hunt #1', weeklyHunt2:'Weekly Hunt #2', resetWeekly:'Reset weekly', targetsLabel:'Active Prey (today)', targetsHint:'12 contracts per EU day (reset 07:00 Europe/Berlin) — zelfde set voor iedereen. Gesorteerd op zone; tik voor details.', location:'Location', fullGuide:'Full Guide', lootTable:'Loot Table', craftingMaterials:'🛠️ Crafting materials',
     nextResetLabel:'Volgende reset', nextResetZone:'07:00 Europe/Berlin',
-    preyTodayWowhead:'Actieve prooi uit Wowhead Today in WoW.',
+    preyTodayWowhead:'Active Prey-lijst uit Wowhead Today in WoW.',
     preyTodayJson:'EU-lijst geladen (prey-today.json, dagelijks bijgewerkt).',
     preyTodayJsonComputed:' Server-computed (zelfde seed als offline) — Wowhead heeft nog geen Prey-widget.',
     preyTodayFallback:'prey-today.json niet geladen — berekende set in je browser.',
-    summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Moeilijkheid',
-    spotlightTitle:'🎯 Doelwit van de dag', spotlightCta:'Open details', dangerMeter:'Dreigingsmeter (solo)', threatLabel:'Bedreiging', killedLabel:'Deze week gedood',     targetsProgress:'Doelwitten gevangen', ilvlScale:'Prey iLvl',
-    preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · wereldbaas/apex ${P.worldBoss}`,
-    copyWayCta:'Kopieer /way', wantedLabel:'Gezocht',
+    summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
+    spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
+    preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · World Boss/apex ${P.worldBoss}`,
+    copyWayCta:'Copy /way', wantedLabel:'WANTED',
     lootFootnote: () => {
       const p = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
-      return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey-tabel, Midnight S1). Wereldbaas/apex (geen Hunt-contract): ${p.worldBoss}.`;
+      return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World Boss / apex (not a Hunt contract): ${p.worldBoss}.`;
     },
     roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol',
   },

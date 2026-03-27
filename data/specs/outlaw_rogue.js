@@ -7,7 +7,7 @@ const SPEC_OUTLAW_ROGUE = {
   spec:   { nl: 'Outlaw', en: 'Outlaw'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Eénhandig zwaard/pistool + offhand dolk', en: 'One-hand sword/pistol + offhand dagger'},
+  weapon: { nl: 'One-hand sword/pistol + offhand dagger', en: 'One-hand sword/pistol + offhand dagger'},
   resource: 'Energy + Combo Points',
   patch: '1.0',
   color: '#FFF468',

@@ -3,7 +3,7 @@ const SPEC_DEVASTATION_EVOKER = {
   id:'devastation_evoker', icon:'🔥', class:'Evoker',
   spec:{nl:'Devastation',en:'Devastation'},
   role:'dps', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
+  weapon:{nl:'Two-hand weapon',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{

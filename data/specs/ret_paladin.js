@@ -10,7 +10,7 @@ const SPEC_RET_PALADIN = {
   spec:  { nl: 'Retribution', en: 'Retribution'},
   role:  'melee',
   armor: 'Plate',
-  weapon: { nl: 'Twee-handig zwaard / knots / bijl', en: 'Two-handed sword / mace / axe'},
+  weapon: { nl: 'Two-handed sword / mace / axe', en: 'Two-handed sword / mace / axe'},
   resource: 'Holy Power (0–5)',
   patch: '12.0.1',
   color: '#f8d347',
@@ -174,7 +174,7 @@ const SPEC_RET_PALADIN = {
       { spell: 'Lay on Hands',           type: 'Noodheal',       note: 'Volledig genezen — tank reden of jezelf' },
       { spell: 'Divine Shield',          type: 'Survival',       note: 'Immune 8 sec — absolute noodsituatie' },
       { spell: 'Flash of Light',         type: 'Heal',           note: 'Kleine heal op jezelf — als je laag staat' },
-      { spell: 'Cleanse Toxins',         type: 'Dispel',         note: 'Verwijdert giften en ziektes van ally' },
+      { spell: 'Cleanse Toxins',         type: 'Dispel',         note: 'Verwijdert Poisons en Diseases van een ally' },
     ],
     en: [
       { spell: 'Hammer of Justice',      type: 'Interrupt/Stun', note: '6 sec stun — also an interrupt. Essential in M+!' },

@@ -7,7 +7,7 @@ const SPEC_HAVOC_DH = {
   spec:   { nl: 'Havoc', en: 'Havoc'},
   role:   'melee',
   armor:  'Leather',
-  weapon: { nl: 'Twee winglessen (Warglaives)', en: 'Two Warglaives'},
+  weapon: { nl: 'Two Warglaives', en: 'Two Warglaives'},
   resource: 'Fury',
   patch: '1.0',
   color: '#A330C9',
@@ -35,7 +35,7 @@ const SPEC_HAVOC_DH = {
         'Blade Dance heeft prioriteit boven Chaos Strike',
         'Demons Bite om Fury te genereren als niks procs',
         'Blur direct activeren bij grote mechanic of lage HP',
-        'Metamorphosis voor baas pull of grote AoE packs',
+        'Metamorphosis voor boss pull of grote AoE packs',
       ],
     },
     en: {
@@ -145,7 +145,7 @@ const SPEC_HAVOC_DH = {
 
   utility: {
     nl: [
-      { spell:'Imprison',      type:'CC',        note:'Immobiliseer niet-baas vijand 60 sec' },
+      { spell:'Imprison',      type:'CC',        note:'Immobiliseer non-boss vijand 60 sec' },
       { spell:'Chaos Nova',    type:'AoE Stun',  note:'Stunt alle nabije vijanden 2 sec' },
       { spell:'Fel Rush',      type:'Mobiliteit', note:'Dash 15m voorwaarts — ook gebruik als burst schade' },
       { spell:'Spectral Sight', type:'Utility',  note:'Zie door muren — handig voor stealthed mobs' },

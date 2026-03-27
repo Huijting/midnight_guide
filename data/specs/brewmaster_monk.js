@@ -3,7 +3,7 @@ const SPEC_BREWMASTER_MONK = {
   id:'brewmaster_monk', icon:'🍺', class:'Monk',
   spec:{nl:'Brewmaster',en:'Brewmaster'},
   role:'tank', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens of staaf',en:'Two one-hand weapons or staff'},
+  weapon:{nl:'Two one-hand weapons or staff',en:'Two one-hand weapons or staff'},
   resource:'Energy + Chi',
   patch:'1.0', color:'#00FF98',
   summary:{

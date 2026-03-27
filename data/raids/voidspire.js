@@ -310,7 +310,7 @@ DUNGEONS.push({
       num: 6,
       name: 'Crown of the Cosmos',
       desc: {
-        nl: 'Eindbaas: Alleria Windrunner — meerfasig gevecht met zwaartekrachtinstortingen, kosmische anomalieën en hoge burn-fasen. Elke fase combineert mechanismen van eerdere bosses. Mythic: sequentiële kick-volgorde (alleen groen gemarkeerde targets zijn interruptbaar) — één gemiste kick cascadeert naar een onvermijdelijke wipe.',
+        nl: 'Final boss: Alleria Windrunner — meerfasig gevecht met zwaartekrachtinstortingen, kosmische anomalieën en hoge burn-fasen. Elke fase combineert mechanismen van eerdere bosses. Mythic: sequentiële kick-volgorde (alleen groen gemarkeerde targets zijn interruptbaar) — één gemiste kick cascadeert naar een onvermijdelijke wipe.',
         en: 'Final boss: Alleria Windrunner — multi-stage fight with gravity collapses, cosmic anomalies, and high-intensity burn phases. Each phase combines mechanics from earlier bosses. Mythic: sequential kick order (only green-bar targets are interruptible) — one missed kick cascades into unavoidable wipe.'
       },
       tank: {
@@ -409,7 +409,7 @@ DUNGEONS.push({
         type: 'boss',
         label: { nl: '🔥 6. Crown of the Cosmos — Alleria Windrunner', en: '🔥 6. Crown of the Cosmos — Alleria Windrunner'},
         area:  { nl: 'Top van de Voidspire', en: 'Summit of the Voidspire'},
-        desc:  { nl: 'Eindbaas. Meerfasig. Gravity Collapse + anomalieën. Bewaar je grootste raidcooldown voor de finale fase. 🔥 BLOODLUST in burn-fase.',
+        desc:  { nl: 'Final boss. Meerfasig. Gravity Collapse + anomalieën. Bewaar je grootste raidcooldown voor de finale fase. 🔥 BLOODLUST in burn-fase.',
                  en: 'Final boss. Multi-stage. Gravity Collapse + anomalies. Save your biggest raid cooldown for the final phase. 🔥 BLOODLUST in burn phase.'},
       },
     ],

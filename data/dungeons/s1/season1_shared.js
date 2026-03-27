@@ -136,7 +136,7 @@ const FLOOR_MAPS = {
 <rect x="278" y="155" width="22" height="45" rx="2" fill="#131928"/>
 <!-- Boss 4 bottom FINAL -->
 <rect x="135" y="155" width="148" height="42" rx="5" fill="url(#fp_boss_magisters)" stroke="rgba(200,168,75,.85)" stroke-width="2"/>
-<text x="209" y="178" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Degentrius — Eindbaas</text>
+<text x="209" y="178" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Degentrius — Final boss</text>
 <!-- ROUTE -->
 <polyline fill="none" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9" marker-mid="url(#fp_magisters)" marker-end="url(#fp_magisters)"
   points="50,178 44,130 44,88 82,88 138,88 178,88 215,88 245,88 290,88 290,48 290,18 293,13 360,13 410,13 410,28 410,78 342,78 295,78 295,138 295,158 295,175 250,175 209,175"/>
@@ -283,7 +283,7 @@ const FLOOR_MAPS = {
 <text x="295" y="68" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.7)" text-anchor="middle">Kel'ar</text>
 <rect x="343" y="70" width="22" height="60" rx="2" fill="#131928"/>
 <rect x="245" y="125" width="120" height="45" rx="5" fill="url(#fp_boss_murder_row)" stroke="rgba(200,168,75,.85)" stroke-width="2"/>
-<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Murder Master — Eindbaas</text>
+<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Murder Master — Final boss</text>
 <polyline fill="none" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9" marker-mid="url(#fp_murder_row)" marker-end="url(#fp_murder_row)"
   points="40,86 68,86 120,82 208,82 245,71 295,71 354,71 354,128 305,148"/>
 <circle cx="40" cy="83" r="12" fill="#40c870" opacity=".2"/>
@@ -372,7 +372,7 @@ const FLOOR_MAPS = {
 <text x="295" y="68" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.7)" text-anchor="middle">Nalorakk</text>
 <rect x="343" y="70" width="22" height="60" rx="2" fill="#131928"/>
 <rect x="245" y="125" width="120" height="45" rx="5" fill="url(#fp_boss_den_of_nalorakk)" stroke="rgba(200,168,75,.85)" stroke-width="2"/>
-<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Feral King — Eindbaas</text>
+<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Feral King — Final boss</text>
 <polyline fill="none" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9" marker-mid="url(#fp_den_of_nalorakk)" marker-end="url(#fp_den_of_nalorakk)"
   points="40,86 68,86 120,82 208,82 245,71 295,71 354,71 354,128 305,148"/>
 <circle cx="40" cy="83" r="12" fill="#40c870" opacity=".2"/>
@@ -414,7 +414,7 @@ const FLOOR_MAPS = {
 <text x="295" y="68" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.7)" text-anchor="middle">Gladiator Prime</text>
 <rect x="343" y="70" width="22" height="60" rx="2" fill="#131928"/>
 <rect x="245" y="125" width="120" height="45" rx="5" fill="url(#fp_boss_voidscar_arena)" stroke="rgba(200,168,75,.85)" stroke-width="2"/>
-<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Voidscar Master — Eindbaas</text>
+<text x="305" y="150" font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="rgba(200,168,75,.8)" text-anchor="middle">Voidscar Master — Final boss</text>
 <polyline fill="none" stroke="#e8c840" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9" marker-mid="url(#fp_voidscar_arena)" marker-end="url(#fp_voidscar_arena)"
   points="40,86 68,86 120,82 208,82 245,71 295,71 354,71 354,128 305,148"/>
 <circle cx="40" cy="83" r="12" fill="#40c870" opacity=".2"/>
@@ -593,7 +593,7 @@ const SPEC_TIPS = {
     'paladin-retribution': {
       nl:["Rebuke op de vuurtoren-cast zodra je in meleebereik bent.",
           "Avenging Wrath + Wake of Ashes op de pull voor maximale burst.",
-          "Execution Sentence op de baas voor single-target funnel schade."],
+          "Execution Sentence op de boss voor single-target funnel schade."],
       en:["Rebuke on the firetower cast as soon as you are in melee range.",
           "Avenging Wrath + Wake of Ashes on pull for maximum burst.",
           "Execution Sentence on the boss for single-target funnel damage."]},
@@ -847,14 +847,14 @@ const SPEC_TIPS = {
     'hunter-beastmastery': {
       nl:["Counter Shot elke Kalis Shadowbolt cast — jouw interrupt is hier de betrouwbaarste.",
           "Misdirection naar de tank als Latch te ver wegloopt.",
-          "Bestial Wrath als beide bazen onder 30% zijn — burst ze gelijktijdig neer."],
+          "Bestial Wrath als both bosses onder 30% zijn — burst ze gelijktijdig neer."],
       en:["Counter Shot every Kalis Shadowbolt cast — your interrupt is the most reliable here.",
           "Misdirection to tank if Latch wanders too far.",
           "Bestial Wrath when both bosses drop below 30% — burst them down together."]},
     'shaman-elemental': {
       nl:["Wind Shear op Kalis's Shadowbolt — hoge prioriteit, missen is dodelijk.",
           "Purge Shadow Overload buff van Latch zo snel mogelijk.",
-          "Earthquake tussen de bazen in voor constante AoE-schade."],
+          "Earthquake tussen de bosses in voor constante AoE-schade."],
       en:["Wind Shear on Kalis's Shadowbolt — high priority, missing is lethal.",
           "Purge Shadow Overload buff from Latch as quickly as possible.",
           "Earthquake between the bosses for constant AoE damage."]}
@@ -1323,7 +1323,7 @@ const SPEC_TIPS = {
   'maisara-caverns:0:heal': {
     'druid-restoration': {
       nl:["Pre-HoT alle spelers vóór de gecombineerde aanvalsfase.",
-          "Tranquility als beide bazen tegelijk hun abilities gebruiken.",
+          "Tranquility als both bosses tegelijk hun abilities gebruiken.",
           "Cyclone op Neloax als ze onbeheersbare schade maakt."],
       en:["Pre-HoT all players before the combined attack phase.",
           "Tranquility when both bosses use abilities simultaneously.",
@@ -1369,14 +1369,14 @@ const SPEC_TIPS = {
           "Save Ancestral Protection Totem for the hardest pull — second chance at life."]}},
   'maisara-caverns:0:dps': {
     'hunter-beastmastery': {
-      nl:["Beide bazen gelijkmatig aanvallen — Hunter's Mark op de baas met meer HP.",
+      nl:["Both bosses gelijkmatig aanvallen — Hunter's Mark op de boss met meer HP.",
           "Counter Shot op Neloax haar casts.",
-          "Binding Shot om beide bazen even stil te houden voor AoE-burst."],
+          "Binding Shot om both bosses even stil te houden voor AoE-burst."],
       en:["Attack both bosses evenly — Hunter's Mark on the boss with more HP.",
           "Counter Shot on Neloax's casts.",
           "Binding Shot to briefly root both bosses for AoE burst."]},
     'shaman-elemental': {
-      nl:["Earthquake tussen de twee bazen voor maximale AoE-waarde.",
+      nl:["Earthquake tussen de two bosses voor maximale AoE-waarde.",
           "Wind Shear op Neloax — wissel af met de tank voor maximale uptime.",
           "Purge eventuele buffs van Mun'jin direct."],
       en:["Earthquake between the two bosses for maximum AoE value.",
@@ -1551,7 +1551,7 @@ const SPEC_TIPS = {
       en:["Spell Lock (via Felhunter) on the poison cast — your only interrupt.",
           "Summon Infernal + Channel Demonfire for burst on big pulls.",
           "Unending Resolve during Toxic Spew for 40% damage reduction."]}},
-  // ── MAISARA CAVERNS ── eindbaas (index 2) ──
+  // ── MAISARA CAVERNS ── final boss (index 2) ──
   'maisara-caverns:2:tank': {
     'paladin-protection': {
       nl:["Vessel of Souls heeft zware interrupt-behoefte — Divine Toll voor meerdere interrupts tegelijk.",
@@ -1855,7 +1855,7 @@ const SPEC_TIPS = {
       en:["Spell Lock (via Felhunter) on soul casts — your only interrupt.",
           "Summon Infernal + Channel Demonfire for burst on big pulls.",
           "Unending Resolve during Phase 2 for 40% damage reduction."]}},
-  // ── NEXUS-POINT XENAS ── eindbaas (index 2) ──
+  // ── NEXUS-POINT XENAS ── final boss (index 2) ──
   'nexus-point-xenas:2:tank': {
     'paladin-protection': {
       nl:["Lothravion heeft zware magische aanvallen — Blessing of Spellwarding voor immuniteit.",
@@ -1910,7 +1910,7 @@ const SPEC_TIPS = {
           "Ursol's Vortex to group the void adds for AoE kill."]}
   ,
     'paladin-holy': {
-      nl:["Aura Mastery bewaren voor Void Implosion — de zwaarste AoE van de baas.",
+      nl:["Aura Mastery bewaren voor Void Implosion — de zwaarste AoE van de boss.",
           "Divine Toll op de tank bij Void Surge voor directe HP.",
           "Blinding Light om void-adds te stoppen als ze naar de groep rennen."],
       en:["Save Aura Mastery for Void Implosion — the boss heaviest AoE.",
@@ -2171,7 +2171,7 @@ const SPEC_TIPS = {
   ,
     'demonhunter-vengeance': {
       nl:["Demon Spikes rotatie is essentieel — bleed-aanvallen stapelen snel op.",
-          "Fiery Brand op de baas bij zware blade-combo's voor 40% reductie.",
+          "Fiery Brand op de boss bij zware blade-combo's voor 40% reductie.",
           "Soul Cleave spam om Soul Fragments te consumeren en jezelf te healen."],
       en:["Demon Spikes rotation is essential — bleed attacks stack up quickly.",
           "Fiery Brand on the boss during heavy blade combos for 40% reduction.",
@@ -2276,21 +2276,21 @@ const SPEC_TIPS = {
   ,
     'demonhunter-havoc': {
       nl:["Disrupt op blade-casts — met jouw mobiliteit ben je altijd in bereik.",
-          "Fel Rush nooit door een frontal ability — positie altijd achter de baas.",
+          "Fel Rush nooit door een frontal ability — positie altijd achter de boss.",
           "Darkness plaatsen voor de groep bij zware blade-combo's."],
       en:["Disrupt on blade casts — with your mobility you are always in range.",
           "Never Fel Rush through a frontal ability — always position yourself behind the boss.",
           "Place Darkness for the group during heavy blade combos."]},
     'druid-balance': {
       nl:["Typhoon om Zaen even weg te stoten als de melee-groep moet uitwijken.",
-          "Starfall voor constante cleave-schade op de baas + adds.",
+          "Starfall voor constante cleave-schade op de boss + adds.",
           "Barkskin bij hoge bleed-stacks als persoonlijk defensief."],
       en:["Typhoon to briefly knock Zaen away if the melee group needs to move.",
           "Starfall for constant cleave damage on the boss and adds.",
           "Barkskin with high bleed stacks as personal defensive."]},
     'paladin-retribution': {
       nl:["Rebuke op blade-casts zodra je in bereik bent.",
-          "Execution Sentence op de baas voor maximale single-target schade.",
+          "Execution Sentence op de boss voor maximale single-target schade.",
           "Divine Shield als noodrem bij hoge bleed-stacks."],
       en:["Rebuke on blade casts as soon as you are in range.",
           "Execution Sentence on the boss for maximum single-target damage.",
@@ -2545,7 +2545,7 @@ const SPEC_TIPS = {
     'hunter-beastmastery': {
       nl:["Counter Shot op Light Beam — hoge prioriteit.",
           "Aspect of the Turtle bij Light Strike als je getarget wordt.",
-          "Volledig mobiel — ideale spec voor deze baas met veel beweging."],
+          "Volledig mobiel — ideale spec voor deze boss met veel beweging."],
       en:["Counter Shot on Light Beam — high priority.",
           "Aspect of the Turtle on Light Strike if you are targeted.",
           "Fully mobile — ideal spec for this high-movement boss."]},
@@ -2725,7 +2725,7 @@ const SPEC_TIPS = {
       en:["Spell Lock (via Felhunter) on the blindness cast — your only interrupt.",
           "Summon Infernal + Channel Demonfire for burst on big pulls.",
           "Unending Resolve during Blinding Flash for 40% damage reduction."]}},
-  // ── DEN OF NALORAKK ── eindbaas (index 2) ──
+  // ── DEN OF NALORAKK ── final boss (index 2) ──
   'den-of-nalorakk:2:tank': {
     'paladin-protection': {
       nl:["Nalorakk heeft Rampage — wissel Ardent Defender en Guardian of Ancient Kings af voor coverage.",
@@ -3029,7 +3029,7 @@ const SPEC_TIPS = {
       en:["Spell Lock (via Felhunter) on the roar cast — your only interrupt.",
           "Summon Infernal + Channel Demonfire for burst on big pulls.",
           "Unending Resolve during Rampage for 40% damage reduction."]}},
-  // ── VOIDSCAR ARENA ── eindbaas (index 2) ──
+  // ── VOIDSCAR ARENA ── final boss (index 2) ──
   'voidscar-arena:2:tank': {
     'paladin-protection': {
       nl:["Chaomus heeft Void Eruption — Divine Shield voor volledige immuniteit op het ergste moment.",
@@ -3084,7 +3084,7 @@ const SPEC_TIPS = {
           "Cyclone on a Void Construct if the tank loses one."]}
   ,
     'paladin-holy': {
-      nl:["Aura Mastery bij Void Eruption — de zwaarste AoE van de baas.",
+      nl:["Aura Mastery bij Void Eruption — de zwaarste AoE van de boss.",
           "Divine Toll op de tank bij Void Slam voor directe nood-HP.",
           "Blinding Light om Void Constructs te stoppen als ze niet snel genoeg sterven."],
       en:["Aura Mastery during Void Eruption — the boss heaviest AoE.",
@@ -3351,7 +3351,7 @@ const GLOSSARY = [
   },
   {
     term:{nl:"Frontal / Frontal ability",en:"Frontal / Frontal ability"},
-    def:{nl:"Een aanval die alles in een kegel vóór de baas raakt. Als DPS of healer: nooit voor de baas staan. Als tank: keer de baas weg van de groep.",
+    def:{nl:"Een aanval die alles in een kegel vóór de boss raakt. Als DPS of healer: nooit voor de boss staan. Als tank: keer de boss weg van de groep.",
          en:"An attack that hits everything in a cone in front of the boss. As DPS or healer: never stand in front of the boss. As tank: face the boss away from the group."}
   },
   {
@@ -3367,7 +3367,7 @@ const GLOSSARY = [
   },
   {
     term:{nl:"Taunt swap",en:"Taunt swap"},
-    def:{nl:"Wanneer de tank een stapelende debuff heeft, taunt de tweede tank de baas over zodat de eerste tank kan herstellen. Tanks wisselen zo af. Niet iets wat DPS of healers hoeven te doen.",
+    def:{nl:"Wanneer de tank een stapelende debuff heeft, taunt de tweede tank de boss over zodat de eerste tank kan herstellen. Tanks wisselen zo af. Niet iets wat DPS of healers hoeven te doen.",
          en:"When the tank has a stacking debuff, the second tank taunts the boss over so the first tank can recover. Tanks alternate this way. Not something DPS or healers need to worry about."}
   },
   {
@@ -3388,13 +3388,13 @@ const GLOSSARY = [
   },
   {
     term:{nl:"Adds",en:"Adds"},
-    def:{nl:"Extra vijanden die tijdens een baasgevecht spawnen. Bijna altijd: dood ze eerst voordat je verder op de baas focust. Ze heten zo omdat het toevoegingen ('additions') zijn.",
+    def:{nl:"Extra vijanden die tijdens een boss fight spawnen. Bijna altijd: dood ze eerst voordat je verder op de boss focust. Ze heten zo omdat het toevoegingen ('additions') zijn.",
          en:"Extra enemies that spawn during a boss fight. Almost always: kill them first before refocusing on the boss. They're called adds because they're additions to the fight."}
   },
   {
     category: "tank",
     term:{nl:"Tank Buster",en:"Tank Buster"},
-    def:{nl:"Een specifieke aanval van een baas die extreem veel schade doet en een grote defensive cooldown vereist.",
+    def:{nl:"Een specifieke aanval van een boss die extreem veel schade doet en een grote defensive cooldown vereist.",
          en:"A specific boss attack that deals extreme damage and requires a major defensive cooldown."}
   },
   {
@@ -3414,7 +3414,7 @@ const GLOSSARY = [
   },
   {
     term:{nl:"Burst-venster",en:"Burst window"},
-    def:{nl:"Een kort moment waarop de baas extra kwetsbaar is of jij extra schade doet. Bewaar je krachtigste offensive abilities voor dit moment — gebruik ze niet gewoon zodra ze beschikbaar zijn.",
+    def:{nl:"Een kort moment waarop de boss extra kwetsbaar is of jij extra schade doet. Bewaar je krachtigste offensive abilities voor dit moment — gebruik ze niet gewoon zodra ze beschikbaar zijn.",
          en:"A brief window when the boss is extra vulnerable or you deal extra damage. Save your most powerful offensive abilities for this moment — don't just use them as soon as they're available."}
   },
   {
@@ -3431,7 +3431,7 @@ const GLOSSARY = [
   {
     category: "tank",
     term:{nl:"Percent / Count",en:"Percent / Count"},
-    def:{nl:"De hoeveelheid trash (vijanden) die je moet doden om de dungeon-meter (voor de baas) te vullen.",
+    def:{nl:"De hoeveelheid trash (vijanden) die je moet doden om de dungeon-meter (voor de boss) te vullen.",
          en:"How much trash (enemies) you must kill to fill the dungeon progress bar before the boss."}
   },
   {

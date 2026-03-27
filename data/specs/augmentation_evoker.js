@@ -3,7 +3,7 @@ const SPEC_AUGMENTATION_EVOKER = {
   id:'augmentation_evoker', icon:'🟤', class:'Evoker',
   spec:{nl:'Augmentation',en:'Augmentation'},
   role:'dps', armor:'Mail',
-  weapon:{nl:'Tweehandig wapen',en:'Two-hand weapon'},
+  weapon:{nl:'Two-hand weapon',en:'Two-hand weapon'},
   resource:'Mana + Essence',
   patch:'1.0', color:'#33937F',
   summary:{

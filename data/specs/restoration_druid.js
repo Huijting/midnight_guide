@@ -7,7 +7,7 @@ const SPEC_RESTORATION_DRUID = {
   spec:   { nl: 'Restoration', en: 'Restoration'},
   role:   'heal',
   armor:  'Leather',
-  weapon: { nl: 'Staf of eenhandig + offhand', en: 'Staff or one-hand + offhand'},
+  weapon: { nl: 'Staff or one-hand + offhand', en: 'Staff or one-hand + offhand'},
   resource: 'Mana',
   patch: '1.0',
   color: '#FF7C0A',

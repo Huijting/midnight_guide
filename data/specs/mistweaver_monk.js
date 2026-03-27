@@ -3,7 +3,7 @@ const SPEC_MISTWEAVER_MONK = {
   id:'mistweaver_monk', icon:'🌿', class:'Monk',
   spec:{nl:'Mistweaver',en:'Mistweaver'},
   role:'heal', armor:'Leather',
-  weapon:{nl:'Staf of eenhandig + offhand',en:'Staff or one-hand + offhand'},
+  weapon:{nl:'Staff or one-hand + offhand',en:'Staff or one-hand + offhand'},
   resource:'Mana',
   patch:'1.0', color:'#00FF98',
   summary:{

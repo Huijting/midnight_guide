@@ -15,9 +15,9 @@ const SKYREACH = {
      heal:{nl:["Fan of Blades: bleed op iedereen — steady AoE healing, bleed cleanses helpen.","Gale Surge: knockback schade op de getroffen speler — spot heal.","Four Winds: als iemand een muur raakt = grote schade. Prioriteit op die speler."],en:["Fan of Blades: bleed on everyone — steady AoE healing, bleed cleanses help.","Gale Surge: knockback damage on the hit player — spot heal.","Four Winds: if someone hits a wall = large damage. Prioritize that player."]},
      dps:{nl:["Wind Chakram: projectiel gaat heen EN terug op dezelfde lijn — twee keer ontwijken.","Gale Surge: gooi wind orbs samen op één kant van het platform (overlappend) — arena vrij houden.","Four Winds: 4 muren draaien om de boss — langzaam meedraaien, nooit scherp draaien.","Fan of Blades: bleed op iedereen — gewoon DPS door."],en:["Wind Chakram: projectile goes out AND back on the same line — dodge twice.","Gale Surge: drop wind orbs together on one side of the platform (overlapping) — keep the arena clear.","Four Winds: 4 walls rotate around the boss — slowly rotate with them, never turn sharply.","Fan of Blades: bleed on everyone — just keep DPSing."]}},
     {name:"Araknath",num:2,
-     desc:{nl:"Construct bewaker van de binnenste ring. Relatief simpele baas.",en:"Construct guardian of the inner ring. Relatively simple boss."},
+     desc:{nl:"Construct bewaker van de binnenste ring. Relatively simple boss.",en:"Construct guardian of the inner ring. Relatively simple boss."},
      tank:{nl:["Keer de boss weg — Arcing Slash is een frontal cleave.","Bekkeer Energy Slash met een defensief."],en:["Face boss away — Arcing Slash is a frontal cleave.","Counter Energy Slash with a defensive."]},
-     heal:{nl:["Meest rustieve baas — herstel mana hier.","Solar Burst: korte AoE burst, klein cooldownje."],en:["Most relaxed boss — recover mana here.","Solar Burst: short AoE burst, minor cooldown."]},
+     heal:{nl:["Meest relaxed boss — herstel mana hier.","Solar Burst: korte AoE burst, klein cooldownje."],en:["Most relaxed boss — recover mana here.","Solar Burst: short AoE burst, minor cooldown."]},
      dps:{nl:["Sta nooit voor de boss — Arcing Slash is dodelijk.","Snel af — veel trash nog te pakken."],en:["Never stand in front of the boss — Arcing Slash is lethal.","Kill fast — lots of trash still to collect."]}},
     {name:"Rukhran",num:3,
      desc:{nl:"Grote Arakkoa zonnegod-vogel. Scorching Ray = beam op 3 spelers + 5s DoT. Sunbreak = Sunwing-add spawnt (doden!). Pierce Armor = tank debuff. Altijd in melee blijven — anders constant Screech.",en:"Large Arakkoa sun deity bird. Scorching Ray = beam on 3 players + 5s DoT. Sunbreak = Sunwing add spawns (kill it!). Pierce Armor = tank debuff. Always stay in melee — otherwise constant Screech."},
@@ -25,13 +25,13 @@ const SKYREACH = {
      heal:{nl:["Scorching Ray (3 spelers): beam + 5s DoT — spot heal alle 3 direct.","Sunwing-add: doet schade terwijl hij leeft — snel doden.","Burning Pursuit: als Sunwing een speler fixeert — spot heal die speler."],en:["Scorching Ray (3 players): beam + 5s DoT — spot heal all 3 immediately.","Sunwing add: deals damage while alive — kill it fast.","Burning Pursuit: if Sunwing fixates a player — spot heal that player."]},
      dps:{nl:["Sunbreak = Sunwing spawnt: DIRECT focus op de add — Burning Pursuit op een speler is gevaarlijk.","Scorching Ray: ontwijken lukt niet — defensive of cool als getarget.","Stack close bij de boss voor cleave Sunwing + Rukhran.","Pierce Armor op tank: healer let op."],en:["Sunbreak = Sunwing spawns: IMMEDIATELY focus the add — Burning Pursuit on a player is dangerous.","Scorching Ray: can't dodge — use defensive or cooldown if targeted.","Stack close to the boss for cleave Sunwing + Rukhran.","Pierce Armor on tank: healer watch out."]}},
     {name:"High Sage Viryx",num:4,
-     desc:{nl:"Eindbaas van Skyreach. Cast Down: Solar Zealot verschijnt boven een random speler en trekt hem naar de rand — DPS de Zealot dood voor hij de speler laat vallen. Solar Blast = interrupt op tank. Lens Flare = beam volgt speler, leg vuur aan de ZIJKANT.",en:"Final boss of Skyreach. Cast Down: Solar Zealot appears above a random player and drags them toward the edge — DPS the Zealot dead before it drops the player. Solar Blast = interrupt on tank. Lens Flare = beam follows player, drop fire at the SIDES."},
+     desc:{nl:"Final boss van Skyreach. Cast Down: Solar Zealot verschijnt boven een random speler en trekt hem naar de rand — DPS de Zealot dood voor hij de speler laat vallen. Solar Blast = interrupt op tank. Lens Flare = beam volgt speler, leg vuur aan de ZIJKANT.",en:"Final boss of Skyreach. Cast Down: Solar Zealot appears above a random player and drags them toward the edge — DPS the Zealot dead before it drops the player. Solar Blast = interrupt on tank. Lens Flare = beam follows player, drop fire at the SIDES."},
      tank:{nl:["Solar Blast = grote tank magic hit — interrupt elke cast.","Cast Down: ga direct switchen naar de Solar Zealot — jij ook, zelfs als hij op een DPS verschijnt.","Lens Flare op jou: kite het naar de zijkanten van het platform (niet het midden vuil leggen)."],en:["Solar Blast = large tank magic hit — interrupt every cast.","Cast Down: immediately switch to the Solar Zealot — you too, even if it appears on a DPS.","Lens Flare on you: kite it to the sides of the platform (don't dirty the middle)."]},
      heal:{nl:["Cast Down: Solar Zealot trekt speler naar rand. Heel die speler constant — de Zealot doet schade terwijl hij de speler sleurt.","Scorching Ray = beam + DoT op meerdere spelers — spot heal constant.","Shield Constructs: geven Viryx 99% DR — dood ze snel voor herstel."],en:["Cast Down: Solar Zealot drags player toward edge. Heal that player constantly — Zealot deals damage while dragging.","Scorching Ray = beam + DoT on multiple players — constant spot healing.","Shield Constructs: give Viryx 99% DR — kill them fast for recovery."]},
      dps:{nl:["Cast Down = #1 priority: Solar Zealot verschijnt boven speler — IEDEREEN focus snel. Zealot dood voor hij de speler van de rand laat vallen.","Shield Constructs: spawnen bij de ingang en geven Viryx 99% DR. Kill ze onmiddellijk.","Solar Blast op tank: interrupt rouleren.","Lens Flare: kite naar de zijkant, niet het midden."],en:["Cast Down = #1 priority: Solar Zealot appears above a player — EVERYONE focus it immediately. Zealot dead before it drops the player off the edge.","Shield Constructs: spawn near the entrance and give Viryx 99% DR. Kill immediately.","Solar Blast on tank: rotate interrupts.","Lens Flare: kite to the side, not the middle."]}}
   ],
   route:{
-    summary:{nl:"Twee vleugels — Lower Quarter en Grand Spire. Vier bazen. Lust op High Sage Viryx.",en:"Two wings — Lower Quarter and Grand Spire. Four bosses. Lust on High Sage Viryx."},
+    summary:{nl:"Twee vleugels — Lower Quarter en Grand Spire. Four bosses. Lust op High Sage Viryx.",en:"Two wings — Lower Quarter and Grand Spire. Four bosses. Lust on High Sage Viryx."},
     pulls:[
       {type:"trash",label:"Lower Quarter",area:"Lower Quarter",desc:{nl:"Begin links — pak trash richting Ranjit.",en:"Start left — collect trash toward Ranjit."},lust:false},
       {type:"boss",label:"Ranjit",area:"Lower Quarter",desc:{nl:"Loop door de opening in de Windwall.",en:"Walk through the gap in the Windwall."},lust:false},
@@ -39,7 +39,7 @@ const SKYREACH = {
       {type:"boss",label:"Araknath",area:"Grand Spire",desc:{nl:"Tank-n-spank. Keer de boss weg.",en:"Tank-n-spank. Face boss away."},lust:false},
       {type:"trash",label:"Grand Spire buitenring",area:"Grand Spire",desc:{nl:"Buitenste packs richting Rukhran.",en:"Outer packs toward Rukhran."},lust:false},
       {type:"boss",label:"Rukhran",area:"Grand Spire",desc:{nl:"Sunwing adds direct doden.",en:"Kill Sunwing adds immediately."},lust:false},
-      {type:"boss",label:"High Sage Viryx",area:"Grand Spire — Summit",desc:{nl:"Eindbaas. Nooit aan de rand. Lust hier.",en:"Final boss. Never at the edge. Lust here."},lust:true}
+      {type:"boss",label:"High Sage Viryx",area:"Grand Spire — Summit",desc:{nl:"Final boss. Nooit aan de rand. Lust hier.",en:"Final boss. Never at the edge. Lust here."},lust:true}
     ],
     lust:[{moment:"High Sage Viryx",uitleg:{nl:"Direct bij de pull voor maximale burst.",en:"Immediately on pull for maximum burst."}}],
     trash:[
@@ -59,22 +59,22 @@ const SKYREACH = {
         note: { nl: "Lower Quarter: Blood-Sage eerst — Healing Sphere interrupt. Rune of Power + Arcane Smash dodge.", en: "Lower Quarter: Blood-Sage first — interrupt Healing Sphere. Rune of Power + dodge Arcane Smash." },
         interrupts: { nl: "Healing Sphere (Blood-Sage) > Rune of Power (Arcanologist).", en: "Healing Sphere (Blood-Sage) > Rune of Power (Arcanologist)." } },
       { pullRef: 1, danger: 5, mobs: ["Ranjit"],
-        note: { nl: "Baas 1: loop door de opening in de Windwall; tank face weg van groep.", en: "Boss 1: walk through Windwall gap; face boss away." },
+        note: { nl: "Boss 1: loop door de opening in de Windwall; tank face weg van groep.", en: "Boss 1: walk through Windwall gap; face boss away." },
         interrupts: { nl: "Boss-specifieke casts — roteer met party.", en: "Boss-specific casts — rotate with group." } },
       { pullRef: 2, danger: 3, mobs: ["Life-Pact Familiar", "Skyreach Sun Talon"],
         note: { nl: "Binnenring: Life-Pact Familiar ALTIJD eerst (healt alles bij dood). Dire Screech channel.", en: "Inner ring: ALWAYS kill Life-Pact Familiar first (full heal on death). Dire Screech channel." },
         interrupts: { nl: "Dire Screech (Sun Talon) > Rushing Winds purge-bait. Familiar = kill target, geen kick.", en: "Dire Screech (Sun Talon). Familiar = kill target, not a kick." } },
       { pullRef: 3, danger: 5, mobs: ["Araknath"],
-        note: { nl: "Baas 2: Solar Construct Prototype — Energize-beam blokkeren door in de beam te staan (Icy Veins trash).", en: "Boss 2: Solar Construct — block Energize beam by standing in it (trash guide)." },
+        note: { nl: "Boss 2: Solar Construct Prototype — Energize-beam blokkeren door in de beam te staan (Icy Veins trash).", en: "Boss 2: Solar Construct — block Energize beam by standing in it (trash guide)." },
         interrupts: { nl: "Construct-casts: beam-bait > kicks op overige adds.", en: "Construct casts: beam bait > kicks on other adds." } },
       { pullRef: 4, danger: 3, mobs: ["Skyreach Defender", "Dread Raven"],
         note: { nl: "Buitenring: Focus Interrupt + Repel knockback; Raven patrol — centrum tanken.", en: "Outer ring: Focus Interrupt + Repel knockback; Raven patrol — tank in center." },
         interrupts: { nl: "Focus Interrupt (Defender) > filler.", en: "Focus Interrupt (Defender) > filler." } },
       { pullRef: 5, danger: 5, mobs: ["Rukhran"],
-        note: { nl: "Baas 3: Sunwing adds direct kill (Icy Veins).", en: "Boss 3: kill Sunwing adds immediately (Icy Veins)." },
-        interrupts: { nl: "Add-casts prioriteit — baas zelf volgens tactiek.", en: "Add casts first — boss per strategy." } },
+        note: { nl: "Boss 3: Sunwing adds direct kill (Icy Veins).", en: "Boss 3: kill Sunwing adds immediately (Icy Veins)." },
+        interrupts: { nl: "Add-casts prioriteit — boss zelf volgens tactiek.", en: "Add casts first — boss per strategy." } },
       { pullRef: 6, danger: 5, mobs: ["High Sage Viryx"],
-        note: { nl: "Eindbaas: Solar Blast op tank roteren; Shield Constructs = 99% DR — instant kill (dungeon-tips).", en: "Final boss: rotate Solar Blast interrupts; Shield Constructs = 99% DR — kill instantly." },
+        note: { nl: "Final boss: Solar Blast op tank roteren; Shield Constructs = 99% DR — instant kill (dungeon-tips).", en: "Final boss: rotate Solar Blast interrupts; Shield Constructs = 99% DR — kill instantly." },
         interrupts: { nl: "Solar Blast (tank) — vaste rotatie. Cast Down = switch naar Solar Zealot, geen kick.", en: "Solar Blast (tank) — fixed rotation. Cast Down = swap to Zealot." } }
     ]
   }

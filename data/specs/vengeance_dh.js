@@ -3,7 +3,7 @@ const SPEC_VENGEANCE_DH = {
   id:'vengeance_dh', icon:'🔱', class:'Demon Hunter',
   spec:{nl:'Vengeance',en:'Vengeance'},
   role:'tank', armor:'Leather',
-  weapon:{nl:'Twee eenhandige wapens (dual wield)',en:'Two one-handed weapons (dual wield)'},
+  weapon:{nl:'Two one-handed weapons (dual wield)',en:'Two one-handed weapons (dual wield)'},
   resource:'Fury + Pain',
   patch:'1.0', color:'#A330C9',
   summary:{
