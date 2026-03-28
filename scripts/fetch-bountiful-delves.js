@@ -30,6 +30,30 @@ const DELVE_MAP = {
 const BOUNTIFUL_ID_MARKER = '"id":"mn-bountiful-delves"';
 const TODAY_IN_WOW_SCRIPT_RE = /id="data\.wow\.todayInWow">([\s\S]*?)<\/script>/;
 
+/** Must match data/delves.js bountifulScheduleOffset + bountifulSchedule (fallback when Wowhead fails or CI is late). */
+const BOUNTIFUL_SCHEDULE_OFFSET = 0;
+const BOUNTIFUL_SCHEDULE = [
+  ['sunkiller_sanctum', 'grudge_pit', 'shadow_enclave', 'atalaman'],
+  ['parhelion_plaza', 'the_darkway', 'atalaman', 'gulf_of_memory'],
+  ['sunkiller_sanctum', 'shadowguard_point', 'torments_rise', 'shadow_enclave'],
+  ['collegiate_calamity', 'parhelion_plaza', 'twilight_crypts', 'gulf_of_memory'],
+  ['the_darkway', 'atalaman', 'grudge_pit', 'sunkiller_sanctum'],
+  ['shadowguard_point', 'torments_rise', 'shadow_enclave', 'collegiate_calamity'],
+  ['parhelion_plaza', 'twilight_crypts', 'atalaman', 'grudge_pit'],
+];
+
+function idsFromBuiltInSchedule(wowDayYmd) {
+  const parts = String(wowDayYmd).split('-').map(Number);
+  const y = parts[0];
+  const mo = parts[1] - 1;
+  const da = parts[2];
+  if (!y || mo < 0 || !da) return [];
+  const dowUtc = new Date(Date.UTC(y, mo, da)).getUTCDay();
+  const dayIx = (dowUtc + 4) % 7;
+  const row = BOUNTIFUL_SCHEDULE[(dayIx + BOUNTIFUL_SCHEDULE_OFFSET + 700) % 7];
+  return Array.isArray(row) ? row.slice(0, 4) : [];
+}
+
 async function fetchWowhead() {
   const res = await fetch('https://www.wowhead.com/', {
     headers: { 'User-Agent': 'MidnightGuide/1.0 (Bountiful Delves fetcher; EU)' },
@@ -271,6 +295,7 @@ async function main() {
   const wowDayYmd = getWowEuDayYmd();
 
   let ids = [];
+  let source = 'wowhead';
   try {
     const html = await fetchWowhead();
     ids = parseBountifulDelves(html);
@@ -279,25 +304,42 @@ async function main() {
   }
 
   if (ids.length !== 4) {
+    const schedIds = idsFromBuiltInSchedule(wowDayYmd);
+    if (schedIds.length === 4) {
+      ids = schedIds;
+      source = 'schedule';
+      console.log('Wowhead parse incomplete — using built-in weekly schedule for', wowDayYmd);
+    }
+  }
+
+  if (ids.length !== 4) {
     try {
       const existing = JSON.parse(fs.readFileSync(outPath, 'utf8'));
-      if (existing.delves && existing.delves.length === 4) {
-        console.log('Using existing data (parse failed or wrong count)');
-        process.exit(0);
+      if (existing.delves && existing.delves.length === 4 && existing.reset === wowDayYmd) {
+        ids = existing.delves;
+        source = 'existing_same_day';
+        console.log('Re-using same-day delves from existing file');
       }
     } catch (_) {}
+  }
+
+  if (ids.length !== 4) {
     ids = ['collegiate_calamity', 'sunkiller_sanctum', 'grudge_pit', 'atalaman'];
+    source = 'default';
+    console.warn('All sources failed — wrote hardcoded placeholder set');
   }
 
   const data = {
     fetched: new Date().toISOString(),
     reset: wowDayYmd,
     region: 'EU',
+    source,
     delves: ids,
-    note: 'EU Bountiful from Wowhead TIW: script#data.wow.todayInWow JSON, regionId EU, widget id mn-bountiful-delves → content.lines. WoW day = 07:00 UTC. Fallback: marker-window scrape then delves.js bountifulSchedule.',
+    note:
+      'EU Bountiful: Wowhead TIW (script#data.wow.todayInWow, regionId EU, mn-bountiful-delves → content.lines). WoW day = 07:00 UTC. If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed.',
   };
   fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
-  console.log('Wrote', outPath, ':', ids.join(', '));
+  console.log('Wrote', outPath, source, ':', ids.join(', '));
 }
 
 main().catch((err) => {

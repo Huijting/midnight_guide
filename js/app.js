@@ -341,7 +341,6 @@ const UI = {
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
     tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
-    nav_sync_badge: "GLOBAL DATA SYNC — RESET 25 MAART",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -434,7 +433,6 @@ const UI = {
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
     tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
-    nav_sync_badge: "GLOBAL DATA SYNC: MARCH 25 RESET",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -568,8 +566,7 @@ function applyUIStrings() {
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl = document.getElementById('tab-lbl-glossary');
   if (_glbl) _glbl.innerHTML = u.tab_glossary || u.lbl_glossary || (lang === 'en' ? '📖 Glossary' : '📖 Woordenlijst');
-  const _syncBadge = document.getElementById('header-sync-badge');
-  if (_syncBadge) _syncBadge.textContent = u.nav_sync_badge || '';
+  updateHeaderSyncBadge();
   t('detail-tldr-label', u.tldr_label);
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
@@ -1565,6 +1562,28 @@ function getWowDailyDateKeyUtc() {
   return n.toISOString().slice(0, 10);
 }
 
+/** Header strip: current EU WoW calendar day (07:00 UTC boundary), not a hardcoded deploy date. Tooltip = optional JSON fetch time from Delves load. */
+function updateHeaderSyncBadge() {
+  const el = document.getElementById('header-sync-badge');
+  if (!el) return;
+  const wowDay = getWowDailyDateKeyUtc();
+  const parts = wowDay.split('-').map(Number);
+  const d = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+  const locale = lang === 'en' ? 'en-GB' : 'nl-NL';
+  const dateStr = d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const isNl = lang !== 'en';
+  el.textContent = (isNl ? 'GLOBALE DATA — EU BOUNTIFUL-DAG ' : 'GLOBAL DATA — EU BOUNTIFUL DAY ') + dateStr;
+  const tip = [];
+  if (bountifulFetchResult && bountifulFetchResult.fetched) {
+    tip.push(isNl ? 'Laatste repo-fetch (bountiful-today.json): ' : 'Last repo fetch (bountiful-today.json): ');
+    tip.push(String(bountifulFetchResult.fetched));
+  }
+  if (bountifulFetchResult && bountifulFetchResult.staleJson) {
+    tip.push(isNl ? ' — JSON gold voor vorige WoW-dag; rooster-fallback.' : ' — JSON was for previous WoW day; schedule fallback.');
+  }
+  el.title = tip.length ? tip.join('') : '';
+}
+
 function getNextDailyResetUtcMs() {
   const n = new Date();
   let next = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate(), 7, 0, 0, 0);
@@ -1626,6 +1645,7 @@ function startDelveDailyCountdown() {
       delveDailyCountdownTimer = null;
       resetBountifulFetchCache();
       void buildDelvesScreen();
+      updateHeaderSyncBadge();
       return;
     }
     const h = Math.floor(diff / 3600000);
@@ -1640,6 +1660,7 @@ function startDelveDailyCountdown() {
 const DELVES_UI = {
   nl: { delves_title:'Alle Midnight Delves', delves_sub:'Overzicht van alle Delves in Midnight Season 1 met /way om er te komen.', delves_click_hint:'Klik op de Delve-naam voor korte tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Sleutel-info', loot_title:'Loot Tabel', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Kopieer /way',
     bountiful_json_ok:'Vandaag Bountiful EU (live data)',
+    bountiful_stale_json:'Bountiful: `bountiful-today.json` in de repo hoort nog bij de vorige WoW-dag (CI na 07:00 UTC kan vertragen). We tonen het ingebouwde week-rooster voor vandaag — controleer in-game of meld een issue als dit structureel afwijkt.',
     bountiful_schedule_fallback:'Bountiful: we tonen de ingebouwde week-rooster — JSON kon niet geladen worden of bevat geen 4 geldige id\'s. Status wordt bijgewerkt zodra `data/bountiful-today.json` beschikbaar is.',
     bountiful_no_ids:'Bountiful: geen lijst beschikbaar. Controleer later opnieuw of werk `data/bountiful-today.json` bij.',
     bountiful_daily_btn:'DAG. BOUNTIFUL',
@@ -1666,6 +1687,7 @@ const DELVES_UI = {
     delves_spotlight_badge:'Spotlight' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_json_ok:'Today’s Bountiful EU (live data)',
+    bountiful_stale_json:'Bountiful: repo `bountiful-today.json` is still dated to the previous WoW day (CI after 07:00 UTC can run late). Showing the built-in weekly rotation for today — verify in-game or open an issue if this is consistently wrong.',
     bountiful_schedule_fallback:'Bountiful: showing the built-in weekly rotation — JSON could not be loaded or does not contain 4 valid ids. Status will update when `data/bountiful-today.json` is available.',
     bountiful_no_ids:'Bountiful: no list available. Check back later or update `data/bountiful-today.json`.',
     bountiful_daily_btn:'DAILY BOUNTIFUL',
@@ -1693,7 +1715,15 @@ const DELVES_UI = {
 };
 
 let bountifulFetchPromise = null;
-let bountifulFetchResult = { ok: false, fromJson: false, ids: [], error: null };
+let bountifulFetchResult = {
+  ok: false,
+  fromJson: false,
+  staleJson: false,
+  ids: [],
+  error: null,
+  jsonReset: null,
+  fetched: null,
+};
 
 /** Weekday 0–6 (Sun–Sat) of the current WoW EU calendar day (reset 07:00 UTC), same boundary as getWowDailyDateKeyUtc(). */
 function getWowEuScheduleWeekday() {
@@ -1729,21 +1759,50 @@ function validateBountifulIdList(arr) {
 async function fetchBountifulDelves() {
   if (bountifulFetchPromise) return bountifulFetchPromise;
   bountifulFetchPromise = (async () => {
+    const wowDay = getWowDailyDateKeyUtc();
     try {
       const res = await fetch('data/bountiful-today.json', { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       const raw = data.delves || data.delveIds || [];
-      const ids = validateBountifulIdList(raw);
+      let ids = validateBountifulIdList(raw);
+      const jsonReset = typeof data.reset === 'string' ? data.reset.trim() : '';
+      const fetched = data.fetched != null ? String(data.fetched) : null;
+
+      if (jsonReset && jsonReset !== wowDay) {
+        const fallback = validateBountifulIdList(getBountifulScheduleFallbackIds());
+        bountifulFetchResult = {
+          ok: fallback.length === 4,
+          fromJson: false,
+          staleJson: true,
+          ids: fallback.length === 4 ? fallback : [],
+          error: Object.assign(new Error('bountiful_json_reset_mismatch'), { jsonReset, wowDay }),
+          jsonReset,
+          fetched,
+        };
+        return bountifulFetchResult;
+      }
+
       if (ids.length !== 4) throw new Error('Expected 4 valid delve ids, got ' + ids.length);
-      bountifulFetchResult = { ok: true, fromJson: true, ids, error: null };
+      bountifulFetchResult = {
+        ok: true,
+        fromJson: true,
+        staleJson: false,
+        ids,
+        error: null,
+        jsonReset: jsonReset || wowDay,
+        fetched,
+      };
     } catch (e) {
       const fallback = validateBountifulIdList(getBountifulScheduleFallbackIds());
       bountifulFetchResult = {
         ok: fallback.length === 4,
         fromJson: false,
+        staleJson: false,
         ids: fallback.length === 4 ? fallback : [],
-        error: e
+        error: e,
+        jsonReset: null,
+        fetched: null,
       };
     }
     return bountifulFetchResult;
@@ -1754,7 +1813,15 @@ async function fetchBountifulDelves() {
 /** Reset fetch (e.g. after weekly rollover) — optional call from weekly screen. */
 function resetBountifulFetchCache() {
   bountifulFetchPromise = null;
-  bountifulFetchResult = { ok: false, fromJson: false, ids: [], error: null };
+  bountifulFetchResult = {
+    ok: false,
+    fromJson: false,
+    staleJson: false,
+    ids: [],
+    error: null,
+    jsonReset: null,
+    fetched: null,
+  };
 }
 
 function getActiveBountifulDelveIds() {
@@ -1865,9 +1932,13 @@ async function buildDelvesScreen() {
 
   let statusNote = '';
   if (bountifulIds.length === 4) {
-    statusNote = bountifulFetchResult.fromJson
-      ? `<p class="delves-bountiful-status delves-bountiful-status-ok">✨ ${ui.bountiful_json_ok}</p>`
-      : `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_schedule_fallback}</p>`;
+    if (bountifulFetchResult.staleJson) {
+      statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_stale_json || ui.bountiful_schedule_fallback}</p>`;
+    } else if (bountifulFetchResult.fromJson) {
+      statusNote = `<p class="delves-bountiful-status delves-bountiful-status-ok">✨ ${ui.bountiful_json_ok}</p>`;
+    } else {
+      statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_schedule_fallback}</p>`;
+    }
   } else {
     statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_no_ids}</p>`;
   }
@@ -1974,6 +2045,7 @@ async function buildDelvesScreen() {
     contentEl.innerHTML = html;
     if (typeof $WowheadPower !== 'undefined') { ($WowheadPower.refreshLinks || $WowheadPower.refresh)(); }
     startDelveDailyCountdown();
+    updateHeaderSyncBadge();
   }
 }
 
