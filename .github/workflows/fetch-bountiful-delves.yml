@@ -23,6 +23,8 @@ jobs:
     steps:
       # v6+ draait op runner-Node 24 — vermijdt Node-20-deprecation op oudere checkout/setup-node
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v6
         with:
@@ -33,12 +35,22 @@ jobs:
 
       - name: Commit if changed
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="${{ github.ref_name }}"
           git add data/bountiful-today.json
           if git diff --staged --quiet; then
             echo "No changes"
-          else
-            git commit -m "chore: update EU Bountiful Delves from Wowhead TIW"
-            git push
+            exit 0
           fi
+          git commit -m "chore: update EU Bountiful Delves from Wowhead TIW"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "$BRANCH"
+            if git push origin "$BRANCH"; then
+              exit 0
+            fi
+            echo "Push rejected (race), retry $i/5 ..."
+            sleep $((i * 2))
+          done
+          exit 1

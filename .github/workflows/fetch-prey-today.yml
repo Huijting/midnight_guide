@@ -14,18 +14,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Update prey-today.json
         run: node scripts/fetch-prey-today.js
 
       - name: Commit if changed
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="${{ github.ref_name }}"
           git add data/prey-today.json
           if git diff --staged --quiet; then
             echo "No changes"
-          else
-            git commit -m "chore: update EU prey-today.json (Wowhead or computed)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: update EU prey-today.json (Wowhead or computed)"
+          # Andere workflow (b.v. Bountiful) kan intussen main hebben gepusht — rebase vóór push
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "$BRANCH"
+            if git push origin "$BRANCH"; then
+              exit 0
+            fi
+            echo "Push rejected (race), retry $i/5 ..."
+            sleep $((i * 2))
+          done
+          exit 1
