@@ -1410,7 +1410,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', async function() {
   try {
     document.body.classList.add('mode-home');
-    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_5_0';
+    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_14';
     if (typeof renderBanner === 'function') renderBanner();
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');

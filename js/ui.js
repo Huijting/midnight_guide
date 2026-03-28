@@ -510,7 +510,8 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
-        <li><strong>v3.6.13</strong> — Delves (mobile): Restored Coffer Key row shows a visible key fallback and a fixed icon size so Wowhead does not leave a large empty blue box; cache bump for header sync badge.</li>
+        <li><strong>v3.6.14</strong> — Delves: dynamic EU Bountiful-day strip (no hardcoded reset date); if <code>bountiful-today.json</code> is still for yesterday, the app uses the built-in weekly rotation and shows a clear warning. Mobile: Restored Coffer Key block uses a visible key + fixed tile so Wowhead cannot leave a huge empty area. Background: GitHub Actions for Prey/Bountiful use a single sync/rebase/push script (Node 24, <code>checkout@v6</code>). Cache/service worker bump.</li>
+        <li><strong>v3.6.13</strong> — Delves (mobile): key row fallback + fixed icon size; cache bump for header sync badge.</li>
         <li><strong>v3.6.12</strong> — Delves tab: <em>The Darkway</em> has a <strong>Spotlight</strong> card and callout (example of tips verified with Method.gg). This changelog block sits above the README.</li>
         <li><strong>v3.6.11</strong> — All Midnight delve quick tips and full guides were audited against Method.gg / Icy Veins (Mar 2026).</li>
       </ul>
@@ -522,7 +523,8 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
-      <li><strong>v3.6.13</strong> — Delves (mobiel): sleutelrij toont een zichtbare 🔑-fallback en vaste icoonmaat (geen groot leeg vlak als Wowhead traag laadt); cache-bump voor de sync-banner.</li>
+      <li><strong>v3.6.14</strong> — Delves: dynamische EU Bountiful-dag in de header (geen vaste reset-datum); als de repo-json nog bij gisteren hoort, tonen we het weekrooster met duidelijke waarschuwing. Mobiel: zichtbare 🔑 + vaste tegel bij sleutel-uitleg (geen leeg Wowhead-vlak). Achtergrond: GitHub Actions voor Prey/Bountiful met één sync/rebase/push-script (Node 24, checkout v6). Nieuwe cache/service worker.</li>
+      <li><strong>v3.6.13</strong> — Delves (mobiel): sleutelrij fallback + vaste icoonmaat; cache-bump sync-banner.</li>
       <li><strong>v3.6.12</strong> — Delves-tab: <em>The Darkway</em> heeft een <strong>Spotlight</strong>-kaart + toelichting (voorbeeld van tips geverifieerd met Method.gg). Dit changelog-blok staat boven de README.</li>
       <li><strong>v3.6.11</strong> — Alle Midnight delve-kaarten doorgelicht tegen Method.gg / Icy Veins (mrt 2026).</li>
     </ul>
@@ -2399,15 +2401,15 @@ function renderSpecTab(s, tid, ui, fromOverview) {
 
 const BANNER_UI = {
   nl: {
-    title: '🚀 Seizoen 1: LIVE! Check de nieuwe Pro-Guides en Prey Tracker.',
-    body: '',
+    title: '📦 Update v3.6.14 — Delves, sync-banner & mobiel',
+    body: 'Betere weergave van de EU Bountiful-dag, slimmere fallback als live-data even achterloopt, mobiele sleutel-sectie zonder leeg vlak, en stabielere achtergrond-updates (GitHub). Details: <strong>Over deze app</strong> → changelog.',
     tip_desktop: '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     tip_mobile:  '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     btn: '→ Naar de site',
   },
   en: {
-    title: '🚀 Season 1: LIVE! Check the new Pro-Guides and Prey Tracker.',
-    body: '',
+    title: '📦 Update v3.6.14 — Delves, sync banner & mobile',
+    body: 'Clearer EU Bountiful day in the header, smarter fallback when JSON is a day behind, mobile Delves key row without a blank Wowhead box, and more reliable data updates on GitHub. Details: <strong>About this app</strong> → changelog.',
     tip_desktop: '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     tip_mobile:  '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     btn: '→ Go to the site',
@@ -2415,7 +2417,7 @@ const BANNER_UI = {
 };
 
 /** Moet gelijk zijn aan de check in app.js (DOMContentLoaded) — nieuwe banner = nieuwe key. */
-window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v1_5_0';
+window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v3_6_14';
 
 function renderBanner() {
   const b = BANNER_UI[lang] || BANNER_UI.nl;
@@ -2436,7 +2438,7 @@ function setBannerLang(l) {
 
 function closeBanner() {
   document.getElementById('dev-banner').classList.remove('open');
-  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_5_0', '1');
+  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_14', '1');
 }
 
 function copyMacro(el) {
@@ -2672,5 +2674,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.13').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.14').catch(() => {});
 }

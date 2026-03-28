@@ -2,6 +2,8 @@
 
 **v1.1** — Een tweetalige (NL/EN) Progressive Web App voor World of Warcraft: Midnight.
 
+**App-build v3.6.14** (mrt 2026) — Delves: dynamische EU Bountiful-dag in de header; fallback + waarschuwing als dagelijkse JSON achterloopt; mobiele sleutel-sectie zonder leeg Wowhead-vlak; betrouwbaardere GitHub Actions voor `prey-today` / `bountiful-today`. Zie in de app: **Over deze app** → changelog en (eenmalig) de update-banner.
+
 **Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
 ---
