@@ -1,5 +1,9 @@
 name: Fetch Bountiful Delves
 
+# Oude action-versies (o.a. checkout@v4) draaien intern op Node 20 — dit dwingt Node 24 voor JS-actions.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
@@ -20,11 +24,22 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.ref_name }}
     steps:
       # v6+ draait op runner-Node 24 — vermijdt Node-20-deprecation op oudere checkout/setup-node
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync latest default branch
+        run: |
+          set -euo pipefail
+          B="${BRANCH:-${GITHUB_REF_NAME:-main}}"
+          git fetch origin "$B" --prune
+          git checkout "$B"
+          git pull --ff-only origin "$B" || git pull --rebase origin "$B"
 
       - uses: actions/setup-node@v6
         with:
@@ -38,7 +53,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          BRANCH="${{ github.ref_name }}"
+          B="${BRANCH:-${GITHUB_REF_NAME:-main}}"
           git add data/bountiful-today.json
           if git diff --staged --quiet; then
             echo "No changes"
@@ -46,8 +61,8 @@ jobs:
           fi
           git commit -m "chore: update EU Bountiful Delves from Wowhead TIW"
           for i in 1 2 3 4 5; do
-            git pull --rebase origin "$BRANCH"
-            if git push origin "$BRANCH"; then
+            git pull --rebase origin "$B"
+            if git push origin "$B"; then
               exit 0
             fi
             echo "Push rejected (race), retry $i/5 ..."

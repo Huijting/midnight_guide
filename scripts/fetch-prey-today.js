@@ -146,7 +146,8 @@ async function fetchWowheadHome() {
 
 function computeTodayIds(dayKey) {
   const pool = parsePreyPoolIdsFromTargetsFile();
-  if (pool.length <= ACTIVE_PREY_COUNT) return pool.slice();
+  if (pool.length < ACTIVE_PREY_COUNT) return [];
+  if (pool.length === ACTIVE_PREY_COUNT) return shuffleWithSeed(pool, SEED_PREFIX + dayKey);
   return shuffleWithSeed(pool, SEED_PREFIX + dayKey).slice(0, ACTIVE_PREY_COUNT);
 }
 
@@ -190,8 +191,8 @@ async function main() {
         process.exit(0);
       }
     } catch (_) {}
-    console.error('prey-today: expected', ACTIVE_PREY_COUNT, 'targets, got', ids.length);
-    process.exit(1);
+    console.error('prey-today: expected', ACTIVE_PREY_COUNT, 'targets, got', ids.length, '— CI exits 0, file unchanged');
+    process.exit(0);
   }
 
   const data = {
@@ -208,11 +209,19 @@ async function main() {
         : 'Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey.',
   };
 
-  fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Failed to write', outPath, e.message);
+    process.exit(1);
+    return;
+  }
   console.log('Wrote', outPath, source, ids.join(', '));
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
