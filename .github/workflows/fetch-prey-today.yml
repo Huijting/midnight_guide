@@ -1,5 +1,5 @@
 # CI v3 — sync → node → pull/rebase → commit → push in één script (geen push zonder rebase).
-# Op GitHub moet dit bestand op main staan; oude runs met alleen checkout@v4 + git push blijven falen tot je pusht.
+# (Oude setups gebruikten checkout@v4 zonder rebase; dit bestand gebruikt bewust checkout@v6 + ci-regenerate-json-push.sh.)
 name: Fetch Prey today (EU)
 
 env:
