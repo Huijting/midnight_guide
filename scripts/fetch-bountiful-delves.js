@@ -338,11 +338,21 @@ async function main() {
     note:
       'EU Bountiful: Wowhead TIW (script#data.wow.todayInWow, regionId EU, mn-bountiful-delves → content.lines). WoW day = 07:00 UTC. If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed.',
   };
-  fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Failed to write', outPath, e.message);
+    process.exit(1);
+    return;
+  }
   console.log('Wrote', outPath, source, ':', ids.join(', '));
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main()
+  .then(() => {
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
