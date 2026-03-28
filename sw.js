@@ -28,6 +28,7 @@ const PRECACHE = [
   '/images/raids/march-queldanas-bg.svg',
   '/data/preyData.js',
   '/data/preyTargets.js',
+  '/data/prey-day-ensure.js',
   '/images/dungeons/windrunner-spire-bg.svg',
   '/images/dungeons/magisters-terrace-bg.svg',
   '/images/dungeons/maisara-caverns-bg.svg',

@@ -3149,11 +3149,39 @@ async function fetchPreyToday() {
   return preyTodayFetchPromise;
 }
 
-function getFinalActivePreyTargetIds() {
-  if (preyTodayFetchResult.ids && preyTodayFetchResult.ids.length === ACTIVE_PREY_TODAY_COUNT) {
-    return preyTodayFetchResult.ids.slice();
+/** When in-game EU board ≠ computed seed: force these pool ids into today's active 12 (see data/prey-day-ensure.js). */
+function applyPreyDayEnsureIds(ids) {
+  if (!ids || ids.length !== ACTIVE_PREY_TODAY_COUNT) return ids;
+  const dayKey = typeof getPreyRotationDayKey === 'function' ? getPreyRotationDayKey() : '';
+  const rawMap = typeof PREY_DAY_ENSURE_IDS !== 'undefined' ? PREY_DAY_ENSURE_IDS : null;
+  const ensure = rawMap && dayKey ? rawMap[dayKey] : null;
+  if (!ensure || !Array.isArray(ensure) || ensure.length === 0) return ids;
+  const pool = (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []).map(t => t && t.id).filter(Boolean);
+  const poolSet = new Set(pool);
+  const want = ensure.filter(id => poolSet.has(id));
+  if (!want.length) return ids;
+  const wantSet = new Set(want);
+  const out = ids.slice();
+  const set = new Set(out);
+  for (const id of want) {
+    if (set.has(id)) continue;
+    const dropIdx = out.findIndex(x => !wantSet.has(x));
+    if (dropIdx < 0) continue;
+    set.delete(out[dropIdx]);
+    out[dropIdx] = id;
+    set.add(id);
   }
-  return typeof getActivePreyTargetIdsForToday === 'function' ? getActivePreyTargetIdsForToday() : [];
+  return out;
+}
+
+function getFinalActivePreyTargetIds() {
+  let ids;
+  if (preyTodayFetchResult.ids && preyTodayFetchResult.ids.length === ACTIVE_PREY_TODAY_COUNT) {
+    ids = preyTodayFetchResult.ids.slice();
+  } else {
+    ids = typeof getActivePreyTargetIdsForToday === 'function' ? getActivePreyTargetIdsForToday() : [];
+  }
+  return applyPreyDayEnsureIds(ids);
 }
 
 function getFinalActivePreyTargets() {

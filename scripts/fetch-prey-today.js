@@ -15,6 +15,32 @@ const ACTIVE_PREY_COUNT = 12;
 const SEED_PREFIX = 'midnight-prey-v1-';
 const RESET_HOUR_BERLIN = 7;
 
+/** Must match data/prey-day-ensure.js (PREY_DAY_ENSURE_IDS). Only applied when source is computed. */
+const DAY_ENSURE_PREY_MAP = {
+  '2026-03-28': ['thornspeaker_edgath'],
+};
+
+function applyDayEnsurePreyIds(ids, dayKey, pool) {
+  if (!ids || ids.length !== ACTIVE_PREY_COUNT) return ids;
+  const ensure = DAY_ENSURE_PREY_MAP[dayKey];
+  if (!ensure || !ensure.length) return ids;
+  const poolSet = new Set(pool);
+  const want = ensure.filter((id) => poolSet.has(id));
+  if (!want.length) return ids;
+  const wantSet = new Set(want);
+  const out = ids.slice();
+  const set = new Set(out);
+  for (const id of want) {
+    if (set.has(id)) continue;
+    const dropIdx = out.findIndex((x) => !wantSet.has(x));
+    if (dropIdx < 0) continue;
+    set.delete(out[dropIdx]);
+    out[dropIdx] = id;
+    set.add(id);
+  }
+  return out;
+}
+
 function berlinPartsAtMs(ms) {
   const d = new Date(ms);
   const f = new Intl.DateTimeFormat('en', {
@@ -178,11 +204,14 @@ async function main() {
 
   const pool = parsePreyPoolIdsFromTargetsFile();
   const poolSet = new Set(pool);
-  const invalid = ids.filter((id) => !poolSet.has(id));
+  let invalid = ids.filter((id) => !poolSet.has(id));
   if (invalid.length) {
     console.warn('Invalid ids from Wowhead, falling back to computed:', invalid.join(', '));
     ids = computeTodayIds(dayKey);
     source = 'computed';
+  }
+  if (source === 'computed') {
+    ids = applyDayEnsurePreyIds(ids, dayKey, pool);
   }
 
   if (ids.length !== ACTIVE_PREY_COUNT) {

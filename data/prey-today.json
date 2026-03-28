@@ -17,7 +17,7 @@
     "imperator_enigmalia",
     "senior_tinker_oszwold",
     "mordril_shadowfell",
-    "executor_kaenius"
+    "thornspeaker_edgath"
   ],
-  "note": "Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey."
+  "note": "Computed + curator ensure for 2026-03-28 (Thornspeaker Edgath on EU board per in-game check; replaces pure seed). Same seed as app fallback when no ensure. See data/prey-day-ensure.js. Wowhead daily Prey TIW not wired yet."
 }
