@@ -1,6 +1,6 @@
 {
-  "fetched": "2026-03-27T19:32:31.392Z",
-  "reset": "2026-03-27",
+  "fetched": "2026-03-28T07:48:15.041Z",
+  "reset": "2026-03-28",
   "region": "EU",
   "source": "wowhead",
   "delves": [
@@ -9,5 +9,10 @@
     "shadow_enclave",
     "atalaman"
   ],
+
   "note": "EU Bountiful: Wowhead TIW (regionId EU, mn-bountiful-delves). WoW day = 07:00 UTC. Clients ignore delves when reset !== current WoW day and use delves.js bountifulSchedule until CI updates this file."
 }
+=======
+  "note": "EU Bountiful from Wowhead TIW: script#data.wow.todayInWow JSON, regionId EU, widget id mn-bountiful-delves → content.lines. WoW day = 07:00 UTC. Fallback: marker-window scrape then delves.js bountifulSchedule."
+}
+
