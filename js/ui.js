@@ -510,6 +510,7 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v3.6.13</strong> — Delves (mobile): Restored Coffer Key row shows a visible key fallback and a fixed icon size so Wowhead does not leave a large empty blue box; cache bump for header sync badge.</li>
         <li><strong>v3.6.12</strong> — Delves tab: <em>The Darkway</em> has a <strong>Spotlight</strong> card and callout (example of tips verified with Method.gg). This changelog block sits above the README.</li>
         <li><strong>v3.6.11</strong> — All Midnight delve quick tips and full guides were audited against Method.gg / Icy Veins (Mar 2026).</li>
       </ul>
@@ -521,6 +522,7 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v3.6.13</strong> — Delves (mobiel): sleutelrij toont een zichtbare 🔑-fallback en vaste icoonmaat (geen groot leeg vlak als Wowhead traag laadt); cache-bump voor de sync-banner.</li>
       <li><strong>v3.6.12</strong> — Delves-tab: <em>The Darkway</em> heeft een <strong>Spotlight</strong>-kaart + toelichting (voorbeeld van tips geverifieerd met Method.gg). Dit changelog-blok staat boven de README.</li>
       <li><strong>v3.6.11</strong> — Alle Midnight delve-kaarten doorgelicht tegen Method.gg / Icy Veins (mrt 2026).</li>
     </ul>
@@ -2670,5 +2672,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.12').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.13').catch(() => {});
 }

@@ -2000,9 +2000,9 @@ async function buildDelvesScreen() {
   });
   html += `</div></div>`;
 
-  // Key Info — opvallend kader (Restored Coffer Key = echte WoW-icoon)
+  // Key Info — Wowhead kan op mobiel traag uitblijven; 🔑-fallback voorkomt een leeg blauw vlak
   html += `<div class="delves-key-info">
-    <a href="https://www.wowhead.com/item=254269" class="wh-link delves-key-info-icon" data-wh-rename="false" target="_blank" title="Restored Coffer Key">&nbsp;</a>
+    <a href="https://www.wowhead.com/item=254269" class="wh-link delves-key-info-icon" data-wh-rename="false" target="_blank" rel="noopener noreferrer" title="Restored Coffer Key"><span class="delves-key-info-fallback" aria-hidden="true">🔑</span></a>
     <div class="delves-key-info-content">
       <strong>${ui.key_info_title}:</strong> ${keyInfo.replace(/Bountiful Coffer/g, '<a href="https://www.wowhead.com/item=254250" class="wh-link" data-wh-rename="false" target="_blank">Bountiful Coffer</a>')}
     </div>

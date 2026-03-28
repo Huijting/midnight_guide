@@ -1994,8 +1994,14 @@
   .delves-delve-link:hover{color:var(--gold2);text-decoration:underline}
   .delves-zone-cell{font-size:13px;color:var(--muted)}
   .delves-key-info{background:linear-gradient(135deg,rgba(79,142,247,.12),rgba(31,111,235,.08));border:2px solid rgba(79,142,247,.5);border-radius:12px;padding:16px 20px;margin:24px 0;display:flex;align-items:flex-start;gap:14px}
-  .delves-key-info-icon{font-size:28px;flex-shrink:0}
-  .delves-key-info-content{font-size:15px;color:var(--text);line-height:1.55}
+  /* Vaste tegel: zonder dit groeit een lege Wowhead-placeholder op mobiel tot een groot leeg vlak */
+  .delves-key-info-icon{
+    flex:0 0 48px;width:48px;min-width:48px;max-width:48px;height:48px;max-height:48px;overflow:hidden;
+    display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-size:1.75rem;line-height:1;text-decoration:none;box-sizing:border-box;
+  }
+  .delves-key-info-fallback{display:block;font-style:normal;pointer-events:none}
+  .delves-key-info-content{flex:1;min-width:0;font-size:15px;color:var(--text);line-height:1.55}
   .delves-key-info-content strong{color:var(--accent)}
   .delves-loot-table-wrap{overflow-x:auto;border:1px solid rgba(240,180,41,.4);border-radius:12px;background:var(--deep)}
   .delves-loot-table-wrap--glass{
@@ -2028,7 +2034,6 @@
   body.light .delves-loot-row--farm-tier td{color:#6b5410}
   .delves-icon-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);text-decoration:none}
   .delves-icon-link:hover{color:var(--gold);text-decoration:underline}
-  .delves-key-info .delves-key-info-icon{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;flex-shrink:0}
   .delves-card-icon a,.delves-hero-icon,.delves-tab-icon{display:inline-flex;align-items:center}
   .delves-card-icon .wh-link,.landing-card-icon .wh-link{font-size:0}
   .delves-ilvl-gold{color:var(--gold) !important;font-weight:700}
