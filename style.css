@@ -2080,6 +2080,22 @@
   .prey-targets-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--deep)}
   .prey-targets-table{width:100%;border-collapse:collapse}
   .prey-targets-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+  .prey-targets-table thead th{padding:10px 14px;border-bottom:2px solid var(--border);font-size:12px;font-weight:800;color:var(--gold);text-align:left;text-transform:uppercase;letter-spacing:.04em;background:rgba(0,0,0,.25)}
+  body.light .prey-targets-table thead th{background:rgba(0,0,0,.06)}
+  .prey-roster-col-status{min-width:120px;white-space:nowrap}
+  .prey-roster-col-threat{width:1%;white-space:nowrap;text-align:center;font-weight:700;color:var(--muted)}
+  .prey-roster-row--active td:first-child{box-shadow:inset 3px 0 0 #4ade80}
+  .prey-roster-name-btn{background:none;border:none;padding:0;margin:0;font:inherit;font-weight:700;text-align:left;cursor:pointer}
+  .prey-roster-name-btn.prey-target-link{text-decoration:none}
+  .prey-roster-name-btn.prey-target-link:hover{text-decoration:underline}
+  .prey-roster-name-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+  .prey-status-pill{display:inline-block;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;line-height:1.25}
+  .prey-status-pill--active{background:rgba(74,222,128,.18);color:#86efac;border:1px solid rgba(74,222,128,.45)}
+  .prey-status-pill--inactive{background:rgba(0,0,0,.2);color:var(--muted);border:1px solid var(--border)}
+  .prey-status-pill--unknown{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.35)}
+  body.light .prey-status-pill--active{color:#15803d;border-color:rgba(21,128,61,.4);background:rgba(74,222,128,.2)}
+  body.light .prey-status-pill--inactive{color:var(--muted)}
+  body.light .prey-status-pill--unknown{color:#b45309}
   .prey-target-link{font-weight:700;color:var(--gold);cursor:pointer}
   .prey-target-link:hover{color:var(--gold2);text-decoration:underline}
   .prey-weekly-box{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 28px}

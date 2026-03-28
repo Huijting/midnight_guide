@@ -1,8 +1,8 @@
-// Prey Targets — WoW: Midnight Season 1 (14 contracts)
+// Prey Targets — WoW: Midnight Season 1 (16 contracts in pool; 12 active per EU day)
 // difficulty_rating 1–5 = solo threat (Danger Meter). Contract loot: Icy Veins Prey table — Normal 220 / Hard 233 / Nightmare 246 (PREY_ILVL). World boss / apex Mythic 289 (not contracts).
 // NPC names verified vs Wowhead Prey quests & achievements + Icy Veins Prey Rewards (housing bust themes). Many achievements are “defeat A or B”; we show one name per row and note the alternate in location/summary where relevant.
 // Achievement pairs (Wowhead): Sadistic Shamans — The Talon of Jan'alaii / The Wing of Akil'zon | Ethereal Assassins — Phaseblade Talasha / Nexus-Edge Hadim | Fallen Farstriders — Ranger Swiftglade / Lieutenant Blazewing | Mad Magisters — Magister Sunbreaker / Magistrix Emberlash | Breaking the Blade — Grothoz, the Burning Shadow / Dengzag, the Darkened Blaze | Insane Inventors — Senior Tinker Ozwold / L-N-0R the Recycler | etc.
-// coords: TomTom /way lines. uiMapID: Silvermoon #2393, Eversong #2395, Zul'Aman #2437, Harandar #2413, Voidstorm #2405, Quel'Danas #16215 (zie data/delves.js). Atal'Aman / Ghostlands: waar geen bevestigde uiMapID in bron staat, zonenaam of note — check in-game bij twijfel.
+// coords: TomTom /way lines. uiMapID: Silvermoon #2393, Eversong #2395, Zul'Aman #2437, Harandar #2413, Voidstorm #2405, Quel'Danas #16215 (zie data/delves.js). Masters' Perch: zonenaam + in-game Prey-pin als geen uiMapID in bron. Atal'Aman / Ghostlands: waar geen bevestigde uiMapID in bron staat, zonenaam of note — check in-game bij twijfel.
 // Unlock NPC (authoritative in guides): Astalor ~ /way #2393 55.0 63.4 — see data/preyData.js (Wowhead/Icy Veins style sources when available).
 // rewardType: optional { en, nl } line for bounty cards (e.g. weapon / trinket); else UI falls back to gear + ilvl band.
 // crafting_drops: optional drops shown in Prey detail modal (profession + used_for tooltips).
@@ -275,6 +275,76 @@ const PREY_TARGETS = [
     },
     loot: { normal: 220, hard: 233, nightmare: 246 },
     rewardType: { en: '💍 Trinket & rings', nl: '💍 Trinket & rings' }
+  },
+  {
+    id: 'thornspeaker_edgath',
+    crafting_drops: [],
+    name: { en: 'Thornspeaker Edgath', nl: 'Thornspeaker Edgath' },
+    zone: { en: "Masters' Perch", nl: "Masters' Perch" },
+    location: {
+      en: "Masters' Perch — Prey: Thornspeaker Edgath (Wowhead); Nightmare counts toward achievement Prey: A Thorn in the Side",
+      nl: "Masters' Perch — Prey: Thornspeaker Edgath (Wowhead); Nightmare telt mee voor achievement Prey: A Thorn in the Side"
+    },
+    zoneOrder: 3,
+    difficulty_rating: 3,
+    coords: {
+      en: "/way Masters' Perch — follow the in-game Prey objective marker",
+      nl: "/way Masters' Perch — volg de in-game Prey-doelwit-marker"
+    },
+    pro_tip: {
+      tank: { en: 'Druid-style melee: keep him faced away; rotate mitigation for burst after add or thorn phases.', nl: 'Druid-stijl melee: face weg van de groep; rotate mitigation na add- of thorn-fases.' },
+      heal: { en: 'Expect ramping nature/physical pressure; dispel harmful magic quickly; keep mobile for ground telegraphs.', nl: 'Natuur/fysieke burst-ramp; dispel schadelijke magic snel; blijf mobiel voor grond-telegraphs.' },
+      dps: { en: 'Kick dangerous channeled casts; avoid stacking in thorn patches or beast swarms.', nl: 'Kick gevaarlijke channels; niet stacken in thorn-vakken of bij beast-swarmen.' }
+    },
+    summary: {
+      en: ['Corrupted druid Prey target (Wowhead: Prey: Thornspeaker Edgath).', 'Interrupt key casts; dodge ground effects.', "Use map pin — Masters' Perch."],
+      nl: ['Corrupte druid Prey (Wowhead: Prey: Thornspeaker Edgath).', 'Interrupt key casts; ontwijk grond-effecten.', "Gebruik kaart-pin — Masters' Perch."]
+    },
+    abilities: {
+      en: 'Nature/thorns druid (Prey contract). Interrupt and dodge — see in-game abilities.',
+      nl: 'Natuur/doornen-druid (Prey-contract). Interrupt en ontwijk — zie abilities in-game.'
+    },
+    fullGuide: {
+      en: '<h4>Source</h4><p><strong>Prey: Thornspeaker Edgath</strong> (Wowhead quest line). Nightmare completion contributes to <strong>Prey: A Thorn in the Side</strong> (housing effigy reward per Wowhead achievement).</p><h4>Finding him</h4><p>Spawn is in <strong>Masters\' Perch</strong> — use your Prey tracker and the world map objective icon.</p><h4>General tips</h4><p>Interrupt dangerous channels; move out of ground effects; save defensives for burst windows.</p>',
+      nl: '<h4>Bron</h4><p><strong>Prey: Thornspeaker Edgath</strong> (Wowhead questlijn). Nightmare telt mee voor <strong>Prey: A Thorn in the Side</strong> (housing-effigy beloning volgens Wowhead achievement).</p><h4>Vinden</h4><p>Spawn in <strong>Masters\' Perch</strong> — gebruik je Prey-tracker en het doelwit op de wereldkaart.</p><h4>Algemeen</h4><p>Interrupt gevaarlijke channels; stap uit grond-effecten; defensives voor burstvensters.</p>'
+    },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
+    rewardType: { en: '🎁 Gear', nl: '🎁 Gear' }
+  },
+  {
+    id: 'lamyne_of_the_undercroft',
+    crafting_drops: [],
+    name: { en: 'Lamyne of the Undercroft', nl: 'Lamyne of the Undercroft' },
+    zone: { en: 'Midnight outdoor', nl: 'Midnight (outdoor)' },
+    location: {
+      en: 'Wowhead NPC: can appear in Eversong Woods, Harandar, Voidstorm, or Zul\'Aman — follow your Prey contract map pin.',
+      nl: 'Wowhead NPC: kan in Eversong Woods, Harandar, Voidstorm of Zul\'Aman staan — volg je Prey-contract op de kaart.'
+    },
+    zoneOrder: 2,
+    difficulty_rating: 3,
+    coords: {
+      en: '/way — follow the in-game Prey objective marker (spawn zone varies per Wowhead)',
+      nl: '/way — volg de in-game Prey-marker (spawnzone wisselt volgens Wowhead)'
+    },
+    pro_tip: {
+      tank: { en: 'Treat as a mobile elite: face away from allies; save mitigation for sudden add or burst overlaps.', nl: 'Mobiele elite: face weg van allies; mitigation voor add- of burst-overlap.' },
+      heal: { en: 'Expect movement-heavy pressure; keep HoTs rolling and dispel harmful magic when applicable.', nl: 'Veel beweging; HoTs; dispel schadelijke magic waar nodig.' },
+      dps: { en: 'Kick long channels; do not tunnel through dangerous ground effects.', nl: 'Kick lange channels; niet tunnelen door gevaarlijke grond-effecten.' }
+    },
+    summary: {
+      en: ['Wowhead: Prey: Lamyne of the Undercroft (Normal / Nightmare).', 'Fill Anguish in your selected hunt zone; then use the tracker pin.', 'Spawn region can differ — trust the objective marker.'],
+      nl: ['Wowhead: Prey: Lamyne of the Undercroft (Normal / Nightmare).', 'Vul Anguish in je gekozen jaagzone; gebruik daarna de tracker-pin.', 'Spawn kan wisselen — vertrouw de doelwit-marker.']
+    },
+    abilities: {
+      en: 'Prey contract target — use in-game combat log / dungeon journal for exact abilities.',
+      nl: 'Prey-contract — zie in-game combat log / DJ voor exacte abilities.'
+    },
+    fullGuide: {
+      en: '<h4>Source</h4><p><strong>Prey: Lamyne of the Undercroft</strong> — Normal and Nightmare versions on Wowhead (e.g. quest IDs 91110 / 91241). Progress the hunt via Prey activities, World Quests, rares, and treasures in your selected zone (Wowhead quest text).</p><h4>Flavor (Wowhead)</h4><p>Quest framing mentions aggressive plants in the realm—use that as a thematic hint, not a full mechanic list.</p><h4>Finding Lamyne</h4><p>Wowhead lists multiple possible outdoor regions for this NPC; your <strong>Prey objective</strong> on the world map is authoritative for your current contract.</p><h4>General tips</h4><p>Interrupt dangerous channels; move from telegraphs; adjust defensives when the fight speeds up.</p>',
+      nl: '<h4>Bron</h4><p><strong>Prey: Lamyne of the Undercroft</strong> — Normal- en Nightmare-versies op Wowhead (o.a. quest-ID\'s 91110 / 91241). Vul je jaagbalk met Prey-activiteiten, world quests, rares en schatten in de gekozen zone (Wowhead questtekst).</p><h4>Flavor (Wowhead)</h4><p>Questtekst noemt agressieve planten in het rijk — thematische hint, geen volledige mechaniekenlijst.</p><h4>Vinden</h4><p>Wowhead noemt meerdere mogelijke outdoor-regio\'s; je <strong>Prey-doelwit</strong> op de wereldkaart is leidend voor je huidige contract.</p><h4>Algemeen</h4><p>Interrupt gevaarlijke channels; ontwijk telegraphs; pas defensives aan als het tempo oploopt.</p>'
+    },
+    loot: { normal: 220, hard: 233, nightmare: 246 },
+    rewardType: { en: '🎁 Gear', nl: '🎁 Gear' }
   },
   {
     id: 'magister_sunbreaker',

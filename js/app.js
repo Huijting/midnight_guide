@@ -3055,6 +3055,15 @@ const PREY_UI = {
       return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World Boss / apex (not a Hunt contract): ${p.worldBoss}.`;
     },
     roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Tactiek per rol',
+    allPreyRosterTitle:'Alle bekende Prey-doelwitten',
+    allPreyRosterHint:'EU: elke dag zijn 12 contracten actief uit de pool. «Actief» = vandaag in die set (zelfde voor iedereen; reset 07:00 Europe/Berlin). Tik op een naam voor details.',
+    preyRosterColTarget:'Doelwit',
+    preyRosterColZone:'Zone',
+    preyRosterColStatus:'Vandaag actief',
+    preyRosterColThreat:'Dreiging',
+    preyStatusActiveShort:'Actief vandaag',
+    preyStatusInactiveShort:'Niet in rotatie',
+    preyStatusUnknown:'Onbekend',
   },
   en: {
     title:'The Prey System', gettingStarted:'Getting Started', weeklyChecklist:'Weekly Strategy', rewards:'Rewards', nightmareAffixes:'Nightmare Affixes', tooltipCopy:'Click to copy',
@@ -3073,6 +3082,15 @@ const PREY_UI = {
       return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World boss / apex (not a Hunt contract): ${p.worldBoss}.`;
     },
     roleTank:'🛡️ Tank', roleHeal:'💊 Healer', roleDps:'⚔️ DPS', roleTips:'Role tactics',
+    allPreyRosterTitle:'All known Prey targets',
+    allPreyRosterHint:'EU: 12 contracts from the pool are active each day. “Active today” means in today’s set (same for everyone; reset 07:00 Europe/Berlin). Tap a name for details.',
+    preyRosterColTarget:'Target',
+    preyRosterColZone:'Zone',
+    preyRosterColStatus:'Active today',
+    preyRosterColThreat:'Threat',
+    preyStatusActiveShort:'Active today',
+    preyStatusInactiveShort:'Not in rotation',
+    preyStatusUnknown:'Unknown',
   }
 };
 
@@ -3319,6 +3337,7 @@ function getPreyCardBgUrl(t) {
   else if (z.includes('eversong')) rel = 'images/dungeons/windrunner-spire-bg.svg';
   else if (z.includes("zul'")) rel = 'images/dungeons/den-of-nalorakk-bg.svg';
   else if (z.includes('voidstorm')) rel = 'images/raids/voidspire-bg.svg';
+  else if (z.includes('masters') && z.includes('perch')) rel = 'images/raids/voidspire-bg.svg';
   else if (z.includes('quel') || z.includes('danas')) rel = 'images/raids/march-queldanas-bg.svg';
   else if (z.includes('ghost')) rel = 'images/dungeons/murder-row-bg.svg';
   return preyMediaUrl(withVer(rel));
@@ -3459,6 +3478,47 @@ async function renderPreyGuide() {
     <p class="prey-targets-progress-sub">${pk.done} / ${pk.total} — ${ui.killedLabel}. <span class="prey-ilvl-note">${typeof ui.preyProgressIlvlLine === 'function' ? ui.preyProgressIlvlLine(P) : ''}</span></p>
     <div class="prey-danger-track prey-danger-track-global"><div class="prey-danger-fill prey-danger-fill-global" style="width:${pk.total ? Math.round(pk.done / pk.total * 100) : 0}%"></div></div>
   </div>`;
+
+  const allPrey = (typeof PREY_TARGETS !== 'undefined' ? PREY_TARGETS : []).slice();
+  allPrey.sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || String(a.id || '').localeCompare(String(b.id || '')));
+  if (allPrey.length > 0) {
+    const rosterActiveIds = getFinalActivePreyTargetIds();
+    const rosterStatusOk = rosterActiveIds.length === ACTIVE_PREY_TODAY_COUNT;
+    const rosterActiveSet = new Set(rosterActiveIds);
+    const esc = typeof escapeHtmlText === 'function' ? escapeHtmlText : s => String(s == null ? '' : s).replace(/</g, '&lt;');
+    html += `<div class="prey-section prey-all-roster-section">
+    <h3 class="prey-section-title">${ui.allPreyRosterTitle}</h3>
+    <p class="prey-targets-hint">${ui.allPreyRosterHint}</p>
+    <div class="prey-targets-table-wrap">
+    <table class="prey-targets-table prey-roster-table">
+      <thead><tr>
+        <th scope="col">${ui.preyRosterColTarget}</th>
+        <th scope="col">${ui.preyRosterColZone}</th>
+        <th scope="col" class="prey-roster-col-status">${ui.preyRosterColStatus}</th>
+        <th scope="col" class="prey-roster-col-threat">${ui.preyRosterColThreat}</th>
+      </tr></thead><tbody>`;
+    allPrey.forEach(t => {
+      const nm = (t.name && t.name[l]) || t.name?.en || t.id || '—';
+      const zn = (t.zone && t.zone[l]) || t.zone?.en || '—';
+      const dr = Math.min(5, Math.max(1, Number(t.difficulty_rating) || 3));
+      let statusCell;
+      if (!rosterStatusOk) {
+        statusCell = `<span class="prey-status-pill prey-status-pill--unknown">${ui.preyStatusUnknown}</span>`;
+      } else if (rosterActiveSet.has(t.id)) {
+        statusCell = `<span class="prey-status-pill prey-status-pill--active">${ui.preyStatusActiveShort}</span>`;
+      } else {
+        statusCell = `<span class="prey-status-pill prey-status-pill--inactive">${ui.preyStatusInactiveShort}</span>`;
+      }
+      const rowCls = rosterStatusOk && rosterActiveSet.has(t.id) ? ' prey-roster-row--active' : '';
+      html += `<tr class="prey-roster-row${rowCls}">
+      <td><button type="button" class="prey-target-link prey-roster-name-btn" onclick="openPreyDetail('${t.id}')">${esc(nm)}</button></td>
+      <td>${esc(zn)}</td>
+      <td class="prey-roster-col-status">${statusCell}</td>
+      <td class="prey-roster-col-threat">${dr}/5</td>
+    </tr>`;
+    });
+    html += `</tbody></table></div></div>`;
+  }
 
   if (spot) {
     const sn = (spot.name && spot.name[l]) || spot.name?.en || spot.id;
