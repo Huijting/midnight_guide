@@ -1,23 +1,23 @@
 {
-  "fetched": "2026-03-28T17:30:00.000Z",
-  "reset": "2026-03-28",
+  "fetched": "2026-03-29T07:58:04.132Z",
+  "reset": "2026-03-29",
   "region": "EU",
   "resetTimezone": "Europe/Berlin",
   "resetHourLocal": 7,
   "source": "computed",
   "targets": [
-    "grothoz_the_burning_shadow",
-    "lamyne_of_the_undercroft",
     "wing_of_akilzon",
-    "praetor_singularis",
-    "ranger_swiftglade",
-    "neydra_the_starving",
-    "talon_of_janalaii",
-    "consul_nebulor",
-    "imperator_enigmalia",
-    "senior_tinker_oszwold",
     "mordril_shadowfell",
+    "deliah_gloomsong",
+    "executor_kaenius",
+    "grothoz_the_burning_shadow",
+    "senior_tinker_oszwold",
+    "consul_nebulor",
+    "nexus_edge_hadim",
+    "magister_sunbreaker",
+    "imperator_enigmalia",
+    "praetor_singularis",
     "thornspeaker_edgath"
   ],
-  "note": "Computed + curator ensure for 2026-03-28 (Thornspeaker Edgath on EU board per in-game check; replaces pure seed). Same seed as app fallback when no ensure. See data/prey-day-ensure.js. Wowhead daily Prey TIW not wired yet."
+  "note": "Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey."
 }
