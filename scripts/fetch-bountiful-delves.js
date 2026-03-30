@@ -89,7 +89,16 @@ function linesFromBountifulWidget(widget) {
   return lines;
 }
 
-/** Prefer structured JSON: only objects under top-level regionId EU (avoids US / other TIW lines). */
+function isEuTiwRoot(x) {
+  if (!x || typeof x !== 'object') return false;
+  const rid = x.regionId ?? x.regionID ?? x.region;
+  return String(rid || '').toUpperCase() === 'EU';
+}
+
+/**
+ * Prefer structured JSON: only objects under top-level EU TIW root (avoids US lines).
+ * Wowhead has used different casings / keys for region — accept EU, eu, regionId, regionID.
+ */
 function parseEuBountifulFromTodayInWowJson(html) {
   const m = html.match(TODAY_IN_WOW_SCRIPT_RE);
   if (!m) return [];
@@ -103,7 +112,7 @@ function parseEuBountifulFromTodayInWowJson(html) {
 
   if (!Array.isArray(data)) return [];
 
-  const euRoots = data.filter((x) => x && x.regionId === 'EU');
+  const euRoots = data.filter(isEuTiwRoot);
   if (euRoots.length === 0) return [];
 
   function findMnBountifulDelves(node) {
@@ -141,6 +150,36 @@ function parseEuBountifulFromTodayInWowJson(html) {
     if (ids.length === 4) return ids;
   }
 
+  return [];
+}
+
+/**
+ * Second EU-only path: stringify each EU root and parse zone:delve pairs from that substring only.
+ * Avoids scanning the full homepage HTML where the last mn-bountiful-delves window can be US data.
+ */
+function parseEuBountifulFromStringifiedEuRoots(html) {
+  const m = html.match(TODAY_IN_WOW_SCRIPT_RE);
+  if (!m) return [];
+
+  let data;
+  try {
+    data = JSON.parse(m[1].trim());
+  } catch (_) {
+    return [];
+  }
+
+  if (!Array.isArray(data)) return [];
+
+  const euRoots = data.filter(isEuTiwRoot);
+  for (const root of euRoots) {
+    try {
+      const str = JSON.stringify(root);
+      const ids = parseBountifulDelvesFromChunk(str);
+      if (ids.length === 4) return ids;
+    } catch (_) {
+      /* continue */
+    }
+  }
   return [];
 }
 
@@ -210,7 +249,15 @@ function extractEuBountifulChunk(html) {
   return seg.slice(linesStart, linesStart + 10000);
 }
 
+/**
+ * EU-safe Wowhead parse order:
+ * 1) Walk EU TIW JSON for mn-bountiful-delves widget (structured).
+ * 2) Stringify EU roots only and extract lines (still no US HTML).
+ * 3) Optional legacy full-HTML scan — OFF by default (set BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE=1 to enable).
+ *    The old "marker window" path can return the US rotation when both regions exist on the page.
+ */
 function parseBountifulDelves(html) {
+  const allowLegacy = String(process.env.BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE || '').trim() === '1';
   let ids = parseEuBountifulFromTodayInWowJson(html);
   let chunk = '';
 
@@ -218,8 +265,16 @@ function parseBountifulDelves(html) {
     return ids;
   }
 
-  ids = parseBountifulDelvesFromMarkerWindows(html);
+  ids = parseEuBountifulFromStringifiedEuRoots(html);
+  if (ids.length === 4) {
+    return ids;
+  }
 
+  if (!allowLegacy) {
+    return [];
+  }
+
+  ids = parseBountifulDelvesFromMarkerWindows(html);
   if (ids.length === 4) {
     return ids;
   }
@@ -335,16 +390,20 @@ async function main() {
     region: 'EU',
     source,
     delves: ids,
+    parseMode:
+      String(process.env.BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE || '').trim() === '1'
+        ? 'eu_json+legacy_html'
+        : 'eu_json_only',
     note:
-      'EU Bountiful: Wowhead TIW (script#data.wow.todayInWow, regionId EU, mn-bountiful-delves → content.lines). WoW day = 07:00 UTC. If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed.',
+      'EU Bountiful: primary = Today in WoW JSON under EU region only (mn-bountiful-delves lines), plus stringify-EU-root fallback. Full-page US/EU marker scan is OFF by default (can mix US rotation); set env BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE=1 to re-enable legacy parsing. WoW day = 07:00 UTC (matches app). If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed.',
   };
   try {
     const prev = JSON.parse(fs.readFileSync(outPath, 'utf8'));
     const unchanged =
       prev &&
       prev.reset === data.reset &&
-      prev.source === data.source &&
-      JSON.stringify(prev.delves) === JSON.stringify(data.delves);
+      JSON.stringify(prev.delves) === JSON.stringify(data.delves) &&
+      prev.parseMode === data.parseMode;
     if (unchanged) {
       console.log('bountiful-today.json unchanged (same reset/source/delves), skip write');
       process.exit(0);

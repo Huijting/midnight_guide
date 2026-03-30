@@ -19,10 +19,17 @@ sync_with_origin() {
 echo ">>> Branch: $B"
 sync_with_origin
 
+# Always run both fetchers: prey must never block bountiful (set -e would skip bountiful on prey exit ≠ 0).
+set +e
 echo ">>> Running scripts/fetch-prey-today.js"
 node scripts/fetch-prey-today.js
+PREY_EC=$?
 echo ">>> Running scripts/fetch-bountiful-delves.js"
 node scripts/fetch-bountiful-delves.js
+BOUNT_EC=$?
+set -e
+if [ "$PREY_EC" -ne 0 ]; then echo ">>> WARNING: fetch-prey-today.js exited $PREY_EC (bountiful still ran)"; fi
+if [ "$BOUNT_EC" -ne 0 ]; then echo ">>> WARNING: fetch-bountiful-delves.js exited $BOUNT_EC"; fi
 
 git add "$PREY_JSON" "$BOUNT_JSON"
 if git diff --staged --quiet; then

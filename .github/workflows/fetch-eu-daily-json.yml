@@ -1,5 +1,6 @@
 # EU daily data: prey-today.json + bountiful-today.json in one sync → run both fetchers → single commit/push.
 # Schedule matches the old Bountiful workflow (retries when Wowhead TIW is slow); Prey fetcher skips write when unchanged.
+# Bountiful: EU-only Wowhead JSON by default (see scripts/fetch-bountiful-delves.js). Optional env BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE=1 re-enables full-page scan if Wowhead changes shape (can mis-pick US rotation).
 name: Fetch EU daily JSON (Prey + Bountiful)
 
 env:
