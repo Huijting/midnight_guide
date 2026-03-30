@@ -10,7 +10,10 @@ DUNGEONS.push({
   name: "March on Quel'Danas",
   zone: { nl: "Quel'Danas — Isle of Quel'Danas", en: "Quel'Danas — Isle of Quel'Danas"},
   time: null,
-  level: { nl: 'Seizoen 1 Raid — Normal/Heroic/Mythic (opent 31 mrt 2026)', en: 'Season 1 Raid — Normal/Heroic/Mythic (opens Mar 31, 2026)'},
+  level: {
+    nl: 'Seizoen 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (eindbazen tot 285). Opent 31 maart 2026.',
+    en: 'Season 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (final bosses up to 285). Opens March 31, 2026.',
+  },
   bosses_short: ["Belo'ren, Child of Al'ar", 'Midnight Falls'],
 
   lore: {
@@ -30,9 +33,14 @@ DUNGEONS.push({
                en: 'Both encounters are mechanically demanding and require near-perfect execution. There is no easy first boss. Come prepared.'},
     },
     {
-      title: { nl: '🎁 Omni-tier token', en: '🎁 Omni-tier token'},
-      text:  { nl: "Midnight Falls dropt de Chiming Void Curio: de enige gerichte tier-token van het seizoen. Je kiest zelf welk Tier 35-slot je wilt — geen RNG.",
-               en: "Midnight Falls drops the Chiming Void Curio: the only targeted tier token of the season. You choose which Tier 35 slot you want — no RNG."},
+      title: { nl: '📊 Item levels (S1)', en: '📊 Item levels (S1)'},
+      text:  { nl: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Eindbazen / apex tot 285.',
+               en: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Final / apex bosses up to 285.'},
+    },
+    {
+      title: { nl: '🎁 Omni-tier token — Chiming Void Curio', en: '🎁 Omni-tier token — Chiming Void Curio'},
+      text:  { nl: "Midnight Falls (L'ura) dropt de Chiming Void Curio: het Omni-tier token van Seizoen 1 — kies je Tier 35-slot, geen RNG.",
+               en: "Midnight Falls (L'ura) drops the Chiming Void Curio: the Season 1 omni-tier token — pick your Tier 35 slot, no RNG."},
     },
     {
       title: { nl: '🐦 Mount: Ashes of Belo\'ren (Mythic)', en: "🐦 Mount: Ashes of Belo'ren (Mythic)"},

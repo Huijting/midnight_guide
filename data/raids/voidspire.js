@@ -10,7 +10,10 @@ DUNGEONS.push({
   name: 'The Voidspire',
   zone: { nl: 'Voidstorm', en: 'Voidstorm'},
   time: null,
-  level: { nl: 'Seizoen 1 Raid — Normal/Heroic/Mythic', en: 'Season 1 Raid — Normal/Heroic/Mythic'},
+  level: {
+    nl: 'Seizoen 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (eindbazen tot 285)',
+    en: 'Season 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (final bosses up to 285)',
+  },
   bosses_short: ['Imperator Averzian', 'Vorasius', 'Fallen-King Salhadaar', 'Vaelgor & Ezzorak', 'Lightblinded Vanguard', 'Crown of the Cosmos'],
 
   lore: {
@@ -23,6 +26,11 @@ DUNGEONS.push({
       title: { nl: '📍 Ingang', en: '📍 Entrance'},
       text:  { nl: '/way #2405 45.5 64.4 — midden in de Voidstorm zone. Zoek de buitenste platform aan de basis van de spits.',
                en: '/way #2405 45.5 64.4 — center of the Voidstorm zone. Find the outer platform at the base of the spire.'},
+    },
+    {
+      title: { nl: '📊 Item levels (S1)', en: '📊 Item levels (S1)'},
+      text:  { nl: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Eindbazen / apex tot 285.',
+               en: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Final / apex bosses up to 285.'},
     },
     {
       title: { nl: '⚠️ Kernthema: positionering boven DPS', en: '⚠️ Core theme: positioning over DPS'},
@@ -293,14 +301,14 @@ DUNGEONS.push({
           '<strong>Sacred Shield = interrupt-killer</strong> — Breek het schild direct. Prioriteit boven alles. Interrupts zijn nutteloos zolang het schild actief is.',
           '<strong>Target-swaps</strong> — Wijs per cyclus een kill-volgorde toe. Geen enkel target verwaarlozen — ze versterken elkaar bij vol energie.',
           '<strong>Tyr\'s Wrath</strong> — Kan gepurged worden (Shamans/Priests/Hunters). Altijd purgen direct als het verschijnt.',
-          '<strong>Lichtblinde krachten</strong> — Elke boss heeft unieke aura\'s die damage doen bij overlap. Houd afstand van overlappende zones.',
+          '<strong>Lightblinded Vanguard</strong> — Elke boss heeft unieke aura\'s die schade doen bij overlap. Houd afstand van overlappende zones.',
           '<strong>Offensieve cooldowns</strong> — Gebruik ze op de boss met het hoogste HP-percentage. Niet verknoeien op een boss die bijna dood is.',
         ],
         en: [
           '<strong>Sacred Shield = interrupt killer</strong> — Break the shield immediately. Priority above everything. Interrupts are useless while the shield is active.',
           '<strong>Target swaps</strong> — Assign a kill order each cycle. Never neglect any target — they empower each other at full energy.',
           '<strong>Tyr\'s Wrath</strong> — Can be purged (Shamans/Priests/Hunters). Always purge immediately when it appears.',
-          '<strong>Lightblinded forces</strong> — Each boss has unique auras dealing damage on overlap. Keep distance from overlapping zones.',
+          '<strong>Lightblinded Vanguard</strong> — Each boss has unique auras dealing damage on overlap. Keep distance from overlapping zones.',
           '<strong>Offensive cooldowns</strong> — Use them on the boss with the highest HP percentage. Do not waste them on a boss nearly dead.',
         ]
       },
@@ -343,18 +351,18 @@ DUNGEONS.push({
       },
       dps: {
         nl: [
-          '<strong>Alleria\'s Gaze</strong> — Markeert 3 spelers voor een dodelijke kegel. Wijs soakgroepen toe en spreid ze. Niemand wordt twee keer gesoakt per cyclus.',
-          '<strong>Gravity Collapse</strong> — Iedereen naar het centrum getrokken. Gebruik movement-abilities zodra de pull begint. Positie terugwinnen snel.',
-          '<strong>Kosmische anomalieën</strong> — Niet aanraken. Aanraken = debuff of schade. Kite ze weg van de boss-positie.',
-          '<strong>Burn-fasen</strong> — Alleria neemt verhoogde schade in burn-fasen. ALLE offensieve cooldowns hier. Niets bewaren na de laatste burn.',
-          '<strong>Mythic: groene kicks</strong> — Alleen het groen gemarkeerde target is interruptbaar. Strak coördineren. Eén verkeerde kick = wipe. Eén gemiste kick = wipe.',
+          '<strong>Alleria\'s Gaze</strong> — Markeert 3 spelers voor een dodelijke kegel. Wijs soakgroepen toe. Geen dubbele soaks.',
+          '<strong>Gravity Collapse</strong> — Iedereen wordt naar het midden getrokken. Gebruik movement-abilities onmiddellijk.',
+          '<strong>Cosmic Anomalies</strong> — Niet aanraken. Kit weg van de bosspositie.',
+          '<strong>Burn Phases</strong> — Alleria neemt verhoogde schade. ZET ALLE offensieve cooldowns in. Bewaar niets.',
+          '<strong>Mythic: Green Kicks</strong> — Vaste kick-volgorde. Alleen groen-gemarkeerde targets zijn interruptbaar. Eén gemiste of verkeerde kick = wipe.',
         ],
         en: [
-          '<strong>Alleria\'s Gaze</strong> — Marks 3 players for a lethal cone. Assign soak groups and spread them. Nobody soaks twice per cycle.',
-          '<strong>Gravity Collapse</strong> — Everyone pulled toward the center. Use movement abilities as soon as the pull begins. Regain position quickly.',
-          '<strong>Cosmic anomalies</strong> — Do not touch. Touching = debuff or damage. Kite them away from the boss position.',
-          '<strong>Burn phases</strong> — Alleria takes increased damage in burn phases. USE ALL offensive cooldowns here. Save nothing after the last burn.',
-          '<strong>Mythic: green kicks</strong> — Only the green-bar target is interruptible. Tight coordination. One wrong kick = wipe. One missed kick = wipe.',
+          '<strong>Alleria\'s Gaze</strong> — Marks 3 players for lethal cone. Assign soak groups. No double soaks.',
+          '<strong>Gravity Collapse</strong> — Everyone pulled to center. Use movement abilities immediately.',
+          '<strong>Cosmic Anomalies</strong> — Do not touch. Kite away from boss position.',
+          '<strong>Burn Phases</strong> — Alleria takes increased damage. USE ALL offensive cooldowns. Save nothing.',
+          '<strong>Mythic: Green Kicks</strong> — Sequential kick order. Only green-bar targets are interruptible. One missed/wrong kick = wipe.',
         ]
       },
     },

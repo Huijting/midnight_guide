@@ -4,7 +4,7 @@
 // ============================================================
 
 // Keep APP_VERSION in sync with js/constants.js (this is the PWA cache / “CACHE_VERSION” bump).
-const APP_VERSION = '3.6.15';
+const APP_VERSION = '3.6.16';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [

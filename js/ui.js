@@ -510,6 +510,7 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl bands (220/246/259/272, apex to 285); Voidspire Crown of the Cosmos (Alleria) DPS tips refreshed; March on Quel&apos;Danas opening Mar 31, 2026; Chiming Void Curio omni-tier callout. English-only boss names in NL strings where needed. Cache bump.</li>
         <li><strong>v3.6.15</strong> — Prey: Season 1 reward table from <code>data/activities/prey.json</code> + Great Vault tip (4 hunts/week). Delves: Tier 8 loot labels (Champion 2/6 / Hero 1/6) and Trovehunter map 259; companion <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> updates <code>prey-today.json</code> and <code>bountiful-today.json</code> in one run and commit (same multi-slot schedule as the old Bountiful fetch). Service worker / cache bump.</li>
         <li><strong>v3.6.14</strong> — Delves: dynamic EU Bountiful-day strip (no hardcoded reset date); if <code>bountiful-today.json</code> is still for yesterday, the app uses the built-in weekly rotation and shows a clear warning. Mobile: Restored Coffer Key block uses a visible key + fixed tile so Wowhead cannot leave a huge empty area. Background: GitHub Actions for Prey/Bountiful use a single sync/rebase/push script (Node 24, <code>checkout@v6</code>). Cache/service worker bump.</li>
         <li><strong>v3.6.13</strong> — Delves (mobile): key row fallback + fixed icon size; cache bump for header sync badge.</li>
@@ -524,6 +525,7 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl-banden (220/246/259/272, apex tot 285); Voidspire Crown of the Cosmos (Alleria) DPS-tips bijgewerkt; March on Quel&apos;Danas opent 31 mrt 2026; Chiming Void Curio omni-tier benadrukt. Bossnamen in het Engels in NL-teksten waar nodig. Cache-bump.</li>
       <li><strong>v3.6.15</strong> — Prey: S1-beloningentabel uit <code>data/activities/prey.json</code> + Great Vault-tip (4 hunts/week). Delves: Tier 8 loot-labels (Champion 2/6 / Hero 1/6) en Trovehunter-map 259; bijbehorend <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> vernieuwt <code>prey-today.json</code> en <code>bountiful-today.json</code> in één run en commit (zelfde meerdere tijdslots als de oude Bountiful-fetch). Service worker / cache-bump.</li>
       <li><strong>v3.6.14</strong> — Delves: dynamische EU Bountiful-dag in de header (geen vaste reset-datum); als de repo-json nog bij gisteren hoort, tonen we het weekrooster met duidelijke waarschuwing. Mobiel: zichtbare 🔑 + vaste tegel bij sleutel-uitleg (geen leeg Wowhead-vlak). Achtergrond: GitHub Actions voor Prey/Bountiful met één sync/rebase/push-script (Node 24, checkout v6). Nieuwe cache/service worker.</li>
       <li><strong>v3.6.13</strong> — Delves (mobiel): sleutelrij fallback + vaste icoonmaat; cache-bump sync-banner.</li>
@@ -2676,5 +2678,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.15').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=3.6.16').catch(() => {});
 }

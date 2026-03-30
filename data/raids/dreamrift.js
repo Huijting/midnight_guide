@@ -10,7 +10,10 @@ DUNGEONS.push({
   name: 'The Dreamrift',
   zone: { nl: 'Harandar — Rift of Aln', en: 'Harandar — Rift of Aln'},
   time: null,
-  level: { nl: 'Seizoen 1 Raid — Normal/Heroic/Mythic', en: 'Season 1 Raid — Normal/Heroic/Mythic'},
+  level: {
+    nl: 'Seizoen 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (eindbazen tot 285)',
+    en: 'Season 1 — LFR 220 · Normal 246 · Heroic 259 · Mythic 272 (final bosses up to 285)',
+  },
   bosses_short: ['Chimaerus'],
 
   lore: {
@@ -23,6 +26,11 @@ DUNGEONS.push({
       title: { nl: '⚠️ Geen trash', en: '⚠️ No trash'},
       text:  { nl: 'De raid heeft geen trash. Je staat direct tegenover Chimaerus na het inloggen. Zorg dat iedereen geflaskt en klaar is voor de pull.',
                en: 'The raid has no trash. You face Chimaerus immediately upon entering. Make sure everyone is flasked and ready before pulling.'},
+    },
+    {
+      title: { nl: '📊 Item levels (S1)', en: '📊 Item levels (S1)'},
+      text:  { nl: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Eindbazen / apex tot 285.',
+               en: 'LFR 220 · Normal 246 · Heroic 259 · Mythic 272. Final / apex bosses up to 285.'},
     },
     {
       title: { nl: '🔑 Kernmechanic: stop de Manifestations', en: '🔑 Core mechanic: stop the Manifestations'},
