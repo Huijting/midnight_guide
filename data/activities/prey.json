@@ -1,0 +1,20 @@
+[
+  {
+    "difficulty": { "en": "Normal", "nl": "Normaal" },
+    "loot_ilvl": "220 (Adventurer)",
+    "vault_ilvl": "233 (Veteran 1/6)",
+    "notes": { "en": "Requires World Quests to track target.", "nl": "Vereist World Quests om doelwit te vinden." }
+  },
+  {
+    "difficulty": { "en": "Hard", "nl": "Moeilijk" },
+    "loot_ilvl": "233 (Veteran)",
+    "vault_ilvl": "246 (Champion 1/6)",
+    "notes": { "en": "Features Torment affixes.", "nl": "Bevat Torment affixes." }
+  },
+  {
+    "difficulty": { "en": "Nightmare", "nl": "Nachtmerrie" },
+    "loot_ilvl": "246 (Champion)",
+    "vault_ilvl": "259 (Hero 1/6)",
+    "notes": { "en": "Solo-only challenge. Best for World Vault slot.", "nl": "Alleen solo uitdaging. Beste voor World Vault slot." }
+  }
+]

@@ -1,5 +1,6 @@
-# CI v3 — zelfde push-pad als prey (scripts/ci-regenerate-json-push.sh).
-name: Fetch Bountiful Delves
+# EU daily data: prey-today.json + bountiful-today.json in one sync → run both fetchers → single commit/push.
+# Schedule matches the old Bountiful workflow (retries when Wowhead TIW is slow); Prey fetcher skips write when unchanged.
+name: Fetch EU daily JSON (Prey + Bountiful)
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -10,13 +11,14 @@ permissions:
 on:
   schedule:
     - cron: '5 7 * * *'
+    - cron: '15 7 * * *'
     - cron: '25 7 * * *'
     - cron: '45 7 * * *'
     - cron: '10 8 * * *'
   workflow_dispatch:
 
 concurrency:
-  group: fetch-bountiful-delves
+  group: fetch-eu-daily-json
   cancel-in-progress: false
 
 jobs:
@@ -32,9 +34,5 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Sync, regenerate bountiful-today.json, commit, push
-        run: |
-          bash scripts/ci-regenerate-json-push.sh \
-            data/bountiful-today.json \
-            "chore: update EU Bountiful Delves from Wowhead TIW" \
-            scripts/fetch-bountiful-delves.js
+      - name: Sync, regenerate prey + bountiful JSON, commit, push
+        run: bash scripts/ci-regenerate-prey-and-bountiful-push.sh

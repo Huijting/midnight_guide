@@ -1410,7 +1410,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', async function() {
   try {
     document.body.classList.add('mode-home');
-    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_14';
+    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_15';
     if (typeof renderBanner === 'function') renderBanner();
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');
@@ -1677,8 +1677,8 @@ const DELVES_UI = {
     delves_reward_peak:'{n}+ ilvl · Hero / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
     delves_champ_ilvl:'~259 Hero / GV (Tier 8)',
-    loot_farm_caption:'⭐ Tier 8 — aanbevolen farm (goud in de tabel). Great Vault World: tot ~259 iLvl (Hero) bij Tier 8.',
-    loot_gv_hero_note:'📌 Tier 8+ Delves belonen HERO-track gear in de Great Vault.',
+    loot_farm_caption:'⭐ Tier 8 — aanbevolen farm (goud in de tabel). Bountiful einde-run: 250 (Champion 2/6). Trovehunter (map): 259 (Hero 1/6). Great Vault: 259 (Hero 1/6).',
+    loot_gv_hero_note:'📌 Tier 8+ Delves: Great Vault World op HERO-track (zie tabel).',
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Rol-tip:',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
@@ -1704,8 +1704,8 @@ const DELVES_UI = {
     delves_reward_peak:'{n}+ ilvl · Hero / GV',
     delves_ilvl_band:'Bountiful {min}–{max}+',
     delves_champ_ilvl:'~259 Hero / GV (Tier 8)',
-    loot_farm_caption:'⭐ Tier 8 — recommended farming tier (gold row). Great Vault World: up to ~259 ilvl (Hero) at Tier 8.',
-    loot_gv_hero_note:'📌 Tier 8+ Delves reward HERO track gear in the Great Vault.',
+    loot_farm_caption:'⭐ Tier 8 — recommended farming tier (gold row). Bountiful end-of-run: 250 (Champion 2/6). Trovehunter map: 259 (Hero 1/6). Great Vault: 259 (Hero 1/6).',
+    loot_gv_hero_note:'📌 Tier 8+ Delves: Great Vault World on the HERO track (see table).',
     delves_bountiful_badge:'Bountiful',
     role_ease_label:'💡 Role tip:',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
@@ -1894,6 +1894,17 @@ function toggleBountifulDelveForWeekly(delveId) {
   if (typeof buildWeeklyList === 'function') buildWeeklyList();
 }
 
+/** Leading item level from a Delves loot cell (number or string like "250 (Champion 2/6)"). */
+function parseDelvesLootIlvlCell(val) {
+  if (val == null || val === '—') return NaN;
+  if (typeof val === 'number' && !Number.isNaN(val)) return val;
+  if (typeof val === 'string') {
+    const m = val.match(/^\s*(\d+)/);
+    if (m) return Number(m[1]);
+  }
+  return NaN;
+}
+
 async function buildDelvesScreen() {
   if (typeof DELVES_DATA === 'undefined') return;
   const ui = DELVES_UI[lang] || DELVES_UI.nl;
@@ -1919,7 +1930,7 @@ async function buildDelvesScreen() {
   weeklyState = typeof weeklyLoadState === 'function' ? weeklyLoadState() : {};
   const weeklyMap = getBountifulWeeklyMap(weeklyState);
 
-  const bountifulNums = lootTable.filter(r => typeof r.bountiful === 'number').map(r => r.bountiful);
+  const bountifulNums = lootTable.map(r => parseDelvesLootIlvlCell(r.bountiful)).filter(n => !Number.isNaN(n));
   const minB = bountifulNums.length ? Math.min(...bountifulNums) : 182;
   const maxB = bountifulNums.length ? Math.max(...bountifulNums) : 205;
   const ilvlBand = (ui.delves_ilvl_band || 'Bountiful {min}–{max}+').replace(/\{min\}/g, String(minB)).replace(/\{max\}/g, String(maxB));
@@ -3050,6 +3061,12 @@ const PREY_UI = {
     spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
     preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · World Boss/apex ${P.worldBoss}`,
     copyWayCta:'Copy /way', wantedLabel:'WANTED',
+    preyS1RewardsTitle:'Prey-beloningen — Seizoen 1 (mrt 2026)',
+    preyS1ColDifficulty:'Moeilijkheid',
+    preyS1ColLoot:'Contract loot',
+    preyS1ColVault:'Great Vault',
+    preyS1ColNotes:'Opmerking',
+    preyFourPerWeekVaultTip:'Great Vault: tot 4 Prey-hunts per week tellen mee voor het World-vak — verdeel ze over de week om alle vier de slotten efficiënt te vullen.',
     lootFootnote: () => {
       const p = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
       return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World Boss / apex (not a Hunt contract): ${p.worldBoss}.`;
@@ -3077,6 +3094,12 @@ const PREY_UI = {
     spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
     preyProgressIlvlLine: P => `Normal ${P.normal}+ · Hard ${P.hard}+ · Nightmare ${P.nightmare}+ · world boss/apex ${P.worldBoss}`,
     copyWayCta:'Copy /way', wantedLabel:'WANTED',
+    preyS1RewardsTitle:'Prey rewards — Season 1 (Mar 2026)',
+    preyS1ColDifficulty:'Difficulty',
+    preyS1ColLoot:'Contract loot',
+    preyS1ColVault:'Great Vault',
+    preyS1ColNotes:'Notes',
+    preyFourPerWeekVaultTip:'Great Vault: up to 4 Prey hunts per week count toward the World row — spread them across the week to fill all four slots efficiently.',
     lootFootnote: () => {
       const p = typeof PREY_ILVL !== 'undefined' ? PREY_ILVL : { normal: 220, hard: 233, nightmare: 246, worldBoss: 289 };
       return `Normal iLvl ${p.normal}, Hard (Heroic) ${p.hard}, Nightmare ${p.nightmare} (Icy Veins Prey table, Midnight S1). World boss / apex (not a Hunt contract): ${p.worldBoss}.`;
@@ -3099,9 +3122,47 @@ const ACTIVE_PREY_TODAY_COUNT = 12;
 let preyTodayFetchPromise = null;
 let preyTodayFetchResult = { ok: false, fromJson: false, ids: [], source: '', error: null };
 
+let preyActivitiesJsonPromise = null;
+
 function resetPreyTodayFetchCache() {
   preyTodayFetchPromise = null;
   preyTodayFetchResult = { ok: false, fromJson: false, ids: [], source: '', error: null };
+}
+
+/** Season 1 Prey reward rows from data/activities/prey.json (bilingual). */
+async function fetchPreyActivitiesJson() {
+  if (preyActivitiesJsonPromise) return preyActivitiesJsonPromise;
+  preyActivitiesJsonPromise = (async () => {
+    try {
+      const res = await fetch('data/activities/prey.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = await res.json();
+      return Array.isArray(data) ? data : null;
+    } catch (e) {
+      return null;
+    }
+  })();
+  return preyActivitiesJsonPromise;
+}
+
+function buildPreySeasonOneRewardsTableHtml(rows, l, ui) {
+  if (!Array.isArray(rows) || !rows.length) return '';
+  const esc = typeof escapeHtmlText === 'function' ? escapeHtmlText : s => String(s == null ? '' : s).replace(/</g, '&lt;');
+  const th = t => `<th scope="col">${esc(t)}</th>`;
+  const head = `<thead><tr>${th(ui.preyS1ColDifficulty)}${th(ui.preyS1ColLoot)}${th(ui.preyS1ColVault)}${th(ui.preyS1ColNotes)}</tr></thead>`;
+  const body = rows.map(row => {
+    const diff = row.difficulty && (row.difficulty[l] || row.difficulty.en);
+    const notes = row.notes && (row.notes[l] || row.notes.en);
+    const loot = row.loot_ilvl != null ? String(row.loot_ilvl) : '—';
+    const vault = row.vault_ilvl != null ? String(row.vault_ilvl) : '—';
+    return `<tr><td>${esc(diff || '—')}</td><td>${esc(loot)}</td><td>${esc(vault)}</td><td>${esc(notes || '')}</td></tr>`;
+  }).join('');
+  return `<div class="prey-s1-rewards-block prey-card" style="margin-bottom:16px">
+    <h4 class="prey-detail-subtitle">${esc(ui.preyS1RewardsTitle)}</h4>
+    <div class="prey-targets-table-wrap">
+      <table class="prey-detail-loot-table prey-s1-rewards-table">${head}<tbody>${body}</tbody></table>
+    </div>
+  </div>`;
 }
 
 function validatePreyTodayTargets(arr) {
@@ -3422,6 +3483,7 @@ async function renderPreyGuide() {
     window.__midnightPreyDayKey = preyDay;
   }
   await fetchPreyToday();
+  const preyS1Rows = await fetchPreyActivitiesJson();
 
   const targetsSorted = getFinalActivePreyTargets();
 
@@ -3590,6 +3652,7 @@ async function renderPreyGuide() {
     </div>
     <div class="prey-highlight-box" style="margin-top:12px">
       <p>⭐ <strong>${rewd.weeklyTip}</strong></p>
+      <p>💡 <strong>${ui.preyFourPerWeekVaultTip || ''}</strong></p>
       <p>${rewd.greatVault}</p>
     </div>
   </div>`;
@@ -3619,6 +3682,7 @@ async function renderPreyGuide() {
       <div class="prey-diff-card diff-hard"><span class="prey-diff-badge">🟡 Hard</span><p>${diffHard.desc}</p></div>
       <div class="prey-diff-card diff-nightmare"><span class="prey-diff-badge">🔴 Nightmare</span><p>${diffNight.desc}</p></div>
     </div>
+    ${buildPreySeasonOneRewardsTableHtml(preyS1Rows, l, ui)}
     <div class="prey-rewards-list">
       <p>${rewd.adventurer}</p>
       <p><span class="prey-tooltip-term" title="${tt.veteran_track.explain[l] || tt.veteran_track.explain.en}">Veteran Track</span>: ${rewd.veteran}</p>

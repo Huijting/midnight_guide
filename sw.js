@@ -3,8 +3,8 @@
 // Cache versie verhogen = oude cache automatisch gewist
 // ============================================================
 
-// Keep APP_VERSION in sync with js/constants.js
-const APP_VERSION = '3.6.14';
+// Keep APP_VERSION in sync with js/constants.js (this is the PWA cache / “CACHE_VERSION” bump).
+const APP_VERSION = '3.6.15';
 const CACHE_NAME = `midnight-v${APP_VERSION}`;
 
 const PRECACHE = [
@@ -22,6 +22,8 @@ const PRECACHE = [
   '/data/prey-today.json',
   '/data/dungeons.json',
   '/data/delves.js',
+  '/data/activities/prey.json',
+  '/data/activities/delves.json',
   '/data/raids.json',
   '/images/raids/rift-of-aln-bg.svg',
   '/images/raids/voidspire-bg.svg',

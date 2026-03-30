@@ -68,9 +68,9 @@ const DELVES_DATA = {
       fullGuide: { en: '<h4>Status</h4><p>As of Mar 2026 there is <strong>no</strong> dedicated Den of Echoes page on Method.gg or Icy Veins in the same format as other Midnight delves, so this entry intentionally avoids invented mechanics. Use <a href="https://www.wowhead.com/search?q=The+Den+of+Echoes" target="_blank" rel="noopener">Wowhead search</a> and in-game dungeon journal updates.</p>', nl: '<h4>Status</h4><p>Per mrt 2026 is er <strong>geen</strong> aparte Method.gg- of Icy Veins-pagina voor Den of Echoes zoals bij andere Midnight-delves; daarom geen verzonnen mechanics. Gebruik <a href="https://www.wowhead.com/search?q=The+Den+of+Echoes" target="_blank" rel="noopener">Wowhead</a> en de in-game journal.</p>' }},
   ],
 
-  // Loot table — Midnight S1 (259-scale).
-  // GEVERIFIEERD (geen aannames): Tier 8 Bountiful 250 / GV 259 (Hero 1/6); Tier 11 Bountiful 256 / GV 266 (Hero 3/6).
-  // T1–7 & T9–10: tussenliggende waarden zijn geïnterpoleerd tot er een volledige Wowhead-/guide-tabel is — bij afwijking hier aanpassen.
+  // Loot table — Midnight S1 (March 2026).
+  // GEVERIFIEERD: Tier 8 Bountiful end-of-run 250 (Champion 2/6), Great Vault 259 (Hero 1/6); Trovehunter map 259 (Hero 1/6). Tier 11 Bountiful 256 / GV 266 (Hero 3/6).
+  // T1–7 & T9–10: tussenliggende waarden geïnterpoleerd — bij afwijking hier + data/activities/delves.json aanpassen.
   lootTable: [
     { tier: 1,  bountiful: 226, trovehunter: '—', greatVault: 233 },
     { tier: 2,  bountiful: 229, trovehunter: '—', greatVault: 237 },
@@ -79,7 +79,7 @@ const DELVES_DATA = {
     { tier: 5,  bountiful: 239, trovehunter: 241, greatVault: 248 },
     { tier: 6,  bountiful: 243, trovehunter: 245, greatVault: 252 },
     { tier: 7,  bountiful: 247, trovehunter: 249, greatVault: 255 },
-    { tier: 8,  bountiful: 250, trovehunter: 254, greatVault: 259 },
+    { tier: 8,  bountiful: '250 (Champion 2/6)', trovehunter: '259 (Hero 1/6)', greatVault: '259 (Hero 1/6)' },
     { tier: 9,  bountiful: 252, trovehunter: 257, greatVault: 262 },
     { tier: 10, bountiful: 254, trovehunter: 259, greatVault: 264 },
     { tier: 11, bountiful: 256, trovehunter: 261, greatVault: 266 },

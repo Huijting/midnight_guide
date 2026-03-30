@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Fetches Bountiful Delves for WoW EU from Wowhead "Today in WoW" and writes data/bountiful-today.json
- * Run daily at 07:00 UTC (08:00 CET) via GitHub Actions
+ * Run with prey-today via GitHub Actions (see .github/workflows/fetch-eu-daily-json.yml)
  *
  * Wowhead embeds two "mn-bountiful-delves" blocks (regionId US then EU). We must use the EU block
  * so the file matches European realms (US rotation can differ by several hours / same calendar instant).
@@ -338,6 +338,21 @@ async function main() {
     note:
       'EU Bountiful: Wowhead TIW (script#data.wow.todayInWow, regionId EU, mn-bountiful-delves → content.lines). WoW day = 07:00 UTC. If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed.',
   };
+  try {
+    const prev = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+    const unchanged =
+      prev &&
+      prev.reset === data.reset &&
+      prev.source === data.source &&
+      JSON.stringify(prev.delves) === JSON.stringify(data.delves);
+    if (unchanged) {
+      console.log('bountiful-today.json unchanged (same reset/source/delves), skip write');
+      process.exit(0);
+      return;
+    }
+  } catch (_) {
+    /* no file or parse error — write fresh */
+  }
   try {
     fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');
   } catch (e) {

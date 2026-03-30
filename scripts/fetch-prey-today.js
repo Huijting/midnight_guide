@@ -5,7 +5,7 @@
  * 1) Tries Wowhead homepage for a future TIW block (id contains mn-prey / daily prey) — not present yet.
  * 2) Else computes the same seeded 12-target set as the app fallback (midnight-prey-v1- + YYYY-MM-DD).
  *
- * GitHub Actions: daily after EU morning (see .github/workflows/fetch-prey-today.yml).
+ * GitHub Actions: with Bountiful in one job (see .github/workflows/fetch-eu-daily-json.yml).
  */
 
 const fs = require('fs');
@@ -239,6 +239,22 @@ async function main() {
         ? 'EU daily Prey targets from Wowhead Today in WoW (when widget exists).'
         : 'Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey.',
   };
+
+  try {
+    const prev = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+    const unchanged =
+      prev &&
+      prev.reset === data.reset &&
+      prev.source === data.source &&
+      JSON.stringify(prev.targets) === JSON.stringify(data.targets);
+    if (unchanged) {
+      console.log('prey-today.json unchanged (same reset/source/targets), skip write');
+      process.exit(0);
+      return;
+    }
+  } catch (_) {
+    /* no file or parse error — write fresh */
+  }
 
   try {
     fs.writeFileSync(outPath, JSON.stringify(data, null, 2), 'utf8');

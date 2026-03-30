@@ -1,5 +1,5 @@
 /** App display + cache bump — keep `sw.js` APP_VERSION in sync (service worker cannot import this file). */
-const APP_VERSION = '3.6.14';
+const APP_VERSION = '3.6.15';
 
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {

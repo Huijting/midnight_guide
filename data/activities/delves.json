@@ -1,0 +1,16 @@
+{
+  "season": 1,
+  "as_of": "2026-03",
+  "tier_8_bountiful": {
+    "end_of_run_ilvl": 250,
+    "end_of_run_track": "Champion 2/6",
+    "great_vault_ilvl": 259,
+    "great_vault_track": "Hero 1/6"
+  },
+  "trovehunters_bounty_map": {
+    "ilvl": 259,
+    "track": "Hero 1/6",
+    "note": "Trovehunter's Bounty map reward at relevant delve tier (Tier 8 peak farm)."
+  },
+  "implementation_note": "Authoritative numeric loot rows for the Delves screen live in data/delves.js (DELVES_DATA.lootTable); keep this file aligned when rewards change."
+}
