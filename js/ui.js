@@ -510,6 +510,7 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.5</strong> — Footer and PWA cache versions aligned (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 <strong>Travel Guide</strong> tab: Season 1 portal hub at Silvermoon City (Sunwell Terrace), TomTom <code>/way</code> copy buttons, EN/NL descriptions. Clipboard success/fail callbacks wrapped (pcall-style) for stability.</li>
         <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl bands (220/246/259/272, apex to 285); Voidspire Crown of the Cosmos (Alleria) DPS tips refreshed; March on Quel&apos;Danas opening Mar 31, 2026; Chiming Void Curio omni-tier callout. English-only boss names in NL strings where needed. Cache bump.</li>
         <li><strong>v3.6.15</strong> — Prey: Season 1 reward table from <code>data/activities/prey.json</code> + Great Vault tip (4 hunts/week). Delves: Tier 8 loot labels (Champion 2/6 / Hero 1/6) and Trovehunter map 259; companion <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> updates <code>prey-today.json</code> and <code>bountiful-today.json</code> in one run and commit (same multi-slot schedule as the old Bountiful fetch). Service worker / cache bump.</li>
         <li><strong>v3.6.14</strong> — Delves: dynamic EU Bountiful-day strip (no hardcoded reset date); if <code>bountiful-today.json</code> is still for yesterday, the app uses the built-in weekly rotation and shows a clear warning. Mobile: Restored Coffer Key block uses a visible key + fixed tile so Wowhead cannot leave a huge empty area. Background: GitHub Actions for Prey/Bountiful use a single sync/rebase/push script (Node 24, <code>checkout@v6</code>). Cache/service worker bump.</li>
@@ -525,6 +526,7 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.5</strong> — Footer- en PWA-cacheversie gelijkgetrokken (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 Tab <strong>Reisgids</strong>: Season 1 portaalhub bij Silvermoon City (Sunwell Terrace), TomTom <code>/way</code>-knoppen, EN/NL-beschrijvingen. Klembord-callbacks afgevangen (pcall-stijl) voor stabiliteit.</li>
       <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl-banden (220/246/259/272, apex tot 285); Voidspire Crown of the Cosmos (Alleria) DPS-tips bijgewerkt; March on Quel&apos;Danas opent 31 mrt 2026; Chiming Void Curio omni-tier benadrukt. Bossnamen in het Engels in NL-teksten waar nodig. Cache-bump.</li>
       <li><strong>v3.6.15</strong> — Prey: S1-beloningentabel uit <code>data/activities/prey.json</code> + Great Vault-tip (4 hunts/week). Delves: Tier 8 loot-labels (Champion 2/6 / Hero 1/6) en Trovehunter-map 259; bijbehorend <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> vernieuwt <code>prey-today.json</code> en <code>bountiful-today.json</code> in één run en commit (zelfde meerdere tijdslots als de oude Bountiful-fetch). Service worker / cache-bump.</li>
       <li><strong>v3.6.14</strong> — Delves: dynamische EU Bountiful-dag in de header (geen vaste reset-datum); als de repo-json nog bij gisteren hoort, tonen we het weekrooster met duidelijke waarschuwing. Mobiel: zichtbare 🔑 + vaste tegel bij sleutel-uitleg (geen leeg Wowhead-vlak). Achtergrond: GitHub Actions voor Prey/Bountiful met één sync/rebase/push-script (Node 24, checkout v6). Nieuwe cache/service worker.</li>
@@ -1178,13 +1180,13 @@ function doSearch(q) {
 
   const results = [];
   const badges = {
-    nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie', delves:'Delves' },
-    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves' }
+    nl: { dungeon:'Dungeon', spec:'Spec', prof:'Professie', delves:'Delves', travel:'Travel' },
+    en: { dungeon:'Dungeon', spec:'Spec', prof:'Profession', delves:'Delves', travel:'Travel' }
   };
   const badge = badges[lang] || badges.nl;
   const groupLabels = {
-    nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies', delves:'💎 Delves' },
-    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions', delves:'💎 Delves' }
+    nl: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professies', delves:'💎 Delves', travel:'🧭 Reisgids' },
+    en: { dungeon:'⚔ Dungeons', spec:'🎯 Specs', prof:'🔨 Professions', delves:'💎 Delves', travel:'🧭 Travel Guide' }
   };
   const grpLbl = groupLabels[lang] || groupLabels.nl;
 
@@ -1238,27 +1240,54 @@ function doSearch(q) {
     });
   }
 
+  if (typeof PORTAL_DATA !== 'undefined' && PORTAL_DATA.length) {
+    const travelKeywords = ['portal', 'travel', 'silvermoon', 'voidstorm', 'harandar', 'quel', 'zul', 'aman', 'sunwell', 'capitals', 'tomtom', 'sunwell terrace'];
+    const hubHit = PORTAL_DATA.some(h => {
+      const hn = (h.hubName || '').toLowerCase();
+      if (hn.includes(q)) return true;
+      return (h.portals || []).some(p => (p.to || '').toLowerCase().includes(q));
+    });
+    const kwHit = travelKeywords.some(k => q.includes(k));
+    if (hubHit || kwHit) {
+      const travelName = lang === 'en' ? 'Travel Guide' : 'Reisgids';
+      const travelSub = lang === 'en' ? 'Portals & /way — Season 1' : 'Portals & /way — Seizoen 1';
+      results.push({
+        type: 'travel',
+        icon: '🧭',
+        name: travelName,
+        sub: travelSub,
+        badge: badge.travel,
+        action: () => { closeSearch(); setMode('travel'); }
+      });
+    }
+  }
+
   if (!results.length) {
     el.innerHTML = `<div class="search-empty">Geen resultaten voor "<strong>${q}</strong>"</div>`;
     return;
   }
 
   // Groepeer per type (dedupe delves)
-  const groups = { dungeon: [], spec: [], prof: [], delves: [] };
+  const groups = { dungeon: [], spec: [], prof: [], delves: [], travel: [] };
   const labels = grpLbl;
   const seenDelves = new Set();
+  const seenTravel = new Set();
   results.forEach(r => {
     if (r.type === 'delves') {
       const key = r.name + (r.sub || '');
       if (seenDelves.has(key)) return;
       seenDelves.add(key);
     }
+    if (r.type === 'travel') {
+      if (seenTravel.has('1')) return;
+      seenTravel.add('1');
+    }
     groups[r.type].push(r);
   });
 
   let html = '';
   let idx = 0;
-  ['dungeon','spec','prof','delves'].forEach(type => {
+  ['dungeon','spec','prof','delves','travel'].forEach(type => {
     if (!groups[type].length) return;
     html += `<div class="search-group-label">${labels[type]}</div>`;
     groups[type].forEach(r => {
@@ -1319,6 +1348,13 @@ function escapeHtmlText(s) {
     .replace(/>/g, '&gt;');
 }
 
+/** pcall-style: run callback without letting throws break clipboard / UI flows. */
+function pcallUI(fn) {
+  try {
+    if (typeof fn === 'function') fn();
+  } catch (_) { /* ignore */ }
+}
+
 function copyWayTextToClipboard(text, done, fail) {
   const t = String(text);
   function tryExecCommandCopy() {
@@ -1345,17 +1381,17 @@ function copyWayTextToClipboard(text, done, fail) {
     }
   }
   if (tryExecCommandCopy()) {
-    done();
+    pcallUI(done);
     return;
   }
   if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
-    navigator.clipboard.writeText(t).then(done).catch(() => {
-      if (tryExecCommandCopy()) done();
-      else if (typeof fail === 'function') fail();
+    navigator.clipboard.writeText(t).then(() => pcallUI(done)).catch(() => {
+      if (tryExecCommandCopy()) pcallUI(done);
+      else pcallUI(fail);
     });
     return;
   }
-  if (typeof fail === 'function') fail();
+  pcallUI(fail);
 }
 
 function copyWay(el) {
@@ -1370,12 +1406,16 @@ function copyWay(el) {
   copyWayTextToClipboard(
     way,
     () => {
-      el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
-      setTimeout(() => { el.innerHTML = origHTML; }, 2000);
+      pcallUI(() => {
+        el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
+        setTimeout(() => { pcallUI(() => { el.innerHTML = origHTML; }); }, 2000);
+      });
     },
     () => {
-      el.innerHTML = '⚠️';
-      setTimeout(() => { el.innerHTML = origHTML; }, 2000);
+      pcallUI(() => {
+        el.innerHTML = '⚠️';
+        setTimeout(() => { pcallUI(() => { el.innerHTML = origHTML; }); }, 2000);
+      });
     }
   );
 }
@@ -2421,7 +2461,7 @@ const BANNER_UI = {
 };
 
 /** Moet gelijk zijn aan de check in app.js (DOMContentLoaded) — nieuwe banner = nieuwe key. */
-window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v3_6_15';
+window.MIDNIGHT_BANNER_DISMISS_KEY = 'midnight_banner_v1_0_5';
 
 function renderBanner() {
   const b = BANNER_UI[lang] || BANNER_UI.nl;
@@ -2442,7 +2482,7 @@ function setBannerLang(l) {
 
 function closeBanner() {
   document.getElementById('dev-banner').classList.remove('open');
-  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_15', '1');
+  localStorage.setItem(window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_0_5', '1');
 }
 
 function copyMacro(el) {
@@ -2678,5 +2718,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=3.6.16').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.5').catch(() => {});
 }

@@ -340,7 +340,14 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Woordenlijst",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Reisgids", tab_glossary: "📖 Woordenlijst",
+    travel_hero_title: "🧭 Reisgids",
+    travel_hero_sub: "Seizoen 1 — portaalnetwerk (Midnight)",
+    travel_from: "Van",
+    travel_to: "Naar",
+    travel_hub_coords: "Hub — TomTom",
+    travel_copy_way: "📋 Kopieer /way",
+    travel_no_way: "Geen vaste /way — kies je bestemming bij het portaal in-game.",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -432,7 +439,14 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_glossary: "📖 Glossary",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Travel Guide", tab_glossary: "📖 Glossary",
+    travel_hero_title: "🧭 Travel Guide",
+    travel_hero_sub: "Season 1 — portal network (Midnight)",
+    travel_from: "From",
+    travel_to: "To",
+    travel_hub_coords: "Hub — TomTom",
+    travel_copy_way: "📋 Copy /way",
+    travel_no_way: "No fixed /way — pick your destination at the in-game portal.",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -566,11 +580,18 @@ function applyUIStrings() {
   const delvesLbl = document.getElementById('tab-lbl-delves'); if (delvesLbl) delvesLbl.innerHTML = u.tab_delves || delvesLbl.innerHTML;
   const _glbl = document.getElementById('tab-lbl-glossary');
   if (_glbl) _glbl.innerHTML = u.tab_glossary || u.lbl_glossary || (lang === 'en' ? '📖 Glossary' : '📖 Woordenlijst');
+  const _ttr = document.getElementById('tab-lbl-travel');
+  if (_ttr) _ttr.innerHTML = u.tab_travel || (lang === 'en' ? '🧭 Travel Guide' : '🧭 Reisgids');
+  const _trh = document.getElementById('travel-hero-title');
+  const _trs = document.getElementById('travel-hero-sub');
+  if (_trh && u.travel_hero_title) _trh.textContent = u.travel_hero_title;
+  if (_trs && u.travel_hero_sub) _trs.textContent = u.travel_hero_sub;
   updateHeaderSyncBadge();
   t('detail-tldr-label', u.tldr_label);
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
   if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
+  if (document.body.classList.contains('mode-travel')) buildTravelScreen();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   const searchPh = document.getElementById('header-search-placeholder');
   if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'}[lang] || 'Search...';
@@ -1410,7 +1431,7 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', async function() {
   try {
     document.body.classList.add('mode-home');
-    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v3_6_15';
+    const BANNER_KEY = window.MIDNIGHT_BANNER_DISMISS_KEY || 'midnight_banner_v1_0_5';
     if (typeof renderBanner === 'function') renderBanner();
     if (!localStorage.getItem(BANNER_KEY)) {
       document.getElementById('dev-banner')?.classList.add('open');
@@ -2235,6 +2256,67 @@ function buildGlossaryScreen(){
     sec(u.glossary_section_general || '📖 Algemene termen', general) +
     sec(u.glossary_section_tank || '🛡️ Tank Termen', tank);
 }
+
+function buildTravelScreen() {
+  const host = document.getElementById('travel-content');
+  if (!host) return;
+  const u = UI[lang] || UI.nl;
+  const wui = (typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI) ? (WEEKLY_UI[lang] || WEEKLY_UI.nl) : { copy_tip: 'Click to copy' };
+  const tipRaw = wui.copy_tip || '';
+  const tip = typeof escapeHtmlText === 'function' ? escapeHtmlText(tipRaw) : tipRaw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const copyCta = typeof escapeHtmlText === 'function' ? escapeHtmlText(u.travel_copy_way || '📋 Copy /way') : (u.travel_copy_way || '');
+  const noWay = typeof escapeHtmlText === 'function' ? escapeHtmlText(u.travel_no_way || '') : (u.travel_no_way || '');
+  const escWayAttr = typeof escapeDataWayAttr === 'function' ? escapeDataWayAttr : s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const escHtml = typeof escapeHtmlText === 'function' ? escapeHtmlText : s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  if (typeof PORTAL_DATA === 'undefined' || !PORTAL_DATA.length) {
+    host.innerHTML = `<p class="travel-no-way">${lang === 'en' ? 'Portal data not loaded.' : 'Portaalgegevens niet geladen.'}</p>`;
+    return;
+  }
+
+  const portalDesc = p => {
+    const d = p.description;
+    if (!d) return '';
+    const raw = d[lang] || d.en || d.nl || '';
+    return escHtml(raw);
+  };
+
+  const blocks = PORTAL_DATA.map(hub => {
+    const hubNamePlain = hub.hubName || '';
+    const hubName = escHtml(hubNamePlain);
+    const hubWay = hub.hubWaypoint || '';
+    const hubRow = hubWay
+      ? `<div class="travel-hub-way-row">
+           <span class="travel-hub-way-label">${escHtml(u.travel_hub_coords || '')}</span>
+           <code class="travel-hub-way-code">${escHtml(hubWay)}</code>
+           <button type="button" class="portal-way-copy-btn" onclick="copyWay(this)" data-way="${escWayAttr(hubWay)}" title="${tip}">${copyCta}</button>
+         </div>`
+      : '';
+    const rows = (hub.portals || []).map(p => {
+      const toPlain = p.to || '';
+      const toName = escHtml(toPlain);
+      const way = p.way || '';
+      const copyBlock = way
+        ? `<button type="button" class="portal-way-copy-btn" onclick="copyWay(this)" data-way="${escWayAttr(way)}" title="${tip}">${copyCta}</button><div class="portal-way-meta">${escHtml(way)}</div>`
+        : `<p class="travel-no-way">${noWay}</p>`;
+      return `<div class="travel-portal-row">
+        <div class="travel-from-to">
+          <div><span class="travel-lbl">${escHtml(u.travel_from || 'From')}</span> <span class="travel-loc-en">${hubName}</span></div>
+          <div><span class="travel-lbl">${escHtml(u.travel_to || 'To')}</span> <span class="travel-loc-en">${toName}</span></div>
+        </div>
+        <div class="travel-portal-desc">${portalDesc(p)}</div>
+        ${copyBlock}
+      </div>`;
+    }).join('');
+    return `<article class="travel-hub-card">
+      <div class="travel-hub-head"><div class="travel-hub-name">${hubName}</div></div>
+      ${hubRow}
+      ${rows}
+    </article>`;
+  }).join('');
+  host.innerHTML = blocks;
+}
+
 function toggleGlossaryItem(i){
   const el=document.getElementById('gitem-'+i);
   if(el) el.classList.toggle('open');
@@ -2331,6 +2413,8 @@ function setMode(mode){
   const preyTab = document.getElementById('mode-tab-prey'); if(preyTab) preyTab.classList.toggle('active',mode==='prey');
   const _gtab=document.getElementById('mode-tab-glossary');
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
+  const _trtab = document.getElementById('mode-tab-travel');
+  if (_trtab) _trtab.classList.toggle('active', mode === 'travel');
   updateSpecHeaderBtnVisibility();
   const backBtn = document.getElementById('back-btn');
   if (backBtn) backBtn.style.display = 'none';
@@ -2362,6 +2446,8 @@ function setMode(mode){
     buildSpecGrid();
   } else if(mode==='glossary'){
     buildGlossaryScreen();
+  } else if(mode==='travel'){
+    buildTravelScreen();
   } else if(mode==='dungeons') {
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
@@ -2370,7 +2456,7 @@ function setMode(mode){
     if(currentDungeon)goHome();
   }
   
-    ['home','dungeons','professions','weekly','raids','delves','glossary','specs','prey'].forEach(id=>{
+    ['home','dungeons','professions','weekly','raids','delves','glossary','specs','prey','travel'].forEach(id=>{
       const el=document.getElementById(id+'-screen');
       if(el)el.style.display=(id===mode)?'':'none';
     });
