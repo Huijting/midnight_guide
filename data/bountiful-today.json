@@ -1,13 +1,13 @@
 {
-  "fetched": "2026-03-29T08:55:58.136Z",
-  "reset": "2026-03-29",
+  "fetched": "2026-03-30T08:51:13.298Z",
+  "reset": "2026-03-30",
   "region": "EU",
   "source": "wowhead",
   "delves": [
-    "collegiate_calamity",
-    "shadowguard_point",
-    "gulf_of_memory",
-    "twilight_crypts"
+    "sunkiller_sanctum",
+    "grudge_pit",
+    "the_darkway",
+    "atalaman"
   ],
   "note": "EU Bountiful: Wowhead TIW (script#data.wow.todayInWow, regionId EU, mn-bountiful-delves → content.lines). WoW day = 07:00 UTC. If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed."
 }
