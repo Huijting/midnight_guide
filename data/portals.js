@@ -14,9 +14,10 @@ const TRAVEL_GUIDE_VAULT_TOP = {
     nl: 'Silvermoon City — The Vault (Great Vault)',
   },
   way: '/way #2393 50.64 65.43',
+  hordeWay: '/way #2393 72.04 64.87',
   description: {
-    en: 'Weekly Great Vault and the neutral bank share this spot in the central ring (Method.gg). Horde-only section: separate vault/bank at /way #2393 72.04 64.87.',
-    nl: 'Wekelijkse Great Vault en de neutrale bank op dezelfde plek in de middencirkel (Method.gg). Horde-only gebied: aparte vault/bank op /way #2393 72.04 64.87.',
+    en: 'Weekly Great Vault and the neutral bank share this spot in the central ring (Method.gg). Horde-only east district: separate vault/bank — use the second TomTom row below.',
+    nl: 'Wekelijkse Great Vault en de neutrale bank in de neutrale middencirkel (Method.gg). Horde-only oostelijk district: aparte vault/bank — gebruik de tweede TomTom-rij hieronder.',
   },
 };
 

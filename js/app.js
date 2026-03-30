@@ -347,6 +347,7 @@ const UI = {
     travel_to: "Naar",
     travel_hub_coords: "Hub — TomTom",
     travel_vault_way_label: "The Vault — TomTom",
+    travel_vault_horde_way_label: "The Vault (Horde) — TomTom",
     travel_copy_way: "📋 Kopieer /way",
     travel_no_way: "Geen vaste /way — kies je bestemming bij het portaal in-game.",
     feedback_btn: "💬 Feedback",
@@ -447,6 +448,7 @@ const UI = {
     travel_to: "To",
     travel_hub_coords: "Hub — TomTom",
     travel_vault_way_label: "The Vault — TomTom",
+    travel_vault_horde_way_label: "The Vault (Horde) — TomTom",
     travel_copy_way: "📋 Copy /way",
     travel_no_way: "No fixed /way — pick your destination at the in-game portal.",
     feedback_btn: "💬 Feedback",
@@ -2271,7 +2273,10 @@ function buildTravelScreen() {
   const escWayAttr = typeof escapeDataWayAttr === 'function' ? escapeDataWayAttr : s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const escHtml = typeof escapeHtmlText === 'function' ? escapeHtmlText : s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  const hasVault = typeof TRAVEL_GUIDE_VAULT_TOP !== 'undefined' && TRAVEL_GUIDE_VAULT_TOP && TRAVEL_GUIDE_VAULT_TOP.way;
+  const hasVault =
+    typeof TRAVEL_GUIDE_VAULT_TOP !== 'undefined' &&
+    TRAVEL_GUIDE_VAULT_TOP &&
+    (TRAVEL_GUIDE_VAULT_TOP.way || TRAVEL_GUIDE_VAULT_TOP.hordeWay);
   const hasPortals = typeof PORTAL_DATA !== 'undefined' && PORTAL_DATA.length;
 
   if (!hasVault && !hasPortals) {
@@ -2284,14 +2289,21 @@ function buildTravelScreen() {
     const v = TRAVEL_GUIDE_VAULT_TOP;
     const vTitle = escHtml(v.title[lang] || v.title.en || 'The Vault');
     const vDesc = escHtml(v.description[lang] || v.description.en || '');
-    const vw = String(v.way);
+    const lblNeutral = escHtml(u.travel_vault_way_label || u.travel_hub_coords || 'TomTom');
+    const lblHorde = escHtml(u.travel_vault_horde_way_label || 'The Vault (Horde) — TomTom');
+    const rowWay = (label, wayStr) => {
+      const w = String(wayStr);
+      if (!w) return '';
+      return `<div class="travel-hub-way-row">
+        <span class="travel-hub-way-label">${label}</span>
+        <code class="travel-hub-way-code">${escHtml(w)}</code>
+        <button type="button" class="portal-way-copy-btn" onclick="copyWay(this)" data-way="${escWayAttr(w)}" title="${tip}">${copyCta}</button>
+      </div>`;
+    };
+    const rowsWay = [rowWay(lblNeutral, v.way), rowWay(lblHorde, v.hordeWay)].filter(Boolean).join('');
     vaultHtml = `<article class="travel-hub-card travel-vault-highlight" aria-label="${vTitle}">
       <div class="travel-hub-head"><div class="travel-hub-name">${vTitle}</div></div>
-      <div class="travel-hub-way-row">
-        <span class="travel-hub-way-label">${escHtml(u.travel_vault_way_label || u.travel_hub_coords || 'TomTom')}</span>
-        <code class="travel-hub-way-code">${escHtml(vw)}</code>
-        <button type="button" class="portal-way-copy-btn" onclick="copyWay(this)" data-way="${escWayAttr(vw)}" title="${tip}">${copyCta}</button>
-      </div>
+      ${rowsWay}
       <div class="travel-portal-row travel-vault-desc-only"><div class="travel-portal-desc">${vDesc}</div></div>
     </article>`;
   }
