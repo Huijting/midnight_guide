@@ -2,9 +2,24 @@
  * Midnight Season 1 — portal network reference.
  * Zone / hub names stay English (game terminology); descriptions are EN + NL.
  *
- * Sources: Method.gg (Silvermoon portal TomTom coords, Explore Harandar — The Den);
- * GamerHour (network links: The Den ↔ Silvermoon/Voidstorm; Oling Ridge hub; Zul'Aman has no Midnight portals).
+ * Sources: Method.gg (Silvermoon portal TomTom coords, Explore Harandar — The Den,
+ *   Weekly Vault + Bank coords); GamerHour (network links: The Den ↔ Silvermoon/Voidstorm;
+ *   Oling Ridge hub; Zul'Aman has no Midnight portals).
  */
+
+/** Shown at the top of the Travel Guide (Method.gg: «Weekly Vault and Bank»). */
+const TRAVEL_GUIDE_VAULT_TOP = {
+  title: {
+    en: 'Silvermoon City — The Vault (Great Vault)',
+    nl: 'Silvermoon City — The Vault (Great Vault)',
+  },
+  way: '/way #2393 50.64 65.43',
+  description: {
+    en: 'Weekly Great Vault and the neutral bank share this spot in the central ring (Method.gg). Horde-only section: separate vault/bank at /way #2393 72.04 64.87.',
+    nl: 'Wekelijkse Great Vault en de neutrale bank op dezelfde plek in de middencirkel (Method.gg). Horde-only gebied: aparte vault/bank op /way #2393 72.04 64.87.',
+  },
+};
+
 const PORTAL_DATA = [
   {
     id: 'silvermoon-sunwell',

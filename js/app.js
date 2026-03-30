@@ -346,6 +346,7 @@ const UI = {
     travel_from: "Van",
     travel_to: "Naar",
     travel_hub_coords: "Hub — TomTom",
+    travel_vault_way_label: "The Vault — TomTom",
     travel_copy_way: "📋 Kopieer /way",
     travel_no_way: "Geen vaste /way — kies je bestemming bij het portaal in-game.",
     feedback_btn: "💬 Feedback",
@@ -445,6 +446,7 @@ const UI = {
     travel_from: "From",
     travel_to: "To",
     travel_hub_coords: "Hub — TomTom",
+    travel_vault_way_label: "The Vault — TomTom",
     travel_copy_way: "📋 Copy /way",
     travel_no_way: "No fixed /way — pick your destination at the in-game portal.",
     feedback_btn: "💬 Feedback",
@@ -2269,9 +2271,29 @@ function buildTravelScreen() {
   const escWayAttr = typeof escapeDataWayAttr === 'function' ? escapeDataWayAttr : s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const escHtml = typeof escapeHtmlText === 'function' ? escapeHtmlText : s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  if (typeof PORTAL_DATA === 'undefined' || !PORTAL_DATA.length) {
+  const hasVault = typeof TRAVEL_GUIDE_VAULT_TOP !== 'undefined' && TRAVEL_GUIDE_VAULT_TOP && TRAVEL_GUIDE_VAULT_TOP.way;
+  const hasPortals = typeof PORTAL_DATA !== 'undefined' && PORTAL_DATA.length;
+
+  if (!hasVault && !hasPortals) {
     host.innerHTML = `<p class="travel-no-way">${lang === 'en' ? 'Portal data not loaded.' : 'Portaalgegevens niet geladen.'}</p>`;
     return;
+  }
+
+  let vaultHtml = '';
+  if (hasVault) {
+    const v = TRAVEL_GUIDE_VAULT_TOP;
+    const vTitle = escHtml(v.title[lang] || v.title.en || 'The Vault');
+    const vDesc = escHtml(v.description[lang] || v.description.en || '');
+    const vw = String(v.way);
+    vaultHtml = `<article class="travel-hub-card travel-vault-highlight" aria-label="${vTitle}">
+      <div class="travel-hub-head"><div class="travel-hub-name">${vTitle}</div></div>
+      <div class="travel-hub-way-row">
+        <span class="travel-hub-way-label">${escHtml(u.travel_vault_way_label || u.travel_hub_coords || 'TomTom')}</span>
+        <code class="travel-hub-way-code">${escHtml(vw)}</code>
+        <button type="button" class="portal-way-copy-btn" onclick="copyWay(this)" data-way="${escWayAttr(vw)}" title="${tip}">${copyCta}</button>
+      </div>
+      <div class="travel-portal-row travel-vault-desc-only"><div class="travel-portal-desc">${vDesc}</div></div>
+    </article>`;
   }
 
   const portalDesc = p => {
@@ -2281,7 +2303,7 @@ function buildTravelScreen() {
     return escHtml(raw);
   };
 
-  const blocks = PORTAL_DATA.map(hub => {
+  const blocks = hasPortals ? PORTAL_DATA.map(hub => {
     const hubNamePlain = hub.hubName || '';
     const hubName = escHtml(hubNamePlain);
     const hubWay = hub.hubWaypoint || '';
@@ -2313,8 +2335,8 @@ function buildTravelScreen() {
       ${hubRow}
       ${rows}
     </article>`;
-  }).join('');
-  host.innerHTML = blocks;
+  }).join('') : '';
+  host.innerHTML = vaultHtml + blocks;
 }
 
 function toggleGlossaryItem(i){

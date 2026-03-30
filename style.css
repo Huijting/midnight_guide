@@ -1838,6 +1838,8 @@
   .travel-hero-title{font-family:'Inter',sans-serif;font-size:clamp(20px,4.5vw,26px);font-weight:800;color:var(--gold);text-shadow:0 0 14px rgba(200,168,75,.35)}
   .travel-hero-sub{font-size:12px;color:var(--muted);margin-top:6px}
   .travel-hub-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;margin-bottom:18px;overflow:hidden}
+  .travel-vault-highlight{border-color:rgba(200,168,75,.42);box-shadow:0 0 24px rgba(200,168,75,.1);margin-bottom:22px}
+  .travel-vault-desc-only{border-bottom:none !important;padding-top:4px}
   .travel-hub-head{padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(200,168,75,.06)}
   .travel-hub-name{font-size:15px;font-weight:800;color:var(--text);letter-spacing:.02em}
   .travel-hub-way-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)}
