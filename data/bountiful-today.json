@@ -1,13 +1,13 @@
 {
-  "fetched": "2026-03-30T09:44:51.452Z",
-  "reset": "2026-03-30",
+  "fetched": "2026-03-31T08:13:19.884Z",
+  "reset": "2026-03-31",
   "region": "EU",
-  "source": "wowhead",
+  "source": "schedule",
   "delves": [
-    "shadowguard_point",
-    "gulf_of_memory",
-    "shadow_enclave",
-    "twilight_crypts"
+    "parhelion_plaza",
+    "twilight_crypts",
+    "atalaman",
+    "grudge_pit"
   ],
   "parseMode": "eu_json_only",
   "note": "EU Bountiful: primary = Today in WoW JSON under EU region only (mn-bountiful-delves lines), plus stringify-EU-root fallback. Full-page US/EU marker scan is OFF by default (can mix US rotation); set env BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE=1 to re-enable legacy parsing. WoW day = 07:00 UTC (matches app). If source is schedule/default, verify in-game; update delves.js bountifulSchedule when the 7-day pattern is confirmed."
