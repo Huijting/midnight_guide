@@ -2,7 +2,7 @@
 
 **v1.1** — Een tweetalige (NL/EN) Progressive Web App voor World of Warcraft: Midnight.
 
-**App-build v3.6.14** (mrt 2026) — Delves: dynamische EU Bountiful-dag in de header; fallback + waarschuwing als dagelijkse JSON achterloopt; mobiele sleutel-sectie zonder leeg Wowhead-vlak; betrouwbaardere GitHub Actions voor `prey-today` / `bountiful-today`. Zie in de app: **Over deze app** → changelog en (eenmalig) de update-banner.
+**App-build v1.0.7** (apr 2026) — Zie **Over deze app** voor de volledige changelog. Onder meer: `data/live_reset_data.json` van een Python Wowhead-scraper in dezelfde CI-job als `prey-today.json` / `bountiful-today.json` (Delves- en Prey-context + scrape-tijd in de app).
 
 **Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
@@ -64,6 +64,17 @@ Tik op het installeer-icoontje in je browser (Chrome/Safari) om de app op je sta
 ## 🌍 Talen
 
 🇳🇱 Nederlands | 🇬🇧 English
+
+---
+
+## 🤖 EU-dagelijkse data (GitHub Actions)
+
+Workflow [`.github/workflows/fetch-eu-daily-json.yml`](.github/workflows/fetch-eu-daily-json.yml) draait op een rooster rond **07:00 UTC** en voert [`scripts/ci-regenerate-prey-and-bountiful-push.sh`](scripts/ci-regenerate-prey-and-bountiful-push.sh) uit:
+
+- **Node.js:** [`scripts/fetch-prey-today.js`](scripts/fetch-prey-today.js) → [`data/prey-today.json`](data/prey-today.json); [`scripts/fetch-bountiful-delves.js`](scripts/fetch-bountiful-delves.js) → [`data/bountiful-today.json`](data/bountiful-today.json).
+- **Python 3.12:** [`scripts/wowhead_live_reset_scraper.py`](scripts/wowhead_live_reset_scraper.py) (dependencies: [`scripts/requirements-wowhead-scraper.txt`](scripts/requirements-wowhead-scraper.txt)) → [`data/live_reset_data.json`](data/live_reset_data.json). Leest Wowhead’s **Today in WoW**-inline JSON (EU-`regionId`), o.a. Bountiful-namen en eventuele Prey-regels met Hard/Nightmare in de tekst.
+
+Lokaal testen: `pip install -r scripts/requirements-wowhead-scraper.txt` en `python scripts/wowhead_live_reset_scraper.py`. De app gebruikt **`bountiful-today.json`** als primaire bron voor welke vier delves Bountiful zijn; `live_reset_data.json` voegt Wowhead-labels, tijdstempel en een waarschuwing bij afwijking toe.
 
 ---
 

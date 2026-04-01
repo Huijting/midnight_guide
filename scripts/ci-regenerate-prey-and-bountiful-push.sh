@@ -6,6 +6,7 @@ set -euo pipefail
 B="${GITHUB_REF_NAME:-main}"
 PREY_JSON="data/prey-today.json"
 BOUNT_JSON="data/bountiful-today.json"
+LIVE_RESET_JSON="data/live_reset_data.json"
 
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -31,13 +32,21 @@ set -e
 if [ "$PREY_EC" -ne 0 ]; then echo ">>> WARNING: fetch-prey-today.js exited $PREY_EC (bountiful still ran)"; fi
 if [ "$BOUNT_EC" -ne 0 ]; then echo ">>> WARNING: fetch-bountiful-delves.js exited $BOUNT_EC"; fi
 
-git add "$PREY_JSON" "$BOUNT_JSON"
+set +e
+echo ">>> pip install wowhead scraper deps + run wowhead_live_reset_scraper.py"
+python3 -m pip install -q -r scripts/requirements-wowhead-scraper.txt
+python3 scripts/wowhead_live_reset_scraper.py
+LR_EC=$?
+set -e
+if [ "$LR_EC" -ne 0 ]; then echo ">>> WARNING: wowhead_live_reset_scraper.py exited $LR_EC"; fi
+
+git add "$PREY_JSON" "$BOUNT_JSON" "$LIVE_RESET_JSON"
 if git diff --staged --quiet; then
-  echo ">>> No changes to $PREY_JSON or $BOUNT_JSON"
+  echo ">>> No changes to $PREY_JSON, $BOUNT_JSON, or $LIVE_RESET_JSON"
   exit 0
 fi
 
-git commit -m "chore: update EU prey-today.json and bountiful-today.json"
+git commit -m "chore: update EU prey-today, bountiful-today, live_reset_data"
 
 for i in 1 2 3 4 5 6 7 8 9 10; do
   git pull --rebase origin "$B"

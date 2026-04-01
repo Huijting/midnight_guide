@@ -1,0 +1,4 @@
+# Python Wowhead "Today in WoW" scraper (scripts/wowhead_live_reset_scraper.py)
+beautifulsoup4>=4.12.0
+# Optional: set WOWHEAD_USE_PLAYWRIGHT=1 for headless render when inline JSON is missing
+# playwright>=1.49.0

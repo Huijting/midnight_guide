@@ -2,7 +2,7 @@
 
 **v1.1** — A bilingual (NL/EN) Progressive Web App for World of Warcraft: Midnight.
 
-**App build v3.6.14** (Mar 2026) — Delves: dynamic EU Bountiful day in the header; fallback + warning when daily JSON is stale; mobile key row without a blank Wowhead area; more reliable GitHub Actions for `prey-today` / `bountiful-today`. In-app: **About this app** → changelog and (once) the update banner.
+**App build v1.0.7** (Apr 2026) — See **About this app** for the full changelog. Includes `data/live_reset_data.json` from a Python Wowhead scraper in the same CI job as `prey-today.json` / `bountiful-today.json` (extra Delves/Prey context and scrape timestamp in the app).
 
 **Live:** [huijting.github.io/midnight_guide/](https://huijting.github.io/midnight_guide/)
 
@@ -64,6 +64,17 @@ Tap the install icon in your browser (Chrome/Safari) to add the app to your home
 ## 🌍 Languages
 
 🇳🇱 Nederlands | 🇬🇧 English
+
+---
+
+## 🤖 EU daily data (GitHub Actions)
+
+The [`.github/workflows/fetch-eu-daily-json.yml`](.github/workflows/fetch-eu-daily-json.yml) workflow runs on a schedule around **07:00 UTC** and executes [`scripts/ci-regenerate-prey-and-bountiful-push.sh`](scripts/ci-regenerate-prey-and-bountiful-push.sh):
+
+- **Node.js:** [`scripts/fetch-prey-today.js`](scripts/fetch-prey-today.js) → [`data/prey-today.json`](data/prey-today.json); [`scripts/fetch-bountiful-delves.js`](scripts/fetch-bountiful-delves.js) → [`data/bountiful-today.json`](data/bountiful-today.json).
+- **Python 3.12:** [`scripts/wowhead_live_reset_scraper.py`](scripts/wowhead_live_reset_scraper.py) (deps: [`scripts/requirements-wowhead-scraper.txt`](scripts/requirements-wowhead-scraper.txt)) → [`data/live_reset_data.json`](data/live_reset_data.json). Reads Wowhead’s embedded **Today in WoW** JSON (EU `regionId`), including Bountiful delve names and any Prey lines that mention Hard/Nightmare in the text.
+
+Local test: `pip install -r scripts/requirements-wowhead-scraper.txt` then `python scripts/wowhead_live_reset_scraper.py`. The app still treats **`bountiful-today.json`** as the source of truth for which four delves are Bountiful; `live_reset_data.json` adds Wowhead labels, a timestamp, and a warning when they disagree.
 
 ---
 

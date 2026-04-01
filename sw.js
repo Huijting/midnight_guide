@@ -4,7 +4,7 @@
 // ============================================================
 
 // PWA cache bust — bump CACHE_VERSION when shipping new offline assets (match js/constants.js APP_VERSION).
-const CACHE_VERSION = '1.0.5';
+const CACHE_VERSION = '1.0.7';
 const CACHE_NAME = `midnight-v${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -20,6 +20,7 @@ const PRECACHE = [
   '/data/affixes.js',
   '/data/bountiful-today.json',
   '/data/prey-today.json',
+  '/data/live_reset_data.json',
   '/data/dungeons.json',
   '/data/delves.js',
   '/data/portals.js',
@@ -160,7 +161,11 @@ self.addEventListener('activate', event => {
 // Fetch: cache-first, netwerk als fallback
 // bountiful-today.json / prey-today.json altijd van netwerk (dagelijks vernieuwd)
 self.addEventListener('fetch', event => {
-  if (event.request.url.includes('bountiful-today.json') || event.request.url.includes('prey-today.json')) {
+  if (
+    event.request.url.includes('bountiful-today.json') ||
+    event.request.url.includes('prey-today.json') ||
+    event.request.url.includes('live_reset_data.json')
+  ) {
     event.respondWith(fetch(event.request));
     return;
   }

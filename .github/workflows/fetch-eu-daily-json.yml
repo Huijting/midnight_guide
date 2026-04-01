@@ -1,6 +1,6 @@
-# EU daily data: prey-today.json + bountiful-today.json in one sync → run both fetchers → single commit/push.
+# EU daily data: prey-today.json + bountiful-today.json + live_reset_data.json (Python Wowhead scraper) → one commit/push.
 # Schedule matches the old Bountiful workflow (retries when Wowhead TIW is slow); Prey fetcher skips write when unchanged.
-# Bountiful: EU-only Wowhead JSON by default (see scripts/fetch-bountiful-delves.js). Optional env BOUNTIFUL_ALLOW_LEGACY_HTML_PARSE=1 re-enables full-page scan if Wowhead changes shape (can mis-pick US rotation).
+# Bountiful: EU-only Wowhead JSON by default (see scripts/fetch-bountiful-delves.js). live_reset: scripts/wowhead_live_reset_scraper.py (BeautifulSoup).
 name: Fetch EU daily JSON (Prey + Bountiful)
 
 env:
@@ -34,6 +34,10 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
 
       - name: Sync, regenerate prey + bountiful JSON, commit, push
         run: bash scripts/ci-regenerate-prey-and-bountiful-push.sh

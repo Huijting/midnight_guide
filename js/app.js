@@ -1444,6 +1444,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (typeof loadRaidsGridMeta === 'function') await loadRaidsGridMeta();
     if (typeof fetchPreyToday === 'function') void fetchPreyToday();
     applyUIStrings();
+    void fetchLiveResetData().then(() => {
+      if (typeof updateHeaderSyncBadge === 'function') updateHeaderSyncBadge();
+    });
     applySavedTheme();
     updateFooter();
     updateSpecBtn();
@@ -1603,6 +1606,11 @@ function updateHeaderSyncBadge() {
     tip.push(isNl ? 'Laatste repo-fetch (bountiful-today.json): ' : 'Last repo fetch (bountiful-today.json): ');
     tip.push(String(bountifulFetchResult.fetched));
   }
+  if (liveResetFetchResult && liveResetFetchResult.ok && liveResetFetchResult.lastUpdated) {
+    tip.push(isNl ? ' | Wowhead scrape (live_reset_data.json): ' : ' | Wowhead scrape (live_reset_data.json): ');
+    tip.push(String(liveResetFetchResult.lastUpdated));
+    tip.push(' UTC');
+  }
   if (bountifulFetchResult && bountifulFetchResult.staleJson) {
     tip.push(isNl ? ' — JSON gold voor vorige WoW-dag; rooster-fallback.' : ' — JSON was for previous WoW day; schedule fallback.');
   }
@@ -1708,8 +1716,10 @@ const DELVES_UI = {
     role_ease_label:'💡 Rol-tip:',
     detail_gimmick:'Wat te doen', detail_danger:'Gevaar', detail_tip:'Tip', wowhead:'→ Wowhead',
     full_guide_btn:'Volledige gids', back_btn:'← Terug',
-    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is uitgelicht — de delve waarmee verkeerde korte tips zijn vervangen door Method.gg-bronnen. Zie <strong>Over deze app</strong> voor de changelog.',
-    delves_spotlight_badge:'Spotlight' },
+    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is uitgelicht — de delve waarmee verkeerde korte tips zijn vervangen door Method.gg-bronnen. Zie <button type="button" class="about-open-inline" onclick="openAbout()">Over deze app</button> voor de changelog.',
+    delves_spotlight_badge:'Spotlight',
+    delves_live_reset_meta:'Wowhead EU-scrape ({t} UTC): {locations}',
+    delves_live_reset_mismatch:'Let op: Wowhead TIW toont een andere Bountiful-set of minder dan 4 entries dan `bountiful-today.json` — check in-game bij twijfel.' },
   en: { delves_title:'All Midnight Delves', delves_sub:'Overview of all Delves in Midnight Season 1 with /way to get there.', delves_click_hint:'Click the Delve name for quick tips.', delve_name:'Delve', zone_way:'Zone / Area', key_info_title:'Key Info', loot_title:'Loot Table', loot_sub:'Item levels per Tier — Midnight Season 1', tier:'Tier', copy_way:'Copy /way',
     bountiful_json_ok:'Today’s Bountiful EU (live data)',
     bountiful_stale_json:'Bountiful: repo `bountiful-today.json` is still dated to the previous WoW day (CI after 07:00 UTC can run late). Showing the built-in weekly rotation for today — verify in-game or open an issue if this is consistently wrong.',
@@ -1735,9 +1745,78 @@ const DELVES_UI = {
     role_ease_label:'💡 Role tip:',
     detail_gimmick:'Main gimmick', detail_danger:'Biggest danger', detail_tip:'Pro-tip', wowhead:'→ Wowhead',
     full_guide_btn:'Full Guide', back_btn:'← Back',
-    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is highlighted — the delve whose wrong quick tips were replaced with Method.gg-sourced text. Open <strong>About this app</strong> for the changelog.',
-    delves_spotlight_badge:'Spotlight' }
+    delves_spotlight_callout:'✨ <strong>The Darkway</strong> is highlighted — the delve whose wrong quick tips were replaced with Method.gg-sourced text. Open <button type="button" class="about-open-inline" onclick="openAbout()">About this app</button> for the changelog.',
+    delves_spotlight_badge:'Spotlight',
+    delves_live_reset_meta:'Wowhead EU scrape ({t} UTC): {locations}',
+    delves_live_reset_mismatch:'Note: Wowhead TIW shows a different Bountiful set or fewer than 4 entries vs `bountiful-today.json` — verify in-game if unsure.' }
 };
+
+let liveResetFetchPromise = null;
+let liveResetFetchResult = {
+  ok: false,
+  bountifulNames: [],
+  bountifulIds: [],
+  dailyPrey: [],
+  lastUpdated: '',
+  error: null,
+};
+
+async function fetchLiveResetData() {
+  if (liveResetFetchPromise) return liveResetFetchPromise;
+  liveResetFetchPromise = (async () => {
+    try {
+      const res = await fetch('data/live_reset_data.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const names = Array.isArray(data.bountiful_delves) ? data.bountiful_delves.map(String) : [];
+      const ids = Array.isArray(data.bountiful_delve_ids)
+        ? data.bountiful_delve_ids.filter(x => typeof x === 'string')
+        : [];
+      const prey = Array.isArray(data.daily_prey) ? data.daily_prey.map(String) : [];
+      const lu = data.last_updated != null ? String(data.last_updated) : '';
+      liveResetFetchResult = {
+        ok: true,
+        bountifulNames: names,
+        bountifulIds: ids,
+        dailyPrey: prey,
+        lastUpdated: lu,
+        error: null,
+      };
+    } catch (e) {
+      liveResetFetchResult = {
+        ok: false,
+        bountifulNames: [],
+        bountifulIds: [],
+        dailyPrey: [],
+        lastUpdated: '',
+        error: e,
+      };
+    }
+    return liveResetFetchResult;
+  })();
+  return liveResetFetchPromise;
+}
+
+function resetLiveResetFetchCache() {
+  liveResetFetchPromise = null;
+  liveResetFetchResult = {
+    ok: false,
+    bountifulNames: [],
+    bountifulIds: [],
+    dailyPrey: [],
+    lastUpdated: '',
+    error: null,
+  };
+}
+
+function bountifulListMismatchWithLiveReset(activeIds) {
+  const lr = liveResetFetchResult;
+  if (!lr.ok || !lr.bountifulIds.length || !Array.isArray(activeIds) || !activeIds.length) return false;
+  const wh = lr.bountifulIds;
+  if (wh.length !== activeIds.length) return true;
+  const setJ = new Set(activeIds);
+  return wh.some(id => !setJ.has(id));
+}
 
 let bountifulFetchPromise = null;
 let bountifulFetchResult = {
@@ -1785,6 +1864,7 @@ async function fetchBountifulDelves() {
   if (bountifulFetchPromise) return bountifulFetchPromise;
   bountifulFetchPromise = (async () => {
     const wowDay = getWowDailyDateKeyUtc();
+    await fetchLiveResetData();
     try {
       const res = await fetch('data/bountiful-today.json', { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1838,6 +1918,7 @@ async function fetchBountifulDelves() {
 /** Reset fetch (e.g. after weekly rollover) — optional call from weekly screen. */
 function resetBountifulFetchCache() {
   bountifulFetchPromise = null;
+  resetLiveResetFetchCache();
   bountifulFetchResult = {
     ok: false,
     fromJson: false,
@@ -1977,6 +2058,18 @@ async function buildDelvesScreen() {
     }
   } else {
     statusNote = `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.bountiful_no_ids}</p>`;
+  }
+  const lr = liveResetFetchResult;
+  const esc = typeof escapeHtmlText === 'function' ? escapeHtmlText : (s => String(s == null ? '' : s).replace(/</g, '&lt;'));
+  if (lr.ok && lr.lastUpdated && lr.bountifulNames.length) {
+    const locs = lr.bountifulNames.map(esc).join(', ');
+    const meta = (ui.delves_live_reset_meta || '')
+      .replace(/\{t\}/g, esc(lr.lastUpdated))
+      .replace(/\{locations\}/g, locs);
+    statusNote += `<p class="delves-live-reset-meta">${meta}</p>`;
+  }
+  if (lr.ok && lr.bountifulIds.length && bountifulListMismatchWithLiveReset(bountifulIds)) {
+    statusNote += `<p class="delves-bountiful-status delves-bountiful-status-warn">⚠️ ${ui.delves_live_reset_mismatch || ''}</p>`;
   }
   html += `<div class="delves-bountiful-banner">
     ${statusNote}
@@ -3176,6 +3269,7 @@ const PREY_UI = {
     preyTodayWowhead:'Active Prey-lijst uit Wowhead Today in WoW.',
     preyTodayJson:'EU-lijst geladen (prey-today.json, dagelijks bijgewerkt).',
     preyTodayJsonComputed:' Server-computed (zelfde seed als offline) — Wowhead heeft nog geen Prey-widget.',
+    preyLiveResetHardNm:'Wowhead — Hard/Nightmare in je actieve set vandaag: {names}',
     preyTodayFallback:'prey-today.json niet geladen — berekende set in je browser.',
     summaryLabel:'Samenvatting', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
     spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
@@ -3209,6 +3303,7 @@ const PREY_UI = {
     preyTodayWowhead:'Active prey list from Wowhead Today in WoW.',
     preyTodayJson:'Loaded EU list (prey-today.json, refreshed daily).',
     preyTodayJsonComputed:' Server-computed (same seed as offline) — no Wowhead Prey widget yet.',
+    preyLiveResetHardNm:'Wowhead — Hard/Nightmare in today’s active set: {names}',
     preyTodayFallback:'Could not load prey-today.json — computed set in your browser.',
     summaryLabel:'Summary', normal:'Normal', hard:'Hard', nightmare:'Nightmare', ilvl:'iLvl', difficulty:'Difficulty',
     spotlightTitle:'🎯 Target of the day', spotlightCta:'Open details', dangerMeter:'Danger meter (solo)', threatLabel:'Threat', killedLabel:'Killed this week',     targetsProgress:'Targets down', ilvlScale:'Prey iLvl',
@@ -3371,6 +3466,41 @@ function getFinalActivePreyTargets() {
   if (arr.length !== ids.length) return [];
   if (preyTodayFetchResult.fromJson) return arr;
   return arr.slice().sort((a, b) => (a.zoneOrder || 0) - (b.zoneOrder || 0) || (a.id || '').localeCompare(b.id || ''));
+}
+
+function normalizeLiveResetPreyName(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/\s*\([^)]*\)/g, '')
+    .trim();
+}
+
+/** Match `live_reset_data.json` daily_prey strings to targets in today’s active 12. */
+function matchLiveResetPreyLabels(dailyPreyNames) {
+  const tg = typeof getFinalActivePreyTargets === 'function' ? getFinalActivePreyTargets() : [];
+  if (!Array.isArray(dailyPreyNames) || !dailyPreyNames.length || !tg.length) return [];
+  const out = [];
+  const seen = new Set();
+  const l = typeof lang !== 'undefined' && lang === 'en' ? 'en' : 'nl';
+  for (const raw of dailyPreyNames) {
+    const n = normalizeLiveResetPreyName(raw);
+    if (n.length < 3) continue;
+    for (const t of tg) {
+      const en = normalizeLiveResetPreyName((t.name && t.name.en) || '');
+      const nl = normalizeLiveResetPreyName((t.name && t.name.nl) || '');
+      if (
+        (en && (en.includes(n) || n.includes(en))) ||
+        (nl && (nl.includes(n) || n.includes(nl)))
+      ) {
+        if (!seen.has(t.id)) {
+          seen.add(t.id);
+          out.push((t.name && (t.name[l] || t.name.en)) || t.id);
+        }
+        break;
+      }
+    }
+  }
+  return out;
 }
 
 let _preyResetCountdownTimer = null;
@@ -3602,7 +3732,7 @@ async function renderPreyGuide() {
     if (window.__midnightPreyDayKey && window.__midnightPreyDayKey !== preyDay) resetPreyTodayFetchCache();
     window.__midnightPreyDayKey = preyDay;
   }
-  await fetchPreyToday();
+  await Promise.all([fetchPreyToday(), fetchLiveResetData()]);
   const preyS1Rows = await fetchPreyActivitiesJson();
 
   const targetsSorted = getFinalActivePreyTargets();
@@ -3630,6 +3760,17 @@ async function renderPreyGuide() {
     html += `<div class="prey-section prey-today-banner"><p class="prey-today-status prey-today-status--ok">📡 ${ui.preyTodayJson}${sub}</p></div>`;
   } else {
     html += `<div class="prey-section prey-today-banner"><p class="prey-today-status prey-today-status--warn">⚠️ ${ui.preyTodayFallback}</p></div>`;
+  }
+
+  const lrPz = liveResetFetchResult;
+  if (lrPz.ok && lrPz.dailyPrey.length) {
+    const matchedPz = matchLiveResetPreyLabels(lrPz.dailyPrey);
+    if (matchedPz.length) {
+      const escPz = typeof escapeHtmlText === 'function' ? escapeHtmlText : (s => String(s == null ? '' : s).replace(/</g, '&lt;'));
+      const namesPz = matchedPz.map(escPz).join(', ');
+      const linePz = (ui.preyLiveResetHardNm || '').replace(/\{names\}/g, namesPz);
+      html += `<div class="prey-section prey-live-reset-banner"><p class="prey-today-status prey-today-status--ok">🎯 ${linePz}</p></div>`;
+    }
   }
 
   const preyState = preyWeeklyLoadState();

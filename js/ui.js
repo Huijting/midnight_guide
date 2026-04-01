@@ -510,6 +510,8 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves spotlight callout, and the update banner is now an inline button that opens the About modal.</li>
+        <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> from the Python Wowhead scraper: committed by <code>fetch-eu-daily-json</code> with prey/bountiful. App loads it (network-first) for Delves (Wowhead EU Bountiful names + mismatch hint vs <code>bountiful-today.json</code>) and Prey (Hard/Nightmare matches). Header tooltip shows scrape timestamp.</li>
         <li><strong>v1.0.5</strong> — Footer and PWA cache versions aligned (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 <strong>Travel Guide</strong> tab: Season 1 portal hub at Silvermoon City (Sunwell Terrace), TomTom <code>/way</code> copy buttons, EN/NL descriptions. Clipboard success/fail callbacks wrapped (pcall-style) for stability.</li>
         <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl bands (220/246/259/272, apex to 285); Voidspire Crown of the Cosmos (Alleria) DPS tips refreshed; March on Quel&apos;Danas opening Mar 31, 2026; Chiming Void Curio omni-tier callout. English-only boss names in NL strings where needed. Cache bump.</li>
         <li><strong>v3.6.15</strong> — Prey: Season 1 reward table from <code>data/activities/prey.json</code> + Great Vault tip (4 hunts/week). Delves: Tier 8 loot labels (Champion 2/6 / Hero 1/6) and Trovehunter map 259; companion <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> updates <code>prey-today.json</code> and <code>bountiful-today.json</code> in one run and commit (same multi-slot schedule as the old Bountiful fetch). Service worker / cache bump.</li>
@@ -526,6 +528,8 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves-spotlight en de update-banner is nu een inline knop die het Over-deze-app-venster opent.</li>
+      <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> via Python Wowhead-scraper: CI (<code>fetch-eu-daily-json</code>) naast prey/bountiful. App laadt het (netwerk-first) voor Delves (Wowhead EU Bountiful-namen + waarschuwing bij verschil met <code>bountiful-today.json</code>) en Prey (Hard/Nightmare-matches). Header-tooltip toont scrape-tijd.</li>
       <li><strong>v1.0.5</strong> — Footer- en PWA-cacheversie gelijkgetrokken (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 Tab <strong>Reisgids</strong>: Season 1 portaalhub bij Silvermoon City (Sunwell Terrace), TomTom <code>/way</code>-knoppen, EN/NL-beschrijvingen. Klembord-callbacks afgevangen (pcall-stijl) voor stabiliteit.</li>
       <li><strong>v3.6.16</strong> — Raids (S1): LFR/Normal/Heroic/Mythic ilvl-banden (220/246/259/272, apex tot 285); Voidspire Crown of the Cosmos (Alleria) DPS-tips bijgewerkt; March on Quel&apos;Danas opent 31 mrt 2026; Chiming Void Curio omni-tier benadrukt. Bossnamen in het Engels in NL-teksten waar nodig. Cache-bump.</li>
       <li><strong>v3.6.15</strong> — Prey: S1-beloningentabel uit <code>data/activities/prey.json</code> + Great Vault-tip (4 hunts/week). Delves: Tier 8 loot-labels (Champion 2/6 / Hero 1/6) en Trovehunter-map 259; bijbehorend <code>data/activities/delves.json</code>. GitHub Actions: workflow <code>fetch-eu-daily-json</code> vernieuwt <code>prey-today.json</code> en <code>bountiful-today.json</code> in één run en commit (zelfde meerdere tijdslots als de oude Bountiful-fetch). Service worker / cache-bump.</li>
@@ -2446,14 +2450,14 @@ function renderSpecTab(s, tid, ui, fromOverview) {
 const BANNER_UI = {
   nl: {
     title: '📦 Update v3.6.15 — Prey S1-tabel & Delves-loot',
-    body: 'Prey: nieuwe S1-beloningentabel (JSON) + tip voor 4 hunts/week richting Great Vault. Delves: bijgewerkte Tier 8 / map-ilvls (mrt 2026). Details: <strong>Over deze app</strong> → changelog.',
+    body: 'Prey: nieuwe S1-beloningentabel (JSON) + tip voor 4 hunts/week richting Great Vault. Delves: bijgewerkte Tier 8 / map-ilvls (mrt 2026). Details: <button type="button" class="about-open-inline" onclick="openAbout()">Over deze app</button> → changelog.',
     tip_desktop: '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     tip_mobile:  '💡 <strong>Tip:</strong> Voeg de app toe aan je beginscherm via het 📲-icoon voor offline gebruik in de dungeon!',
     btn: '→ Naar de site',
   },
   en: {
     title: '📦 Update v3.6.15 — Prey S1 table & Delves loot',
-    body: 'Prey: new Season 1 reward table (JSON) + tip for 4 hunts/week toward the Great Vault. Delves: updated Tier 8 / map ilvls (Mar 2026). Details: <strong>About this app</strong> → changelog.',
+    body: 'Prey: new Season 1 reward table (JSON) + tip for 4 hunts/week toward the Great Vault. Delves: updated Tier 8 / map ilvls (Mar 2026). Details: <button type="button" class="about-open-inline" onclick="openAbout()">About this app</button> → changelog.',
     tip_desktop: '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     tip_mobile:  '💡 <strong>Tip:</strong> Add the app to your home screen via the 📲 icon for offline use inside dungeons!',
     btn: '→ Go to the site',
@@ -2718,5 +2722,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.0.5').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.7').catch(() => {});
 }
