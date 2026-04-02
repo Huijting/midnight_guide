@@ -1,14 +1,16 @@
 {
   "bountiful_delves": [
-    "Isle of Quel'Danas: Parhelion Plaza",
-    "Voidstorm: Shadowguard Point",
-    "Harandar: The Gulf of Memory"
+    "Voidstorm: Sunkiller Sanctum",
+    "Harandar: The Grudge Pit",
+    "Silvermoon City: The Darkway",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "parhelion_plaza",
-    "shadowguard_point",
-    "gulf_of_memory"
+    "sunkiller_sanctum",
+    "grudge_pit",
+    "the_darkway",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-01 09:20:36"
+  "last_updated": "2026-04-02 08:12:18"
 }

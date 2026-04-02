@@ -1,12 +1,12 @@
 {
-  "fetched": "2026-04-01T08:19:32.145Z",
-  "reset": "2026-04-01",
+  "fetched": "2026-04-02T08:12:13.087Z",
+  "reset": "2026-04-02",
   "region": "EU",
-  "source": "schedule",
+  "source": "wowhead",
   "delves": [
     "sunkiller_sanctum",
     "grudge_pit",
-    "shadow_enclave",
+    "the_darkway",
     "atalaman"
   ],
   "parseMode": "eu_json_only",
