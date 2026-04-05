@@ -1,9 +1,11 @@
 {
   "bountiful_delves": [
-    "Active",
+    "Isle of Quel'Danas: Parhelion Plaza",
     "Active"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "parhelion_plaza"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-04-05 08:22:50"
+  "last_updated": "2026-04-05 08:58:01"
 }
