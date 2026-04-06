@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Isle of Quel'Danas: Parhelion Plaza",
-    "Active"
+    "Silvermoon City: Collegiate Calamity",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "parhelion_plaza"
+    "collegiate_calamity",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-05 08:58:01"
+  "last_updated": "2026-04-06 08:26:18"
 }
