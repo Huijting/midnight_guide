@@ -1,16 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Harandar: The Grudge Pit",
-    "Eversong Woods: The Shadow Enclave",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: Collegiate Calamity",
+    "Voidstorm: Shadowguard Point"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "grudge_pit",
-    "shadow_enclave",
-    "atalaman"
+    "collegiate_calamity",
+    "shadowguard_point"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-08 09:16:39"
+  "last_updated": "2026-04-09 08:23:20"
 }
