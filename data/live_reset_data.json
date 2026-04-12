@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Zul'Aman: Atal'Aman",
-    "Active"
+    "Isle of Quel'Danas: Parhelion Plaza",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
+    "parhelion_plaza",
     "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-12 08:09:48"
+  "last_updated": "2026-04-12 08:28:45"
 }
