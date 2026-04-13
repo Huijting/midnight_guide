@@ -510,6 +510,7 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.13</strong> — Add-ons: each addon is a collapsible card (spec-style accordion) so the page scales with more entries.</li>
         <li><strong>v1.0.12</strong> — Add-ons: removed Platynator “Common issues” block and screenshot from UI + precache.</li>
         <li><strong>v1.0.11</strong> — Add-ons: Platynator visual guide (<code>colorLegend</code> grid, <code>platy-prio-list.jpg</code>), PWA precache bump.</li>
         <li><strong>v1.0.10</strong> — Add-ons: Inchy Platynator profile import (copy + preview textarea), <code>platynator-inchy-export.js</code> + precache.</li>
@@ -533,6 +534,7 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.13</strong> — Add-ons: elke add-on is een inklapbare kaart (zelfde patroon als specs-accordion) zodat de pagina schaalt met meer items.</li>
       <li><strong>v1.0.12</strong> — Add-ons: blok “Veelvoorkomende problemen” en screenshot uit Platynator-UI + precache gehaald.</li>
       <li><strong>v1.0.11</strong> — Add-ons: Platynator visuele gids (<code>colorLegend</code>-grid, <code>platy-prio-list.jpg</code>), PWA-precache bump.</li>
       <li><strong>v1.0.10</strong> — Add-ons: Platynator-profielimport van Inchy (kopie + voorbeeldtextarea), <code>platynator-inchy-export.js</code> + precache.</li>
@@ -2048,6 +2050,26 @@ window.toggleSpecClassAccordion = function (trigger) {
   }
 };
 
+/** Add-ons tab: collapse/expand addon cards (same interaction model as spec class accordion). */
+window.toggleAddonAccordion = function (trigger) {
+  const card = trigger.closest('.addon-card--accordion');
+  const root = trigger.closest('.addon-cards-accordion-root');
+  if (!card || !root) return;
+  const opening = !card.classList.contains('is-expanded');
+  if (opening) {
+    root.querySelectorAll('.addon-card--accordion.is-expanded').forEach(c => {
+      c.classList.remove('is-expanded');
+      const h = c.querySelector('.addon-accordion-toggle');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+    card.classList.add('is-expanded');
+    trigger.setAttribute('aria-expanded', 'true');
+  } else {
+    card.classList.remove('is-expanded');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+};
+
 function buildSpecGrid() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
@@ -2757,5 +2779,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.0.12').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.13').catch(() => {});
 }

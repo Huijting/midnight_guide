@@ -1867,6 +1867,36 @@
     position:relative;
     overflow:hidden
   }
+  .addon-card.addon-card--accordion{padding:0}
+  .addon-accordion-strip{
+    display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 14px;
+    padding:16px 18px 16px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    position:relative;z-index:1
+  }
+  .addon-card--accordion.is-expanded .addon-accordion-strip{border-bottom-color:rgba(255,255,255,.1)}
+  .addon-accordion-toggle{
+    flex:1;min-width:200px;display:flex;align-items:flex-start;gap:12px;margin:0;padding:0;
+    border:none;cursor:pointer;text-align:left;background:transparent;color:inherit;font-family:inherit;
+    transition:opacity .15s ease
+  }
+  .addon-accordion-toggle:hover{opacity:.95}
+  .addon-accordion-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+  .addon-accordion-toggle-text{display:flex;flex-direction:column;gap:0;min-width:0;flex:1}
+  .addon-card-name--accordion{display:block;margin:0;font-family:'Inter',sans-serif;font-size:clamp(18px,4vw,22px);font-weight:800;color:var(--text);letter-spacing:.02em;line-height:1.2}
+  .addon-accordion-chevron{
+    width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:rotate(45deg);transition:transform .3s ease;margin:10px 2px 0 4px;flex-shrink:0;opacity:.85
+  }
+  .addon-card--accordion.is-expanded .addon-accordion-chevron{transform:rotate(-135deg);margin-top:14px}
+  .addon-accordion-actions{align-self:flex-start}
+  .addon-accordion-panel{
+    max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(0.4,0,0.2,1);
+    position:relative;z-index:1
+  }
+  .addon-card--accordion.is-expanded .addon-accordion-panel{max-height:12000px}
+  .addon-accordion-panel-inner{padding:4px 18px 22px}
+  body.light .addon-accordion-toggle:focus-visible{outline-color:var(--gold)}
   .addon-card::before{
     content:'';
     position:absolute;
@@ -1971,6 +2001,9 @@
   @media(max-width:520px){
     .addon-card-head{flex-direction:column}
     .addon-card-actions{width:100%;justify-content:flex-start}
+    .addon-accordion-strip{flex-direction:column;align-items:stretch}
+    .addon-accordion-toggle{min-width:0;width:100%}
+    .addon-accordion-actions{width:100%;justify-content:flex-start}
     .addon-link-btn{flex:1;min-width:calc(50% - 4px);justify-content:center}
   }
   .travel-screen-inner{padding-bottom:56px !important}

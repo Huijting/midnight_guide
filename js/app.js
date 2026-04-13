@@ -361,6 +361,7 @@ const UI = {
     addons_link_wago: "Wago.io",
     addons_copy_import: "📋 Kopieer importstring",
     addons_profile_by: "Profiel door",
+    addons_acc_toggle: "Details tonen of verbergen",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -473,6 +474,7 @@ const UI = {
     addons_link_wago: "Wago.io",
     addons_copy_import: "📋 Copy import string",
     addons_profile_by: "Profile by",
+    addons_acc_toggle: "Show or hide details",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -2497,9 +2499,12 @@ function buildAddonsScreen() {
   if (hs && u.addons_hero_sub) hs.textContent = u.addons_hero_sub;
 
   if (typeof ADDONS_DATA === 'undefined' || !ADDONS_DATA.length) {
+    host.className = '';
     host.innerHTML = `<p class="addons-empty">${lang === 'en' ? 'No addon data loaded.' : 'Addon-gegevens niet geladen.'}</p>`;
     return;
   }
+
+  host.className = 'addon-cards-accordion-root';
 
   const linkAnchor = (href, cls, label) =>
     `<a class="${cls}" href="${escAttr(href)}" target="_blank" rel="noopener noreferrer">${escText(label)}</a>`;
@@ -2618,22 +2623,33 @@ function buildAddonsScreen() {
       .filter(Boolean)
       .join('');
 
-    return `<article class="addon-card" data-addon="${escText(aid)}">
-      <header class="addon-card-head">
-        <div class="addon-card-title-row">
+    const panelId = `addon-acc-panel-${aid}`;
+    const headId = `addon-acc-head-${aid}`;
+    const accAria = escAttr(`${String(addon.name || 'Addon')} — ${u.addons_acc_toggle || ''}`);
+    return `<article class="addon-card addon-card--accordion" data-addon="${escText(aid)}">
+      <div class="addon-accordion-strip">
+        <button type="button" class="addon-accordion-toggle" onclick="toggleAddonAccordion(this)" aria-expanded="false" aria-controls="${panelId}" id="${headId}" aria-label="${accAria}">
           <span class="addon-card-icon" aria-hidden="true">🧩</span>
-          <div class="addon-card-titles"><h2 class="addon-card-name">${title}</h2><p class="addon-card-tagline">${tag}</p></div>
+          <span class="addon-accordion-toggle-text">
+            <span class="addon-card-name addon-card-name--accordion">${title}</span>
+            <span class="addon-card-tagline">${tag}</span>
+          </span>
+          <span class="addon-accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="addon-card-actions addon-accordion-actions">${actions}</div>
+      </div>
+      <div class="addon-accordion-panel" id="${panelId}" role="region" aria-labelledby="${headId}">
+        <div class="addon-accordion-panel-inner">
+          <p class="addon-card-body">${body}</p>
+          ${visualGuideBlock}
+          ${videoBlock}
+          <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
+            <h3 class="addon-section-title" id="addon-inst-${escText(aid)}">${escText(u.addons_install_guide)}</h3>
+            <ol class="addon-install-list">${installItems}</ol>
+          </section>
+          ${profileBlocks}
         </div>
-        <div class="addon-card-actions">${actions}</div>
-      </header>
-      <p class="addon-card-body">${body}</p>
-      ${visualGuideBlock}
-      ${videoBlock}
-      <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
-        <h3 class="addon-section-title" id="addon-inst-${escText(aid)}">${escText(u.addons_install_guide)}</h3>
-        <ol class="addon-install-list">${installItems}</ol>
-      </section>
-      ${profileBlocks}
+      </div>
     </article>`;
   }).join('');
 
