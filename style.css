@@ -1856,6 +1856,11 @@
   .addons-hero{text-align:center;padding:16px 0 12px}
   .addons-hero-title{font-family:'Inter',sans-serif;font-size:clamp(20px,4.5vw,26px);font-weight:800;color:var(--gold);text-shadow:0 0 14px rgba(200,168,75,.35)}
   .addons-hero-sub{font-size:12px;color:var(--muted);margin-top:6px}
+  .addons-section-heading{
+    margin:22px 0 10px;font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);opacity:.92;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px
+  }
+  .addon-cards-accordion-root > .addons-section-heading:first-child{margin-top:4px}
   .addons-empty{font-size:13px;color:var(--muted);padding:20px;text-align:center}
   .addon-card{
     background:linear-gradient(165deg,rgba(22,18,40,.92) 0%,rgba(12,12,18,.94) 55%,rgba(10,14,22,.96) 100%);
@@ -1955,6 +1960,18 @@
   .addon-video-title{display:block;font-size:13px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:4px}
   .addon-video-cta{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--gold)}
   .addon-card-body{font-size:14px;line-height:1.6;color:var(--text);margin:0 0 4px}
+  .addon-mpt-shots{display:grid;grid-template-columns:1fr;gap:14px;margin-top:4px}
+  @media(min-width:720px){.addon-mpt-shots{grid-template-columns:1fr 1fr;gap:16px}}
+  .addon-mpt-shot-fig{margin:0;padding:0;border-radius:12px;overflow:hidden;border:1px solid rgba(200,168,75,.28);
+    background:rgba(0,0,0,.35);box-shadow:0 8px 28px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)
+  }
+  .addon-mpt-shot-img{display:block;width:100%;height:auto}
+  .addon-chat-cmd-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px}
+  .addon-chat-cmd-code{
+    font-size:14px;font-weight:800;padding:8px 14px;border-radius:10px;
+    background:rgba(0,0,0,.4);border:1px solid rgba(200,168,75,.35);color:var(--gold)
+  }
+  .addon-cmd-copy-btn{font-size:12px !important;padding:8px 12px !important}
   .addon-section{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
   .addon-section-title{margin:0 0 6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;color:var(--gold);letter-spacing:.02em}
   .addon-section-kicker{margin:0 0 12px;font-size:12px;color:var(--muted);line-height:1.5}

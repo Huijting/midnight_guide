@@ -510,6 +510,9 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.16</strong> — Add-ons: Midnight Profession Tracker uses <code>/mpt</code> and in-app screenshots (list UI) instead of the old bar mockup.</li>
+        <li><strong>v1.0.15</strong> — Add-ons: <strong>Midnight Profession Tracker</strong> (correct CurseForge slug + display name).</li>
+        <li><strong>v1.0.14</strong> — Add-ons: profession tracker (CurseForge, <code>/mpt</code>, preview) under <strong>Profession Helpers</strong>; grouped layout via <code>ADDONS_SECTIONS</code>.</li>
         <li><strong>v1.0.13</strong> — Add-ons: each addon is a collapsible card (spec-style accordion) so the page scales with more entries.</li>
         <li><strong>v1.0.12</strong> — Add-ons: removed Platynator “Common issues” block and screenshot from UI + precache.</li>
         <li><strong>v1.0.11</strong> — Add-ons: Platynator visual guide (<code>colorLegend</code> grid, <code>platy-prio-list.jpg</code>), PWA precache bump.</li>
@@ -534,6 +537,9 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.16</strong> — Add-ons: Midnight Profession Tracker gebruikt <code>/mpt</code> en screenshots (lijst-UI) i.p.v. de oude balk-mockup.</li>
+      <li><strong>v1.0.15</strong> — Add-ons: <strong>Midnight Profession Tracker</strong> (juiste CurseForge-slug + weergavenaam).</li>
+      <li><strong>v1.0.14</strong> — Add-ons: profession-tracker (CurseForge, <code>/mpt</code>, preview) onder <strong>Profession helpers</strong>; gegroepeerde layout via <code>ADDONS_SECTIONS</code>.</li>
       <li><strong>v1.0.13</strong> — Add-ons: elke add-on is een inklapbare kaart (zelfde patroon als specs-accordion) zodat de pagina schaalt met meer items.</li>
       <li><strong>v1.0.12</strong> — Add-ons: blok “Veelvoorkomende problemen” en screenshot uit Platynator-UI + precache gehaald.</li>
       <li><strong>v1.0.11</strong> — Add-ons: Platynator visuele gids (<code>colorLegend</code>-grid, <code>platy-prio-list.jpg</code>), PWA-precache bump.</li>
@@ -2779,5 +2785,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.0.13').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.16').catch(() => {});
 }

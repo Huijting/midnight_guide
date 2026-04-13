@@ -362,6 +362,9 @@ const UI = {
     addons_copy_import: "📋 Kopieer importstring",
     addons_profile_by: "Profiel door",
     addons_acc_toggle: "Details tonen of verbergen",
+    addons_mpt_preview_title: "Zo in-game (screenshots)",
+    addons_slash_cmd: "In-game commando",
+    addons_copy_cmd: "📋 Kopieer",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -475,6 +478,9 @@ const UI = {
     addons_copy_import: "📋 Copy import string",
     addons_profile_by: "Profile by",
     addons_acc_toggle: "Show or hide details",
+    addons_mpt_preview_title: "In-game (screenshots)",
+    addons_slash_cmd: "In-game command",
+    addons_copy_cmd: "📋 Copy",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -2498,7 +2504,14 @@ function buildAddonsScreen() {
   if (ht && u.addons_hero_title) ht.textContent = u.addons_hero_title;
   if (hs && u.addons_hero_sub) hs.textContent = u.addons_hero_sub;
 
-  if (typeof ADDONS_DATA === 'undefined' || !ADDONS_DATA.length) {
+  const sections =
+    typeof ADDONS_SECTIONS !== 'undefined' && Array.isArray(ADDONS_SECTIONS) && ADDONS_SECTIONS.length
+      ? ADDONS_SECTIONS
+      : typeof ADDONS_DATA !== 'undefined' && Array.isArray(ADDONS_DATA) && ADDONS_DATA.length
+        ? [{ id: 'legacy', title: { nl: '', en: '' }, addons: ADDONS_DATA }]
+        : [];
+  const addonCount = sections.reduce((n, s) => n + ((s && s.addons) || []).length, 0);
+  if (!addonCount) {
     host.className = '';
     host.innerHTML = `<p class="addons-empty">${lang === 'en' ? 'No addon data loaded.' : 'Addon-gegevens niet geladen.'}</p>`;
     return;
@@ -2509,15 +2522,17 @@ function buildAddonsScreen() {
   const linkAnchor = (href, cls, label) =>
     `<a class="${cls}" href="${escAttr(href)}" target="_blank" rel="noopener noreferrer">${escText(label)}</a>`;
 
-  host.innerHTML = ADDONS_DATA.map(addon => {
+  const renderOneAddon = addon => {
     const aid = String(addon.id || 'addon').replace(/[^a-z0-9_-]/gi, '');
     const title = escText(addon.name || '');
     const tag = escText(loc(addon.tagline));
     const body = escText(loc(addon.body));
     const vidTitle = escText(loc(addon.video && addon.video.title));
     const vidUrl = (addon.video && addon.video.url) || '';
-    const imgAlt = escText(loc(addon.priorityImageAlt));
+    const hasPriImg = !!(addon.priorityImage && String(addon.priorityImage).trim());
+    const imgAlt = hasPriImg ? escText(loc(addon.priorityImageAlt || { nl: '', en: '' })) : '';
     const imgSrc = escAttr(addon.priorityImage || '');
+    const cardIcon = escText(addon.cardIcon || '🧩');
 
     const cf = (addon.links || []).find(l => l.brand === 'curseforge');
     const wg = (addon.links || []).find(l => l.brand === 'wago');
@@ -2562,15 +2577,14 @@ function buildAddonsScreen() {
         ? `<ul class="addon-legend" role="list">${legendItemsLegacy}</ul>`
         : '';
 
-    const hasImg = !!(addon.priorityImage && String(addon.priorityImage).trim());
-    const showVisualSection = hasImg || !!legendBlock;
-    const showVisualKicker = hasImg || !!legendBlock;
+    const showVisualSection = hasPriImg || !!legendBlock;
+    const showVisualKicker = hasPriImg || !!legendBlock;
     const visualGuideTitle = escText(u.addons_visual_guide || u.addons_priority_colors);
     const visualGuideBlock = showVisualSection
       ? `<section class="addon-section addon-visual-guide" aria-labelledby="addon-visual-${escText(aid)}">
         <h3 class="addon-section-title" id="addon-visual-${escText(aid)}">${visualGuideTitle}</h3>
         ${
-          hasImg
+          hasPriImg
             ? `<figure class="addon-figure addon-figure-lead"><img class="addon-prio-img" src="${imgSrc}" alt="${imgAlt}" loading="lazy" decoding="async" /></figure>`
             : ''
         }
@@ -2623,13 +2637,46 @@ function buildAddonsScreen() {
       .filter(Boolean)
       .join('');
 
+    const lp = addon.listPreview;
+    let listPreviewBlock = '';
+    if (lp && Array.isArray(lp.shots) && lp.shots.length) {
+      const cap = lp.caption ? `<p class="addon-section-kicker">${escText(loc(lp.caption))}</p>` : '';
+      const shots = lp.shots
+        .map(s => {
+          const src = escAttr(s.src || '');
+          const alt = escText(loc(s.alt || { nl: '', en: '' }));
+          if (!src) return '';
+          return `<figure class="addon-mpt-shot-fig"><img class="addon-mpt-shot-img" src="${src}" alt="${alt}" loading="lazy" decoding="async" /></figure>`;
+        })
+        .filter(Boolean)
+        .join('');
+      listPreviewBlock = `<section class="addon-section addon-mpt-preview" aria-labelledby="addon-mpt-prev-${aid}">
+        <h3 class="addon-section-title" id="addon-mpt-prev-${aid}">${escText(u.addons_mpt_preview_title)}</h3>
+        ${cap}
+        <div class="addon-mpt-shots">${shots}</div>
+      </section>`;
+    }
+
+    const cmd = (addon.chatCommand || '').trim();
+    const cmdSafe = escAttr(cmd);
+    const cmdEsc = escText(cmd);
+    const cmdBlock = cmd
+      ? `<section class="addon-section addon-chat-cmd-section" aria-labelledby="addon-cmd-${aid}">
+        <h3 class="addon-section-title" id="addon-cmd-${aid}">${escText(u.addons_slash_cmd)}</h3>
+        <div class="addon-chat-cmd-row">
+          <code class="addon-chat-cmd-code mono">${cmdEsc}</code>
+          <button type="button" class="portal-way-copy-btn addon-cmd-copy-btn" onclick="copyWay(this)" data-way="${cmdSafe}" title="${copyTipEsc}">${escText(u.addons_copy_cmd)}</button>
+        </div>
+      </section>`
+      : '';
+
     const panelId = `addon-acc-panel-${aid}`;
     const headId = `addon-acc-head-${aid}`;
     const accAria = escAttr(`${String(addon.name || 'Addon')} — ${u.addons_acc_toggle || ''}`);
     return `<article class="addon-card addon-card--accordion" data-addon="${escText(aid)}">
       <div class="addon-accordion-strip">
         <button type="button" class="addon-accordion-toggle" onclick="toggleAddonAccordion(this)" aria-expanded="false" aria-controls="${panelId}" id="${headId}" aria-label="${accAria}">
-          <span class="addon-card-icon" aria-hidden="true">🧩</span>
+          <span class="addon-card-icon" aria-hidden="true">${cardIcon}</span>
           <span class="addon-accordion-toggle-text">
             <span class="addon-card-name addon-card-name--accordion">${title}</span>
             <span class="addon-card-tagline">${tag}</span>
@@ -2641,6 +2688,8 @@ function buildAddonsScreen() {
       <div class="addon-accordion-panel" id="${panelId}" role="region" aria-labelledby="${headId}">
         <div class="addon-accordion-panel-inner">
           <p class="addon-card-body">${body}</p>
+          ${listPreviewBlock}
+          ${cmdBlock}
           ${visualGuideBlock}
           ${videoBlock}
           <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
@@ -2651,7 +2700,18 @@ function buildAddonsScreen() {
         </div>
       </div>
     </article>`;
-  }).join('');
+  };
+
+  host.innerHTML = sections
+    .map(sec => {
+      const secHeading =
+        sec.title && String(loc(sec.title) || '').trim()
+          ? `<h2 class="addons-section-heading">${escText(loc(sec.title))}</h2>`
+          : '';
+      const cards = (sec.addons || []).map(renderOneAddon).join('');
+      return `${secHeading}${cards}`;
+    })
+    .join('');
 
   host.querySelectorAll('.addon-profile-import').forEach(sec => {
     const ta = sec.querySelector('textarea[data-export-ta]');
