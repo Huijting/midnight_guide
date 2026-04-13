@@ -510,6 +510,7 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.8</strong> — <strong>Add-ons</strong> tab: Platynator card with CurseForge / Wago / video links, nameplate priority quick reference image, EN/NL copy. New <code>data/addons.js</code> + PWA precache bump.</li>
         <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves spotlight callout, and the update banner is now an inline button that opens the About modal.</li>
         <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> from the Python Wowhead scraper: committed by <code>fetch-eu-daily-json</code> with prey/bountiful. App loads it (network-first) for Delves (Wowhead EU Bountiful names + mismatch hint vs <code>bountiful-today.json</code>) and Prey (Hard/Nightmare matches). Header tooltip shows scrape timestamp.</li>
         <li><strong>v1.0.5</strong> — Footer and PWA cache versions aligned (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 <strong>Travel Guide</strong> tab: Season 1 portal hub at Silvermoon City (Sunwell Terrace), TomTom <code>/way</code> copy buttons, EN/NL descriptions. Clipboard success/fail callbacks wrapped (pcall-style) for stability.</li>
@@ -528,6 +529,7 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.8</strong> — Tab <strong>Add-ons</strong>: Platynator-kaart met CurseForge / Wago / video, snelle referentie voor nameplate-prioriteit, EN/NL-teksten. Nieuw <code>data/addons.js</code> + PWA-precache bump.</li>
       <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves-spotlight en de update-banner is nu een inline knop die het Over-deze-app-venster opent.</li>
       <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> via Python Wowhead-scraper: CI (<code>fetch-eu-daily-json</code>) naast prey/bountiful. App laadt het (netwerk-first) voor Delves (Wowhead EU Bountiful-namen + waarschuwing bij verschil met <code>bountiful-today.json</code>) en Prey (Hard/Nightmare-matches). Header-tooltip toont scrape-tijd.</li>
       <li><strong>v1.0.5</strong> — Footer- en PWA-cacheversie gelijkgetrokken (<code>APP_VERSION</code> = <code>CACHE_VERSION</code>). 🧭 Tab <strong>Reisgids</strong>: Season 1 portaalhub bij Silvermoon City (Sunwell Terrace), TomTom <code>/way</code>-knoppen, EN/NL-beschrijvingen. Klembord-callbacks afgevangen (pcall-stijl) voor stabiliteit.</li>
@@ -2722,5 +2724,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.0.7').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.8').catch(() => {});
 }

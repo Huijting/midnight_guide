@@ -1171,6 +1171,7 @@
   body.mode-dungeons #delves-screen{display:none !important}
   body.mode-dungeons .specs-screen{display:none !important}
   body.mode-dungeons #glossary-screen{display:none !important}
+  body.mode-dungeons #addons-screen{display:none !important}
   /* detail open = home verbergen, detail tonen */
   body.mode-dungeons.detail-open #home-screen{display:none !important}
   body.mode-dungeons.detail-open #detail-screen{display:block !important}
@@ -1838,6 +1839,108 @@
   body.mode-travel #glossary-screen{display:none !important}
   body.mode-travel #prey-screen{display:none !important}
   body.mode-travel #travel-screen{display:block !important}
+  #addons-screen{display:none}
+  body.mode-addons #landing-screen{display:none !important}
+  body.mode-addons #home-screen{display:none !important}
+  body.mode-addons #detail-screen{display:none !important}
+  body.mode-addons #prof-screen{display:none !important}
+  body.mode-addons #weekly-screen{display:none !important}
+  body.mode-addons .specs-screen{display:none !important}
+  body.mode-addons #raids-screen{display:none !important}
+  body.mode-addons #delves-screen{display:none !important}
+  body.mode-addons #glossary-screen{display:none !important}
+  body.mode-addons #prey-screen{display:none !important}
+  body.mode-addons #travel-screen{display:none !important}
+  body.mode-addons #addons-screen{display:block !important}
+  .addons-screen-inner{padding-bottom:56px !important}
+  .addons-hero{text-align:center;padding:16px 0 12px}
+  .addons-hero-title{font-family:'Inter',sans-serif;font-size:clamp(20px,4.5vw,26px);font-weight:800;color:var(--gold);text-shadow:0 0 14px rgba(200,168,75,.35)}
+  .addons-hero-sub{font-size:12px;color:var(--muted);margin-top:6px}
+  .addons-empty{font-size:13px;color:var(--muted);padding:20px;text-align:center}
+  .addon-card{
+    background:linear-gradient(165deg,rgba(22,18,40,.92) 0%,rgba(12,12,18,.94) 55%,rgba(10,14,22,.96) 100%);
+    border:1px solid rgba(167,139,250,.28);
+    border-radius:18px;
+    margin-bottom:22px;
+    padding:18px 18px 22px;
+    box-shadow:0 12px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04);
+    position:relative;
+    overflow:hidden
+  }
+  .addon-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.12;
+    background:radial-gradient(120% 80% at 100% 0%,rgba(241,100,54,.35),transparent 55%),radial-gradient(90% 70% at 0% 100%,rgba(0,211,255,.22),transparent 50%)
+  }
+  .addon-card > *{position:relative;z-index:1}
+  .addon-card-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:12px}
+  .addon-card-title-row{display:flex;gap:12px;align-items:flex-start;min-width:0;flex:1}
+  .addon-card-icon{font-size:28px;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+  .addon-card-titles{min-width:0}
+  .addon-card-name{margin:0;font-family:'Inter',sans-serif;font-size:clamp(18px,4vw,22px);font-weight:800;color:var(--text);letter-spacing:.02em}
+  .addon-card-tagline{margin:4px 0 0;font-size:12px;font-weight:600;color:var(--muted);line-height:1.45}
+  .addon-card-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+  .addon-link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:9px 14px;
+    font-size:12px;
+    font-weight:800;
+    font-family:inherit;
+    border-radius:10px;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,.12);
+    transition:transform .15s ease,filter .15s ease,border-color .15s ease;
+    white-space:nowrap
+  }
+  .addon-link-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .addon-link-cf{
+    color:#fff;
+    background:linear-gradient(180deg,#f16436,#d44b1f);
+    border-color:rgba(0,0,0,.25);
+    box-shadow:0 4px 14px rgba(241,100,54,.35)
+  }
+  .addon-link-wago{
+    color:#061018;
+    background:linear-gradient(180deg,#5cf0ff,#00b7d6);
+    border-color:rgba(0,0,0,.2);
+    box-shadow:0 4px 14px rgba(0,211,255,.28)
+  }
+  .addon-link-video{
+    flex-direction:column;
+    align-items:stretch;
+    text-align:left;
+    width:100%;
+    max-width:100%;
+    background:linear-gradient(180deg,rgba(30,24,48,.95),rgba(12,12,18,.92));
+    border-color:rgba(200,168,75,.35);
+    color:var(--gold)
+  }
+  .addon-video-wrap{margin:12px 0 4px}
+  .addon-video-title{display:block;font-size:13px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:4px}
+  .addon-video-cta{display:block;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--gold)}
+  .addon-card-body{font-size:14px;line-height:1.6;color:var(--text);margin:0 0 4px}
+  .addon-section{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
+  .addon-section-title{margin:0 0 6px;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;color:var(--gold);letter-spacing:.02em}
+  .addon-section-kicker{margin:0 0 12px;font-size:12px;color:var(--muted);line-height:1.5}
+  .addon-figure{margin:0;padding:10px;background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:14px}
+  .addon-prio-img{display:block;width:100%;height:auto;border-radius:10px}
+  .addon-legend{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .addon-legend-item{display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.45;color:var(--text)}
+  .addon-legend-swatch{flex-shrink:0;width:18px;height:18px;border-radius:6px;margin-top:2px;border:2px solid rgba(0,0,0,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+  .addon-legend-text{flex:1;min-width:0}
+  .addon-install-list{margin:8px 0 0;padding-left:1.15rem;font-size:13px;line-height:1.55;color:var(--text)}
+  .addon-install-list li{margin-bottom:8px}
+  @media(max-width:520px){
+    .addon-card-head{flex-direction:column}
+    .addon-card-actions{width:100%;justify-content:flex-start}
+    .addon-link-btn{flex:1;min-width:calc(50% - 4px);justify-content:center}
+  }
   .travel-screen-inner{padding-bottom:56px !important}
   .travel-hero{text-align:center;padding:16px 0 12px}
   .travel-hero-title{font-family:'Inter',sans-serif;font-size:clamp(20px,4.5vw,26px);font-weight:800;color:var(--gold);text-shadow:0 0 14px rgba(200,168,75,.35)}

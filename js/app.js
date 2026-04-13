@@ -340,7 +340,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → deel (□↑) → \"Zet op beginscherm\"",
     about_btn:    "📖 Over deze app",
     help_btn:     "❓ Handleiding",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Reisgids", tab_glossary: "📖 Woordenlijst",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professies", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Wekelijks", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Reisgids", tab_addons: "<i class=\"fas fa-puzzle-piece\" style=\"margin-right:4px\"></i> Add-ons", tab_glossary: "📖 Woordenlijst",
     travel_hero_title: "🧭 Reisgids",
     travel_hero_sub: "Seizoen 1 — portaalnetwerk (Midnight)",
     travel_from: "Van",
@@ -350,6 +350,14 @@ const UI = {
     travel_vault_horde_way_label: "The Vault (Horde) — TomTom",
     travel_copy_way: "📋 Kopieer /way",
     travel_no_way: "Geen vaste /way — kies je bestemming bij het portaal in-game.",
+    addons_hero_title: "🧩 Add-ons",
+    addons_hero_sub: "WoW-add-ons met snelle referenties",
+    addons_priority_colors: "Prioriteitskleuren",
+    addons_quick_reference: "Snelle referentie: naamplaat-kleuren",
+    addons_install_guide: "Installatiegids",
+    addons_watch_video: "Video bekijken →",
+    addons_link_cf: "CurseForge",
+    addons_link_wago: "Wago.io",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -441,7 +449,7 @@ const UI = {
     ib_ios:       "<strong>iPhone</strong> — Safari → share (□↑) → \"Add to Home Screen\"",
     about_btn:    "📖 About this app",
     help_btn:     "❓ Guide",
-    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Travel Guide", tab_glossary: "📖 Glossary",
+    tab_home: "<i class=\"fas fa-home\" style=\"margin-right:4px\"></i> Home", tab_dungeons: "<i class=\"fas fa-skull\" style=\"margin-right:4px\"></i> Dungeons", tab_professions: "<i class=\"fas fa-hammer\" style=\"margin-right:4px\"></i> Professions", tab_weekly: "<i class=\"fas fa-calendar-alt\" style=\"margin-right:4px\"></i> Weekly", tab_raids: "<i class=\"fas fa-dungeon\" style=\"margin-right:4px\"></i> Raids", tab_specs: "<i class=\"fas fa-crosshairs\" style=\"margin-right:4px\"></i> Specs", tab_prey: "<i class=\"fas fa-bullseye\" style=\"margin-right:4px\"></i> Prey", tab_delves: "💎 Delves", tab_travel: "🧭 Travel Guide", tab_addons: "<i class=\"fas fa-puzzle-piece\" style=\"margin-right:4px\"></i> Addons", tab_glossary: "📖 Glossary",
     travel_hero_title: "🧭 Travel Guide",
     travel_hero_sub: "Season 1 — portal network (Midnight)",
     travel_from: "From",
@@ -451,6 +459,14 @@ const UI = {
     travel_vault_horde_way_label: "The Vault (Horde) — TomTom",
     travel_copy_way: "📋 Copy /way",
     travel_no_way: "No fixed /way — pick your destination at the in-game portal.",
+    addons_hero_title: "🧩 Addons",
+    addons_hero_sub: "WoW addons and quick references",
+    addons_priority_colors: "Priority colors",
+    addons_quick_reference: "Quick reference: nameplate colors",
+    addons_install_guide: "Installation guide",
+    addons_watch_video: "Watch video →",
+    addons_link_cf: "CurseForge",
+    addons_link_wago: "Wago.io",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -540,6 +556,7 @@ function setLang(l) {
   if (document.body.classList.contains('mode-weekly')) buildWeeklyList();
   if (document.body.classList.contains('mode-prey')) void renderPreyGuide();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
+  if (document.body.classList.contains('mode-addons')) buildAddonsScreen();
   if (document.body.classList.contains('mode-raids') && typeof renderRaidList === 'function') renderRaidList();
   // Zoekoverlay: refresh placeholder + resultaten bij taalwissel
   const searchOv = document.getElementById('search-overlay');
@@ -586,16 +603,23 @@ function applyUIStrings() {
   if (_glbl) _glbl.innerHTML = u.tab_glossary || u.lbl_glossary || (lang === 'en' ? '📖 Glossary' : '📖 Woordenlijst');
   const _ttr = document.getElementById('tab-lbl-travel');
   if (_ttr) _ttr.innerHTML = u.tab_travel || (lang === 'en' ? '🧭 Travel Guide' : '🧭 Reisgids');
+  const _albl = document.getElementById('tab-lbl-addons');
+  if (_albl && u.tab_addons) _albl.innerHTML = u.tab_addons;
   const _trh = document.getElementById('travel-hero-title');
   const _trs = document.getElementById('travel-hero-sub');
   if (_trh && u.travel_hero_title) _trh.textContent = u.travel_hero_title;
   if (_trs && u.travel_hero_sub) _trs.textContent = u.travel_hero_sub;
+  const _adh = document.getElementById('addons-hero-title');
+  const _ads = document.getElementById('addons-hero-sub');
+  if (_adh && u.addons_hero_title) _adh.textContent = u.addons_hero_title;
+  if (_ads && u.addons_hero_sub) _ads.textContent = u.addons_hero_sub;
   updateHeaderSyncBadge();
   t('detail-tldr-label', u.tldr_label);
   updateLandingStrings();
   if (document.body.classList.contains('mode-specs')) buildSpecGrid();
   if (document.body.classList.contains('mode-glossary')) buildGlossaryScreen();
   if (document.body.classList.contains('mode-travel')) buildTravelScreen();
+  if (document.body.classList.contains('mode-addons')) buildAddonsScreen();
   if (document.body.classList.contains('mode-delves')) void buildDelvesScreen();
   const searchPh = document.getElementById('header-search-placeholder');
   if (searchPh) searchPh.textContent = { nl:'Zoek dungeon, spec, professie...', en:'Search dungeon, spec, profession...'}[lang] || 'Search...';
@@ -2444,6 +2468,95 @@ function buildTravelScreen() {
   host.innerHTML = vaultHtml + blocks;
 }
 
+function buildAddonsScreen() {
+  const host = document.getElementById('addons-content');
+  if (!host) return;
+  const u = UI[lang] || UI.nl;
+  const escAttr =
+    typeof escapeDataWayAttr === 'function'
+      ? escapeDataWayAttr
+      : s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const escText =
+    typeof escapeHtmlText === 'function'
+      ? escapeHtmlText
+      : s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const loc = o => (o && (o[lang] || o.en || o.nl)) || '';
+
+  const ht = document.getElementById('addons-hero-title');
+  const hs = document.getElementById('addons-hero-sub');
+  if (ht && u.addons_hero_title) ht.textContent = u.addons_hero_title;
+  if (hs && u.addons_hero_sub) hs.textContent = u.addons_hero_sub;
+
+  if (typeof ADDONS_DATA === 'undefined' || !ADDONS_DATA.length) {
+    host.innerHTML = `<p class="addons-empty">${lang === 'en' ? 'No addon data loaded.' : 'Addon-gegevens niet geladen.'}</p>`;
+    return;
+  }
+
+  const linkAnchor = (href, cls, label) =>
+    `<a class="${cls}" href="${escAttr(href)}" target="_blank" rel="noopener noreferrer">${escText(label)}</a>`;
+
+  host.innerHTML = ADDONS_DATA.map(addon => {
+    const title = escText(addon.name || '');
+    const tag = escText(loc(addon.tagline));
+    const body = escText(loc(addon.body));
+    const vidTitle = escText(loc(addon.video && addon.video.title));
+    const vidUrl = (addon.video && addon.video.url) || '';
+    const imgAlt = escText(loc(addon.priorityImageAlt));
+    const imgSrc = escAttr(addon.priorityImage || '');
+
+    const cf = (addon.links || []).find(l => l.brand === 'curseforge');
+    const wg = (addon.links || []).find(l => l.brand === 'wago');
+    const actions = [
+      cf ? linkAnchor(cf.url, 'addon-link-btn addon-link-cf', u.addons_link_cf || 'CurseForge') : '',
+      wg ? linkAnchor(wg.url, 'addon-link-btn addon-link-wago', u.addons_link_wago || 'Wago.io') : '',
+    ]
+      .filter(Boolean)
+      .join('');
+
+    const videoBlock = vidUrl
+      ? `<div class="addon-video-wrap"><a class="addon-link-btn addon-link-video" href="${escAttr(
+          vidUrl
+        )}" target="_blank" rel="noopener noreferrer"><span class="addon-video-title">${vidTitle}</span><span class="addon-video-cta">${escText(u.addons_watch_video)}</span></a></div>`
+      : '';
+
+    const legendItems = (addon.legend || [])
+      .map(row => {
+        const hex = String(row.hex || '#64748b').replace(/[^#0-9A-Fa-f]/g, '') || '#64748b';
+        const txt = escText(loc({ nl: row.nl, en: row.en }));
+        return `<li class="addon-legend-item"><span class="addon-legend-swatch" style="background:${escAttr(hex)}"></span><span class="addon-legend-text">${txt}</span></li>`;
+      })
+      .join('');
+
+    const installItems = (addon.installSteps || []).map(step => `<li>${escText(loc(step))}</li>`).join('');
+
+    const aid = String(addon.id || 'addon').replace(/[^a-z0-9_-]/gi, '');
+
+    return `<article class="addon-card" data-addon="${escText(aid)}">
+      <header class="addon-card-head">
+        <div class="addon-card-title-row">
+          <span class="addon-card-icon" aria-hidden="true">🧩</span>
+          <div class="addon-card-titles"><h2 class="addon-card-name">${title}</h2><p class="addon-card-tagline">${tag}</p></div>
+        </div>
+        <div class="addon-card-actions">${actions}</div>
+      </header>
+      <p class="addon-card-body">${body}</p>
+      ${videoBlock}
+      <section class="addon-section" aria-labelledby="addon-prio-${escText(aid)}">
+        <h3 class="addon-section-title" id="addon-prio-${escText(aid)}">${escText(u.addons_priority_colors)}</h3>
+        <p class="addon-section-kicker">${escText(u.addons_quick_reference)}</p>
+        <figure class="addon-figure">
+          <img class="addon-prio-img" src="${imgSrc}" alt="${imgAlt}" loading="lazy" decoding="async" />
+        </figure>
+        <ul class="addon-legend" role="list">${legendItems}</ul>
+      </section>
+      <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
+        <h3 class="addon-section-title" id="addon-inst-${escText(aid)}">${escText(u.addons_install_guide)}</h3>
+        <ol class="addon-install-list">${installItems}</ol>
+      </section>
+    </article>`;
+  }).join('');
+}
+
 function toggleGlossaryItem(i){
   const el=document.getElementById('gitem-'+i);
   if(el) el.classList.toggle('open');
@@ -2542,6 +2655,8 @@ function setMode(mode){
   if(_gtab) _gtab.classList.toggle('active',mode==='glossary');
   const _trtab = document.getElementById('mode-tab-travel');
   if (_trtab) _trtab.classList.toggle('active', mode === 'travel');
+  const _adtab = document.getElementById('mode-tab-addons');
+  if (_adtab) _adtab.classList.toggle('active', mode === 'addons');
   updateSpecHeaderBtnVisibility();
   const backBtn = document.getElementById('back-btn');
   if (backBtn) backBtn.style.display = 'none';
@@ -2575,6 +2690,8 @@ function setMode(mode){
     buildGlossaryScreen();
   } else if(mode==='travel'){
     buildTravelScreen();
+  } else if(mode==='addons'){
+    buildAddonsScreen();
   } else if(mode==='dungeons') {
     document.getElementById('home-screen').style.display = '';
     document.getElementById('detail-screen').style.display = '';
@@ -2583,7 +2700,7 @@ function setMode(mode){
     if(currentDungeon)goHome();
   }
   
-    ['home','dungeons','professions','weekly','raids','delves','glossary','specs','prey','travel'].forEach(id=>{
+    ['home','dungeons','professions','weekly','raids','delves','glossary','specs','prey','travel','addons'].forEach(id=>{
       const el=document.getElementById(id+'-screen');
       if(el)el.style.display=(id===mode)?'':'none';
     });
