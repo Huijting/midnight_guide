@@ -510,6 +510,10 @@ function getAppChangelogHtml() {
       <div class="about-changelog-title">📋 App changelog</div>
       <p class="about-changelog-meta">Current build: <code>v${v}</code></p>
       <ul class="about-changelog-ul">
+        <li><strong>v1.0.12</strong> — Add-ons: removed Platynator “Common issues” block and screenshot from UI + precache.</li>
+        <li><strong>v1.0.11</strong> — Add-ons: Platynator visual guide (<code>colorLegend</code> grid, <code>platy-prio-list.jpg</code>), PWA precache bump.</li>
+        <li><strong>v1.0.10</strong> — Add-ons: Inchy Platynator profile import (copy + preview textarea), <code>platynator-inchy-export.js</code> + precache.</li>
+        <li><strong>v1.0.9</strong> — Add-ons: install guide uses inline CurseForge / Wago buttons instead of “use the button below” copy; NL/EN step text adjusted.</li>
         <li><strong>v1.0.8</strong> — <strong>Add-ons</strong> tab: Platynator card with CurseForge / Wago / video links, nameplate priority quick reference image, EN/NL copy. New <code>data/addons.js</code> + PWA precache bump.</li>
         <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves spotlight callout, and the update banner is now an inline button that opens the About modal.</li>
         <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> from the Python Wowhead scraper: committed by <code>fetch-eu-daily-json</code> with prey/bountiful. App loads it (network-first) for Delves (Wowhead EU Bountiful names + mismatch hint vs <code>bountiful-today.json</code>) and Prey (Hard/Nightmare matches). Header tooltip shows scrape timestamp.</li>
@@ -529,6 +533,10 @@ function getAppChangelogHtml() {
     <div class="about-changelog-title">📋 App-changelog</div>
     <p class="about-changelog-meta">Huidige build: <code>v${v}</code></p>
     <ul class="about-changelog-ul">
+      <li><strong>v1.0.12</strong> — Add-ons: blok “Veelvoorkomende problemen” en screenshot uit Platynator-UI + precache gehaald.</li>
+      <li><strong>v1.0.11</strong> — Add-ons: Platynator visuele gids (<code>colorLegend</code>-grid, <code>platy-prio-list.jpg</code>), PWA-precache bump.</li>
+      <li><strong>v1.0.10</strong> — Add-ons: Platynator-profielimport van Inchy (kopie + voorbeeldtextarea), <code>platynator-inchy-export.js</code> + precache.</li>
+      <li><strong>v1.0.9</strong> — Add-ons: installatiegids met echte CurseForge- / Wago-knoppen i.p.v. “gebruik de knop hieronder”; NL/EN-stappen aangepast.</li>
       <li><strong>v1.0.8</strong> — Tab <strong>Add-ons</strong>: Platynator-kaart met CurseForge / Wago / video, snelle referentie voor nameplate-prioriteit, EN/NL-teksten. Nieuw <code>data/addons.js</code> + PWA-precache bump.</li>
       <li><strong>v1.0.7</strong> — “Over deze app” / “About this app” in Help (changelog), Delves-spotlight en de update-banner is nu een inline knop die het Over-deze-app-venster opent.</li>
       <li><strong>v1.0.6</strong> — <code>live_reset_data.json</code> via Python Wowhead-scraper: CI (<code>fetch-eu-daily-json</code>) naast prey/bountiful. App laadt het (netwerk-first) voor Delves (Wowhead EU Bountiful-namen + waarschuwing bij verschil met <code>bountiful-today.json</code>) en Prey (Hard/Nightmare-matches). Header-tooltip toont scrape-tijd.</li>
@@ -1411,6 +1419,31 @@ function copyWay(el) {
   const origHTML = el.innerHTML;
   copyWayTextToClipboard(
     way,
+    () => {
+      pcallUI(() => {
+        el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
+        setTimeout(() => { pcallUI(() => { el.innerHTML = origHTML; }); }, 2000);
+      });
+    },
+    () => {
+      pcallUI(() => {
+        el.innerHTML = '⚠️';
+        setTimeout(() => { pcallUI(() => { el.innerHTML = origHTML; }); }, 2000);
+      });
+    }
+  );
+}
+
+/** Copy large addon export strings (e.g. Platynator profile JSON) from `window[data-export-key]`. */
+function copyProfileExport(el) {
+  if (!el || typeof el.getAttribute !== 'function') return;
+  const key = el.getAttribute('data-export-key');
+  if (!key || typeof window[key] !== 'string' || !window[key]) return;
+  const text = window[key];
+  const wui = (typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI) ? (WEEKLY_UI[lang] || WEEKLY_UI.nl) : { copied: 'Gekopieerd!' };
+  const origHTML = el.innerHTML;
+  copyWayTextToClipboard(
+    text,
     () => {
       pcallUI(() => {
         el.innerHTML = '✅ ' + (wui.copied || 'Gekopieerd!');
@@ -2724,5 +2757,5 @@ function renderRaidList() {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=1.0.8').catch(() => {});
+  navigator.serviceWorker.register('sw.js?v=1.0.12').catch(() => {});
 }

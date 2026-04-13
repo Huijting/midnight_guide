@@ -4,7 +4,7 @@
 // ============================================================
 
 // PWA cache bust — bump CACHE_VERSION when shipping new offline assets (match js/constants.js APP_VERSION).
-const CACHE_VERSION = '1.0.8';
+const CACHE_VERSION = '1.0.12';
 const CACHE_NAME = `midnight-v${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -18,7 +18,8 @@ const PRECACHE = [
   // Handleiding
   '/data/help.js',
   '/data/addons.js',
-  '/assets/addons/platynator-prio-list.png',
+  '/data/platynator-inchy-export.js',
+  '/assets/addons/platy-prio-list.jpg',
   '/data/affixes.js',
   '/data/bountiful-today.json',
   '/data/prey-today.json',

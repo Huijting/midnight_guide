@@ -3,7 +3,10 @@
  * @typedef {{ nl: string, en: string }} L10n
  * @typedef {{ id: string, url: string, brand: 'curseforge'|'wago' }} AddonLink
  * @typedef {{ hex: string, nl: string, en: string }} PriorityLegendRow
- * @typedef {{ id: string, name: string, tagline: L10n, body: L10n, links: AddonLink[], video: { url: string, title: L10n }, priorityImage: string, priorityImageAlt: L10n, legend: PriorityLegendRow[], installSteps: L10n[] }} AddonEntry
+ * @typedef {{ color: string, label_en: string, label_nl: string, desc_en: string, desc_nl: string }} ColorLegendRow
+ * @typedef {{ nl: string, en: string, ctaBrand?: 'curseforge'|'wago' }} InstallStep
+ * @typedef {{ id: string, author: string, title: L10n, hint: L10n, windowKey: string }} ProfileImport
+ * @typedef {{ id: string, name: string, tagline: L10n, body: L10n, links: AddonLink[], video: { url: string, title: L10n }, priorityImage: string, priorityImageAlt: L10n, legend?: PriorityLegendRow[], colorLegend?: ColorLegendRow[], installSteps: InstallStep[], profileImports?: ProfileImport[] }} AddonEntry
  * @type {AddonEntry[]}
  */
 const ADDONS_DATA = [
@@ -22,6 +25,21 @@ const ADDONS_DATA = [
       { id: 'curseforge', url: 'https://www.curseforge.com/wow/addons/platynator', brand: 'curseforge' },
       { id: 'wago', url: 'https://wago.io/ocp-SFr_Z', brand: 'wago' },
     ],
+    profileImports: [
+      {
+        id: 'inchy',
+        author: 'Inchy',
+        title: {
+          nl: 'Profiel-import — Inchy (Midnight Guide)',
+          en: 'Profile import — Inchy (Midnight Guide)',
+        },
+        hint: {
+          nl: 'Kopieer de volledige string en plak in Platynator (import). Werkt zoals de 📋 /way-knoppen elders in de app.',
+          en: 'Copy the full string and paste into Platynator (import). Works like the 📋 /way copy buttons elsewhere in the app.',
+        },
+        windowKey: 'PLATYNATOR_EXPORT_INCHY',
+      },
+    ],
     video: {
       url: 'https://www.youtube.com/watch?v=qkqczw5Wjrw',
       title: {
@@ -29,30 +47,69 @@ const ADDONS_DATA = [
         en: 'BEST Plater & Platynator Profiles + FULL Guides',
       },
     },
-    priorityImage: 'assets/addons/platynator-prio-list.png',
+    priorityImage: 'assets/addons/platy-prio-list.jpg',
     priorityImageAlt: {
-      nl: 'Sneloverzicht: Platynator nameplate-kleuren en prioriteit',
-      en: 'Quick reference: Platynator nameplate colors and priority',
+      nl: 'Platy prio list: Platynator nameplate-kleuren en prioriteit',
+      en: 'Platy prio list: Platynator nameplate colors and priority',
     },
-    legend: [
-      { hex: '#1e40af', nl: 'Blauw — Boss (hoogste prioriteit)', en: 'Blue — Boss (highest priority)' },
-      { hex: '#7c3aed', nl: 'Paars — Hoge prioriteit mob', en: 'Purple — High-priority mob' },
-      { hex: '#db2777', nl: 'Roze — Caster', en: 'Pink — Caster' },
-      { hex: '#06b6d4', nl: 'Cyaan — Reguliere / minder belangrijke mob', en: 'Cyan — Regular / lower-priority mob' },
-      { hex: '#6b7280', nl: 'Grijs — Non-elite (laagste prioriteit)', en: 'Grey — Non-elite (lowest priority)' },
+    colorLegend: [
+      {
+        color: '#0000FF',
+        label_en: 'Bosses',
+        label_nl: 'Bazen',
+        desc_en: 'Focus target, use CDs.',
+        desc_nl: 'Focus target, gebruik cooldowns.',
+      },
+      {
+        color: '#A020F0',
+        label_en: 'High Priority',
+        label_nl: 'Hoge Prioriteit',
+        desc_en: 'Kill ASAP.',
+        desc_nl: 'Moet direct dood.',
+      },
+      {
+        color: '#FF00FF',
+        label_en: 'Caster',
+        label_nl: 'Caster Mob',
+        desc_en: 'Interrupt required.',
+        desc_nl: 'Interrupt vereist.',
+      },
+      {
+        color: '#00FF00',
+        label_en: 'Stun/CC',
+        label_nl: 'Stun/CC Mob',
+        desc_en: 'Use Stuns/Disrupts (Green frame).',
+        desc_nl: 'Gebruik Stuns/CC (Groen kader).',
+      },
+      {
+        color: '#00FFFF',
+        label_en: 'Regular',
+        label_nl: 'Normale Mob',
+        desc_en: 'Less important.',
+        desc_nl: 'Minder belangrijk.',
+      },
+      {
+        color: '#808080',
+        label_en: 'Non-Elite',
+        label_nl: 'Niet-Elite',
+        desc_en: 'Low priority.',
+        desc_nl: 'Lage prioriteit.',
+      },
     ],
     installSteps: [
       {
-        nl: 'Open CurseForge (app of website) en zoek “Platynator”, of gebruik de knop hieronder.',
-        en: 'Open the CurseForge app or site and search for “Platynator”, or use the button below.',
+        nl: 'Open CurseForge (app of website) en zoek “Platynator”.',
+        en: 'Open the CurseForge app or site and search for “Platynator”.',
+        ctaBrand: 'curseforge',
       },
       {
         nl: 'Installeer de addon en herstart WoW volledig.',
         en: 'Install the addon and restart WoW completely.',
       },
       {
-        nl: 'Open het Wago-profiel en volg de instructies voor de export-string (Plater / Platynator).',
-        en: 'Open the Wago profile and follow the export-string instructions (Plater / Platynator).',
+        nl: 'Importeer het profiel via de export-string (Plater / Platynator).',
+        en: 'Import the profile using the export string (Plater / Platynator).',
+        ctaBrand: 'wago',
       },
       {
         nl: 'Bekijk de video voor profielkeuze en tips; pas kleuren in-game aan je rol aan.',

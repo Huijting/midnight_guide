@@ -353,11 +353,14 @@ const UI = {
     addons_hero_title: "🧩 Add-ons",
     addons_hero_sub: "WoW-add-ons met snelle referenties",
     addons_priority_colors: "Prioriteitskleuren",
+    addons_visual_guide: "Visuele gids",
     addons_quick_reference: "Snelle referentie: naamplaat-kleuren",
     addons_install_guide: "Installatiegids",
     addons_watch_video: "Video bekijken →",
     addons_link_cf: "CurseForge",
     addons_link_wago: "Wago.io",
+    addons_copy_import: "📋 Kopieer importstring",
+    addons_profile_by: "Profiel door",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Opbouwende kritiek",
     feedback_sub: "Klopt er iets niet? Ontbreekt er info? Laat het weten — we verbeteren de gids samen.",
@@ -462,11 +465,14 @@ const UI = {
     addons_hero_title: "🧩 Addons",
     addons_hero_sub: "WoW addons and quick references",
     addons_priority_colors: "Priority colors",
+    addons_visual_guide: "Visual guide",
     addons_quick_reference: "Quick reference: nameplate colors",
     addons_install_guide: "Installation guide",
     addons_watch_video: "Watch video →",
     addons_link_cf: "CurseForge",
     addons_link_wago: "Wago.io",
+    addons_copy_import: "📋 Copy import string",
+    addons_profile_by: "Profile by",
     feedback_btn: "💬 Feedback",
     feedback_title: "💬 Constructive feedback",
     feedback_sub: "Something wrong? Missing info? Let us know — we improve the guide together.",
@@ -2481,6 +2487,9 @@ function buildAddonsScreen() {
       ? escapeHtmlText
       : s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const loc = o => (o && (o[lang] || o.en || o.nl)) || '';
+  const wuiWeekly =
+    typeof WEEKLY_UI !== 'undefined' && WEEKLY_UI ? WEEKLY_UI[lang] || WEEKLY_UI.nl : { copy_tip: lang === 'en' ? 'Click to copy' : 'Klik om te kopiëren' };
+  const copyTipEsc = escText(wuiWeekly.copy_tip || (lang === 'en' ? 'Click to copy' : 'Klik om te kopiëren'));
 
   const ht = document.getElementById('addons-hero-title');
   const hs = document.getElementById('addons-hero-sub');
@@ -2496,6 +2505,7 @@ function buildAddonsScreen() {
     `<a class="${cls}" href="${escAttr(href)}" target="_blank" rel="noopener noreferrer">${escText(label)}</a>`;
 
   host.innerHTML = ADDONS_DATA.map(addon => {
+    const aid = String(addon.id || 'addon').replace(/[^a-z0-9_-]/gi, '');
     const title = escText(addon.name || '');
     const tag = escText(loc(addon.tagline));
     const body = escText(loc(addon.body));
@@ -2519,7 +2529,8 @@ function buildAddonsScreen() {
         )}" target="_blank" rel="noopener noreferrer"><span class="addon-video-title">${vidTitle}</span><span class="addon-video-cta">${escText(u.addons_watch_video)}</span></a></div>`
       : '';
 
-    const legendItems = (addon.legend || [])
+    const hasColorLegend = Array.isArray(addon.colorLegend) && addon.colorLegend.length > 0;
+    const legendItemsLegacy = (addon.legend || [])
       .map(row => {
         const hex = String(row.hex || '#64748b').replace(/[^#0-9A-Fa-f]/g, '') || '#64748b';
         const txt = escText(loc({ nl: row.nl, en: row.en }));
@@ -2527,9 +2538,85 @@ function buildAddonsScreen() {
       })
       .join('');
 
-    const installItems = (addon.installSteps || []).map(step => `<li>${escText(loc(step))}</li>`).join('');
+    const colorLegendCards = hasColorLegend
+      ? addon.colorLegend
+          .map(row => {
+            const color = String(row.color || '#888888').replace(/[^#0-9A-Fa-f]/g, '') || '#888888';
+            const label = escText(loc({ nl: row.label_nl, en: row.label_en }));
+            const desc = escText(loc({ nl: row.desc_nl, en: row.desc_en }));
+            return `<div class="addon-color-legend-card" role="listitem"><span class="addon-color-legend-swatch" style="background:${escAttr(
+              color
+            )}" aria-hidden="true"></span><div class="addon-color-legend-copy"><div class="addon-color-legend-label">${label}</div><p class="addon-color-legend-desc">${desc}</p></div></div>`;
+          })
+          .join('')
+      : '';
 
-    const aid = String(addon.id || 'addon').replace(/[^a-z0-9_-]/gi, '');
+    const legendBlock = hasColorLegend
+      ? `<div class="addon-color-legend-grid" role="list">${colorLegendCards}</div>`
+      : addon.legend && addon.legend.length
+        ? `<ul class="addon-legend" role="list">${legendItemsLegacy}</ul>`
+        : '';
+
+    const hasImg = !!(addon.priorityImage && String(addon.priorityImage).trim());
+    const showVisualSection = hasImg || !!legendBlock;
+    const showVisualKicker = hasImg || !!legendBlock;
+    const visualGuideTitle = escText(u.addons_visual_guide || u.addons_priority_colors);
+    const visualGuideBlock = showVisualSection
+      ? `<section class="addon-section addon-visual-guide" aria-labelledby="addon-visual-${escText(aid)}">
+        <h3 class="addon-section-title" id="addon-visual-${escText(aid)}">${visualGuideTitle}</h3>
+        ${
+          hasImg
+            ? `<figure class="addon-figure addon-figure-lead"><img class="addon-prio-img" src="${imgSrc}" alt="${imgAlt}" loading="lazy" decoding="async" /></figure>`
+            : ''
+        }
+        ${showVisualKicker ? `<p class="addon-section-kicker">${escText(u.addons_quick_reference)}</p>` : ''}
+        ${legendBlock}
+      </section>`
+      : '';
+
+    const installItems = (addon.installSteps || [])
+      .map(step => {
+        const txt = escText(loc(step));
+        const b = step && step.ctaBrand;
+        let cta = '';
+        if (b === 'curseforge' || b === 'wago') {
+          const L = (addon.links || []).find(l => l.brand === b);
+          if (L) {
+            const lbl = b === 'curseforge' ? u.addons_link_cf || 'CurseForge' : u.addons_link_wago || 'Wago.io';
+            const cls =
+              b === 'curseforge'
+                ? 'addon-link-btn addon-link-cf addon-install-cta-btn'
+                : 'addon-link-btn addon-link-wago addon-install-cta-btn';
+            cta = `<div class="addon-install-cta-wrap">${linkAnchor(L.url, cls, lbl)}</div>`;
+          }
+        }
+        return `<li class="addon-install-li"><span class="addon-install-li-text">${txt}</span>${cta}</li>`;
+      })
+      .join('');
+
+    const profileBlocks = (addon.profileImports || [])
+      .map(p => {
+        const wk = String(p.windowKey || '').replace(/[^a-zA-Z0-9_]/g, '');
+        if (!wk) return '';
+        const pid = escText(String(p.id || '').replace(/[^a-z0-9_-]/gi, ''));
+        const ptitle = escText(loc(p.title));
+        const phint = escText(loc(p.hint));
+        const author = escText(p.author || '');
+        const copyCta = escText(u.addons_copy_import || '📋 Copy');
+        const byLbl = escText(u.addons_profile_by || 'By');
+        return `<section class="addon-section addon-profile-import" aria-labelledby="addon-prof-${escText(aid)}-${pid}">
+        <h3 class="addon-section-title" id="addon-prof-${escText(aid)}-${pid}">${ptitle}</h3>
+        <p class="addon-profile-meta"><span class="addon-profile-by">${byLbl} <strong>${author}</strong></span>
+        <span class="addon-profile-bytes mono">—</span></p>
+        <p class="addon-section-kicker">${phint}</p>
+        <div class="addon-profile-toolbar">
+          <button type="button" class="portal-way-copy-btn addon-profile-copy-btn" onclick="copyProfileExport(this)" data-export-key="${escAttr(wk)}" title="${copyTipEsc}">${copyCta}</button>
+        </div>
+        <textarea class="addon-profile-textarea mono" readonly rows="8" spellcheck="false" data-export-ta="${escAttr(wk)}"></textarea>
+      </section>`;
+      })
+      .filter(Boolean)
+      .join('');
 
     return `<article class="addon-card" data-addon="${escText(aid)}">
       <header class="addon-card-head">
@@ -2540,21 +2627,28 @@ function buildAddonsScreen() {
         <div class="addon-card-actions">${actions}</div>
       </header>
       <p class="addon-card-body">${body}</p>
+      ${visualGuideBlock}
       ${videoBlock}
-      <section class="addon-section" aria-labelledby="addon-prio-${escText(aid)}">
-        <h3 class="addon-section-title" id="addon-prio-${escText(aid)}">${escText(u.addons_priority_colors)}</h3>
-        <p class="addon-section-kicker">${escText(u.addons_quick_reference)}</p>
-        <figure class="addon-figure">
-          <img class="addon-prio-img" src="${imgSrc}" alt="${imgAlt}" loading="lazy" decoding="async" />
-        </figure>
-        <ul class="addon-legend" role="list">${legendItems}</ul>
-      </section>
       <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
         <h3 class="addon-section-title" id="addon-inst-${escText(aid)}">${escText(u.addons_install_guide)}</h3>
         <ol class="addon-install-list">${installItems}</ol>
       </section>
+      ${profileBlocks}
     </article>`;
   }).join('');
+
+  host.querySelectorAll('.addon-profile-import').forEach(sec => {
+    const ta = sec.querySelector('textarea[data-export-ta]');
+    if (!ta) return;
+    const k = ta.getAttribute('data-export-ta');
+    if (!k || typeof window[k] !== 'string' || !window[k]) {
+      ta.placeholder = lang === 'en' ? 'Profile data not loaded — refresh the page.' : 'Profiel niet geladen — ververs de pagina.';
+      return;
+    }
+    ta.value = window[k];
+    const meta = sec.querySelector('.addon-profile-bytes');
+    if (meta) meta.textContent = `${window[k].length} · ${lang === 'en' ? 'characters' : 'tekens'}`;
+  });
 }
 
 function toggleGlossaryItem(i){

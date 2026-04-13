@@ -1,5 +1,5 @@
 /** App display version (footer) — keep in sync with `CACHE_VERSION` in `sw.js`. */
-const APP_VERSION = '1.0.8';
+const APP_VERSION = '1.0.12';
 
 // ── Keystone.guru UI strings ──
 const KG_STRINGS = {
