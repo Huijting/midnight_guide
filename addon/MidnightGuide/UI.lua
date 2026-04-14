@@ -7,6 +7,7 @@ local tabs = {
   { key = "all_treasures", label = "All Treasures" },
   { key = "my_books", label = "My Books" },
   { key = "all_books", label = "All Books" },
+  { key = "weekly", label = "Weekly" },
   { key = "help", label = "Help" },
 }
 
@@ -78,8 +79,12 @@ local function populateScrollRows(frame, rows)
           MidnightGuide.Nav.SetWaypoint(spec.way)
           return
         end
-        if btn == "LeftButton" and clickable and MidnightGuide.Char and MidnightGuide.Char.ToggleCollected then
-          MidnightGuide.Char.ToggleCollected(spec.id)
+        if btn == "LeftButton" and clickable and MidnightGuide.Char then
+          if spec.weeklyTask and MidnightGuide.Char.ToggleWeeklyTask then
+            MidnightGuide.Char.ToggleWeeklyTask(spec.id)
+          elseif MidnightGuide.Char.ToggleCollected then
+            MidnightGuide.Char.ToggleCollected(spec.id)
+          end
           if MidnightGuide.UI.RefreshIfOpen then
             MidnightGuide.UI.RefreshIfOpen()
           end
@@ -118,6 +123,17 @@ setActiveTab = function(frame, key)
   MidnightGuideDB = MidnightGuideDB or {}
   MidnightGuideDB.lastTab = key
   frame._currentTabKey = key
+
+  if key == "weekly" and MidnightGuide.Data and MidnightGuide.Data.BuildWeeklyView then
+    local view = MidnightGuide.Data.BuildWeeklyView(locale)
+    if view.useScroll and frame.scrollFrame and frame.scrollChild then
+      frame.bodyText:Hide()
+      frame.scrollFrame:Show()
+      populateScrollRows(frame, view.rows)
+      frame.scrollFrame:SetVerticalScroll(0)
+      return
+    end
+  end
 
   if key == "help" and MidnightGuide.Data and MidnightGuide.Data.BuildHelpReport then
     local lines = MidnightGuide.Data.BuildHelpReport({ locale = locale })
@@ -166,7 +182,7 @@ end
 local function migrateLegacyTabKey()
   MidnightGuideDB = MidnightGuideDB or {}
   local t = MidnightGuideDB.lastTab
-  if t == "professions" or t == "weekly" then
+  if t == "professions" then
     MidnightGuideDB.lastTab = "all_treasures"
   end
 end
@@ -208,7 +224,11 @@ local function buildMainFrame()
     local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
     btn:SetSize(104, 22)
     btn:SetPoint("TOPLEFT", x, y)
-    btn:SetText(def.label)
+    local lbl = def.label
+    if MidnightGuideDB and MidnightGuideDB.lang == "nl" and def.key == "weekly" then
+      lbl = "Wekelijks"
+    end
+    btn:SetText(lbl)
     btn.key = def.key
     btn:SetScript("OnClick", function()
       setActiveTab(frame, def.key)
@@ -251,7 +271,7 @@ function MidnightGuide.UI.ToggleMainFrame()
   end
 end
 
---- Open window and select a tab (keys: my_treasures, all_treasures, my_books, all_books, help).
+--- Open window and select a tab (keys: my_treasures, all_treasures, my_books, all_books, weekly, help).
 function MidnightGuide.UI.OpenMainFrame(tabKey)
   local f = buildMainFrame()
   f:Show()
@@ -307,5 +327,12 @@ function MidnightGuide.UI.HandleMgCommand(arg)
     return
   end
 
-  print("|cffc8a84bMidnight Guide:|r Unknown subcommand. Try: |cffc8a84b/mg help|r for help, or |cffc8a84b/mg treasures|r, |cffc8a84b/mg books|r.")
+  if lower == "weekly" then
+    MidnightGuide.UI.OpenMainFrame("weekly")
+    return
+  end
+
+  print(
+    "|cffc8a84bMidnight Guide:|r Unknown subcommand. Try: |cffc8a84b/mg help|r, |cffc8a84b/mg weekly|r, |cffc8a84b/mg treasures|r, |cffc8a84b/mg books|r."
+  )
 end

@@ -1894,8 +1894,8 @@
         {
           "id": "slash-command",
           "text": {
-            "en": "In-game, type /mg to open or close the window. Subcommands: /mg help, /mg treasures, /mg books, /mg my-treasures, /mg my-books.",
-            "nl": "In-game: typ /mg om het venster te openen of te sluiten. Subcommando's: /mg help, /mg treasures, /mg books, /mg my-treasures, /mg my-books."
+            "en": "In-game, type /mg to open or close the window. Subcommands: /mg help, /mg weekly, /mg treasures, /mg books, /mg my-treasures, /mg my-books.",
+            "nl": "In-game: typ /mg om het venster te openen of te sluiten. Subcommando's: /mg help, /mg weekly, /mg treasures, /mg books, /mg my-treasures, /mg my-books."
           }
         },
         {

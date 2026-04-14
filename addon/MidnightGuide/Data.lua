@@ -416,6 +416,73 @@ function MidnightGuide.Data.BuildProfessionReport(options)
   return lines
 end
 
+function MidnightGuide.Data.GetWeeklyTasks()
+  local raw = MidnightGuide.Data.raw or {}
+  local w = raw.weekly
+  if type(w) ~= "table" or type(w.tasks) ~= "table" then
+    return {}
+  end
+  return w.tasks
+end
+
+--- Scroll rows: weekly tasks with left-click toggle (per character, Char.weeklyDone).
+function MidnightGuide.Data.BuildWeeklyView(locale)
+  locale = locale or "en"
+  local h = C.header or "|cffffd200"
+  local g = C.gray or "|cffaaaaaa"
+  local on = C.profOn or "|cff00ff00"
+  local r = C.reset or "|r"
+  local rows = {}
+
+  rows[#rows + 1] = {
+    text = h .. (locale == "nl" and "=== Wekelijkse checklist ===" or "=== Weekly checklist ===") .. r,
+    clickable = false
+  }
+  rows[#rows + 1] = {
+    text = g
+      .. (
+        locale == "nl"
+          and "Links klikken = afvinken (per personage). Ter herinnering — niet gekoppeld aan de Great Vault."
+          or "Left-click to check off (per character). Reminder only — not linked to the Great Vault."
+      )
+      .. r,
+    clickable = false
+  }
+
+  local tasks = MidnightGuide.Data.GetWeeklyTasks()
+  if #tasks == 0 then
+    rows[#rows + 1] = {
+      text = g .. (locale == "nl" and "Geen weekly-taken geladen." or "No weekly tasks loaded.") .. r,
+      clickable = false
+    }
+    return { useScroll = true, rows = rows }
+  end
+
+  for _, task in ipairs(tasks) do
+    local tid = task.id
+    if type(tid) == "string" and tid ~= "" then
+      local title = normalizeText(task.title or {}, locale)
+      local desc = normalizeText(task.description or {}, locale)
+      local done = MidnightGuide.Char and MidnightGuide.Char.IsWeeklyTaskDone
+        and MidnightGuide.Char.IsWeeklyTaskDone(tid)
+      local mark = done and (g .. "[x] " .. r) or "[ ] "
+      local star = task.recommended and "★ " or ""
+      local titleCol = done and g or on
+      rows[#rows + 1] = {
+        text = mark .. star .. titleCol .. title .. r,
+        id = tid,
+        clickable = true,
+        weeklyTask = true
+      }
+      if desc ~= "" then
+        rows[#rows + 1] = { text = "     " .. g .. desc .. r, clickable = false }
+      end
+    end
+  end
+
+  return { useScroll = true, rows = rows }
+end
+
 function MidnightGuide.Data.BuildHelpReport(options)
   options = options or {}
   local dbLang = (MidnightGuideDB and MidnightGuideDB.lang) or "en"

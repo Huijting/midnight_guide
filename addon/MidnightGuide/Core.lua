@@ -2,14 +2,14 @@ local ADDON_NAME = ...
 
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.name = ADDON_NAME or "MidnightGuide"
-MidnightGuide.version = "0.1.5"
+MidnightGuide.version = "0.1.6"
 
 local function ensureDB()
   MidnightGuideDB = MidnightGuideDB or {}
   MidnightGuideDB.lang = MidnightGuideDB.lang or "en"
   MidnightGuideDB.lastTab = MidnightGuideDB.lastTab or "all_treasures"
   local lt = MidnightGuideDB.lastTab
-  if lt == "professions" or lt == "weekly" then
+  if lt == "professions" then
     MidnightGuideDB.lastTab = "all_treasures"
   end
 end

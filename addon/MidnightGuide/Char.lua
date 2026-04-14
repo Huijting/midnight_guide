@@ -39,6 +39,24 @@ end
 function MidnightGuide.Char.Ensure()
   MidnightGuideCharDB = MidnightGuideCharDB or {}
   MidnightGuideCharDB.manualCollected = MidnightGuideCharDB.manualCollected or {}
+  MidnightGuideCharDB.weeklyDone = MidnightGuideCharDB.weeklyDone or {}
+end
+
+function MidnightGuide.Char.IsWeeklyTaskDone(taskId)
+  MidnightGuide.Char.Ensure()
+  return type(taskId) == "string" and taskId ~= "" and MidnightGuideCharDB.weeklyDone[taskId] == true
+end
+
+function MidnightGuide.Char.ToggleWeeklyTask(taskId)
+  MidnightGuide.Char.Ensure()
+  if type(taskId) ~= "string" or taskId == "" then
+    return
+  end
+  if MidnightGuideCharDB.weeklyDone[taskId] then
+    MidnightGuideCharDB.weeklyDone[taskId] = nil
+  else
+    MidnightGuideCharDB.weeklyDone[taskId] = true
+  end
 end
 
 --- True if the item counts as collected (quest flag and/or manual toggle).

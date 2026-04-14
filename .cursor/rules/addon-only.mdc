@@ -1,0 +1,13 @@
+---
+description: Focus on the WoW addon; avoid web/PWA work unless explicitly requested.
+alwaysApply: true
+---
+
+# Addon-first (no web app by default)
+
+Unless the user **explicitly** asks for web or PWA work:
+
+- Do **not** change the Progressive Web App: `index.html`, `js/`, `css/`, `data/help.js`, service worker, or PWA-only assets.
+- Prefer **`addon/MidnightGuide/`** (Lua), **`content/addon-content.sample.json`**, **`addon/MidnightGuide/GeneratedData.lua`** (via `scripts/build-addon-generated-data.py`), and **`scripts/`** that feed the addon.
+
+When adding features, extend **generated JSON → Lua data** and **in-game UI**, not the static site.
