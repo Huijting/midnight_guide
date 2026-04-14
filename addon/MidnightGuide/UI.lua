@@ -175,12 +175,17 @@ local function applyTabAnchors(frame, mainTmpl, profTmpl)
     if ph < 18 then
       ph = 26
     end
-    -- Pixels below frame top to first scroll line (main row + gap + prof row + padding).
-    frame._mgPanelHeaderPad = 32 + mh + rowGap + ph + 14
-    if frame.profSubRowBg and prof[1] then
+    -- Lowest tab pixel is bottom of prof row: 32 (main bottom) + mh + rowGap — do not add ph again
+    -- (that duplicated sub-tab height and left a large empty band under the subtabs).
+    local contentGap = 10
+    frame._mgPanelHeaderPad = 32 + mh + rowGap + contentGap
+    if frame.profSubRowBg then
       frame.profSubRowBg:ClearAllPoints()
-      frame.profSubRowBg:SetPoint("TOPLEFT", prof[1], "TOPLEFT", -10, 6)
-      frame.profSubRowBg:SetPoint("BOTTOMRIGHT", prof[#prof], "BOTTOMRIGHT", 10, -6)
+      -- Full-width strip under main row (inset for frame chrome / close button).
+      local stripTop = 32 + mh + 1
+      frame.profSubRowBg:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -stripTop)
+      frame.profSubRowBg:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -36, -stripTop)
+      frame.profSubRowBg:SetHeight(rowGap + ph + 8)
     end
   elseif isCharacterTabTemplate(mainTmpl) then
     frame._mgPanelHeaderPad = nil
@@ -259,7 +264,7 @@ local function layoutContentArea(frame, showProfSubRow)
   local panelStyle = frame._mgPanelStyleTabs
   local topY, scrollH
   if panelStyle and showProfSubRow then
-    local pad = type(frame._mgPanelHeaderPad) == "number" and frame._mgPanelHeaderPad or 130
+    local pad = type(frame._mgPanelHeaderPad) == "number" and frame._mgPanelHeaderPad or 118
     topY = -pad
     scrollH = math.max(200, 388 - pad)
   elseif panelStyle and not showProfSubRow then
