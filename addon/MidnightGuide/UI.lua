@@ -12,7 +12,20 @@ local function setActiveTab(frame, key)
     local active = tab.key == key
     tab:SetEnabled(not active)
   end
-  frame.bodyText:SetText("Selected tab: " .. key .. "\n\nMVP content comes in Sprint 2.")
+  if key == "professions" and MidnightGuide.Data and MidnightGuide.Data.BuildProfessionReport then
+    local lines = MidnightGuide.Data.BuildProfessionReport({
+      includeTreasures = true,
+      includeBooks = true,
+      locale = (MidnightGuideDB and MidnightGuideDB.lang) or "en",
+    })
+    frame.bodyText:SetText(table.concat(lines, "\n"))
+  elseif key == "weekly" then
+    frame.bodyText:SetText("Weekly panel: next step in Sprint 3.")
+  elseif key == "help" then
+    frame.bodyText:SetText("Help panel: install and troubleshooting content arrives in Sprint 2/B5.")
+  else
+    frame.bodyText:SetText("Selected tab: " .. key)
+  end
   MidnightGuideDB = MidnightGuideDB or {}
   MidnightGuideDB.lastTab = key
 end

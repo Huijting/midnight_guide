@@ -34,8 +34,8 @@ Statuslegenda:
 
 - [x] B1 Canonical data schema (`content/`).
 - [x] B2 Converter script (JSON -> Lua tables).
-- [ ] B3 Profession Tracker core (missing treasures/books).
-- [ ] B4 Slash commands (`/mpt`, `/mpt books`, `/mpt all`).
+- [x] B3 Profession Tracker core (missing treasures/books).
+- [x] B4 Slash commands (`/mpt`, `/mpt books`, `/mpt all`).
 - [ ] B5 Install/Help/Troubleshooting panel in addon.
 
 ## Sprint 3 - Integraties + Daily Use
@@ -91,3 +91,4 @@ Statuslegenda:
 - [x] GitHub Actions workflow toegevoegd voor addon zip build/release (`build-addon-zip.yml`).
 - [x] Canonical addon-content schema toegevoegd in `content/` + sample dataset.
 - [x] Converter script toegevoegd (`scripts/build-addon-generated-data.py`) + `GeneratedData.lua` output gekoppeld aan addon.
+- [x] Eerste profession report-logica + slash commands (`/mpt`, `/midnightprof`) toegevoegd in addon.
