@@ -357,8 +357,15 @@ const UI = {
     addons_quick_reference: "Snelle referentie: naamplaat-kleuren",
     addons_install_guide: "Installatiegids",
     addons_watch_video: "Video bekijken →",
+    addons_open_install_guide: "Open installatiegids",
     addons_link_cf: "CurseForge",
     addons_link_wago: "Wago.io",
+    addons_link_zip: "Download ZIP",
+    addons_link_fork: "GitHub Fork",
+    addons_badge_community_enhanced: "Community Enhanced Version",
+    addons_fork_waiting_merge: "Currently awaiting merge by Frurox. This version includes my custom visual guide popup.",
+    addons_install_folder_path: "Folder Path",
+    addons_troubleshooting_title: "Troubleshooting",
     addons_copy_import: "📋 Kopieer importstring",
     addons_profile_by: "Profiel door",
     addons_acc_toggle: "Details tonen of verbergen",
@@ -473,8 +480,15 @@ const UI = {
     addons_quick_reference: "Quick reference: nameplate colors",
     addons_install_guide: "Installation guide",
     addons_watch_video: "Watch video →",
+    addons_open_install_guide: "Open installation guide",
     addons_link_cf: "CurseForge",
     addons_link_wago: "Wago.io",
+    addons_link_zip: "Download ZIP",
+    addons_link_fork: "GitHub Fork",
+    addons_badge_community_enhanced: "Community Enhanced Version",
+    addons_fork_waiting_merge: "Currently awaiting merge by Frurox. This version includes my custom visual guide popup.",
+    addons_install_folder_path: "Folder Path",
+    addons_troubleshooting_title: "Troubleshooting",
     addons_copy_import: "📋 Copy import string",
     addons_profile_by: "Profile by",
     addons_acc_toggle: "Show or hide details",
@@ -2524,6 +2538,9 @@ function buildAddonsScreen() {
 
   const renderOneAddon = addon => {
     const aid = String(addon.id || 'addon').replace(/[^a-z0-9_-]/gi, '');
+    const panelId = `addon-acc-panel-${aid}`;
+    const headId = `addon-acc-head-${aid}`;
+    const installId = `addon-inst-${aid}`;
     const title = escText(addon.name || '');
     const tag = escText(loc(addon.tagline));
     const body = escText(loc(addon.body));
@@ -2536,12 +2553,40 @@ function buildAddonsScreen() {
 
     const cf = (addon.links || []).find(l => l.brand === 'curseforge');
     const wg = (addon.links || []).find(l => l.brand === 'wago');
+    const zipLink = (addon.links || []).find(l => l.brand === 'zip');
+    const forkLink = (addon.links || []).find(l => l.brand === 'fork') || (addon.forkUrl ? { url: addon.forkUrl, brand: 'fork' } : null);
+    const zipAction = zipLink
+      ? `<button type="button" class="addon-link-btn addon-link-zip" onclick="openAddonInstallGuide(this)" data-addon-panel="${escAttr(
+          panelId
+        )}" data-addon-head="${escAttr(headId)}" data-install-target="${escAttr(
+          installId
+        )}" title="${escAttr(u.addons_open_install_guide || 'Open installation guide')}">${escText(
+          u.addons_link_zip || 'Download ZIP'
+        )}</button>`
+      : '';
+    const forkAction = forkLink
+      ? `<span class="addon-fork-wrap">${linkAnchor(
+          forkLink.url,
+          'addon-link-btn addon-link-fork',
+          u.addons_link_fork || 'GitHub Fork'
+        )}<span class="addon-community-badge">${escText(
+          u.addons_badge_community_enhanced || 'Community Enhanced Version'
+        )}</span></span>`
+      : '';
     const actions = [
+      zipAction,
       cf ? linkAnchor(cf.url, 'addon-link-btn addon-link-cf', u.addons_link_cf || 'CurseForge') : '',
       wg ? linkAnchor(wg.url, 'addon-link-btn addon-link-wago', u.addons_link_wago || 'Wago.io') : '',
+      forkAction,
     ]
       .filter(Boolean)
       .join('');
+    const forkInfoBlock = forkLink
+      ? `<p class="addon-fork-note">${escText(
+          u.addons_fork_waiting_merge ||
+            'Currently awaiting merge by Frurox. This version includes my custom visual guide popup.'
+        )}</p>`
+      : '';
 
     const videoBlock = vidUrl
       ? `<div class="addon-video-wrap"><a class="addon-link-btn addon-link-video" href="${escAttr(
@@ -2595,23 +2640,68 @@ function buildAddonsScreen() {
 
     const installItems = (addon.installSteps || [])
       .map(step => {
-        const txt = escText(loc(step));
+        const rawTxt = String(loc(step) || '').trim();
+        const txt = escText(rawTxt);
+        const isChecklist = /^checklist:/i.test(rawTxt);
         const b = step && step.ctaBrand;
         let cta = '';
-        if (b === 'curseforge' || b === 'wago') {
+        if (b === 'curseforge' || b === 'wago' || b === 'fork' || b === 'zip') {
           const L = (addon.links || []).find(l => l.brand === b);
           if (L) {
-            const lbl = b === 'curseforge' ? u.addons_link_cf || 'CurseForge' : u.addons_link_wago || 'Wago.io';
+            const lbl =
+              b === 'zip'
+                ? u.addons_link_zip || 'Download ZIP'
+                : b === 'curseforge'
+                ? u.addons_link_cf || 'CurseForge'
+                : b === 'wago'
+                  ? u.addons_link_wago || 'Wago.io'
+                  : u.addons_link_fork || 'GitHub Fork';
             const cls =
-              b === 'curseforge'
+              b === 'zip'
+                ? 'addon-link-btn addon-link-zip addon-install-cta-btn'
+                : b === 'curseforge'
                 ? 'addon-link-btn addon-link-cf addon-install-cta-btn'
-                : 'addon-link-btn addon-link-wago addon-install-cta-btn';
+                : b === 'wago'
+                  ? 'addon-link-btn addon-link-wago addon-install-cta-btn'
+                  : 'addon-link-btn addon-link-fork addon-install-cta-btn';
             cta = `<div class="addon-install-cta-wrap">${linkAnchor(L.url, cls, lbl)}</div>`;
           }
         }
-        return `<li class="addon-install-li"><span class="addon-install-li-text">${txt}</span>${cta}</li>`;
+        const liCls = isChecklist ? 'addon-install-li addon-install-li-check' : 'addon-install-li';
+        const lead = isChecklist ? '<span class="addon-install-check-icon" aria-hidden="true">✅</span>' : '';
+        return `<li class="${liCls}">${lead}<span class="addon-install-li-text">${txt}</span>${cta}</li>`;
       })
       .join('');
+    const installPathBlock =
+      addon.installPath && String(addon.installPath).trim()
+        ? `<div class="addon-install-path-wrap"><div class="addon-install-path-label">${escText(
+            u.addons_install_folder_path || 'Folder Path'
+          )}</div><pre class="addon-install-path-code"><code>${escText(addon.installPath)}</code></pre></div>`
+        : '';
+    const installNoteBlock =
+      addon.installNotes && String(loc(addon.installNotes)).trim()
+        ? `<p class="addon-install-note">${escText(loc(addon.installNotes))}</p>`
+        : '';
+    const installExampleBlock =
+      addon.installExample && addon.installExample.src
+        ? `<div class="addon-install-example-wrap"><figure class="addon-mpt-shot-fig"><img class="addon-mpt-shot-img" src="${escAttr(
+            addon.installExample.src
+          )}" alt="${escText(loc(addon.installExample.alt || { nl: '', en: '' }))}" loading="lazy" decoding="async" /></figure>${
+            addon.installExample.caption
+              ? `<p class="addon-install-note">${escText(loc(addon.installExample.caption))}</p>`
+              : ''
+          }</div>`
+        : '';
+    const troubleshootingItems = (addon.installTroubleshooting || [])
+      .map(item => `<li class="addon-troubleshoot-li">${escText(loc(item))}</li>`)
+      .join('');
+    const troubleshootingBlock = troubleshootingItems
+      ? `<section class="addon-install-troubleshoot" aria-label="${escAttr(
+          u.addons_troubleshooting_title || 'Troubleshooting'
+        )}"><h4 class="addon-install-troubleshoot-title">${escText(
+          u.addons_troubleshooting_title || 'Troubleshooting'
+        )}</h4><ul class="addon-install-troubleshoot-list">${troubleshootingItems}</ul></section>`
+      : '';
 
     const profileBlocks = (addon.profileImports || [])
       .map(p => {
@@ -2670,8 +2760,6 @@ function buildAddonsScreen() {
       </section>`
       : '';
 
-    const panelId = `addon-acc-panel-${aid}`;
-    const headId = `addon-acc-head-${aid}`;
     const accAria = escAttr(`${String(addon.name || 'Addon')} — ${u.addons_acc_toggle || ''}`);
     return `<article class="addon-card addon-card--accordion" data-addon="${escText(aid)}">
       <div class="addon-accordion-strip">
@@ -2688,13 +2776,18 @@ function buildAddonsScreen() {
       <div class="addon-accordion-panel" id="${panelId}" role="region" aria-labelledby="${headId}">
         <div class="addon-accordion-panel-inner">
           <p class="addon-card-body">${body}</p>
+          ${forkInfoBlock}
           ${listPreviewBlock}
           ${cmdBlock}
           ${visualGuideBlock}
           ${videoBlock}
           <section class="addon-section" aria-labelledby="addon-inst-${escText(aid)}">
-            <h3 class="addon-section-title" id="addon-inst-${escText(aid)}">${escText(u.addons_install_guide)}</h3>
+            <h3 class="addon-section-title" id="${escAttr(installId)}">${escText(u.addons_install_guide)}</h3>
             <ol class="addon-install-list">${installItems}</ol>
+            ${installPathBlock}
+            ${installNoteBlock}
+            ${installExampleBlock}
+            ${troubleshootingBlock}
           </section>
           ${profileBlocks}
         </div>

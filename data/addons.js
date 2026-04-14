@@ -1,13 +1,15 @@
 /**
  * Featured WoW addons — rendered by buildAddonsScreen() in app.js.
  * @typedef {{ nl: string, en: string }} L10n
- * @typedef {{ id: string, url: string, brand: 'curseforge'|'wago' }} AddonLink
+ * @typedef {{ id: string, url: string, brand: 'curseforge'|'wago'|'fork'|'zip' }} AddonLink
  * @typedef {{ hex: string, nl: string, en: string }} PriorityLegendRow
  * @typedef {{ color: string, label_en: string, label_nl: string, desc_en: string, desc_nl: string }} ColorLegendRow
- * @typedef {{ nl: string, en: string, ctaBrand?: 'curseforge'|'wago' }} InstallStep
+ * @typedef {{ nl: string, en: string, ctaBrand?: 'curseforge'|'wago'|'fork'|'zip' }} InstallStep
  * @typedef {{ id: string, author: string, title: L10n, hint: L10n, windowKey: string }} ProfileImport
  * @typedef {{ src: string, alt: L10n }} ListPreviewShot
  * @typedef {{ caption?: L10n, shots: ListPreviewShot[] }} ListPreview
+ * @typedef {{ src: string, alt: L10n, caption?: L10n }} InstallExample
+ * @typedef {{ nl: string, en: string }} InstallTroubleshootItem
  * @typedef {{
  *   id: string,
  *   name: string,
@@ -23,6 +25,11 @@
  *   chatCommand?: string,
  *   listPreview?: ListPreview,
  *   installSteps: InstallStep[],
+ *   forkUrl?: string,
+ *   installPath?: string,
+ *   installNotes?: L10n,
+ *   installExample?: InstallExample,
+ *   installTroubleshooting?: InstallTroubleshootItem[],
  *   profileImports?: ProfileImport[]
  * }} AddonEntry
  * @typedef {{ id: string, title: L10n, addons: AddonEntry[] }} AddonSection
@@ -164,7 +171,18 @@ const ADDONS_SECTIONS = [
             url: 'https://www.curseforge.com/wow/addons/midnight-profession-tracker',
             brand: 'curseforge',
           },
+          {
+            id: 'fork',
+            url: 'https://github.com/Huijting/MidnightProfessionTracker',
+            brand: 'fork',
+          },
+          {
+            id: 'zip',
+            url: 'https://github.com/Huijting/MidnightProfessionTracker/archive/refs/heads/main.zip',
+            brand: 'zip',
+          },
         ],
+        forkUrl: 'https://github.com/Huijting/MidnightProfessionTracker',
         chatCommand: '/mpt',
         listPreview: {
           caption: {
@@ -190,17 +208,60 @@ const ADDONS_SECTIONS = [
         },
         installSteps: [
           {
-            nl: 'Open CurseForge en zoek “Midnight Profession Tracker”.',
-            en: 'Open CurseForge and search for “Midnight Profession Tracker”.',
-            ctaBrand: 'curseforge',
+            nl: 'Download de addon als ZIP-bestand.',
+            en: 'Download the addon as a ZIP file.',
+            ctaBrand: 'zip',
           },
           {
-            nl: 'Installeer de addon en herstart WoW volledig.',
-            en: 'Install the addon and restart WoW completely.',
+            nl: 'Pak het ZIP-bestand uit in je AddOns-map.',
+            en: 'Extract the ZIP file into your AddOns folder.',
           },
           {
-            nl: 'Gebruik in-game het commando /mpt om het tracker-venster te openen.',
-            en: 'Use the in-game /mpt slash command to open the tracker window.',
+            nl: "Belangrijk: Zorg dat de mapnaam in je AddOns-map exact 'MidnightProfTracker' is. Als je van GitHub downloadt, hernoem de map dan om achtervoegsels zoals '-main' te verwijderen.",
+            en: "Important: Ensure the folder name in your AddOns directory is exactly 'MidnightProfTracker'. If you download from GitHub, rename the folder to remove any '-main' suffixes.",
+          },
+          {
+            nl: "Checklist: Heb je gecontroleerd dat de map echt 'MidnightProfTracker' heet? Zo niet, hernoem eerst voordat je WoW start.",
+            en: "Checklist: Did you verify the folder is named exactly 'MidnightProfTracker'? If not, rename it before launching WoW.",
+          },
+          {
+            nl: 'Fallback: gebruik de GitHub-pagina als de ZIP-link niet werkt.',
+            en: 'Fallback: use the GitHub page if the ZIP link does not work.',
+            ctaBrand: 'fork',
+          },
+          {
+            nl: 'Herstart WoW en gebruik /mpt om de tracker te openen.',
+            en: 'Restart WoW and use /mpt to open the tracker.',
+          },
+        ],
+        installPath: 'World of Warcraft\\_retail_\\Interface\\AddOns\\MidnightProfTracker\\',
+        installNotes: {
+          nl: 'Dit is de enhanced community-versie met visual guides.',
+          en: 'This is the enhanced community version with visual guides.',
+        },
+        installExample: {
+          src: 'assets/addons/mpt-install-zip-example.png',
+          alt: {
+            nl: 'Voorbeeld van de Midnight Profession Tracker in-game lijstweergave',
+            en: 'Example of the Midnight Profession Tracker in-game list view',
+          },
+          caption: {
+            nl: 'Voorbeeld: zo ziet de lijst er in-game uit nadat je correct hebt geinstalleerd.',
+            en: 'Example: this is how the list looks in-game after a correct install.',
+          },
+        },
+        installTroubleshooting: [
+          {
+            nl: 'Addon niet zichtbaar in WoW? Controleer eerst of de map echt in Interface/AddOns staat en niet een niveau te diep.',
+            en: 'Addon not visible in WoW? First check that the folder is directly inside Interface/AddOns and not nested one level too deep.',
+          },
+          {
+            nl: "Mapnaam fout? De map moet exact 'MidnightProfTracker' heten (niet met -main of extra tekst).",
+            en: "Wrong folder name? The folder must be exactly 'MidnightProfTracker' (no -main suffix or extra text).",
+          },
+          {
+            nl: "Verkeerde mapdiepte? Vermijd structuren zoals 'MidnightProfTracker-main/MidnightProfTracker' in AddOns.",
+            en: "Wrong folder depth? Avoid structures like 'MidnightProfTracker-main/MidnightProfTracker' inside AddOns.",
           },
         ],
       },

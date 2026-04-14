@@ -2076,6 +2076,33 @@ window.toggleAddonAccordion = function (trigger) {
   }
 };
 
+/** Add-ons tab: open card and jump to installation guide section. */
+window.openAddonInstallGuide = function (trigger) {
+  const card = trigger.closest('.addon-card--accordion');
+  const panelId = trigger.getAttribute('data-addon-panel');
+  const headId = trigger.getAttribute('data-addon-head');
+  const installId = trigger.getAttribute('data-install-target');
+  if (!card) return;
+  const root = card.closest('.addon-cards-accordion-root');
+  if (root) {
+    root.querySelectorAll('.addon-card--accordion.is-expanded').forEach(c => {
+      if (c === card) return;
+      c.classList.remove('is-expanded');
+      const h = c.querySelector('.addon-accordion-toggle');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+  }
+  card.classList.add('is-expanded');
+  const head = headId ? document.getElementById(headId) : card.querySelector('.addon-accordion-toggle');
+  if (head) head.setAttribute('aria-expanded', 'true');
+  const panel = panelId ? document.getElementById(panelId) : card.querySelector('.addon-accordion-panel');
+  if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (installId) {
+    const installEl = document.getElementById(installId);
+    if (installEl) installEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
 function buildSpecGrid() {
   const ui = SPEC_TAB_UI[lang] || SPEC_TAB_UI.nl;
   document.getElementById('spec-grid-sub').textContent = ui.grid_sub;
