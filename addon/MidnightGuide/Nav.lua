@@ -65,8 +65,15 @@ end
 
 local function isTomTomAddOnLoaded()
   if C_AddOns and C_AddOns.IsAddOnLoaded then
-    local loaded = select(1, C_AddOns.IsAddOnLoaded("TomTom"))
-    return loaded == true
+    local a, b = C_AddOns.IsAddOnLoaded("TomTom")
+    -- Retail: second value is fully loaded; first may be "loading" state in some builds.
+    if b ~= nil then
+      return b == true
+    end
+    return a == true
+  end
+  if _G.IsAddOnLoaded then
+    return IsAddOnLoaded("TomTom") == true
   end
   return false
 end
@@ -75,7 +82,77 @@ local function localeNl()
   return MidnightGuideDB and MidnightGuideDB.lang == "nl"
 end
 
---- Set waypoint: TomTom if present, else Blizzard map pin. Returns true on success.
+--- Hint when waypoint map ≠ player map (delve/instance/city layer); arrow often only makes sense on target map.
+local function printWaypointMapTipIfNeeded(way)
+  if not way or not way.mapId or not C_Map or not C_Map.GetBestMapForUnit then
+    return
+  end
+  local here = C_Map.GetBestMapForUnit("player")
+  if not here or here == way.mapId then
+    return
+  end
+  local text = localeNl()
+    and "Let op: je staat op een andere kaart dan dit waypoint (bijv. delve of instance). De pijl is meestal duidelijk zodra je op de open-wereldkaart van dat punt bent."
+    or "Note: you're on a different map than this waypoint (e.g. delve or instance). The arrow is usually clearest once you're in the open-world area for that point."
+  print("|cffc8a84bMidnight Guide:|r |cffffcc00" .. text .. "|r")
+end
+
+local function sanitizeWaypointTitle(title)
+  local safeTitle = (title or ""):gsub("[;%%\n\r]", " "):gsub('"', "'"):gsub("^%s+", ""):gsub("%s+$", "")
+  if safeTitle == "" then
+    safeTitle = "Midnight Guide"
+  end
+  return safeTitle:sub(1, 80)
+end
+
+--- Call TomTom's /way handler directly (same as chat); no RunMacroText return value to rely on.
+local function tryTomTomSlashCmdList(way, title)
+  if not isTomTomAddOnLoaded() or type(SlashCmdList) ~= "table" then
+    return false
+  end
+  local fn = SlashCmdList["TOMTOM_WAY"]
+  if type(fn) ~= "function" then
+    return false
+  end
+  local safeTitle = sanitizeWaypointTitle(title)
+  local msg = string.format("#%d %.2f %.2f %s", way.mapId, way.x * 100, way.y * 100, safeTitle)
+  local ok = pcall(fn, msg)
+  if ok then
+    printMsg(
+      true,
+      localeNl() and ("TomTom (way): " .. safeTitle) or ("TomTom (way): " .. safeTitle),
+      nil
+    )
+    return true
+  end
+  return false
+end
+
+--- Fallback: RunMacroText does not return a truthy success flag on Retail — only trust pcall().
+local function tryTomTomRunMacroSlash(way, title)
+  if not RunMacroText or not isTomTomAddOnLoaded() then
+    return false
+  end
+  local safeTitle = sanitizeWaypointTitle(title)
+  local body = string.format("#%d %.2f %.2f %s", way.mapId, way.x * 100, way.y * 100, safeTitle)
+  -- /way first: matches hand-pasted Wowhead lines; /tway is TomTom's alternate alias when registered.
+  for _, prefix in ipairs({ "/way ", "/tway " }) do
+    local macro = (prefix .. body):sub(1, 255)
+    local ok = pcall(RunMacroText, macro, false)
+    if ok then
+      printMsg(
+        true,
+        localeNl() and ("TomTom (" .. prefix:gsub("%s+", "") .. "): " .. safeTitle)
+          or ("TomTom (" .. prefix:gsub("%s+", "") .. "): " .. safeTitle),
+        nil
+      )
+      return true
+    end
+  end
+  return false
+end
+
+--- Set waypoint: TomTom API, then TomTom chat slash (RunMacroText), else Blizzard map pin.
 function MidnightGuide.Nav.SetWaypoint(way)
   if not way or not way.mapId or not way.x or not way.y then
     printMsg(false, nil, "No coordinates on this line.")
@@ -100,17 +177,19 @@ function MidnightGuide.Nav.SetWaypoint(way)
         localeNl() and ("TomTom: waypoint + pijl: " .. title) or ("TomTom: waypoint + arrow: " .. title),
         nil
       )
+      printWaypointMapTipIfNeeded(way)
       return true
     end
-    if isTomTomAddOnLoaded() then
-      printMsg(
-        false,
-        nil,
-        localeNl()
-          and "TomTom staat aan maar Midnight Guide kon geen waypoint zetten (API-fout). Probeer TomTom te updaten."
-          or "TomTom is enabled but setting a waypoint failed (API error). Try updating TomTom."
-      )
-    end
+  end
+
+  if tryTomTomSlashCmdList(way, title) then
+    printWaypointMapTipIfNeeded(way)
+    return true
+  end
+
+  if tryTomTomRunMacroSlash(way, title) then
+    printWaypointMapTipIfNeeded(way)
+    return true
   end
 
   if C_Map and C_Map.SetUserWaypoint and UiMapPoint and UiMapPoint.CreateFromCoordinates then
@@ -138,6 +217,7 @@ function MidnightGuide.Nav.SetWaypoint(way)
           ),
         nil
       )
+      printWaypointMapTipIfNeeded(way)
       return true
     end
   end
