@@ -2,23 +2,92 @@
 -- Source: content/addon-content.sample.json
 MidnightGuideGeneratedData = {
   version = "0.1.0",
-  generatedAt = "2026-04-14T20:00:00Z",
+  generatedAt = "2026-04-14T15:52:11Z",
   professions = {
     trackers = {
       {
-        id = "midnight-profession-tracker",
-        professionKey = "tailoring",
+        id = "mpt-alchemy",
+        professionKey = "alchemy",
         title = {
-          en = "Midnight Tailoring (knowledge)",
-          nl = "Midnight Tailoring (kennis)"
+          en = "Midnight Alchemy",
+          nl = "Midnight Alchemy"
         },
         treasures = {
           {
-            id = "a-childs-stuffy",
-            questId = 89078,
+            id = "freshly-plucked-peacebloom",
+            questId = 89115,
+            itemId = 238536,
             name = {
-              en = "A Child's Stuffy",
-              nl = "A Child's Stuffy"
+              en = "Freshly Plucked Peacebloom",
+              nl = "Freshly Plucked Peacebloom"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 49.1, 75.6 Freshly Plucked Peacebloom"
+            }
+          },
+          {
+            id = "pristine-potion",
+            questId = 89117,
+            itemId = 238538,
+            name = {
+              en = "Pristine Potion",
+              nl = "Pristine Potion"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 47.8, 51.6 Pristine Potion"
+            }
+          },
+          {
+            id = "vial-of-zulaman-oddities",
+            questId = 89114,
+            itemId = 238535,
+            name = {
+              en = "Vial of Zul'Aman Oddities",
+              nl = "Vial of Zul'Aman Oddities"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 40.4, 51.0 Vial of Zul'Aman Oddities"
+            }
+          },
+          {
+            id = "measured-ladle",
+            questId = 89116,
+            itemId = 238537,
+            name = {
+              en = "Measured Ladle",
+              nl = "Measured Ladle"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 49.1, 23.1 Measured Ladle"
+            }
+          },
+          {
+            id = "vial-of-rootlands-oddities",
+            questId = 89113,
+            itemId = 238534,
+            name = {
+              en = "Vial of Rootlands Oddities",
+              nl = "Vial of Rootlands Oddities"
             },
             zone = {
               en = "Harandar",
@@ -26,12 +95,1611 @@ MidnightGuideGeneratedData = {
             },
             waypoint = {
               zone = "Harandar",
-              way = "/way #2413 70.5 50.9 A Child's Stuffy (Tailoring)"
+              way = "/way #2413 34.7, 24.7 Vial of Rootlands Oddities"
             }
           },
           {
+            id = "vial-of-voidstorm-oddities",
+            questId = 89112,
+            itemId = 238533,
+            name = {
+              en = "Vial of Voidstorm Oddities",
+              nl = "Vial of Voidstorm Oddities"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 41.8, 40.5 Vial of Voidstorm Oddities"
+            }
+          },
+          {
+            id = "vial-of-eversong-oddities",
+            questId = 89111,
+            itemId = 238532,
+            name = {
+              en = "Vial of Eversong Oddities",
+              nl = "Vial of Eversong Oddities"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 45.12, 44.77 Vial of Eversong Oddities"
+            }
+          },
+          {
+            id = "failed-experiment",
+            questId = 89118,
+            itemId = 238539,
+            name = {
+              en = "Failed Experiment",
+              nl = "Failed Experiment"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 32.8, 43.3 Failed Experiment"
+            }
+          }
+        },
+        books = {
+          {
+            id = "beyond-the-event-horizon-alchemy",
+            questId = 93794,
+            itemId = 262645,
+            name = {
+              en = "Beyond the Event Horizon: Alchemy",
+              nl = "Beyond the Event Horizon: Alchemy"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 52.4, 72.8 Void Researcher Anomander — Beyond the Event Horizon: Alchemy"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-blacksmithing",
+        professionKey = "blacksmithing",
+        title = {
+          en = "Midnight Blacksmithing",
+          nl = "Midnight Blacksmithing"
+        },
+        treasures = {
+          {
+            id = "sindorei-masters-forgemace",
+            questId = 89183,
+            itemId = 238546,
+            name = {
+              en = "Sin'dorei Master's Forgemace",
+              nl = "Sin'dorei Master's Forgemace"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 49.3, 61.3 Sin'dorei Master's Forgemace"
+            }
+          },
+          {
+            id = "silvermoon-blacksmiths-hammer",
+            questId = 89184,
+            itemId = 238547,
+            name = {
+              en = "Silvermoon Blacksmith's Hammer",
+              nl = "Silvermoon Blacksmith's Hammer"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 48.5, 74.8 Silvermoon Blacksmith's Hammer"
+            }
+          },
+          {
+            id = "deconstructed-forge-techniques",
+            questId = 89177,
+            itemId = 238540,
+            name = {
+              en = "Deconstructed Forge Techniques",
+              nl = "Deconstructed Forge Techniques"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 26.9, 60.3 Deconstructed Forge Techniques"
+            }
+          },
+          {
+            id = "metalworking-cheat-sheet",
+            questId = 89180,
+            itemId = 238543,
+            name = {
+              en = "Metalworking Cheat Sheet",
+              nl = "Metalworking Cheat Sheet"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 56.8, 40.7 Metalworking Cheat Sheet"
+            }
+          },
+          {
+            id = "silvermoon-smithing-kit",
+            questId = 89178,
+            itemId = 238541,
+            name = {
+              en = "Silvermoon Smithing Kit",
+              nl = "Silvermoon Smithing Kit"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 48.3, 75.7 Silvermoon Smithing Kit"
+            }
+          },
+          {
+            id = "carefully-racked-spear",
+            questId = 89179,
+            itemId = 238542,
+            name = {
+              en = "Carefully Racked Spear",
+              nl = "Carefully Racked Spear"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 33.2, 65.8 Carefully Racked Spear"
+            }
+          },
+          {
+            id = "rutaani-floratenders-sword",
+            questId = 89182,
+            itemId = 238545,
+            name = {
+              en = "Rutaani Floratender's Sword",
+              nl = "Rutaani Floratender's Sword"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 66.3, 50.8 Rutaani Floratender's Sword"
+            }
+          },
+          {
+            id = "voidstorm-defense-spear",
+            questId = 89181,
+            itemId = 238544,
+            name = {
+              en = "Voidstorm Defense Spear",
+              nl = "Voidstorm Defense Spear"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 30.6, 68.9 Voidstorm Defense Spear"
+            }
+          }
+        },
+        books = {
+          {
+            id = "beyond-the-event-horizon-blacksmithing",
+            questId = 93795,
+            itemId = 262644,
+            name = {
+              en = "Beyond the Event Horizon: Blacksmithing",
+              nl = "Beyond the Event Horizon: Blacksmithing"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 52.4, 72.8 Void Researcher Anomander — Beyond the Event Horizon: Blacksmithing"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-enchanting",
+        professionKey = "enchanting",
+        title = {
+          en = "Midnight Enchanting",
+          nl = "Midnight Enchanting"
+        },
+        treasures = {
+          {
+            id = "sindorei-enchanting-rod",
+            questId = 89107,
+            itemId = 238555,
+            name = {
+              en = "Sin'dorei Enchanting Rod",
+              nl = "Sin'dorei Enchanting Rod"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 63.4, 32.6 Sin'dorei Enchanting Rod"
+            }
+          },
+          {
+            id = "loa-blessed-dust",
+            questId = 89106,
+            itemId = 238554,
+            name = {
+              en = "Loa-Blessed Dust",
+              nl = "Loa-Blessed Dust"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 40.4, 51.2 Loa-Blessed Dust"
+            }
+          },
+          {
+            id = "entropic-shard",
+            questId = 89104,
+            itemId = 238552,
+            name = {
+              en = "Entropic Shard",
+              nl = "Entropic Shard"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 37.7, 65.3 Entropic Shard"
+            }
+          },
+          {
+            id = "pure-void-crystal",
+            questId = 89102,
+            itemId = 238550,
+            name = {
+              en = "Pure Void Crystal",
+              nl = "Pure Void Crystal"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 35.5, 58.8 Pure Void Crystal"
+            }
+          },
+          {
+            id = "enchanted-amani-mask",
+            questId = 89100,
+            itemId = 238548,
+            name = {
+              en = "Enchanted Amani Mask",
+              nl = "Enchanted Amani Mask"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 49.1, 22.7 Enchanted Amani Mask"
+            }
+          },
+          {
+            id = "primal-essence-orb",
+            questId = 89105,
+            itemId = 238553,
+            name = {
+              en = "Primal Essence Orb",
+              nl = "Primal Essence Orb"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 65.8, 50.2 Primal Essence Orb"
+            }
+          },
+          {
+            id = "everblazing-sunmote",
+            questId = 89103,
+            itemId = 238551,
+            name = {
+              en = "Everblazing Sunmote",
+              nl = "Everblazing Sunmote"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 60.8, 53.1 Everblazing Sunmote"
+            }
+          },
+          {
+            id = "enchanted-sunfire-silk",
+            questId = 89101,
+            itemId = 238549,
+            name = {
+              en = "Enchanted Sunfire Silk",
+              nl = "Enchanted Sunfire Silk"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 40.20, 61.23 Enchanted Sunfire Silk"
+            }
+          }
+        },
+        books = {
+          {
+            id = "skill-issue-enchanting",
+            questId = 92374,
+            itemId = 257600,
+            name = {
+              en = "Skill Issue: Enchanting",
+              nl = "Skill Issue: Enchanting"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 43.4, 47.4 Caeris Fairdawn — Skill Issue: Enchanting"
+            }
+          },
+          {
+            id = "echo-of-abundance-enchanting",
+            questId = 92186,
+            itemId = 250445,
+            name = {
+              en = "Echo of Abundance: Enchanting",
+              nl = "Echo of Abundance: Enchanting"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 31.6, 26.2 Chel the Chip — Echo of Abundance: Enchanting"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-engineering",
+        professionKey = "engineering",
+        title = {
+          en = "Midnight Engineering",
+          nl = "Midnight Engineering"
+        },
+        treasures = {
+          {
+            id = "what-to-do-when-nothing-works",
+            questId = 89139,
+            itemId = 238562,
+            name = {
+              en = "What To Do When Nothing Works",
+              nl = "What To Do When Nothing Works"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 51.2, 57.1 What To Do When Nothing Works"
+            }
+          },
+          {
+            id = "one-engineers-junk",
+            questId = 89133,
+            itemId = 238556,
+            name = {
+              en = "One Engineer's Junk",
+              nl = "One Engineer's Junk"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 51.4, 74.6 One Engineer's Junk"
+            }
+          },
+          {
+            id = "manual-of-mistakes-and-mishaps",
+            questId = 89135,
+            itemId = 238558,
+            name = {
+              en = "Manual of Mistakes and Mishaps",
+              nl = "Manual of Mistakes and Mishaps"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 39.5, 45.8 Manual of Mistakes and Mishaps"
+            }
+          },
+          {
+            id = "offline-helper-bot",
+            questId = 89138,
+            itemId = 238561,
+            name = {
+              en = "Offline Helper Bot",
+              nl = "Offline Helper Bot"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 65.1, 34.5 Offline Helper Bot"
+            }
+          },
+          {
+            id = "handy-wrench",
+            questId = 89140,
+            itemId = 238563,
+            name = {
+              en = "Handy Wrench",
+              nl = "Handy Wrench"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 34.2, 87.9 Handy Wrench"
+            }
+          },
+          {
+            id = "expeditious-pylon",
+            questId = 89136,
+            itemId = 238559,
+            name = {
+              en = "Expeditious Pylon",
+              nl = "Expeditious Pylon"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 67.9, 49.8 Expeditious Pylon"
+            }
+          },
+          {
+            id = "ethereal-stormwrench",
+            questId = 89137,
+            itemId = 238560,
+            name = {
+              en = "Ethereal Stormwrench",
+              nl = "Ethereal Stormwrench"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 54.0, 51.0 Ethereal Stormwrench"
+            }
+          },
+          {
+            id = "miniaturized-transport-skiff",
+            questId = 89134,
+            itemId = 238557,
+            name = {
+              en = "Miniaturized Transport Skiff",
+              nl = "Miniaturized Transport Skiff"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 29.0, 39.2 Miniaturized Transport Skiff"
+            }
+          }
+        },
+        books = {
+          {
+            id = "beyond-the-event-horizon-engineering",
+            questId = 93796,
+            itemId = 262646,
+            name = {
+              en = "Beyond the Event Horizon: Engineering",
+              nl = "Beyond the Event Horizon: Engineering"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 52.4, 72.8 Void Researcher Anomander — Beyond the Event Horizon: Engineering"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-herbalism",
+        professionKey = "herbalism",
+        title = {
+          en = "Midnight Herbalism",
+          nl = "Midnight Herbalism"
+        },
+        treasures = {
+          {
+            id = "simple-leaf-pruners",
+            questId = 89160,
+            itemId = 238470,
+            name = {
+              en = "Simple Leaf Pruners",
+              nl = "Simple Leaf Pruners"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 49.0, 75.8 Simple Leaf Pruners"
+            }
+          },
+          {
+            id = "a-spade",
+            questId = 89158,
+            itemId = 238472,
+            name = {
+              en = "A Spade",
+              nl = "A Spade"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 64.2, 30.4 A Spade"
+            }
+          },
+          {
+            id = "sweeping-harvesters-scythe",
+            questId = 89161,
+            itemId = 238469,
+            name = {
+              en = "Sweeping Harvester's Scythe",
+              nl = "Sweeping Harvester's Scythe"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 41.8, 45.9 Sweeping Harvester's Scythe"
+            }
+          },
+          {
+            id = "harvesters-sickle",
+            questId = 89157,
+            itemId = 238473,
+            name = {
+              en = "Harvester's Sickle",
+              nl = "Harvester's Sickle"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 76.1, 51.1 Harvester's Sickle"
+            }
+          },
+          {
+            id = "bloomed-bud",
+            questId = 89162,
+            itemId = 238468,
+            name = {
+              en = "Bloomed Bud",
+              nl = "Bloomed Bud"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 38.1, 66.9 Bloomed Bud"
+            }
+          },
+          {
+            id = "lightbloom-root",
+            questId = 89159,
+            itemId = 238471,
+            name = {
+              en = "Lightbloom Root",
+              nl = "Lightbloom Root"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 36.6, 25.0 Lightbloom Root"
+            }
+          },
+          {
+            id = "planting-shovel",
+            questId = 89155,
+            itemId = 238475,
+            name = {
+              en = "Planting Shovel",
+              nl = "Planting Shovel"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 51.1, 55.7 Planting Shovel"
+            }
+          },
+          {
+            id = "peculiar-lotus",
+            questId = 89156,
+            itemId = 238474,
+            name = {
+              en = "Peculiar Lotus",
+              nl = "Peculiar Lotus"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 34.6, 57.0 Peculiar Lotus"
+            }
+          }
+        },
+        books = {
+          {
+            id = "echo-of-abundance-herbalism",
+            questId = 92174,
+            itemId = 250443,
+            name = {
+              en = "Echo of Abundance: Herbalism",
+              nl = "Echo of Abundance: Herbalism"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 31.6, 26.2 Chel the Chip — Echo of Abundance: Herbalism"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-inscription",
+        professionKey = "inscription",
+        title = {
+          en = "Midnight Inscription",
+          nl = "Midnight Inscription"
+        },
+        treasures = {
+          {
+            id = "songwriters-pen",
+            questId = 89073,
+            itemId = 238578,
+            name = {
+              en = "Songwriter's Pen",
+              nl = "Songwriter's Pen"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 47.7, 50.3 Songwriter's Pen"
+            }
+          },
+          {
+            id = "songwriters-quill",
+            questId = 89074,
+            itemId = 238579,
+            name = {
+              en = "Songwriter's Quill",
+              nl = "Songwriter's Quill"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 40.4, 61.3 Songwriter's Quill"
+            }
+          },
+          {
+            id = "spare-ink",
+            questId = 89069,
+            itemId = 238574,
+            name = {
+              en = "Spare Ink",
+              nl = "Spare Ink"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 48.3, 75.6 Spare Ink"
+            }
+          },
+          {
+            id = "leather-bound-techniques",
+            questId = 89068,
+            itemId = 238573,
+            name = {
+              en = "Leather-Bound Techniques",
+              nl = "Leather-Bound Techniques"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 40.5, 49.4 Leather-Bound Techniques"
+            }
+          },
+          {
+            id = "leftover-sanguithorn-pigment",
+            questId = 89070,
+            itemId = 238576,
+            name = {
+              en = "Leftover Sanguithorn Pigment",
+              nl = "Leftover Sanguithorn Pigment"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 52.7, 50.0 Leftover Sanguithorn Pigment"
+            }
+          },
+          {
+            id = "intrepid-explorers-marker",
+            questId = 89071,
+            itemId = 238575,
+            name = {
+              en = "Intrepid Explorer's Marker",
+              nl = "Intrepid Explorer's Marker"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 52.4, 52.6 Intrepid Explorer's Marker"
+            }
+          },
+          {
+            id = "void-touched-quill",
+            questId = 89067,
+            itemId = 238572,
+            name = {
+              en = "Void-Touched Quill",
+              nl = "Void-Touched Quill"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 60.7, 84.1 Void-Touched Quill"
+            }
+          },
+          {
+            id = "half-baked-techniques",
+            questId = 89072,
+            itemId = 238577,
+            name = {
+              en = "Half-Baked Techniques",
+              nl = "Half-Baked Techniques"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 39.3, 45.4 Half-Baked Techniques"
+            }
+          }
+        },
+        books = {}
+      },
+      {
+        id = "mpt-jewelcrafting",
+        professionKey = "jewelcrafting",
+        title = {
+          en = "Midnight Jewelcrafting",
+          nl = "Midnight Jewelcrafting"
+        },
+        treasures = {
+          {
+            id = "sindorei-masterwork-chisel",
+            questId = 89122,
+            itemId = 238580,
+            name = {
+              en = "Sin'dorei Masterwork Chisel",
+              nl = "Sin'dorei Masterwork Chisel"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 50.6, 56.5 Sin'dorei Masterwork Chisel"
+            }
+          },
+          {
+            id = "vintage-soul-gem",
+            questId = 89127,
+            itemId = 238585,
+            name = {
+              en = "Vintage Soul Gem",
+              nl = "Vintage Soul Gem"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 55.5, 48.0 Vintage Soul Gem"
+            }
+          },
+          {
+            id = "poorly-rounded-vial",
+            questId = 89125,
+            itemId = 238583,
+            name = {
+              en = "Poorly Rounded Vial",
+              nl = "Poorly Rounded Vial"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 56.7, 40.9 Poorly Rounded Vial"
+            }
+          },
+          {
+            id = "sindorei-gem-faceters",
+            questId = 89129,
+            itemId = 238587,
+            name = {
+              en = "Sin'dorei Gem Faceters",
+              nl = "Sin'dorei Gem Faceters"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 39.7, 38.8 Sin'dorei Gem Faceters"
+            }
+          },
+          {
+            id = "speculative-voidstorm-crystal",
+            questId = 89123,
+            itemId = 238581,
+            name = {
+              en = "Speculative Voidstorm Crystal",
+              nl = "Speculative Voidstorm Crystal"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 30.6, 69.0 Speculative Voidstorm Crystal"
+            }
+          },
+          {
+            id = "ethereal-gem-pliers",
+            questId = 89128,
+            itemId = 238586,
+            name = {
+              en = "Ethereal Gem Pliers",
+              nl = "Ethereal Gem Pliers"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 54.2, 51.2 Ethereal Gem Pliers"
+            }
+          },
+          {
+            id = "shattered-glass",
+            questId = 89126,
+            itemId = 238584,
+            name = {
+              en = "Shattered Glass",
+              nl = "Shattered Glass"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 62.9, 53.5 Shattered Glass"
+            }
+          },
+          {
+            id = "dual-function-magnifiers",
+            questId = 89124,
+            itemId = 238582,
+            name = {
+              en = "Dual-Function Magnifiers",
+              nl = "Dual-Function Magnifiers"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 28.61, 46.47 Dual-Function Magnifiers"
+            }
+          }
+        },
+        books = {
+          {
+            id = "skill-issue-jewelcrafting",
+            questId = 93222,
+            itemId = 257599,
+            name = {
+              en = "Skill Issue: Jewelcrafting",
+              nl = "Skill Issue: Jewelcrafting"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 43.4, 47.4 Caeris Fairdawn — Skill Issue: Jewelcrafting"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-leatherworking",
+        professionKey = "leatherworking",
+        title = {
+          en = "Midnight Leatherworking",
+          nl = "Midnight Leatherworking"
+        },
+        treasures = {
+          {
+            id = "artisans-considered-order",
+            questId = 89096,
+            itemId = 238595,
+            name = {
+              en = "Artisan's Considered Order",
+              nl = "Artisan's Considered Order"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 44.8, 56.2 Artisan's Considered Order"
+            }
+          },
+          {
+            id = "bundle-of-tanners-trinkets",
+            questId = 89092,
+            itemId = 238591,
+            name = {
+              en = "Bundle of Tanner's Trinkets",
+              nl = "Bundle of Tanner's Trinkets"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 45.2, 45.3 Bundle of Tanner's Trinkets"
+            }
+          },
+          {
+            id = "amani-leatherworkers-tool",
+            questId = 89089,
+            itemId = 238588,
+            name = {
+              en = "Amani Leatherworker's Tool",
+              nl = "Amani Leatherworker's Tool"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 33.1, 78.9 Amani Leatherworker's Tool"
+            }
+          },
+          {
+            id = "haranir-leatherworking-knife",
+            questId = 89095,
+            itemId = 238594,
+            name = {
+              en = "Haranir Leatherworking Knife",
+              nl = "Haranir Leatherworking Knife"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 36.1, 25.2 Haranir Leatherworking Knife"
+            }
+          },
+          {
+            id = "ethereal-leatherworking-knife",
+            questId = 89090,
+            itemId = 238589,
+            name = {
+              en = "Ethereal Leatherworking Knife",
+              nl = "Ethereal Leatherworking Knife"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 34.8, 56.9 Ethereal Leatherworking Knife"
+            }
+          },
+          {
+            id = "prestigiously-racked-hide",
+            questId = 89091,
+            itemId = 238590,
+            name = {
+              en = "Prestigiously Racked Hide",
+              nl = "Prestigiously Racked Hide"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 30.8, 84.1 Prestigiously Racked Hide"
+            }
+          },
+          {
+            id = "haranir-leatherworking-mallet",
+            questId = 89094,
+            itemId = 238593,
+            name = {
+              en = "Haranir Leatherworking Mallet",
+              nl = "Haranir Leatherworking Mallet"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 51.8, 51.3 Haranir Leatherworking Mallet"
+            }
+          },
+          {
+            id = "patterns-beyond-the-void",
+            questId = 89093,
+            itemId = 238592,
+            name = {
+              en = "Patterns: Beyond the Void",
+              nl = "Patterns: Beyond the Void"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 53.8, 51.6 Patterns: Beyond the Void"
+            }
+          }
+        },
+        books = {
+          {
+            id = "whisper-of-the-loa-leatherworking",
+            questId = 92371,
+            itemId = 250922,
+            name = {
+              en = "Whisper of the Loa: Leatherworking",
+              nl = "Whisper of the Loa: Leatherworking"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 45.8, 65.8 Magovu — Whisper of the Loa: Leatherworking"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-mining",
+        professionKey = "mining",
+        title = {
+          en = "Midnight Mining",
+          nl = "Midnight Mining"
+        },
+        treasures = {
+          {
+            id = "solid-ore-punchers",
+            questId = 89147,
+            itemId = 238599,
+            name = {
+              en = "Solid Ore Punchers",
+              nl = "Solid Ore Punchers"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 38.0, 45.3 Solid Ore Punchers"
+            }
+          },
+          {
+            id = "spelunkers-lucky-charm",
+            questId = 89145,
+            itemId = 238597,
+            name = {
+              en = "Spelunker's Lucky Charm",
+              nl = "Spelunker's Lucky Charm"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 41.9, 46.3 Spelunker's Lucky Charm"
+            }
+          },
+          {
+            id = "spare-expedition-torch",
+            questId = 89151,
+            itemId = 238603,
+            name = {
+              en = "Spare Expedition Torch",
+              nl = "Spare Expedition Torch"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 38.8, 65.9 Spare Expedition Torch"
+            }
+          },
+          {
+            id = "amani-experts-chisel",
+            questId = 89149,
+            itemId = 238601,
+            name = {
+              en = "Amani Expert's Chisel",
+              nl = "Amani Expert's Chisel"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 33.6, 66.0 Amani Expert's Chisel"
+            }
+          },
+          {
+            id = "star-metal-deposit",
+            questId = 89150,
+            itemId = 238602,
+            name = {
+              en = "Star Metal Deposit",
+              nl = "Star Metal Deposit"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2405 41.8, 38.2 Star Metal Deposit"
+            }
+          },
+          {
+            id = "glimmering-void-pearl",
+            questId = 89148,
+            itemId = 238600,
+            name = {
+              en = "Glimmering Void Pearl",
+              nl = "Glimmering Void Pearl"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 28.73, 38.56 Glimmering Void Pearl"
+            }
+          },
+          {
+            id = "lost-voidstorm-satchel",
+            questId = 89146,
+            itemId = 238598,
+            name = {
+              en = "Lost Voidstorm Satchel",
+              nl = "Lost Voidstorm Satchel"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 54.24, 51.59 Lost Voidstorm Satchel"
+            }
+          },
+          {
+            id = "miners-guide-to-voidstorm",
+            questId = 89144,
+            itemId = 238596,
+            name = {
+              en = "Miner's Guide to Voidstorm",
+              nl = "Miner's Guide to Voidstorm"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 30.0, 69.0 Miner's Guide to Voidstorm"
+            }
+          }
+        },
+        books = {
+          {
+            id = "whisper-of-the-loa-mining",
+            questId = 92372,
+            itemId = 250924,
+            name = {
+              en = "Whisper of the Loa: Mining",
+              nl = "Whisper of the Loa: Mining"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 45.8, 65.8 Magovu — Whisper of the Loa: Mining"
+            }
+          },
+          {
+            id = "echo-of-abundance-mining",
+            questId = 92187,
+            itemId = 250444,
+            name = {
+              en = "Echo of Abundance: Mining",
+              nl = "Echo of Abundance: Mining"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 31.6, 26.2 Chel the Chip — Echo of Abundance: Mining"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-skinning",
+        professionKey = "skinning",
+        title = {
+          en = "Midnight Skinning",
+          nl = "Midnight Skinning"
+        },
+        treasures = {
+          {
+            id = "sindorei-tanning-oil",
+            questId = 89171,
+            itemId = 238633,
+            name = {
+              en = "Sin'dorei Tanning Oil",
+              nl = "Sin'dorei Tanning Oil"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 43.2, 55.7 Sin'dorei Tanning Oil"
+            }
+          },
+          {
+            id = "thalassian-skinning-knife",
+            questId = 89173,
+            itemId = 238635,
+            name = {
+              en = "Thalassian Skinning Knife",
+              nl = "Thalassian Skinning Knife"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 48.5, 76.2 Thalassian Skinning Knife"
+            }
+          },
+          {
+            id = "amani-tanning-oil",
+            questId = 89170,
+            itemId = 238632,
+            name = {
+              en = "Amani Tanning Oil",
+              nl = "Amani Tanning Oil"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 40.4, 36.0 Amani Tanning Oil"
+            }
+          },
+          {
+            id = "amani-skinning-knife",
+            questId = 89172,
+            itemId = 238634,
+            name = {
+              en = "Amani Skinning Knife",
+              nl = "Amani Skinning Knife"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 33.1, 79.0 Amani Skinning Knife"
+            }
+          },
+          {
+            id = "cadre-skinning-knife",
+            questId = 89167,
+            itemId = 238629,
+            name = {
+              en = "Cadre Skinning Knife",
+              nl = "Cadre Skinning Knife"
+            },
+            zone = {
+              en = "Rootlands",
+              nl = "Rootlands"
+            },
+            waypoint = {
+              zone = "Rootlands",
+              way = "/way #2536 45.0, 44.7 Cadre Skinning Knife"
+            }
+          },
+          {
+            id = "primal-hide",
+            questId = 89168,
+            itemId = 238630,
+            name = {
+              en = "Primal Hide",
+              nl = "Primal Hide"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 69.5, 49.2 Primal Hide"
+            }
+          },
+          {
+            id = "lightbloom-afflicted-hide",
+            questId = 89166,
+            itemId = 238628,
+            name = {
+              en = "Lightbloom Afflicted Hide",
+              nl = "Lightbloom Afflicted Hide"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 76.0, 51.0 Lightbloom Afflicted Hide"
+            }
+          },
+          {
+            id = "voidstorm-leather-sample",
+            questId = 89169,
+            itemId = 238631,
+            name = {
+              en = "Voidstorm Leather Sample",
+              nl = "Voidstorm Leather Sample"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 45.5, 42.4 Voidstorm Leather Sample"
+            }
+          }
+        },
+        books = {
+          {
+            id = "whisper-of-the-loa-skinning",
+            questId = 92373,
+            itemId = 250923,
+            name = {
+              en = "Whisper of the Loa: Skinning",
+              nl = "Whisper of the Loa: Skinning"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 45.8, 65.8 Magovu — Whisper of the Loa: Skinning"
+            }
+          },
+          {
+            id = "echo-of-abundance-skinning",
+            questId = 92188,
+            itemId = 250360,
+            name = {
+              en = "Echo of Abundance: Skinning",
+              nl = "Echo of Abundance: Skinning"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 31.6, 26.2 Chel the Chip — Echo of Abundance: Skinning"
+            }
+          }
+        }
+      },
+      {
+        id = "mpt-tailoring",
+        professionKey = "tailoring",
+        title = {
+          en = "Midnight Tailoring",
+          nl = "Midnight Tailoring"
+        },
+        treasures = {
+          {
             id = "a-really-nice-curtain",
             questId = 89079,
+            itemId = 238613,
             name = {
               en = "A Really Nice Curtain",
               nl = "A Really Nice Curtain"
@@ -42,76 +1710,13 @@ MidnightGuideGeneratedData = {
             },
             waypoint = {
               zone = "Silvermoon City",
-              way = "/way #2393 35.9 61.3 A Really Nice Curtain (Tailoring)"
-            }
-          },
-          {
-            id = "sindorei-outfitters-ruler",
-            questId = 89080,
-            name = {
-              en = "Sin'dorei Outfitter's Ruler",
-              nl = "Sin'dorei Outfitter's Ruler"
-            },
-            zone = {
-              en = "Eversong Woods",
-              nl = "Eversong Woods"
-            },
-            waypoint = {
-              zone = "Eversong Woods",
-              way = "/way #2395 46.3 34.8 Sin'dorei Outfitter's Ruler (Tailoring)"
-            }
-          },
-          {
-            id = "wooden-weaving-sword",
-            questId = 89081,
-            name = {
-              en = "Wooden Weaving Sword",
-              nl = "Wooden Weaving Sword"
-            },
-            zone = {
-              en = "Harandar",
-              nl = "Harandar"
-            },
-            waypoint = {
-              zone = "Harandar",
-              way = "/way #2413 69.8 51.0 Wooden Weaving Sword (Tailoring)"
-            }
-          },
-          {
-            id = "book-of-sindorei-stitches",
-            questId = 89082,
-            name = {
-              en = "Book of Sin'dorei Stitches",
-              nl = "Book of Sin'dorei Stitches"
-            },
-            zone = {
-              en = "Voidstorm — Slayer's Rise",
-              nl = "Voidstorm — Slayer's Rise"
-            },
-            waypoint = {
-              zone = "Voidstorm",
-              way = "/way #2444 62.0 83.6 Book of Sin'dorei Stitches (Tailoring)"
-            }
-          },
-          {
-            id = "satin-throw-pillow",
-            questId = 89083,
-            name = {
-              en = "Satin Throw Pillow",
-              nl = "Satin Throw Pillow"
-            },
-            zone = {
-              en = "Voidstorm — Slayer's Rise",
-              nl = "Voidstorm — Slayer's Rise"
-            },
-            waypoint = {
-              zone = "Voidstorm",
-              way = "/way #2444 61.6 85.0 Satin Throw Pillow (Tailoring)"
+              way = "/way #2393 35.8, 61.2 A Really Nice Curtain"
             }
           },
           {
             id = "particularly-enchanting-tablecloth",
             questId = 89084,
+            itemId = 238618,
             name = {
               en = "Particularly Enchanting Tablecloth",
               nl = "Particularly Enchanting Tablecloth"
@@ -122,12 +1727,13 @@ MidnightGuideGeneratedData = {
             },
             waypoint = {
               zone = "Silvermoon City",
-              way = "/way #2393 31.8 68.2 Particularly Enchanting Tablecloth (Tailoring)"
+              way = "/way #2393 31.7, 68.2 Particularly Enchanting Tablecloth"
             }
           },
           {
             id = "artisans-cover-comb",
             questId = 89085,
+            itemId = 238619,
             name = {
               en = "Artisan's Cover Comb",
               nl = "Artisan's Cover Comb"
@@ -138,24 +1744,111 @@ MidnightGuideGeneratedData = {
             },
             waypoint = {
               zone = "Zul'Aman",
-              way = "/way #2437 40.5 49.4 Artisan's Cover Comb (Tailoring)"
+              way = "/way #2437 40.4, 49.4 Artisan's Cover Comb"
+            }
+          },
+          {
+            id = "sindorei-outfitters-ruler",
+            questId = 89080,
+            itemId = 238614,
+            name = {
+              en = "Sin'dorei Outfitter's Ruler",
+              nl = "Sin'dorei Outfitter's Ruler"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 46.3, 34.8 Sin'dorei Outfitter's Ruler"
+            }
+          },
+          {
+            id = "a-childs-stuffy",
+            questId = 89078,
+            itemId = 238612,
+            name = {
+              en = "A Child's Stuffy",
+              nl = "A Child's Stuffy"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 70.5, 50.8 A Child's Stuffy"
+            }
+          },
+          {
+            id = "wooden-weaving-sword",
+            questId = 89081,
+            itemId = 238615,
+            name = {
+              en = "Wooden Weaving Sword",
+              nl = "Wooden Weaving Sword"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 69.8, 51.0 Wooden Weaving Sword"
+            }
+          },
+          {
+            id = "book-of-sindorei-stitches",
+            questId = 89082,
+            itemId = 238616,
+            name = {
+              en = "Book of Sin'dorei Stitches",
+              nl = "Book of Sin'dorei Stitches"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 61.9, 83.7 Book of Sin'dorei Stitches"
+            }
+          },
+          {
+            id = "satin-throw-pillow",
+            questId = 89083,
+            itemId = 238617,
+            name = {
+              en = "Satin Throw Pillow",
+              nl = "Satin Throw Pillow"
+            },
+            zone = {
+              en = "Voidstorm",
+              nl = "Voidstorm"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 61.4, 85.0 Satin Throw Pillow"
             }
           }
         },
         books = {
           {
             id = "skill-issue-tailoring",
+            questId = 93201,
+            itemId = 257601,
             name = {
-              en = "Skill Issue: Tailoring (renown vendor)",
-              nl = "Skill Issue: Tailoring (renown-verkoper)"
+              en = "Skill Issue: Tailoring",
+              nl = "Skill Issue: Tailoring"
             },
             zone = {
-              en = "Eversong Woods — Caeris Fairdawn (Silvermoon Court Renown 6)",
-              nl = "Eversong Woods — Caeris Fairdawn (Silvermoon Court Renown 6)"
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
             },
             waypoint = {
               zone = "Eversong Woods",
-              way = "/way #2395 43.43 47.44 Skill Issue: Tailoring (75 Artisan Tailor's Moxie + 750 Voidlight Marl)"
+              way = "/way #2395 43.4, 47.4 Caeris Fairdawn — Skill Issue: Tailoring"
             }
           }
         }

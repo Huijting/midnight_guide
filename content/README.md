@@ -13,18 +13,21 @@ This directory is the canonical source for content that will be converted to Lua
 - Prevents drift between UI code and data shape.
 - Makes conversion to Lua deterministic in the next step (Sprint 2 / B2).
 
-## Build generated Lua data
+## Sync profession data from original MPT
 
-Run:
+Treasures, books, **questId**, **itemId**, and coordinates come from upstream **[MidnightProfessionTracker](https://github.com/Huijting/MidnightProfessionTracker)** (`MidnightProfTracker.lua`: `ProfData` + `BookData`).
+
+1. `python scripts/sync-mpt-professions.py` — downloads the Lua file (or set `MPT_LUA_URL` to a local path), replaces only `professions.trackers` inside `addon-content.sample.json`, and refreshes `generatedAt`. Weekly + help blocks are left unchanged.
+2. `python scripts/build-addon-generated-data.py` — writes `addon/MidnightGuide/GeneratedData.lua`.
+
+Commit both the JSON and `GeneratedData.lua` after a sync so CI zips stay in sync.
+
+## Build generated Lua data (after editing JSON by hand)
 
 `python scripts/build-addon-generated-data.py`
 
-This reads `addon-content.sample.json` and writes:
+reads `addon-content.sample.json` and writes `addon/MidnightGuide/GeneratedData.lua`.
 
-`addon/MidnightGuide/GeneratedData.lua`
+## Profession `questId`
 
-## Profession `questId` (treasures / books)
-
-One-time **Midnight tailoring knowledge treasures** use hidden quest flags checked with `C_QuestLog.IsQuestFlaggedCompleted`. The sample dataset lists all eight treasures with IDs **89078–89085** (pairing per treasure) from the check macro on [wow-professions.com — Midnight profession knowledge treasure locations](https://www.wow-professions.com/midnight/profession-knowledge-treasure-locations) (same numbering as community/Wowhead macro lists). Wowhead’s guide page was unavailable via fetch (CDN error); cross-check in-game or on Wowhead if a patch changes IDs.
-
-The renown item **Skill Issue: Tailoring** ([Wowhead item](https://www.wowhead.com/item=257601/skill-issue-tailoring)) has **no** `questId` in sample content until a verified flag ID is documented; use manual completion in the **My** tabs or add `questId` when known.
+The addon uses `C_QuestLog.IsQuestFlaggedCompleted(questId)` for treasures and renown books, matching MPT’s `id` field. If Blizzard changes a flag ID, fix it in MPT upstream and re-run the sync script (or patch JSON locally).

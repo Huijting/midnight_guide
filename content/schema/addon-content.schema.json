@@ -151,6 +151,11 @@
           "type": "integer",
           "minimum": 1,
           "description": "Optional quest ID; if completed, item counts as collected (see addon Char.lua)."
+        },
+        "itemId": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Optional WoW item ID (from MPT / Wowhead)."
         }
       }
     },

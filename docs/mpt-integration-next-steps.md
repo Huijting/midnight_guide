@@ -8,8 +8,9 @@
 
 ## Wat we uit MPT halen (gericht, geen blind copy-paste)
 
+- **Canonieke profession-data:** `python scripts/sync-mpt-professions.py` vult `professions.trackers` vanuit `MidnightProfTracker.lua` (ProfData + BookData). Zie `content/README.md`.
 - UI- en tekstparity waar zinvol: `docs/mpt-ui-parity-checklist.md`.
-- Data-ideeën en JSON-schema in dit repo: `content/schema/addon-content.schema.json`, generator `scripts/build-addon-generated-data.py`.
+- JSON-schema + Lua-build: `content/schema/addon-content.schema.json`, `scripts/build-addon-generated-data.py`.
 - Patronen die al werken (bijv. `UISpecialFrames`, kleurcodes) — hergebruiken in MG-code.
 
 ## Wat we niet meer doen
