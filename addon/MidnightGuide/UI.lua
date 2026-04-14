@@ -93,9 +93,9 @@ local function tabToReportOptions(key)
 end
 
 local function layoutContentArea(frame, showProfSubRow)
-  -- CharacterFrame tabs are ~32px tall; second row sits under first (Platynator-like overlap).
-  local topY = showProfSubRow and -86 or -54
-  local scrollH = showProfSubRow and 268 or 298
+  -- Leave room below BasicFrameTemplate title bar for two tab rows, then scroll content.
+  local topY = showProfSubRow and -100 or -68
+  local scrollH = showProfSubRow and 252 or 286
   if frame.bodyText then
     frame.bodyText:ClearAllPoints()
     frame.bodyText:SetPoint("TOPLEFT", 20, topY)
@@ -388,7 +388,9 @@ local function buildMainFrame()
 
   local stripNameMain = frame:GetName() .. "MGMainTabs"
   frame.mainTabStrip = CreateFrame("Frame", stripNameMain, frame)
-  frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+  -- Below title chrome (tabs were at -22 and drew under TitleBg — invisible).
+  frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -44)
+  frame.mainTabStrip:SetFrameLevel((frame:GetFrameLevel() or 0) + 10)
   frame.mainTabStrip.numTabs = #MAIN_TAB_DEFS
   if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
     pcall(PanelTemplates_SetNumTabs, frame.mainTabStrip, #MAIN_TAB_DEFS)
@@ -405,8 +407,9 @@ local function buildMainFrame()
     elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
     end
+    tab:SetFrameLevel((frame:GetFrameLevel() or 0) + 11)
     if i == 1 then
-      tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 8, -22)
+      tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 0, 0)
     else
       tab:SetPoint("TOPLEFT", frame.mainTabButtons[i - 1], "TOPRIGHT", -16, 0)
     end
@@ -427,7 +430,8 @@ local function buildMainFrame()
 
   local stripNameProf = frame:GetName() .. "MGProfTabs"
   frame.profSubStrip = CreateFrame("Frame", stripNameProf, frame)
-  frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -52)
+  frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -74)
+  frame.profSubStrip:SetFrameLevel((frame:GetFrameLevel() or 0) + 10)
   frame.profSubStrip.numTabs = #PROF_SUB_DEFS
   if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
     pcall(PanelTemplates_SetNumTabs, frame.profSubStrip, #PROF_SUB_DEFS)
@@ -444,6 +448,7 @@ local function buildMainFrame()
     elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
     end
+    tab:SetFrameLevel((frame:GetFrameLevel() or 0) + 11)
     if i == 1 then
       tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
     else
@@ -460,14 +465,15 @@ local function buildMainFrame()
   frame.profSubStrip:Hide()
 
   frame.bodyText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-  frame.bodyText:SetPoint("TOPLEFT", 20, -56)
+  frame.bodyText:SetPoint("TOPLEFT", 20, -68)
   frame.bodyText:SetWidth(520)
   frame.bodyText:SetJustifyH("LEFT")
   frame.bodyText:SetText("Loading...")
 
   frame.scrollFrame = CreateFrame("ScrollFrame", "MidnightGuideScrollFrame", frame, "UIPanelScrollFrameTemplate")
-  frame.scrollFrame:SetPoint("TOPLEFT", 20, -56)
+  frame.scrollFrame:SetPoint("TOPLEFT", 20, -68)
   frame.scrollFrame:SetSize(520, 300)
+  frame.scrollFrame:SetFrameLevel((frame:GetFrameLevel() or 0) + 1)
   frame.scrollChild = CreateFrame("Frame", nil, frame.scrollFrame)
   frame.scrollChild:SetWidth(520)
   frame.scrollFrame:SetScrollChild(frame.scrollChild)
