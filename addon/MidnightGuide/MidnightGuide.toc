@@ -7,6 +7,7 @@
 
 Locales/enUS.lua
 Locales/nlNL.lua
+GeneratedData.lua
 Data.lua
 UI.lua
 Core.lua

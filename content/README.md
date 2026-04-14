@@ -13,6 +13,12 @@ This directory is the canonical source for content that will be converted to Lua
 - Prevents drift between UI code and data shape.
 - Makes conversion to Lua deterministic in the next step (Sprint 2 / B2).
 
-## Next step
+## Build generated Lua data
 
-Build a converter script that validates JSON against the schema and outputs `GeneratedData.lua`.
+Run:
+
+`python scripts/build-addon-generated-data.py`
+
+This reads `addon-content.sample.json` and writes:
+
+`addon/MidnightGuide/GeneratedData.lua`

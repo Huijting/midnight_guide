@@ -33,7 +33,7 @@ Statuslegenda:
 ## Sprint 2 - Data Pipeline + Tracker MVP
 
 - [x] B1 Canonical data schema (`content/`).
-- [ ] B2 Converter script (JSON -> Lua tables).
+- [x] B2 Converter script (JSON -> Lua tables).
 - [ ] B3 Profession Tracker core (missing treasures/books).
 - [ ] B4 Slash commands (`/mpt`, `/mpt books`, `/mpt all`).
 - [ ] B5 Install/Help/Troubleshooting panel in addon.
@@ -90,3 +90,4 @@ Statuslegenda:
 - [x] ESC-sluiting toegevoegd voor addon venster.
 - [x] GitHub Actions workflow toegevoegd voor addon zip build/release (`build-addon-zip.yml`).
 - [x] Canonical addon-content schema toegevoegd in `content/` + sample dataset.
+- [x] Converter script toegevoegd (`scripts/build-addon-generated-data.py`) + `GeneratedData.lua` output gekoppeld aan addon.
