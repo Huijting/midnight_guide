@@ -76,6 +76,93 @@ local function tabUsesPanelTextures(tmpl)
   return type(tmpl) == "string" and tmpl ~= "UIPanelButtonTemplate"
 end
 
+local function isPanelStyleTabTemplate(tmpl)
+  return tmpl == "PanelTopTabButtonTemplate" or tmpl == "PanelBottomTabButtonTemplate"
+end
+
+local function isCharacterTabTemplate(tmpl)
+  return tmpl == "CharacterFrameTabButtonTemplate"
+end
+
+--- Panel top/bottom tabs extend upward from their BOTTOM edge (Blizzard pattern). TOPLEFT on a strip
+--- places them above the frame and they disappear. UIPanelButton stays TOP-attached on strips.
+local function applyTabAnchors(frame, tabTemplate)
+  local main = frame.mainTabButtons
+  local prof = frame.profSubTabButtons
+  if not main or not prof then
+    return
+  end
+  for _, t in ipairs(main) do
+    t:ClearAllPoints()
+  end
+  for _, t in ipairs(prof) do
+    t:ClearAllPoints()
+  end
+
+  if isPanelStyleTabTemplate(tabTemplate) then
+    for i, tab in ipairs(main) do
+      if i == 1 then
+        tab:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 8, -32)
+      else
+        tab:SetPoint("BOTTOMLEFT", main[i - 1], "BOTTOMRIGHT", -16, 0)
+      end
+    end
+    for i, tab in ipairs(prof) do
+      if i == 1 then
+        tab:SetPoint("BOTTOMLEFT", main[1], "BOTTOMLEFT", 0, -22)
+      else
+        tab:SetPoint("BOTTOMLEFT", prof[i - 1], "BOTTOMRIGHT", -14, 0)
+      end
+    end
+  elseif isCharacterTabTemplate(tabTemplate) then
+    frame.mainTabStrip:ClearAllPoints()
+    frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -40)
+    for i, tab in ipairs(main) do
+      if i == 1 then
+        tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 0, 0)
+      else
+        tab:SetPoint("TOPLEFT", main[i - 1], "TOPRIGHT", -16, 0)
+      end
+    end
+    frame.profSubStrip:ClearAllPoints()
+    frame.profSubStrip:SetPoint("TOPLEFT", main[1], "BOTTOMLEFT", -4, -4)
+    for i, tab in ipairs(prof) do
+      if i == 1 then
+        tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
+      else
+        tab:SetPoint("TOPLEFT", prof[i - 1], "TOPRIGHT", -14, 0)
+      end
+    end
+  else
+    frame.mainTabStrip:ClearAllPoints()
+    frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -42)
+    frame.profSubStrip:ClearAllPoints()
+    frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -72)
+    for i, tab in ipairs(main) do
+      if i == 1 then
+        tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 0, 0)
+      else
+        tab:SetPoint("TOPLEFT", main[i - 1], "TOPRIGHT", 8, 0)
+      end
+    end
+    for i, tab in ipairs(prof) do
+      if i == 1 then
+        tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
+      else
+        tab:SetPoint("TOPLEFT", prof[i - 1], "TOPRIGHT", 8, 0)
+      end
+    end
+  end
+
+  frame.mainTabStrip:Show()
+  for _, t in ipairs(main) do
+    t:Show()
+  end
+  for _, t in ipairs(prof) do
+    t:Show()
+  end
+end
+
 local function tabToReportOptions(key)
   if key == "my_treasures" then
     return { includeTreasures = true, includeBooks = false, scope = "my" }
@@ -93,9 +180,17 @@ local function tabToReportOptions(key)
 end
 
 local function layoutContentArea(frame, showProfSubRow)
-  -- Leave room below BasicFrameTemplate title bar for two tab rows, then scroll content.
-  local topY = showProfSubRow and -100 or -68
-  local scrollH = showProfSubRow and 252 or 286
+  local panelStyle = frame._mgPanelStyleTabs
+  local topY, scrollH
+  if panelStyle and showProfSubRow then
+    topY, scrollH = -118, 236
+  elseif panelStyle and not showProfSubRow then
+    topY, scrollH = -82, 274
+  elseif showProfSubRow then
+    topY, scrollH = -100, 252
+  else
+    topY, scrollH = -68, 286
+  end
   if frame.bodyText then
     frame.bodyText:ClearAllPoints()
     frame.bodyText:SetPoint("TOPLEFT", 20, topY)
@@ -324,6 +419,9 @@ local function migrateLegacyTabKey()
 end
 
 local function refreshMainTabLabels(frame)
+  if frame.mainTabButtons and frame.profSubTabButtons and MidnightGuide.UI._resolvedTabButtonTemplate then
+    applyTabAnchors(frame, MidnightGuide.UI._resolvedTabButtonTemplate)
+  end
   if frame.mainTabButtons then
     for _, btn in ipairs(frame.mainTabButtons) do
       for _, def in ipairs(MAIN_TAB_DEFS) do
@@ -385,11 +483,12 @@ local function buildMainFrame()
 
   local tabTemplate = resolveTabButtonTemplate()
   frame._mgUsesBlizzardTabs = tabUsesPanelTextures(tabTemplate)
+  frame._mgPanelStyleTabs = isPanelStyleTabTemplate(tabTemplate)
 
   local stripNameMain = frame:GetName() .. "MGMainTabs"
   frame.mainTabStrip = CreateFrame("Frame", stripNameMain, frame)
-  -- Below title chrome (tabs were at -22 and drew under TitleBg — invisible).
-  frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -44)
+  frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+  frame.mainTabStrip:SetSize(520, 1)
   frame.mainTabStrip:SetFrameLevel((frame:GetFrameLevel() or 0) + 10)
   frame.mainTabStrip.numTabs = #MAIN_TAB_DEFS
   if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
@@ -408,11 +507,6 @@ local function buildMainFrame()
       pcall(PanelTemplates_TabResize, tab, 0)
     end
     tab:SetFrameLevel((frame:GetFrameLevel() or 0) + 11)
-    if i == 1 then
-      tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 0, 0)
-    else
-      tab:SetPoint("TOPLEFT", frame.mainTabButtons[i - 1], "TOPRIGHT", -16, 0)
-    end
     tab:SetScript("OnClick", function(self)
       if frame._mgUsesBlizzardTabs and type(PanelTemplates_Tab_OnClick) == "function" and frame.mainTabStrip.numTabs then
         pcall(PanelTemplates_Tab_OnClick, self, frame.mainTabStrip)
@@ -430,7 +524,8 @@ local function buildMainFrame()
 
   local stripNameProf = frame:GetName() .. "MGProfTabs"
   frame.profSubStrip = CreateFrame("Frame", stripNameProf, frame)
-  frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -74)
+  frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+  frame.profSubStrip:SetSize(520, 1)
   frame.profSubStrip:SetFrameLevel((frame:GetFrameLevel() or 0) + 10)
   frame.profSubStrip.numTabs = #PROF_SUB_DEFS
   if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
@@ -449,11 +544,6 @@ local function buildMainFrame()
       pcall(PanelTemplates_TabResize, tab, 0)
     end
     tab:SetFrameLevel((frame:GetFrameLevel() or 0) + 11)
-    if i == 1 then
-      tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
-    else
-      tab:SetPoint("TOPLEFT", frame.profSubTabButtons[i - 1], "TOPRIGHT", -14, 0)
-    end
     tab:SetScript("OnClick", function(self)
       if frame._mgUsesBlizzardTabs and type(PanelTemplates_Tab_OnClick) == "function" and frame.profSubStrip.numTabs then
         pcall(PanelTemplates_Tab_OnClick, self, frame.profSubStrip)
@@ -462,6 +552,8 @@ local function buildMainFrame()
     end)
     frame.profSubTabButtons[i] = tab
   end
+
+  applyTabAnchors(frame, tabTemplate)
   frame.profSubStrip:Hide()
 
   frame.bodyText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
