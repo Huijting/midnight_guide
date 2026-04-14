@@ -28,7 +28,7 @@ Statuslegenda:
 - [x] A2 Base UI shell (tabs: Professions, Weekly, Help).
 - [x] A3 Persistence (`SavedVariables`: taal, open tab, UI state).
 - [x] A4 Localization scaffold (NL/EN + fallback).
-- [ ] A5 Release pipeline (build/package addon zip).
+- [x] A5 Release pipeline (build/package addon zip).
 
 ## Sprint 2 - Data Pipeline + Tracker MVP
 
@@ -86,3 +86,5 @@ Statuslegenda:
 - [x] Trackerdocument aangemaakt voor voortgangsbeheer.
 - [x] Branch `feature/addon-migration-sprint1` gestart.
 - [x] Addon skeleton toegevoegd in `addon/MidnightGuide/` (TOC, Core, UI, Data, Locales).
+- [x] ESC-sluiting toegevoegd voor addon venster.
+- [x] GitHub Actions workflow toegevoegd voor addon zip build/release (`build-addon-zip.yml`).
