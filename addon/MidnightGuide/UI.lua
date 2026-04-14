@@ -1,7 +1,7 @@
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.UI = MidnightGuide.UI or {}
 
--- Two-level tabs (similar idea to Platynator: main sections + inner tracker buttons).
+-- Two-level tabs (Platynator-style: gold CharacterFrame tabs + second row under Prof).
 -- Main: Prof | Weekly | Help. Under Prof: My/All treasures, My/All books.
 
 local PROF_LEAVES = {
@@ -57,8 +57,9 @@ local function tabToReportOptions(key)
 end
 
 local function layoutContentArea(frame, showProfSubRow)
-  local topY = showProfSubRow and -78 or -56
-  local scrollH = showProfSubRow and 278 or 300
+  -- CharacterFrame tabs are ~32px tall; second row sits under first (Platynator-like overlap).
+  local topY = showProfSubRow and -86 or -54
+  local scrollH = showProfSubRow and 268 or 298
   if frame.bodyText then
     frame.bodyText:ClearAllPoints()
     frame.bodyText:SetPoint("TOPLEFT", 20, topY)
@@ -165,22 +166,54 @@ setActiveTab = function(frame, key)
   end
 
   local showProfSubs = isProfLeaf(key)
+  if frame.profSubStrip then
+    frame.profSubStrip:SetShown(showProfSubs)
+  end
   layoutContentArea(frame, showProfSubs)
 
   if frame.profSubTabButtons then
     for _, btn in ipairs(frame.profSubTabButtons) do
       btn:SetShown(showProfSubs)
-      if showProfSubs then
-        btn:SetEnabled(btn.leafKey ~= key)
-      end
     end
   end
 
-  if frame.mainTabButtons then
+  local function mainTabIndexForKey(k)
+    if isProfLeaf(k) then
+      return 1
+    end
+    if k == "weekly" then
+      return 2
+    end
+    if k == "help" then
+      return 3
+    end
+    return 1
+  end
+
+  local function profSubIndexForKey(k)
+    for i, d in ipairs(PROF_SUB_DEFS) do
+      if d.key == k then
+        return i
+      end
+    end
+    return 1
+  end
+
+  if frame.mainTabStrip and type(PanelTemplates_SetTab) == "function" then
+    pcall(PanelTemplates_SetTab, frame.mainTabStrip, mainTabIndexForKey(key))
+  elseif frame.mainTabButtons then
     for _, tab in ipairs(frame.mainTabButtons) do
-      local active = (tab.key == "prof" and isProfLeaf(key)) or (tab.key == "weekly" and key == "weekly")
-        or (tab.key == "help" and key == "help")
+      local active = (tab.mainKey == "prof" and isProfLeaf(key)) or (tab.mainKey == "weekly" and key == "weekly")
+        or (tab.mainKey == "help" and key == "help")
       tab:SetEnabled(not active)
+    end
+  end
+
+  if showProfSubs and frame.profSubStrip and type(PanelTemplates_SetTab) == "function" then
+    pcall(PanelTemplates_SetTab, frame.profSubStrip, profSubIndexForKey(key))
+  elseif frame.profSubTabButtons and showProfSubs then
+    for _, btn in ipairs(frame.profSubTabButtons) do
+      btn:SetEnabled(btn.leafKey ~= key)
     end
   end
 
@@ -255,14 +288,16 @@ local function migrateLegacyTabKey()
 end
 
 local function refreshMainTabLabels(frame)
-  if not frame.mainTabButtons then
-    return
-  end
-  for _, btn in ipairs(frame.mainTabButtons) do
-    for _, def in ipairs(MAIN_TAB_DEFS) do
-      if def.key == btn.mainKey then
-        btn:SetText(mainTabLabel(def))
-        break
+  if frame.mainTabButtons then
+    for _, btn in ipairs(frame.mainTabButtons) do
+      for _, def in ipairs(MAIN_TAB_DEFS) do
+        if def.key == btn.mainKey then
+          btn:SetText(mainTabLabel(def))
+          if PanelTemplates_TabResize then
+            pcall(PanelTemplates_TabResize, btn, 0)
+          end
+          break
+        end
       end
     end
   end
@@ -271,6 +306,9 @@ local function refreshMainTabLabels(frame)
       for _, def in ipairs(PROF_SUB_DEFS) do
         if def.key == btn.leafKey then
           btn:SetText(profSubLabel(def))
+          if PanelTemplates_TabResize then
+            pcall(PanelTemplates_TabResize, btn, 0)
+          end
           break
         end
       end
@@ -309,46 +347,75 @@ local function buildMainFrame()
     end
   end
 
+  -- Platynator-like gold tabs: CharacterFrameTabButtonTemplate + PanelTemplates (Retail).
+  local stripNameMain = frame:GetName() .. "MGMainTabs"
+  frame.mainTabStrip = CreateFrame("Frame", stripNameMain, frame)
+  frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+  frame.mainTabStrip.numTabs = #MAIN_TAB_DEFS
+  if PanelTemplates_SetNumTabs then
+    pcall(PanelTemplates_SetNumTabs, frame.mainTabStrip, #MAIN_TAB_DEFS)
+  end
+
   frame.mainTabButtons = {}
-  local mx = 14
-  local my = -30
-  local mainW = 168
-  for _, def in ipairs(MAIN_TAB_DEFS) do
-    local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    btn:SetSize(mainW, 24)
-    btn:SetPoint("TOPLEFT", mx, my)
-    btn:SetText(mainTabLabel(def))
-    btn.mainKey = def.key
-    btn:SetScript("OnClick", function()
+  for i, def in ipairs(MAIN_TAB_DEFS) do
+    local tab = CreateFrame("Button", stripNameMain .. "Tab" .. i, frame.mainTabStrip, "CharacterFrameTabButtonTemplate")
+    tab:SetID(i)
+    tab:SetText(mainTabLabel(def))
+    tab.mainKey = def.key
+    if PanelTemplates_TabResize then
+      pcall(PanelTemplates_TabResize, tab, 0)
+    end
+    if i == 1 then
+      tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 8, -22)
+    else
+      tab:SetPoint("TOPLEFT", frame.mainTabButtons[i - 1], "TOPRIGHT", -16, 0)
+    end
+    tab:SetScript("OnClick", function(self)
+      if type(PanelTemplates_Tab_OnClick) == "function" and frame.mainTabStrip.numTabs then
+        pcall(PanelTemplates_Tab_OnClick, self, frame.mainTabStrip)
+      end
       if def.key == "prof" then
-        local leaf = (MidnightGuideDB and MidnightGuideDB.lastProfSubTab) or "all_treasures"
-        setActiveTab(frame, leaf)
+        setActiveTab(frame, (MidnightGuideDB and MidnightGuideDB.lastProfSubTab) or "all_treasures")
       elseif def.key == "weekly" then
         setActiveTab(frame, "weekly")
       else
         setActiveTab(frame, "help")
       end
     end)
-    frame.mainTabButtons[#frame.mainTabButtons + 1] = btn
-    mx = mx + mainW + 10
+    frame.mainTabButtons[i] = tab
+  end
+
+  local stripNameProf = frame:GetName() .. "MGProfTabs"
+  frame.profSubStrip = CreateFrame("Frame", stripNameProf, frame)
+  frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -52)
+  frame.profSubStrip.numTabs = #PROF_SUB_DEFS
+  if PanelTemplates_SetNumTabs then
+    pcall(PanelTemplates_SetNumTabs, frame.profSubStrip, #PROF_SUB_DEFS)
   end
 
   frame.profSubTabButtons = {}
-  local sx = 12
-  local sy = -56
-  local subW = 124
-  for _, def in ipairs(PROF_SUB_DEFS) do
-    local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    btn:SetSize(subW, 22)
-    btn:SetPoint("TOPLEFT", sx, sy)
-    btn:SetText(profSubLabel(def))
-    btn.leafKey = def.key
-    btn:SetScript("OnClick", function()
+  for i, def in ipairs(PROF_SUB_DEFS) do
+    local tab = CreateFrame("Button", stripNameProf .. "Tab" .. i, frame.profSubStrip, "CharacterFrameTabButtonTemplate")
+    tab:SetID(i)
+    tab:SetText(profSubLabel(def))
+    tab.leafKey = def.key
+    if PanelTemplates_TabResize then
+      pcall(PanelTemplates_TabResize, tab, 0)
+    end
+    if i == 1 then
+      tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
+    else
+      tab:SetPoint("TOPLEFT", frame.profSubTabButtons[i - 1], "TOPRIGHT", -14, 0)
+    end
+    tab:SetScript("OnClick", function(self)
+      if type(PanelTemplates_Tab_OnClick) == "function" and frame.profSubStrip.numTabs then
+        pcall(PanelTemplates_Tab_OnClick, self, frame.profSubStrip)
+      end
       setActiveTab(frame, def.key)
     end)
-    frame.profSubTabButtons[#frame.profSubTabButtons + 1] = btn
-    sx = sx + subW + 6
+    frame.profSubTabButtons[i] = tab
   end
+  frame.profSubStrip:Hide()
 
   frame.bodyText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
   frame.bodyText:SetPoint("TOPLEFT", 20, -56)
