@@ -34,6 +34,18 @@ local function buildMainFrame()
 
   frame.TitleText:SetText("Midnight Guide (MVP)")
   frame.tabButtons = {}
+  if type(UISpecialFrames) == "table" then
+    local alreadyRegistered = false
+    for _, name in ipairs(UISpecialFrames) do
+      if name == "MidnightGuideMainFrame" then
+        alreadyRegistered = true
+        break
+      end
+    end
+    if not alreadyRegistered then
+      table.insert(UISpecialFrames, "MidnightGuideMainFrame")
+    end
+  end
 
   local x = 18
   for _, def in ipairs(tabs) do
