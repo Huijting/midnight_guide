@@ -112,12 +112,20 @@ setActiveTab = function(frame, key)
   frame._currentTabKey = key
 
   if key == "help" and MidnightGuide.Data and MidnightGuide.Data.BuildHelpReport then
-    frame.bodyText:Show()
-    if frame.scrollFrame then
-      frame.scrollFrame:Hide()
-    end
     local lines = MidnightGuide.Data.BuildHelpReport({ locale = locale })
-    frame.bodyText:SetText(table.concat(lines, "\n"))
+    local helpRows = {}
+    for _, line in ipairs(lines) do
+      helpRows[#helpRows + 1] = { text = line, clickable = false }
+    end
+    frame.bodyText:Hide()
+    if frame.scrollFrame and frame.scrollChild then
+      frame.scrollFrame:Show()
+      populateScrollRows(frame, helpRows)
+      frame.scrollFrame:SetVerticalScroll(0)
+    else
+      frame.bodyText:Show()
+      frame.bodyText:SetText(table.concat(lines, "\n"))
+    end
     return
   end
 

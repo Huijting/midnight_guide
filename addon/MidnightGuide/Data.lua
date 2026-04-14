@@ -80,14 +80,31 @@ function MidnightGuide.Data.BuildProfessionView(tabKey, locale)
   end
 
   if not scopeMy then
+    local mainText = MidnightGuide.Data._BuildProfessionAllColoredText(includeTreasures, includeBooks, locale)
     return {
-      useScroll = false,
-      mainText = MidnightGuide.Data._BuildProfessionAllColoredText(includeTreasures, includeBooks, locale),
-      rows = {}
+      useScroll = true,
+      mainText = "",
+      rows = MidnightGuide.Data._ColoredTextToScrollRows(mainText)
     }
   end
 
   return MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, includeBooks, locale)
+end
+
+--- One FontString row per line (for All tabs + scroll).
+function MidnightGuide.Data._ColoredTextToScrollRows(text)
+  local rows = {}
+  if type(text) ~= "string" or text == "" then
+    rows[1] = { text = "", clickable = false }
+    return rows
+  end
+  for line in text:gmatch("[^\n]+") do
+    rows[#rows + 1] = { text = line, clickable = false }
+  end
+  if #rows == 0 then
+    rows[1] = { text = text, clickable = false }
+  end
+  return rows
 end
 
 function MidnightGuide.Data._BuildProfessionAllColoredText(includeTreasures, includeBooks, locale)
@@ -195,7 +212,11 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
   local h = C.header or "|cffffd200"
   local note =
     (C.gray or "|cffaaaaaa")
-      .. (locale == "nl" and "Klik op een regel om handmatig te wisselen (tot quest-IDs in data staan)." or "Click a row to toggle manual completion (until quest IDs are in data).")
+      .. (
+        locale == "nl"
+          and "Alleen professies op dit personage. Klik een regel voor handmatig vinken als er geen quest-flag is."
+          or "Only professions on this character. Click a row to toggle manual completion if no quest flag applies."
+      )
       .. r
 
   rows[#rows + 1] = { id = nil, text = note, clickable = false }
@@ -203,6 +224,9 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
   if includeTreasures then
     rows[#rows + 1] = { id = nil, text = h .. "=== Midnight Profession Treasures ===" .. r, clickable = false }
     for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      if not MidnightGuide.Char.PlayerHasProfession(tracker.professionKey) then
+        -- My tab: do not list other professions' missing treasures (matches MPT-style scope).
+      else
       local profName = profDisplayName(tracker, locale)
       local treasures = type(tracker.treasures) == "table" and tracker.treasures or {}
       local total = #treasures
@@ -234,6 +258,7 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
           end
         end
       end
+      end
     end
   end
 
@@ -241,6 +266,9 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
     rows[#rows + 1] = { id = nil, text = "", clickable = false }
     rows[#rows + 1] = { id = nil, text = h .. "=== Midnight Knowledge Books ===" .. r, clickable = false }
     for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      if not MidnightGuide.Char.PlayerHasProfession(tracker.professionKey) then
+        -- same as treasures: My books only for learned professions
+      else
       local profName = profDisplayName(tracker, locale)
       local books = type(tracker.books) == "table" and tracker.books or {}
       local total = #books
@@ -265,6 +293,7 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
             }
           end
         end
+      end
       end
     end
   end
