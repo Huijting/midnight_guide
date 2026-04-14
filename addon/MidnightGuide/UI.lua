@@ -1,15 +1,44 @@
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.UI = MidnightGuide.UI or {}
 
--- MPT-style tabs + Help (parity v1). All user-facing commands use /mg only.
-local tabs = {
-  { key = "my_treasures", label = "My Treasures" },
-  { key = "all_treasures", label = "All Treasures" },
-  { key = "my_books", label = "My Books" },
-  { key = "all_books", label = "All Books" },
-  { key = "weekly", label = "Weekly" },
-  { key = "help", label = "Help" },
+-- Two-level tabs (similar idea to Platynator: main sections + inner tracker buttons).
+-- Main: Prof | Weekly | Help. Under Prof: My/All treasures, My/All books.
+
+local PROF_LEAVES = {
+  my_treasures = true,
+  all_treasures = true,
+  my_books = true,
+  all_books = true
 }
+
+local function isProfLeaf(k)
+  return type(k) == "string" and PROF_LEAVES[k] == true
+end
+
+local function uiLang()
+  return (MidnightGuideDB and MidnightGuideDB.lang) == "nl" and "nl" or "en"
+end
+
+local MAIN_TAB_DEFS = {
+  { key = "prof", label_en = "Prof", label_nl = "Prof" },
+  { key = "weekly", label_en = "Weekly", label_nl = "Wekelijks" },
+  { key = "help", label_en = "Help", label_nl = "Help" }
+}
+
+local PROF_SUB_DEFS = {
+  { key = "my_treasures", label_en = "My treasures", label_nl = "Mijn schatten" },
+  { key = "all_treasures", label_en = "All treasures", label_nl = "Alle schatten" },
+  { key = "my_books", label_en = "My books", label_nl = "Mijn boeken" },
+  { key = "all_books", label_en = "All books", label_nl = "Alle boeken" }
+}
+
+local function mainTabLabel(def)
+  return uiLang() == "nl" and def.label_nl or def.label_en
+end
+
+local function profSubLabel(def)
+  return uiLang() == "nl" and def.label_nl or def.label_en
+end
 
 local function tabToReportOptions(key)
   if key == "my_treasures" then
@@ -25,6 +54,20 @@ local function tabToReportOptions(key)
     return { includeTreasures = false, includeBooks = true, scope = "all" }
   end
   return nil
+end
+
+local function layoutContentArea(frame, showProfSubRow)
+  local topY = showProfSubRow and -78 or -56
+  local scrollH = showProfSubRow and 278 or 300
+  if frame.bodyText then
+    frame.bodyText:ClearAllPoints()
+    frame.bodyText:SetPoint("TOPLEFT", 20, topY)
+  end
+  if frame.scrollFrame then
+    frame.scrollFrame:ClearAllPoints()
+    frame.scrollFrame:SetPoint("TOPLEFT", 20, topY)
+    frame.scrollFrame:SetSize(520, scrollH)
+  end
 end
 
 local function clearScrollRows(frame)
@@ -47,7 +90,6 @@ local function populateScrollRows(frame, rows)
     local row = frame.scrollRows[i]
     local clickable = spec.clickable and spec.id and type(spec.id) == "string" and spec.id ~= ""
 
-    -- Always use Button: plain Frame has no OnClick script type; SetScript("OnClick", nil) errors there.
     if not row or row.GetObjectType and row:GetObjectType() ~= "Button" then
       if row then
         row:Hide()
@@ -114,15 +156,35 @@ function MidnightGuide.UI.RefreshIfOpen()
 end
 
 setActiveTab = function(frame, key)
-  for _, tab in ipairs(frame.tabButtons) do
-    local active = tab.key == key
-    tab:SetEnabled(not active)
-  end
-
-  local locale = (MidnightGuideDB and MidnightGuideDB.lang) or "en"
   MidnightGuideDB = MidnightGuideDB or {}
   MidnightGuideDB.lastTab = key
   frame._currentTabKey = key
+
+  if isProfLeaf(key) then
+    MidnightGuideDB.lastProfSubTab = key
+  end
+
+  local showProfSubs = isProfLeaf(key)
+  layoutContentArea(frame, showProfSubs)
+
+  if frame.profSubTabButtons then
+    for _, btn in ipairs(frame.profSubTabButtons) do
+      btn:SetShown(showProfSubs)
+      if showProfSubs then
+        btn:SetEnabled(btn.leafKey ~= key)
+      end
+    end
+  end
+
+  if frame.mainTabButtons then
+    for _, tab in ipairs(frame.mainTabButtons) do
+      local active = (tab.key == "prof" and isProfLeaf(key)) or (tab.key == "weekly" and key == "weekly")
+        or (tab.key == "help" and key == "help")
+      tab:SetEnabled(not active)
+    end
+  end
+
+  local locale = MidnightGuideDB.lang or "en"
 
   if key == "weekly" and MidnightGuide.Data and MidnightGuide.Data.BuildWeeklyView then
     local view = MidnightGuide.Data.BuildWeeklyView(locale)
@@ -155,8 +217,7 @@ setActiveTab = function(frame, key)
 
   local opts = tabToReportOptions(key)
   if opts and MidnightGuide.Data and MidnightGuide.Data.BuildProfessionView then
-    local tabKey = key
-    local view = MidnightGuide.Data.BuildProfessionView(tabKey, locale)
+    local view = MidnightGuide.Data.BuildProfessionView(key, locale)
     if view.useScroll and frame.scrollFrame and frame.scrollChild then
       frame.bodyText:Hide()
       frame.scrollFrame:Show()
@@ -185,10 +246,41 @@ local function migrateLegacyTabKey()
   if t == "professions" then
     MidnightGuideDB.lastTab = "all_treasures"
   end
+  if type(MidnightGuideDB.lastProfSubTab) ~= "string" or not isProfLeaf(MidnightGuideDB.lastProfSubTab) then
+    MidnightGuideDB.lastProfSubTab = "all_treasures"
+  end
+  if isProfLeaf(t) then
+    MidnightGuideDB.lastProfSubTab = t
+  end
+end
+
+local function refreshMainTabLabels(frame)
+  if not frame.mainTabButtons then
+    return
+  end
+  for _, btn in ipairs(frame.mainTabButtons) do
+    for _, def in ipairs(MAIN_TAB_DEFS) do
+      if def.key == btn.mainKey then
+        btn:SetText(mainTabLabel(def))
+        break
+      end
+    end
+  end
+  if frame.profSubTabButtons then
+    for _, btn in ipairs(frame.profSubTabButtons) do
+      for _, def in ipairs(PROF_SUB_DEFS) do
+        if def.key == btn.leafKey then
+          btn:SetText(profSubLabel(def))
+          break
+        end
+      end
+    end
+  end
 end
 
 local function buildMainFrame()
   if MidnightGuide.UI.MainFrame then
+    refreshMainTabLabels(MidnightGuide.UI.MainFrame)
     return MidnightGuide.UI.MainFrame
   end
 
@@ -203,7 +295,6 @@ local function buildMainFrame()
   frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
 
   frame.TitleText:SetText("Midnight Guide — Full Tracker")
-  frame.tabButtons = {}
 
   if type(UISpecialFrames) == "table" then
     local alreadyRegistered = false
@@ -218,37 +309,55 @@ local function buildMainFrame()
     end
   end
 
-  local x = 12
-  local y = -34
-  for i, def in ipairs(tabs) do
+  frame.mainTabButtons = {}
+  local mx = 14
+  local my = -30
+  local mainW = 168
+  for _, def in ipairs(MAIN_TAB_DEFS) do
     local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    btn:SetSize(104, 22)
-    btn:SetPoint("TOPLEFT", x, y)
-    local lbl = def.label
-    if MidnightGuideDB and MidnightGuideDB.lang == "nl" and def.key == "weekly" then
-      lbl = "Wekelijks"
-    end
-    btn:SetText(lbl)
-    btn.key = def.key
+    btn:SetSize(mainW, 24)
+    btn:SetPoint("TOPLEFT", mx, my)
+    btn:SetText(mainTabLabel(def))
+    btn.mainKey = def.key
+    btn:SetScript("OnClick", function()
+      if def.key == "prof" then
+        local leaf = (MidnightGuideDB and MidnightGuideDB.lastProfSubTab) or "all_treasures"
+        setActiveTab(frame, leaf)
+      elseif def.key == "weekly" then
+        setActiveTab(frame, "weekly")
+      else
+        setActiveTab(frame, "help")
+      end
+    end)
+    frame.mainTabButtons[#frame.mainTabButtons + 1] = btn
+    mx = mx + mainW + 10
+  end
+
+  frame.profSubTabButtons = {}
+  local sx = 12
+  local sy = -56
+  local subW = 124
+  for _, def in ipairs(PROF_SUB_DEFS) do
+    local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    btn:SetSize(subW, 22)
+    btn:SetPoint("TOPLEFT", sx, sy)
+    btn:SetText(profSubLabel(def))
+    btn.leafKey = def.key
     btn:SetScript("OnClick", function()
       setActiveTab(frame, def.key)
     end)
-    table.insert(frame.tabButtons, btn)
-    x = x + 108
-    if i == 4 then
-      x = 12
-      y = -60
-    end
+    frame.profSubTabButtons[#frame.profSubTabButtons + 1] = btn
+    sx = sx + subW + 6
   end
 
   frame.bodyText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-  frame.bodyText:SetPoint("TOPLEFT", 20, -92)
+  frame.bodyText:SetPoint("TOPLEFT", 20, -56)
   frame.bodyText:SetWidth(520)
   frame.bodyText:SetJustifyH("LEFT")
   frame.bodyText:SetText("Loading...")
 
   frame.scrollFrame = CreateFrame("ScrollFrame", "MidnightGuideScrollFrame", frame, "UIPanelScrollFrameTemplate")
-  frame.scrollFrame:SetPoint("TOPLEFT", 20, -92)
+  frame.scrollFrame:SetPoint("TOPLEFT", 20, -56)
   frame.scrollFrame:SetSize(520, 300)
   frame.scrollChild = CreateFrame("Frame", nil, frame.scrollFrame)
   frame.scrollChild:SetWidth(520)
@@ -271,12 +380,17 @@ function MidnightGuide.UI.ToggleMainFrame()
   end
 end
 
---- Open window and select a tab (keys: my_treasures, all_treasures, my_books, all_books, weekly, help).
+--- Open window and select a tab. `tabKey` may be a prof leaf, weekly, help, or "prof" (opens last prof sub).
 function MidnightGuide.UI.OpenMainFrame(tabKey)
   local f = buildMainFrame()
   f:Show()
   if tabKey and type(tabKey) == "string" then
+    if tabKey == "prof" then
+      tabKey = (MidnightGuideDB and MidnightGuideDB.lastProfSubTab) or "all_treasures"
+    end
     setActiveTab(f, tabKey)
+  else
+    setActiveTab(f, (MidnightGuideDB and MidnightGuideDB.lastTab) or "all_treasures")
   end
 end
 
@@ -307,6 +421,11 @@ function MidnightGuide.UI.HandleMgCommand(arg)
     return
   end
 
+  if lower == "prof" or lower == "trackers" or lower == "profession" or lower == "professions" then
+    MidnightGuide.UI.OpenMainFrame("prof")
+    return
+  end
+
   if lower == "my-treasures" or lower == "mytreasures" or lower == "my_treasures" then
     MidnightGuide.UI.OpenMainFrame("my_treasures")
     return
@@ -333,6 +452,6 @@ function MidnightGuide.UI.HandleMgCommand(arg)
   end
 
   print(
-    "|cffc8a84bMidnight Guide:|r Unknown subcommand. Try: |cffc8a84b/mg help|r, |cffc8a84b/mg weekly|r, |cffc8a84b/mg treasures|r, |cffc8a84b/mg books|r."
+    "|cffc8a84bMidnight Guide:|r Unknown subcommand. Try: |cffc8a84b/mg help|r, |cffc8a84b/mg prof|r, |cffc8a84b/mg weekly|r, |cffc8a84b/mg treasures|r, |cffc8a84b/mg books|r."
   )
 end
