@@ -1,6 +1,6 @@
 # Addon Content Source
 
-This directory is the canonical source for content that will be converted to Lua for the WoW addon.
+This directory is the canonical source for content that will be converted to Lua for the **Midnight Guide** WoW addon (`addon/MidnightGuide/`). Profession-tracker data lives here as part of MG, not as a separate product.
 
 ## Files
 

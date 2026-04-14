@@ -1,8 +1,8 @@
 # MPT UI Parity Checklist (Reference Target)
 
-Referentie: huidige `Midnight Profession Tracker` popup zoals in-game getest.
+Referentie: huidige **Midnight Profession Tracker** popup zoals in-game getest.
 
-Doel: onze overkoepelende addon moet deze kernervaring minimaal even goed benaderen voordat we de bestaande losse MPT-flow vervangen.
+Doel: **Midnight Guide** (waar profession tracking een onderdeel van is) moet deze kernervaring minimaal even goed benaderen; de losse MPT-addon verdwijnt uiteindelijk ten gunste van MG. Zie `docs/mpt-integration-next-steps.md`.
 
 Statuslegenda:
 - [ ] Niet gestart
