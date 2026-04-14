@@ -87,6 +87,12 @@ Statuslegenda:
 - [ ] Bij blockers: tag met [!] en noteer oorzaak + eigenaar.
 - [ ] Elke sprint afsluiten met korte retro (wat ging goed / wat niet).
 
+## UI Parity (MPT referentie)
+
+- [x] Referentiescreenshot bevestigd voor doel-UI gedrag.
+- [x] Parity-checklist aangemaakt: `docs/mpt-ui-parity-checklist.md`.
+- [~] Eerste parity-task gestart: tab-layout + basis sectie-rendering (zonder slash-overname).
+
 ## Progress Log
 
 ### 2026-04-14
@@ -101,3 +107,4 @@ Statuslegenda:
 - [x] Eerste profession report-logica + slash commands (`/mpt`, `/midnightprof`) toegevoegd in addon.
 - [x] Help-tab gebruikt nu install + troubleshooting content uit gegenereerde addon data.
 - [x] Koerscorrectie: verdere development gaat naar `MidnightProfessionTracker`; dit repo blijft voor planning/prototype.
+- [x] `/mpt` conflict opgelost door slash hooks uit prototype-addon te verwijderen.

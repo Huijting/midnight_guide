@@ -7,15 +7,16 @@ local tabs = {
   { key = "help", label = "Help" },
 }
 
-local function setActiveTab(frame, key)
+local function setActiveTab(frame, key, options)
+  options = options or {}
   for _, tab in ipairs(frame.tabButtons) do
     local active = tab.key == key
     tab:SetEnabled(not active)
   end
   if key == "professions" and MidnightGuide.Data and MidnightGuide.Data.BuildProfessionReport then
     local lines = MidnightGuide.Data.BuildProfessionReport({
-      includeTreasures = true,
-      includeBooks = true,
+      includeTreasures = options.includeTreasures ~= false,
+      includeBooks = options.includeBooks == true or options.includeBooks == nil,
       locale = (MidnightGuideDB and MidnightGuideDB.lang) or "en",
     })
     frame.bodyText:SetText(table.concat(lines, "\n"))
@@ -95,4 +96,10 @@ function MidnightGuide.UI.ToggleMainFrame()
   else
     frame:Show()
   end
+end
+
+function MidnightGuide.UI.ShowProfessionPopup(options)
+  local frame = buildMainFrame()
+  frame:Show()
+  setActiveTab(frame, "professions", options or {})
 end
