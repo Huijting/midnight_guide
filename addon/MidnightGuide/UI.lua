@@ -21,8 +21,11 @@ local function setActiveTab(frame, key)
     frame.bodyText:SetText(table.concat(lines, "\n"))
   elseif key == "weekly" then
     frame.bodyText:SetText("Weekly panel: next step in Sprint 3.")
-  elseif key == "help" then
-    frame.bodyText:SetText("Help panel: install and troubleshooting content arrives in Sprint 2/B5.")
+  elseif key == "help" and MidnightGuide.Data and MidnightGuide.Data.BuildHelpReport then
+    local lines = MidnightGuide.Data.BuildHelpReport({
+      locale = (MidnightGuideDB and MidnightGuideDB.lang) or "en",
+    })
+    frame.bodyText:SetText(table.concat(lines, "\n"))
   else
     frame.bodyText:SetText("Selected tab: " .. key)
   end

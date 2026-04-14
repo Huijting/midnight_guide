@@ -84,3 +84,51 @@ function MidnightGuide.Data.BuildProfessionReport(options)
   end
   return lines
 end
+
+function MidnightGuide.Data.BuildHelpReport(options)
+  options = options or {}
+  local dbLang = (MidnightGuideDB and MidnightGuideDB.lang) or "en"
+  local locale = options.locale or dbLang
+  local raw = MidnightGuide.Data.raw or {}
+  local help = raw.help or {}
+  local install = help.install or {}
+  local lines = {}
+
+  local title = normalizeText(install.title, locale)
+  if title ~= "" then
+    lines[#lines + 1] = title
+  else
+    lines[#lines + 1] = locale == "nl" and "Installatiegids" or "Installation Guide"
+  end
+
+  if type(install.steps) == "table" then
+    for i, step in ipairs(install.steps) do
+      local text = normalizeText(step.text, locale)
+      if text ~= "" then
+        lines[#lines + 1] = string.format("%d. %s", i, text)
+      end
+    end
+  end
+
+  if type(install.folderPath) == "string" and install.folderPath ~= "" then
+    lines[#lines + 1] = ""
+    lines[#lines + 1] = (locale == "nl" and "Map pad: " or "Folder path: ") .. install.folderPath
+  end
+
+  local troubleshooting = help.troubleshooting
+  if type(troubleshooting) == "table" and #troubleshooting > 0 then
+    lines[#lines + 1] = ""
+    lines[#lines + 1] = locale == "nl" and "Troubleshooting" or "Troubleshooting"
+    for _, issue in ipairs(troubleshooting) do
+      local text = normalizeText(issue.text, locale)
+      if text ~= "" then
+        lines[#lines + 1] = " - " .. text
+      end
+    end
+  end
+
+  if #lines == 0 then
+    lines[1] = locale == "nl" and "Geen help-data geladen." or "No help data loaded."
+  end
+  return lines
+end

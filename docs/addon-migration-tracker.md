@@ -8,6 +8,12 @@ Statuslegenda:
 - [x] Klaar
 - [!] Geblokkeerd
 
+## Richting gewijzigd (belangrijk)
+
+- [x] We bouwen **niet** verder op het nieuwe `MidnightGuide` addon-skelet als eindproduct.
+- [x] `addon/MidnightGuide/` blijft een **prototype/sandbox** voor snelle tests.
+- [x] Hoofdpad is nu: integratie in bestaande addon **MidnightProfessionTracker** ([repo](https://github.com/Huijting/MidnightProfessionTracker)).
+
 ## North Star
 
 - [ ] Web app is niet langer nodig voor dagelijkse gameplay.
@@ -36,7 +42,7 @@ Statuslegenda:
 - [x] B2 Converter script (JSON -> Lua tables).
 - [x] B3 Profession Tracker core (missing treasures/books).
 - [x] B4 Slash commands (`/mpt`, `/mpt books`, `/mpt all`).
-- [ ] B5 Install/Help/Troubleshooting panel in addon.
+- [x] B5 Install/Help/Troubleshooting panel in addon.
 
 ## Sprint 3 - Integraties + Daily Use
 
@@ -73,6 +79,7 @@ Statuslegenda:
 - [x] Migratie gebeurt gefaseerd met lage risico's.
 - [x] Addon wordt eindplatform; web app wordt tijdelijk ondersteunend.
 - [x] Web app is voorlopig feature-frozen (geen nieuwe development, alleen addon traject).
+- [x] Bestaande addon `MidnightProfessionTracker` is de definitieve codebase; prototype-code wordt niet leidend.
 
 ## Werkafspraken
 
@@ -92,3 +99,5 @@ Statuslegenda:
 - [x] Canonical addon-content schema toegevoegd in `content/` + sample dataset.
 - [x] Converter script toegevoegd (`scripts/build-addon-generated-data.py`) + `GeneratedData.lua` output gekoppeld aan addon.
 - [x] Eerste profession report-logica + slash commands (`/mpt`, `/midnightprof`) toegevoegd in addon.
+- [x] Help-tab gebruikt nu install + troubleshooting content uit gegenereerde addon data.
+- [x] Koerscorrectie: verdere development gaat naar `MidnightProfessionTracker`; dit repo blijft voor planning/prototype.
