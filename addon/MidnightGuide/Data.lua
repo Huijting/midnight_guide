@@ -50,31 +50,53 @@ function MidnightGuide.Data.BuildProfessionReport(options)
   local locale = options.locale or dbLang
   local includeBooks = options.includeBooks == true
   local includeTreasures = options.includeTreasures ~= false
+  local scope = options.scope
   local lines = {}
 
-  for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
-    local title = normalizeText(tracker.title, locale)
-    if title ~= "" then
-      lines[#lines + 1] = title
-    end
+  if scope == "my" then
+    lines[#lines + 1] = locale == "nl"
+        and "(Mijn voortgang — nog geen character-tracking; tijdelijk dezelfde lijst als referentie.)"
+        or "(My progress — character tracking not wired yet; showing same list as reference for now.)"
+    lines[#lines + 1] = ""
+  end
 
-    if includeTreasures and type(tracker.treasures) == "table" then
-      for _, item in ipairs(tracker.treasures) do
-        local itemName = normalizeText(item.name, locale)
-        local zoneName = normalizeText(item.zone, locale)
-        local way = item.waypoint and item.waypoint.way or ""
-        local suffix = way ~= "" and (" [" .. way .. "]") or ""
-        lines[#lines + 1] = " - Treasure: " .. itemName .. " (" .. zoneName .. ")" .. suffix
+  if includeTreasures then
+    lines[#lines + 1] = "=== Midnight Profession Treasures ==="
+    for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      local title = normalizeText(tracker.title, locale)
+      if title ~= "" then
+        lines[#lines + 1] = title
+      end
+      if type(tracker.treasures) == "table" then
+        for _, item in ipairs(tracker.treasures) do
+          local itemName = normalizeText(item.name, locale)
+          local zoneName = normalizeText(item.zone, locale)
+          local way = item.waypoint and item.waypoint.way or ""
+          local suffix = way ~= "" and (" [" .. way .. "]") or ""
+          lines[#lines + 1] = " - Treasure: " .. itemName .. " (" .. zoneName .. ")" .. suffix
+        end
       end
     end
+  end
 
-    if includeBooks and type(tracker.books) == "table" then
-      for _, item in ipairs(tracker.books) do
-        local itemName = normalizeText(item.name, locale)
-        local zoneName = normalizeText(item.zone, locale)
-        local way = item.waypoint and item.waypoint.way or ""
-        local suffix = way ~= "" and (" [" .. way .. "]") or ""
-        lines[#lines + 1] = " - Book: " .. itemName .. " (" .. zoneName .. ")" .. suffix
+  if includeBooks then
+    if includeTreasures and #lines > 0 then
+      lines[#lines + 1] = ""
+    end
+    lines[#lines + 1] = "=== Midnight Knowledge Books ==="
+    for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      local title = normalizeText(tracker.title, locale)
+      if title ~= "" then
+        lines[#lines + 1] = title
+      end
+      if type(tracker.books) == "table" then
+        for _, item in ipairs(tracker.books) do
+          local itemName = normalizeText(item.name, locale)
+          local zoneName = normalizeText(item.zone, locale)
+          local way = item.waypoint and item.waypoint.way or ""
+          local suffix = way ~= "" and (" [" .. way .. "]") or ""
+          lines[#lines + 1] = " - Book: " .. itemName .. " (" .. zoneName .. ")" .. suffix
+        end
       end
     end
   end

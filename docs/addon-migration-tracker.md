@@ -91,7 +91,7 @@ Statuslegenda:
 
 - [x] Referentiescreenshot bevestigd voor doel-UI gedrag.
 - [x] Parity-checklist aangemaakt: `docs/mpt-ui-parity-checklist.md`.
-- [~] Eerste parity-task gestart: tab-layout + basis sectie-rendering (zonder slash-overname).
+- [x] Eerste parity-task: MPT-tab-layout + `/mg` subcommando’s (geen conflict met andere addons).
 
 ## Progress Log
 
@@ -108,3 +108,4 @@ Statuslegenda:
 - [x] Help-tab gebruikt nu install + troubleshooting content uit gegenereerde addon data.
 - [x] Koerscorrectie: verdere development gaat naar `MidnightProfessionTracker`; dit repo blijft voor planning/prototype.
 - [x] `/mpt` conflict opgelost door slash hooks uit prototype-addon te verwijderen.
+- [x] MPT-parity tabs + `/mg` subcommando’s toegevoegd (alle commando’s beginnen met `/mg`).

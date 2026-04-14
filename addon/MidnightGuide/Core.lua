@@ -7,7 +7,11 @@ MidnightGuide.version = "0.1.0"
 local function ensureDB()
   MidnightGuideDB = MidnightGuideDB or {}
   MidnightGuideDB.lang = MidnightGuideDB.lang or "en"
-  MidnightGuideDB.lastTab = MidnightGuideDB.lastTab or "professions"
+  MidnightGuideDB.lastTab = MidnightGuideDB.lastTab or "all_treasures"
+  local lt = MidnightGuideDB.lastTab
+  if lt == "professions" or lt == "weekly" then
+    MidnightGuideDB.lastTab = "all_treasures"
+  end
 end
 
 local eventFrame = CreateFrame("Frame")
@@ -20,9 +24,10 @@ eventFrame:SetScript("OnEvent", function(_, event, loadedAddon)
 end)
 
 SLASH_MIDNIGHTGUIDE1 = "/mg"
-SlashCmdList.MIDNIGHTGUIDE = function()
-  if MidnightGuide.UI and MidnightGuide.UI.ToggleMainFrame then
-    MidnightGuide.UI.ToggleMainFrame()
+SlashCmdList.MIDNIGHTGUIDE = function(msg)
+  if MidnightGuide.UI and MidnightGuide.UI.HandleMgCommand then
+    local arg = (msg or ""):gsub("^%s+", ""):gsub("%s+$", "")
+    MidnightGuide.UI.HandleMgCommand(arg)
     return
   end
   print("|cffc8a84bMidnight Guide:|r UI is not ready yet.")

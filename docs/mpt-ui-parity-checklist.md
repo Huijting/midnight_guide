@@ -43,4 +43,14 @@ Statuslegenda:
 
 ## Eerstvolgende concrete taak
 
-- [~] Bouw parity UI v1: tab-layout en basis sectie-rendering in onze addon (zonder slash-overname).
+- [x] Parity UI v1: MPT-achtige tabs (My/All Treasures, My/All Books) + Help; venstertitel aangepast.
+- [x] Alle gebruikerscommando’s via `/mg` + subcommando (geen `/mpt` in deze addon).
+
+### `/mg` subcommando’s (referentie)
+
+- `/mg` — venster open/dicht
+- `/mg help` — installatie / troubleshooting tab
+- `/mg treasures` — All Treasures tab
+- `/mg books` — All Books tab
+- `/mg my-treasures` — My Treasures tab
+- `/mg my-books` — My Books tab
