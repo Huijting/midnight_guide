@@ -107,14 +107,40 @@ local function applyTabAnchors(frame, tabTemplate)
         tab:SetPoint("BOTTOMLEFT", main[i - 1], "BOTTOMRIGHT", -16, 0)
       end
     end
+    -- Panel tabs grow UP from BOTTOM; a small -Y was not enough gap — sub-tabs drew over main row.
+    local mh = 0
+    for _, t in ipairs(main) do
+      local h = t:GetHeight()
+      if type(h) == "number" and h > mh then
+        mh = h
+      end
+    end
+    if mh < 20 then
+      mh = 32
+    end
+    local rowGap = 12
+    local profDrop = -(mh + rowGap)
     for i, tab in ipairs(prof) do
       if i == 1 then
-        tab:SetPoint("BOTTOMLEFT", main[1], "BOTTOMLEFT", 0, -22)
+        tab:SetPoint("BOTTOMLEFT", main[1], "BOTTOMLEFT", 0, profDrop)
       else
         tab:SetPoint("BOTTOMLEFT", prof[i - 1], "BOTTOMRIGHT", -14, 0)
       end
     end
+    local ph = 0
+    for _, t in ipairs(prof) do
+      local h = t:GetHeight()
+      if type(h) == "number" and h > ph then
+        ph = h
+      end
+    end
+    if ph < 18 then
+      ph = 26
+    end
+    -- Pixels below frame top to first scroll line (main row + gap + prof row + padding).
+    frame._mgPanelHeaderPad = 32 + mh + rowGap + ph + 14
   elseif isCharacterTabTemplate(tabTemplate) then
+    frame._mgPanelHeaderPad = nil
     frame.mainTabStrip:ClearAllPoints()
     frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -40)
     for i, tab in ipairs(main) do
@@ -125,7 +151,7 @@ local function applyTabAnchors(frame, tabTemplate)
       end
     end
     frame.profSubStrip:ClearAllPoints()
-    frame.profSubStrip:SetPoint("TOPLEFT", main[1], "BOTTOMLEFT", -4, -4)
+    frame.profSubStrip:SetPoint("TOPLEFT", main[1], "BOTTOMLEFT", -4, -10)
     for i, tab in ipairs(prof) do
       if i == 1 then
         tab:SetPoint("TOPLEFT", frame.profSubStrip, "TOPLEFT", 0, 0)
@@ -134,10 +160,11 @@ local function applyTabAnchors(frame, tabTemplate)
       end
     end
   else
+    frame._mgPanelHeaderPad = nil
     frame.mainTabStrip:ClearAllPoints()
     frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -42)
     frame.profSubStrip:ClearAllPoints()
-    frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -72)
+    frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -78)
     for i, tab in ipairs(main) do
       if i == 1 then
         tab:SetPoint("TOPLEFT", frame.mainTabStrip, "TOPLEFT", 0, 0)
@@ -183,7 +210,9 @@ local function layoutContentArea(frame, showProfSubRow)
   local panelStyle = frame._mgPanelStyleTabs
   local topY, scrollH
   if panelStyle and showProfSubRow then
-    topY, scrollH = -118, 236
+    local pad = type(frame._mgPanelHeaderPad) == "number" and frame._mgPanelHeaderPad or 130
+    topY = -pad
+    scrollH = math.max(200, 388 - pad)
   elseif panelStyle and not showProfSubRow then
     topY, scrollH = -82, 274
   elseif showProfSubRow then
