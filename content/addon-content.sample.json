@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-14T16:30:00Z",
+  "generatedAt": "2026-04-14T18:00:00Z",
   "professions": {
     "trackers": [
       {
@@ -67,40 +67,54 @@
   "help": {
     "install": {
       "title": {
-        "en": "Addon Installation Guide",
-        "nl": "Addon Installatiegids"
+        "en": "Midnight Guide — Installation",
+        "nl": "Midnight Guide — Installatie"
       },
       "steps": [
         {
           "id": "download-zip",
           "text": {
-            "en": "Download the addon as a ZIP file.",
-            "nl": "Download de addon als ZIP-bestand."
+            "en": "Download the Midnight Guide addon ZIP (e.g. GitHub release or CI artifact).",
+            "nl": "Download de Midnight Guide addon-ZIP (bijv. GitHub-release of CI-artifact)."
           }
         },
         {
-          "id": "rename-folder",
+          "id": "extract-folder",
           "text": {
-            "en": "Ensure the folder name is exactly MidnightProfTracker.",
-            "nl": "Zorg dat de mapnaam exact MidnightProfTracker is."
+            "en": "Extract so the folder MidnightGuide sits directly under Interface/AddOns (next to your other addons). The .toc file must be at AddOns/MidnightGuide/MidnightGuide.toc.",
+            "nl": "Pak uit zodat de map MidnightGuide direct onder Interface/AddOns staat (naast je andere addons). Het .toc-bestand moet op AddOns/MidnightGuide/MidnightGuide.toc staan."
+          }
+        },
+        {
+          "id": "slash-command",
+          "text": {
+            "en": "In-game, type /mg to open or close the window. Subcommands: /mg help, /mg treasures, /mg books, /mg my-treasures, /mg my-books.",
+            "nl": "In-game: typ /mg om het venster te openen of te sluiten. Subcommando's: /mg help, /mg treasures, /mg books, /mg my-treasures, /mg my-books."
           }
         }
       ],
-      "folderPath": "World of Warcraft\\_retail_\\Interface\\AddOns\\MidnightProfTracker\\"
+      "folderPath": "World of Warcraft\\_retail_\\Interface\\AddOns\\MidnightGuide\\"
     },
     "troubleshooting": [
       {
         "id": "addon-not-visible",
         "text": {
-          "en": "If the addon is not visible, check if the folder is inside Interface/AddOns.",
-          "nl": "Als de addon niet zichtbaar is, controleer of de map in Interface/AddOns staat."
+          "en": "If the addon does not appear in the AddOns list, confirm the MidnightGuide folder is inside Interface/AddOns and restart the game.",
+          "nl": "Als de addon niet in de AddOns-lijst staat: controleer of de map MidnightGuide in Interface/AddOns staat en herstart de game."
         }
       },
       {
         "id": "nested-folder",
         "text": {
-          "en": "Avoid nested folders like MidnightProfTracker-main/MidnightProfTracker.",
-          "nl": "Vermijd geneste mappen zoals MidnightProfTracker-main/MidnightProfTracker."
+          "en": "Avoid extra nesting (e.g. AddOns/Midnight_guide-release/addon/MidnightGuide). WoW only loads AddOns/YourAddonName with the .toc at that level.",
+          "nl": "Vermijd extra nesten (bijv. AddOns/Midnight_guide-release/addon/MidnightGuide). WoW laadt alleen AddOns/JouwAddonNaam met het .toc op dat niveau."
+        }
+      },
+      {
+        "id": "standalone-mpt",
+        "text": {
+          "en": "The standalone Midnight Profession Tracker addon uses /mpt. Midnight Guide uses /mg only — both can be installed if you rename folders to avoid clashes.",
+          "nl": "De losse Midnight Profession Tracker-addon gebruikt /mpt. Midnight Guide alleen /mg — beide kunnen naast elkaar als de mapnamen niet botsen."
         }
       }
     ]
