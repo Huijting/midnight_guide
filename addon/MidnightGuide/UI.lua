@@ -69,18 +69,26 @@ local function populateScrollRows(frame, rows)
     row:SetPoint("TOPLEFT", frame.scrollChild, "TOPLEFT", 0, -y)
     y = y + row:GetHeight()
 
-    if clickable then
-      row:SetScript("OnClick", function()
-        if MidnightGuide.Char and MidnightGuide.Char.ToggleCollected then
-          MidnightGuide.Char.ToggleCollected(spec.id)
+    local hasWay = spec.way and type(spec.way.mapId) == "number"
+    row:SetScript("OnClick", nil)
+    if clickable or hasWay then
+      row:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+      row:SetScript("OnMouseUp", function(_, btn)
+        if btn == "RightButton" and hasWay and MidnightGuide.Nav and MidnightGuide.Nav.SetWaypoint then
+          MidnightGuide.Nav.SetWaypoint(spec.way)
+          return
         end
-        if MidnightGuide.UI.RefreshIfOpen then
-          MidnightGuide.UI.RefreshIfOpen()
+        if btn == "LeftButton" and clickable and MidnightGuide.Char and MidnightGuide.Char.ToggleCollected then
+          MidnightGuide.Char.ToggleCollected(spec.id)
+          if MidnightGuide.UI.RefreshIfOpen then
+            MidnightGuide.UI.RefreshIfOpen()
+          end
         end
       end)
       row:EnableMouse(true)
     else
-      row:SetScript("OnClick", nil)
+      row:RegisterForClicks()
+      row:SetScript("OnMouseUp", nil)
       row:EnableMouse(false)
     end
 

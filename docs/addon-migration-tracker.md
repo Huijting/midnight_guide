@@ -46,7 +46,7 @@ Statuslegenda:
 
 ## Sprint 3 - Integraties + Daily Use
 
-- [ ] C1 TomTom interop (waypoints + fallback).
+- [x] C1 TomTom interop (waypoints + fallback): `Nav.lua`, rechtsklik op regel met `/way` (All + My); Blizzard `C_Map.SetUserWaypoint` als TomTom ontbreekt.
 - [ ] C2 Weekly checklist + resetlogica.
 - [ ] C3 UI/Performance polish (grote lijsten, leesbaarheid).
 - [ ] C4 Web app migration banner (addon primair).

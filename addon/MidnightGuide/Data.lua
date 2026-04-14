@@ -80,11 +80,10 @@ function MidnightGuide.Data.BuildProfessionView(tabKey, locale)
   end
 
   if not scopeMy then
-    local mainText = MidnightGuide.Data._BuildProfessionAllColoredText(includeTreasures, includeBooks, locale)
     return {
       useScroll = true,
       mainText = "",
-      rows = MidnightGuide.Data._ColoredTextToScrollRows(mainText)
+      rows = MidnightGuide.Data._BuildProfessionAllScrollRows(includeTreasures, includeBooks, locale)
     }
   end
 
@@ -175,6 +174,84 @@ function MidnightGuide.Data._BuildProfessionAllColoredText(includeTreasures, inc
   return table.concat(lines, "\n")
 end
 
+--- All-tab scroll rows with optional `way` for right-click (TomTom / map pin).
+function MidnightGuide.Data._BuildProfessionAllScrollRows(includeTreasures, includeBooks, locale)
+  local rows = {}
+  local Nav = MidnightGuide.Nav
+  local function push(text, way)
+    rows[#rows + 1] = { text = text or "", way = way, clickable = false }
+  end
+
+  local h = C.header or "|cffffd200"
+  local r = C.reset or "|r"
+
+  if includeTreasures then
+    push(h .. "=== Midnight Profession Treasures ===" .. r, nil)
+    for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      local profName = profDisplayName(tracker, locale)
+      local treasures = type(tracker.treasures) == "table" and tracker.treasures or {}
+      local total = #treasures
+      local collected = 0
+      for _, item in ipairs(treasures) do
+        if MidnightGuide.Char.IsItemCollected(item) then
+          collected = collected + 1
+        end
+      end
+      local profColor = MidnightGuide.Char.PlayerHasProfession(tracker.professionKey) and (C.profOn or "|cff00ff00") or (C.profOff or "|cffaaaaaa")
+      local prog = string.format("%s(%d/%d)%s", h, collected, total, r)
+      push(profColor .. profName .. r .. " " .. prog, nil)
+
+      if total == 0 then
+        push((C.gray or "|cffaaaaaa") .. (locale == "nl" and "Geen data." or "No data.") .. r, nil)
+      elseif collected == total then
+        push((C.gray or "|cffaaaaaa") .. (locale == "nl" and "Alle schatten verzameld." or "All treasures collected.") .. r, nil)
+      else
+        for _, item in ipairs(treasures) do
+          local line = MidnightGuide.Data._FormatTreasureLine(item, locale, MidnightGuide.Char.IsItemCollected(item))
+          local way = Nav and Nav.WayFromItem and Nav.WayFromItem(item) or nil
+          push(line, way)
+        end
+      end
+    end
+  end
+
+  if includeBooks then
+    if includeTreasures and #rows > 0 then
+      push("", nil)
+    end
+    push(h .. "=== Midnight Knowledge Books ===" .. r, nil)
+    local totalBought, totalNeed = 0, 0
+    for _, tracker in ipairs(MidnightGuide.Data.GetProfessionTrackers()) do
+      local profName = profDisplayName(tracker, locale)
+      local books = type(tracker.books) == "table" and tracker.books or {}
+      local total = #books
+      local bought = 0
+      for _, item in ipairs(books) do
+        if MidnightGuide.Char.IsItemCollected(item) then
+          bought = bought + 1
+        end
+      end
+      totalBought = totalBought + bought
+      totalNeed = totalNeed + (total - bought)
+      local profColor = MidnightGuide.Char.PlayerHasProfession(tracker.professionKey) and (C.profOn or "|cff00ff00") or (C.profOff or "|cffaaaaaa")
+      local prog = string.format("%s(%d/%d)%s", h, bought, total, r)
+      push(profColor .. profName .. r .. " " .. prog, nil)
+
+      for _, item in ipairs(books) do
+        local line = MidnightGuide.Data._FormatBookLine(item, locale, MidnightGuide.Char.IsItemCollected(item))
+        local way = Nav and Nav.WayFromItem and Nav.WayFromItem(item) or nil
+        push(line, way)
+      end
+    end
+    push(string.format("%s(%s: %d/%d)%s", h, locale == "nl" and "Totaal gekocht" or "Total purchased", totalBought, totalBought + totalNeed, r), nil)
+  end
+
+  if #rows == 0 then
+    push(locale == "nl" and "Geen profession data geladen." or "No profession data loaded.", nil)
+  end
+  return rows
+end
+
 function MidnightGuide.Data._FormatTreasureLine(item, locale, collected)
   local ICON = MidnightGuide.Icons or {}
   local C = MidnightGuide.Colors or {}
@@ -202,7 +279,10 @@ function MidnightGuide.Data._FormatBookLine(item, locale, collected)
   local link = itemCol .. "[" .. itemName .. "]" .. r
   local zone = normalizeText(item.zone, locale)
   local zoneStr = zone ~= "" and (" " .. (C.zone or "|cffadd8e6") .. "[" .. zone .. "]" .. r) or ""
-  return " " .. icon .. " " .. link .. zoneStr
+  local way = item.waypoint and item.waypoint.way or ""
+  local wayCol = C.waypoint or "|cffffff00"
+  local wayStr = way ~= "" and (" " .. wayCol .. way .. r) or ""
+  return " " .. icon .. " " .. link .. zoneStr .. wayStr
 end
 
 function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, includeBooks, locale)
@@ -214,8 +294,8 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
     (C.gray or "|cffaaaaaa")
       .. (
         locale == "nl"
-          and "Alleen professies op dit personage. Klik een regel voor handmatig vinken als er geen quest-flag is."
-          or "Only professions on this character. Click a row to toggle manual completion if no quest flag applies."
+          and "Alleen professies op dit personage. Links klikken = handmatig vinken; rechts = waypoint (TomTom of kaart)."
+          or "Only professions on this character. Left-click = manual toggle; right-click = waypoint (TomTom or map pin)."
       )
       .. r
 
@@ -249,10 +329,12 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
           if not MidnightGuide.Char.IsItemCollected(item) then
             local id = item.id
             if type(id) == "string" and id ~= "" then
+              local Nav = MidnightGuide.Nav
               rows[#rows + 1] = {
                 id = id,
                 text = MidnightGuide.Data._FormatTreasureLine(item, locale, false),
-                clickable = true
+                clickable = true,
+                way = Nav and Nav.WayFromItem and Nav.WayFromItem(item) or nil
               }
             end
           end
@@ -286,10 +368,12 @@ function MidnightGuide.Data._BuildProfessionMyScrollModel(includeTreasures, incl
         if not MidnightGuide.Char.IsItemCollected(item) then
           local id = item.id
           if type(id) == "string" and id ~= "" then
+            local Nav = MidnightGuide.Nav
             rows[#rows + 1] = {
               id = id,
               text = MidnightGuide.Data._FormatBookLine(item, locale, false),
-              clickable = true
+              clickable = true,
+              way = Nav and Nav.WayFromItem and Nav.WayFromItem(item) or nil
             }
           end
         end
