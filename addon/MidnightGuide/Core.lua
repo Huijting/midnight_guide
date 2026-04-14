@@ -21,6 +21,9 @@ eventFrame:SetScript("OnEvent", function(_, event, loadedAddon)
     return
   end
   ensureDB()
+  if MidnightGuide.Char and MidnightGuide.Char.Ensure then
+    MidnightGuide.Char.Ensure()
+  end
 end)
 
 SLASH_MIDNIGHTGUIDE1 = "/mg"

@@ -4,9 +4,12 @@
 ## Author: Huijting Team
 ## Version: 0.1.0
 ## SavedVariables: MidnightGuideDB
+## SavedVariablesPerCharacter: MidnightGuideCharDB
 
 Locales/enUS.lua
 Locales/nlNL.lua
+Colors.lua
+Char.lua
 GeneratedData.lua
 Data.lua
 UI.lua
