@@ -46,14 +46,15 @@ local function populateScrollRows(frame, rows)
     local row = frame.scrollRows[i]
     local clickable = spec.clickable and spec.id and type(spec.id) == "string" and spec.id ~= ""
 
-    if not row then
-      if clickable then
-        row = CreateFrame("Button", nil, frame.scrollChild)
-        row:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
-        row:GetHighlightTexture():SetAlpha(0.25)
-      else
-        row = CreateFrame("Frame", nil, frame.scrollChild)
+    -- Always use Button: plain Frame has no OnClick script type; SetScript("OnClick", nil) errors there.
+    if not row or row.GetObjectType and row:GetObjectType() ~= "Button" then
+      if row then
+        row:Hide()
+        row:SetParent(nil)
       end
+      row = CreateFrame("Button", nil, frame.scrollChild)
+      row:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
+      row:GetHighlightTexture():SetAlpha(0.25)
       row.fs = row:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
       row.fs:SetPoint("TOPLEFT", row, "TOPLEFT", 0, 0)
       row.fs:SetWidth(contentW)
