@@ -1,0 +1,12 @@
+## Interface: 120001
+## Title: Midnight Guide
+## Notes: In-game guide for Midnight content
+## Author: Huijting Team
+## Version: 0.1.0
+## SavedVariables: MidnightGuideDB
+
+Locales/enUS.lua
+Locales/nlNL.lua
+Data.lua
+UI.lua
+Core.lua
