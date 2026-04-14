@@ -146,6 +146,11 @@
         },
         "waypoint": {
           "$ref": "#/$defs/waypoint"
+        },
+        "questId": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Optional quest ID; if completed, item counts as collected (see addon Char.lua)."
         }
       }
     },

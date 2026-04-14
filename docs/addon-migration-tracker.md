@@ -50,6 +50,7 @@ Statuslegenda:
 - [ ] C2 Weekly checklist + resetlogica.
 - [ ] C3 UI/Performance polish (grote lijsten, leesbaarheid).
 - [ ] C4 Web app migration banner (addon primair).
+- [x] C5 Profession detection: skill line check + `SKILL_LINES_CHANGED` refresh when MG-venster open (Char.lua).
 
 ## Sprint 4 - High-Value Content Migration
 
