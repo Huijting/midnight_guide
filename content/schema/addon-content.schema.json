@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://midnight.guide/schema/addon-content.schema.json",
+  "title": "Midnight Guide Addon Content",
+  "description": "Canonical content format for data that is later converted to Lua tables for the WoW addon.",
+  "type": "object",
+  "required": [
+    "version",
+    "generatedAt",
+    "professions",
+    "weekly",
+    "help"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "professions": {
+      "type": "object",
+      "required": [
+        "trackers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trackers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/professionTracker"
+          }
+        }
+      }
+    },
+    "weekly": {
+      "type": "object",
+      "required": [
+        "tasks"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weeklyTask"
+          }
+        }
+      }
+    },
+    "help": {
+      "type": "object",
+      "required": [
+        "install",
+        "troubleshooting"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "install": {
+          "$ref": "#/$defs/helpSection"
+        },
+        "troubleshooting": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/l10nItem"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "l10n": {
+      "type": "object",
+      "required": [
+        "en",
+        "nl"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "nl": {
+          "type": "string"
+        }
+      }
+    },
+    "l10nItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "$ref": "#/$defs/l10n"
+        }
+      }
+    },
+    "waypoint": {
+      "type": "object",
+      "required": [
+        "zone",
+        "way"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "zone": {
+          "type": "string"
+        },
+        "way": {
+          "type": "string",
+          "description": "TomTom-compatible /way string"
+        }
+      }
+    },
+    "professionEntry": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "zone",
+        "waypoint"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "$ref": "#/$defs/l10n"
+        },
+        "zone": {
+          "$ref": "#/$defs/l10n"
+        },
+        "waypoint": {
+          "$ref": "#/$defs/waypoint"
+        }
+      }
+    },
+    "professionTracker": {
+      "type": "object",
+      "required": [
+        "id",
+        "professionKey",
+        "title",
+        "treasures",
+        "books"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "professionKey": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/l10n"
+        },
+        "treasures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/professionEntry"
+          }
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/professionEntry"
+          }
+        }
+      }
+    },
+    "weeklyTask": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "group"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/l10n"
+        },
+        "description": {
+          "$ref": "#/$defs/l10n"
+        },
+        "group": {
+          "$ref": "#/$defs/id"
+        },
+        "recommended": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "helpSection": {
+      "type": "object",
+      "required": [
+        "title",
+        "steps"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/l10n"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/l10nItem"
+          }
+        },
+        "folderPath": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

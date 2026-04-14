@@ -32,7 +32,7 @@ Statuslegenda:
 
 ## Sprint 2 - Data Pipeline + Tracker MVP
 
-- [ ] B1 Canonical data schema (`content/`).
+- [x] B1 Canonical data schema (`content/`).
 - [ ] B2 Converter script (JSON -> Lua tables).
 - [ ] B3 Profession Tracker core (missing treasures/books).
 - [ ] B4 Slash commands (`/mpt`, `/mpt books`, `/mpt all`).
@@ -72,6 +72,7 @@ Statuslegenda:
 - [x] We willen de web app langzaam overbodig maken en uiteindelijk stoppen met onderhoud.
 - [x] Migratie gebeurt gefaseerd met lage risico's.
 - [x] Addon wordt eindplatform; web app wordt tijdelijk ondersteunend.
+- [x] Web app is voorlopig feature-frozen (geen nieuwe development, alleen addon traject).
 
 ## Werkafspraken
 
@@ -88,3 +89,4 @@ Statuslegenda:
 - [x] Addon skeleton toegevoegd in `addon/MidnightGuide/` (TOC, Core, UI, Data, Locales).
 - [x] ESC-sluiting toegevoegd voor addon venster.
 - [x] GitHub Actions workflow toegevoegd voor addon zip build/release (`build-addon-zip.yml`).
+- [x] Canonical addon-content schema toegevoegd in `content/` + sample dataset.
