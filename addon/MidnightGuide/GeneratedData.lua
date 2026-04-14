@@ -2,39 +2,39 @@
 -- Source: content/addon-content.sample.json
 MidnightGuideGeneratedData = {
   version = "0.1.0",
-  generatedAt = "2026-04-14T18:00:00Z",
+  generatedAt = "2026-04-14T20:00:00Z",
   professions = {
     trackers = {
       {
         id = "midnight-profession-tracker",
         professionKey = "tailoring",
         title = {
-          en = "Midnight Profession Tracker",
-          nl = "Midnight Profession Tracker"
+          en = "Midnight Tailoring (knowledge)",
+          nl = "Midnight Tailoring (kennis)"
         },
         treasures = {
           {
-            id = "ethereal-glass",
+            id = "a-childs-stuffy",
+            questId = 89078,
             name = {
-              en = "Ethereal Glass",
-              nl = "Ethereal Glass"
+              en = "A Child's Stuffy",
+              nl = "A Child's Stuffy"
             },
             zone = {
-              en = "Slayer's Rise",
-              nl = "Slayer's Rise"
+              en = "Harandar",
+              nl = "Harandar"
             },
             waypoint = {
-              zone = "Slayer's Rise",
-              way = "/way 53.3 47.8 Ethereal Glass"
+              zone = "Harandar",
+              way = "/way #2413 70.5 50.9 A Child's Stuffy (Tailoring)"
             }
-          }
-        },
-        books = {
+          },
           {
-            id = "tailoring-knowledge-book",
+            id = "a-really-nice-curtain",
+            questId = 89079,
             name = {
-              en = "Tailoring Techniques of Midnight",
-              nl = "Tailoring Techniques of Midnight"
+              en = "A Really Nice Curtain",
+              nl = "A Really Nice Curtain"
             },
             zone = {
               en = "Silvermoon City",
@@ -42,7 +42,120 @@ MidnightGuideGeneratedData = {
             },
             waypoint = {
               zone = "Silvermoon City",
-              way = "/way 68.2 53.1 Tailoring Book Vendor"
+              way = "/way #2393 35.9 61.3 A Really Nice Curtain (Tailoring)"
+            }
+          },
+          {
+            id = "sindorei-outfitters-ruler",
+            questId = 89080,
+            name = {
+              en = "Sin'dorei Outfitter's Ruler",
+              nl = "Sin'dorei Outfitter's Ruler"
+            },
+            zone = {
+              en = "Eversong Woods",
+              nl = "Eversong Woods"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 46.3 34.8 Sin'dorei Outfitter's Ruler (Tailoring)"
+            }
+          },
+          {
+            id = "wooden-weaving-sword",
+            questId = 89081,
+            name = {
+              en = "Wooden Weaving Sword",
+              nl = "Wooden Weaving Sword"
+            },
+            zone = {
+              en = "Harandar",
+              nl = "Harandar"
+            },
+            waypoint = {
+              zone = "Harandar",
+              way = "/way #2413 69.8 51.0 Wooden Weaving Sword (Tailoring)"
+            }
+          },
+          {
+            id = "book-of-sindorei-stitches",
+            questId = 89082,
+            name = {
+              en = "Book of Sin'dorei Stitches",
+              nl = "Book of Sin'dorei Stitches"
+            },
+            zone = {
+              en = "Voidstorm — Slayer's Rise",
+              nl = "Voidstorm — Slayer's Rise"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 62.0 83.6 Book of Sin'dorei Stitches (Tailoring)"
+            }
+          },
+          {
+            id = "satin-throw-pillow",
+            questId = 89083,
+            name = {
+              en = "Satin Throw Pillow",
+              nl = "Satin Throw Pillow"
+            },
+            zone = {
+              en = "Voidstorm — Slayer's Rise",
+              nl = "Voidstorm — Slayer's Rise"
+            },
+            waypoint = {
+              zone = "Voidstorm",
+              way = "/way #2444 61.6 85.0 Satin Throw Pillow (Tailoring)"
+            }
+          },
+          {
+            id = "particularly-enchanting-tablecloth",
+            questId = 89084,
+            name = {
+              en = "Particularly Enchanting Tablecloth",
+              nl = "Particularly Enchanting Tablecloth"
+            },
+            zone = {
+              en = "Silvermoon City",
+              nl = "Silvermoon City"
+            },
+            waypoint = {
+              zone = "Silvermoon City",
+              way = "/way #2393 31.8 68.2 Particularly Enchanting Tablecloth (Tailoring)"
+            }
+          },
+          {
+            id = "artisans-cover-comb",
+            questId = 89085,
+            name = {
+              en = "Artisan's Cover Comb",
+              nl = "Artisan's Cover Comb"
+            },
+            zone = {
+              en = "Zul'Aman",
+              nl = "Zul'Aman"
+            },
+            waypoint = {
+              zone = "Zul'Aman",
+              way = "/way #2437 40.5 49.4 Artisan's Cover Comb (Tailoring)"
+            }
+          }
+        },
+        books = {
+          {
+            id = "skill-issue-tailoring",
+            name = {
+              en = "Skill Issue: Tailoring (renown vendor)",
+              nl = "Skill Issue: Tailoring (renown-verkoper)"
+            },
+            zone = {
+              en = "Eversong Woods — Caeris Fairdawn (Silvermoon Court Renown 6)",
+              nl = "Eversong Woods — Caeris Fairdawn (Silvermoon Court Renown 6)"
+            },
+            waypoint = {
+              zone = "Eversong Woods",
+              way = "/way #2395 43.43 47.44 Skill Issue: Tailoring (75 Artisan Tailor's Moxie + 750 Voidlight Marl)"
             }
           }
         }

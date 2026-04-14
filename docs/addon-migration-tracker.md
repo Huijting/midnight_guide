@@ -96,6 +96,9 @@ Statuslegenda:
 
 ## Progress Log
 
+### 2026-04-14 (later)
+- [x] Tailoring sample content: alle 8 KP-schatten met `questId` (macro bron: wow-professions.com); renown-boek zonder `questId` tot verified ID.
+
 ### 2026-04-14
 - [x] Initiële migratiestrategie bepaald (Sprint 1-5).
 - [x] Trackerdocument aangemaakt voor voortgangsbeheer.
