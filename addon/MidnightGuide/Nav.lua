@@ -45,6 +45,36 @@ local function printMsg(ok, okText, failText)
   end
 end
 
+--- TomTom is often AceAddon-3.0 "TomTom", not always _G.TomTom.
+local function getTomTom()
+  local t = _G.TomTom
+  if type(t) == "table" and type(t.AddMFWaypoint) == "function" then
+    return t
+  end
+  local ok, AceAddon = pcall(function()
+    return LibStub and LibStub("AceAddon-3.0", true)
+  end)
+  if ok and AceAddon and AceAddon.GetAddon then
+    local ac = AceAddon:GetAddon("TomTom", true)
+    if type(ac) == "table" and type(ac.AddMFWaypoint) == "function" then
+      return ac
+    end
+  end
+  return nil
+end
+
+local function isTomTomAddOnLoaded()
+  if C_AddOns and C_AddOns.IsAddOnLoaded then
+    local loaded = select(1, C_AddOns.IsAddOnLoaded("TomTom"))
+    return loaded == true
+  end
+  return false
+end
+
+local function localeNl()
+  return MidnightGuideDB and MidnightGuideDB.lang == "nl"
+end
+
 --- Set waypoint: TomTom if present, else Blizzard map pin. Returns true on success.
 function MidnightGuide.Nav.SetWaypoint(way)
   if not way or not way.mapId or not way.x or not way.y then
@@ -53,13 +83,33 @@ function MidnightGuide.Nav.SetWaypoint(way)
   end
   local title = way.title or "Midnight Guide"
 
-  if TomTom and TomTom.AddMFWaypoint then
+  -- crazy=true asks TomTom for the arrow (otherwise profile "autoqueue" may skip it).
+  local tt = getTomTom()
+  if tt then
     local okTom = pcall(function()
-      TomTom:AddMFWaypoint(way.mapId, 0, way.x, way.y, { title = title })
+      tt:AddMFWaypoint(way.mapId, nil, way.x, way.y, {
+        title = title,
+        crazy = true,
+        minimap = true,
+        world = true
+      })
     end)
     if okTom then
-      printMsg(true, "Waypoint set in TomTom: " .. title, nil)
+      printMsg(
+        true,
+        localeNl() and ("TomTom: waypoint + pijl: " .. title) or ("TomTom: waypoint + arrow: " .. title),
+        nil
+      )
       return true
+    end
+    if isTomTomAddOnLoaded() then
+      printMsg(
+        false,
+        nil,
+        localeNl()
+          and "TomTom staat aan maar Midnight Guide kon geen waypoint zetten (API-fout). Probeer TomTom te updaten."
+          or "TomTom is enabled but setting a waypoint failed (API error). Try updating TomTom."
+      )
     end
   end
 
@@ -72,7 +122,22 @@ function MidnightGuide.Nav.SetWaypoint(way)
       if C_SuperTrack and C_SuperTrack.SetSuperTrackedUserWaypoint then
         C_SuperTrack.SetSuperTrackedUserWaypoint(true)
       end
-      printMsg(true, "Map waypoint set: " .. title, nil)
+      if C_Map.OpenWorldMap then
+        pcall(C_Map.OpenWorldMap, way.mapId)
+      end
+      printMsg(
+        true,
+        localeNl()
+          and (
+            "Kaart-pin gezet (geen TomTom-pijl). Wereldkaart geopend — kijk voor het waypoint-icoon; "
+              .. "voor een pijl: TomTom aan + rechtsklik opnieuw."
+          )
+          or (
+            "Map pin set (no TomTom-style arrow). World map opened — look for the waypoint icon; "
+              .. "for an arrow: enable TomTom and right-click again."
+          ),
+        nil
+      )
       return true
     end
   end
@@ -80,7 +145,9 @@ function MidnightGuide.Nav.SetWaypoint(way)
   printMsg(
     false,
     nil,
-    "Install TomTom or use a client that supports map waypoints (C_Map.SetUserWaypoint)."
+    localeNl()
+      and "Geen waypoint: TomTom of kaart-API niet beschikbaar."
+      or "No waypoint: TomTom or map API not available."
   )
   return false
 end

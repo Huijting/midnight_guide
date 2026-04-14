@@ -2,7 +2,7 @@ local ADDON_NAME = ...
 
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.name = ADDON_NAME or "MidnightGuide"
-MidnightGuide.version = "0.1.1"
+MidnightGuide.version = "0.1.2"
 
 local function ensureDB()
   MidnightGuideDB = MidnightGuideDB or {}
