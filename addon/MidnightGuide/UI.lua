@@ -1,7 +1,7 @@
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.UI = MidnightGuide.UI or {}
 
--- Two-level tabs (Platynator-style layout: main row + prof sub-row).
+-- Two-level tabs (nested main row + prof sub-row; Platynator's Design.lua is nameplate presets, not tab UI).
 -- Main: Prof | Weekly | Help. Under Prof: My/All treasures, My/All books.
 -- Tab visuals: PanelTopTabButtonTemplate when available; CharacterFrameTabButtonTemplate is LOD
 -- (often missing until Character UI loads) — UIPanelButtonTemplate is the universal fallback.
@@ -49,27 +49,53 @@ local TAB_TEMPLATE_TRY = {
   "CharacterFrameTabButtonTemplate"
 }
 
-local function resolveTabButtonTemplate()
-  if MidnightGuide.UI._resolvedTabButtonTemplate then
-    return MidnightGuide.UI._resolvedTabButtonTemplate
-  end
+local function tabTemplateProbeParent()
   if not MidnightGuide.UI._tabTemplateProbeParent then
     MidnightGuide.UI._tabTemplateProbeParent = CreateFrame("Frame", nil, UIParent)
     MidnightGuide.UI._tabTemplateProbeParent:Hide()
   end
-  local holder = MidnightGuide.UI._tabTemplateProbeParent
+  return MidnightGuide.UI._tabTemplateProbeParent
+end
+
+local function probeTabTemplate(tmpl)
+  local holder = tabTemplateProbeParent()
+  local ok, btn = pcall(function()
+    return CreateFrame("Button", nil, holder, tmpl)
+  end)
+  if ok and btn then
+    btn:Hide()
+    return true
+  end
+  return false
+end
+
+--- Main row + prof row: Blizzard-style pair PanelTop + PanelBottom when both exist (clearer than two identical rows).
+local function resolveDualTabTemplates()
+  if MidnightGuide.UI._resolvedMainTabTemplate then
+    return MidnightGuide.UI._resolvedMainTabTemplate, MidnightGuide.UI._resolvedProfTabTemplate
+  end
+  local mainT
   for _, tmpl in ipairs(TAB_TEMPLATE_TRY) do
-    local ok, btn = pcall(function()
-      return CreateFrame("Button", nil, holder, tmpl)
-    end)
-    if ok and btn then
-      btn:Hide()
-      MidnightGuide.UI._resolvedTabButtonTemplate = tmpl
-      return tmpl
+    if probeTabTemplate(tmpl) then
+      mainT = tmpl
+      break
     end
   end
-  MidnightGuide.UI._resolvedTabButtonTemplate = "UIPanelButtonTemplate"
-  return MidnightGuide.UI._resolvedTabButtonTemplate
+  if not mainT then
+    mainT = "UIPanelButtonTemplate"
+  end
+  local profT = mainT
+  if mainT == "PanelTopTabButtonTemplate" and probeTabTemplate("PanelBottomTabButtonTemplate") then
+    profT = "PanelBottomTabButtonTemplate"
+  end
+  MidnightGuide.UI._resolvedMainTabTemplate = mainT
+  MidnightGuide.UI._resolvedProfTabTemplate = profT
+  MidnightGuide.UI._resolvedTabButtonTemplate = mainT
+  return mainT, profT
+end
+
+local function resolveTabButtonTemplate()
+  return (select(1, resolveDualTabTemplates()))
 end
 
 local function tabUsesPanelTextures(tmpl)
@@ -86,7 +112,8 @@ end
 
 --- Panel top/bottom tabs extend upward from their BOTTOM edge (Blizzard pattern). TOPLEFT on a strip
 --- places them above the frame and they disappear. UIPanelButton stays TOP-attached on strips.
-local function applyTabAnchors(frame, tabTemplate)
+local function applyTabAnchors(frame, mainTmpl, profTmpl)
+  profTmpl = profTmpl or mainTmpl
   local main = frame.mainTabButtons
   local prof = frame.profSubTabButtons
   if not main or not prof then
@@ -99,7 +126,7 @@ local function applyTabAnchors(frame, tabTemplate)
     t:ClearAllPoints()
   end
 
-  if isPanelStyleTabTemplate(tabTemplate) then
+  if isPanelStyleTabTemplate(mainTmpl) then
     for i, tab in ipairs(main) do
       if i == 1 then
         tab:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 8, -32)
@@ -119,12 +146,23 @@ local function applyTabAnchors(frame, tabTemplate)
       mh = 32
     end
     local rowGap = 12
-    local profDrop = -(mh + rowGap)
-    for i, tab in ipairs(prof) do
-      if i == 1 then
-        tab:SetPoint("BOTTOMLEFT", main[1], "BOTTOMLEFT", 0, profDrop)
-      else
-        tab:SetPoint("BOTTOMLEFT", prof[i - 1], "BOTTOMRIGHT", -14, 0)
+    if isPanelStyleTabTemplate(profTmpl) then
+      local profDrop = -(mh + rowGap)
+      for i, tab in ipairs(prof) do
+        if i == 1 then
+          tab:SetPoint("BOTTOMLEFT", main[1], "BOTTOMLEFT", 0, profDrop)
+        else
+          tab:SetPoint("BOTTOMLEFT", prof[i - 1], "BOTTOMRIGHT", -14, 0)
+        end
+      end
+    else
+      -- Hybrid: main = panel (bottom-up), prof = UIPanelButton (top-down) — tuck under main row.
+      for i, tab in ipairs(prof) do
+        if i == 1 then
+          tab:SetPoint("TOPLEFT", main[1], "BOTTOMLEFT", 0, -rowGap)
+        else
+          tab:SetPoint("TOPLEFT", prof[i - 1], "TOPRIGHT", 10, 0)
+        end
       end
     end
     local ph = 0
@@ -139,8 +177,16 @@ local function applyTabAnchors(frame, tabTemplate)
     end
     -- Pixels below frame top to first scroll line (main row + gap + prof row + padding).
     frame._mgPanelHeaderPad = 32 + mh + rowGap + ph + 14
-  elseif isCharacterTabTemplate(tabTemplate) then
+    if frame.profSubRowBg and prof[1] then
+      frame.profSubRowBg:ClearAllPoints()
+      frame.profSubRowBg:SetPoint("TOPLEFT", prof[1], "TOPLEFT", -10, 6)
+      frame.profSubRowBg:SetPoint("BOTTOMRIGHT", prof[#prof], "BOTTOMRIGHT", 10, -6)
+    end
+  elseif isCharacterTabTemplate(mainTmpl) then
     frame._mgPanelHeaderPad = nil
+    if frame.profSubRowBg then
+      frame.profSubRowBg:Hide()
+    end
     frame.mainTabStrip:ClearAllPoints()
     frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -40)
     for i, tab in ipairs(main) do
@@ -161,6 +207,9 @@ local function applyTabAnchors(frame, tabTemplate)
     end
   else
     frame._mgPanelHeaderPad = nil
+    if frame.profSubRowBg then
+      frame.profSubRowBg:Hide()
+    end
     frame.mainTabStrip:ClearAllPoints()
     frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 6, -42)
     frame.profSubStrip:ClearAllPoints()
@@ -329,6 +378,9 @@ setActiveTab = function(frame, key)
   if frame.profSubStrip then
     frame.profSubStrip:SetShown(showProfSubs)
   end
+  if frame.profSubRowBg then
+    frame.profSubRowBg:SetShown(showProfSubs and frame._mgPanelStyleTabs == true)
+  end
   layoutContentArea(frame, showProfSubs)
 
   if frame.profSubTabButtons then
@@ -448,8 +500,8 @@ local function migrateLegacyTabKey()
 end
 
 local function refreshMainTabLabels(frame)
-  if frame.mainTabButtons and frame.profSubTabButtons and MidnightGuide.UI._resolvedTabButtonTemplate then
-    applyTabAnchors(frame, MidnightGuide.UI._resolvedTabButtonTemplate)
+  if frame.mainTabButtons and frame.profSubTabButtons and MidnightGuide.UI._resolvedMainTabTemplate then
+    applyTabAnchors(frame, MidnightGuide.UI._resolvedMainTabTemplate, MidnightGuide.UI._resolvedProfTabTemplate)
   end
   if frame.mainTabButtons then
     for _, btn in ipairs(frame.mainTabButtons) do
@@ -497,6 +549,13 @@ local function buildMainFrame()
 
   frame.TitleText:SetText("Midnight Guide — Full Tracker")
 
+  frame.profSubRowBg = CreateFrame("Frame", nil, frame)
+  frame.profSubRowBg:SetFrameLevel((frame:GetFrameLevel() or 0) + 5)
+  local profBgTex = frame.profSubRowBg:CreateTexture(nil, "BACKGROUND")
+  profBgTex:SetAllPoints()
+  profBgTex:SetColorTexture(0.06, 0.06, 0.09, 0.78)
+  frame.profSubRowBg:Hide()
+
   if type(UISpecialFrames) == "table" then
     local alreadyRegistered = false
     for _, name in ipairs(UISpecialFrames) do
@@ -510,9 +569,9 @@ local function buildMainFrame()
     end
   end
 
-  local tabTemplate = resolveTabButtonTemplate()
-  frame._mgUsesBlizzardTabs = tabUsesPanelTextures(tabTemplate)
-  frame._mgPanelStyleTabs = isPanelStyleTabTemplate(tabTemplate)
+  local mainTmpl, profTmpl = resolveDualTabTemplates()
+  frame._mgUsesBlizzardTabs = tabUsesPanelTextures(mainTmpl) or tabUsesPanelTextures(profTmpl)
+  frame._mgPanelStyleTabs = isPanelStyleTabTemplate(mainTmpl)
 
   local stripNameMain = frame:GetName() .. "MGMainTabs"
   frame.mainTabStrip = CreateFrame("Frame", stripNameMain, frame)
@@ -526,11 +585,11 @@ local function buildMainFrame()
 
   frame.mainTabButtons = {}
   for i, def in ipairs(MAIN_TAB_DEFS) do
-    local tab = CreateFrame("Button", stripNameMain .. "Tab" .. i, frame.mainTabStrip, tabTemplate)
+    local tab = CreateFrame("Button", stripNameMain .. "Tab" .. i, frame.mainTabStrip, mainTmpl)
     tab:SetID(i)
     tab:SetText(mainTabLabel(def))
     tab.mainKey = def.key
-    if tabTemplate == "UIPanelButtonTemplate" then
+    if mainTmpl == "UIPanelButtonTemplate" then
       tab:SetSize(158, 24)
     elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
@@ -563,11 +622,11 @@ local function buildMainFrame()
 
   frame.profSubTabButtons = {}
   for i, def in ipairs(PROF_SUB_DEFS) do
-    local tab = CreateFrame("Button", stripNameProf .. "Tab" .. i, frame.profSubStrip, tabTemplate)
+    local tab = CreateFrame("Button", stripNameProf .. "Tab" .. i, frame.profSubStrip, profTmpl)
     tab:SetID(i)
     tab:SetText(profSubLabel(def))
     tab.leafKey = def.key
-    if tabTemplate == "UIPanelButtonTemplate" then
+    if profTmpl == "UIPanelButtonTemplate" then
       tab:SetSize(120, 22)
     elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
@@ -582,7 +641,7 @@ local function buildMainFrame()
     frame.profSubTabButtons[i] = tab
   end
 
-  applyTabAnchors(frame, tabTemplate)
+  applyTabAnchors(frame, mainTmpl, profTmpl)
   frame.profSubStrip:Hide()
 
   frame.bodyText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
