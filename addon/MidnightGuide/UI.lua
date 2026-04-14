@@ -1,8 +1,10 @@
 MidnightGuide = MidnightGuide or {}
 MidnightGuide.UI = MidnightGuide.UI or {}
 
--- Two-level tabs (Platynator-style: gold CharacterFrame tabs + second row under Prof).
+-- Two-level tabs (Platynator-style layout: main row + prof sub-row).
 -- Main: Prof | Weekly | Help. Under Prof: My/All treasures, My/All books.
+-- Tab visuals: PanelTopTabButtonTemplate when available; CharacterFrameTabButtonTemplate is LOD
+-- (often missing until Character UI loads) — UIPanelButtonTemplate is the universal fallback.
 
 local PROF_LEAVES = {
   my_treasures = true,
@@ -38,6 +40,40 @@ end
 
 local function profSubLabel(def)
   return uiLang() == "nl" and def.label_nl or def.label_en
+end
+
+--- Order: prefer panel tabs (always in core UI); avoid CharacterFrameTabButtonTemplate (Blizzard_CharacterUI LOD).
+local TAB_TEMPLATE_TRY = {
+  "PanelTopTabButtonTemplate",
+  "PanelBottomTabButtonTemplate",
+  "CharacterFrameTabButtonTemplate"
+}
+
+local function resolveTabButtonTemplate()
+  if MidnightGuide.UI._resolvedTabButtonTemplate then
+    return MidnightGuide.UI._resolvedTabButtonTemplate
+  end
+  if not MidnightGuide.UI._tabTemplateProbeParent then
+    MidnightGuide.UI._tabTemplateProbeParent = CreateFrame("Frame", nil, UIParent)
+    MidnightGuide.UI._tabTemplateProbeParent:Hide()
+  end
+  local holder = MidnightGuide.UI._tabTemplateProbeParent
+  for _, tmpl in ipairs(TAB_TEMPLATE_TRY) do
+    local ok, btn = pcall(function()
+      return CreateFrame("Button", nil, holder, tmpl)
+    end)
+    if ok and btn then
+      btn:Hide()
+      MidnightGuide.UI._resolvedTabButtonTemplate = tmpl
+      return tmpl
+    end
+  end
+  MidnightGuide.UI._resolvedTabButtonTemplate = "UIPanelButtonTemplate"
+  return MidnightGuide.UI._resolvedTabButtonTemplate
+end
+
+local function tabUsesPanelTextures(tmpl)
+  return type(tmpl) == "string" and tmpl ~= "UIPanelButtonTemplate"
 end
 
 local function tabToReportOptions(key)
@@ -199,7 +235,7 @@ setActiveTab = function(frame, key)
     return 1
   end
 
-  if frame.mainTabStrip and type(PanelTemplates_SetTab) == "function" then
+  if frame._mgUsesBlizzardTabs and frame.mainTabStrip and type(PanelTemplates_SetTab) == "function" then
     pcall(PanelTemplates_SetTab, frame.mainTabStrip, mainTabIndexForKey(key))
   elseif frame.mainTabButtons then
     for _, tab in ipairs(frame.mainTabButtons) do
@@ -209,7 +245,7 @@ setActiveTab = function(frame, key)
     end
   end
 
-  if showProfSubs and frame.profSubStrip and type(PanelTemplates_SetTab) == "function" then
+  if frame._mgUsesBlizzardTabs and showProfSubs and frame.profSubStrip and type(PanelTemplates_SetTab) == "function" then
     pcall(PanelTemplates_SetTab, frame.profSubStrip, profSubIndexForKey(key))
   elseif frame.profSubTabButtons and showProfSubs then
     for _, btn in ipairs(frame.profSubTabButtons) do
@@ -293,7 +329,7 @@ local function refreshMainTabLabels(frame)
       for _, def in ipairs(MAIN_TAB_DEFS) do
         if def.key == btn.mainKey then
           btn:SetText(mainTabLabel(def))
-          if PanelTemplates_TabResize then
+          if frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
             pcall(PanelTemplates_TabResize, btn, 0)
           end
           break
@@ -306,7 +342,7 @@ local function refreshMainTabLabels(frame)
       for _, def in ipairs(PROF_SUB_DEFS) do
         if def.key == btn.leafKey then
           btn:SetText(profSubLabel(def))
-          if PanelTemplates_TabResize then
+          if frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
             pcall(PanelTemplates_TabResize, btn, 0)
           end
           break
@@ -347,22 +383,26 @@ local function buildMainFrame()
     end
   end
 
-  -- Platynator-like gold tabs: CharacterFrameTabButtonTemplate + PanelTemplates (Retail).
+  local tabTemplate = resolveTabButtonTemplate()
+  frame._mgUsesBlizzardTabs = tabUsesPanelTextures(tabTemplate)
+
   local stripNameMain = frame:GetName() .. "MGMainTabs"
   frame.mainTabStrip = CreateFrame("Frame", stripNameMain, frame)
   frame.mainTabStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
   frame.mainTabStrip.numTabs = #MAIN_TAB_DEFS
-  if PanelTemplates_SetNumTabs then
+  if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
     pcall(PanelTemplates_SetNumTabs, frame.mainTabStrip, #MAIN_TAB_DEFS)
   end
 
   frame.mainTabButtons = {}
   for i, def in ipairs(MAIN_TAB_DEFS) do
-    local tab = CreateFrame("Button", stripNameMain .. "Tab" .. i, frame.mainTabStrip, "CharacterFrameTabButtonTemplate")
+    local tab = CreateFrame("Button", stripNameMain .. "Tab" .. i, frame.mainTabStrip, tabTemplate)
     tab:SetID(i)
     tab:SetText(mainTabLabel(def))
     tab.mainKey = def.key
-    if PanelTemplates_TabResize then
+    if tabTemplate == "UIPanelButtonTemplate" then
+      tab:SetSize(158, 24)
+    elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
     end
     if i == 1 then
@@ -371,7 +411,7 @@ local function buildMainFrame()
       tab:SetPoint("TOPLEFT", frame.mainTabButtons[i - 1], "TOPRIGHT", -16, 0)
     end
     tab:SetScript("OnClick", function(self)
-      if type(PanelTemplates_Tab_OnClick) == "function" and frame.mainTabStrip.numTabs then
+      if frame._mgUsesBlizzardTabs and type(PanelTemplates_Tab_OnClick) == "function" and frame.mainTabStrip.numTabs then
         pcall(PanelTemplates_Tab_OnClick, self, frame.mainTabStrip)
       end
       if def.key == "prof" then
@@ -389,17 +429,19 @@ local function buildMainFrame()
   frame.profSubStrip = CreateFrame("Frame", stripNameProf, frame)
   frame.profSubStrip:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -52)
   frame.profSubStrip.numTabs = #PROF_SUB_DEFS
-  if PanelTemplates_SetNumTabs then
+  if frame._mgUsesBlizzardTabs and PanelTemplates_SetNumTabs then
     pcall(PanelTemplates_SetNumTabs, frame.profSubStrip, #PROF_SUB_DEFS)
   end
 
   frame.profSubTabButtons = {}
   for i, def in ipairs(PROF_SUB_DEFS) do
-    local tab = CreateFrame("Button", stripNameProf .. "Tab" .. i, frame.profSubStrip, "CharacterFrameTabButtonTemplate")
+    local tab = CreateFrame("Button", stripNameProf .. "Tab" .. i, frame.profSubStrip, tabTemplate)
     tab:SetID(i)
     tab:SetText(profSubLabel(def))
     tab.leafKey = def.key
-    if PanelTemplates_TabResize then
+    if tabTemplate == "UIPanelButtonTemplate" then
+      tab:SetSize(120, 22)
+    elseif frame._mgUsesBlizzardTabs and PanelTemplates_TabResize then
       pcall(PanelTemplates_TabResize, tab, 0)
     end
     if i == 1 then
@@ -408,7 +450,7 @@ local function buildMainFrame()
       tab:SetPoint("TOPLEFT", frame.profSubTabButtons[i - 1], "TOPRIGHT", -14, 0)
     end
     tab:SetScript("OnClick", function(self)
-      if type(PanelTemplates_Tab_OnClick) == "function" and frame.profSubStrip.numTabs then
+      if frame._mgUsesBlizzardTabs and type(PanelTemplates_Tab_OnClick) == "function" and frame.profSubStrip.numTabs then
         pcall(PanelTemplates_Tab_OnClick, self, frame.profSubStrip)
       end
       setActiveTab(frame, def.key)

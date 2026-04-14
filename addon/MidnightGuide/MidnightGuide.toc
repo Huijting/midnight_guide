@@ -2,7 +2,7 @@
 ## Title: Midnight Guide
 ## Notes: In-game guide for Midnight content
 ## Author: Huijting Team
-## Version: 0.1.9
+## Version: 0.1.10
 ## SavedVariables: MidnightGuideDB
 ## SavedVariablesPerCharacter: MidnightGuideCharDB
 
