@@ -1,14 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Silvermoon City: The Darkway",
-    "Zul'Aman: Atal'Aman"
+    "Voidstorm: Shadowguard Point",
+    "Eversong Woods: The Shadow Enclave"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "the_darkway",
-    "atalaman"
+    "shadowguard_point",
+    "shadow_enclave"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-14 09:45:54"
+  "last_updated": "2026-04-15 08:49:57"
 }
