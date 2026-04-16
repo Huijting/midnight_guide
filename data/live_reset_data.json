@@ -1,14 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Shadowguard Point",
-    "Harandar: The Gulf of Memory",
-    "Eversong Woods: The Shadow Enclave"
+    "Voidstorm: Sunkiller Sanctum",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "shadowguard_point",
-    "gulf_of_memory",
-    "shadow_enclave"
+    "sunkiller_sanctum",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-15 09:46:22"
+  "last_updated": "2026-04-16 08:50:54"
 }
