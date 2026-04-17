@@ -1,14 +1,11 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Harandar: The Grudge Pit",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: Collegiate Calamity",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "grudge_pit",
-    "atalaman"
+    "collegiate_calamity"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-16 09:44:56"
+  "last_updated": "2026-04-17 08:50:07"
 }
