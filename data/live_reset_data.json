@@ -1,12 +1,14 @@
 {
   "bountiful_delves": [
     "Voidstorm: Sunkiller Sanctum",
+    "Harandar: The Grudge Pit",
     "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
     "sunkiller_sanctum",
+    "grudge_pit",
     "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-18 08:26:00"
+  "last_updated": "2026-04-18 09:03:05"
 }
