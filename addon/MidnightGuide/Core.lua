@@ -9,6 +9,7 @@ local function ensureDB()
   MidnightGuideDB.lang = MidnightGuideDB.lang or "en"
   MidnightGuideDB.lastTab = MidnightGuideDB.lastTab or "all_treasures"
   MidnightGuideDB.lastProfSubTab = MidnightGuideDB.lastProfSubTab or "all_treasures"
+  MidnightGuideDB.lastShellTab = MidnightGuideDB.lastShellTab or "general"
   local lt = MidnightGuideDB.lastTab
   if lt == "professions" then
     MidnightGuideDB.lastTab = "all_treasures"

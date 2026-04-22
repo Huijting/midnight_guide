@@ -1,0 +1,9 @@
+## Interface: 120001
+## Title: Midnight Helper
+## Notes: All-in-one reference tool.
+## SavedVariables: MidnightHelperDB
+
+Core.lua
+UI.lua
+Modules\Profession.lua
+Modules\Delves.lua

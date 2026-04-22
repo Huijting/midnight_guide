@@ -1,0 +1,1250 @@
+--[[
+	MidnightHelper — Delves module (Midnight Season 1): dashboard, currencies,
+	C_DelvesUI companion (active only outside delve), curios, renown, POI bountiful (character map), TomTom;
+	Great Vault World row (same tab, below delve list).
+]]
+
+-- NOTE: Media/BountifulPortal.tga exists but is not yet wired up.
+-- To use it as the bountiful icon, set iconTexture = "Interface\\AddOns\\MidnightHelper\\Media\\BountifulPortal"
+-- in ApplyDelveRowVisuals() when item.isBountiful is true.
+
+local addonName, ns = ...
+
+local C_Map = C_Map
+local C_CurrencyInfo = C_CurrencyInfo
+local C_AreaPoiInfo = C_AreaPoiInfo
+local C_DelvesUI = C_DelvesUI
+local C_MajorFactions = C_MajorFactions
+local C_Traits = C_Traits
+local C_Spell = C_Spell
+local C_WeeklyRewards = C_WeeklyRewards
+local C_Item = C_Item
+--------------------------------------------------------------------------------
+-- Delve roster: reference id + entrance uiMap + xy (0–100) for TomTom only (names drive POI scan).
+--------------------------------------------------------------------------------
+local MIDNIGHT_DELVES = {
+	{ 93372, 2393, 45.55, 86.31, "The Shadow Enclave" },
+	{ 93419, 2393, 40.60, 53.70, "Collegiate Calamity" },
+	{ 93420, 2393, 39.31, 32.07, "The Darkway" },
+	{ 93421, 2405, 46.80, 40.90, "Parhelion Plaza" },
+	{ 93422, 2536, 63.70, 80.10, "Atal'Aman" },
+	{ 93423, 2536, 25.40, 84.40, "Twilight Crypts" },
+	{ 93424, 2444, 38.00, 52.00, "The Gulf of Memory" }, -- coords: verify in-game
+	{ 93425, 2413, 55.00, 45.00, "The Grudge Pit" }, -- coords: verify in-game
+	{ 93426, 2444, 54.00, 51.00, "Sunkiller Sanctum" }, -- coords: verify in-game
+	{ 93428, 2395, 47.00, 32.00, "Shadowguard Point" }, -- coords: verify in-game
+}
+
+ns.MIDNIGHT_DELVES = MIDNIGHT_DELVES
+
+-- Verified Midnight currency IDs (Restored Coffer Key, Shards, Undercoin).
+local CURRENCY_COFFER_KEY = 3028
+local CURRENCY_COFFER_SHARDS = 3310
+local CURRENCY_UNDERCOIN = 2803
+
+local TRACKER_ROW_HEIGHT = 26
+local ICON_SIZE = 18
+local ICON_NAME_GAP = 6
+local COL_GAP = 12
+
+--------------------------------------------------------------------------------
+-- Great Vault (World row): must be declared before RefreshDelvesPanel() — Lua 5.1
+-- resolves forward calls to globals if the local appears later in the chunk.
+--------------------------------------------------------------------------------
+local function GetVaultProgress()
+	if not C_WeeklyRewards or not C_WeeklyRewards.GetActivities then
+		return {}
+	end
+
+	-- Enum slot 6 = World / Delves row (Midnight / TWW); matches Enum.WeeklyRewardChestThresholdType.World fallback.
+	local okAct, activities = pcall(C_WeeklyRewards.GetActivities, 6)
+	if not okAct or type(activities) ~= "table" then
+		return {}
+	end
+
+	local sorted = {}
+	for _, activity in ipairs(activities) do
+		sorted[#sorted + 1] = activity
+	end
+	table.sort(sorted, function(a, b)
+		local ia = type(a) == "table" and ((a.info and a.info.index) or a.index) or 99
+		local ib = type(b) == "table" and ((b.info and b.info.index) or b.index) or 99
+		return ia < ib
+	end)
+
+	local progressData = {}
+
+	for _, activity in ipairs(sorted) do
+		if type(activity) ~= "table" then
+			break
+		end
+		local info = activity.info or activity
+		local id = info.id or activity.id
+		local progress = math.floor(tonumber(info.progress) or 0)
+		local threshold = math.max(1, math.floor(tonumber(info.threshold) or 1))
+		local level = math.floor(tonumber(info.level) or 0)
+		local unlocked = progress >= threshold
+
+		local ilvl = 0
+		local itemLink
+		if id and C_WeeklyRewards.GetExampleRewardItemHyperlinks then
+			local okL, first, second = pcall(C_WeeklyRewards.GetExampleRewardItemHyperlinks, id)
+			if okL then
+				itemLink = type(first) == "string" and first or (type(second) == "string" and second or nil)
+				if itemLink and C_Item and C_Item.GetDetailedItemLevelInfo then
+					local okIlvl, lvl = pcall(function()
+						return select(1, C_Item.GetDetailedItemLevelInfo(itemLink))
+					end)
+					if okIlvl and type(lvl) == "number" and lvl > 0 then
+						ilvl = math.floor(lvl)
+					end
+				end
+			end
+		end
+
+		table.insert(progressData, {
+			activityID = id,
+			id = id,
+			activity = activity,
+			itemLink = itemLink,
+			progress = progress,
+			threshold = threshold,
+			unlocked = unlocked,
+			level = level,
+			ilvl = ilvl,
+			info = info,
+		})
+	end
+
+	return progressData
+end
+
+ns.GetVaultProgress = GetVaultProgress
+
+--------------------------------------------------------------------------------
+-- TomTom (same contract as Profession.lua)
+--------------------------------------------------------------------------------
+local function AddTomTomWay(mapID, x, y, name)
+	if not mapID then
+		return false
+	end
+	local mid = tonumber(mapID)
+	if not mid then
+		return false
+	end
+	if x == nil or y == nil then
+		return false
+	end
+	if not _G.TomTom or type(_G.TomTom.AddWaypoint) ~= "function" then
+		print("Midnight Helper: TomTom not found!")
+		return false
+	end
+	local title = name and tostring(name) or "Waypoint"
+	local ok, err = pcall(function()
+		_G.TomTom:AddWaypoint(mid, x / 100, y / 100, {
+			title = title,
+			persistent = false,
+			minimap = true,
+			world = true,
+			cleardistance = 15,
+		})
+	end)
+	if not ok then
+		print("|cffff5555Midnight Helper:|r TomTom:AddWaypoint error: " .. tostring(err))
+		return false
+	end
+	return true
+end
+
+--------------------------------------------------------------------------------
+-- Delve POI state via GetDelvesForMap: bountiful + atlas (character map; completed drops bountiful tag).
+--------------------------------------------------------------------------------
+local MAPS_BOUNTIFUL_SCRAPE = { 2393, 2437, 2413, 2405, 2444 }
+
+local function GetDelveBountifulState(itemName)
+	if not itemName or not C_AreaPoiInfo or not C_AreaPoiInfo.GetAreaPOIInfo then
+		return false, nil
+	end
+	if not C_AreaPoiInfo.GetDelvesForMap then
+		return false, nil
+	end
+	local needle = string.lower(tostring(itemName))
+	local isBountiful = false
+	local bountifulAtlas = nil
+	for _, zMap in ipairs(MAPS_BOUNTIFUL_SCRAPE) do
+		local okList, delvePOIs = pcall(C_AreaPoiInfo.GetDelvesForMap, zMap)
+		local list = (okList and type(delvePOIs) == "table") and delvePOIs or {}
+		for _, pID in ipairs(list) do
+			local okInfo, pInfo = pcall(C_AreaPoiInfo.GetAreaPOIInfo, zMap, pID)
+			if okInfo and pInfo and pInfo.name and string.find(string.lower(pInfo.name), needle, 1, true) then
+				local atlas = pInfo.atlasName
+				if atlas and string.find(string.lower(tostring(atlas)), "bountiful", 1, true) then
+					isBountiful = true
+					bountifulAtlas = bountifulAtlas or atlas
+				elseif pInfo.isBountiful then
+					isBountiful = true
+					bountifulAtlas = bountifulAtlas or atlas
+				elseif pInfo.textureIndex == 5802055 then
+					isBountiful = true
+				end
+			end
+		end
+	end
+	return isBountiful, bountifulAtlas
+end
+
+function ns.IsDelveBountiful(delveName, mapID)
+	return (select(1, GetDelveBountifulState(delveName)))
+end
+
+-- Ask the server for currency buckets if the API exists (avoids stale 0 before cache fills).
+local function RequestTrackedCurrencyData()
+	if not C_CurrencyInfo then
+		return
+	end
+	local ids = { CURRENCY_COFFER_KEY, CURRENCY_COFFER_SHARDS, CURRENCY_UNDERCOIN }
+	for _, id in ipairs(ids) do
+		if C_CurrencyInfo.RequestCurrencyDataFromServer then
+			pcall(C_CurrencyInfo.RequestCurrencyDataFromServer, id)
+		end
+	end
+end
+
+-- Current amount: C_CurrencyInfo.GetCurrencyInfo(id).quantity (Retail CurrencyInfo).
+local function GetCurrencyQuantity(currencyID)
+	local id = tonumber(currencyID)
+	if not id then
+		return 0
+	end
+	if C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo then
+		local info = C_CurrencyInfo.GetCurrencyInfo(id)
+		if info and type(info) == "table" and info.quantity ~= nil then
+			return math.floor(tonumber(info.quantity) or 0)
+		end
+	end
+	return 0
+end
+
+-- Shards: show wallet quantity vs cap (maxQuantity, else weekly max, else 600).
+local function GetShardQuantityAndMax()
+	if not C_CurrencyInfo or not C_CurrencyInfo.GetCurrencyInfo then
+		return 0, 600
+	end
+	local info = C_CurrencyInfo.GetCurrencyInfo(CURRENCY_COFFER_SHARDS)
+	if not info or type(info) ~= "table" then
+		return 0, 600
+	end
+	local qty = math.floor(tonumber(info.quantity) or 0)
+	local maxQ = tonumber(info.maxQuantity)
+	if not maxQ or maxQ <= 0 then
+		maxQ = tonumber(info.maxWeeklyQuantity)
+	end
+	if not maxQ or maxQ <= 0 then
+		maxQ = 600
+	end
+	return qty, math.floor(maxQ)
+end
+
+local function GetZoneDisplayName(mapID)
+	local mid = tonumber(mapID)
+	if not mid or not C_Map or not C_Map.GetMapInfo then
+		return "Unknown zone"
+	end
+	local info = C_Map.GetMapInfo(mid)
+	return (info and info.name) or ("Map " .. tostring(mid))
+end
+
+--------------------------------------------------------------------------------
+-- Trait spell from a Delves trait node (EntryInfo + DefinitionInfo; spellID for tooltips).
+--------------------------------------------------------------------------------
+local function GetTraitSpellDisplayFromDelvesNode(configID, nodeID)
+	if not configID or type(nodeID) ~= "number" or nodeID == 0 then
+		return nil, nil, nil
+	end
+	local nodeInfo = C_Traits.GetNodeInfo and C_Traits.GetNodeInfo(configID, nodeID)
+	if not (nodeInfo and nodeInfo.activeEntry and nodeInfo.activeEntry.entryID) then
+		return nil, nil, nil
+	end
+	local entryInfo = C_Traits.GetEntryInfo and C_Traits.GetEntryInfo(configID, nodeInfo.activeEntry.entryID)
+	if not (entryInfo and entryInfo.definitionID) then
+		return nil, nil, nil
+	end
+	local defInfo = C_Traits.GetDefinitionInfo and C_Traits.GetDefinitionInfo(entryInfo.definitionID)
+	if not defInfo then
+		return nil, nil, nil
+	end
+	local spellID = defInfo.overriddenSpellID or defInfo.spellID
+	if not spellID or spellID == 0 then
+		return nil, nil, nil
+	end
+	local name = C_Spell.GetSpellName and C_Spell.GetSpellName(spellID)
+	if not name or name == "" then
+		return nil, nil, nil
+	end
+	local icon = C_Spell.GetSpellTexture and C_Spell.GetSpellTexture(spellID)
+	return name, icon, spellID
+end
+
+--------------------------------------------------------------------------------
+-- Valeera Curios: DelvesUI curio node + companion ID → trait tree → spell. 0 = Combat, 1 = Utility.
+--------------------------------------------------------------------------------
+local function GetActiveCurio(curioType)
+	if not C_DelvesUI.GetCurioNodeForCompanion then
+		return nil, nil, nil
+	end
+
+	-- PRIMARY: curioType only (companion arg forces 0 in retail dumps)
+	local nodeID = C_DelvesUI.GetCurioNodeForCompanion(curioType)
+	if type(nodeID) ~= "number" or nodeID == 0 then
+		nodeID = C_DelvesUI.GetCurioNodeForCompanion(curioType, 11)
+	end
+	if type(nodeID) ~= "number" or nodeID == 0 then
+		return nil, nil, nil
+	end
+
+	-- PRIMARY: no-arg trait tree for active companion
+	local treeID = C_DelvesUI.GetTraitTreeForCompanion and C_DelvesUI.GetTraitTreeForCompanion()
+	if type(treeID) ~= "number" or treeID == 0 then
+		treeID = C_DelvesUI.GetTraitTreeForCompanion and C_DelvesUI.GetTraitTreeForCompanion(11)
+	end
+	if type(treeID) ~= "number" or treeID == 0 then
+		return nil, nil, nil
+	end
+
+	local configID = C_Traits.GetConfigIDByTreeID and C_Traits.GetConfigIDByTreeID(treeID)
+	if not configID then
+		return nil, nil, nil
+	end
+
+	local name, icon, spellID = GetTraitSpellDisplayFromDelvesNode(configID, nodeID)
+	if name and spellID then
+		return name, icon, spellID
+	end
+	return nil, nil, nil
+end
+
+-- Delves role API uses (roleType, playerCompanionID); roleType 0 = DPS, 1 = Healer, 2 = Tank (see Blizzard / DelveGuide dumps).
+local ROLE_TYPE_FALLBACK = {
+	[0] = "DPS",
+	[1] = "Healer",
+	[2] = "Tank",
+}
+
+-- Visible role labels on Blizzard's companion UI (Shift–K / journal) — matches DelveGuide scrape; selectedRole is often unset while text still shows.
+local ROLE_SCRAPE_EXACT = {
+	["Tank"] = "Tank",
+	["Healer"] = "Healer",
+	["DPS"] = "DPS",
+	["Damage Dealer"] = "DPS",
+}
+
+local function RoleLabelFromPlainText(txt)
+	if type(txt) ~= "string" or txt == "" then
+		return nil
+	end
+	local clean = txt:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):match("^%s*(.-)%s*$")
+	if not clean then
+		return nil
+	end
+	if ROLE_SCRAPE_EXACT[clean] then
+		return ROLE_SCRAPE_EXACT[clean]
+	end
+	local low = string.lower(clean)
+	if low == "tank" then
+		return "Tank"
+	end
+	if low == "healer" then
+		return "Healer"
+	end
+	if low == "dps" or low == "damage dealer" then
+		return "DPS"
+	end
+	return nil
+end
+
+local function ScrapeDelvesCompanionRoleText(root, depth)
+	if not root or (root.IsForbidden and root:IsForbidden()) then
+		return nil
+	end
+	depth = (depth or 0) + 1
+	if depth > 28 then
+		return nil
+	end
+	local fname = root.GetName and root:GetName() or ""
+	if fname:find("ScrollBox") or fname:find("DropDownList") then
+		return nil
+	end
+	for _, r in ipairs({ root:GetRegions() }) do
+		if r.GetObjectType and r:GetObjectType() == "FontString" and r.IsShown and r:IsShown() then
+			local txt = r.GetText and r:GetText()
+			if txt and txt ~= "" then
+				local role = RoleLabelFromPlainText(txt)
+				if role then
+					return role
+				end
+			end
+		end
+	end
+	for _, child in ipairs({ root:GetChildren() }) do
+		local got = ScrapeDelvesCompanionRoleText(child, depth)
+		if got then
+			return got
+		end
+	end
+	return nil
+end
+
+--- Blizzard companion UI: selectedRole / dropdown when set; else scrape visible "Tank" / "Healer" / "DPS" text (reliable with Shift–K panel open).
+local function GetRoleFromDelvesCompanionUI()
+	local f = _G.DelvesCompanionConfigurationFrame
+	if not f then
+		return nil
+	end
+	if f.IsForbidden and f:IsForbidden() then
+		return nil
+	end
+	if f.IsShown and f:IsShown() then
+		local scraped = ScrapeDelvesCompanionRoleText(f, 0)
+		if scraped then
+			return scraped
+		end
+	end
+
+	local r = f.selectedRole
+	if type(r) == "number" and r >= 0 and r <= 2 then
+		return ROLE_TYPE_FALLBACK[r]
+	end
+	-- selectedRole may be an enum constant (not 0–2) depending on build.
+	do
+		local okMap, idx = pcall(function()
+			local E = Enum and Enum.CompanionRoleType
+			if not E or type(r) ~= "number" then
+				return nil
+			end
+			if E.Tank and r == E.Tank then
+				return 2
+			end
+			if E.Healer and r == E.Healer then
+				return 1
+			end
+			if E.Dps and r == E.Dps then
+				return 0
+			end
+			return nil
+		end)
+		if okMap and idx ~= nil then
+			return ROLE_TYPE_FALLBACK[idx]
+		end
+	end
+
+	if f.RoleDropdown then
+		local dd = f.RoleDropdown
+		local v = dd.selectedValue
+		if type(v) == "number" and v >= 0 and v <= 2 then
+			return ROLE_TYPE_FALLBACK[v]
+		end
+		-- selectedRole / selectedValue are often nil; the dropdown still shows "Tank" as label text.
+		if dd.GetText then
+			local okT, label = pcall(dd.GetText, dd)
+			if okT then
+				local rl = RoleLabelFromPlainText(label)
+				if rl then
+					return rl
+				end
+			end
+		end
+		for _, key in ipairs({ "Text", "Label", "Name", "SelectedText" }) do
+			local w = dd[key]
+			if w and w.GetText then
+				local okw, wt = pcall(w.GetText, w)
+				if okw then
+					local rl = RoleLabelFromPlainText(wt)
+					if rl then
+						return rl
+					end
+				end
+			end
+		end
+	end
+
+	for _, key in ipairs({ "CombatRoleText", "RoleText", "SelectedRoleText", "CompanionRoleText" }) do
+		local w = f[key]
+		if type(w) == "table" and w.GetText then
+			local okw, wt = pcall(w.GetText, w)
+			if okw then
+				local rl = RoleLabelFromPlainText(wt)
+				if rl then
+					return rl
+				end
+			end
+		end
+	end
+
+	-- Last resort: full tree scrape even if :IsShown() was false earlier (some layouts still paint role strings).
+	local late = ScrapeDelvesCompanionRoleText(f, 0)
+	if late then
+		return late
+	end
+	return nil
+end
+
+--- @param companionDbId number Player delve companion id from GetCompanionInfoForActivePlayer (e.g. 11 Valeera).
+local function GetActiveRole(companionDbId)
+	if not companionDbId or companionDbId == 0 then
+		companionDbId = 11
+	end
+	if not C_DelvesUI.GetRoleNodeForCompanion then
+		return nil
+	end
+
+	local treeID = C_DelvesUI.GetTraitTreeForCompanion and C_DelvesUI.GetTraitTreeForCompanion()
+	if type(treeID) ~= "number" or treeID == 0 then
+		treeID = C_DelvesUI.GetTraitTreeForCompanion and C_DelvesUI.GetTraitTreeForCompanion(companionDbId)
+	end
+	if type(treeID) ~= "number" or treeID == 0 then
+		treeID = C_DelvesUI.GetTraitTreeForCompanion and C_DelvesUI.GetTraitTreeForCompanion(11)
+	end
+
+	local configID
+	if type(treeID) == "number" and treeID ~= 0 then
+		configID = C_Traits.GetConfigIDByTreeID and C_Traits.GetConfigIDByTreeID(treeID)
+	end
+
+	-- 1) Known active tree: match role subtree → same tree, resolve spell with THAT tree's config (or role label).
+	if configID and type(treeID) == "number" and treeID ~= 0 and C_DelvesUI.GetRoleSubtreeForCompanion then
+		for roleType = 0, 2 do
+			local okS, subtree = pcall(C_DelvesUI.GetRoleSubtreeForCompanion, roleType, companionDbId)
+			if okS and type(subtree) == "number" and subtree ~= 0 and subtree == treeID then
+				local okN, nodeID = pcall(C_DelvesUI.GetRoleNodeForCompanion, roleType, companionDbId)
+				if okN and type(nodeID) == "number" and nodeID ~= 0 then
+					local spellName = select(1, GetTraitSpellDisplayFromDelvesNode(configID, nodeID))
+					if spellName then
+						return spellName
+					end
+				end
+				return ROLE_TYPE_FALLBACK[roleType]
+			end
+		end
+	end
+
+	-- 2) Main tree missing or cold (outside delve): role nodes use each role's subtree config. Only trust a spell if exactly one role resolves (avoids picking the wrong row).
+	local mainTreeReady = configID and type(treeID) == "number" and treeID ~= 0
+	if (not mainTreeReady) and C_DelvesUI.GetRoleSubtreeForCompanion then
+		local unambiguous = {}
+		for roleType = 0, 2 do
+			local okSt, subtree = pcall(C_DelvesUI.GetRoleSubtreeForCompanion, roleType, companionDbId)
+			if okSt and type(subtree) == "number" and subtree ~= 0 then
+				local roleCfg = C_Traits.GetConfigIDByTreeID and C_Traits.GetConfigIDByTreeID(subtree)
+				if roleCfg then
+					local okN, nodeID = pcall(C_DelvesUI.GetRoleNodeForCompanion, roleType, companionDbId)
+					if okN and type(nodeID) == "number" and nodeID ~= 0 then
+						local spellName = select(1, GetTraitSpellDisplayFromDelvesNode(roleCfg, nodeID))
+						if spellName then
+							unambiguous[#unambiguous + 1] = spellName
+						end
+					end
+				end
+			end
+		end
+		if #unambiguous == 1 then
+			return unambiguous[1]
+		end
+	end
+
+	return nil
+end
+
+local function CurioTextureFileID(icon)
+	if type(icon) == "number" and icon > 0 then
+		return icon
+	end
+	if type(icon) == "table" then
+		local id = icon.iconID or icon.fileID or icon.iconFileID
+		if type(id) == "number" and id > 0 then
+			return id
+		end
+	end
+	return nil
+end
+
+--------------------------------------------------------------------------------
+-- UI
+--------------------------------------------------------------------------------
+local frame
+local valeeraHeader
+local journeyHeader
+local delvesTitle
+local currencyHeader
+local leftColumn
+local rightColumn
+local bestBtn
+local eventFrame
+
+-- Reusable row buttons: standard fileID 525134; bountiful uses POI atlas or gold-tinted portal.
+local function EnsureDelveRowButton(columnFrame, rows, index, colW)
+	local row = rows[index]
+	if not row then
+		row = CreateFrame("Button", nil, columnFrame)
+		row:SetHeight(TRACKER_ROW_HEIGHT)
+		row:EnableMouse(true)
+		row:SetHighlightTexture("Interface/Buttons/White8x8")
+		local ht = row:GetHighlightTexture()
+		if ht then
+			ht:SetBlendMode("ADD")
+			ht:SetAlpha(0.12)
+		end
+
+		row:SetScript("OnMouseDown", function(self, button)
+			if button ~= "RightButton" then
+				return
+			end
+			local rd = self.mhDelveRow
+			if not rd then
+				return
+			end
+			AddTomTomWay(rd.mapID, rd.x, rd.y, rd.name)
+		end)
+
+		local iconAnchorX = 4 + ICON_SIZE * 0.5
+		local icon = row:CreateTexture(nil, "ARTWORK")
+		icon:SetSize(ICON_SIZE, ICON_SIZE)
+		icon:SetPoint("CENTER", row, "LEFT", iconAnchorX, 0)
+		row.icon = icon
+
+		local slotW = ICON_SIZE
+		local fs = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+		fs:SetPoint("LEFT", row, "LEFT", 4 + slotW + ICON_NAME_GAP, 0)
+		fs:SetPoint("RIGHT", row, "RIGHT", -6, 0)
+		fs:SetJustifyH("LEFT")
+		fs:SetWordWrap(false)
+		row.name = fs
+
+		rows[index] = row
+	end
+	row:SetWidth(colW)
+	row:SetPoint("TOPLEFT", columnFrame, "TOPLEFT", 0, -(index - 1) * TRACKER_ROW_HEIGHT)
+	return row
+end
+
+local function ApplyDelveRowVisuals(row, item)
+	row.name:SetText(item.name)
+	row.mhDelveRow = item
+
+	local isBountiful = false
+	local iconTexture = 525134
+
+	if item.isBountiful then
+		isBountiful = true
+		iconTexture = (item.bountifulAtlas and item.bountifulAtlas ~= "") and item.bountifulAtlas or 5802055
+	end
+
+	row:SetAlpha(1.0)
+
+	if isBountiful then
+		row.name:SetTextColor(1, 0.82, 0)
+		if type(iconTexture) == "string" and row.icon.SetAtlas then
+			row.icon:SetAtlas(iconTexture)
+		else
+			row.icon:SetTexture(iconTexture)
+		end
+		row.icon:SetVertexColor(1, 1, 1)
+	else
+		row.name:SetTextColor(1, 1, 1)
+		row.icon:SetTexture(525134)
+		row.icon:SetVertexColor(1, 1, 1)
+	end
+
+	local zoneName = GetZoneDisplayName(item.mapID)
+	row:SetScript("OnEnter", function(self)
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+		GameTooltip:ClearLines()
+		GameTooltip:AddLine(item.name, 1, 1, 1)
+		GameTooltip:AddLine("Zone: " .. zoneName, 1, 1, 1)
+		if item.isBountiful then
+			if item.bountifulAtlas and item.bountifulAtlas ~= "" then
+				GameTooltip:AddLine("Bountiful — atlas: " .. tostring(item.bountifulAtlas), 1, 0.85, 0.35)
+			else
+				GameTooltip:AddLine("Bountiful — gold portal (no atlas from POI).", 1, 0.85, 0.35)
+			end
+		end
+		GameTooltip:Show()
+	end)
+
+	row:SetScript("OnLeave", function()
+		GameTooltip:Hide()
+	end)
+end
+
+local function LoadWeeklyRewardsUI()
+	pcall(function()
+		local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded
+			and C_AddOns.IsAddOnLoaded("Blizzard_WeeklyRewards")
+		if isLoaded then
+			return
+		end
+		if C_AddOns and C_AddOns.LoadAddOn then
+			C_AddOns.LoadAddOn("Blizzard_WeeklyRewards")
+		end
+	end)
+end
+
+local function _checkDelvesFrames()
+	local missing = {}
+	if not frame then
+		missing[#missing + 1] = "frame"
+	end
+	if not currencyHeader then
+		missing[#missing + 1] = "currencyHeader"
+	end
+	if not leftColumn then
+		missing[#missing + 1] = "leftColumn"
+	end
+	if not rightColumn then
+		missing[#missing + 1] = "rightColumn"
+	end
+	if not valeeraHeader then
+		missing[#missing + 1] = "valeeraHeader"
+	end
+	if not journeyHeader then
+		missing[#missing + 1] = "journeyHeader"
+	end
+	if not delvesTitle then
+		missing[#missing + 1] = "delvesTitle"
+	end
+	return missing
+end
+
+local function RefreshDelvesPanel()
+	do
+		local missing = _checkDelvesFrames()
+		if #missing > 0 then
+			if MidnightHelperDB and MidnightHelperDB.ui and MidnightHelperDB.ui.debug then
+				print("|cffff8888[MH Debug]|r RefreshDelvesPanel: missing frames: " .. table.concat(missing, ", "))
+			end
+			return
+		end
+	end
+
+	-- GetCompanionInfoForActivePlayer returns the player companion id (number); level/spec come from GetCompanionInfo(id).
+	local companionPlayerID
+	if C_DelvesUI and C_DelvesUI.GetCompanionInfoForActivePlayer then
+		local ok, r = pcall(C_DelvesUI.GetCompanionInfoForActivePlayer)
+		if ok and r ~= nil then
+			if type(r) == "number" and r > 0 then
+				companionPlayerID = math.floor(r)
+			elseif type(r) == "table" then
+				local idFrom = r.companionID or r.garrCompanionID or r.companionDbId or r.playerCompanionID
+				if idFrom then
+					companionPlayerID = math.floor(tonumber(idFrom) or 0)
+				end
+			end
+		end
+	end
+	-- Journal / Shift–K: Blizzard sets playerCompanionID on this frame (not companionID; /dump may show empty if the panel is closed or keys differ by patch).
+	local cfgFrame = _G.DelvesCompanionConfigurationFrame
+	if cfgFrame and not (cfgFrame.IsForbidden and cfgFrame:IsForbidden()) then
+		local fid = cfgFrame.playerCompanionID or cfgFrame.companionID
+		if type(fid) == "number" and fid > 0 then
+			companionPlayerID = math.floor(fid)
+		end
+	end
+	if not companionPlayerID or companionPlayerID <= 0 then
+		companionPlayerID = 11
+	end
+
+	local companionDetail
+	if C_DelvesUI and C_DelvesUI.GetCompanionInfo then
+		local okI, info = pcall(C_DelvesUI.GetCompanionInfo, companionPlayerID)
+		if okI and type(info) == "table" then
+			companionDetail = info
+		end
+	end
+
+	local companionID = companionPlayerID
+	ns.delvesResolvedCompanionID = companionID
+
+	local valLevel = 48
+	if companionDetail and companionDetail.level ~= nil then
+		valLevel = math.floor(tonumber(companionDetail.level) or valLevel)
+	end
+
+	local traitRole = GetActiveRole(companionID)
+	if traitRole == "" then
+		traitRole = nil
+	end
+	local uiRole = GetRoleFromDelvesCompanionUI()
+	if uiRole == "" then
+		uiRole = nil
+	end
+	local activeRole = traitRole
+		or uiRole
+		or (companionDetail and (companionDetail.classSpecName or companionDetail.roleName or companionDetail.role))
+		or "Companion Active"
+	valeeraHeader:SetText(string.format("Valeera Sanguinar: Level %d (%s)", valLevel, activeRole))
+	valeeraHeader:SetTextColor(1, 0.82, 0)
+
+	local season = 1
+	if C_DelvesUI and C_DelvesUI.GetCurrentDelvesSeasonNumber then
+		local okS, sn = pcall(C_DelvesUI.GetCurrentDelvesSeasonNumber)
+		if okS and sn ~= nil then
+			season = math.floor(tonumber(sn) or 1)
+		end
+	end
+
+	local factionID
+	if C_DelvesUI and C_DelvesUI.GetDelvesFactionForSeason then
+		local okF, fid = pcall(C_DelvesUI.GetDelvesFactionForSeason, season)
+		if okF and fid then
+			factionID = fid
+		end
+	end
+
+	if factionID and C_MajorFactions and C_MajorFactions.GetMajorFactionData then
+		local okD, data = pcall(C_MajorFactions.GetMajorFactionData, factionID)
+		if okD and data and type(data) == "table" and data.renownLevel ~= nil then
+			local rank = math.floor(tonumber(data.renownLevel) or 0)
+			local repAmount = math.floor(tonumber(data.renownReputationEarned or data.renownReputationYielded) or 0)
+			local repMax = math.floor(tonumber(data.renownLevelThreshold or data.renownRequirement) or 0)
+			journeyHeader:SetText(string.format("Delver's Journey: Rank %d (%d / %d)", rank, repAmount, repMax))
+			journeyHeader:SetTextColor(1, 0.95, 0.88)
+			journeyHeader:Show()
+		else
+			journeyHeader:Hide()
+		end
+	else
+		journeyHeader:Hide()
+	end
+
+	local anchorHeader = (journeyHeader:IsShown() and journeyHeader) or valeeraHeader
+
+	-- Parent to the Delves module frame only — never ns.mainUIContent (that region stays visible on every tab).
+	do
+		if not ns.curioFrames then
+			ns.curioFrames = {}
+			for i = 1, 2 do
+				local cf = CreateFrame("Frame", nil, frame)
+				cf:SetSize(160, 16)
+				cf:EnableMouse(true)
+				cf.icon = cf:CreateTexture(nil, "ARTWORK")
+				cf.icon:SetSize(14, 14)
+				cf.icon:SetPoint("LEFT")
+				cf.text = cf:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+				cf.text:SetPoint("LEFT", cf.icon, "RIGHT", 4, 0)
+
+				cf:SetScript("OnEnter", function(self)
+					if self.spellID and GameTooltip.SetSpellByID then
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+						GameTooltip:SetSpellByID(self.spellID)
+						GameTooltip:Show()
+					end
+				end)
+				cf:SetScript("OnLeave", function()
+					GameTooltip:Hide()
+				end)
+				ns.curioFrames[i] = cf
+			end
+		else
+			for i = 1, 2 do
+				local cf = ns.curioFrames[i]
+				if cf and cf:GetParent() ~= frame then
+					cf:SetParent(frame)
+				end
+			end
+		end
+
+		local cName, cIcon, cSpell = GetActiveCurio(0)
+		local uName, uIcon, uSpell = GetActiveCurio(1)
+		local cFid = CurioTextureFileID(cIcon)
+		local uFid = CurioTextureFileID(uIcon)
+		local showCurios = false
+
+		ns.curioFrames[1]:SetPoint("TOPLEFT", anchorHeader, "BOTTOMLEFT", 0, -6)
+
+		if cName and cSpell and cFid then
+			ns.curioFrames[1].icon:SetTexture(cFid)
+			ns.curioFrames[1].text:SetText(cName)
+			ns.curioFrames[1].spellID = cSpell
+			ns.curioFrames[1]:Show()
+			showCurios = true
+		else
+			ns.curioFrames[1]:Hide()
+		end
+
+		if uName and uSpell and uFid then
+			ns.curioFrames[2].icon:SetTexture(uFid)
+			ns.curioFrames[2].text:SetText(uName)
+			ns.curioFrames[2].spellID = uSpell
+			if not showCurios then
+				ns.curioFrames[2]:SetPoint("TOPLEFT", anchorHeader, "BOTTOMLEFT", 0, -6)
+			else
+				ns.curioFrames[2]:SetPoint("LEFT", ns.curioFrames[1], "RIGHT", ns.curioFrames[1].text:GetStringWidth() + 15, 0)
+			end
+			ns.curioFrames[2]:Show()
+			showCurios = true
+		else
+			ns.curioFrames[2]:Hide()
+		end
+
+		if showCurios then
+			local anchorCurio = ns.curioFrames[1]:IsShown() and ns.curioFrames[1] or ns.curioFrames[2]
+			delvesTitle:SetPoint("TOPLEFT", anchorCurio, "BOTTOMLEFT", 0, -10)
+		else
+			delvesTitle:SetPoint("TOPLEFT", anchorHeader, "BOTTOMLEFT", 0, -10)
+		end
+	end
+
+	RequestTrackedCurrencyData()
+	local keyQty = GetCurrencyQuantity(CURRENCY_COFFER_KEY)
+	local shardQty, shardMax = GetShardQuantityAndMax()
+	local underQty = GetCurrencyQuantity(CURRENCY_UNDERCOIN)
+	currencyHeader:SetText(
+		string.format("Keys: %d | Shards: %d / %d | Undercoins: %d", keyQty, shardQty, shardMax, underQty)
+	)
+
+	local roster = ns.MIDNIGHT_DELVES or MIDNIGHT_DELVES
+	leftColumn.rows = leftColumn.rows or {}
+	rightColumn.rows = rightColumn.rows or {}
+
+	local w = frame:GetWidth() or 0
+	if w < 80 then
+		w = (ns.mainUI and ns.mainUI:GetWidth()) or 820
+	end
+	local inner = math.max(400, w - 48)
+	local colW = (inner - COL_GAP) / 2
+	leftColumn:SetWidth(colW)
+	rightColumn:SetWidth(colW)
+
+	local usedLeft, usedRight = 0, 0
+	for i, packed in ipairs(roster) do
+		local bountiful, bountifulAtlas = GetDelveBountifulState(packed[5])
+		local item = {
+			questID = packed[1],
+			mapID = packed[2],
+			x = packed[3],
+			y = packed[4],
+			name = packed[5],
+			isBountiful = bountiful,
+			bountifulAtlas = bountifulAtlas,
+		}
+		local col, colIdx
+		if i <= 5 then
+			col = leftColumn
+			colIdx = i
+			usedLeft = colIdx
+		else
+			col = rightColumn
+			colIdx = i - 5
+			usedRight = colIdx
+		end
+		local row = EnsureDelveRowButton(col, col.rows, colIdx, colW)
+		ApplyDelveRowVisuals(row, item)
+		row:Show()
+	end
+
+	for j = usedLeft + 1, #leftColumn.rows do
+		leftColumn.rows[j]:Hide()
+	end
+	for j = usedRight + 1, #rightColumn.rows do
+		rightColumn.rows[j]:Hide()
+	end
+
+	local h = math.max(usedLeft, usedRight, 1) * TRACKER_ROW_HEIGHT
+	leftColumn:SetHeight(h)
+	rightColumn:SetHeight(h)
+
+	--------------------------------------------------------------------------------
+	-- Phase 10.1: Vault header + 3 boxes always created here (Delves frame only — not mainUIContent).
+	--------------------------------------------------------------------------------
+	do
+		local parent = frame
+		if ns.vaultSepLine then
+			ns.vaultSepLine:Hide()
+		end
+
+		if not ns.vaultHeader then
+			ns.vaultHeader = parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			ns.vaultHeader:SetText("Weekly Great Vault (World)")
+		elseif ns.vaultHeader:GetParent() ~= parent then
+			ns.vaultHeader:SetParent(parent)
+		end
+
+		ns.vaultHeader:ClearAllPoints()
+		if leftColumn and leftColumn.rows and leftColumn.rows[5] then
+			ns.vaultHeader:SetPoint("TOPLEFT", leftColumn.rows[5], "BOTTOMLEFT", 0, -25)
+		else
+			ns.vaultHeader:SetPoint("TOPLEFT", delvesTitle, "BOTTOMLEFT", 0, -180)
+		end
+
+		if not ns.vaultBoxes then
+			ns.vaultBoxes = {}
+			for i = 1, 3 do
+				local f = CreateFrame("Frame", nil, parent, "BackdropTemplate")
+				f:SetSize(140, 60)
+				f:EnableMouse(true)
+				f:SetBackdrop({
+					bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
+					edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+					tile = true,
+					tileSize = 16,
+					edgeSize = 16,
+					insets = { left = 3, right = 3, top = 3, bottom = 3 },
+				})
+				f:SetBackdropColor(0, 0, 0, 0.8)
+
+				f.icon = f:CreateTexture(nil, "ARTWORK")
+				f.icon:SetSize(28, 28)
+				f.icon:SetPoint("TOP", 0, -6)
+
+				f.text = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+				f.text:SetPoint("BOTTOM", 0, 6)
+
+				f:SetScript("OnEnter", function(self)
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+					GameTooltip:ClearLines()
+					LoadWeeklyRewardsUI()
+					local aid = self.activityID
+					local usedWeekly = false
+					if aid and GameTooltip.SetWeeklyReward then
+						usedWeekly = select(1, pcall(GameTooltip.SetWeeklyReward, GameTooltip, aid))
+					end
+					if usedWeekly then
+						GameTooltip:Show()
+						return
+					end
+					if aid and C_WeeklyRewards and C_WeeklyRewards.GetExampleRewardItemHyperlinks then
+						local okH, first, second = pcall(C_WeeklyRewards.GetExampleRewardItemHyperlinks, aid)
+						local link = okH and (type(first) == "string" and first or (type(second) == "string" and second)) or nil
+						if link and GameTooltip.SetHyperlink then
+							pcall(GameTooltip.SetHyperlink, GameTooltip, link)
+							GameTooltip:Show()
+							return
+						end
+					end
+					GameTooltip:SetText("Complete more delves to unlock this reward.")
+					GameTooltip:Show()
+				end)
+				f:SetScript("OnLeave", function()
+					GameTooltip:Hide()
+				end)
+
+				ns.vaultBoxes[i] = f
+			end
+		else
+			for i = 1, 3 do
+				local f = ns.vaultBoxes[i]
+				if f and f:GetParent() ~= parent then
+					f:SetParent(parent)
+				end
+			end
+		end
+
+		ns.vaultBoxes[1]:ClearAllPoints()
+		ns.vaultBoxes[1]:SetPoint("TOPLEFT", ns.vaultHeader, "BOTTOMLEFT", 0, -10)
+		for i = 2, 3 do
+			ns.vaultBoxes[i]:ClearAllPoints()
+			ns.vaultBoxes[i]:SetPoint("LEFT", ns.vaultBoxes[i - 1], "RIGHT", 15, 0)
+		end
+
+		local vaultData = GetVaultProgress()
+		for i = 1, 3 do
+			local data = vaultData and vaultData[i]
+			local box = ns.vaultBoxes[i]
+			if data then
+				box.activityID = data.activityID
+				box.itemLink = data.itemLink
+				box.vaultData = data
+				if data.unlocked then
+					box.icon:SetTexture(133784)
+					box.text:SetText(string.format("Tier %d (ilvl %d)", data.level or 0, data.ilvl or 0))
+					box.text:SetTextColor(1, 0.82, 0)
+					box:SetBackdropBorderColor(1, 0.82, 0, 1)
+				else
+					box.icon:SetTexture(134400)
+					box.text:SetText(string.format("[%d/%d] Locked", data.progress or 0, data.threshold or 0))
+					box.text:SetTextColor(0.5, 0.5, 0.5)
+					box:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
+				end
+				box:Show()
+			else
+				box:Hide()
+			end
+		end
+
+		if bestBtn then
+			bestBtn:ClearAllPoints()
+			bestBtn:SetPoint("TOP", ns.vaultBoxes[2], "BOTTOM", 0, -25)
+		end
+	end
+end
+
+-- Refresh Valeera role line after the player changes role in Blizzard's Delves companion UI.
+local function HookDelvesCompanionFrameForRoleRefresh()
+	if ns._mhDelvesCompanionCfgHooked then
+		return
+	end
+	local f = _G.DelvesCompanionConfigurationFrame
+	if not f or f._mhRoleRefreshHooked then
+		return
+	end
+	f._mhRoleRefreshHooked = true
+	ns._mhDelvesCompanionCfgHooked = true
+	local function maybeRefreshDelvesHeader()
+		if frame and frame:IsVisible() then
+			RefreshDelvesPanel()
+		end
+	end
+	f:HookScript("OnHide", maybeRefreshDelvesHeader)
+	f:HookScript("OnShow", maybeRefreshDelvesHeader)
+end
+
+local function OnFindNearestBountifulClick()
+	if not _G.TomTom or type(_G.TomTom.AddWaypoint) ~= "function" then
+		print("Midnight Helper: TomTom not found!")
+		return
+	end
+
+	for _, row in ipairs(MIDNIGHT_DELVES) do
+		local _, mapID, x, yPct, name = row[1], row[2], row[3], row[4], row[5]
+		if select(1, GetDelveBountifulState(name)) then
+			if AddTomTomWay(mapID, x, yPct, name) then
+				print("|cffffff78Midnight Helper:|r TomTom: Nearest bountiful delve — " .. tostring(name))
+			end
+			return
+		end
+	end
+
+	print("|cffffff78Midnight Helper:|r No bountiful delve found (roster order / GetDelvesForMap).")
+end
+
+local function CreateEventBridge()
+	if eventFrame then
+		return
+	end
+	eventFrame = CreateFrame("Frame", nil, UIParent)
+	eventFrame:Hide()
+	eventFrame:RegisterEvent("ADDON_LOADED")
+	eventFrame:RegisterEvent("PLAYER_LOGIN")
+	eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+	eventFrame:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
+	eventFrame:RegisterEvent("AREA_POIS_UPDATED")
+	eventFrame:RegisterEvent("MAJOR_FACTION_RENOWN_LEVEL_CHANGED")
+	eventFrame:RegisterEvent("TRAIT_CONFIG_UPDATED")
+	eventFrame:RegisterEvent("WEEKLY_REWARDS_UPDATE")
+	eventFrame:SetScript("OnEvent", function(_, event, loadedName)
+		if event == "ADDON_LOADED" then
+			if loadedName == "Blizzard_DelvesCompanionConfiguration" or loadedName == "Blizzard_EncounterJournal" then
+				HookDelvesCompanionFrameForRoleRefresh()
+			end
+		elseif event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
+			RequestTrackedCurrencyData()
+			HookDelvesCompanionFrameForRoleRefresh()
+		end
+		if frame and frame:IsVisible() then
+			RefreshDelvesPanel()
+		end
+	end)
+end
+
+local function SetupDelvesModule()
+	if frame then
+		return
+	end
+
+	local panel = ns.panels and ns.panels.delves
+	if not panel then
+		return
+	end
+
+	if panel._body then
+		panel._body:Hide()
+	end
+	if panel._header then
+		panel._header:Hide()
+	end
+
+	frame = CreateFrame("Frame", "MidnightHelperDelvesFrame", panel)
+	frame:SetAllPoints(panel)
+
+	valeeraHeader = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalMed2")
+	valeeraHeader:SetPoint("TOPLEFT", 16, -10)
+	valeeraHeader:SetPoint("RIGHT", frame, "RIGHT", -20, 0)
+	valeeraHeader:SetJustifyH("LEFT")
+	valeeraHeader:SetWordWrap(true)
+
+	journeyHeader = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+	journeyHeader:SetPoint("TOPLEFT", valeeraHeader, "BOTTOMLEFT", 0, -4)
+	journeyHeader:SetPoint("RIGHT", frame, "RIGHT", -20, 0)
+	journeyHeader:SetJustifyH("LEFT")
+	journeyHeader:SetWordWrap(true)
+	journeyHeader:Hide()
+
+	-- Interactive curio rows (ns.curioFrames) are children of the Delves panel frame so they hide with the Delves tab.
+
+	delvesTitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+	delvesTitle:SetPoint("TOPLEFT", journeyHeader, "BOTTOMLEFT", 0, -6)
+	delvesTitle:SetText("Midnight Delves")
+
+	currencyHeader = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	currencyHeader:SetPoint("TOPLEFT", delvesTitle, "BOTTOMLEFT", 0, -8)
+	currencyHeader:SetPoint("RIGHT", frame, "RIGHT", -20, 0)
+	currencyHeader:SetJustifyH("LEFT")
+	currencyHeader:SetWordWrap(true)
+
+	leftColumn = CreateFrame("Frame", nil, frame)
+	rightColumn = CreateFrame("Frame", nil, frame)
+	leftColumn:EnableMouse(false)
+	rightColumn:EnableMouse(false)
+	leftColumn.rows = {}
+	rightColumn.rows = {}
+
+	bestBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+	bestBtn:SetSize(310, 26)
+	bestBtn:SetText("Find Nearest Bountiful")
+	bestBtn:SetScript("OnClick", OnFindNearestBountifulClick)
+
+	leftColumn:SetPoint("TOPLEFT", currencyHeader, "BOTTOMLEFT", 0, -14)
+	rightColumn:SetPoint("TOPLEFT", leftColumn, "TOPRIGHT", COL_GAP, 0)
+
+	-- Footer button sits below the Great Vault strip once that UI is built; until then, pin to frame bottom.
+	bestBtn:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 16, 12)
+
+	frame:SetScript("OnShow", function()
+		RequestTrackedCurrencyData()
+		HookDelvesCompanionFrameForRoleRefresh()
+		RefreshDelvesPanel()
+	end)
+
+	frame:SetScript("OnSizeChanged", function()
+		if frame:IsVisible() then
+			RefreshDelvesPanel()
+		end
+	end)
+
+	CreateEventBridge()
+	ns.DelvesFrame = frame
+end
+
+local function RefreshGreatVaultPanel()
+	if frame and frame:IsVisible() then
+		RefreshDelvesPanel()
+	end
+end
+
+ns.RefreshGreatVaultPanel = RefreshGreatVaultPanel
+
+local function HookEnsureMainUI()
+	if ns._mhDelvesEnsureHooked then
+		return
+	end
+	ns._mhDelvesEnsureHooked = true
+
+	local orig = ns.EnsureMainUI
+	function ns:EnsureMainUI(...)
+		local main = orig(self, ...)
+		SetupDelvesModule()
+		RefreshDelvesPanel()
+		return main
+	end
+end
+
+HookEnsureMainUI()

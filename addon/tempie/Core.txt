@@ -1,0 +1,127 @@
+--[[
+	MidnightHelper - Core.lua (load order: first)
+
+	This file owns saved-variable initialization, a hidden event frame, and
+	slash-command routing. The Blizzard client passes (addonName, ns) via ...
+	to every TOC-loaded file; all modules share the same `ns` table.
+]]
+
+--------------------------------------------------------------------------------
+-- Namespace: addonName + private addon table (ns), provided by the client.
+--------------------------------------------------------------------------------
+local addonName, ns = ...
+
+--------------------------------------------------------------------------------
+-- Default settings merged into MidnightHelperDB on first run
+--------------------------------------------------------------------------------
+local DEFAULT_DB = {
+	ui = {
+		-- If true, the main window will be shown automatically after login.
+		openOnLogin = false,
+		debug = false,
+	},
+}
+
+local function MergeDefaults(target, defaults)
+	if type(target) ~= "table" then
+		target = {}
+	end
+	for k, v in pairs(defaults) do
+		if type(v) == "table" then
+			target[k] = MergeDefaults(target[k], v)
+		elseif target[k] == nil then
+			target[k] = v
+		end
+	end
+	return target
+end
+
+--------------------------------------------------------------------------------
+-- Saved variables: MidnightHelperDB (see MidnightHelper.toc)
+--------------------------------------------------------------------------------
+function ns:InitSavedVariables()
+	if type(MidnightHelperDB) ~= "table" then
+		MidnightHelperDB = {}
+	end
+
+	MergeDefaults(MidnightHelperDB, DEFAULT_DB)
+	self.db = MidnightHelperDB
+end
+
+--------------------------------------------------------------------------------
+-- Central event dispatcher
+--------------------------------------------------------------------------------
+function ns:OnEvent(event, ...)
+	if event == "ADDON_LOADED" then
+		local loadedAddon = ...
+		if loadedAddon ~= addonName then
+			return
+		end
+
+		self:InitSavedVariables()
+
+		-- Trigger module setup in a single, predictable call.
+		-- Both Delves and Profession hook EnsureMainUI; calling it once here
+		-- ensures they initialise in TOC load order, not in hook-wrapping order.
+		if self.EnsureMainUI then
+			self:EnsureMainUI()
+		end
+
+		if self.db and self.db.ui and self.db.ui.openOnLogin and self.ShowMainUI then
+			self:ShowMainUI()
+		end
+
+		self.eventFrame:UnregisterEvent("ADDON_LOADED")
+		return
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Hidden core frame: registers events and forwards to ns:OnEvent
+--------------------------------------------------------------------------------
+ns.eventFrame = CreateFrame("Frame", "MidnightHelperEventFrame", UIParent)
+ns.eventFrame:SetScript("OnEvent", function(_, event, ...)
+	ns:OnEvent(event, ...)
+end)
+ns.eventFrame:RegisterEvent("ADDON_LOADED")
+
+--------------------------------------------------------------------------------
+-- Slash commands: /mh and /midnight toggle the main window (implemented in UI.lua)
+--------------------------------------------------------------------------------
+SLASH_MIDNIGHTHELPER1 = "/mh"
+SLASH_MIDNIGHTHELPER2 = "/midnight"
+
+SlashCmdList["MIDNIGHTHELPER"] = function(msg)
+	msg = (msg or ""):gsub("^%s+", ""):gsub("%s+$", "")
+
+	if msg == "debug" then
+		-- Toggle debug mode
+		if ns.db and ns.db.ui then
+			ns.db.ui.debug = not ns.db.ui.debug
+		end
+		local state = (ns.db and ns.db.ui and ns.db.ui.debug) and "ON" or "OFF"
+		print("|cffffcc00Midnight Helper:|r Debug mode " .. state)
+
+		-- Dump current state
+		print("  ns.panels:       " .. (ns.panels and "ok" or "NIL"))
+		print("  ns.DelvesFrame:  " .. (ns.DelvesFrame and "ok" or "NIL"))
+		print("  ns.ProfessionFrame: " .. (ns.ProfessionFrame and "ok" or "NIL"))
+		print("  ns.mainUI:       " .. (ns.mainUI and "ok" or "NIL"))
+		print("  ns.db:           " .. (ns.db and "ok" or "NIL"))
+		print("  uiSelectedTab:   " .. tostring(ns.uiSelectedTab))
+		return
+	end
+
+	if msg ~= "" then
+		DEFAULT_CHAT_FRAME:AddMessage(
+			("|cffffcc00Midnight Helper:|r Unknown command %q. Use /mh to toggle, /mh debug to inspect."):format(msg)
+		)
+		return
+	end
+
+	if ns.ToggleMainWindow then
+		ns:ToggleMainWindow()
+	else
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Midnight Helper:|r UI is still loading.")
+	end
+end

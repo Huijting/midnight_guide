@@ -1,0 +1,244 @@
+--[[
+	MidnightHelper - UI.lua
+
+	Builds the main shell: movable/resizable frame, background, title, tab bar,
+	and module host panels. Core.lua toggles visibility via ns:ToggleMainWindow.
+]]
+
+local addonName, ns = ...
+
+--------------------------------------------------------------------------------
+-- Layout constants (tweak in one place)
+--------------------------------------------------------------------------------
+-- Wider default so Professions tab can show two treasure columns side-by-side.
+local DEFAULT_WIDTH = 820
+-- Tall enough for companion + curios + delve grid + vault row + footer button (~500–600px content).
+local DEFAULT_HEIGHT = 560
+local SIDEBAR_WIDTH = 132
+local TITLE_BAR_HEIGHT = 32
+local RESIZE_GRIP_SIZE = 16
+local MIN_WIDTH, MIN_HEIGHT = 620, 440
+local MAX_WIDTH, MAX_HEIGHT = 1000, 800
+
+--------------------------------------------------------------------------------
+-- Tab configuration: order = display order in the sidebar
+--------------------------------------------------------------------------------
+local TABS = {
+	{ id = "delves", label = "Delves & Vault" },
+	{ id = "professions", label = "Professions" },
+}
+
+--------------------------------------------------------------------------------
+-- Forward declarations (filled in after main UI exists)
+--------------------------------------------------------------------------------
+local SelectTab
+
+--------------------------------------------------------------------------------
+-- Main shell: MidnightHelperMainUI
+--------------------------------------------------------------------------------
+function ns:EnsureMainUI()
+	if self.mainUI then
+		return self.mainUI
+	end
+
+	local main = CreateFrame("Frame", "MidnightHelperMainUI", UIParent)
+	main:SetSize(DEFAULT_WIDTH, DEFAULT_HEIGHT)
+	main:SetPoint("CENTER")
+	main:SetFrameStrata("MEDIUM")
+	main:SetFrameLevel(100)
+	main:SetMovable(true)
+	main:SetResizable(true)
+	main:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)
+	main:SetClampedToScreen(true)
+	main:EnableMouse(true)
+	main:Hide()
+
+	-- Let Escape hide this window (same list the client uses for “special” overlays).
+	-- Requires a global frame name; see CloseSpecialWindows in Blizzard’s UI code.
+	tinsert(UISpecialFrames, main:GetName())
+
+	-- Background fill (Widget API: texture instead of relying on backdrop alone).
+	local bg = main:CreateTexture(nil, "BACKGROUND", nil, -8)
+	bg:SetAllPoints()
+	bg:SetColorTexture(0.06, 0.06, 0.09, 0.92)
+
+	-- Subtle inner edge to separate chrome from content without a full border atlas.
+	local edge = main:CreateTexture(nil, "BORDER")
+	edge:SetPoint("TOPLEFT", 1, -1)
+	edge:SetPoint("BOTTOMRIGHT", -1, 1)
+	edge:SetColorTexture(0, 0, 0, 0.35)
+
+	-- Title strip (drag handle); moving is started from here so tabs stay easy to click.
+	local titleBar = CreateFrame("Frame", nil, main)
+	titleBar:SetHeight(TITLE_BAR_HEIGHT)
+	titleBar:SetPoint("TOPLEFT", main, "TOPLEFT", 0, 0)
+	titleBar:SetPoint("TOPRIGHT", main, "TOPRIGHT", 0, 0)
+	titleBar:EnableMouse(true)
+	titleBar:RegisterForDrag("LeftButton")
+	titleBar:SetScript("OnDragStart", function()
+		main:StartMoving()
+	end)
+	titleBar:SetScript("OnDragStop", function()
+		main:StopMovingOrSizing()
+	end)
+
+	local titleHighlight = titleBar:CreateTexture(nil, "BACKGROUND")
+	titleHighlight:SetAllPoints()
+	titleHighlight:SetColorTexture(0.12, 0.12, 0.16, 0.85)
+
+	local title = main:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+	title:SetPoint("LEFT", titleBar, "LEFT", 12, 0)
+	title:SetText("Midnight Helper")
+
+	-- Close hides the shell; slash can reopen.
+	local closeBtn = CreateFrame("Button", nil, titleBar, "UIPanelCloseButton")
+	closeBtn:SetPoint("RIGHT", titleBar, "RIGHT", -4, 0)
+	closeBtn:SetScript("OnClick", function()
+		main:Hide()
+	end)
+
+	-- Sidebar column for module tabs (left, below title bar).
+	local sidebar = CreateFrame("Frame", nil, main)
+	sidebar:SetWidth(SIDEBAR_WIDTH)
+	sidebar:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 0, 0)
+	sidebar:SetPoint("BOTTOMLEFT", main, "BOTTOMLEFT", 0, RESIZE_GRIP_SIZE)
+
+	local sidebarBg = sidebar:CreateTexture(nil, "ARTWORK", nil, -7)
+	sidebarBg:SetAllPoints()
+	sidebarBg:SetColorTexture(0.1, 0.1, 0.14, 0.9)
+
+	-- Content region: hosts one visible module panel at a time.
+	local content = CreateFrame("Frame", nil, main)
+	content:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", SIDEBAR_WIDTH, 0)
+	content:SetPoint("BOTTOMRIGHT", main, "BOTTOMRIGHT", -RESIZE_GRIP_SIZE, RESIZE_GRIP_SIZE)
+
+	local contentBg = content:CreateTexture(nil, "BACKGROUND")
+	contentBg:SetAllPoints()
+	contentBg:SetColorTexture(0.04, 0.04, 0.06, 0.65)
+
+	-- Module panels: siblings in `content`; tab clicks toggle visibility.
+	ns.panels = ns.panels or {}
+
+	local function CreateModulePanel(id, displayName)
+		local panel = CreateFrame("Frame", nil, content)
+		panel:SetAllPoints()
+		panel:Hide()
+
+		local header = panel:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
+		header:SetPoint("TOPLEFT", 12, -12)
+		header:SetText(displayName)
+		panel._header = header
+
+		local body = panel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+		body:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 0, -8)
+		body:SetWidth(content:GetWidth() - 24)
+		body:SetJustifyH("LEFT")
+		body:SetText("Module placeholder — content for \"" .. displayName .. "\" will mount here.")
+
+		panel._body = body
+		panel:SetScript("OnShow", function()
+			body:SetWidth(panel:GetWidth() - 24)
+		end)
+
+		ns.panels[id] = panel
+		return panel
+	end
+
+	for _, tab in ipairs(TABS) do
+		CreateModulePanel(tab.id, tab.label)
+	end
+
+	-- Tab buttons stacked in the sidebar.
+	ns.tabButtons = ns.tabButtons or {}
+	local y = -8
+	for i, tab in ipairs(TABS) do
+		local btn = CreateFrame("Button", "MidnightHelperTab_" .. tab.id, sidebar, "UIPanelButtonTemplate")
+		btn:SetSize(SIDEBAR_WIDTH - 16, 28)
+		btn:SetPoint("TOPLEFT", sidebar, "TOPLEFT", 8, y)
+		btn:SetText(tab.label)
+		btn:SetScript("OnClick", function()
+			SelectTab(tab.id)
+		end)
+		ns.tabButtons[tab.id] = btn
+		y = y - 34
+	end
+
+	-- Resize grip: bottom-right corner uses StartSizing so the shell stays resizable.
+	local grip = CreateFrame("Button", nil, main)
+	grip:SetSize(RESIZE_GRIP_SIZE, RESIZE_GRIP_SIZE)
+	grip:SetPoint("BOTTOMRIGHT", main, "BOTTOMRIGHT", -2, 2)
+	grip:RegisterForDrag("LeftButton")
+	-- Simple corner affordance; drag starts BOTTOMRIGHT sizing on the main frame.
+	grip:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-Maximize")
+	grip:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
+	grip:SetScript("OnDragStart", function()
+		main:StartSizing("BOTTOMRIGHT")
+	end)
+	grip:SetScript("OnDragStop", function()
+		main:StopMovingOrSizing()
+	end)
+
+	self.mainUI = main
+	self.mainUIContent = content
+
+	-- Old keys: standalone Great Vault tab merged into Delves dashboard.
+	if ns.uiSelectedTab == "dungeons" or ns.uiSelectedTab == "vault" then
+		ns.uiSelectedTab = "delves"
+	end
+
+	-- Default tab on first open
+	SelectTab(ns.uiSelectedTab or "delves")
+
+	return main
+end
+
+--------------------------------------------------------------------------------
+-- Tab routing: one module frame visible at a time
+--------------------------------------------------------------------------------
+SelectTab = function(tabId)
+	if not ns.panels or not ns.panels[tabId] then
+		return
+	end
+
+	ns.uiSelectedTab = tabId
+
+	for id, panel in pairs(ns.panels) do
+		if id == tabId then
+			panel:Show()
+		else
+			panel:Hide()
+		end
+	end
+
+	-- Optional visual state on tab buttons (pressed vs normal texture tint is template-specific;
+	-- we at least disable the active tab to show which panel is live).
+	-- Light visual emphasis for the active tab (keep all buttons enabled so users can switch).
+	if ns.tabButtons then
+		for id, btn in pairs(ns.tabButtons) do
+			if id == tabId then
+				btn:SetAlpha(1)
+			else
+				btn:SetAlpha(0.78)
+			end
+		end
+	end
+end
+
+ns.SelectTab = SelectTab
+
+--------------------------------------------------------------------------------
+-- Public entry points used by Core.lua and slash commands
+--------------------------------------------------------------------------------
+function ns:ToggleMainWindow()
+	local main = self:EnsureMainUI()
+	if main:IsShown() then
+		main:Hide()
+	else
+		main:Show()
+	end
+end
+
+function ns:ShowMainUI()
+	local main = self:EnsureMainUI()
+	main:Show()
+end
