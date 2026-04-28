@@ -1,12 +1,11 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Shadowguard Point",
-    "Eversong Woods: The Shadow Enclave"
+    "Zul'Aman: Atal'Aman",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "shadowguard_point",
-    "shadow_enclave"
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-27 10:25:46"
+  "last_updated": "2026-04-28 09:30:23"
 }
