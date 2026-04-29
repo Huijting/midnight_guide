@@ -1,11 +1,14 @@
 {
   "bountiful_delves": [
-    "Zul'Aman: Atal'Aman",
-    "Active"
+    "Voidstorm: Shadowguard Point",
+    "Harandar: The Gulf of Memory",
+    "Silvermoon City: The Darkway"
   ],
   "bountiful_delve_ids": [
-    "atalaman"
+    "shadowguard_point",
+    "gulf_of_memory",
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-04-28 10:24:15"
+  "last_updated": "2026-04-29 09:20:05"
 }
