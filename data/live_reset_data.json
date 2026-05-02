@@ -1,12 +1,14 @@
 {
   "bountiful_delves": [
+    "Harandar: The Grudge Pit",
     "Eversong Woods: The Shadow Enclave",
     "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
+    "grudge_pit",
     "shadow_enclave",
     "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-05-02 08:51:51"
+  "last_updated": "2026-05-02 09:18:06"
 }
