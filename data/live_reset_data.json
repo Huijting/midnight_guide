@@ -1,14 +1,11 @@
 {
   "bountiful_delves": [
-    "Harandar: The Grudge Pit",
-    "Eversong Woods: The Shadow Enclave",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: Collegiate Calamity",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "grudge_pit",
-    "shadow_enclave",
-    "atalaman"
+    "collegiate_calamity"
   ],
   "daily_prey": [],
-  "last_updated": "2026-05-02 09:18:06"
+  "last_updated": "2026-05-03 08:53:02"
 }
