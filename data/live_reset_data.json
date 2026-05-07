@@ -1,14 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Harandar: The Grudge Pit",
-    "Zul'Aman: Atal'Aman"
+    "Voidstorm: Shadowguard Point",
+    "Eversong Woods: The Shadow Enclave"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "grudge_pit",
-    "atalaman"
+    "shadowguard_point",
+    "shadow_enclave"
   ],
   "daily_prey": [],
-  "last_updated": "2026-05-06 10:26:16"
+  "last_updated": "2026-05-07 09:42:14"
 }
