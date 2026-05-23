@@ -1,9 +1,11 @@
 {
   "bountiful_delves": [
-    "Active",
+    "Voidstorm: Shadowguard Point",
     "Active"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "shadowguard_point"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-05-23 09:25:18"
+  "last_updated": "2026-05-23 10:02:52"
 }
