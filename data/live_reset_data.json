@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Shadowguard Point",
-    "Active"
+    "Silvermoon City: The Darkway",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "shadowguard_point"
+    "the_darkway",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-05-23 10:02:52"
+  "last_updated": "2026-05-24 09:24:32"
 }
