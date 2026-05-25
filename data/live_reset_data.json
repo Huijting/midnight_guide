@@ -1,12 +1,16 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: The Darkway",
-    "Zul'Aman: Atal'Aman"
+    "Voidstorm: Shadowguard Point",
+    "Harandar: The Gulf of Memory",
+    "Eversong Woods: The Shadow Enclave",
+    "Zul'Aman: Twilight Crypts"
   ],
   "bountiful_delve_ids": [
-    "the_darkway",
-    "atalaman"
+    "shadowguard_point",
+    "gulf_of_memory",
+    "shadow_enclave",
+    "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-05-24 10:04:15"
+  "last_updated": "2026-05-25 11:15:20"
 }
