@@ -1,12 +1,11 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: Collegiate Calamity",
-    "Voidstorm: Shadowguard Point"
+    "Eversong Woods: The Shadow Enclave",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "collegiate_calamity",
-    "shadowguard_point"
+    "shadow_enclave"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-04 11:24:08"
+  "last_updated": "2026-06-05 10:52:42"
 }
