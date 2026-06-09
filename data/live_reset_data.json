@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Zul'Aman: Atal'Aman",
-    "Active"
+    "Harandar: The Grudge Pit",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
+    "grudge_pit",
     "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-09 10:47:18"
+  "last_updated": "2026-06-09 11:27:43"
 }
