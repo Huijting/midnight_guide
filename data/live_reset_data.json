@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Eversong Woods: The Shadow Enclave",
-    "Active"
+    "Harandar: The Gulf of Memory",
+    "Eversong Woods: The Shadow Enclave"
   ],
   "bountiful_delve_ids": [
+    "gulf_of_memory",
     "shadow_enclave"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-10 11:05:42"
+  "last_updated": "2026-06-10 11:25:30"
 }
