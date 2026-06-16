@@ -1,14 +1,11 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Silvermoon City: The Darkway",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: Collegiate Calamity",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "the_darkway",
-    "atalaman"
+    "collegiate_calamity"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-15 14:32:37"
+  "last_updated": "2026-06-16 12:17:43"
 }
