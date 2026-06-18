@@ -1,14 +1,11 @@
 {
   "bountiful_delves": [
-    "Isle of Quel'Danas: Parhelion Plaza",
-    "Harandar: The Grudge Pit",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: The Darkway",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "parhelion_plaza",
-    "grudge_pit",
-    "atalaman"
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-17 12:23:15"
+  "last_updated": "2026-06-18 11:13:18"
 }
