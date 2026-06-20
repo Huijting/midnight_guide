@@ -1,12 +1,11 @@
 {
   "bountiful_delves": [
-    "Eversong Woods: The Shadow Enclave",
-    "Zul'Aman: Atal'Aman"
+    "Silvermoon City: The Darkway",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "shadow_enclave",
-    "atalaman"
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-06-19 12:16:04"
+  "last_updated": "2026-06-20 10:11:54"
 }
