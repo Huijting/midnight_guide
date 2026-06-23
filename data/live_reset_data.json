@@ -1,12 +1,9 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: Collegiate Calamity",
-    "Voidstorm: Shadowguard Point"
+    "Active",
+    "Active"
   ],
-  "bountiful_delve_ids": [
-    "collegiate_calamity",
-    "shadowguard_point"
-  ],
+  "bountiful_delve_ids": [],
   "daily_prey": [],
-  "last_updated": "2026-06-22 13:42:46"
+  "last_updated": "2026-06-23 10:39:27"
 }
