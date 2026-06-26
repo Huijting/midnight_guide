@@ -1,9 +1,12 @@
 {
   "bountiful_delves": [
-    "Active",
-    "Active"
+    "Voidstorm: Shadowguard Point",
+    "Eversong Woods: The Shadow Enclave"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "shadowguard_point",
+    "shadow_enclave"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-06-26 10:38:15"
+  "last_updated": "2026-06-26 11:11:55"
 }
