@@ -1,12 +1,9 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Silvermoon City: The Darkway"
+    "Active",
+    "Active"
   ],
-  "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "the_darkway"
-  ],
+  "bountiful_delve_ids": [],
   "daily_prey": [],
-  "last_updated": "2026-06-25 10:51:18"
+  "last_updated": "2026-06-26 10:26:06"
 }
