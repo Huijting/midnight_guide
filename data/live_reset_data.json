@@ -1,12 +1,9 @@
 {
   "bountiful_delves": [
-    "Eversong Woods: The Shadow Enclave",
-    "Zul'Aman: Atal'Aman"
+    "Active",
+    "Active"
   ],
-  "bountiful_delve_ids": [
-    "shadow_enclave",
-    "atalaman"
-  ],
+  "bountiful_delve_ids": [],
   "daily_prey": [],
-  "last_updated": "2026-07-13 11:26:04"
+  "last_updated": "2026-07-14 09:10:59"
 }
