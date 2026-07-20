@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Eversong Woods: The Shadow Enclave",
-    "Active"
+    "Voidstorm: Shadowguard Point",
+    "Silvermoon City: The Darkway"
   ],
   "bountiful_delve_ids": [
-    "shadow_enclave"
+    "shadowguard_point",
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-07-19 09:59:18"
+  "last_updated": "2026-07-20 10:18:21"
 }
