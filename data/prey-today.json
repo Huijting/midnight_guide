@@ -1,23 +1,23 @@
 {
-  "fetched": "2026-07-27T10:49:19.350Z",
-  "reset": "2026-07-27",
+  "fetched": "2026-07-28T09:41:10.610Z",
+  "reset": "2026-07-28",
   "region": "EU",
   "resetTimezone": "Europe/Berlin",
   "resetHourLocal": 7,
   "source": "computed",
   "targets": [
+    "imperator_enigmalia",
+    "consul_nebulor",
+    "praetor_singularis",
+    "neydra_the_starving",
+    "mordril_shadowfell",
+    "wing_of_akilzon",
+    "grothoz_the_burning_shadow",
+    "thornspeaker_edgath",
+    "deliah_gloomsong",
     "magister_sunbreaker",
     "lamyne_of_the_undercroft",
-    "neydra_the_starving",
-    "talon_of_janalaii",
-    "wing_of_akilzon",
-    "imperator_enigmalia",
-    "grothoz_the_burning_shadow",
-    "praetor_singularis",
-    "mordril_shadowfell",
-    "senior_tinker_oszwold",
-    "deliah_gloomsong",
-    "ranger_swiftglade"
+    "nexus_edge_hadim"
   ],
   "note": "Computed set = same seed as app fallback (midnight-prey-v1- + reset date). Wowhead has no daily Prey TIW block yet; this file updates daily via GitHub Actions so clients always network-fetch a fresh list. When Wowhead adds a widget, extend WOWHEAD_PREY_NAME_TO_ID + tryParseWowheadDailyPrey."
 }
