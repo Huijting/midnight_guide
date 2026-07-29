@@ -1,9 +1,12 @@
 {
   "bountiful_delves": [
-    "Active",
-    "Active"
+    "Voidstorm: Sunkiller Sanctum",
+    "Zul'Aman: Atal'Aman"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "sunkiller_sanctum",
+    "atalaman"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-07-29 09:44:05"
+  "last_updated": "2026-07-29 09:57:42"
 }
