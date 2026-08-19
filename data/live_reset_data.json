@@ -1,9 +1,11 @@
 {
   "bountiful_delves": [
-    "Active",
+    "Silvermoon City: The Darkway",
     "Active"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "the_darkway"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-08-19 07:57:11"
+  "last_updated": "2026-08-19 08:15:07"
 }
