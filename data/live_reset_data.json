@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
     "Silvermoon City: Collegiate Calamity",
-    "Active"
+    "Silvermoon City: The Darkway"
   ],
   "bountiful_delve_ids": [
-    "collegiate_calamity"
+    "collegiate_calamity",
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-08-22 07:59:10"
+  "last_updated": "2026-08-22 08:42:30"
 }
