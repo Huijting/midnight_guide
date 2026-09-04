@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Harandar: The Grudge Pit",
-    "Active"
+    "Eversong Woods: The Shadow Enclave",
+    "Silvermoon City: The Darkway"
   ],
   "bountiful_delve_ids": [
-    "grudge_pit"
+    "shadow_enclave",
+    "the_darkway"
   ],
   "daily_prey": [],
-  "last_updated": "2026-09-03 12:47:05"
+  "last_updated": "2026-09-04 12:05:01"
 }
