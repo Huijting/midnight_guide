@@ -1,11 +1,9 @@
 {
   "bountiful_delves": [
-    "Eversong Woods: The Shadow Enclave",
+    "Active",
     "Active"
   ],
-  "bountiful_delve_ids": [
-    "shadow_enclave"
-  ],
+  "bountiful_delve_ids": [],
   "daily_prey": [],
-  "last_updated": "2026-09-08 12:49:58"
+  "last_updated": "2026-09-09 12:17:07"
 }
