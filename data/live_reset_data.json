@@ -1,9 +1,11 @@
 {
   "bountiful_delves": [
-    "Active",
+    "Zul'Aman: Atal'Aman",
     "Active"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "atalaman"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-09-11 12:47:40"
+  "last_updated": "2026-09-12 11:34:23"
 }
