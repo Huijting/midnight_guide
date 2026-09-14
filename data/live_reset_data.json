@@ -1,12 +1,11 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: Collegiate Calamity",
-    "Eversong Woods: The Shadow Enclave"
+    "Zul'Aman: Twilight Crypts",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "collegiate_calamity",
-    "shadow_enclave"
+    "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-09-13 13:16:27"
+  "last_updated": "2026-09-14 13:52:00"
 }
