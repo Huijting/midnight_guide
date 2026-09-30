@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Zul'Aman: Twilight Crypts",
-    "Active"
+    "Harandar: The Gulf of Memory",
+    "Zul'Aman: Twilight Crypts"
   ],
   "bountiful_delve_ids": [
+    "gulf_of_memory",
     "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-09-30 13:33:44"
+  "last_updated": "2026-09-30 13:47:15"
 }
