@@ -1,12 +1,12 @@
 {
   "bountiful_delves": [
-    "Harandar: The Gulf of Memory",
-    "Zul'Aman: Twilight Crypts"
+    "Voidstorm: Sunkiller Sanctum",
+    "Eversong Woods: The Shadow Enclave"
   ],
   "bountiful_delve_ids": [
-    "gulf_of_memory",
-    "twilight_crypts"
+    "sunkiller_sanctum",
+    "shadow_enclave"
   ],
   "daily_prey": [],
-  "last_updated": "2026-09-30 14:52:33"
+  "last_updated": "2026-10-01 14:23:26"
 }
