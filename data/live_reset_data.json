@@ -1,12 +1,14 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: Collegiate Calamity",
-    "Silvermoon City: The Darkway"
+    "Harandar: The Grudge Pit",
+    "Harandar: The Gulf of Memory",
+    "Zul'Aman: Twilight Crypts"
   ],
   "bountiful_delve_ids": [
-    "collegiate_calamity",
-    "the_darkway"
+    "grudge_pit",
+    "gulf_of_memory",
+    "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-03 13:18:34"
+  "last_updated": "2026-10-04 13:07:28"
 }
