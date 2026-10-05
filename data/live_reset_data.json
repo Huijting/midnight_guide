@@ -1,14 +1,14 @@
 {
   "bountiful_delves": [
-    "Harandar: The Grudge Pit",
-    "Harandar: The Gulf of Memory",
-    "Zul'Aman: Twilight Crypts"
+    "Voidstorm: Sunkiller Sanctum",
+    "Voidstorm: Shadowguard Point",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "grudge_pit",
-    "gulf_of_memory",
-    "twilight_crypts"
+    "sunkiller_sanctum",
+    "shadowguard_point",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-04 13:53:41"
+  "last_updated": "2026-10-05 15:51:09"
 }
