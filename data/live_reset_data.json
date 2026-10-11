@@ -1,12 +1,14 @@
 {
   "bountiful_delves": [
-    "Harandar: The Grudge Pit",
-    "Zul'Aman: Atal'Aman"
+    "Harandar: The Gulf of Memory",
+    "Eversong Woods: The Shadow Enclave",
+    "Zul'Aman: Twilight Crypts"
   ],
   "bountiful_delve_ids": [
-    "grudge_pit",
-    "atalaman"
+    "gulf_of_memory",
+    "shadow_enclave",
+    "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-10 14:25:55"
+  "last_updated": "2026-10-11 13:54:43"
 }
