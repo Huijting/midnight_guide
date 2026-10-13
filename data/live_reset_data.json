@@ -1,14 +1,12 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Sunkiller Sanctum",
-    "Voidstorm: Shadowguard Point",
-    "Silvermoon City: The Darkway"
+    "Silvermoon City: Collegiate Calamity",
+    "Harandar: The Grudge Pit"
   ],
   "bountiful_delve_ids": [
-    "sunkiller_sanctum",
-    "shadowguard_point",
-    "the_darkway"
+    "collegiate_calamity",
+    "grudge_pit"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-12 17:47:31"
+  "last_updated": "2026-10-13 14:56:12"
 }
