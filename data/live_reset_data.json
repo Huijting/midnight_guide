@@ -1,11 +1,12 @@
 {
   "bountiful_delves": [
-    "Zul'Aman: Twilight Crypts",
-    "Active"
+    "Voidstorm: Sunkiller Sanctum",
+    "Zul'Aman: Twilight Crypts"
   ],
   "bountiful_delve_ids": [
+    "sunkiller_sanctum",
     "twilight_crypts"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-14 13:04:43"
+  "last_updated": "2026-10-14 13:38:04"
 }
