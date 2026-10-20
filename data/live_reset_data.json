@@ -1,12 +1,11 @@
 {
   "bountiful_delves": [
-    "Voidstorm: Shadowguard Point",
-    "Silvermoon City: The Darkway"
+    "Silvermoon City: Collegiate Calamity",
+    "Active"
   ],
   "bountiful_delve_ids": [
-    "shadowguard_point",
-    "the_darkway"
+    "collegiate_calamity"
   ],
   "daily_prey": [],
-  "last_updated": "2026-10-19 15:31:36"
+  "last_updated": "2026-10-20 12:39:48"
 }
