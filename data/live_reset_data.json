@@ -1,12 +1,12 @@
 {
   "bountiful_delves": [
-    "Silvermoon City: Collegiate Calamity",
-    "Silvermoon City: The Darkway"
+    "Eversong Woods: The Shadow Enclave",
+    "Zul'Aman: Atal'Aman"
   ],
   "bountiful_delve_ids": [
-    "collegiate_calamity",
-    "the_darkway"
+    "shadow_enclave",
+    "atalaman"
   ],
   "daily_prey": [],
-  "last_updated": "2026-11-01 14:59:34"
+  "last_updated": "2026-11-02 16:58:00"
 }
