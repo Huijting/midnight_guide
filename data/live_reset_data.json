@@ -1,9 +1,12 @@
 {
   "bountiful_delves": [
-    "Active",
-    "Active"
+    "Silvermoon City: The Darkway",
+    "Zul'Aman: Atal'Aman"
   ],
-  "bountiful_delve_ids": [],
+  "bountiful_delve_ids": [
+    "the_darkway",
+    "atalaman"
+  ],
   "daily_prey": [],
-  "last_updated": "2026-11-20 16:54:39"
+  "last_updated": "2026-11-21 15:15:24"
 }
